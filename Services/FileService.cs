@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AviSynthBatchScriptCreator.Helpers;
 using AviSynthBatchScriptCreator.Models;
 
 namespace AviSynthBatchScriptCreator.Services
@@ -20,6 +21,7 @@ namespace AviSynthBatchScriptCreator.Services
 
         public List<AVSFile> CreateAVSFileList()
         {
+            CreateList();
             return _avsFiles;
         }
 
@@ -27,6 +29,10 @@ namespace AviSynthBatchScriptCreator.Services
         {
             for (int i = 1; i <= _avsBatchSettings.NumberOfFiles; i++)
             {
+                string fileNameOnly = string.Format("{0}{1}.avs", _avsBatchSettings.NamingConvention, HelperFunctions.PadNumberWithZeros(_avsBatchSettings.NumberOfFiles, i));
+                string directoryPath = String.Format("{0}{1}", _avsBatchSettings.BatchDirectoryPath, fileNameOnly);
+                AVSFile avsFile = new AVSFile() { FileNameOnly =  fileNameOnly, DirectoryPath = directoryPath};
+                _avsFiles.Add(avsFile);
             }
         }
     }
