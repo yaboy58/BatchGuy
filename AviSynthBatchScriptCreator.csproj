@@ -50,8 +50,14 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\AVSBatchSettings.cs" />
+    <Compile Include="Models\AVSFile.cs" />
+    <Compile Include="Models\AVSScript.cs" />
+    <Compile Include="Models\Error.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\IValidationService.cs" />
+    <Compile Include="Services\ValidationService.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
