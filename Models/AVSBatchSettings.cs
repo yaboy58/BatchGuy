@@ -8,7 +8,7 @@ namespace AviSynthBatchScriptCreator.Models
 {
     public class AVSBatchSettings
     {
-        public string BatchDirectory { get; set; }
+        public string BatchDirectoryPath { get; set; }
         public string NamingConvention { get; set; }
         public int NumberOfFiles { get; set; }
     }
