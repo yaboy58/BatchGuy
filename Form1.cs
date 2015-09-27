@@ -8,13 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace AviSynthScriptCreator
+namespace AviSynthBatchScriptCreator
 {
     public partial class Form1 : Form
     {
         public Form1()
         {
             InitializeComponent();
+        }
+
+        private void createAVSFilesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

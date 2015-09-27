@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AviSynthScriptCreator", "AviSynthScriptCreator.csproj", "{E9703E89-AE3A-46E6-BF68-30313A3F5E1A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AviSynthBatchScriptCreator", "AviSynthBatchScriptCreator.csproj", "{E9703E89-AE3A-46E6-BF68-30313A3F5E1A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
