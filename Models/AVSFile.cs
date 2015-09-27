@@ -9,6 +9,6 @@ namespace AviSynthBatchScriptCreator.Models
     public class AVSFile
     {
         public string FileNameOnly { get; set; }
-        public string DirectoryPath { get; set; }
+        public string FullPath { get; set; }
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AviSynthBatchScriptCreator.Models;
+using System.IO;
 
 namespace AviSynthBatchScriptCreator.Services
 {
@@ -13,11 +14,13 @@ namespace AviSynthBatchScriptCreator.Services
         private IFileService _fileService;
         private IValidationService _validationService;
         private List<AVSFile> _avsFiles;
+        private AVSScript _avsScript;
 
-        public AVSService(IFileService fileService, IValidationService validationService)
+        public AVSService(IFileService fileService, IValidationService validationService, AVSScript avsScript)
         {
             _fileService = fileService;
             _validationService = validationService;
+            _avsScript = avsScript;
         }
 
         public List<Error> CreateAVSFiles()
@@ -26,9 +29,21 @@ namespace AviSynthBatchScriptCreator.Services
             if (_errors.Count == 0)
             {
                 _avsFiles = _fileService.CreateAVSFileList();
+                WriteAVSStreams();
             }
 
             return _errors;
+        }
+
+        private void WriteAVSStreams()
+        {
+            foreach (var file in _avsFiles)
+            {
+                using (StreamWriter sw = new StreamWriter(file.FullPath))
+                {
+                    sw.WriteLine(_avsScript);
+                }
+            }
         }
     }
 }

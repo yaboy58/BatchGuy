@@ -31,7 +31,7 @@ namespace AviSynthBatchScriptCreator.Services
             {
                 string fileNameOnly = string.Format("{0}{1}.avs", _avsBatchSettings.NamingConvention, HelperFunctions.PadNumberWithZeros(_avsBatchSettings.NumberOfFiles, i));
                 string directoryPath = String.Format("{0}{1}", _avsBatchSettings.BatchDirectoryPath, fileNameOnly);
-                AVSFile avsFile = new AVSFile() { FileNameOnly =  fileNameOnly, DirectoryPath = directoryPath};
+                AVSFile avsFile = new AVSFile() { FileNameOnly =  fileNameOnly, FullPath = directoryPath};
                 _avsFiles.Add(avsFile);
             }
         }

@@ -10,16 +10,17 @@ using System.Windows.Forms;
 
 namespace AviSynthBatchScriptCreator
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
         }
 
         private void createAVSFilesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            CreateAVSFilesForm form = new CreateAVSFilesForm();
+            form.ShowDialog();
         }
     }
 }
