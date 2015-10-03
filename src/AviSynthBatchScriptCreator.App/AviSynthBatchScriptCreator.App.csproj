@@ -7,8 +7,8 @@
     <ProjectGuid>{E9703E89-AE3A-46E6-BF68-30313A3F5E1A}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AviSynthBatchScriptCreator</RootNamespace>
-    <AssemblyName>AviSynthBatchScriptCreator</AssemblyName>
+    <RootNamespace>AviSynthBatchScriptCreator.App</RootNamespace>
+    <AssemblyName>AviSynthBatchScriptCreator.App</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

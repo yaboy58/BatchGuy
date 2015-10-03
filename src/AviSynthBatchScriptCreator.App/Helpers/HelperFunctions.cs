@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AviSynthBatchScriptCreator.Helpers
+namespace AviSynthBatchScriptCreator.App.Helpers
 {
     public static class HelperFunctions
     {

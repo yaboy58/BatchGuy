@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AviSynthBatchScriptCreator", "AviSynthBatchScriptCreator.csproj", "{E9703E89-AE3A-46E6-BF68-30313A3F5E1A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AviSynthBatchScriptCreator.App", "src\AviSynthBatchScriptCreator.App\AviSynthBatchScriptCreator.App.csproj", "{E9703E89-AE3A-46E6-BF68-30313A3F5E1A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AviSynthBatchScriptCreator.Unit.Tests", "..\AviSynthBatchScriptCreator.Unit.Tests\AviSynthBatchScriptCreator.Unit.Tests.csproj", "{55FED224-7E36-44A3-A66B-4E7526633E17}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AviSynthBatchScriptCreator.Unit.Tests", "tests\AviSynthBatchScriptCreator.Unit.Tests\AviSynthBatchScriptCreator.Unit.Tests.csproj", "{55FED224-7E36-44A3-A66B-4E7526633E17}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{BB993579-70BC-4D8F-91F9-50933887303D}"
 	ProjectSection(SolutionItems) = preProject

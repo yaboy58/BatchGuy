@@ -7,8 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using AviSynthBatchScriptCreator.Models;
-using AviSynthBatchScriptCreator.Services;
+using AviSynthBatchScriptCreator.App.Models;
+using AviSynthBatchScriptCreator.App.Services;
 
 namespace AviSynthBatchScriptCreator
 {

@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AviSynthBatchScriptCreator.Models;
+using AviSynthBatchScriptCreator.App.Models;
 using System.IO;
 
-namespace AviSynthBatchScriptCreator.Services
+namespace AviSynthBatchScriptCreator.App.Services
 {
     public class AVSService : IAVSService
     {

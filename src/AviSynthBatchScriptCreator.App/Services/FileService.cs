@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AviSynthBatchScriptCreator.Helpers;
-using AviSynthBatchScriptCreator.Models;
+using AviSynthBatchScriptCreator.App.Helpers;
+using AviSynthBatchScriptCreator.App.Models;
 
-namespace AviSynthBatchScriptCreator.Services
+namespace AviSynthBatchScriptCreator.App.Services
 {
     public class FileService : IFileService
     {
