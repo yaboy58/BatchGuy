@@ -13,7 +13,7 @@ namespace AviSynthBatchScriptCreator.Unit.Tests
     [TestFixture]
     public class FileServiceTests
     {
-        [Test] 
+        [Test]
         public void avsfile_has_correct_name_test()
         {
             AVSBatchSettings avsBatchSettings;
