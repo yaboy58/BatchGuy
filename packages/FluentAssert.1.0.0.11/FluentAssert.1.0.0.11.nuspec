@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>FluentAssert</id>
+    <version>1.0.0.11</version>
+    <title>Fluent Assert</title>
+    <authors>handcraftsman, sshetty, wbinford</authors>
+    <owners>handcraftsman, sshetty, wbinford</owners>
+    <licenseUrl>http://opensource.org/licenses/mit-license.php</licenseUrl>
+    <projectUrl>https://github.com/mvbalaw/FluentAssert</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Fluent assertions express what you want tested instead of how.  This project also provides a simple BDD framework that lets you write tests that can be easily understood and verified by non-developers.</description>
+    <summary>Fluent interface for C# NUnit assertions</summary>
+    <copyright>Copyright (c) McCreary, Veselka, Bragg &amp; Allen, P.C.</copyright>
+    <language>en-US</language>
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="System" targetFramework="" />
+    </frameworkAssemblies>
+    <references>
+      <reference file="FluentAssert.dll" />
+    </references>
+  </metadata>
+</package>
