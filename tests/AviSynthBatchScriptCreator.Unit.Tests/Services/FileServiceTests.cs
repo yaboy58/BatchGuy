@@ -25,7 +25,7 @@ namespace AviSynthBatchScriptCreator.Unit.Tests
             fileService = new FileService(avsBatchSettings);
             List<AVSFile> avsFiles = fileService.CreateAVSFileList();
             //then error list contains error
-            avsFiles[0].FileNameOnly.ShouldBeEqualTo("encode01.avs");
+            avsFiles[0].FileNameOnly.ShouldBeEqualTo("encode1.avs");
         }
     }
 }
