@@ -33,10 +33,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="FluentAssert">
-      <HintPath>..\AviSynthBatchScriptCreator\packages\FluentAssert.1.0.0.11\lib\FluentAssert.dll</HintPath>
+      <HintPath>..\..\packages\FluentAssert.1.0.0.11\lib\FluentAssert.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
-      <HintPath>..\AviSynthBatchScriptCreator\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
+      <HintPath>..\..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -53,9 +53,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\..\src\AviSynthBatchScriptCreator.App\AviSynthBatchScriptCreator.App.csproj">
       <Project>{e9703e89-ae3a-46e6-bf68-30313a3f5e1a}</Project>
       <Name>AviSynthBatchScriptCreator.App</Name>
@@ -66,7 +63,9 @@
     <Content Include="FluentAssert.Provenance.txt" />
     <Content Include="FluentAssert.xml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
