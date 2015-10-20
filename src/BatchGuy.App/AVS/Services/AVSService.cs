@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BatchGuy.App.Models;
+using BatchGuy.App.AVS;
 using System.IO;
+using BatchGuy.App.AVS.Models;
+using BatchGuy.App.Models;
 
-namespace BatchGuy.App.Services
+namespace BatchGuy.App.AVS.Services
 {
     public class AVSService : IAVSService
     {

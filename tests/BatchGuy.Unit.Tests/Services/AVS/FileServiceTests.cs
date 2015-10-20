@@ -5,8 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
 using FluentAssert;
-using BatchGuy.App.Models;
-using BatchGuy.App.Services;
+using BatchGuy.App.AVS.Models;
+using BatchGuy.App.AVS.Services;
 
 namespace BatchGuy.Unit.Tests
 {

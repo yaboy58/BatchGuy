@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BatchGuy.App.Models
+namespace BatchGuy.App.AVS.Models
 {
     public class AVSScript
     {

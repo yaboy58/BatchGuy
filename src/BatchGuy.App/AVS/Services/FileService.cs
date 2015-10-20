@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BatchGuy.App.Helpers;
-using BatchGuy.App.Models;
+using BatchGuy.App.AVS;
+using BatchGuy.App.AVS.Models;
 
-namespace BatchGuy.App.Services
+namespace BatchGuy.App.AVS.Services
 {
     public class FileService : IFileService
     {

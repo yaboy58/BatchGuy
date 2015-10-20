@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BatchGuy.App.AVS.Models;
+using BatchGuy.App.AVS.Services;
 using BatchGuy.App.Models;
-using BatchGuy.App.Services;
 using NUnit;
 using NUnit.Framework;
 

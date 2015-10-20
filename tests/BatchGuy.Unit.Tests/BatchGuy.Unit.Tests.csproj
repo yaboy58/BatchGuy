@@ -49,8 +49,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="HelperFunctions\PadNumberWithZerosTests.cs" />
-    <Compile Include="Services\FileServiceTests.cs" />
-    <Compile Include="Services\ValidationServiceTests.cs" />
+    <Compile Include="Services\AVS\FileServiceTests.cs" />
+    <Compile Include="Services\AVS\ValidationServiceTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

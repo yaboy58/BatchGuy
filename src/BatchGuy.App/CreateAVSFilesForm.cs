@@ -7,8 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BatchGuy.App.AVS.Models;
+using BatchGuy.App.AVS.Services;
 using BatchGuy.App.Models;
-using BatchGuy.App.Services;
 
 namespace BatchGuy
 {
