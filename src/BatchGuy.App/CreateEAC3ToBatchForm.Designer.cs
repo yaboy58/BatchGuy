@@ -45,6 +45,7 @@
             this.txtMainAudioStreamNumber = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.txtMainSubtitleStreamNumber = new System.Windows.Forms.TextBox();
+            this.btnWriteToBatFile = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -105,7 +106,7 @@
             this.txtBluRayOutputFolder.Name = "txtBluRayOutputFolder";
             this.txtBluRayOutputFolder.Size = new System.Drawing.Size(53, 20);
             this.txtBluRayOutputFolder.TabIndex = 7;
-            this.txtBluRayOutputFolder.Text = "e01";
+            this.txtBluRayOutputFolder.Text = "1";
             // 
             // label4
             // 
@@ -199,11 +200,22 @@
             this.txtMainSubtitleStreamNumber.Size = new System.Drawing.Size(53, 20);
             this.txtMainSubtitleStreamNumber.TabIndex = 15;
             // 
+            // btnWriteToBatFile
+            // 
+            this.btnWriteToBatFile.Location = new System.Drawing.Point(673, 455);
+            this.btnWriteToBatFile.Name = "btnWriteToBatFile";
+            this.btnWriteToBatFile.Size = new System.Drawing.Size(133, 28);
+            this.btnWriteToBatFile.TabIndex = 9;
+            this.btnWriteToBatFile.Text = "Write To Bat File";
+            this.btnWriteToBatFile.UseVisualStyleBackColor = true;
+            this.btnWriteToBatFile.Click += new System.EventHandler(this.btnWriteToBatFile_Click);
+            // 
             // CreateEAC3ToBatchForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(843, 495);
+            this.Controls.Add(this.btnWriteToBatFile);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.txtBatFilePath);
             this.Controls.Add(this.label3);
@@ -240,5 +252,6 @@
         private System.Windows.Forms.TextBox txtMovieStreamNumber;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtBluRayStreamNumber;
+        private System.Windows.Forms.Button btnWriteToBatFile;
     }
 }

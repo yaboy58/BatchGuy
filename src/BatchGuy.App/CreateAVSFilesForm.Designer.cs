@@ -1,4 +1,4 @@
-﻿namespace BatchGuy
+﻿namespace BatchGuy.App
 {
     partial class CreateAVSFilesForm
     {

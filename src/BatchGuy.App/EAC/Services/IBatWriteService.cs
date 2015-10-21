@@ -10,6 +10,6 @@ namespace BatchGuy.App.EAC.Services
 {
     public interface IBatWriteService
     {
-        List<Error> Write(EAC3ToConfiguration config, EAC3ToBluRayFile bluRayFile);
+        List<Error> Write();
     }
 }

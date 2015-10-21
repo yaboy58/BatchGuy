@@ -11,7 +11,7 @@ using BatchGuy.App.AVS.Models;
 using BatchGuy.App.AVS.Services;
 using BatchGuy.App.Models;
 
-namespace BatchGuy
+namespace BatchGuy.App
 {
     public partial class CreateAVSFilesForm : Form
     {

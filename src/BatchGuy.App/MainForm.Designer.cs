@@ -30,6 +30,7 @@
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.projectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.createEac3ToBatFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createAVSFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -47,26 +48,35 @@
             // projectToolStripMenuItem
             // 
             this.projectToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.createEac3ToBatFileToolStripMenuItem,
             this.createAVSFilesToolStripMenuItem});
             this.projectToolStripMenuItem.Name = "projectToolStripMenuItem";
             this.projectToolStripMenuItem.Size = new System.Drawing.Size(56, 20);
             this.projectToolStripMenuItem.Text = "Project";
             // 
+            // createEac3ToBatFileToolStripMenuItem
+            // 
+            this.createEac3ToBatFileToolStripMenuItem.Name = "createEac3ToBatFileToolStripMenuItem";
+            this.createEac3ToBatFileToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.createEac3ToBatFileToolStripMenuItem.Text = "Create eac3To Bat File";
+            this.createEac3ToBatFileToolStripMenuItem.Click += new System.EventHandler(this.createEac3ToBatFileToolStripMenuItem_Click);
+            // 
             // createAVSFilesToolStripMenuItem
             // 
             this.createAVSFilesToolStripMenuItem.Name = "createAVSFilesToolStripMenuItem";
-            this.createAVSFilesToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.createAVSFilesToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
             this.createAVSFilesToolStripMenuItem.Text = "Create AVS Files";
             this.createAVSFilesToolStripMenuItem.Click += new System.EventHandler(this.createAVSFilesToolStripMenuItem_Click);
             // 
-            // Form1
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 262);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "Form1";
+            this.Name = "MainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -80,6 +90,7 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem projectToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem createAVSFilesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem createEac3ToBatFileToolStripMenuItem;
     }
 }
 

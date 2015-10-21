@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BatchGuy.App;
 
 namespace BatchGuy
 {
@@ -20,6 +21,12 @@ namespace BatchGuy
         private void createAVSFilesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             CreateAVSFilesForm form = new CreateAVSFilesForm();
+            form.ShowDialog();
+        }
+
+        private void createEac3ToBatFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CreateEAC3ToBatchForm form = new CreateEAC3ToBatchForm();
             form.ShowDialog();
         }
     }
