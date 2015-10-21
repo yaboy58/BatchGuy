@@ -8,10 +8,11 @@ namespace BatchGuy.App.EAC.Models
 {
     public class EAC3ToBluRayFile
     {
-        public string BluRayOutputFolder { get; set; }
+        public string BluRayEpisodeFolder { get; set; }
         public string BluRaySteamNumber { get; set; }
         public string MovieStreamNumber { get; set; }
         public string MainAudioStreamNumber { get; set; }
         public string MainSubtitleStreamNumber { get; set; }
+        public string ChapterStreamNumber { get; set; }
     }
 }

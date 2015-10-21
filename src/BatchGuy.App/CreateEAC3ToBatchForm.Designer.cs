@@ -34,17 +34,19 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txtBatFilePath = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.txtBluRayOutputFolder = new System.Windows.Forms.TextBox();
+            this.txtBluRayEpisodeFolder = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.txtBluRayStreamNumber = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.txtMovieStreamNumber = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.txtMainAudioStreamNumber = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.txtChapterStreamNumber = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.txtMainSubtitleStreamNumber = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtMainAudioStreamNumber = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtMovieStreamNumber = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtBluRayStreamNumber = new System.Windows.Forms.TextBox();
             this.btnWriteToBatFile = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -52,7 +54,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(27, 36);
+            this.label1.Location = new System.Drawing.Point(27, 66);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(69, 13);
             this.label1.TabIndex = 0;
@@ -60,7 +62,7 @@
             // 
             // txtEAC3ToPath
             // 
-            this.txtEAC3ToPath.Location = new System.Drawing.Point(106, 29);
+            this.txtEAC3ToPath.Location = new System.Drawing.Point(106, 59);
             this.txtEAC3ToPath.Name = "txtEAC3ToPath";
             this.txtEAC3ToPath.Size = new System.Drawing.Size(508, 20);
             this.txtEAC3ToPath.TabIndex = 1;
@@ -68,16 +70,16 @@
             // 
             // txtBluRayPath
             // 
-            this.txtBluRayPath.Location = new System.Drawing.Point(106, 82);
+            this.txtBluRayPath.Location = new System.Drawing.Point(106, 19);
             this.txtBluRayPath.Name = "txtBluRayPath";
             this.txtBluRayPath.Size = new System.Drawing.Size(508, 20);
-            this.txtBluRayPath.TabIndex = 3;
+            this.txtBluRayPath.TabIndex = 0;
             this.txtBluRayPath.Text = "C:\\temp\\My Torrent Encodes\\Blu-ray\\DISC";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(27, 89);
+            this.label2.Location = new System.Drawing.Point(27, 26);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(69, 13);
             this.label2.TabIndex = 2;
@@ -85,40 +87,42 @@
             // 
             // txtBatFilePath
             // 
-            this.txtBatFilePath.Location = new System.Drawing.Point(106, 141);
+            this.txtBatFilePath.Location = new System.Drawing.Point(106, 107);
             this.txtBatFilePath.Name = "txtBatFilePath";
             this.txtBatFilePath.Size = new System.Drawing.Size(508, 20);
-            this.txtBatFilePath.TabIndex = 5;
+            this.txtBatFilePath.TabIndex = 2;
             this.txtBatFilePath.Text = "C:\\temp\\My Torrent Encodes\\Blu-ray";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(27, 148);
+            this.label3.Location = new System.Drawing.Point(27, 114);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(67, 13);
             this.label3.TabIndex = 4;
             this.label3.Text = "Bat File Path";
             // 
-            // txtBluRayOutputFolder
+            // txtBluRayEpisodeFolder
             // 
-            this.txtBluRayOutputFolder.Location = new System.Drawing.Point(143, 18);
-            this.txtBluRayOutputFolder.Name = "txtBluRayOutputFolder";
-            this.txtBluRayOutputFolder.Size = new System.Drawing.Size(53, 20);
-            this.txtBluRayOutputFolder.TabIndex = 7;
-            this.txtBluRayOutputFolder.Text = "1";
+            this.txtBluRayEpisodeFolder.Location = new System.Drawing.Point(144, 64);
+            this.txtBluRayEpisodeFolder.Name = "txtBluRayEpisodeFolder";
+            this.txtBluRayEpisodeFolder.Size = new System.Drawing.Size(53, 20);
+            this.txtBluRayEpisodeFolder.TabIndex = 4;
+            this.txtBluRayEpisodeFolder.Text = "1";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(15, 25);
+            this.label4.Location = new System.Drawing.Point(16, 71);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(111, 13);
+            this.label4.Size = new System.Drawing.Size(117, 13);
             this.label4.TabIndex = 6;
-            this.label4.Text = "Blu-Ray Output Folder";
+            this.label4.Text = "Blu-Ray Episode Folder";
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label9);
+            this.groupBox1.Controls.Add(this.txtChapterStreamNumber);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.txtMainSubtitleStreamNumber);
             this.groupBox1.Controls.Add(this.label7);
@@ -128,66 +132,34 @@
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.txtBluRayStreamNumber);
             this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.txtBluRayOutputFolder);
-            this.groupBox1.Location = new System.Drawing.Point(30, 217);
+            this.groupBox1.Controls.Add(this.txtBluRayEpisodeFolder);
+            this.groupBox1.Location = new System.Drawing.Point(30, 161);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(776, 203);
+            this.groupBox1.Size = new System.Drawing.Size(776, 288);
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "groupBox1";
+            this.groupBox1.Text = "Stream Information";
             // 
-            // label5
+            // label9
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(15, 59);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(87, 13);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "Blu-Ray Stream#";
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(16, 103);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(87, 13);
+            this.label9.TabIndex = 16;
+            this.label9.Text = "Chapter Stream#";
             // 
-            // txtBluRayStreamNumber
+            // txtChapterStreamNumber
             // 
-            this.txtBluRayStreamNumber.Location = new System.Drawing.Point(108, 56);
-            this.txtBluRayStreamNumber.Name = "txtBluRayStreamNumber";
-            this.txtBluRayStreamNumber.Size = new System.Drawing.Size(53, 20);
-            this.txtBluRayStreamNumber.TabIndex = 9;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(19, 95);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(79, 13);
-            this.label6.TabIndex = 10;
-            this.label6.Text = "Movie Stream#";
-            // 
-            // txtMovieStreamNumber
-            // 
-            this.txtMovieStreamNumber.Location = new System.Drawing.Point(108, 88);
-            this.txtMovieStreamNumber.Name = "txtMovieStreamNumber";
-            this.txtMovieStreamNumber.Size = new System.Drawing.Size(53, 20);
-            this.txtMovieStreamNumber.TabIndex = 11;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(19, 131);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(103, 13);
-            this.label7.TabIndex = 12;
-            this.label7.Text = "Main Audio Stream#";
-            // 
-            // txtMainAudioStreamNumber
-            // 
-            this.txtMainAudioStreamNumber.Location = new System.Drawing.Point(143, 124);
-            this.txtMainAudioStreamNumber.Name = "txtMainAudioStreamNumber";
-            this.txtMainAudioStreamNumber.Size = new System.Drawing.Size(53, 20);
-            this.txtMainAudioStreamNumber.TabIndex = 13;
+            this.txtChapterStreamNumber.Location = new System.Drawing.Point(105, 96);
+            this.txtChapterStreamNumber.Name = "txtChapterStreamNumber";
+            this.txtChapterStreamNumber.Size = new System.Drawing.Size(53, 20);
+            this.txtChapterStreamNumber.TabIndex = 5;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(19, 170);
+            this.label8.Location = new System.Drawing.Point(16, 202);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(111, 13);
             this.label8.TabIndex = 14;
@@ -195,10 +167,58 @@
             // 
             // txtMainSubtitleStreamNumber
             // 
-            this.txtMainSubtitleStreamNumber.Location = new System.Drawing.Point(143, 163);
+            this.txtMainSubtitleStreamNumber.Location = new System.Drawing.Point(140, 195);
             this.txtMainSubtitleStreamNumber.Name = "txtMainSubtitleStreamNumber";
             this.txtMainSubtitleStreamNumber.Size = new System.Drawing.Size(53, 20);
-            this.txtMainSubtitleStreamNumber.TabIndex = 15;
+            this.txtMainSubtitleStreamNumber.TabIndex = 8;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(16, 163);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(103, 13);
+            this.label7.TabIndex = 12;
+            this.label7.Text = "Main Audio Stream#";
+            // 
+            // txtMainAudioStreamNumber
+            // 
+            this.txtMainAudioStreamNumber.Location = new System.Drawing.Point(140, 156);
+            this.txtMainAudioStreamNumber.Name = "txtMainAudioStreamNumber";
+            this.txtMainAudioStreamNumber.Size = new System.Drawing.Size(53, 20);
+            this.txtMainAudioStreamNumber.TabIndex = 7;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(24, 133);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(79, 13);
+            this.label6.TabIndex = 10;
+            this.label6.Text = "Movie Stream#";
+            // 
+            // txtMovieStreamNumber
+            // 
+            this.txtMovieStreamNumber.Location = new System.Drawing.Point(113, 126);
+            this.txtMovieStreamNumber.Name = "txtMovieStreamNumber";
+            this.txtMovieStreamNumber.Size = new System.Drawing.Size(53, 20);
+            this.txtMovieStreamNumber.TabIndex = 6;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(16, 41);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(87, 13);
+            this.label5.TabIndex = 8;
+            this.label5.Text = "Blu-Ray Stream#";
+            // 
+            // txtBluRayStreamNumber
+            // 
+            this.txtBluRayStreamNumber.Location = new System.Drawing.Point(109, 38);
+            this.txtBluRayStreamNumber.Name = "txtBluRayStreamNumber";
+            this.txtBluRayStreamNumber.Size = new System.Drawing.Size(53, 20);
+            this.txtBluRayStreamNumber.TabIndex = 3;
             // 
             // btnWriteToBatFile
             // 
@@ -223,9 +243,11 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtEAC3ToPath);
             this.Controls.Add(this.label1);
+            this.KeyPreview = true;
             this.Name = "CreateEAC3ToBatchForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "CreateEAC3ToBatchForm";
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CreateEAC3ToBatchForm_KeyPress);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -241,7 +263,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtBatFilePath;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txtBluRayOutputFolder;
+        private System.Windows.Forms.TextBox txtBluRayEpisodeFolder;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label8;
@@ -253,5 +275,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtBluRayStreamNumber;
         private System.Windows.Forms.Button btnWriteToBatFile;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox txtChapterStreamNumber;
     }
 }

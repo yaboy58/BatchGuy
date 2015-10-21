@@ -21,10 +21,17 @@ namespace BatchGuy.App
 
         private void btnWriteToBatFile_Click(object sender, EventArgs e)
         {
+            this.WriteToBatchFile();
+        }
+
+        private void WriteToBatchFile()
+        {
             EAC3ToBluRayFile file = this.GetEAC3ToBluyRayFile();
             EAC3ToConfiguration config = this.GetEAC3ToConfiguration();
             IBatWriteService service = new BatWriteService(config, file);
             service.Write();
+            this.Clear();
+            this.IncrementEpisodeNumber();
         }
 
         private EAC3ToConfiguration GetEAC3ToConfiguration()
@@ -41,11 +48,34 @@ namespace BatchGuy.App
         {
             return new EAC3ToBluRayFile()
             {
-                 BluRayOutputFolder = txtBluRayOutputFolder.Text,
+                 BluRayEpisodeFolder = txtBluRayEpisodeFolder.Text,
                   BluRaySteamNumber = txtBluRayStreamNumber.Text,
                    MainAudioStreamNumber = txtMainAudioStreamNumber.Text,
-                   MainSubtitleStreamNumber = txtMainSubtitleStreamNumber.Text
+                   MainSubtitleStreamNumber = txtMainSubtitleStreamNumber.Text,
+                   ChapterStreamNumber = txtChapterStreamNumber.Text,
+                    MovieStreamNumber = txtMovieStreamNumber.Text
             };
         }
+
+        private void Clear()
+        {
+            txtBluRayStreamNumber.Text = string.Empty;
+            txtBluRayStreamNumber.Focus();
+        }
+
+        private void IncrementEpisodeNumber()
+        {
+            int episode = Convert.ToInt32(txtBluRayEpisodeFolder.Text) + 1;
+            txtBluRayEpisodeFolder.Text = episode.ToString();
+        }
+
+        private void CreateEAC3ToBatchForm_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+            {
+                this.WriteToBatchFile();
+            }
+        }
+        
     }
 }
