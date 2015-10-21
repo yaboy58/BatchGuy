@@ -11,5 +11,6 @@ namespace BatchGuy.App.AVS.Models
         public string BatchDirectoryPath { get; set; }
         public string NamingConvention { get; set; }
         public int NumberOfFiles { get; set; }
+        public string VideoFilter { get; set; }
     }
 }

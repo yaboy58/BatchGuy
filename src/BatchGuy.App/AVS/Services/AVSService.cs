@@ -16,13 +16,15 @@ namespace BatchGuy.App.AVS.Services
         private IFileService _fileService;
         private IValidationService _validationService;
         private List<AVSFile> _avsFiles;
-        private AVSScript _avsScript;
+        private AVSTemplateScript _avsScript;
+        private AVSBatchSettings _avsBatchSettings;
 
-        public AVSService(IFileService fileService, IValidationService validationService, AVSScript avsScript)
+        public AVSService(IFileService fileService, IValidationService validationService, AVSTemplateScript avsScript, AVSBatchSettings avsBatchSettings)
         {
             _fileService = fileService;
             _validationService = validationService;
             _avsScript = avsScript;
+            _avsBatchSettings = avsBatchSettings;
         }
 
         public List<Error> CreateAVSFiles()
@@ -43,7 +45,7 @@ namespace BatchGuy.App.AVS.Services
             {
                 using (StreamWriter sw = new StreamWriter(file.FullPath))
                 {
-                    sw.WriteLine(_avsScript);
+                    sw.WriteLine(file.AVSScript);
                 }
             }
         }

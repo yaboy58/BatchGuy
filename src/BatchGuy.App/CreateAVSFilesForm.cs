@@ -15,24 +15,68 @@ namespace BatchGuy.App
 {
     public partial class CreateAVSFilesForm : Form
     {
-        private AVSScript _avsScript;
-        private IFileService _fileService;
-        private IValidationService _validationService;
-        private AVSBatchSettings _avsBatchSettings;
+        private IFileService _fileService; //ioc
+        private IValidationService _validationService; //ioc
+        private IAVSService _avsService; //ioc
 
         public CreateAVSFilesForm()
         {
             InitializeComponent();
         }
 
-        private void btnFinal_Click(object sender, EventArgs e)
+        private void CreateAVSFilesForm_Load(object sender, EventArgs e)
         {
-
+            this.SetAVSTemplateTextBox();
         }
 
-        private List<Error> Process()
+        private void SetAVSTemplateTextBox()
         {
-            return null;
+            StringBuilder sb = new StringBuilder();
+            sb.Append("Crop(0,0,0,0)");
+            sb.AppendLine(string.Format("{0}Spline36Resize(1280,720)",Environment.NewLine));
+            txtAVSTemplate.Text = sb.ToString();
+        }
+
+        private void btnCreateAVSFiles_Click(object sender, EventArgs e)
+        {
+            Process();
+        }
+
+        private void Process()
+        {
+            AVSBatchSettings avsBatchSettings = this.GetAVSBatchSettings();
+            AVSTemplateScript avsTemplateScript = this.GetAVSScript();
+
+            _fileService = new FileService(avsBatchSettings, avsTemplateScript);
+            _validationService = new ValidationService(avsBatchSettings);
+            _avsService = new AVSService(_fileService, _validationService, avsTemplateScript, avsBatchSettings);
+
+            List<Error> errors = _avsService.CreateAVSFiles();
+
+            if (errors.Count() > 0 ) // errors
+            {
+                MessageBox.Show("Errors occurred!"); //print errors in a loop at some point
+            }
+            else
+            {
+                MessageBox.Show("AVS Scripts have been created!");
+            }
+        }
+
+        private AVSBatchSettings GetAVSBatchSettings()
+        {
+            return new AVSBatchSettings()
+            {
+                 BatchDirectoryPath = txtDirectory.Text,
+                  NamingConvention = "encode", //hardcoded for now
+                   NumberOfFiles = Convert.ToInt32(txtNumberOfFiles.Text),
+                    VideoFilter = "FFVideoSource" //hardcoded for now
+            };
+        }
+
+        private AVSTemplateScript GetAVSScript()
+        {
+            return new AVSTemplateScript() { Script = txtAVSTemplate.Text };
         }
     }
 }

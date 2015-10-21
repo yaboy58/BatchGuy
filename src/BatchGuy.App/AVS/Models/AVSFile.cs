@@ -10,5 +10,7 @@ namespace BatchGuy.App.AVS.Models
     {
         public string FileNameOnly { get; set; }
         public string FullPath { get; set; }
+        public string AVSScript { get; set; }
+        public int Number { get; set; }
     }
 }

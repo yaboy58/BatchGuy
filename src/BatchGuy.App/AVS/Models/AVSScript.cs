@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BatchGuy.App.AVS.Models
 {
-    public class AVSScript
+    public class AVSTemplateScript
     {
         public string Script { get; set; }
     }

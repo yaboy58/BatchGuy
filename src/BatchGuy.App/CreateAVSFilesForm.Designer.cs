@@ -32,7 +32,7 @@
             this.txtDirectory = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtAVSTemplate = new System.Windows.Forms.TextBox();
-            this.btnFinal = new System.Windows.Forms.Button();
+            this.btnCreateAVSFiles = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.txtNumberOfFiles = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
@@ -51,8 +51,8 @@
             this.txtDirectory.Location = new System.Drawing.Point(142, 12);
             this.txtDirectory.Name = "txtDirectory";
             this.txtDirectory.Size = new System.Drawing.Size(434, 20);
-            this.txtDirectory.TabIndex = 4;
-            this.txtDirectory.Text = "C:\\temp\\My Torrent Encodes";
+            this.txtDirectory.TabIndex = 0;
+            this.txtDirectory.Text = "C:\\temp\\My Torrent Encodes\\Blu-ray";
             // 
             // label1
             // 
@@ -69,17 +69,17 @@
             this.txtAVSTemplate.Multiline = true;
             this.txtAVSTemplate.Name = "txtAVSTemplate";
             this.txtAVSTemplate.Size = new System.Drawing.Size(775, 161);
-            this.txtAVSTemplate.TabIndex = 6;
+            this.txtAVSTemplate.TabIndex = 2;
             // 
-            // btnFinal
+            // btnCreateAVSFiles
             // 
-            this.btnFinal.Location = new System.Drawing.Point(514, 293);
-            this.btnFinal.Name = "btnFinal";
-            this.btnFinal.Size = new System.Drawing.Size(284, 59);
-            this.btnFinal.TabIndex = 8;
-            this.btnFinal.Text = "Create AVS Files";
-            this.btnFinal.UseVisualStyleBackColor = true;
-            this.btnFinal.Click += new System.EventHandler(this.btnFinal_Click);
+            this.btnCreateAVSFiles.Location = new System.Drawing.Point(686, 284);
+            this.btnCreateAVSFiles.Name = "btnCreateAVSFiles";
+            this.btnCreateAVSFiles.Size = new System.Drawing.Size(112, 35);
+            this.btnCreateAVSFiles.TabIndex = 8;
+            this.btnCreateAVSFiles.Text = "Create AVS Files";
+            this.btnCreateAVSFiles.UseVisualStyleBackColor = true;
+            this.btnCreateAVSFiles.Click += new System.EventHandler(this.btnCreateAVSFiles_Click);
             // 
             // label3
             // 
@@ -95,16 +95,16 @@
             this.txtNumberOfFiles.Location = new System.Drawing.Point(142, 50);
             this.txtNumberOfFiles.Name = "txtNumberOfFiles";
             this.txtNumberOfFiles.Size = new System.Drawing.Size(54, 20);
-            this.txtNumberOfFiles.TabIndex = 9;
+            this.txtNumberOfFiles.TabIndex = 1;
             // 
             // CreateAVSFilesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(820, 364);
+            this.ClientSize = new System.Drawing.Size(820, 335);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtNumberOfFiles);
-            this.Controls.Add(this.btnFinal);
+            this.Controls.Add(this.btnCreateAVSFiles);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtAVSTemplate);
             this.Controls.Add(this.label2);
@@ -112,6 +112,7 @@
             this.Name = "CreateAVSFilesForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "CreateAVSFiles";
+            this.Load += new System.EventHandler(this.CreateAVSFilesForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -123,7 +124,7 @@
         private System.Windows.Forms.TextBox txtDirectory;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtAVSTemplate;
-        private System.Windows.Forms.Button btnFinal;
+        private System.Windows.Forms.Button btnCreateAVSFiles;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtNumberOfFiles;
     }
