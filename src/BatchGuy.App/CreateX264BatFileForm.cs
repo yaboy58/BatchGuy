@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BatchGuy.App.X264.Models;
+using BatchGuy.App.X264.Services;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -71,6 +73,27 @@ namespace BatchGuy.App
             }
 
             this.SetX264TemplateTextBox();
+        }
+
+        private void btnLoadAVSFiles_Click(object sender, EventArgs e)
+        {
+            this.LoadAVSFiles();
+        }
+
+        private X264FileSettings GetX264FileSettings()
+        {
+            return new X264FileSettings() { AVSFileFilter = "encode*", AVSPath = txtAVSFileLocation.Text };
+        }
+
+        private void LoadAVSFiles()
+        {
+            X264FileSettings x264FileSettings = this.GetX264FileSettings();
+            IValidationService validationService = new ValidationService(x264FileSettings);
+            if (validationService.Validate().Count() == 0)
+            {
+                IFileService fileService = new FileService(x264FileSettings);
+                bsFiles.DataSource = fileService.GetAVSFiles();
+            }
         }
     }
 }

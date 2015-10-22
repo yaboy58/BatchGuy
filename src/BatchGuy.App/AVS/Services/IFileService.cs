@@ -8,7 +8,7 @@ using BatchGuy.App.AVS.Models;
 
 namespace BatchGuy.App.AVS.Services
 {
-    public interface IAVSFileService
+    public interface IFileService
     {
         List<AVSFile> CreateAVSFileList();
     }

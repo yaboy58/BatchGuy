@@ -13,13 +13,13 @@ namespace BatchGuy.App.AVS.Services
     public class AVSService : IAVSService
     {
         private List<Error> _errors;
-        private IAVSFileService _fileService;
-        private IAVSValidationService _validationService;
+        private IFileService _fileService;
+        private IValidationService _validationService;
         private List<AVSFile> _avsFiles;
         private AVSTemplateScript _avsScript;
         private AVSBatchSettings _avsBatchSettings;
 
-        public AVSService(IAVSFileService fileService, IAVSValidationService validationService, AVSTemplateScript avsScript, AVSBatchSettings avsBatchSettings)
+        public AVSService(IFileService fileService, IValidationService validationService, AVSTemplateScript avsScript, AVSBatchSettings avsBatchSettings)
         {
             _fileService = fileService;
             _validationService = validationService;

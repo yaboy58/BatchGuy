@@ -10,12 +10,12 @@ using BatchGuy.App.Models;
 
 namespace BatchGuy.App.AVS.Services
 {
-    public class AVSValidationService : IAVSValidationService
+    public class ValidationService : IValidationService
     {
         private AVSBatchSettings _avsBatchSettings;
         private List<Error> _errors;
 
-        public AVSValidationService(AVSBatchSettings avsBatchSettings)
+        public ValidationService(AVSBatchSettings avsBatchSettings)
         {
             _avsBatchSettings = avsBatchSettings;
             _errors = new List<Error>();

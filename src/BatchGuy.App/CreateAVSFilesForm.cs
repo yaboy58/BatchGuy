@@ -15,8 +15,8 @@ namespace BatchGuy.App
 {
     public partial class CreateAVSFilesForm : Form
     {
-        private IAVSFileService _fileService; //ioc
-        private IAVSValidationService _validationService; //ioc
+        private IFileService _fileService; //ioc
+        private IValidationService _validationService; //ioc
         private IAVSService _avsService; //ioc
 
         public CreateAVSFilesForm()
@@ -47,8 +47,8 @@ namespace BatchGuy.App
             AVSBatchSettings avsBatchSettings = this.GetAVSBatchSettings();
             AVSTemplateScript avsTemplateScript = this.GetAVSScript();
 
-            _fileService = new AVSFileService(avsBatchSettings, avsTemplateScript);
-            _validationService = new AVSValidationService(avsBatchSettings);
+            _fileService = new FileService(avsBatchSettings, avsTemplateScript);
+            _validationService = new ValidationService(avsBatchSettings);
             _avsService = new AVSService(_fileService, _validationService, avsTemplateScript, avsBatchSettings);
 
             List<Error> errors = _avsService.CreateAVSFiles();

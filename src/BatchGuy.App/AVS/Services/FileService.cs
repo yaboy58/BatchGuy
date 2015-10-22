@@ -9,13 +9,13 @@ using BatchGuy.App.AVS.Models;
 
 namespace BatchGuy.App.AVS.Services
 {
-    public class AVSFileService : IAVSFileService
+    public class FileService : IFileService
     {
         private AVSBatchSettings _avsBatchSettings;
         private List<AVSFile> _avsFiles;
         private AVSTemplateScript _avsTemplateScript;
 
-        public AVSFileService(AVSBatchSettings avsBatchSettings, AVSTemplateScript avsTemplateScript)
+        public FileService(AVSBatchSettings avsBatchSettings, AVSTemplateScript avsTemplateScript)
         {
             _avsBatchSettings = avsBatchSettings;
             _avsTemplateScript = avsTemplateScript;

@@ -81,11 +81,17 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="AVS\Services\AVSService.cs" />
-    <Compile Include="AVS\Services\AVSFileService.cs" />
+    <Compile Include="AVS\Services\FileService.cs" />
     <Compile Include="AVS\Services\IAVSService.cs" />
-    <Compile Include="AVS\Services\IAVSFileService.cs" />
-    <Compile Include="AVS\Services\IAVSValidationService.cs" />
-    <Compile Include="AVS\Services\AVSValidationService.cs" />
+    <Compile Include="AVS\Services\IFileService.cs" />
+    <Compile Include="AVS\Services\IValidationService.cs" />
+    <Compile Include="AVS\Services\ValidationService.cs" />
+    <Compile Include="X264\Models\X264File.cs" />
+    <Compile Include="X264\Models\X264FileSettings.cs" />
+    <Compile Include="X264\Services\FileService.cs" />
+    <Compile Include="X264\Services\IFileService.cs" />
+    <Compile Include="X264\Services\IValidationService.cs" />
+    <Compile Include="X264\Services\ValidationService.cs" />
     <EmbeddedResource Include="CreateAVSFilesForm.resx">
       <DependentUpon>CreateAVSFilesForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -108,6 +114,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="Properties\DataSources\BatchGuy.App.X264.Models.X264File.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -121,10 +128,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="X264\Models\" />
-    <Folder Include="X264\Services\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
