@@ -56,10 +56,17 @@
     <Compile Include="CreateEAC3ToBatchForm.Designer.cs">
       <DependentUpon>CreateEAC3ToBatchForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="CreateX264BatFileForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CreateX264BatFileForm.Designer.cs">
+      <DependentUpon>CreateX264BatFileForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="EAC\Models\EAC3ToBluRayFile.cs" />
     <Compile Include="EAC\Models\EAC3ToConfiguration.cs" />
     <Compile Include="EAC\Services\BatWriteService.cs" />
     <Compile Include="EAC\Services\IBatWriteService.cs" />
+    <Compile Include="Enums.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -74,16 +81,19 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="AVS\Services\AVSService.cs" />
-    <Compile Include="AVS\Services\FileService.cs" />
+    <Compile Include="AVS\Services\AVSFileService.cs" />
     <Compile Include="AVS\Services\IAVSService.cs" />
-    <Compile Include="AVS\Services\IFileService.cs" />
-    <Compile Include="AVS\Services\IValidationService.cs" />
-    <Compile Include="AVS\Services\ValidationService.cs" />
+    <Compile Include="AVS\Services\IAVSFileService.cs" />
+    <Compile Include="AVS\Services\IAVSValidationService.cs" />
+    <Compile Include="AVS\Services\AVSValidationService.cs" />
     <EmbeddedResource Include="CreateAVSFilesForm.resx">
       <DependentUpon>CreateAVSFilesForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CreateEAC3ToBatchForm.resx">
       <DependentUpon>CreateEAC3ToBatchForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CreateX264BatFileForm.resx">
+      <DependentUpon>CreateX264BatFileForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -111,7 +121,10 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="X264\Models\" />
+    <Folder Include="X264\Services\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

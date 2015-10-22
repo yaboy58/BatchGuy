@@ -9,7 +9,7 @@ using BatchGuy.App.Models;
 
 namespace BatchGuy.App.AVS.Services
 {
-    public interface IValidationService
+    public interface IAVSValidationService
     {
         List<Error> Validate();
     }

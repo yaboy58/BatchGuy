@@ -246,7 +246,7 @@
             this.KeyPreview = true;
             this.Name = "CreateEAC3ToBatchForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "CreateEAC3ToBatchForm";
+            this.Text = "Create EAC3To Batch File";
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CreateEAC3ToBatchForm_KeyPress);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

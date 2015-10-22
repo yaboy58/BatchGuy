@@ -111,7 +111,7 @@
             this.Controls.Add(this.txtDirectory);
             this.Name = "CreateAVSFilesForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "CreateAVSFiles";
+            this.Text = "Create AviSynth Files";
             this.Load += new System.EventHandler(this.CreateAVSFilesForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

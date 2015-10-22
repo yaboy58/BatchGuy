@@ -29,5 +29,11 @@ namespace BatchGuy
             CreateEAC3ToBatchForm form = new CreateEAC3ToBatchForm();
             form.ShowDialog();
         }
+
+        private void createX264BatFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CreateX264BatFileForm form = new CreateX264BatFileForm();
+            form.ShowDialog();
+        }
     }
 }

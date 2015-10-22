@@ -32,6 +32,7 @@
             this.projectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createEac3ToBatFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createAVSFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.createX264BatFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -49,7 +50,8 @@
             // 
             this.projectToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.createEac3ToBatFileToolStripMenuItem,
-            this.createAVSFilesToolStripMenuItem});
+            this.createAVSFilesToolStripMenuItem,
+            this.createX264BatFileToolStripMenuItem});
             this.projectToolStripMenuItem.Name = "projectToolStripMenuItem";
             this.projectToolStripMenuItem.Size = new System.Drawing.Size(56, 20);
             this.projectToolStripMenuItem.Text = "Project";
@@ -67,6 +69,13 @@
             this.createAVSFilesToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
             this.createAVSFilesToolStripMenuItem.Text = "Create AVS Files";
             this.createAVSFilesToolStripMenuItem.Click += new System.EventHandler(this.createAVSFilesToolStripMenuItem_Click);
+            // 
+            // createX264BatFileToolStripMenuItem
+            // 
+            this.createX264BatFileToolStripMenuItem.Name = "createX264BatFileToolStripMenuItem";
+            this.createX264BatFileToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.createX264BatFileToolStripMenuItem.Text = "Create x264 Bat File";
+            this.createX264BatFileToolStripMenuItem.Click += new System.EventHandler(this.createX264BatFileToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -91,6 +100,7 @@
         private System.Windows.Forms.ToolStripMenuItem projectToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem createAVSFilesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem createEac3ToBatFileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem createX264BatFileToolStripMenuItem;
     }
 }
 
