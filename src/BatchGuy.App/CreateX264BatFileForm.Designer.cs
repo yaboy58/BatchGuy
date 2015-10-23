@@ -38,14 +38,14 @@
             this.txtAVSFileLocation = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.dgvFiles = new System.Windows.Forms.DataGridView();
+            this.btnLoadAVSFiles = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtVfw4x264exe = new System.Windows.Forms.TextBox();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.aVSFullPathDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.aVSFileNameOnlyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.encodeNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bsFiles = new System.Windows.Forms.BindingSource(this.components);
-            this.btnLoadAVSFiles = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFiles)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsFiles)).BeginInit();
             this.SuspendLayout();
@@ -151,6 +151,35 @@
             this.dgvFiles.Size = new System.Drawing.Size(1034, 273);
             this.dgvFiles.TabIndex = 19;
             // 
+            // btnLoadAVSFiles
+            // 
+            this.btnLoadAVSFiles.Location = new System.Drawing.Point(899, 97);
+            this.btnLoadAVSFiles.Name = "btnLoadAVSFiles";
+            this.btnLoadAVSFiles.Size = new System.Drawing.Size(181, 29);
+            this.btnLoadAVSFiles.TabIndex = 20;
+            this.btnLoadAVSFiles.Text = "Load AviSynth Files";
+            this.btnLoadAVSFiles.UseVisualStyleBackColor = true;
+            this.btnLoadAVSFiles.Click += new System.EventHandler(this.btnLoadAVSFiles_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(46, 56);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(131, 17);
+            this.label5.TabIndex = 22;
+            this.label5.Text = "vfw4x264 Directory:";
+            // 
+            // txtVfw4x264exe
+            // 
+            this.txtVfw4x264exe.Location = new System.Drawing.Point(209, 52);
+            this.txtVfw4x264exe.Margin = new System.Windows.Forms.Padding(4);
+            this.txtVfw4x264exe.Name = "txtVfw4x264exe";
+            this.txtVfw4x264exe.Size = new System.Drawing.Size(577, 22);
+            this.txtVfw4x264exe.TabIndex = 21;
+            this.txtVfw4x264exe.Text = "C:\\exe\\HDBits Encoding\\vfw4x264.exe";
+            // 
             // idDataGridViewTextBoxColumn
             // 
             this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
@@ -185,42 +214,13 @@
             // 
             this.bsFiles.DataSource = typeof(BatchGuy.App.X264.Models.X264File);
             // 
-            // btnLoadAVSFiles
-            // 
-            this.btnLoadAVSFiles.Location = new System.Drawing.Point(899, 97);
-            this.btnLoadAVSFiles.Name = "btnLoadAVSFiles";
-            this.btnLoadAVSFiles.Size = new System.Drawing.Size(181, 29);
-            this.btnLoadAVSFiles.TabIndex = 20;
-            this.btnLoadAVSFiles.Text = "Load AviSynth Files";
-            this.btnLoadAVSFiles.UseVisualStyleBackColor = true;
-            this.btnLoadAVSFiles.Click += new System.EventHandler(this.btnLoadAVSFiles_Click);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(46, 56);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(161, 17);
-            this.label5.TabIndex = 22;
-            this.label5.Text = "AviSynth Files Directory:";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(209, 52);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(577, 22);
-            this.textBox1.TabIndex = 21;
-            this.textBox1.Text = "C:\\temp\\My Torrent Encodes\\Blu-ray";
-            // 
             // CreateX264BatFileForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1132, 805);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtVfw4x264exe);
             this.Controls.Add(this.btnLoadAVSFiles);
             this.Controls.Add(this.dgvFiles);
             this.Controls.Add(this.label1);
@@ -261,6 +261,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn aVSFileNameOnlyDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn encodeNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtVfw4x264exe;
     }
 }
