@@ -42,7 +42,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.txtVfw4x264exe = new System.Windows.Forms.TextBox();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.aVSFullPathDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.aVSFileNameOnlyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.encodeNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bsFiles = new System.Windows.Forms.BindingSource(this.components);
@@ -83,6 +82,7 @@
             this.btnCreateX264BatFile.TabIndex = 14;
             this.btnCreateX264BatFile.Text = "Create x264 Bat File";
             this.btnCreateX264BatFile.UseVisualStyleBackColor = true;
+            this.btnCreateX264BatFile.Click += new System.EventHandler(this.btnCreateX264BatFile_Click);
             // 
             // label3
             // 
@@ -141,7 +141,6 @@
             this.dgvFiles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvFiles.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.idDataGridViewTextBoxColumn,
-            this.aVSFullPathDataGridViewTextBoxColumn,
             this.aVSFileNameOnlyDataGridViewTextBoxColumn,
             this.encodeNameDataGridViewTextBoxColumn});
             this.dgvFiles.DataSource = this.bsFiles;
@@ -186,13 +185,6 @@
             this.idDataGridViewTextBoxColumn.HeaderText = "Id";
             this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
             this.idDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // aVSFullPathDataGridViewTextBoxColumn
-            // 
-            this.aVSFullPathDataGridViewTextBoxColumn.DataPropertyName = "AVSFullPath";
-            this.aVSFullPathDataGridViewTextBoxColumn.HeaderText = "AVSFullPath";
-            this.aVSFullPathDataGridViewTextBoxColumn.Name = "aVSFullPathDataGridViewTextBoxColumn";
-            this.aVSFullPathDataGridViewTextBoxColumn.Visible = false;
             // 
             // aVSFileNameOnlyDataGridViewTextBoxColumn
             // 
@@ -257,7 +249,6 @@
         private System.Windows.Forms.BindingSource bsFiles;
         private System.Windows.Forms.Button btnLoadAVSFiles;
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn aVSFullPathDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn aVSFileNameOnlyDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn encodeNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.Label label5;

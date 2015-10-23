@@ -15,6 +15,7 @@ namespace BatchGuy.App
     public partial class CreateX264BatFileForm : Form
     {
         private EnumEncodeType EncodeType { get; set; }
+        private List<X264File> _x264Files;
 
         public CreateX264BatFileForm()
         {
@@ -82,7 +83,8 @@ namespace BatchGuy.App
 
         private X264FileSettings GetX264FileSettings()
         {
-            return new X264FileSettings() { AVSFileFilter = "encode*", AVSPath = txtAVSFileLocation.Text };
+            return new X264FileSettings() { AVSFileFilter = "encode*", AVSPath = txtAVSFileLocation.Text, EncodeType = EncodeType,
+             vfw4x264Exe = txtVfw4x264exe.Text, X264Template = txtX264Template.Text};
         }
 
         private void LoadAVSFiles()
@@ -92,7 +94,27 @@ namespace BatchGuy.App
             if (validationService.Validate().Count() == 0)
             {
                 IFileService fileService = new FileService(x264FileSettings);
-                bsFiles.DataSource = fileService.GetAVSFiles();
+                _x264Files = fileService.GetAVSFiles();
+                bsFiles.DataSource = _x264Files;
+            }
+        }
+
+        private void btnCreateX264BatFile_Click(object sender, EventArgs e)
+        {
+            this.CreateX264BatFile();
+        }
+
+        private void CreateX264BatFile()
+        {
+            X264FileSettings x264Settings = this.GetX264FileSettings();
+            IEncodeService encodeService = new EncodeService(x264Settings, _x264Files);
+            if (encodeService.CreateX264File().Count() == 0)
+            {
+                MessageBox.Show("The x264 batch file has been created!");
+            }
+            else
+            {
+                //Show errors
             }
         }
     }

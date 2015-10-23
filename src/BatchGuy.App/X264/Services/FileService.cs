@@ -24,13 +24,15 @@ namespace BatchGuy.App.X264.Services
             foreach (string avsFile in Directory.GetFiles(_x264FileSettings.AVSPath, _x264FileSettings.AVSFileFilter))
             {
               FileInfo fileInfo = new FileInfo(avsFile);
-  
-                X264File x264File = new X264File()
-                {
-                     AVSFullPath = avsFile,
-                     AVSFileNameOnly = fileInfo.Name
-                };
-                _files.Add(x264File);
+              if (fileInfo.Extension == ".avs")
+              {
+                  X264File x264File = new X264File()
+                  {
+                      AVSFilePath = avsFile,
+                      AVSFileNameOnly = fileInfo.Name
+                  };
+                  _files.Add(x264File);                  
+              }
             }
 
             return _files;

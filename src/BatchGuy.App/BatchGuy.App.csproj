@@ -88,7 +88,9 @@
     <Compile Include="AVS\Services\ValidationService.cs" />
     <Compile Include="X264\Models\X264File.cs" />
     <Compile Include="X264\Models\X264FileSettings.cs" />
+    <Compile Include="X264\Services\EncodeService.cs" />
     <Compile Include="X264\Services\FileService.cs" />
+    <Compile Include="X264\Services\IEncodeService.cs" />
     <Compile Include="X264\Services\IFileService.cs" />
     <Compile Include="X264\Services\IValidationService.cs" />
     <Compile Include="X264\Services\ValidationService.cs" />

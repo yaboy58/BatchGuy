@@ -10,7 +10,7 @@ namespace BatchGuy.App.X264.Models
     {
         public int Id { get; set; }
         public string AVSFileNameOnly { get; set; }
-        public string AVSFullPath { get; set; }
+        public string AVSFilePath { get; set; }
         public string EncodeName { get; set; }
     }
 }
