@@ -1,3 +1,4 @@
+--eac3To Form
 *possibly upgrade eac3to so you can specify the log file
 *configure audio for ac3 and dts
 *maybe even configure audio for commentary
