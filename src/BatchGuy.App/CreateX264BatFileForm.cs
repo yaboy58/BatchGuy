@@ -111,6 +111,8 @@ namespace BatchGuy.App
             if (encodeService.CreateX264File().Count() == 0)
             {
                 MessageBox.Show("The x264 batch file has been created!");
+                this.SetComboBoxEncodeType();
+                bsFiles.Clear();
             }
             else
             {

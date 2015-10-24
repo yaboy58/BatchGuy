@@ -32,6 +32,7 @@ namespace BatchGuy.App.X264.Services
                     this.CreateCRFX264File();
                     break;
                 case EnumEncodeType.TwoPass:
+                    this.CreateTwoPassX264File();
                     break;
                 default:
                     _errors.Add(new Error() { Description = "Invalid x264 encode type" });
@@ -62,6 +63,44 @@ namespace BatchGuy.App.X264.Services
             catch (Exception ex)
             {
                 _errors.Add(new Error() { Description =  ex.Message});
+            }
+        }
+
+        public void CreateTwoPassX264File()
+        {
+            try
+            {
+                using (StreamWriter sw = new StreamWriter(string.Format("{0}\\{1}", _x264FileSettings.AVSPath, _batFile), false))
+                {
+                    foreach (X264File x264File in _x264Files)
+                    {
+                        //1st pass
+                        StringBuilder sb1stPass = new StringBuilder();
+                        sb1stPass.Append(string.Format("\"{0}\"", _x264FileSettings.vfw4x264Exe));
+                        sb1stPass.Append(string.Format(" \"{0}\"", x264File.AVSFilePath));
+                        sb1stPass.Append(" --pass 1");
+                        sb1stPass.Append(string.Format(" {0}", _x264FileSettings.X264Template));
+                        sb1stPass.Append(string.Format(" --output NUL - 2> \"{0}\\{1}.x264.log\"", _x264FileSettings.AVSPath, x264File.EncodeName));
+                        sw.WriteLine(sb1stPass.ToString());
+                        sw.WriteLine();
+
+                        //2nd pass
+                        StringBuilder sb2ndPass = new StringBuilder();
+                        sb2ndPass.Append(string.Format("\"{0}\"", _x264FileSettings.vfw4x264Exe));
+                        sb2ndPass.Append(string.Format(" \"{0}\"", x264File.AVSFilePath));
+                        sb1stPass.Append(" --pass 2");
+                        sb2ndPass.Append(string.Format(" {0}", _x264FileSettings.X264Template));
+                        sb2ndPass.Append(string.Format(" --output \"{0}\\{1}\"", _x264FileSettings.AVSPath, x264File.EncodeName));
+                        sb2ndPass.Append(string.Format(" - 2> \"{0}\\{1}.x264.log\"", _x264FileSettings.AVSPath, x264File.EncodeName));
+                        sw.WriteLine(sb2ndPass.ToString());
+                        sw.WriteLine();
+                        sw.WriteLine();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                _errors.Add(new Error() { Description = ex.Message });
             }
         }
     }

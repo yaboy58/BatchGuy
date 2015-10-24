@@ -3,3 +3,9 @@
 *configure audio for ac3 and dts
 *maybe even configure audio for commentary
 *de-couple bat path from folder where files are stored path
+
+--AviSynth Form
+
+
+--x264 Form
+*validation
