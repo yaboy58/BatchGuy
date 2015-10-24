@@ -41,10 +41,11 @@
             this.btnLoadAVSFiles = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.txtVfw4x264exe = new System.Windows.Forms.TextBox();
-            this.bsFiles = new System.Windows.Forms.BindingSource(this.components);
+            this.lblNumberOfFiles = new System.Windows.Forms.Label();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.aVSFileNameOnlyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.encodeNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bsFiles = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dgvFiles)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsFiles)).BeginInit();
             this.SuspendLayout();
@@ -52,7 +53,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(574, 350);
+            this.label4.Location = new System.Drawing.Point(572, 376);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(74, 13);
             this.label4.TabIndex = 16;
@@ -65,7 +66,7 @@
             this.cbEncodeType.Items.AddRange(new object[] {
             "CRF",
             "2Pass"});
-            this.cbEncodeType.Location = new System.Drawing.Point(664, 343);
+            this.cbEncodeType.Location = new System.Drawing.Point(662, 369);
             this.cbEncodeType.Name = "cbEncodeType";
             this.cbEncodeType.Size = new System.Drawing.Size(148, 21);
             this.cbEncodeType.TabIndex = 15;
@@ -73,7 +74,7 @@
             // 
             // btnCreateX264BatFile
             // 
-            this.btnCreateX264BatFile.Location = new System.Drawing.Point(644, 595);
+            this.btnCreateX264BatFile.Location = new System.Drawing.Point(642, 621);
             this.btnCreateX264BatFile.Name = "btnCreateX264BatFile";
             this.btnCreateX264BatFile.Size = new System.Drawing.Size(168, 44);
             this.btnCreateX264BatFile.TabIndex = 14;
@@ -84,7 +85,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(34, 353);
+            this.label3.Location = new System.Drawing.Point(32, 379);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(80, 13);
             this.label3.TabIndex = 13;
@@ -92,7 +93,7 @@
             // 
             // txtX264Template
             // 
-            this.txtX264Template.Location = new System.Drawing.Point(37, 370);
+            this.txtX264Template.Location = new System.Drawing.Point(35, 396);
             this.txtX264Template.Multiline = true;
             this.txtX264Template.Name = "txtX264Template";
             this.txtX264Template.Size = new System.Drawing.Size(775, 219);
@@ -141,6 +142,7 @@
             this.dgvFiles.RowTemplate.Height = 24;
             this.dgvFiles.Size = new System.Drawing.Size(776, 222);
             this.dgvFiles.TabIndex = 19;
+            this.dgvFiles.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.dgvFiles_RowsRemoved);
             // 
             // btnLoadAVSFiles
             // 
@@ -170,9 +172,14 @@
             this.txtVfw4x264exe.TabIndex = 21;
             this.txtVfw4x264exe.Text = "C:\\exe\\HDBits Encoding\\vfw4x264\\vfw4x264.exe";
             // 
-            // bsFiles
+            // lblNumberOfFiles
             // 
-            this.bsFiles.DataSource = typeof(BatchGuy.App.X264.Models.X264File);
+            this.lblNumberOfFiles.AutoSize = true;
+            this.lblNumberOfFiles.Location = new System.Drawing.Point(32, 331);
+            this.lblNumberOfFiles.Name = "lblNumberOfFiles";
+            this.lblNumberOfFiles.Size = new System.Drawing.Size(83, 13);
+            this.lblNumberOfFiles.TabIndex = 23;
+            this.lblNumberOfFiles.Text = "Number of Files:";
             // 
             // idDataGridViewTextBoxColumn
             // 
@@ -197,11 +204,16 @@
             this.encodeNameDataGridViewTextBoxColumn.MinimumWidth = 200;
             this.encodeNameDataGridViewTextBoxColumn.Name = "encodeNameDataGridViewTextBoxColumn";
             // 
+            // bsFiles
+            // 
+            this.bsFiles.DataSource = typeof(BatchGuy.App.X264.Models.X264File);
+            // 
             // CreateX264BatFileForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(849, 654);
+            this.ClientSize = new System.Drawing.Size(849, 682);
+            this.Controls.Add(this.lblNumberOfFiles);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtVfw4x264exe);
             this.Controls.Add(this.btnLoadAVSFiles);
@@ -243,5 +255,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn aVSFileNameOnlyDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn encodeNameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Label lblNumberOfFiles;
     }
 }

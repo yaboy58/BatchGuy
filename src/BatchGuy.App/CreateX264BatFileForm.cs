@@ -113,11 +113,22 @@ namespace BatchGuy.App
                 MessageBox.Show("The x264 batch file has been created!");
                 this.SetComboBoxEncodeType();
                 bsFiles.Clear();
+                this.HandleRowsRemoved();
             }
             else
             {
                 //Show errors
             }
+        }
+
+        private void dgvFiles_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
+        {
+            this.HandleRowsRemoved();
+        }
+
+        private void HandleRowsRemoved()
+        {
+            lblNumberOfFiles.Text = string.Format("Number of Files: {0}", _x264Files.Count());
         }
     }
 }
