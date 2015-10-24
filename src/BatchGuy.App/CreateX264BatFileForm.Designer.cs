@@ -127,7 +127,6 @@
             // dgvFiles
             // 
             this.dgvFiles.AllowUserToAddRows = false;
-            this.dgvFiles.AllowUserToDeleteRows = false;
             this.dgvFiles.AllowUserToOrderColumns = true;
             this.dgvFiles.AutoGenerateColumns = false;
             this.dgvFiles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
