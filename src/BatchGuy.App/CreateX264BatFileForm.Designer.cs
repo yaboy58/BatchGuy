@@ -38,13 +38,13 @@
             this.txtAVSFileLocation = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.dgvFiles = new System.Windows.Forms.DataGridView();
-            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.aVSFileNameOnlyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.encodeNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bsFiles = new System.Windows.Forms.BindingSource(this.components);
             this.btnLoadAVSFiles = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.txtVfw4x264exe = new System.Windows.Forms.TextBox();
+            this.bsFiles = new System.Windows.Forms.BindingSource(this.components);
+            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.aVSFileNameOnlyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.encodeNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFiles)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsFiles)).BeginInit();
             this.SuspendLayout();
@@ -142,33 +142,6 @@
             this.dgvFiles.Size = new System.Drawing.Size(776, 222);
             this.dgvFiles.TabIndex = 19;
             // 
-            // idDataGridViewTextBoxColumn
-            // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            this.idDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // aVSFileNameOnlyDataGridViewTextBoxColumn
-            // 
-            this.aVSFileNameOnlyDataGridViewTextBoxColumn.DataPropertyName = "AVSFileNameOnly";
-            this.aVSFileNameOnlyDataGridViewTextBoxColumn.HeaderText = "AviSynth File";
-            this.aVSFileNameOnlyDataGridViewTextBoxColumn.MinimumWidth = 100;
-            this.aVSFileNameOnlyDataGridViewTextBoxColumn.Name = "aVSFileNameOnlyDataGridViewTextBoxColumn";
-            this.aVSFileNameOnlyDataGridViewTextBoxColumn.Width = 200;
-            // 
-            // encodeNameDataGridViewTextBoxColumn
-            // 
-            this.encodeNameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.encodeNameDataGridViewTextBoxColumn.DataPropertyName = "EncodeName";
-            this.encodeNameDataGridViewTextBoxColumn.HeaderText = "Encode Name";
-            this.encodeNameDataGridViewTextBoxColumn.MinimumWidth = 200;
-            this.encodeNameDataGridViewTextBoxColumn.Name = "encodeNameDataGridViewTextBoxColumn";
-            // 
-            // bsFiles
-            // 
-            this.bsFiles.DataSource = typeof(BatchGuy.App.X264.Models.X264File);
-            // 
             // btnLoadAVSFiles
             // 
             this.btnLoadAVSFiles.Location = new System.Drawing.Point(674, 79);
@@ -196,6 +169,33 @@
             this.txtVfw4x264exe.Size = new System.Drawing.Size(434, 20);
             this.txtVfw4x264exe.TabIndex = 21;
             this.txtVfw4x264exe.Text = "C:\\exe\\HDBits Encoding\\vfw4x264\\vfw4x264.exe";
+            // 
+            // bsFiles
+            // 
+            this.bsFiles.DataSource = typeof(BatchGuy.App.X264.Models.X264File);
+            // 
+            // idDataGridViewTextBoxColumn
+            // 
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            this.idDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // aVSFileNameOnlyDataGridViewTextBoxColumn
+            // 
+            this.aVSFileNameOnlyDataGridViewTextBoxColumn.DataPropertyName = "AVSFileNameOnly";
+            this.aVSFileNameOnlyDataGridViewTextBoxColumn.HeaderText = "AviSynth File";
+            this.aVSFileNameOnlyDataGridViewTextBoxColumn.MinimumWidth = 100;
+            this.aVSFileNameOnlyDataGridViewTextBoxColumn.Name = "aVSFileNameOnlyDataGridViewTextBoxColumn";
+            this.aVSFileNameOnlyDataGridViewTextBoxColumn.Width = 200;
+            // 
+            // encodeNameDataGridViewTextBoxColumn
+            // 
+            this.encodeNameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.encodeNameDataGridViewTextBoxColumn.DataPropertyName = "EncodeName";
+            this.encodeNameDataGridViewTextBoxColumn.HeaderText = "Encode Name (EX: MyFile.mkv)";
+            this.encodeNameDataGridViewTextBoxColumn.MinimumWidth = 200;
+            this.encodeNameDataGridViewTextBoxColumn.Name = "encodeNameDataGridViewTextBoxColumn";
             // 
             // CreateX264BatFileForm
             // 
@@ -238,10 +238,10 @@
         private System.Windows.Forms.DataGridView dgvFiles;
         private System.Windows.Forms.BindingSource bsFiles;
         private System.Windows.Forms.Button btnLoadAVSFiles;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox txtVfw4x264exe;
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn aVSFileNameOnlyDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn encodeNameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox txtVfw4x264exe;
     }
 }
