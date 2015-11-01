@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using FluentAssert;
 using BatchGuy.App.EAC.Models;
 using BatchGuy.App.EAC.Services;
+using BatchGuy.App;
 
 namespace BatchGuy.Unit.Tests.Services.EAC
 {
@@ -37,6 +38,34 @@ namespace BatchGuy.Unit.Tests.Services.EAC
             string output = service.GetBluRayStreamPart();
             output.ShouldContain(config.BluRayPath);
             output.ShouldContain(file.BluRaySteamNumber);
+        }
+
+        [Test]
+        public void eacoutputservice_can_set_dts_audio_settings_test()
+        {
+            //given dts and audio settings
+            EAC3ToConfiguration config = new EAC3ToConfiguration() {  BatFilePath = "c:\\temp", AudioType = EnumAudioType.DTS, AudioSettings = "-core" };
+            EAC3ToBluRayFile file = new EAC3ToBluRayFile() {  MainAudioStreamNumber = "1" };
+            //when I want the output
+            IEACOutputService service = new EACOutputService(config, file);
+            //then the dts audio is set
+            string output = service.GetAudioStreamPart();
+            output.ShouldContain(".dts");
+            output.ShouldContain("-core");
+        }
+
+        [Test]
+        public void eacoutputservice_can_set_truehd_audio_settings_test()
+        {
+            //given truehd and audio settings
+            EAC3ToConfiguration config = new EAC3ToConfiguration() { BatFilePath = "c:\\temp", AudioType = EnumAudioType.TrueHD, AudioSettings = "-640" };
+            EAC3ToBluRayFile file = new EAC3ToBluRayFile() { MainAudioStreamNumber = "1" };
+            //when I want the output
+            IEACOutputService service = new EACOutputService(config, file);
+            //then the truehd audio is set
+            string output = service.GetAudioStreamPart();
+            output.ShouldContain(".ac3");
+            output.ShouldContain("-640");
         }
     }
 }

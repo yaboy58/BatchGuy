@@ -48,13 +48,16 @@
             this.label5 = new System.Windows.Forms.Label();
             this.txtBluRayStreamNumber = new System.Windows.Forms.TextBox();
             this.btnWriteToBatFile = new System.Windows.Forms.Button();
+            this.lblAudioType = new System.Windows.Forms.Label();
+            this.cbAudioType = new System.Windows.Forms.ComboBox();
+            this.txtAudioSettings = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(27, 66);
+            this.label1.Location = new System.Drawing.Point(32, 61);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(69, 13);
             this.label1.TabIndex = 0;
@@ -62,7 +65,7 @@
             // 
             // txtEAC3ToPath
             // 
-            this.txtEAC3ToPath.Location = new System.Drawing.Point(106, 59);
+            this.txtEAC3ToPath.Location = new System.Drawing.Point(122, 54);
             this.txtEAC3ToPath.Name = "txtEAC3ToPath";
             this.txtEAC3ToPath.Size = new System.Drawing.Size(508, 20);
             this.txtEAC3ToPath.TabIndex = 1;
@@ -70,7 +73,7 @@
             // 
             // txtBluRayPath
             // 
-            this.txtBluRayPath.Location = new System.Drawing.Point(106, 19);
+            this.txtBluRayPath.Location = new System.Drawing.Point(122, 19);
             this.txtBluRayPath.Name = "txtBluRayPath";
             this.txtBluRayPath.Size = new System.Drawing.Size(508, 20);
             this.txtBluRayPath.TabIndex = 0;
@@ -79,7 +82,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(27, 26);
+            this.label2.Location = new System.Drawing.Point(32, 26);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(69, 13);
             this.label2.TabIndex = 2;
@@ -87,7 +90,7 @@
             // 
             // txtBatFilePath
             // 
-            this.txtBatFilePath.Location = new System.Drawing.Point(106, 107);
+            this.txtBatFilePath.Location = new System.Drawing.Point(124, 90);
             this.txtBatFilePath.Name = "txtBatFilePath";
             this.txtBatFilePath.Size = new System.Drawing.Size(508, 20);
             this.txtBatFilePath.TabIndex = 2;
@@ -96,7 +99,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(27, 114);
+            this.label3.Location = new System.Drawing.Point(32, 97);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(67, 13);
             this.label3.TabIndex = 4;
@@ -104,10 +107,10 @@
             // 
             // txtBluRayEpisodeFolder
             // 
-            this.txtBluRayEpisodeFolder.Location = new System.Drawing.Point(144, 64);
+            this.txtBluRayEpisodeFolder.Location = new System.Drawing.Point(139, 64);
             this.txtBluRayEpisodeFolder.Name = "txtBluRayEpisodeFolder";
             this.txtBluRayEpisodeFolder.Size = new System.Drawing.Size(53, 20);
-            this.txtBluRayEpisodeFolder.TabIndex = 4;
+            this.txtBluRayEpisodeFolder.TabIndex = 6;
             this.txtBluRayEpisodeFolder.Text = "1";
             // 
             // label4
@@ -135,7 +138,7 @@
             this.groupBox1.Controls.Add(this.txtBluRayEpisodeFolder);
             this.groupBox1.Location = new System.Drawing.Point(30, 161);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(776, 288);
+            this.groupBox1.Size = new System.Drawing.Size(611, 246);
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Stream Information";
@@ -151,15 +154,15 @@
             // 
             // txtChapterStreamNumber
             // 
-            this.txtChapterStreamNumber.Location = new System.Drawing.Point(105, 96);
+            this.txtChapterStreamNumber.Location = new System.Drawing.Point(139, 96);
             this.txtChapterStreamNumber.Name = "txtChapterStreamNumber";
             this.txtChapterStreamNumber.Size = new System.Drawing.Size(53, 20);
-            this.txtChapterStreamNumber.TabIndex = 5;
+            this.txtChapterStreamNumber.TabIndex = 7;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(16, 202);
+            this.label8.Location = new System.Drawing.Point(16, 195);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(111, 13);
             this.label8.TabIndex = 14;
@@ -167,10 +170,10 @@
             // 
             // txtMainSubtitleStreamNumber
             // 
-            this.txtMainSubtitleStreamNumber.Location = new System.Drawing.Point(140, 195);
+            this.txtMainSubtitleStreamNumber.Location = new System.Drawing.Point(139, 188);
             this.txtMainSubtitleStreamNumber.Name = "txtMainSubtitleStreamNumber";
             this.txtMainSubtitleStreamNumber.Size = new System.Drawing.Size(53, 20);
-            this.txtMainSubtitleStreamNumber.TabIndex = 8;
+            this.txtMainSubtitleStreamNumber.TabIndex = 10;
             // 
             // label7
             // 
@@ -183,15 +186,15 @@
             // 
             // txtMainAudioStreamNumber
             // 
-            this.txtMainAudioStreamNumber.Location = new System.Drawing.Point(140, 156);
+            this.txtMainAudioStreamNumber.Location = new System.Drawing.Point(139, 156);
             this.txtMainAudioStreamNumber.Name = "txtMainAudioStreamNumber";
             this.txtMainAudioStreamNumber.Size = new System.Drawing.Size(53, 20);
-            this.txtMainAudioStreamNumber.TabIndex = 7;
+            this.txtMainAudioStreamNumber.TabIndex = 9;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(24, 133);
+            this.label6.Location = new System.Drawing.Point(16, 133);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(79, 13);
             this.label6.TabIndex = 10;
@@ -199,10 +202,10 @@
             // 
             // txtMovieStreamNumber
             // 
-            this.txtMovieStreamNumber.Location = new System.Drawing.Point(113, 126);
+            this.txtMovieStreamNumber.Location = new System.Drawing.Point(139, 126);
             this.txtMovieStreamNumber.Name = "txtMovieStreamNumber";
             this.txtMovieStreamNumber.Size = new System.Drawing.Size(53, 20);
-            this.txtMovieStreamNumber.TabIndex = 6;
+            this.txtMovieStreamNumber.TabIndex = 8;
             // 
             // label5
             // 
@@ -215,26 +218,61 @@
             // 
             // txtBluRayStreamNumber
             // 
-            this.txtBluRayStreamNumber.Location = new System.Drawing.Point(109, 38);
+            this.txtBluRayStreamNumber.Location = new System.Drawing.Point(139, 38);
             this.txtBluRayStreamNumber.Name = "txtBluRayStreamNumber";
             this.txtBluRayStreamNumber.Size = new System.Drawing.Size(53, 20);
-            this.txtBluRayStreamNumber.TabIndex = 3;
+            this.txtBluRayStreamNumber.TabIndex = 5;
             // 
             // btnWriteToBatFile
             // 
-            this.btnWriteToBatFile.Location = new System.Drawing.Point(673, 455);
+            this.btnWriteToBatFile.Location = new System.Drawing.Point(508, 455);
             this.btnWriteToBatFile.Name = "btnWriteToBatFile";
             this.btnWriteToBatFile.Size = new System.Drawing.Size(133, 28);
-            this.btnWriteToBatFile.TabIndex = 9;
+            this.btnWriteToBatFile.TabIndex = 11;
             this.btnWriteToBatFile.Text = "Write To Bat File";
             this.btnWriteToBatFile.UseVisualStyleBackColor = true;
             this.btnWriteToBatFile.Click += new System.EventHandler(this.btnWriteToBatFile_Click);
+            // 
+            // lblAudioType
+            // 
+            this.lblAudioType.AutoSize = true;
+            this.lblAudioType.Location = new System.Drawing.Point(32, 131);
+            this.lblAudioType.Name = "lblAudioType";
+            this.lblAudioType.Size = new System.Drawing.Size(64, 13);
+            this.lblAudioType.TabIndex = 18;
+            this.lblAudioType.Text = "Audio Type:";
+            // 
+            // cbAudioType
+            // 
+            this.cbAudioType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbAudioType.FormattingEnabled = true;
+            this.cbAudioType.Items.AddRange(new object[] {
+            "DTS",
+            "AC3",
+            "FLAC",
+            "TrueHD"});
+            this.cbAudioType.Location = new System.Drawing.Point(122, 124);
+            this.cbAudioType.Name = "cbAudioType";
+            this.cbAudioType.Size = new System.Drawing.Size(148, 21);
+            this.cbAudioType.TabIndex = 3;
+            this.cbAudioType.SelectedIndexChanged += new System.EventHandler(this.cbAudioType_SelectedIndexChanged);
+            // 
+            // txtAudioSettings
+            // 
+            this.txtAudioSettings.Location = new System.Drawing.Point(276, 124);
+            this.txtAudioSettings.Name = "txtAudioSettings";
+            this.txtAudioSettings.Size = new System.Drawing.Size(356, 20);
+            this.txtAudioSettings.TabIndex = 4;
+            this.txtAudioSettings.Text = "-core";
             // 
             // CreateEAC3ToBatchForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(843, 495);
+            this.ClientSize = new System.Drawing.Size(666, 495);
+            this.Controls.Add(this.txtAudioSettings);
+            this.Controls.Add(this.lblAudioType);
+            this.Controls.Add(this.cbAudioType);
             this.Controls.Add(this.btnWriteToBatFile);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.txtBatFilePath);
@@ -247,6 +285,7 @@
             this.Name = "CreateEAC3ToBatchForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Create EAC3To Batch File";
+            this.Load += new System.EventHandler(this.CreateEAC3ToBatchForm_Load);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CreateEAC3ToBatchForm_KeyPress);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -277,5 +316,8 @@
         private System.Windows.Forms.Button btnWriteToBatFile;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox txtChapterStreamNumber;
+        private System.Windows.Forms.Label lblAudioType;
+        private System.Windows.Forms.ComboBox cbAudioType;
+        private System.Windows.Forms.TextBox txtAudioSettings;
     }
 }

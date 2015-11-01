@@ -11,4 +11,12 @@ namespace BatchGuy.App
         CRF = 1,
         TwoPass = 2
     }
+
+    public enum EnumAudioType
+    {
+        DTS = 1,
+        AC3 = 2,
+        FLAC = 3,
+        TrueHD = 4
+    }
 }

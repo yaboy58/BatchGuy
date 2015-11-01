@@ -14,9 +14,17 @@ namespace BatchGuy.App
 {
     public partial class CreateEAC3ToBatchForm : Form
     {
+        private EnumAudioType AudioType { get; set; }
+
         public CreateEAC3ToBatchForm()
         {
             InitializeComponent();
+        }
+
+        private void CreateEAC3ToBatchForm_Load(object sender, EventArgs e)
+        {
+            this.SetComboBoxAudioType();
+            this.SetAudioSettingsTextBox();
         }
 
         private void btnWriteToBatFile_Click(object sender, EventArgs e)
@@ -41,7 +49,9 @@ namespace BatchGuy.App
             {
                  BatFilePath = txtBatFilePath.Text,
                   BluRayPath = txtBluRayPath.Text,
-                   EAC3ToPath = txtEAC3ToPath.Text
+                   EAC3ToPath = txtEAC3ToPath.Text,
+                    AudioSettings = txtAudioSettings.Text,
+                     AudioType = this.AudioType
             };
         }
 
@@ -77,6 +87,59 @@ namespace BatchGuy.App
                 this.WriteToBatchFile();
             }
         }
-        
+
+        private void SetComboBoxAudioType()
+        {
+            this.cbAudioType.SelectedIndex = 0;
+        }
+
+        private void SetAudioSettingsTextBox()
+        {
+            switch (this.AudioType)
+            {
+                case EnumAudioType.DTS:
+                    txtAudioSettings.Text = "-core";
+                    break;
+                case EnumAudioType.AC3:
+                    txtAudioSettings.Text = string.Empty;
+                    break;
+                case EnumAudioType.FLAC:
+                    txtAudioSettings.Text = string.Empty;
+                    break;
+                case EnumAudioType.TrueHD:
+                    txtAudioSettings.Text = "-640";
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void cbAudioType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.HandleAudioTypeChanged(cbAudioType.Text);
+        }
+
+        private void HandleAudioTypeChanged(string value)
+        {
+            switch (value)
+            {
+                case "DTS":
+                    this.AudioType = EnumAudioType.DTS;
+                    break;
+                case "AC3":
+                    this.AudioType = EnumAudioType.AC3;
+                    break;
+                case "FLAC":
+                    this.AudioType = EnumAudioType.FLAC;
+                    break;
+                case "TrueHD":
+                    this.AudioType = EnumAudioType.TrueHD;
+                    break;
+                default:
+                    throw new Exception("Invalid Audio Type");
+            }
+
+            this.SetAudioSettingsTextBox();
+        }
     }
 }

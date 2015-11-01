@@ -46,22 +46,59 @@ namespace BatchGuy.App.EAC.Services
 
         public string GetChapterStreamPart()
         {
-            throw new NotImplementedException();
+            StringBuilder sb = new StringBuilder();
+            sb.Append(string.Format("{0}: ", _bluRayFile.ChapterStreamNumber));
+            sb.Append(string.Format("\"{0}\\chapters.txt\"", _filesOutputPath));
+            return sb.ToString();
         }
 
         public string GetMovieStreamPart()
         {
-            throw new NotImplementedException();
+            StringBuilder sb = new StringBuilder();
+            sb.Append(string.Format("{0}: ", _bluRayFile.MovieStreamNumber));
+            sb.Append(string.Format("\"{0}\\encode{1}.mkv\"", _filesOutputPath, _paddedEpisode));
+            return sb.ToString();
         }
 
         public string GetAudioStreamPart()
         {
-            throw new NotImplementedException();
+            StringBuilder sb = new StringBuilder();
+            sb.Append(string.Format("{0}: ", _bluRayFile.MainAudioStreamNumber));
+            sb.Append(string.Format("\"{0}\\audio{1}.{2}\"", _filesOutputPath, _paddedEpisode,this.GetAudioExtension()));
+            sb.Append(string.Format(" {0}", _config.AudioSettings));
+            return sb.ToString();
         }
 
         public string GetSubtitleStreamPart()
         {
-            throw new NotImplementedException();
+            StringBuilder sb = new StringBuilder();
+            sb.Append(string.Format("{0}: ", _bluRayFile.MainSubtitleStreamNumber));
+            sb.Append(string.Format("\"{0}\\english{1}.sup\"", _filesOutputPath, _paddedEpisode)); //hardcoded to english/sup
+            return sb.ToString();
+        }
+
+        private string GetAudioExtension()
+        {
+            string audioExtension = string.Empty;
+
+            switch (_config.AudioType)
+            {
+                case EnumAudioType.DTS:
+                    audioExtension = "dts";
+                    break;
+                case EnumAudioType.AC3:
+                    audioExtension = "ac3";
+                    break;
+                case EnumAudioType.FLAC:
+                    audioExtension = "flac";
+                    break;
+                case EnumAudioType.TrueHD:
+                    audioExtension = "ac3";
+                    break;
+                default:
+                    throw new Exception("Invalid Audio Type");
+            }
+            return audioExtension;
         }
     }
 }
