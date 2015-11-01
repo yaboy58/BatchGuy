@@ -72,8 +72,11 @@ namespace BatchGuy.App.EAC.Services
         public string GetSubtitleStreamPart()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append(string.Format("{0}: ", _bluRayFile.MainSubtitleStreamNumber));
-            sb.Append(string.Format("\"{0}\\english{1}.sup\"", _filesOutputPath, _paddedEpisode)); //hardcoded to english/sup
+            if (_bluRayFile.MainAudioStreamNumber == string.Empty)
+            {
+                sb.Append(string.Format("{0}: ", _bluRayFile.MainSubtitleStreamNumber));
+                sb.Append(string.Format("\"{0}\\english{1}.sup\"", _filesOutputPath, _paddedEpisode)); //hardcoded to english/sup                
+            }
             return sb.ToString();
         }
 
