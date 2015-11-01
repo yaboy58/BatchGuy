@@ -2,9 +2,11 @@
 *possibly upgrade eac3to so you can specify the log file
 *maybe even configure audio for commentary
 *de-couple bat path from folder where files are stored path
+*validation
 
 --AviSynth Form
-
+*add a filter dropdown box so multiple filters can be used.
+*validation
 
 --x264 Form
 *validation
