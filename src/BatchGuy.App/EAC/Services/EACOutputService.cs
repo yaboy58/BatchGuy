@@ -64,7 +64,7 @@ namespace BatchGuy.App.EAC.Services
         {
             StringBuilder sb = new StringBuilder();
             sb.Append(string.Format("{0}: ", _bluRayFile.MainAudioStreamNumber));
-            sb.Append(string.Format("\"{0}\\audio{1}.{2}\"", _filesOutputPath, _paddedEpisode,this.GetAudioExtension()));
+            sb.Append(string.Format("\"{0}\\{1}{2}.{3}\"", _filesOutputPath,_config.AudioLanguage, _paddedEpisode,this.GetAudioExtension()));
             sb.Append(string.Format(" {0}", _config.AudioSettings));
             return sb.ToString();
         }

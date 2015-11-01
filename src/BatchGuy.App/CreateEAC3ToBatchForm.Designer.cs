@@ -51,6 +51,8 @@
             this.lblAudioType = new System.Windows.Forms.Label();
             this.cbAudioType = new System.Windows.Forms.ComboBox();
             this.txtAudioSettings = new System.Windows.Forms.TextBox();
+            this.lblAudioLanguage = new System.Windows.Forms.Label();
+            this.cbAudioLanguage = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -110,7 +112,7 @@
             this.txtBluRayEpisodeFolder.Location = new System.Drawing.Point(139, 64);
             this.txtBluRayEpisodeFolder.Name = "txtBluRayEpisodeFolder";
             this.txtBluRayEpisodeFolder.Size = new System.Drawing.Size(53, 20);
-            this.txtBluRayEpisodeFolder.TabIndex = 6;
+            this.txtBluRayEpisodeFolder.TabIndex = 7;
             this.txtBluRayEpisodeFolder.Text = "1";
             // 
             // label4
@@ -136,7 +138,7 @@
             this.groupBox1.Controls.Add(this.txtBluRayStreamNumber);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.txtBluRayEpisodeFolder);
-            this.groupBox1.Location = new System.Drawing.Point(30, 161);
+            this.groupBox1.Location = new System.Drawing.Point(30, 203);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(611, 246);
             this.groupBox1.TabIndex = 8;
@@ -157,7 +159,7 @@
             this.txtChapterStreamNumber.Location = new System.Drawing.Point(139, 96);
             this.txtChapterStreamNumber.Name = "txtChapterStreamNumber";
             this.txtChapterStreamNumber.Size = new System.Drawing.Size(53, 20);
-            this.txtChapterStreamNumber.TabIndex = 7;
+            this.txtChapterStreamNumber.TabIndex = 8;
             // 
             // label8
             // 
@@ -173,7 +175,7 @@
             this.txtMainSubtitleStreamNumber.Location = new System.Drawing.Point(139, 188);
             this.txtMainSubtitleStreamNumber.Name = "txtMainSubtitleStreamNumber";
             this.txtMainSubtitleStreamNumber.Size = new System.Drawing.Size(53, 20);
-            this.txtMainSubtitleStreamNumber.TabIndex = 10;
+            this.txtMainSubtitleStreamNumber.TabIndex = 11;
             // 
             // label7
             // 
@@ -189,7 +191,7 @@
             this.txtMainAudioStreamNumber.Location = new System.Drawing.Point(139, 156);
             this.txtMainAudioStreamNumber.Name = "txtMainAudioStreamNumber";
             this.txtMainAudioStreamNumber.Size = new System.Drawing.Size(53, 20);
-            this.txtMainAudioStreamNumber.TabIndex = 9;
+            this.txtMainAudioStreamNumber.TabIndex = 10;
             // 
             // label6
             // 
@@ -205,7 +207,7 @@
             this.txtMovieStreamNumber.Location = new System.Drawing.Point(139, 126);
             this.txtMovieStreamNumber.Name = "txtMovieStreamNumber";
             this.txtMovieStreamNumber.Size = new System.Drawing.Size(53, 20);
-            this.txtMovieStreamNumber.TabIndex = 8;
+            this.txtMovieStreamNumber.TabIndex = 9;
             // 
             // label5
             // 
@@ -221,14 +223,14 @@
             this.txtBluRayStreamNumber.Location = new System.Drawing.Point(139, 38);
             this.txtBluRayStreamNumber.Name = "txtBluRayStreamNumber";
             this.txtBluRayStreamNumber.Size = new System.Drawing.Size(53, 20);
-            this.txtBluRayStreamNumber.TabIndex = 5;
+            this.txtBluRayStreamNumber.TabIndex = 6;
             // 
             // btnWriteToBatFile
             // 
             this.btnWriteToBatFile.Location = new System.Drawing.Point(508, 455);
             this.btnWriteToBatFile.Name = "btnWriteToBatFile";
             this.btnWriteToBatFile.Size = new System.Drawing.Size(133, 28);
-            this.btnWriteToBatFile.TabIndex = 11;
+            this.btnWriteToBatFile.TabIndex = 12;
             this.btnWriteToBatFile.Text = "Write To Bat File";
             this.btnWriteToBatFile.UseVisualStyleBackColor = true;
             this.btnWriteToBatFile.Click += new System.EventHandler(this.btnWriteToBatFile_Click);
@@ -265,11 +267,40 @@
             this.txtAudioSettings.TabIndex = 4;
             this.txtAudioSettings.Text = "-core";
             // 
+            // lblAudioLanguage
+            // 
+            this.lblAudioLanguage.AutoSize = true;
+            this.lblAudioLanguage.Location = new System.Drawing.Point(32, 164);
+            this.lblAudioLanguage.Name = "lblAudioLanguage";
+            this.lblAudioLanguage.Size = new System.Drawing.Size(88, 13);
+            this.lblAudioLanguage.TabIndex = 20;
+            this.lblAudioLanguage.Text = "Audio Language:";
+            // 
+            // cbAudioLanguage
+            // 
+            this.cbAudioLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbAudioLanguage.FormattingEnabled = true;
+            this.cbAudioLanguage.ItemHeight = 13;
+            this.cbAudioLanguage.Items.AddRange(new object[] {
+            "English",
+            "Chinese",
+            "Danish",
+            "French",
+            "Korean",
+            "Spanish",
+            "Swedish"});
+            this.cbAudioLanguage.Location = new System.Drawing.Point(122, 157);
+            this.cbAudioLanguage.Name = "cbAudioLanguage";
+            this.cbAudioLanguage.Size = new System.Drawing.Size(148, 21);
+            this.cbAudioLanguage.TabIndex = 5;
+            // 
             // CreateEAC3ToBatchForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(666, 495);
+            this.Controls.Add(this.lblAudioLanguage);
+            this.Controls.Add(this.cbAudioLanguage);
             this.Controls.Add(this.txtAudioSettings);
             this.Controls.Add(this.lblAudioType);
             this.Controls.Add(this.cbAudioType);
@@ -319,5 +350,7 @@
         private System.Windows.Forms.Label lblAudioType;
         private System.Windows.Forms.ComboBox cbAudioType;
         private System.Windows.Forms.TextBox txtAudioSettings;
+        private System.Windows.Forms.Label lblAudioLanguage;
+        private System.Windows.Forms.ComboBox cbAudioLanguage;
     }
 }

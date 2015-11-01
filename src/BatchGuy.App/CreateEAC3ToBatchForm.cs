@@ -25,6 +25,8 @@ namespace BatchGuy.App
         {
             this.SetComboBoxAudioType();
             this.SetAudioSettingsTextBox();
+            this.SetComboBoxAudioLanguage();
+
         }
 
         private void btnWriteToBatFile_Click(object sender, EventArgs e)
@@ -51,7 +53,8 @@ namespace BatchGuy.App
                   BluRayPath = txtBluRayPath.Text,
                    EAC3ToPath = txtEAC3ToPath.Text,
                     AudioSettings = txtAudioSettings.Text,
-                     AudioType = this.AudioType
+                     AudioType = this.AudioType,
+                     AudioLanguage = cbAudioLanguage.Text
             };
         }
 
@@ -91,6 +94,11 @@ namespace BatchGuy.App
         private void SetComboBoxAudioType()
         {
             this.cbAudioType.SelectedIndex = 0;
+        }
+
+        private void SetComboBoxAudioLanguage()
+        {
+            this.cbAudioLanguage.SelectedIndex = 0;
         }
 
         private void SetAudioSettingsTextBox()
