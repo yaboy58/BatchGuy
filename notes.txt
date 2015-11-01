@@ -1,3 +1,6 @@
+--in general
+*make an icon for the app
+
 --eac3To Form
 *possibly upgrade eac3to so you can specify the log file
 *maybe even configure audio for commentary

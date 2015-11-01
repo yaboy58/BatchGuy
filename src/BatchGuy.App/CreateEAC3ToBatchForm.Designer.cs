@@ -71,7 +71,7 @@
             this.txtEAC3ToPath.Name = "txtEAC3ToPath";
             this.txtEAC3ToPath.Size = new System.Drawing.Size(508, 20);
             this.txtEAC3ToPath.TabIndex = 1;
-            this.txtEAC3ToPath.Text = "C:\\exe\\HDBits Encoding\\eac3\\eac3to";
+            this.txtEAC3ToPath.Text = "C:\\exe\\eac3to\\eac3to";
             // 
             // txtBluRayPath
             // 

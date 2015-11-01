@@ -38,14 +38,14 @@
             this.txtAVSFileLocation = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.dgvFiles = new System.Windows.Forms.DataGridView();
-            this.btnLoadAVSFiles = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
-            this.txtVfw4x264exe = new System.Windows.Forms.TextBox();
-            this.lblNumberOfFiles = new System.Windows.Forms.Label();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.aVSFileNameOnlyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.encodeNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bsFiles = new System.Windows.Forms.BindingSource(this.components);
+            this.btnLoadAVSFiles = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtVfw4x264exe = new System.Windows.Forms.TextBox();
+            this.lblNumberOfFiles = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFiles)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsFiles)).BeginInit();
             this.SuspendLayout();
@@ -144,43 +144,6 @@
             this.dgvFiles.TabIndex = 19;
             this.dgvFiles.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.dgvFiles_RowsRemoved);
             // 
-            // btnLoadAVSFiles
-            // 
-            this.btnLoadAVSFiles.Location = new System.Drawing.Point(674, 79);
-            this.btnLoadAVSFiles.Margin = new System.Windows.Forms.Padding(2);
-            this.btnLoadAVSFiles.Name = "btnLoadAVSFiles";
-            this.btnLoadAVSFiles.Size = new System.Drawing.Size(136, 24);
-            this.btnLoadAVSFiles.TabIndex = 20;
-            this.btnLoadAVSFiles.Text = "Load AviSynth Files";
-            this.btnLoadAVSFiles.UseVisualStyleBackColor = true;
-            this.btnLoadAVSFiles.Click += new System.EventHandler(this.btnLoadAVSFiles_Click);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(34, 46);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(101, 13);
-            this.label5.TabIndex = 22;
-            this.label5.Text = "vfw4x264 Directory:";
-            // 
-            // txtVfw4x264exe
-            // 
-            this.txtVfw4x264exe.Location = new System.Drawing.Point(157, 42);
-            this.txtVfw4x264exe.Name = "txtVfw4x264exe";
-            this.txtVfw4x264exe.Size = new System.Drawing.Size(434, 20);
-            this.txtVfw4x264exe.TabIndex = 21;
-            this.txtVfw4x264exe.Text = "C:\\exe\\HDBits Encoding\\vfw4x264\\vfw4x264.exe";
-            // 
-            // lblNumberOfFiles
-            // 
-            this.lblNumberOfFiles.AutoSize = true;
-            this.lblNumberOfFiles.Location = new System.Drawing.Point(32, 331);
-            this.lblNumberOfFiles.Name = "lblNumberOfFiles";
-            this.lblNumberOfFiles.Size = new System.Drawing.Size(83, 13);
-            this.lblNumberOfFiles.TabIndex = 23;
-            this.lblNumberOfFiles.Text = "Number of Files:";
-            // 
             // idDataGridViewTextBoxColumn
             // 
             this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
@@ -207,6 +170,43 @@
             // bsFiles
             // 
             this.bsFiles.DataSource = typeof(BatchGuy.App.X264.Models.X264File);
+            // 
+            // btnLoadAVSFiles
+            // 
+            this.btnLoadAVSFiles.Location = new System.Drawing.Point(674, 79);
+            this.btnLoadAVSFiles.Margin = new System.Windows.Forms.Padding(2);
+            this.btnLoadAVSFiles.Name = "btnLoadAVSFiles";
+            this.btnLoadAVSFiles.Size = new System.Drawing.Size(136, 24);
+            this.btnLoadAVSFiles.TabIndex = 20;
+            this.btnLoadAVSFiles.Text = "Load AviSynth Files";
+            this.btnLoadAVSFiles.UseVisualStyleBackColor = true;
+            this.btnLoadAVSFiles.Click += new System.EventHandler(this.btnLoadAVSFiles_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(34, 46);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(101, 13);
+            this.label5.TabIndex = 22;
+            this.label5.Text = "vfw4x264 Directory:";
+            // 
+            // txtVfw4x264exe
+            // 
+            this.txtVfw4x264exe.Location = new System.Drawing.Point(157, 42);
+            this.txtVfw4x264exe.Name = "txtVfw4x264exe";
+            this.txtVfw4x264exe.Size = new System.Drawing.Size(434, 20);
+            this.txtVfw4x264exe.TabIndex = 21;
+            this.txtVfw4x264exe.Text = "C:\\exe\\vfw4x264\\vfw4x264.exe";
+            // 
+            // lblNumberOfFiles
+            // 
+            this.lblNumberOfFiles.AutoSize = true;
+            this.lblNumberOfFiles.Location = new System.Drawing.Point(32, 331);
+            this.lblNumberOfFiles.Name = "lblNumberOfFiles";
+            this.lblNumberOfFiles.Size = new System.Drawing.Size(83, 13);
+            this.lblNumberOfFiles.TabIndex = 23;
+            this.lblNumberOfFiles.Text = "Number of Files:";
             // 
             // CreateX264BatFileForm
             // 
