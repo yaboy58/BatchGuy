@@ -28,8 +28,9 @@ namespace BatchGuy.App
         {
             EAC3ToBluRayFile file = this.GetEAC3ToBluyRayFile();
             EAC3ToConfiguration config = this.GetEAC3ToConfiguration();
-            IBatWriteService service = new BatWriteService(config, file);
-            service.Write();
+            IEACOutputService eacOutputService = new EACOutputService(config, file);
+            IBatFileWriteService batFileWriteService = new BatFileWriteService(config, file, eacOutputService);
+            batFileWriteService.Write();
             this.Clear();
             this.IncrementEpisodeNumber();
         }

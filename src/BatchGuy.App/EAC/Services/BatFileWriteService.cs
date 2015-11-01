@@ -10,18 +10,20 @@ using BatchGuy.App.Helpers;
 
 namespace BatchGuy.App.EAC.Services
 {
-    public class BatWriteService : IBatWriteService
+    public class BatFileWriteService : IBatFileWriteService
     {
         private EAC3ToConfiguration _config;
         private EAC3ToBluRayFile _bluRayFile;
+        private IEACOutputService _eacOutputService;
         private List<Error> _errors = new List<Error>();
         private string _filesOutputPath;
         private string _paddedEpisode;
 
-        public BatWriteService(EAC3ToConfiguration config, EAC3ToBluRayFile bluRayFile)
+        public BatFileWriteService(EAC3ToConfiguration config, EAC3ToBluRayFile bluRayFile, IEACOutputService eacOutputService)
         {
             _config = config;
             _bluRayFile = bluRayFile;
+            _eacOutputService = eacOutputService;
         }
 
         public List<Error> Write()
@@ -30,8 +32,8 @@ namespace BatchGuy.App.EAC.Services
             {
                 this.Init();
 
-                string eac3ToPathPart = this.GetEAC3ToPathPart();
-                string bluRayStreamPart = this.GetBluRayStreamPart();
+                string eac3ToPathPart = _eacOutputService.GetEAC3ToPathPart();
+                string bluRayStreamPart = _eacOutputService.GetBluRayStreamPart();
                 string chapterStreamPart = this.GetChapterStreamPart();
                 string movieStreamPart = this.GetMovieStreamPart();
                 string audioStreamPart = this.GetAudioStreamPart();
@@ -59,19 +61,6 @@ namespace BatchGuy.App.EAC.Services
             _paddedEpisode = HelperFunctions.PadNumberWithZeros(99, Convert.ToInt32(_bluRayFile.BluRayEpisodeFolder));
             string folderName = string.Format("e{0}", _paddedEpisode); //convert in form
             _filesOutputPath = string.Format("{0}\\{1}",_config.BatFilePath, folderName);
-        }
-
-        private string GetEAC3ToPathPart()
-        {
-            return string.Format("\"{0}\"",_config.EAC3ToPath);
-        }
-
-        private string GetBluRayStreamPart()
-        {
-            StringBuilder sb = new StringBuilder();
-            sb.Append(string.Format("\"{0}\"", _config.BluRayPath));
-            sb.Append(string.Format(" {0})",_bluRayFile.BluRaySteamNumber));
-            return sb.ToString();
         }
 
         private string GetChapterStreamPart()

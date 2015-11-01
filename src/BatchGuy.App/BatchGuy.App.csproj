@@ -64,8 +64,10 @@
     </Compile>
     <Compile Include="EAC\Models\EAC3ToBluRayFile.cs" />
     <Compile Include="EAC\Models\EAC3ToConfiguration.cs" />
-    <Compile Include="EAC\Services\BatWriteService.cs" />
-    <Compile Include="EAC\Services\IBatWriteService.cs" />
+    <Compile Include="EAC\Services\BatFileWriteService.cs" />
+    <Compile Include="EAC\Services\EACOutputService.cs" />
+    <Compile Include="EAC\Services\IBatFileWriteService.cs" />
+    <Compile Include="EAC\Services\IEACOutputService.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>

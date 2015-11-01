@@ -8,7 +8,7 @@ using BatchGuy.App.Models;
 
 namespace BatchGuy.App.EAC.Services
 {
-    public interface IBatWriteService
+    public interface IBatFileWriteService
     {
         List<Error> Write();
     }
