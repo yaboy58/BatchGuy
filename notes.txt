@@ -6,6 +6,7 @@
 *maybe even configure audio for commentary
 *de-couple bat path from folder where files are stored path
 *validation
+*delete existing .bat file before writing new scripts
 
 --AviSynth Form
 *add a filter dropdown box so multiple filters can be used.
