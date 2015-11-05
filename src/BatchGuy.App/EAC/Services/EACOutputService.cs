@@ -47,8 +47,11 @@ namespace BatchGuy.App.EAC.Services
         public string GetChapterStreamPart()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append(string.Format("{0}: ", _bluRayFile.ChapterStreamNumber));
-            sb.Append(string.Format("\"{0}\\chapters.txt\"", _filesOutputPath));
+            if (_bluRayFile.ChapterStreamNumber == string.Empty)
+            {
+                sb.Append(string.Format("{0}: ", _bluRayFile.ChapterStreamNumber));
+                sb.Append(string.Format("\"{0}\\chapters.txt\"", _filesOutputPath));                
+            }
             return sb.ToString();
         }
 
