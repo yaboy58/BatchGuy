@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BatchGuy.App.Parser.Models;
+using BatchGuy.App.Parser.Services;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -12,45 +14,29 @@ namespace BatchGuy.Parser.Console.App
     {
         static void Main(string[] args)
         {
-            string error = string.Empty;
+            ////:Blu ray streams
+            CommandLineProcessStartInfo commandLineProcessStartInfo1 = new CommandLineProcessStartInfo() { FileName = @"C:\exe\eac3to\eac3to.exe", 
+                Arguments = @"""\\KENSHIRO\My Torrent Encodes\Blu-ray\DISC\ARN_D1-BluHD""" };
 
-            ProcessStartInfo cmdStartInfo = new ProcessStartInfo();
-            //cmdStartInfo.CreateNoWindow = false;
-            cmdStartInfo.UseShellExecute = false;
-            cmdStartInfo.FileName = @"C:\exe\eac3to\eac3to.exe";
-            cmdStartInfo.WindowStyle = ProcessWindowStyle.Hidden;
-            //cmdStartInfo.Arguments = @"""C:\temp\My Torrent Downloads\War.Pigs.2015.COMPLETE.BLURAY""";
-            cmdStartInfo.Arguments = @"""\\KENSHIRO\My Torrent Encodes\Blu-ray\DISC\ARN_D1-BluHD""";
-
-            cmdStartInfo.CreateNoWindow = true;
-            cmdStartInfo.RedirectStandardOutput = true;
-            cmdStartInfo.RedirectStandardError = true;
-            cmdStartInfo.RedirectStandardInput = true;
-            cmdStartInfo.UseShellExecute = false;
-
-            Process process = Process.Start(cmdStartInfo);
-            using (StreamReader streamReader = process.StandardOutput)
+            ICommandLineProcessService commandLineProcessService1 = new CommandLineProcessService(commandLineProcessStartInfo1);
+            
+            if (commandLineProcessService1.Errors.Count() == 0)
             {
-                int i = 1;
-                while (!streamReader.EndOfStream)
+                List<ProcessOutputLineItem> processOutputLineItem = commandLineProcessService1.GetProcessOutputLineItems();
+                foreach (var line in processOutputLineItem)
                 {
-                    string line = streamReader.ReadLine();
-                   System.Console.WriteLine(line);
-                    i++;
+                    System.Console.WriteLine(line.Text);
+                }
+            }
+            else
+            {
+                System.Console.WriteLine("The following errors were found:");
+                foreach (var error in commandLineProcessService1.Errors)
+                {
+                    System.Console.WriteLine(error.Description);
                 }
             }
 
-            using (StreamReader streamReader = process.StandardError)
-            {
-                error = streamReader.ReadToEnd();
-            }
-
-
-            if (!string.IsNullOrEmpty(error))
-            {
-                System.Console.WriteLine("The following error was detected:");
-                System.Console.WriteLine(error);
-            }
 
             System.Console.Read();
         }

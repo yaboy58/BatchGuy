@@ -81,6 +81,7 @@
     <Compile Include="AVS\Models\AVSScript.cs" />
     <Compile Include="Models\Error.cs" />
     <Compile Include="Parser\Models\CommandLineProcessStartInfo.cs" />
+    <Compile Include="Parser\Models\ProcessOutputLineItem.cs" />
     <Compile Include="Parser\Services\CommandLineProcessService.cs" />
     <Compile Include="Parser\Services\ICommandLineProcessService.cs" />
     <Compile Include="Program.cs" />

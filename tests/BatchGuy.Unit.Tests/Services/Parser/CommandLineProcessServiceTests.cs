@@ -18,7 +18,7 @@ namespace BatchGuy.Unit.Tests.Services.Parser
         public void commandlineprocessservice_has_no_process_start_info_filename_in_error_test()
         {
             ICommandLineProcessService service = new CommandLineProcessService(new CommandLineProcessStartInfo() { Arguments = "someargument" });
-            List<Error> errors = service.CheckErrors();
+            List<Error> errors = service.Errors;
             errors[0].Description.ShouldBeEqualTo("Invalid file name");
         }
 
@@ -26,7 +26,7 @@ namespace BatchGuy.Unit.Tests.Services.Parser
         public void commandlineprocessservice_has_no_process_start_info_arguments_in_error_test()
         {
             ICommandLineProcessService service = new CommandLineProcessService(new CommandLineProcessStartInfo() { FileName  = "somefilename" });
-            List<Error> errors = service.CheckErrors();
+            List<Error> errors = service.Errors;
             errors[0].Description.ShouldBeEqualTo("Invalid arguments");
         }
     }

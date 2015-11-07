@@ -2,9 +2,12 @@
 using BatchGuy.App.Parser.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BatchGuy.App.Helpers;
 
 namespace BatchGuy.App.Parser.Services
 {
@@ -17,15 +20,62 @@ namespace BatchGuy.App.Parser.Services
         {
             _commandLineProcessStartInfo = commandLineProcessStartInfo;
             _errors = new List<Error>();
+            this.CheckErrors();
         }
 
-        public List<Error> CheckErrors()
+        public List<Error> Errors
+        {
+            get { return _errors; }
+        }
+
+        public List<ProcessOutputLineItem> GetProcessOutputLineItems()
+        {
+            List<ProcessOutputLineItem> processOutputLineItems = new List<ProcessOutputLineItem>();
+            try
+            {
+                int id = 1;
+                ProcessStartInfo cmdStartInfo = new ProcessStartInfo();
+                cmdStartInfo.UseShellExecute = false;
+                cmdStartInfo.FileName = _commandLineProcessStartInfo.FileName;
+                cmdStartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+                cmdStartInfo.Arguments = _commandLineProcessStartInfo.Arguments;
+                cmdStartInfo.CreateNoWindow = true;
+                cmdStartInfo.RedirectStandardOutput = true;
+                cmdStartInfo.RedirectStandardError = true;
+                cmdStartInfo.RedirectStandardInput = true;
+                cmdStartInfo.UseShellExecute = false;
+
+                Process process = Process.Start(cmdStartInfo);
+                using (StreamReader streamReader = process.StandardOutput)
+                {
+                    while (!streamReader.EndOfStream)
+                    {
+                        processOutputLineItems.Add(new ProcessOutputLineItem() { Id = id, Text = HelperFunctions.ReplaceBackspace(streamReader.ReadLine()) });
+                        id++;
+                    }
+                }
+
+                using (StreamReader streamReader = process.StandardError)
+                {
+                    throw new Exception(streamReader.ReadToEnd());
+                }
+            }
+            catch (Exception ex)
+            {
+                _errors.Add(new Error() { Description = ex.Message });
+            }
+
+            return processOutputLineItems;
+        }
+
+        private List<Error> CheckErrors()
         {
             this.CheckFileName();
             this.CheckArguments();
 
             return _errors;
         }
+
 
         private void CheckFileName()
         {
