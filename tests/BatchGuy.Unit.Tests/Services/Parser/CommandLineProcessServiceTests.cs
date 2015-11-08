@@ -1,5 +1,4 @@
-﻿using BatchGuy.App.Models;
-using BatchGuy.App.Parser.Models;
+﻿using BatchGuy.App.Parser.Models;
 using BatchGuy.App.Parser.Services;
 using NUnit.Framework;
 using System;
@@ -9,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using FluentAssert;
 using BatchGuy.App.Parser.Interfaces;
+using BatchGuy.App.Shared.Models;
 
 namespace BatchGuy.Unit.Tests.Services.Parser
 {

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BatchGuy.App.AVS;
 using BatchGuy.App.AVS.Models;
-using BatchGuy.App.Models;
+using BatchGuy.App.Shared.Models;
 
 namespace BatchGuy.App.AVS.Interfaces
 {

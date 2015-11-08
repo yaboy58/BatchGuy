@@ -9,8 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using BatchGuy.App.AVS.Models;
 using BatchGuy.App.AVS.Services;
-using BatchGuy.App.Models;
 using BatchGuy.App.AVS.Interfaces;
+using BatchGuy.App.Shared.Models;
 
 namespace BatchGuy.App
 {

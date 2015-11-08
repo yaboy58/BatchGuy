@@ -1,5 +1,5 @@
-﻿using BatchGuy.App.Models;
-using BatchGuy.App.Parser.Models;
+﻿using BatchGuy.App.Parser.Models;
+using BatchGuy.App.Shared.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;

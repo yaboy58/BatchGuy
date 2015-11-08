@@ -2,7 +2,7 @@
 using BatchGuy.App.EAC.Models;
 using BatchGuy.App.Enums;
 using BatchGuy.App.Helpers;
-using BatchGuy.App.Models;
+using BatchGuy.App.Shared.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

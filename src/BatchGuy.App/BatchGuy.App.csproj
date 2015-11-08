@@ -79,7 +79,7 @@
     <Compile Include="AVS\Models\AVSBatchSettings.cs" />
     <Compile Include="AVS\Models\AVSFile.cs" />
     <Compile Include="AVS\Models\AVSScript.cs" />
-    <Compile Include="Models\Error.cs" />
+    <Compile Include="Shared\Models\Error.cs" />
     <Compile Include="Parser\Models\BluRaySummaryInfo.cs" />
     <Compile Include="Parser\Models\CommandLineProcessStartInfo.cs" />
     <Compile Include="Parser\Models\ProcessOutputLineItem.cs" />

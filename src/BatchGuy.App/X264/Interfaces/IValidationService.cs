@@ -1,4 +1,4 @@
-﻿using BatchGuy.App.Models;
+﻿using BatchGuy.App.Shared.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
