@@ -82,8 +82,10 @@
     <Compile Include="Models\Error.cs" />
     <Compile Include="Parser\Models\CommandLineProcessStartInfo.cs" />
     <Compile Include="Parser\Models\ProcessOutputLineItem.cs" />
+    <Compile Include="Parser\Services\BluRaySummaryLineItemIdentifierService.cs" />
     <Compile Include="Parser\Services\CommandLineProcessService.cs" />
     <Compile Include="Parser\Services\ICommandLineProcessService.cs" />
+    <Compile Include="Parser\Services\ILineItemIdentifierService.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="AVS\Services\AVSService.cs" />

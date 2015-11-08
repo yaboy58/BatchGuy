@@ -19,4 +19,11 @@ namespace BatchGuy.App
         FLAC = 3,
         TrueHD = 4
     }
+
+    public enum EnumLineItemType
+    {
+        BluRaySummaryHeaderLine = 1,
+        BluRaySummaryDetailLine = 2,
+        BluRaySummaryEmptyLine = 3
+    }
 }
