@@ -12,5 +12,6 @@ namespace BatchGuy.App.Parser.Models
         public string HeaderText { get; set; }
         public string DetailText { get; set; }
         public bool Ignore { get; set; }
+        public BluRayTitleInfo BluRayTitleInfo { get; set; }
     }
 }

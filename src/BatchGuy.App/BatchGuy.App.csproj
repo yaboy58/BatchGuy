@@ -44,6 +44,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BluRayTitleInfoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BluRayTitleInfoForm.Designer.cs">
+      <DependentUpon>BluRayTitleInfoForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="CreateAVSFilesForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -113,6 +119,9 @@
     <Compile Include="X264\Interfaces\IFileService.cs" />
     <Compile Include="X264\Interfaces\IValidationService.cs" />
     <Compile Include="X264\Services\ValidationService.cs" />
+    <EmbeddedResource Include="BluRayTitleInfoForm.resx">
+      <DependentUpon>BluRayTitleInfoForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CreateAVSFilesForm.resx">
       <DependentUpon>CreateAVSFilesForm.cs</DependentUpon>
     </EmbeddedResource>

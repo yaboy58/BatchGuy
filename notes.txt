@@ -15,6 +15,9 @@
 --x264 Form
 *validation
 
+--bluray title info form
+*validation
+
 --parsers
 *validation
 *error handling

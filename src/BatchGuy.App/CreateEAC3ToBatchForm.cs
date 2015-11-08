@@ -19,8 +19,10 @@ namespace BatchGuy.App
 {
     public partial class CreateEAC3ToBatchForm : Form
     {
-        private EnumAudioType _audioType { get; set; }
-        private List<BluRaySummaryInfo> _summaryInfoList { get; set; }
+        private EnumAudioType _audioType;
+        private List<BluRaySummaryInfo> _summaryInfoList;
+        private CommandLineProcessStartInfo _commandLineProcessStartInfo;
+
 
         public CreateEAC3ToBatchForm()
         {
@@ -164,13 +166,13 @@ namespace BatchGuy.App
         private void HandleLoadBluRay()
         {
             ////:Blu ray streams
-            CommandLineProcessStartInfo commandLineProcessStartInfo = new CommandLineProcessStartInfo()
+            _commandLineProcessStartInfo = new CommandLineProcessStartInfo()
             {
                 FileName = txtEAC3ToPath.Text,
                 Arguments = string.Format("\"{0}\"", txtBluRayPath.Text)
             };
 
-            ICommandLineProcessService commandLineProcessService = new CommandLineProcessService(commandLineProcessStartInfo);
+            ICommandLineProcessService commandLineProcessService = new CommandLineProcessService(_commandLineProcessStartInfo);
             if (commandLineProcessService.Errors.Count() == 0)
             {
                 ////:Get line items
@@ -200,6 +202,10 @@ namespace BatchGuy.App
         {
             var id = dgvBluRaySummary.Rows[e.RowIndex].Cells[1].Value;
             BluRaySummaryInfo summaryInfo = _summaryInfoList.SingleOrDefault(s => s.Id == id.ToString());
+
+            BluRayTitleInfoForm form = new BluRayTitleInfoForm();
+            form.SetBluRayTitleInfo(summaryInfo, _commandLineProcessStartInfo);
+            form.ShowDialog();
         }
     }
 }
