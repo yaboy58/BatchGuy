@@ -11,7 +11,7 @@ namespace BatchGuy.App.Parser.Models
         public int EpisodeNumber { get; set; }
         public string HeaderText { get; set; }
         public BluRayTitleChapter Chapter { get; set; }
-        public BluRayTitleMovie Movie { get; set; }
+        public BluRayTitleVideo Video { get; set; }
         public List<BluRayTitleAudio> AudioList { get; set; }
         public List<BluRayTitleSubtitle> Subtitles { get; set; }
     }

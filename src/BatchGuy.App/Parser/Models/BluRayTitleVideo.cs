@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BatchGuy.App.Parser.Models
 {
-    public class BluRayTitleMovie
+    public class BluRayTitleVideo
     {
         public string Id { get; set; }
         public bool IsSelected { get; set; }

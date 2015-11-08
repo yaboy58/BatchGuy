@@ -55,8 +55,8 @@ namespace BatchGuy.Unit.Tests.Services.Parser
             IBluRayTitleParserService parserService = new BluRayTitleParserService(lineItemService, lineItems);
             BluRayTitleInfo info = parserService.GetTitleInfo();
 
-            info.Movie.ShouldNotBeNull();
-            info.Movie.Id.ShouldBeEqualTo("2:");
+            info.Video.ShouldNotBeNull();
+            info.Video.Id.ShouldBeEqualTo("2:");
         }
 
         [Test]
@@ -213,6 +213,36 @@ namespace BatchGuy.Unit.Tests.Services.Parser
             BluRayTitleInfo info = parserService.GetTitleInfo();
 
             info.Subtitles[0].Language.ShouldBeEqualTo("french");
+        }
+
+        [Test]
+        public void bluraytitleparserservice_is_id_not_valid_test()
+        {
+            List<ProcessOutputLineItem> lineItems = new List<ProcessOutputLineItem> 
+            {
+                new ProcessOutputLineItem()  { Id = 1, Text = "(core: DTS, 5.1 channels, 1509kpps, 48kHz)" }
+            };
+            ILineItemIdentifierService lineItemService = new BluRayTitleLineItemIdentifierService();
+            IBluRayTitleParserService parserService = new BluRayTitleParserService(lineItemService, lineItems);
+
+            bool isValid = parserService.IsIdValid("core:");
+
+            isValid.ShouldBeFalse();
+        }
+
+        [Test]
+        public void bluraytitleparserservice_is_id_valid_test()
+        {
+            List<ProcessOutputLineItem> lineItems = new List<ProcessOutputLineItem> 
+            {
+                new ProcessOutputLineItem()  { Id = 1, Text = "4: Subtitle (pgs), French" }
+            };
+            ILineItemIdentifierService lineItemService = new BluRayTitleLineItemIdentifierService();
+            IBluRayTitleParserService parserService = new BluRayTitleParserService(lineItemService, lineItems);
+
+            bool isValid = parserService.IsIdValid("4:");
+
+            isValid.ShouldBeTrue();
         }
     }
 }

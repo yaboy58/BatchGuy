@@ -83,7 +83,7 @@
     <Compile Include="Parser\Models\BluRayTitleAudio.cs" />
     <Compile Include="Parser\Models\BluRayTitleChapter.cs" />
     <Compile Include="Parser\Models\BluRayTitleInfo.cs" />
-    <Compile Include="Parser\Models\BluRayTitleMovie.cs" />
+    <Compile Include="Parser\Models\BluRayTitleVideo.cs" />
     <Compile Include="Parser\Models\BluRayTitleSubtitle.cs" />
     <Compile Include="Parser\Services\BluRayTitleLineItemIdentifierService.cs" />
     <Compile Include="Parser\Services\BluRayTitleParserService.cs" />

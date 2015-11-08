@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BatchGuy.App.Enums;
+using System.Text.RegularExpressions;
 
 namespace BatchGuy.App.Parser.Services
 {
@@ -32,8 +33,6 @@ namespace BatchGuy.App.Parser.Services
                 {
                     case EnumLineItemType.BluRayTitleHeaderLine:
                         _bluRayTtileInfo.HeaderText = item.Text;
-                        break;
-                    case EnumLineItemType.BluRayTitleEmptyLine:
                         break;
                     case EnumLineItemType.BluRayTitleChapterLine:
                         this.SetChapter(item);
@@ -104,6 +103,16 @@ namespace BatchGuy.App.Parser.Services
             return isAudio;
         }
 
+        public bool IsIdValid(string id)
+        {
+            string pattern = "^[0-9,:]+$";
+            Regex regEx = new Regex(pattern, RegexOptions.IgnoreCase);
+
+            bool isMatch = regEx.IsMatch(id);
+
+            return isMatch;
+        }
+
         private void SetChapter(ProcessOutputLineItem lineItem)
         {
             _bluRayTtileInfo.Chapter = new BluRayTitleChapter() { Id = this.GetId(lineItem), IsSelected = true };
@@ -111,16 +120,21 @@ namespace BatchGuy.App.Parser.Services
 
         private void SetVideo(ProcessOutputLineItem lineItem)
         {
-            _bluRayTtileInfo.Movie = new BluRayTitleMovie() { Id = this.GetId(lineItem), IsSelected = true };
+            _bluRayTtileInfo.Video = new BluRayTitleVideo() { Id = this.GetId(lineItem), IsSelected = true };
         }
 
         private void SetAudio(ProcessOutputLineItem lineItem)
         {
+            string id = this.GetId(lineItem);
+
+            if (!this.IsIdValid(id))
+                return;
+
             if (_bluRayTtileInfo.AudioList == null)
                 _bluRayTtileInfo.AudioList = new List<BluRayTitleAudio>();
 
             BluRayTitleAudio audio = new BluRayTitleAudio();
-            audio.Id = this.GetId(lineItem);
+            audio.Id = id;
             audio.IsSelected = false;
             audio.AudioType = this.GetAudioType(lineItem);
             audio.Language = this.GetLanguage(lineItem);
