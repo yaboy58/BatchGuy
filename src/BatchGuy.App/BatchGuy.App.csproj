@@ -145,6 +145,11 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\DataSources\BatchGuy.App.Parser.Models.BluRaySummaryInfo.datasource" />
+    <None Include="Properties\DataSources\BatchGuy.App.Parser.Models.BluRayTitleAudio.datasource" />
+    <None Include="Properties\DataSources\BatchGuy.App.Parser.Models.BluRayTitleChapter.datasource" />
+    <None Include="Properties\DataSources\BatchGuy.App.Parser.Models.BluRayTitleInfo.datasource" />
+    <None Include="Properties\DataSources\BatchGuy.App.Parser.Models.BluRayTitleSubtitle.datasource" />
+    <None Include="Properties\DataSources\BatchGuy.App.Parser.Models.BluRayTitleVideo.datasource" />
     <None Include="Properties\DataSources\BatchGuy.App.X264.Models.X264File.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

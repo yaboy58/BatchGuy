@@ -115,12 +115,12 @@ namespace BatchGuy.App.Parser.Services
 
         private void SetChapter(ProcessOutputLineItem lineItem)
         {
-            _bluRayTtileInfo.Chapter = new BluRayTitleChapter() { Id = this.GetId(lineItem), IsSelected = true };
+            _bluRayTtileInfo.Chapter = new BluRayTitleChapter() { Id = this.GetId(lineItem), IsSelected = true, Text = lineItem.Text };
         }
 
         private void SetVideo(ProcessOutputLineItem lineItem)
         {
-            _bluRayTtileInfo.Video = new BluRayTitleVideo() { Id = this.GetId(lineItem), IsSelected = true };
+            _bluRayTtileInfo.Video = new BluRayTitleVideo() { Id = this.GetId(lineItem), IsSelected = true, Text = lineItem.Text };
         }
 
         private void SetAudio(ProcessOutputLineItem lineItem)
@@ -138,6 +138,7 @@ namespace BatchGuy.App.Parser.Services
             audio.IsSelected = false;
             audio.AudioType = this.GetAudioType(lineItem);
             audio.Language = this.GetLanguage(lineItem);
+            audio.Text = lineItem.Text;
             if (audio.AudioType == EnumAudioType.TrueHD)
             {
                 audio.Arguments = "-640";
@@ -158,6 +159,7 @@ namespace BatchGuy.App.Parser.Services
             BluRayTitleSubtitle subtitle = new BluRayTitleSubtitle();
             subtitle.Id = this.GetId(lineItem);
             subtitle.Language = this.GetLanguage(lineItem);
+            subtitle.Text = lineItem.Text;
             _bluRayTtileInfo.Subtitles.Add(subtitle);
         }
     }

@@ -15,5 +15,6 @@ namespace BatchGuy.App.Parser.Models
         public string Language { get; set; }
         public string Arguments { get; set; }
         public bool IsSelected { get; set; }
+        public string Text { get; set; }
     }
 }
