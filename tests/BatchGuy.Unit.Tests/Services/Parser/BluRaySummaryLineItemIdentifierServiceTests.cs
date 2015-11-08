@@ -8,6 +8,7 @@ using FluentAssert;
 using BatchGuy.App.Parser.Models;
 using BatchGuy.App.Parser.Services;
 using BatchGuy.App;
+using BatchGuy.App.Parser.Interfaces;
 
 namespace BatchGuy.Unit.Tests.Services.Parser
 {

@@ -7,6 +7,7 @@ using BatchGuy.App.EAC.Models;
 using BatchGuy.App.Models;
 using System.IO;
 using BatchGuy.App.Helpers;
+using BatchGuy.App.EAC.Interfaces;
 
 namespace BatchGuy.App.EAC.Services
 {

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BatchGuy.App.Parser.Services
+namespace BatchGuy.App.Parser.Interfaces
 {
     public interface IBluRaySummaryParserService
     {

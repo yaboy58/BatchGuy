@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FluentAssert;
+using BatchGuy.App.Parser.Interfaces;
 
 namespace BatchGuy.Unit.Tests.Services.Parser
 {

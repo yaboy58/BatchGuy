@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BatchGuy.App.EAC.Services
+namespace BatchGuy.App.EAC.Interfaces
 {
     public interface IEACOutputService
     {

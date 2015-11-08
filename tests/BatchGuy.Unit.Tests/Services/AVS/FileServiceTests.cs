@@ -7,6 +7,7 @@ using NUnit.Framework;
 using FluentAssert;
 using BatchGuy.App.AVS.Models;
 using BatchGuy.App.AVS.Services;
+using BatchGuy.App.AVS.Interfaces;
 
 namespace BatchGuy.Unit.Tests
 {

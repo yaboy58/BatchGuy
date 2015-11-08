@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using BatchGuy.App.X264.Interfaces;
 
 namespace BatchGuy.App.X264.Services
 {

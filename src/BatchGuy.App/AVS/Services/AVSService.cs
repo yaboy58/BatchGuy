@@ -7,6 +7,7 @@ using BatchGuy.App.AVS;
 using System.IO;
 using BatchGuy.App.AVS.Models;
 using BatchGuy.App.Models;
+using BatchGuy.App.AVS.Interfaces;
 
 namespace BatchGuy.App.AVS.Services
 {

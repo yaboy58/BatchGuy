@@ -8,6 +8,7 @@ using BatchGuy.App.AVS.Services;
 using BatchGuy.App.Models;
 using NUnit;
 using NUnit.Framework;
+using BatchGuy.App.AVS.Interfaces;
 
 namespace BatchGuy.Unit.Tests
 {

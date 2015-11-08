@@ -66,8 +66,8 @@
     <Compile Include="EAC\Models\EAC3ToConfiguration.cs" />
     <Compile Include="EAC\Services\BatFileWriteService.cs" />
     <Compile Include="EAC\Services\EACOutputService.cs" />
-    <Compile Include="EAC\Services\IBatFileWriteService.cs" />
-    <Compile Include="EAC\Services\IEACOutputService.cs" />
+    <Compile Include="EAC\Interfaces\IBatFileWriteService.cs" />
+    <Compile Include="EAC\Interfaces\IEACOutputService.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -86,24 +86,24 @@
     <Compile Include="Parser\Services\BluRaySummaryLineItemIdentifierService.cs" />
     <Compile Include="Parser\Services\BluRaySummaryParserService.cs" />
     <Compile Include="Parser\Services\CommandLineProcessService.cs" />
-    <Compile Include="Parser\Services\IBluRaySummaryParserService.cs" />
-    <Compile Include="Parser\Services\ICommandLineProcessService.cs" />
-    <Compile Include="Parser\Services\ILineItemIdentifierService.cs" />
+    <Compile Include="Parser\Interfaces\IBluRaySummaryParserService.cs" />
+    <Compile Include="Parser\Interfaces\ICommandLineProcessService.cs" />
+    <Compile Include="Parser\Interfaces\ILineItemIdentifierService.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="AVS\Services\AVSService.cs" />
     <Compile Include="AVS\Services\FileService.cs" />
-    <Compile Include="AVS\Services\IAVSService.cs" />
-    <Compile Include="AVS\Services\IFileService.cs" />
-    <Compile Include="AVS\Services\IValidationService.cs" />
+    <Compile Include="AVS\Interfaces\IAVSService.cs" />
+    <Compile Include="AVS\Interfaces\IFileService.cs" />
+    <Compile Include="AVS\Interfaces\IValidationService.cs" />
     <Compile Include="AVS\Services\ValidationService.cs" />
     <Compile Include="X264\Models\X264File.cs" />
     <Compile Include="X264\Models\X264FileSettings.cs" />
     <Compile Include="X264\Services\EncodeService.cs" />
     <Compile Include="X264\Services\FileService.cs" />
-    <Compile Include="X264\Services\IEncodeService.cs" />
-    <Compile Include="X264\Services\IFileService.cs" />
-    <Compile Include="X264\Services\IValidationService.cs" />
+    <Compile Include="X264\Interfaces\IEncodeService.cs" />
+    <Compile Include="X264\Interfaces\IFileService.cs" />
+    <Compile Include="X264\Interfaces\IValidationService.cs" />
     <Compile Include="X264\Services\ValidationService.cs" />
     <EmbeddedResource Include="CreateAVSFilesForm.resx">
       <DependentUpon>CreateAVSFilesForm.cs</DependentUpon>

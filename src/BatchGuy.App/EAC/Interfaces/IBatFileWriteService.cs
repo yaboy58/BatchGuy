@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using BatchGuy.App.EAC.Models;
 using BatchGuy.App.Models;
 
-namespace BatchGuy.App.EAC.Services
+namespace BatchGuy.App.EAC.Interfaces
 {
     public interface IBatFileWriteService
     {

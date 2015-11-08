@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using BatchGuy.App.Helpers;
 using BatchGuy.App.AVS;
 using BatchGuy.App.AVS.Models;
+using BatchGuy.App.AVS.Interfaces;
 
 namespace BatchGuy.App.AVS.Services
 {

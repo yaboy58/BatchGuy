@@ -11,6 +11,8 @@ using BatchGuy.App.EAC.Models;
 using BatchGuy.App.EAC.Services;
 using BatchGuy.App.Parser.Models;
 using BatchGuy.App.Parser.Services;
+using BatchGuy.App.EAC.Interfaces;
+using BatchGuy.App.Parser.Interfaces;
 
 namespace BatchGuy.App
 {

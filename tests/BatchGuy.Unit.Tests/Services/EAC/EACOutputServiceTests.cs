@@ -8,6 +8,7 @@ using FluentAssert;
 using BatchGuy.App.EAC.Models;
 using BatchGuy.App.EAC.Services;
 using BatchGuy.App;
+using BatchGuy.App.EAC.Interfaces;
 
 namespace BatchGuy.Unit.Tests.Services.EAC
 {
