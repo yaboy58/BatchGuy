@@ -9,7 +9,7 @@ namespace BatchGuy.App.Parser.Services
 {
     public class BluRaySummaryLineItemIdentifierService : ILineItemIdentifierService
     {
-        public EnumLineItemType GetType(ProcessOutputLineItem processOutputLineItem)
+        public EnumLineItemType GetLineItemType(ProcessOutputLineItem processOutputLineItem)
         {
             EnumLineItemType type;
 
@@ -33,7 +33,7 @@ namespace BatchGuy.App.Parser.Services
         {
             string[] values = new string[] { ".mpls", ".m2ts" };
 
-            bool isHeader = values.Any(v => processOutputLineItem.Text.Contains(v));
+            bool isHeader = values.Any(v => processOutputLineItem.Text.ToLower().Contains(v));
 
             return isHeader;
         }
@@ -42,7 +42,7 @@ namespace BatchGuy.App.Parser.Services
         {
             string[] values = new string[] { "chapters", "h264", "dts", "ac3" };
 
-            bool isDetail = values.Any(v => processOutputLineItem.Text.Contains(v));
+            bool isDetail = values.Any(v => processOutputLineItem.Text.ToLower().Contains(v));
 
             return isDetail;
         }

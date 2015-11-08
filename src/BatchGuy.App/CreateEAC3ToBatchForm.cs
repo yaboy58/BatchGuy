@@ -9,12 +9,15 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using BatchGuy.App.EAC.Models;
 using BatchGuy.App.EAC.Services;
+using BatchGuy.App.Parser.Models;
+using BatchGuy.App.Parser.Services;
 
 namespace BatchGuy.App
 {
     public partial class CreateEAC3ToBatchForm : Form
     {
         private EnumAudioType AudioType { get; set; }
+        private List<BluRaySummaryInfo> SummaryList { get; set; }
 
         public CreateEAC3ToBatchForm()
         {
@@ -148,6 +151,49 @@ namespace BatchGuy.App
             }
 
             this.SetAudioSettingsTextBox();
+        }
+
+        /*NEW STUFF*/
+        private void btnLoadBluRay_Click(object sender, EventArgs e)
+        {
+            ////:Blu ray streams
+            CommandLineProcessStartInfo commandLineProcessStartInfo1 = new CommandLineProcessStartInfo()
+            {
+                FileName = @"C:\exe\eac3to\eac3to.exe",
+                Arguments = @"""C:\temp\My Torrent Encodes\Blu-ray\DISC\Les.Revenants.S02D01.FRENCH.COMPLETE.BLURAY-MELBA"""
+            };
+
+
+            ICommandLineProcessService commandLineProcessService1 = new CommandLineProcessService(commandLineProcessStartInfo1);
+
+            if (commandLineProcessService1.Errors.Count() == 0)
+            {
+                ////Get line items
+                List<ProcessOutputLineItem> processOutputLineItems1 = commandLineProcessService1.GetProcessOutputLineItems();
+                foreach (var line in processOutputLineItems1)
+                {
+                    //System.Console.WriteLine(line.Text); write out if we choose too
+                }
+
+                ////Get the Blu ray summary list
+                ILineItemIdentifierService lineItemService = new BluRaySummaryLineItemIdentifierService();
+                IBluRaySummaryParserService parserService = new BluRaySummaryParserService(lineItemService, processOutputLineItems1);
+                SummaryList = parserService.GetSummaryList();
+
+                foreach (var summary in SummaryList)
+                {
+                    System.Console.WriteLine(string.Format("Header: {0}", summary.HeaderText));
+                    System.Console.WriteLine(string.Format("Detail: {0}", summary.DetailText));
+                }
+            }
+            else
+            {
+                System.Console.WriteLine("The following errors were found:");
+                foreach (var error in commandLineProcessService1.Errors)
+                {
+                    System.Console.WriteLine(error.Description);
+                }
+            }
         }
     }
 }

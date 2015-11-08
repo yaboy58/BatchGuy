@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.txtEAC3ToPath = new System.Windows.Forms.TextBox();
             this.txtBluRayPath = new System.Windows.Forms.TextBox();
@@ -53,7 +54,10 @@
             this.txtAudioSettings = new System.Windows.Forms.TextBox();
             this.lblAudioLanguage = new System.Windows.Forms.Label();
             this.cbAudioLanguage = new System.Windows.Forms.ComboBox();
+            this.btnLoadBluRay = new System.Windows.Forms.Button();
+            this.bsBluRaySummaryInfo = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bsBluRaySummaryInfo)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -71,15 +75,16 @@
             this.txtEAC3ToPath.Name = "txtEAC3ToPath";
             this.txtEAC3ToPath.Size = new System.Drawing.Size(508, 20);
             this.txtEAC3ToPath.TabIndex = 1;
-            this.txtEAC3ToPath.Text = "C:\\exe\\eac3to\\eac3to";
+            this.txtEAC3ToPath.Text = "C:\\exe\\eac3to\\eac3to.exe";
             // 
             // txtBluRayPath
             // 
             this.txtBluRayPath.Location = new System.Drawing.Point(122, 19);
             this.txtBluRayPath.Name = "txtBluRayPath";
-            this.txtBluRayPath.Size = new System.Drawing.Size(508, 20);
+            this.txtBluRayPath.Size = new System.Drawing.Size(624, 20);
             this.txtBluRayPath.TabIndex = 0;
-            this.txtBluRayPath.Text = "C:\\temp\\My Torrent Encodes\\Blu-ray\\DISC";
+            this.txtBluRayPath.Text = "C:\\temp\\My Torrent Encodes\\Blu-ray\\DISC\\Les.Revenants.S02D01.FRENCH.COMPLETE.BLUR" +
+    "AY-MELBA";
             // 
             // label2
             // 
@@ -138,7 +143,7 @@
             this.groupBox1.Controls.Add(this.txtBluRayStreamNumber);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.txtBluRayEpisodeFolder);
-            this.groupBox1.Location = new System.Drawing.Point(30, 203);
+            this.groupBox1.Location = new System.Drawing.Point(35, 510);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(611, 246);
             this.groupBox1.TabIndex = 8;
@@ -227,7 +232,7 @@
             // 
             // btnWriteToBatFile
             // 
-            this.btnWriteToBatFile.Location = new System.Drawing.Point(508, 455);
+            this.btnWriteToBatFile.Location = new System.Drawing.Point(1144, 718);
             this.btnWriteToBatFile.Name = "btnWriteToBatFile";
             this.btnWriteToBatFile.Size = new System.Drawing.Size(133, 28);
             this.btnWriteToBatFile.TabIndex = 12;
@@ -294,11 +299,26 @@
             this.cbAudioLanguage.Size = new System.Drawing.Size(148, 21);
             this.cbAudioLanguage.TabIndex = 5;
             // 
+            // btnLoadBluRay
+            // 
+            this.btnLoadBluRay.Location = new System.Drawing.Point(1095, 212);
+            this.btnLoadBluRay.Name = "btnLoadBluRay";
+            this.btnLoadBluRay.Size = new System.Drawing.Size(133, 28);
+            this.btnLoadBluRay.TabIndex = 21;
+            this.btnLoadBluRay.Text = "Load Blu-ray";
+            this.btnLoadBluRay.UseVisualStyleBackColor = true;
+            this.btnLoadBluRay.Click += new System.EventHandler(this.btnLoadBluRay_Click);
+            // 
+            // bsBluRaySummaryInfo
+            // 
+            this.bsBluRaySummaryInfo.DataSource = typeof(BatchGuy.App.Parser.Models.BluRaySummaryInfo);
+            // 
             // CreateEAC3ToBatchForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(666, 495);
+            this.ClientSize = new System.Drawing.Size(1308, 768);
+            this.Controls.Add(this.btnLoadBluRay);
             this.Controls.Add(this.lblAudioLanguage);
             this.Controls.Add(this.cbAudioLanguage);
             this.Controls.Add(this.txtAudioSettings);
@@ -320,6 +340,7 @@
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CreateEAC3ToBatchForm_KeyPress);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bsBluRaySummaryInfo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -352,5 +373,7 @@
         private System.Windows.Forms.TextBox txtAudioSettings;
         private System.Windows.Forms.Label lblAudioLanguage;
         private System.Windows.Forms.ComboBox cbAudioLanguage;
+        private System.Windows.Forms.Button btnLoadBluRay;
+        private System.Windows.Forms.BindingSource bsBluRaySummaryInfo;
     }
 }

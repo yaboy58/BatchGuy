@@ -15,17 +15,32 @@ namespace BatchGuy.Parser.Console.App
         static void Main(string[] args)
         {
             ////:Blu ray streams
-            CommandLineProcessStartInfo commandLineProcessStartInfo1 = new CommandLineProcessStartInfo() { FileName = @"C:\exe\eac3to\eac3to.exe", 
-                Arguments = @"""\\KENSHIRO\My Torrent Encodes\Blu-ray\DISC\ARN_D1-BluHD""" };
+            CommandLineProcessStartInfo commandLineProcessStartInfo1 = new CommandLineProcessStartInfo() 
+            { 
+                FileName = @"C:\exe\eac3to\eac3to.exe",
+                Arguments = @"""C:\temp\My Torrent Encodes\Blu-ray\DISC\Les.Revenants.S02D01.FRENCH.COMPLETE.BLURAY-MELBA"""
+            };
 
             ICommandLineProcessService commandLineProcessService1 = new CommandLineProcessService(commandLineProcessStartInfo1);
             
             if (commandLineProcessService1.Errors.Count() == 0)
             {
-                List<ProcessOutputLineItem> processOutputLineItem = commandLineProcessService1.GetProcessOutputLineItems();
-                foreach (var line in processOutputLineItem)
+                ////Get line items
+                List<ProcessOutputLineItem> processOutputLineItems1 = commandLineProcessService1.GetProcessOutputLineItems();
+                foreach (var line in processOutputLineItems1)
                 {
-                    System.Console.WriteLine(line.Text);
+                    //System.Console.WriteLine(line.Text); write out if we choose too
+                }
+
+                ////Get the Blu ray summary list
+                ILineItemIdentifierService lineItemService = new BluRaySummaryLineItemIdentifierService();
+                IBluRaySummaryParserService parserService = new BluRaySummaryParserService(lineItemService, processOutputLineItems1);
+                List<BluRaySummaryInfo> summaryList = parserService.GetSummaryList();
+
+                foreach (var summary in summaryList)
+                {
+                    System.Console.WriteLine(string.Format("Header: {0}",summary.HeaderText));
+                    System.Console.WriteLine(string.Format("Detail: {0}", summary.DetailText));    
                 }
             }
             else

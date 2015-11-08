@@ -80,10 +80,13 @@
     <Compile Include="AVS\Models\AVSFile.cs" />
     <Compile Include="AVS\Models\AVSScript.cs" />
     <Compile Include="Models\Error.cs" />
+    <Compile Include="Parser\Models\BluRaySummaryInfo.cs" />
     <Compile Include="Parser\Models\CommandLineProcessStartInfo.cs" />
     <Compile Include="Parser\Models\ProcessOutputLineItem.cs" />
     <Compile Include="Parser\Services\BluRaySummaryLineItemIdentifierService.cs" />
+    <Compile Include="Parser\Services\BluRaySummaryParserService.cs" />
     <Compile Include="Parser\Services\CommandLineProcessService.cs" />
+    <Compile Include="Parser\Services\IBluRaySummaryParserService.cs" />
     <Compile Include="Parser\Services\ICommandLineProcessService.cs" />
     <Compile Include="Parser\Services\ILineItemIdentifierService.cs" />
     <Compile Include="Program.cs" />
@@ -124,6 +127,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="Properties\DataSources\BatchGuy.App.Parser.Models.BluRaySummaryInfo.datasource" />
     <None Include="Properties\DataSources\BatchGuy.App.X264.Models.X264File.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

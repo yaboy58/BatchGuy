@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace BatchGuy.App.Parser.Services
 {
-    public interface ILineItemIdentifierService
+    public interface IBluRaySummaryParserService
     {
-        EnumLineItemType GetLineItemType(ProcessOutputLineItem processOutputLineItem);
+        List<BluRaySummaryInfo> GetSummaryList();
     }
 }
