@@ -79,6 +79,11 @@
     <Compile Include="AVS\Models\AVSBatchSettings.cs" />
     <Compile Include="AVS\Models\AVSFile.cs" />
     <Compile Include="AVS\Models\AVSScript.cs" />
+    <Compile Include="Parser\Models\BluRayTitleAudio.cs" />
+    <Compile Include="Parser\Models\BluRayTitleChapter.cs" />
+    <Compile Include="Parser\Models\BluRayTitleInfo.cs" />
+    <Compile Include="Parser\Models\BluRayTitleMovie.cs" />
+    <Compile Include="Parser\Models\BluRayTitleSubtitle.cs" />
     <Compile Include="Parser\Services\BluRayTitleLineItemIdentifierService.cs" />
     <Compile Include="Shared\Models\Error.cs" />
     <Compile Include="Parser\Models\BluRaySummaryInfo.cs" />

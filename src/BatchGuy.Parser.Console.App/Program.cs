@@ -44,19 +44,19 @@ namespace BatchGuy.Parser.Console.App
                     //System.Console.WriteLine(string.Format("Detail: {0}", summary.DetailText)); //write out if we choose
                 }
 
-                ////Blu ray individual stream
-                CommandLineProcessStartInfo commandLineProcessStartInfoIndividual = new CommandLineProcessStartInfo()
+                ////Blu ray title stream
+                CommandLineProcessStartInfo commandLineProcessStartInfoTitle = new CommandLineProcessStartInfo()
                 {
                     FileName = @"C:\exe\eac3to\eac3to.exe",
                     Arguments = string.Format(@"""C:\temp\My Torrent Encodes\Blu-ray\DISC\Les.Revenants.S02D01.FRENCH.COMPLETE.BLURAY-MELBA"" {0}", summaryList[1].Id)
                 };
 
-                ICommandLineProcessService commandLineProcessServiceIndividual = new CommandLineProcessService(commandLineProcessStartInfoIndividual);
+                ICommandLineProcessService commandLineProcessServiceTitle = new CommandLineProcessService(commandLineProcessStartInfoTitle);
 
-                if (commandLineProcessServiceIndividual.Errors.Count() == 0)
+                if (commandLineProcessServiceTitle.Errors.Count() == 0)
                 {
                     ////Get line items
-                    List<ProcessOutputLineItem> processOutputLineItemsIndividual = commandLineProcessServiceIndividual.GetProcessOutputLineItems();
+                    List<ProcessOutputLineItem> processOutputLineItemsIndividual = commandLineProcessServiceTitle.GetProcessOutputLineItems();
                     foreach (var line in processOutputLineItemsIndividual)
                     {
                         System.Console.WriteLine(line.Text); //write out if we choose too
@@ -65,7 +65,7 @@ namespace BatchGuy.Parser.Console.App
                 else
                 {
                     System.Console.WriteLine("The following errors were found:");
-                    foreach (var error in commandLineProcessServiceIndividual.Errors)
+                    foreach (var error in commandLineProcessServiceTitle.Errors)
                     {
                         System.Console.WriteLine(error.Description);
                     }
