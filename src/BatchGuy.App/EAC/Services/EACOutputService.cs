@@ -1,5 +1,6 @@
 ﻿using BatchGuy.App.EAC.Interfaces;
 using BatchGuy.App.EAC.Models;
+using BatchGuy.App.Enums;
 using BatchGuy.App.Helpers;
 using BatchGuy.App.Models;
 using System;

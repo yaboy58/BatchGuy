@@ -1,4 +1,5 @@
-﻿using BatchGuy.App.Parser.Interfaces;
+﻿using BatchGuy.App.Enums;
+using BatchGuy.App.Parser.Interfaces;
 using BatchGuy.App.Parser.Models;
 using System;
 using System.Collections.Generic;

@@ -1,4 +1,5 @@
-﻿using BatchGuy.App.X264.Interfaces;
+﻿using BatchGuy.App.Enums;
+using BatchGuy.App.X264.Interfaces;
 using BatchGuy.App.X264.Models;
 using BatchGuy.App.X264.Services;
 using System;

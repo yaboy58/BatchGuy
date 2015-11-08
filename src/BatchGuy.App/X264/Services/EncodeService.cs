@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using BatchGuy.App.X264.Interfaces;
+using BatchGuy.App.Enums;
 
 namespace BatchGuy.App.X264.Services
 {

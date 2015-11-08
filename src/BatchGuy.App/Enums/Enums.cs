@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BatchGuy.App
+namespace BatchGuy.App.Enums
 {
     public enum EnumEncodeType
     {

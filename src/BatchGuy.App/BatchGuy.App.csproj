@@ -68,7 +68,7 @@
     <Compile Include="EAC\Services\EACOutputService.cs" />
     <Compile Include="EAC\Interfaces\IBatFileWriteService.cs" />
     <Compile Include="EAC\Interfaces\IEACOutputService.cs" />
-    <Compile Include="Enums.cs" />
+    <Compile Include="Enums\Enums.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -9,6 +9,7 @@ using BatchGuy.App.Parser.Models;
 using BatchGuy.App.Parser.Services;
 using BatchGuy.App;
 using BatchGuy.App.Parser.Interfaces;
+using BatchGuy.App.Enums;
 
 namespace BatchGuy.Unit.Tests.Services.Parser
 {
