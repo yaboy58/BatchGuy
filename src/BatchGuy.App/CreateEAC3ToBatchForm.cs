@@ -159,8 +159,8 @@ namespace BatchGuy.App
             ////:Blu ray streams
             CommandLineProcessStartInfo commandLineProcessStartInfo1 = new CommandLineProcessStartInfo()
             {
-                FileName = @"C:\exe\eac3to\eac3to.exe",
-                Arguments = @"""C:\temp\My Torrent Encodes\Blu-ray\DISC\Les.Revenants.S02D01.FRENCH.COMPLETE.BLURAY-MELBA"""
+                FileName = txtEAC3ToPath.Text,
+                Arguments = string.Format("\"{0}\"", txtBluRayPath.Text)
             };
 
 

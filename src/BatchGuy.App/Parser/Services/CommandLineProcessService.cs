@@ -36,7 +36,7 @@ namespace BatchGuy.App.Parser.Services
                 int id = 1;
                 ProcessStartInfo cmdStartInfo = new ProcessStartInfo();
                 cmdStartInfo.FileName = _commandLineProcessStartInfo.FileName;
-                cmdStartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+                cmdStartInfo.WindowStyle = ProcessWindowStyle.Normal;
                 cmdStartInfo.Arguments = _commandLineProcessStartInfo.Arguments;
                 cmdStartInfo.CreateNoWindow = true;
                 cmdStartInfo.RedirectStandardOutput = true;
