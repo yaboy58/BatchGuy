@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace BatchGuy.App.Parser.Interfaces
 {
-    public interface IBluRaySummaryParserService
+    public interface IBluRayTitleParserService
     {
-        List<BluRaySummaryInfo> GetSummaryList();
+        BluRayTitleInfo GetTitleInfo();
         string GetId(ProcessOutputLineItem lineItem);
     }
 }

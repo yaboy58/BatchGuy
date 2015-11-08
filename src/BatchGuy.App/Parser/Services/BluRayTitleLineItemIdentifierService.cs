@@ -62,7 +62,7 @@ namespace BatchGuy.App.Parser.Services
 
         private bool IsVideoLine(ProcessOutputLineItem processOutputLineItem)
         {
-            string[] values = new string[] { "h264","avc","1080" };
+            string[] values = new string[] { "h264","avc","1080","video", "mpeg-4" };
 
             bool isChapter = values.Any(v => processOutputLineItem.Text.ToLower().Contains(v));
 

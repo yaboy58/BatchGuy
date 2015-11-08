@@ -56,6 +56,7 @@
     <Compile Include="Services\Parser\BluRaySummaryLineItemIdentifierServiceTests.cs" />
     <Compile Include="Services\Parser\BluRaySummaryParserServiceTests.cs" />
     <Compile Include="Services\Parser\BluRayTitleLineItemIdentifierServiceTests.cs" />
+    <Compile Include="Services\Parser\BluRayTitleParserServiceTests.cs" />
     <Compile Include="Services\Parser\CommandLineProcessServiceTests.cs" />
   </ItemGroup>
   <ItemGroup>

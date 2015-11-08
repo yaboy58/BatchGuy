@@ -11,7 +11,7 @@ namespace BatchGuy.App.Parser.Models
     public class BluRayTitleAudio
     {
         public string Id { get; set; }
-        public EnumAudioType MyProperty { get; set; }
+        public EnumAudioType AudioType { get; set; }
         public string Language { get; set; }
         public string Arguments { get; set; }
         public bool IsSelected { get; set; }

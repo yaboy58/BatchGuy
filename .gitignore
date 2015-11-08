@@ -108,3 +108,4 @@
 /src/BatchGuy.Parser.Console.App/obj/Debug/BatchGuy.Parser.Console.App.csprojResolveAssemblyReference.cache
 /src/BatchGuy.Parser.Console.App/bin/Debug/BatchGuy.App.exe
 /src/BatchGuy.Parser.Console.App/bin/Debug/BatchGuy.App.pdb
+/tests/BatchGuy.Unit.Tests/bin/Debug/Coverage.Log
