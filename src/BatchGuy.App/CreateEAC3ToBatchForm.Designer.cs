@@ -55,8 +55,14 @@
             this.lblAudioLanguage = new System.Windows.Forms.Label();
             this.cbAudioLanguage = new System.Windows.Forms.ComboBox();
             this.btnLoadBluRay = new System.Windows.Forms.Button();
+            this.dgvBluRaySummary = new System.Windows.Forms.DataGridView();
             this.bsBluRaySummaryInfo = new System.Windows.Forms.BindingSource(this.components);
+            this.ignoreDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.headerTextDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.detailTextDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvBluRaySummary)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsBluRaySummaryInfo)).BeginInit();
             this.SuspendLayout();
             // 
@@ -301,7 +307,7 @@
             // 
             // btnLoadBluRay
             // 
-            this.btnLoadBluRay.Location = new System.Drawing.Point(1095, 212);
+            this.btnLoadBluRay.Location = new System.Drawing.Point(1144, 178);
             this.btnLoadBluRay.Name = "btnLoadBluRay";
             this.btnLoadBluRay.Size = new System.Drawing.Size(133, 28);
             this.btnLoadBluRay.TabIndex = 21;
@@ -309,15 +315,58 @@
             this.btnLoadBluRay.UseVisualStyleBackColor = true;
             this.btnLoadBluRay.Click += new System.EventHandler(this.btnLoadBluRay_Click);
             // 
+            // dgvBluRaySummary
+            // 
+            this.dgvBluRaySummary.AllowUserToAddRows = false;
+            this.dgvBluRaySummary.AutoGenerateColumns = false;
+            this.dgvBluRaySummary.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvBluRaySummary.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ignoreDataGridViewCheckBoxColumn,
+            this.idDataGridViewTextBoxColumn,
+            this.headerTextDataGridViewTextBoxColumn,
+            this.detailTextDataGridViewTextBoxColumn});
+            this.dgvBluRaySummary.DataSource = this.bsBluRaySummaryInfo;
+            this.dgvBluRaySummary.Location = new System.Drawing.Point(26, 212);
+            this.dgvBluRaySummary.Name = "dgvBluRaySummary";
+            this.dgvBluRaySummary.Size = new System.Drawing.Size(1251, 150);
+            this.dgvBluRaySummary.TabIndex = 22;
+            // 
             // bsBluRaySummaryInfo
             // 
             this.bsBluRaySummaryInfo.DataSource = typeof(BatchGuy.App.Parser.Models.BluRaySummaryInfo);
+            // 
+            // ignoreDataGridViewCheckBoxColumn
+            // 
+            this.ignoreDataGridViewCheckBoxColumn.DataPropertyName = "Ignore";
+            this.ignoreDataGridViewCheckBoxColumn.HeaderText = "Ignore";
+            this.ignoreDataGridViewCheckBoxColumn.Name = "ignoreDataGridViewCheckBoxColumn";
+            // 
+            // idDataGridViewTextBoxColumn
+            // 
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            // 
+            // headerTextDataGridViewTextBoxColumn
+            // 
+            this.headerTextDataGridViewTextBoxColumn.DataPropertyName = "HeaderText";
+            this.headerTextDataGridViewTextBoxColumn.HeaderText = "HeaderText";
+            this.headerTextDataGridViewTextBoxColumn.Name = "headerTextDataGridViewTextBoxColumn";
+            this.headerTextDataGridViewTextBoxColumn.Width = 350;
+            // 
+            // detailTextDataGridViewTextBoxColumn
+            // 
+            this.detailTextDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.detailTextDataGridViewTextBoxColumn.DataPropertyName = "DetailText";
+            this.detailTextDataGridViewTextBoxColumn.HeaderText = "DetailText";
+            this.detailTextDataGridViewTextBoxColumn.Name = "detailTextDataGridViewTextBoxColumn";
             // 
             // CreateEAC3ToBatchForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1308, 768);
+            this.Controls.Add(this.dgvBluRaySummary);
             this.Controls.Add(this.btnLoadBluRay);
             this.Controls.Add(this.lblAudioLanguage);
             this.Controls.Add(this.cbAudioLanguage);
@@ -340,6 +389,7 @@
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CreateEAC3ToBatchForm_KeyPress);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvBluRaySummary)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsBluRaySummaryInfo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -375,5 +425,10 @@
         private System.Windows.Forms.ComboBox cbAudioLanguage;
         private System.Windows.Forms.Button btnLoadBluRay;
         private System.Windows.Forms.BindingSource bsBluRaySummaryInfo;
+        private System.Windows.Forms.DataGridView dgvBluRaySummary;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn ignoreDataGridViewCheckBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn headerTextDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn detailTextDataGridViewTextBoxColumn;
     }
 }

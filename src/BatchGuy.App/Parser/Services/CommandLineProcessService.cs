@@ -38,19 +38,19 @@ namespace BatchGuy.App.Parser.Services
                 cmdStartInfo.FileName = _commandLineProcessStartInfo.FileName;
                 cmdStartInfo.WindowStyle = ProcessWindowStyle.Normal;
                 cmdStartInfo.Arguments = _commandLineProcessStartInfo.Arguments;
-                cmdStartInfo.CreateNoWindow = true;
                 cmdStartInfo.RedirectStandardOutput = true;
                 cmdStartInfo.RedirectStandardError = true;
-                cmdStartInfo.RedirectStandardInput = true;
                 cmdStartInfo.UseShellExecute = false;
 
                 Process process = Process.Start(cmdStartInfo);
                 using (StreamReader streamReader = process.StandardOutput)
                 {
-                    while (!streamReader.EndOfStream)
+                    string output = streamReader.ReadToEnd();
+                    string[] splitted = output.Split('\n');
+                    foreach (string item in splitted)
                     {
-                        processOutputLineItems.Add(new ProcessOutputLineItem() { Id = id, Text = HelperFunctions.ReplaceBackspace(streamReader.ReadLine()) });
-                        id++;
+                        processOutputLineItems.Add(new ProcessOutputLineItem() { Id = id, Text = HelperFunctions.ReplaceBackspace(item) });
+                        id++;                        
                     }
                 }
 

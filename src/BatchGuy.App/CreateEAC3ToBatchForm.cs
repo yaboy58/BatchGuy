@@ -180,18 +180,14 @@ namespace BatchGuy.App
                 IBluRaySummaryParserService parserService = new BluRaySummaryParserService(lineItemService, processOutputLineItems1);
                 SummaryList = parserService.GetSummaryList();
 
-                foreach (var summary in SummaryList)
-                {
-                    System.Console.WriteLine(string.Format("Header: {0}", summary.HeaderText));
-                    System.Console.WriteLine(string.Format("Detail: {0}", summary.DetailText));
-                }
+                bsBluRaySummaryInfo.DataSource = SummaryList;
             }
             else
             {
                 System.Console.WriteLine("The following errors were found:");
                 foreach (var error in commandLineProcessService1.Errors)
                 {
-                    System.Console.WriteLine(error.Description);
+                    //System.Console.WriteLine(error.Description);
                 }
             }
         }
