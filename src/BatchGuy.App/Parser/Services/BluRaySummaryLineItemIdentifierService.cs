@@ -31,7 +31,7 @@ namespace BatchGuy.App.Parser.Services
             return type;
         }
 
-        public bool IsHeaderLine(ProcessOutputLineItem processOutputLineItem)
+        private bool IsHeaderLine(ProcessOutputLineItem processOutputLineItem)
         {
             string[] values = new string[] { ".mpls", ".m2ts" };
 
@@ -40,7 +40,7 @@ namespace BatchGuy.App.Parser.Services
             return isHeader;
         }
 
-        public bool IsDetailLine(ProcessOutputLineItem processOutputLineItem)
+        private bool IsDetailLine(ProcessOutputLineItem processOutputLineItem)
         {
             string[] values = new string[] { "chapters", "h264", "dts", "ac3" };
 

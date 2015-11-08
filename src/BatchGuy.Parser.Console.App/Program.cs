@@ -15,39 +15,67 @@ namespace BatchGuy.Parser.Console.App
     {
         static void Main(string[] args)
         {
-            ////:Blu ray streams
-            CommandLineProcessStartInfo commandLineProcessStartInfo1 = new CommandLineProcessStartInfo() 
+            ////Blu ray summary streams
+            CommandLineProcessStartInfo commandLineProcessStartInfoSummary = new CommandLineProcessStartInfo() 
             { 
                 FileName = @"C:\exe\eac3to\eac3to.exe",
                 Arguments = @"""C:\temp\My Torrent Encodes\Blu-ray\DISC\Les.Revenants.S02D01.FRENCH.COMPLETE.BLURAY-MELBA"""
             };
 
-            ICommandLineProcessService commandLineProcessService1 = new CommandLineProcessService(commandLineProcessStartInfo1);
+            ICommandLineProcessService commandLineProcessServiceSummary = new CommandLineProcessService(commandLineProcessStartInfoSummary);
             
-            if (commandLineProcessService1.Errors.Count() == 0)
+            if (commandLineProcessServiceSummary.Errors.Count() == 0)
             {
                 ////Get line items
-                List<ProcessOutputLineItem> processOutputLineItems1 = commandLineProcessService1.GetProcessOutputLineItems();
-                foreach (var line in processOutputLineItems1)
+                List<ProcessOutputLineItem> processOutputLineItemsSummary = commandLineProcessServiceSummary.GetProcessOutputLineItems();
+                foreach (var line in processOutputLineItemsSummary)
                 {
-                    //System.Console.WriteLine(line.Text); write out if we choose too
+                    //System.Console.WriteLine(line.Text); //write out if we choose too
                 }
 
                 ////Get the Blu ray summary list
-                ILineItemIdentifierService lineItemService = new BluRaySummaryLineItemIdentifierService();
-                IBluRaySummaryParserService parserService = new BluRaySummaryParserService(lineItemService, processOutputLineItems1);
-                List<BluRaySummaryInfo> summaryList = parserService.GetSummaryList();
+                ILineItemIdentifierService lineItemServiceSummary = new BluRaySummaryLineItemIdentifierService();
+                IBluRaySummaryParserService parserServiceSummary = new BluRaySummaryParserService(lineItemServiceSummary, processOutputLineItemsSummary);
+                List<BluRaySummaryInfo> summaryList = parserServiceSummary.GetSummaryList();
 
                 foreach (var summary in summaryList)
                 {
-                    System.Console.WriteLine(string.Format("Header: {0}",summary.HeaderText));
-                    System.Console.WriteLine(string.Format("Detail: {0}", summary.DetailText));    
+                    //System.Console.WriteLine(string.Format("Header: {0}",summary.HeaderText)); //write out if we choose
+                    //System.Console.WriteLine(string.Format("Detail: {0}", summary.DetailText)); //write out if we choose
                 }
+
+                ////Blu ray individual stream
+                CommandLineProcessStartInfo commandLineProcessStartInfoIndividual = new CommandLineProcessStartInfo()
+                {
+                    FileName = @"C:\exe\eac3to\eac3to.exe",
+                    Arguments = string.Format(@"""C:\temp\My Torrent Encodes\Blu-ray\DISC\Les.Revenants.S02D01.FRENCH.COMPLETE.BLURAY-MELBA"" {0}", summaryList[1].Id)
+                };
+
+                ICommandLineProcessService commandLineProcessServiceIndividual = new CommandLineProcessService(commandLineProcessStartInfoIndividual);
+
+                if (commandLineProcessServiceIndividual.Errors.Count() == 0)
+                {
+                    ////Get line items
+                    List<ProcessOutputLineItem> processOutputLineItemsIndividual = commandLineProcessServiceIndividual.GetProcessOutputLineItems();
+                    foreach (var line in processOutputLineItemsIndividual)
+                    {
+                        System.Console.WriteLine(line.Text); //write out if we choose too
+                    }
+                }
+                else
+                {
+                    System.Console.WriteLine("The following errors were found:");
+                    foreach (var error in commandLineProcessServiceIndividual.Errors)
+                    {
+                        System.Console.WriteLine(error.Description);
+                    }
+                }
+
             }
             else
             {
                 System.Console.WriteLine("The following errors were found:");
-                foreach (var error in commandLineProcessService1.Errors)
+                foreach (var error in commandLineProcessServiceSummary.Errors)
                 {
                     System.Console.WriteLine(error.Description);
                 }

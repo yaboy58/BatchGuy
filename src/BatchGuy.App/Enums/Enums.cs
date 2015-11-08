@@ -24,6 +24,12 @@ namespace BatchGuy.App.Enums
     {
         BluRaySummaryHeaderLine = 1,
         BluRaySummaryDetailLine = 2,
-        BluRaySummaryEmptyLine = 3
+        BluRaySummaryEmptyLine = 3,
+        BluRayTitleHeaderLine = 4,
+        BluRayTitleEmptyLine = 5,
+        BluRayTitleChapterLine = 6,
+        BluRayTitleVideoLine = 7,
+        BluRayTitleAudioLine = 8,
+        BluRayTitleSubtitleLine = 9
     }
 }

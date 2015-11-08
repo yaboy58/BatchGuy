@@ -55,6 +55,7 @@
     <Compile Include="Services\EAC\EACOutputServiceTests.cs" />
     <Compile Include="Services\Parser\BluRaySummaryLineItemIdentifierServiceTests.cs" />
     <Compile Include="Services\Parser\BluRaySummaryParserServiceTests.cs" />
+    <Compile Include="Services\Parser\BluRayTitleLineItemIdentifierServiceTests.cs" />
     <Compile Include="Services\Parser\CommandLineProcessServiceTests.cs" />
   </ItemGroup>
   <ItemGroup>
