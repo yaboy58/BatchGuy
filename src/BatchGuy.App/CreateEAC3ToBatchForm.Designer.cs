@@ -56,11 +56,11 @@
             this.cbAudioLanguage = new System.Windows.Forms.ComboBox();
             this.btnLoadBluRay = new System.Windows.Forms.Button();
             this.dgvBluRaySummary = new System.Windows.Forms.DataGridView();
-            this.bsBluRaySummaryInfo = new System.Windows.Forms.BindingSource(this.components);
             this.ignoreDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.headerTextDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.detailTextDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bsBluRaySummaryInfo = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBluRaySummary)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsBluRaySummaryInfo)).BeginInit();
@@ -330,10 +330,7 @@
             this.dgvBluRaySummary.Name = "dgvBluRaySummary";
             this.dgvBluRaySummary.Size = new System.Drawing.Size(1251, 150);
             this.dgvBluRaySummary.TabIndex = 22;
-            // 
-            // bsBluRaySummaryInfo
-            // 
-            this.bsBluRaySummaryInfo.DataSource = typeof(BatchGuy.App.Parser.Models.BluRaySummaryInfo);
+            this.dgvBluRaySummary.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBluRaySummary_CellDoubleClick);
             // 
             // ignoreDataGridViewCheckBoxColumn
             // 
@@ -361,6 +358,10 @@
             this.detailTextDataGridViewTextBoxColumn.DataPropertyName = "DetailText";
             this.detailTextDataGridViewTextBoxColumn.HeaderText = "DetailText";
             this.detailTextDataGridViewTextBoxColumn.Name = "detailTextDataGridViewTextBoxColumn";
+            // 
+            // bsBluRaySummaryInfo
+            // 
+            this.bsBluRaySummaryInfo.DataSource = typeof(BatchGuy.App.Parser.Models.BluRaySummaryInfo);
             // 
             // CreateEAC3ToBatchForm
             // 

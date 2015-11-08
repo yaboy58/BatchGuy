@@ -19,8 +19,8 @@ namespace BatchGuy.App
 {
     public partial class CreateEAC3ToBatchForm : Form
     {
-        private EnumAudioType AudioType { get; set; }
-        private List<BluRaySummaryInfo> SummaryList { get; set; }
+        private EnumAudioType _audioType { get; set; }
+        private List<BluRaySummaryInfo> _summaryInfoList { get; set; }
 
         public CreateEAC3ToBatchForm()
         {
@@ -59,7 +59,7 @@ namespace BatchGuy.App
                   BluRayPath = txtBluRayPath.Text,
                    EAC3ToPath = txtEAC3ToPath.Text,
                     AudioSettings = txtAudioSettings.Text,
-                     AudioType = this.AudioType,
+                     AudioType = this._audioType,
                      AudioLanguage = cbAudioLanguage.Text
             };
         }
@@ -109,7 +109,7 @@ namespace BatchGuy.App
 
         private void SetAudioSettingsTextBox()
         {
-            switch (this.AudioType)
+            switch (this._audioType)
             {
                 case EnumAudioType.DTS:
                     txtAudioSettings.Text = "-core";
@@ -138,16 +138,16 @@ namespace BatchGuy.App
             switch (value)
             {
                 case "DTS":
-                    this.AudioType = EnumAudioType.DTS;
+                    this._audioType = EnumAudioType.DTS;
                     break;
                 case "AC3":
-                    this.AudioType = EnumAudioType.AC3;
+                    this._audioType = EnumAudioType.AC3;
                     break;
                 case "FLAC":
-                    this.AudioType = EnumAudioType.FLAC;
+                    this._audioType = EnumAudioType.FLAC;
                     break;
                 case "TrueHD":
-                    this.AudioType = EnumAudioType.TrueHD;
+                    this._audioType = EnumAudioType.TrueHD;
                     break;
                 default:
                     throw new Exception("Invalid Audio Type");
@@ -156,43 +156,50 @@ namespace BatchGuy.App
             this.SetAudioSettingsTextBox();
         }
 
-        /*NEW STUFF*/
         private void btnLoadBluRay_Click(object sender, EventArgs e)
         {
+            this.HandleLoadBluRay();
+        }
+
+        private void HandleLoadBluRay()
+        {
             ////:Blu ray streams
-            CommandLineProcessStartInfo commandLineProcessStartInfo1 = new CommandLineProcessStartInfo()
+            CommandLineProcessStartInfo commandLineProcessStartInfo = new CommandLineProcessStartInfo()
             {
                 FileName = txtEAC3ToPath.Text,
                 Arguments = string.Format("\"{0}\"", txtBluRayPath.Text)
             };
 
-
-            ICommandLineProcessService commandLineProcessService1 = new CommandLineProcessService(commandLineProcessStartInfo1);
-
-            if (commandLineProcessService1.Errors.Count() == 0)
+            ICommandLineProcessService commandLineProcessService = new CommandLineProcessService(commandLineProcessStartInfo);
+            if (commandLineProcessService.Errors.Count() == 0)
             {
-                ////Get line items
-                List<ProcessOutputLineItem> processOutputLineItems1 = commandLineProcessService1.GetProcessOutputLineItems();
-                foreach (var line in processOutputLineItems1)
-                {
-                    //System.Console.WriteLine(line.Text); write out if we choose too
-                }
-
-                ////Get the Blu ray summary list
+                ////:Get line items
+                List<ProcessOutputLineItem> processOutputLineItems = commandLineProcessService.GetProcessOutputLineItems();
+                ////:Get the Blu ray summary list
                 ILineItemIdentifierService lineItemService = new BluRaySummaryLineItemIdentifierService();
-                IBluRaySummaryParserService parserService = new BluRaySummaryParserService(lineItemService, processOutputLineItems1);
-                SummaryList = parserService.GetSummaryList();
-
-                bsBluRaySummaryInfo.DataSource = SummaryList;
+                IBluRaySummaryParserService parserService = new BluRaySummaryParserService(lineItemService, processOutputLineItems);
+                _summaryInfoList = parserService.GetSummaryList();
+                bsBluRaySummaryInfo.DataSource = _summaryInfoList;
             }
             else
             {
                 System.Console.WriteLine("The following errors were found:");
-                foreach (var error in commandLineProcessService1.Errors)
+                foreach (var error in commandLineProcessService.Errors)
                 {
-                    //System.Console.WriteLine(error.Description);
+                    //TODO:Display Error Message
                 }
             }
+        }
+
+        private void dgvBluRaySummary_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            this.HandleDGVBluRaySummaryCellDoubleClick(e);
+        }
+
+        private void HandleDGVBluRaySummaryCellDoubleClick(DataGridViewCellEventArgs e)
+        {
+            var id = dgvBluRaySummary.Rows[e.RowIndex].Cells[1].Value;
+            BluRaySummaryInfo summaryInfo = _summaryInfoList.SingleOrDefault(s => s.Id == id.ToString());
         }
     }
 }
