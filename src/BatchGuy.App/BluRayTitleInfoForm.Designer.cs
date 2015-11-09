@@ -37,15 +37,15 @@
             this.dgvAudio = new System.Windows.Forms.DataGridView();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.bsBluRayTitleAudio = new System.Windows.Forms.BindingSource(this.components);
-            this.bsBluRayTitleVideo = new System.Windows.Forms.BindingSource(this.components);
-            this.bsBluRayTitleInfo = new System.Windows.Forms.BindingSource(this.components);
             this.isSelected = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.text = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.audioType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.language = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.arguments = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bsBluRayTitleAudio = new System.Windows.Forms.BindingSource(this.components);
+            this.bsBluRayTitleVideo = new System.Windows.Forms.BindingSource(this.components);
+            this.bsBluRayTitleInfo = new System.Windows.Forms.BindingSource(this.components);
             this.gbVideo.SuspendLayout();
             this.gbAudio.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAudio)).BeginInit();
@@ -100,7 +100,7 @@
             this.gbAudio.Controls.Add(this.dgvAudio);
             this.gbAudio.Location = new System.Drawing.Point(12, 155);
             this.gbAudio.Name = "gbAudio";
-            this.gbAudio.Size = new System.Drawing.Size(896, 230);
+            this.gbAudio.Size = new System.Drawing.Size(896, 324);
             this.gbAudio.TabIndex = 2;
             this.gbAudio.TabStop = false;
             this.gbAudio.Text = "Audio";
@@ -121,30 +121,18 @@
             this.dgvAudio.DataSource = this.bsBluRayTitleAudio;
             this.dgvAudio.Location = new System.Drawing.Point(9, 30);
             this.dgvAudio.Name = "dgvAudio";
-            this.dgvAudio.Size = new System.Drawing.Size(881, 179);
+            this.dgvAudio.Size = new System.Drawing.Size(881, 269);
             this.dgvAudio.TabIndex = 0;
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(705, 402);
+            this.btnUpdate.Location = new System.Drawing.Point(708, 623);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(203, 25);
             this.btnUpdate.TabIndex = 3;
             this.btnUpdate.Text = "Update";
             this.btnUpdate.UseVisualStyleBackColor = true;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
-            // 
-            // bsBluRayTitleAudio
-            // 
-            this.bsBluRayTitleAudio.DataSource = typeof(BatchGuy.App.Parser.Models.BluRayTitleAudio);
-            // 
-            // bsBluRayTitleVideo
-            // 
-            this.bsBluRayTitleVideo.DataSource = typeof(BatchGuy.App.Parser.Models.BluRayTitleVideo);
-            // 
-            // bsBluRayTitleInfo
-            // 
-            this.bsBluRayTitleInfo.DataSource = typeof(BatchGuy.App.Parser.Models.BluRayTitleInfo);
             // 
             // isSelected
             // 
@@ -190,11 +178,23 @@
             this.arguments.HeaderText = "Arguments";
             this.arguments.Name = "arguments";
             // 
+            // bsBluRayTitleAudio
+            // 
+            this.bsBluRayTitleAudio.DataSource = typeof(BatchGuy.App.Parser.Models.BluRayTitleAudio);
+            // 
+            // bsBluRayTitleVideo
+            // 
+            this.bsBluRayTitleVideo.DataSource = typeof(BatchGuy.App.Parser.Models.BluRayTitleVideo);
+            // 
+            // bsBluRayTitleInfo
+            // 
+            this.bsBluRayTitleInfo.DataSource = typeof(BatchGuy.App.Parser.Models.BluRayTitleInfo);
+            // 
             // BluRayTitleInfoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(931, 464);
+            this.ClientSize = new System.Drawing.Size(931, 660);
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.gbAudio);
             this.Controls.Add(this.gbVideo);
