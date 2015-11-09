@@ -17,6 +17,7 @@
 
 --bluray title info form
 *validation
+*use serialization or some other mechanism to do undo/cancel
 
 --parsers
 *validation

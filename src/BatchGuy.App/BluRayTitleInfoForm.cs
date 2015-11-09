@@ -1,4 +1,5 @@
-﻿using BatchGuy.App.Parser.Interfaces;
+﻿using BatchGuy.App.Enums;
+using BatchGuy.App.Parser.Interfaces;
 using BatchGuy.App.Parser.Models;
 using BatchGuy.App.Parser.Services;
 using System;
@@ -17,6 +18,7 @@ namespace BatchGuy.App
     {
         private BluRaySummaryInfo _bluRaySummaryInfo;
         private CommandLineProcessStartInfo _commandLineProcessStartInfo;
+        private BindingList<BluRayTitleAudio> _bindingListBluRayTitleAudio = new BindingList<BluRayTitleAudio>();
 
         public BluRayTitleInfoForm()
         {
@@ -84,19 +86,32 @@ namespace BatchGuy.App
 
         private void LoadAudio()
         {
-            bsBluRayTitleAudio.DataSource = _bluRaySummaryInfo.BluRayTitleInfo.AudioList;
+            foreach (BluRayTitleAudio audio in _bluRaySummaryInfo.BluRayTitleInfo.AudioList)
+            {
+                _bindingListBluRayTitleAudio.Add(audio);
+            }
+
+            bsBluRayTitleAudio.DataSource = _bindingListBluRayTitleAudio;
+            _bindingListBluRayTitleAudio.AllowEdit = true;
+
+            DataGridViewComboBoxColumn col = new DataGridViewComboBoxColumn();
+            col.Name = "Audio Type";
+            col.DataSource = Enum.GetValues(typeof(EnumAudioType));
+            col.ValueType = typeof(EnumAudioType);
+            col.DisplayIndex = 3;
+            col.DataPropertyName = EnumAudioType.AC3.ToString();
+            dgvAudio.Columns.Add(col);
+
         }
 
-
-        private void dgvAudio_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        private void btnUpdate_Click(object sender, EventArgs e)
         {
-            if (dgvAudio.Columns[e.ColumnIndex].Name ==  "IsSelected")
-            {
-                var id = dgvAudio.Rows[e.RowIndex].Cells[0].Value;
-                bool isSelected = (bool) dgvAudio.Rows[e.RowIndex].Cells[4].Value;
-               BluRayTitleAudio audio =  _bluRaySummaryInfo.BluRayTitleInfo.AudioList.SingleOrDefault(a => a.Id == id.ToString());
-               audio.IsSelected = isSelected;
-            }
+            this.HandleUpdateClick();
+        }
+
+        private void HandleUpdateClick()
+        {
+            this.Close();
         }
     }
 }
