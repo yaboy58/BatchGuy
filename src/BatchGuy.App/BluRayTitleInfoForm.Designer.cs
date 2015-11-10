@@ -34,25 +34,26 @@
             this.lblVideoText = new System.Windows.Forms.Label();
             this.chkVideoIsSelected = new System.Windows.Forms.CheckBox();
             this.gbAudio = new System.Windows.Forms.GroupBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.txtAudioTypeArguments = new System.Windows.Forms.TextBox();
+            this.cbAudioType = new System.Windows.Forms.ComboBox();
+            this.lblAudioType = new System.Windows.Forms.Label();
             this.dgvAudio = new System.Windows.Forms.DataGridView();
             this.btnUpdate = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.cbAudioType = new System.Windows.Forms.ComboBox();
-            this.txtAudioTypeArguments = new System.Windows.Forms.TextBox();
-            this.isSelected = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.text = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.audioType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.language = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.arguments = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bsBluRayTitleAudio = new System.Windows.Forms.BindingSource(this.components);
             this.bsBluRayTitleVideo = new System.Windows.Forms.BindingSource(this.components);
             this.bsBluRayTitleInfo = new System.Windows.Forms.BindingSource(this.components);
+            this.lblAudioTypeArguments = new System.Windows.Forms.Label();
+            this.isSelected = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.language = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.text = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.audioType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.arguments = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gbVideo.SuspendLayout();
             this.gbAudio.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvAudio)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAudio)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsBluRayTitleAudio)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsBluRayTitleVideo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsBluRayTitleInfo)).BeginInit();
@@ -104,10 +105,53 @@
             this.gbAudio.Controls.Add(this.dgvAudio);
             this.gbAudio.Location = new System.Drawing.Point(12, 155);
             this.gbAudio.Name = "gbAudio";
-            this.gbAudio.Size = new System.Drawing.Size(896, 341);
+            this.gbAudio.Size = new System.Drawing.Size(896, 262);
             this.gbAudio.TabIndex = 2;
             this.gbAudio.TabStop = false;
             this.gbAudio.Text = "Audio";
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.lblAudioTypeArguments);
+            this.panel1.Controls.Add(this.txtAudioTypeArguments);
+            this.panel1.Controls.Add(this.cbAudioType);
+            this.panel1.Controls.Add(this.lblAudioType);
+            this.panel1.Location = new System.Drawing.Point(9, 195);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(881, 53);
+            this.panel1.TabIndex = 1;
+            // 
+            // txtAudioTypeArguments
+            // 
+            this.txtAudioTypeArguments.Location = new System.Drawing.Point(372, 11);
+            this.txtAudioTypeArguments.Name = "txtAudioTypeArguments";
+            this.txtAudioTypeArguments.Size = new System.Drawing.Size(288, 20);
+            this.txtAudioTypeArguments.TabIndex = 2;
+            this.txtAudioTypeArguments.TextChanged += new System.EventHandler(this.txtAudioTypeArguments_TextChanged);
+            // 
+            // cbAudioType
+            // 
+            this.cbAudioType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbAudioType.FormattingEnabled = true;
+            this.cbAudioType.Items.AddRange(new object[] {
+            "AC3",
+            "DTS",
+            "FLAC",
+            "TrueHD"});
+            this.cbAudioType.Location = new System.Drawing.Point(94, 10);
+            this.cbAudioType.Name = "cbAudioType";
+            this.cbAudioType.Size = new System.Drawing.Size(186, 21);
+            this.cbAudioType.TabIndex = 1;
+            this.cbAudioType.SelectedIndexChanged += new System.EventHandler(this.cbAudioType_SelectedIndexChanged);
+            // 
+            // lblAudioType
+            // 
+            this.lblAudioType.AutoSize = true;
+            this.lblAudioType.Location = new System.Drawing.Point(21, 18);
+            this.lblAudioType.Name = "lblAudioType";
+            this.lblAudioType.Size = new System.Drawing.Size(64, 13);
+            this.lblAudioType.TabIndex = 0;
+            this.lblAudioType.Text = "Audio Type:";
             // 
             // dgvAudio
             // 
@@ -118,9 +162,9 @@
             this.dgvAudio.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.isSelected,
             this.id,
+            this.language,
             this.text,
             this.audioType,
-            this.language,
             this.arguments});
             this.dgvAudio.DataSource = this.bsBluRayTitleAudio;
             this.dgvAudio.Location = new System.Drawing.Point(9, 30);
@@ -139,44 +183,26 @@
             this.btnUpdate.UseVisualStyleBackColor = true;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
-            // panel1
+            // bsBluRayTitleAudio
             // 
-            this.panel1.Controls.Add(this.txtAudioTypeArguments);
-            this.panel1.Controls.Add(this.cbAudioType);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Location = new System.Drawing.Point(9, 195);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(881, 92);
-            this.panel1.TabIndex = 1;
+            this.bsBluRayTitleAudio.DataSource = typeof(BatchGuy.App.Parser.Models.BluRayTitleAudio);
             // 
-            // label1
+            // bsBluRayTitleVideo
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(21, 18);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "label1";
+            this.bsBluRayTitleVideo.DataSource = typeof(BatchGuy.App.Parser.Models.BluRayTitleVideo);
             // 
-            // cbAudioType
+            // bsBluRayTitleInfo
             // 
-            this.cbAudioType.FormattingEnabled = true;
-            this.cbAudioType.Items.AddRange(new object[] {
-            "AC3",
-            "DTS",
-            "FLAC",
-            "TrueHD"});
-            this.cbAudioType.Location = new System.Drawing.Point(62, 10);
-            this.cbAudioType.Name = "cbAudioType";
-            this.cbAudioType.Size = new System.Drawing.Size(186, 21);
-            this.cbAudioType.TabIndex = 1;
+            this.bsBluRayTitleInfo.DataSource = typeof(BatchGuy.App.Parser.Models.BluRayTitleInfo);
             // 
-            // txtAudioTypeArguments
+            // lblAudioTypeArguments
             // 
-            this.txtAudioTypeArguments.Location = new System.Drawing.Point(266, 10);
-            this.txtAudioTypeArguments.Name = "txtAudioTypeArguments";
-            this.txtAudioTypeArguments.Size = new System.Drawing.Size(288, 20);
-            this.txtAudioTypeArguments.TabIndex = 2;
+            this.lblAudioTypeArguments.AutoSize = true;
+            this.lblAudioTypeArguments.Location = new System.Drawing.Point(306, 18);
+            this.lblAudioTypeArguments.Name = "lblAudioTypeArguments";
+            this.lblAudioTypeArguments.Size = new System.Drawing.Size(60, 13);
+            this.lblAudioTypeArguments.TabIndex = 3;
+            this.lblAudioTypeArguments.Text = "Arguments:";
             // 
             // isSelected
             // 
@@ -192,13 +218,20 @@
             this.id.ReadOnly = true;
             this.id.Width = 40;
             // 
+            // language
+            // 
+            this.language.DataPropertyName = "Language";
+            this.language.HeaderText = "Language";
+            this.language.Name = "language";
+            this.language.ReadOnly = true;
+            // 
             // text
             // 
+            this.text.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.text.DataPropertyName = "Text";
             this.text.HeaderText = "Text";
             this.text.Name = "text";
             this.text.ReadOnly = true;
-            this.text.Width = 200;
             // 
             // audioType
             // 
@@ -208,13 +241,6 @@
             this.audioType.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.audioType.Visible = false;
             // 
-            // language
-            // 
-            this.language.DataPropertyName = "Language";
-            this.language.HeaderText = "Language";
-            this.language.Name = "language";
-            this.language.ReadOnly = true;
-            // 
             // arguments
             // 
             this.arguments.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
@@ -222,18 +248,6 @@
             this.arguments.HeaderText = "Arguments";
             this.arguments.Name = "arguments";
             this.arguments.Visible = false;
-            // 
-            // bsBluRayTitleAudio
-            // 
-            this.bsBluRayTitleAudio.DataSource = typeof(BatchGuy.App.Parser.Models.BluRayTitleAudio);
-            // 
-            // bsBluRayTitleVideo
-            // 
-            this.bsBluRayTitleVideo.DataSource = typeof(BatchGuy.App.Parser.Models.BluRayTitleVideo);
-            // 
-            // bsBluRayTitleInfo
-            // 
-            this.bsBluRayTitleInfo.DataSource = typeof(BatchGuy.App.Parser.Models.BluRayTitleInfo);
             // 
             // BluRayTitleInfoForm
             // 
@@ -251,9 +265,9 @@
             this.gbVideo.ResumeLayout(false);
             this.gbVideo.PerformLayout();
             this.gbAudio.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvAudio)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAudio)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsBluRayTitleAudio)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsBluRayTitleVideo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsBluRayTitleInfo)).EndInit();
@@ -277,12 +291,13 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TextBox txtAudioTypeArguments;
         private System.Windows.Forms.ComboBox cbAudioType;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblAudioType;
+        private System.Windows.Forms.Label lblAudioTypeArguments;
         private System.Windows.Forms.DataGridViewCheckBoxColumn isSelected;
         private System.Windows.Forms.DataGridViewTextBoxColumn id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn language;
         private System.Windows.Forms.DataGridViewTextBoxColumn text;
         private System.Windows.Forms.DataGridViewTextBoxColumn audioType;
-        private System.Windows.Forms.DataGridViewTextBoxColumn language;
         private System.Windows.Forms.DataGridViewTextBoxColumn arguments;
     }
 }

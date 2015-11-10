@@ -108,10 +108,10 @@ namespace BatchGuy.App
 
         private void dgvAudio_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            this.HandleDgvAudioCellClick(e);
+            this.HandleDGVAudioCellClick(e);
         }
 
-        private void HandleDgvAudioCellClick(DataGridViewCellEventArgs e)
+        private void HandleDGVAudioCellClick(DataGridViewCellEventArgs e)
         {
             var id = dgvAudio.Rows[e.RowIndex].Cells[1].Value;
             _currentBluRayTitleAudio = _bluRaySummaryInfo.BluRayTitleInfo.AudioList.SingleOrDefault(a => a.Id == id.ToString());
@@ -143,5 +143,38 @@ namespace BatchGuy.App
             return name;
         }
 
+        private void txtAudioTypeArguments_TextChanged(object sender, EventArgs e)
+        {
+            this.HandleAudioTypeArgumentsTextChanged();
+        }
+
+        private void HandleAudioTypeArgumentsTextChanged()
+        {
+            _currentBluRayTitleAudio.Arguments = txtAudioTypeArguments.Text;
+        }
+
+        private void cbAudioType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.HandleComboBoxAudioTypeSelectedIndexChanged(cbAudioType.Text);
+        }
+
+        private void HandleComboBoxAudioTypeSelectedIndexChanged(string value)
+        {
+            switch (value)
+            {
+                case "DTS":
+                    _currentBluRayTitleAudio.AudioType = EnumAudioType.DTS;
+                    break;
+                case "AC3":
+                    _currentBluRayTitleAudio.AudioType = EnumAudioType.AC3;
+                    break;
+                case "FLAC":
+                    _currentBluRayTitleAudio.AudioType = EnumAudioType.FLAC;
+                    break;
+                case "TrueHD":
+                    _currentBluRayTitleAudio.AudioType = EnumAudioType.TrueHD;
+                    break;
+            }
+        }
     }
 }

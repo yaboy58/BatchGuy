@@ -89,8 +89,8 @@
             this.txtBluRayPath.Name = "txtBluRayPath";
             this.txtBluRayPath.Size = new System.Drawing.Size(624, 20);
             this.txtBluRayPath.TabIndex = 0;
-            this.txtBluRayPath.Text = "C:\\temp\\My Torrent Encodes\\Blu-ray\\DISC\\Les.Revenants.S02D01.FRENCH.COMPLETE.BLUR" +
-    "AY-MELBA";
+            this.txtBluRayPath.Text = "\\\\KENSHIRO\\My Old Encodes\\Blu-ray\\Hatchet II 2010 Unrated Directors Cut BluRay 72" +
+    "0p DTS x264-EbP\\DISC";
             // 
             // label2
             // 

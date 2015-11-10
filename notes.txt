@@ -27,3 +27,8 @@
 
 --unit tests
 *unit test new helper function methods
+
+
+--Todo
+*account for mpa audio
+*ability to load multiple discs at the same time
