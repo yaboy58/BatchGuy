@@ -11,7 +11,7 @@ namespace BatchGuy.App.EAC.Interfaces
         string GetEAC3ToPathPart();
         string GetBluRayStreamPart();
         string GetChapterStreamPart();
-        string GetMovieStreamPart();
+        string GetVideoStreamPart();
         string GetAudioStreamPart();
         string GetSubtitleStreamPart();
     }

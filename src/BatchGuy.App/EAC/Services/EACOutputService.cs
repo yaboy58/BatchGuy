@@ -2,6 +2,7 @@
 using BatchGuy.App.EAC.Models;
 using BatchGuy.App.Enums;
 using BatchGuy.App.Helpers;
+using BatchGuy.App.Parser.Models;
 using BatchGuy.App.Shared.Models;
 using System;
 using System.Collections.Generic;
@@ -14,22 +15,24 @@ namespace BatchGuy.App.EAC.Services
     public class EACOutputService : IEACOutputService
     {
         private EAC3ToConfiguration _config;
-        private EAC3ToBluRayFile _bluRayFile;
         private List<Error> _errors = new List<Error>();
         private string _filesOutputPath;
         private string _paddedEpisode;
+        private BluRayTitleInfo _bluRayTitleInfo;
+        private string _bluRaySummaryId;
 
-        public EACOutputService(EAC3ToConfiguration config, EAC3ToBluRayFile bluRayFile)
+        public EACOutputService(EAC3ToConfiguration config, string bluRaySummaryId, BluRayTitleInfo bluRayTitleInfo)
         {
             _config = config;
-            _bluRayFile = bluRayFile;
+            _bluRayTitleInfo = bluRayTitleInfo;
+            _bluRaySummaryId = bluRaySummaryId;
             this.Init();
         }
 
         private void Init()
         {
-            _paddedEpisode = HelperFunctions.PadNumberWithZeros(99, Convert.ToInt32(_bluRayFile.BluRayEpisodeFolder));
-            string folderName = string.Format("e{0}", _paddedEpisode); //convert in form
+            _paddedEpisode = HelperFunctions.PadNumberWithZeros(99, (int)_bluRayTitleInfo.EpisodeNumber);
+            string folderName = string.Format("e{0}", _paddedEpisode);
             _filesOutputPath = string.Format("{0}\\{1}", _config.BatFilePath, folderName);
         }
 
@@ -42,54 +45,67 @@ namespace BatchGuy.App.EAC.Services
         {
             StringBuilder sb = new StringBuilder();
             sb.Append(string.Format("\"{0}\"", _config.BluRayPath));
-            sb.Append(string.Format(" {0})", _bluRayFile.BluRaySteamNumber));
+            sb.Append(string.Format(" {0})", _bluRaySummaryId));
             return sb.ToString();
         }
 
         public string GetChapterStreamPart()
         {
             StringBuilder sb = new StringBuilder();
-            if (_bluRayFile.ChapterStreamNumber != string.Empty)
+            if (_bluRayTitleInfo.Chapter.IsSelected)
             {
-                sb.Append(string.Format("{0}: ", _bluRayFile.ChapterStreamNumber));
+                sb.Append(string.Format("{0}: ", _bluRayTitleInfo.Chapter.Id));
                 sb.Append(string.Format("\"{0}\\chapters.txt\"", _filesOutputPath));                
             }
             return sb.ToString();
         }
 
-        public string GetMovieStreamPart()
+        public string GetVideoStreamPart()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append(string.Format("{0}: ", _bluRayFile.MovieStreamNumber));
-            sb.Append(string.Format("\"{0}\\encode{1}.mkv\"", _filesOutputPath, _paddedEpisode));
+            if (_bluRayTitleInfo.Video.IsSelected)
+	        {
+                sb.Append(string.Format("{0}: ", _bluRayTitleInfo.Video.Id));
+                sb.Append(string.Format("\"{0}\\encode{1}.mkv\"", _filesOutputPath, _paddedEpisode));		 
+	        }            
             return sb.ToString();
         }
 
         public string GetAudioStreamPart()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append(string.Format("{0}: ", _bluRayFile.MainAudioStreamNumber));
-            sb.Append(string.Format("\"{0}\\{1}{2}.{3}\"", _filesOutputPath,_config.AudioLanguage, _paddedEpisode,this.GetAudioExtension()));
-            sb.Append(string.Format(" {0}", _config.AudioSettings));
+            foreach (BluRayTitleAudio audio in _bluRayTitleInfo.AudioList)
+            {
+                if (audio.IsSelected)
+                {
+                    sb.Append(string.Format("{0}: ", audio.Id));
+                    sb.Append(string.Format("\"{0}\\{1}{2}.{3}\"", _filesOutputPath,audio.Language, _paddedEpisode,this.GetAudioExtension(audio.AudioType)));
+                    sb.Append(string.Format(" {0}", audio.Arguments));
+                    sb.Append(" ");
+                }
+            }
             return sb.ToString();
         }
 
         public string GetSubtitleStreamPart()
         {
             StringBuilder sb = new StringBuilder();
-            if (_bluRayFile.MainSubtitleStreamNumber != string.Empty)
+            foreach (BluRayTitleSubtitle subtitle in _bluRayTitleInfo.Subtitles)
             {
-                sb.Append(string.Format("{0}: ", _bluRayFile.MainSubtitleStreamNumber));
-                sb.Append(string.Format("\"{0}\\english{1}.sup\"", _filesOutputPath, _paddedEpisode)); //hardcoded to english/sup                
+                if (subtitle.IsSelected)
+                {
+                    sb.Append(string.Format("{0}: ", subtitle.Id));
+                    sb.Append(string.Format("\"{0}\\{1}{2}.sup\"", _filesOutputPath,subtitle.Language, _paddedEpisode));              
+                }           
             }
             return sb.ToString();
         }
 
-        private string GetAudioExtension()
+        private string GetAudioExtension(EnumAudioType audioType)
         {
             string audioExtension = string.Empty;
 
-            switch (_config.AudioType)
+            switch (audioType)
             {
                 case EnumAudioType.DTS:
                     audioExtension = "dts";

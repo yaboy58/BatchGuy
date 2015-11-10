@@ -12,8 +12,5 @@ namespace BatchGuy.App.EAC.Models
         public string EAC3ToPath { get; set; }
         public string BluRayPath { get; set; }
         public string BatFilePath { get; set; }
-        public EnumAudioType AudioType { get; set; }
-        public string AudioSettings { get; set; }
-        public string AudioLanguage { get; set; }
     }
 }

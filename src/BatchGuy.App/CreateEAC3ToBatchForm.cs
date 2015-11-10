@@ -43,15 +43,8 @@ namespace BatchGuy.App
 
         private void WriteToBatchFile()
         {
-            /*
-            EAC3ToBluRayFile file = this.GetEAC3ToBluyRayFile();
-            EAC3ToConfiguration config = this.GetEAC3ToConfiguration();
-            IEACOutputService eacOutputService = new EACOutputService(config, file);
-            IBatFileWriteService batFileWriteService = new BatFileWriteService(config, file, eacOutputService);
+            IBatFileWriteService batFileWriteService = new BatFileWriteService(_bluRayDiscInfoList);
             batFileWriteService.Write();
-            this.Clear();
-            this.IncrementEpisodeNumber();
-            */
         }
 
         private void btnLoadBluRay_Click(object sender, EventArgs e)
@@ -116,7 +109,7 @@ namespace BatchGuy.App
         {
             _bindingListBluRaySummaryInfo = new BindingList<BluRaySummaryInfo>();
 
-            ////:Blu ray streams
+            //Blu ray streams
             _commandLineProcessStartInfo = new CommandLineProcessStartInfo()
             {
                 FileName = txtEAC3ToPath.Text,
@@ -126,7 +119,7 @@ namespace BatchGuy.App
             ICommandLineProcessService commandLineProcessService = new CommandLineProcessService(_commandLineProcessStartInfo);
             if (commandLineProcessService.Errors.Count() == 0)
             {
-                ////:Get line items
+                //Get line items
                 List<ProcessOutputLineItem> processOutputLineItems = commandLineProcessService.GetProcessOutputLineItems();
                 ////:Get the Blu ray summary list
                 ILineItemIdentifierService lineItemService = new BluRaySummaryLineItemIdentifierService();
