@@ -19,7 +19,6 @@ namespace BatchGuy.App
 {
     public partial class CreateEAC3ToBatchForm : Form
     {
-        private EnumAudioType _audioType;
         private List<BluRaySummaryInfo> _summaryInfoList;
         private CommandLineProcessStartInfo _commandLineProcessStartInfo;
         private BindingList<BluRaySummaryInfo> _bindingListBluRaySummaryInfo = new BindingList<BluRaySummaryInfo>();
@@ -32,10 +31,6 @@ namespace BatchGuy.App
 
         private void CreateEAC3ToBatchForm_Load(object sender, EventArgs e)
         {
-            this.SetComboBoxAudioType();
-            this.SetAudioSettingsTextBox();
-            this.SetComboBoxAudioLanguage();
-
         }
 
         private void btnWriteToBatFile_Click(object sender, EventArgs e)
@@ -45,6 +40,7 @@ namespace BatchGuy.App
 
         private void WriteToBatchFile()
         {
+            /*
             EAC3ToBluRayFile file = this.GetEAC3ToBluyRayFile();
             EAC3ToConfiguration config = this.GetEAC3ToConfiguration();
             IEACOutputService eacOutputService = new EACOutputService(config, file);
@@ -52,111 +48,7 @@ namespace BatchGuy.App
             batFileWriteService.Write();
             this.Clear();
             this.IncrementEpisodeNumber();
-        }
-
-        private EAC3ToConfiguration GetEAC3ToConfiguration()
-        {
-            return new EAC3ToConfiguration()
-            {
-                 BatFilePath = txtBatFilePath.Text,
-                  BluRayPath = txtBluRayPath.Text,
-                   EAC3ToPath = txtEAC3ToPath.Text,
-                    AudioSettings = txtAudioSettings.Text,
-                     AudioType = this._audioType,
-                     AudioLanguage = cbAudioLanguage.Text
-            };
-        }
-
-        private EAC3ToBluRayFile GetEAC3ToBluyRayFile()
-        {
-            return new EAC3ToBluRayFile()
-            {
-                 BluRayEpisodeFolder = txtBluRayEpisodeFolder.Text,
-                  BluRaySteamNumber = txtBluRayStreamNumber.Text,
-                   MainAudioStreamNumber = txtMainAudioStreamNumber.Text,
-                   MainSubtitleStreamNumber = txtMainSubtitleStreamNumber.Text,
-                   ChapterStreamNumber = txtChapterStreamNumber.Text,
-                    MovieStreamNumber = txtMovieStreamNumber.Text
-            };
-        }
-
-        private void Clear()
-        {
-            txtBluRayStreamNumber.Text = string.Empty;
-            txtBluRayStreamNumber.Focus();
-        }
-
-        private void IncrementEpisodeNumber()
-        {
-            int episode = Convert.ToInt32(txtBluRayEpisodeFolder.Text) + 1;
-            txtBluRayEpisodeFolder.Text = episode.ToString();
-        }
-
-        private void CreateEAC3ToBatchForm_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == 13)
-            {
-                this.WriteToBatchFile();
-            }
-        }
-
-        private void SetComboBoxAudioType()
-        {
-            this.cbAudioType.SelectedIndex = 0;
-        }
-
-        private void SetComboBoxAudioLanguage()
-        {
-            this.cbAudioLanguage.SelectedIndex = 0;
-        }
-
-        private void SetAudioSettingsTextBox()
-        {
-            switch (this._audioType)
-            {
-                case EnumAudioType.DTS:
-                    txtAudioSettings.Text = "-core";
-                    break;
-                case EnumAudioType.AC3:
-                    txtAudioSettings.Text = string.Empty;
-                    break;
-                case EnumAudioType.FLAC:
-                    txtAudioSettings.Text = string.Empty;
-                    break;
-                case EnumAudioType.TrueHD:
-                    txtAudioSettings.Text = "-640";
-                    break;
-                default:
-                    break;
-            }
-        }
-
-        private void cbAudioType_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            this.HandleAudioTypeChanged(cbAudioType.Text);
-        }
-
-        private void HandleAudioTypeChanged(string value)
-        {
-            switch (value)
-            {
-                case "DTS":
-                    this._audioType = EnumAudioType.DTS;
-                    break;
-                case "AC3":
-                    this._audioType = EnumAudioType.AC3;
-                    break;
-                case "FLAC":
-                    this._audioType = EnumAudioType.FLAC;
-                    break;
-                case "TrueHD":
-                    this._audioType = EnumAudioType.TrueHD;
-                    break;
-                default:
-                    throw new Exception("Invalid Audio Type");
-            }
-
-            this.SetAudioSettingsTextBox();
+            */
         }
 
         private void btnLoadBluRay_Click(object sender, EventArgs e)
