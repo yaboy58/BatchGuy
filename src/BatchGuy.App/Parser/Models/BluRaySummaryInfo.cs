@@ -11,7 +11,7 @@ namespace BatchGuy.App.Parser.Models
         public string Id { get; set; }
         public string HeaderText { get; set; }
         public string DetailText { get; set; }
-        public bool Ignore { get; set; }
+        public bool IsSelected { get; set; }
         public BluRayTitleInfo BluRayTitleInfo { get; set; }
     }
 }

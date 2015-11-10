@@ -22,6 +22,7 @@ namespace BatchGuy.App
         private EnumAudioType _audioType;
         private List<BluRaySummaryInfo> _summaryInfoList;
         private CommandLineProcessStartInfo _commandLineProcessStartInfo;
+        private BindingList<BluRaySummaryInfo> _bindingListBluRaySummaryInfo = new BindingList<BluRaySummaryInfo>();
 
 
         public CreateEAC3ToBatchForm()
@@ -181,7 +182,14 @@ namespace BatchGuy.App
                 ILineItemIdentifierService lineItemService = new BluRaySummaryLineItemIdentifierService();
                 IBluRaySummaryParserService parserService = new BluRaySummaryParserService(lineItemService, processOutputLineItems);
                 _summaryInfoList = parserService.GetSummaryList();
-                bsBluRaySummaryInfo.DataSource = _summaryInfoList;
+
+                foreach (BluRaySummaryInfo info in _summaryInfoList)
+                {
+                    _bindingListBluRaySummaryInfo.Add(info);
+                }
+
+                bsBluRaySummaryInfo.DataSource = _bindingListBluRaySummaryInfo;
+                _bindingListBluRaySummaryInfo.AllowEdit = true;
             }
             else
             {
