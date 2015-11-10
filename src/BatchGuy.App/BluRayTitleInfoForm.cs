@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BatchGuy.App.Helpers;
 
 namespace BatchGuy.App
 {
@@ -19,6 +20,7 @@ namespace BatchGuy.App
         private BluRaySummaryInfo _bluRaySummaryInfo;
         private CommandLineProcessStartInfo _commandLineProcessStartInfo;
         private BindingList<BluRayTitleAudio> _bindingListBluRayTitleAudio = new BindingList<BluRayTitleAudio>();
+        private BindingList<BluRayTitleSubtitle> _bindingListBluRayTitleSubtitle = new BindingList<BluRayTitleSubtitle>();
         private BluRayTitleAudio _currentBluRayTitleAudio;
 
         public BluRayTitleInfoForm()
@@ -42,6 +44,7 @@ namespace BatchGuy.App
             {
                 this.LoadBluRayTitleInfo();
                 this.LoadScreen();
+                txtEpisodeNumber.Focus();
             }
         }
 
@@ -70,8 +73,11 @@ namespace BatchGuy.App
         private void LoadScreen()
         {
             this.LoadTitle();
+            this.LoadEpisodeNumber();
             this.LoadVideo();
             this.LoadAudio();
+            this.LoadSubtitles();
+            this.LoadChapters();
         }
 
         private void LoadTitle()
@@ -79,10 +85,20 @@ namespace BatchGuy.App
             lblTitle.Text = string.Format("Title: {0}", _bluRaySummaryInfo.BluRayTitleInfo.HeaderText);
         }
 
+        private void LoadEpisodeNumber()
+        {
+            if (_bluRaySummaryInfo.BluRayTitleInfo.EpisodeNumber != null)
+            {
+                txtEpisodeNumber.Text = _bluRaySummaryInfo.BluRayTitleInfo.EpisodeNumber.ToString();
+            }
+        }
+
         private void LoadVideo()
         {
             bsBluRayTitleVideo.DataSource = _bluRaySummaryInfo.BluRayTitleInfo.Video;
-            lblVideoText.Text = string.Format("Track: {0}. Title: {1}.",_bluRaySummaryInfo.BluRayTitleInfo.Video.Id,_bluRaySummaryInfo.BluRayTitleInfo.Video.Text);
+            chkVideo.Text = string.Format("Track: {0}. Title: {1}.",_bluRaySummaryInfo.BluRayTitleInfo.Video.Id,_bluRaySummaryInfo.BluRayTitleInfo.Video.Text);
+            chkVideo.Checked = _bluRaySummaryInfo.BluRayTitleInfo.Video.IsSelected;
+
         }
 
         private void LoadAudio()
@@ -94,6 +110,36 @@ namespace BatchGuy.App
 
             bsBluRayTitleAudio.DataSource = _bindingListBluRayTitleAudio;
             _bindingListBluRayTitleAudio.AllowEdit = true;
+        }
+
+        private void LoadSubtitles()
+        {
+            if (_bluRaySummaryInfo.BluRayTitleInfo.Subtitles != null )
+            {
+                foreach (BluRayTitleSubtitle subtitle in _bluRaySummaryInfo.BluRayTitleInfo.Subtitles)
+                {
+                    _bindingListBluRayTitleSubtitle.Add(subtitle);
+                }
+                bsBluRayTitleSubtitles.DataSource = _bindingListBluRayTitleSubtitle;
+                _bindingListBluRayTitleSubtitle.AllowEdit = true;                
+            }
+            else
+            {
+                dgvSubtitles.Enabled = false;
+            }
+        }
+
+        private void LoadChapters()
+        {
+            if (_bluRaySummaryInfo.BluRayTitleInfo.Chapter != null)
+            {
+                chkChapters.Checked = _bluRaySummaryInfo.BluRayTitleInfo.Chapter.IsSelected;
+                chkChapters.Text = _bluRaySummaryInfo.BluRayTitleInfo.Chapter.Text;
+            }
+            else
+            {
+                chkChapters.Enabled = false;
+            }
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
@@ -174,6 +220,45 @@ namespace BatchGuy.App
                 case "TrueHD":
                     _currentBluRayTitleAudio.AudioType = EnumAudioType.TrueHD;
                     break;
+            }
+        }
+
+        private void chkChapters_CheckedChanged(object sender, EventArgs e)
+        {
+            this.HandleCheckBoxChaptersCheckedChanged();
+        }
+
+        private void HandleCheckBoxChaptersCheckedChanged()
+        {
+            _bluRaySummaryInfo.BluRayTitleInfo.Chapter.IsSelected = chkChapters.Checked;
+        }
+
+        private void chkVideo_CheckedChanged(object sender, EventArgs e)
+        {
+            this.HandleCheckBoxVideoCheckedChanged();
+        }
+
+        private void HandleCheckBoxVideoCheckedChanged()
+        {
+            _bluRaySummaryInfo.BluRayTitleInfo.Video.IsSelected = chkVideo.Checked;
+        }
+
+        private void txtEpisodeNumber_TextChanged(object sender, EventArgs e)
+        {
+            this.HandleTextBoxEpisodeNumberTextChanged();
+        }
+
+        private void HandleTextBoxEpisodeNumberTextChanged()
+        {
+            if (!HelperFunctions.IsNumeric(txtEpisodeNumber.Text))
+            {
+                //MessageBox.Show("Episode Number must be numberic", "Invalid Episode Number", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                _bluRaySummaryInfo.BluRayTitleInfo.EpisodeNumber = null;
+                txtEpisodeNumber.Text = "";
+            }
+            else
+            {
+                _bluRaySummaryInfo.BluRayTitleInfo.EpisodeNumber = HelperFunctions.StringToInt(txtEpisodeNumber.Text);
             }
         }
     }
