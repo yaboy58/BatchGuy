@@ -13,5 +13,23 @@ namespace BatchGuy.App.Parser.Models
         public string DetailText { get; set; }
         public bool IsSelected { get; set; }
         public BluRayTitleInfo BluRayTitleInfo { get; set; }
+        public string EpisodeNumber 
+        { 
+            get
+            {
+                if (this.BluRayTitleInfo == null)
+                    return string.Empty;
+                else
+                    return this.BluRayTitleInfo.EpisodeNumber;
+            }
+            set
+            {
+                if (this.BluRayTitleInfo != null)
+                {
+                    this.BluRayTitleInfo.EpisodeNumber = value;
+                }
+            }
+ 
+        }
     }
 }

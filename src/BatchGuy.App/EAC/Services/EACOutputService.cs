@@ -31,7 +31,7 @@ namespace BatchGuy.App.EAC.Services
 
         private void Init()
         {
-            _paddedEpisode = HelperFunctions.PadNumberWithZeros(99, (int)_bluRayTitleInfo.EpisodeNumber);
+            _paddedEpisode = HelperFunctions.PadNumberWithZeros(99, HelperFunctions.StringToInt(_bluRayTitleInfo.EpisodeNumber));
             string folderName = string.Format("e{0}", _paddedEpisode);
             _filesOutputPath = string.Format("{0}\\{1}", _config.BatFilePath, folderName);
         }

@@ -45,6 +45,7 @@ namespace BatchGuy.App
         {
             IBatFileWriteService batFileWriteService = new BatFileWriteService(_bluRayDiscInfoList);
             batFileWriteService.Write();
+            MessageBox.Show("Batch File created!", "Process Complete", MessageBoxButtons.OK,  MessageBoxIcon.Exclamation);
         }
 
         private void btnLoadBluRay_Click(object sender, EventArgs e)
@@ -68,9 +69,9 @@ namespace BatchGuy.App
                 IsSelected = false,
                 EAC3ToConfiguration = new EAC3ToConfiguration()
                 {
-                    BatFilePath = string.Format("\"{0}\"", txtBatFilePath.Text),
-                    BluRayPath = string.Format("\"{0}\"", txtBluRayPath.Text),
-                    EAC3ToPath = string.Format("\"{0}\"", txtEAC3ToPath.Text)
+                    BatFilePath = txtBatFilePath.Text,
+                    BluRayPath = txtBluRayPath.Text,
+                    EAC3ToPath = txtEAC3ToPath.Text
                 }
             };
 
@@ -150,10 +151,10 @@ namespace BatchGuy.App
 
         private void dgvBluRaySummary_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            this.HandleDgvBluRaySummaryCellDoubleClick(e);
+            this.HandleDgvBluRaySummaryCellClick(e);
         }
 
-        private void HandleDgvBluRaySummaryCellDoubleClick(DataGridViewCellEventArgs e)
+        private void HandleDgvBluRaySummaryCellClick(DataGridViewCellEventArgs e)
         {
             var id = dgvBluRaySummary.Rows[e.RowIndex].Cells[1].Value;
             BluRaySummaryInfo summaryInfo = _currentBluRayDiscInfo.BluRaySummaryInfoList.SingleOrDefault(s => s.Id == id.ToString());
@@ -161,6 +162,7 @@ namespace BatchGuy.App
             BluRayTitleInfoForm form = new BluRayTitleInfoForm();
             form.SetBluRayTitleInfo(summaryInfo, _commandLineProcessStartInfo);
             form.ShowDialog();
+            this.BindDgvBluRaySummaryGrid();
         }
     }
 }

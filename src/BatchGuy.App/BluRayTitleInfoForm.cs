@@ -253,12 +253,12 @@ namespace BatchGuy.App
             if (!HelperFunctions.IsNumeric(txtEpisodeNumber.Text))
             {
                 //MessageBox.Show("Episode Number must be numberic", "Invalid Episode Number", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                _bluRaySummaryInfo.BluRayTitleInfo.EpisodeNumber = null;
+                _bluRaySummaryInfo.BluRayTitleInfo.EpisodeNumber = "";
                 txtEpisodeNumber.Text = "";
             }
             else
             {
-                _bluRaySummaryInfo.BluRayTitleInfo.EpisodeNumber = HelperFunctions.StringToInt(txtEpisodeNumber.Text);
+                _bluRaySummaryInfo.BluRayTitleInfo.EpisodeNumber = txtEpisodeNumber.Text;
             }
         }
     }
