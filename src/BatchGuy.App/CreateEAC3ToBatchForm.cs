@@ -14,16 +14,17 @@ using BatchGuy.App.Parser.Services;
 using BatchGuy.App.EAC.Interfaces;
 using BatchGuy.App.Parser.Interfaces;
 using BatchGuy.App.Enums;
+using BatchGuy.App.Helpers;
 
 namespace BatchGuy.App
 {
     public partial class CreateEAC3ToBatchForm : Form
     {
         private List<BluRayDiscInfo> _bluRayDiscInfoList;
-        private List<BluRaySummaryInfo> _summaryInfoList;
+        private BluRayDiscInfo _currentBluRayDiscInfo;
         private CommandLineProcessStartInfo _commandLineProcessStartInfo;
-        private BindingList<BluRaySummaryInfo> _bindingListBluRaySummaryInfo = new BindingList<BluRaySummaryInfo>();
         private BindingList<BluRayDiscInfo> _bindingListBluRayDiscInfo = new BindingList<BluRayDiscInfo>();
+        private BindingList<BluRaySummaryInfo> _bindingListBluRaySummaryInfo;
 
 
         public CreateEAC3ToBatchForm()
@@ -55,59 +56,7 @@ namespace BatchGuy.App
 
         private void btnLoadBluRay_Click(object sender, EventArgs e)
         {
-            this.HandleLoadBluRay();
-        }
 
-        private void HandleLoadBluRay()
-        {
-            ////:Blu ray streams
-            _commandLineProcessStartInfo = new CommandLineProcessStartInfo()
-            {
-                FileName = txtEAC3ToPath.Text,
-                Arguments = string.Format("\"{0}\"", txtBluRayPath.Text)
-            };
-
-            ICommandLineProcessService commandLineProcessService = new CommandLineProcessService(_commandLineProcessStartInfo);
-            if (commandLineProcessService.Errors.Count() == 0)
-            {
-                ////:Get line items
-                List<ProcessOutputLineItem> processOutputLineItems = commandLineProcessService.GetProcessOutputLineItems();
-                ////:Get the Blu ray summary list
-                ILineItemIdentifierService lineItemService = new BluRaySummaryLineItemIdentifierService();
-                IBluRaySummaryParserService parserService = new BluRaySummaryParserService(lineItemService, processOutputLineItems);
-                _summaryInfoList = parserService.GetSummaryList();
-
-                foreach (BluRaySummaryInfo info in _summaryInfoList)
-                {
-                    _bindingListBluRaySummaryInfo.Add(info);
-                }
-
-                bsBluRaySummaryInfo.DataSource = _bindingListBluRaySummaryInfo;
-                _bindingListBluRaySummaryInfo.AllowEdit = true;
-            }
-            else
-            {
-                System.Console.WriteLine("The following errors were found:");
-                foreach (var error in commandLineProcessService.Errors)
-                {
-                    //TODO:Display Error Message
-                }
-            }
-        }
-
-        private void dgvBluRaySummary_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            this.HandleDGVBluRaySummaryCellDoubleClick(e);
-        }
-
-        private void HandleDGVBluRaySummaryCellDoubleClick(DataGridViewCellEventArgs e)
-        {
-            var id = dgvBluRaySummary.Rows[e.RowIndex].Cells[1].Value;
-            BluRaySummaryInfo summaryInfo = _summaryInfoList.SingleOrDefault(s => s.Id == id.ToString());
-
-            BluRayTitleInfoForm form = new BluRayTitleInfoForm();
-            form.SetBluRayTitleInfo(summaryInfo, _commandLineProcessStartInfo);
-            form.ShowDialog();
         }
 
         private void btnAddBluRayDisc_Click(object sender, EventArgs e)
@@ -136,6 +85,89 @@ namespace BatchGuy.App
             _bindingListBluRayDiscInfo.Add(info);
 
             bsBluRayDiscInfo.DataSource = _bindingListBluRayDiscInfo;
+        }
+
+        private void dgvBluRayDiscInfo_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            this.HandleDgvBluRayDiscInfoCellClick(e);
+            if (_currentBluRayDiscInfo.BluRaySummaryInfoList == null)
+            {
+                this.HandleLoadBluRay();
+            }
+            else
+            {
+                _bindingListBluRaySummaryInfo = new BindingList<BluRaySummaryInfo>();
+                foreach (BluRaySummaryInfo info in _currentBluRayDiscInfo.BluRaySummaryInfoList)
+                {
+                    _bindingListBluRaySummaryInfo.Add(info);
+                }
+            }
+            this.BindDgvBluRaySummaryGrid();
+            gbDiscSummary.Text = string.Format("Disc Summary: {0}", _currentBluRayDiscInfo.DiscName);
+        }
+
+        private void HandleDgvBluRayDiscInfoCellClick(DataGridViewCellEventArgs e)
+        {
+            var id = dgvBluRayDiscInfo.Rows[e.RowIndex].Cells[1].Value;
+            _currentBluRayDiscInfo = _bluRayDiscInfoList.SingleOrDefault(d => d.Id == HelperFunctions.StringToInt(id.ToString()));
+        }
+
+        private void HandleLoadBluRay()
+        {
+            _bindingListBluRaySummaryInfo = new BindingList<BluRaySummaryInfo>();
+
+            ////:Blu ray streams
+            _commandLineProcessStartInfo = new CommandLineProcessStartInfo()
+            {
+                FileName = txtEAC3ToPath.Text,
+                Arguments = string.Format("\"{0}\"", txtBluRayPath.Text)
+            };
+
+            ICommandLineProcessService commandLineProcessService = new CommandLineProcessService(_commandLineProcessStartInfo);
+            if (commandLineProcessService.Errors.Count() == 0)
+            {
+                ////:Get line items
+                List<ProcessOutputLineItem> processOutputLineItems = commandLineProcessService.GetProcessOutputLineItems();
+                ////:Get the Blu ray summary list
+                ILineItemIdentifierService lineItemService = new BluRaySummaryLineItemIdentifierService();
+                IBluRaySummaryParserService parserService = new BluRaySummaryParserService(lineItemService, processOutputLineItems);
+                _currentBluRayDiscInfo.BluRaySummaryInfoList = parserService.GetSummaryList();
+
+                foreach (BluRaySummaryInfo info in _currentBluRayDiscInfo.BluRaySummaryInfoList)
+                {
+                    _bindingListBluRaySummaryInfo.Add(info);
+                }
+            }
+            else
+            {
+                System.Console.WriteLine("The following errors were found:");
+                foreach (var error in commandLineProcessService.Errors)
+                {
+                    //TODO:Display Error Message
+                }
+            }
+        }
+
+        private void BindDgvBluRaySummaryGrid()
+        {
+            bsBluRaySummaryInfo.DataSource = _bindingListBluRaySummaryInfo;
+            bsBluRaySummaryInfo.ResetBindings(false);
+            _bindingListBluRaySummaryInfo.AllowEdit = true;
+        }
+
+        private void dgvBluRaySummary_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            this.HandleDgvBluRaySummaryCellDoubleClick(e);
+        }
+
+        private void HandleDgvBluRaySummaryCellDoubleClick(DataGridViewCellEventArgs e)
+        {
+            var id = dgvBluRaySummary.Rows[e.RowIndex].Cells[1].Value;
+            BluRaySummaryInfo summaryInfo = _currentBluRayDiscInfo.BluRaySummaryInfoList.SingleOrDefault(s => s.Id == id.ToString());
+
+            BluRayTitleInfoForm form = new BluRayTitleInfoForm();
+            form.SetBluRayTitleInfo(summaryInfo, _commandLineProcessStartInfo);
+            form.ShowDialog();
         }
     }
 }
