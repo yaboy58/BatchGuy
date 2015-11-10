@@ -1,5 +1,6 @@
 --in general
 *make an icon for the app
+*introduce logging
 
 --eac3To Form
 *possibly upgrade eac3to so you can specify the log file
@@ -31,7 +32,5 @@
 
 --Todo
 *account for mpa audio
-*ability to load multiple discs at the same time
 *prevent x button from being hit on some screens
 *highlight entire grid row when any cell is selected
-*when blu ray summary is selected, show text at bottom that tells what disc it is from

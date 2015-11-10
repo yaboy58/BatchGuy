@@ -32,32 +32,40 @@ namespace BatchGuy.App.EAC.Services
         {
             if (this.IsValid())
             {
-                if (File.Exists(_bluRayDiscInfoList[0].EAC3ToConfiguration.BatFilePath))
+                try
                 {
-                    File.Delete(_bluRayDiscInfoList[0].EAC3ToConfiguration.BatFilePath);
-                    File.Create(_bluRayDiscInfoList[0].EAC3ToConfiguration.BatFilePath);
-                }
-                foreach (BluRayDiscInfo disc in _bluRayDiscInfoList.Where(d => d.IsSelected))
-                {
-                    foreach (BluRaySummaryInfo summary in disc.BluRaySummaryInfoList.Where(s => s.IsSelected))
+                    if (File.Exists(_bluRayDiscInfoList[0].EAC3ToConfiguration.BatFilePath))
                     {
-                        IEACOutputService eacOutputService = new EACOutputService(disc.EAC3ToConfiguration, summary.Id, summary.BluRayTitleInfo);
-                        string eac3ToPathPart = eacOutputService.GetEAC3ToPathPart();
-                        string bluRayStreamPart = eacOutputService.GetBluRayStreamPart();
-                        string chapterStreamPart = eacOutputService.GetChapterStreamPart();
-                        string videoStreamPart = eacOutputService.GetVideoStreamPart();
-                        string audioStreamPart = eacOutputService.GetAudioStreamPart();
-                        string subtitleStreamPart = eacOutputService.GetSubtitleStreamPart();
-
-                        using (StreamWriter sw = new StreamWriter(disc.EAC3ToConfiguration.BatFilePath, true))
-                        {
-                            sw.WriteLine(string.Format("{0} {1} {2} {3} {4} {5} -progressnumbers", eac3ToPathPart, bluRayStreamPart, chapterStreamPart, videoStreamPart, audioStreamPart,
-                                subtitleStreamPart));
-                            sw.WriteLine();
-                            sw.WriteLine();
-                        }
+                        File.Delete(_bluRayDiscInfoList[0].EAC3ToConfiguration.BatFilePath);
+                        File.Create(_bluRayDiscInfoList[0].EAC3ToConfiguration.BatFilePath);
                     }
-                }                
+                    foreach (BluRayDiscInfo disc in _bluRayDiscInfoList.Where(d => d.IsSelected))
+                    {
+                        foreach (BluRaySummaryInfo summary in disc.BluRaySummaryInfoList.Where(s => s.IsSelected))
+                        {
+                            IEACOutputService eacOutputService = new EACOutputService(disc.EAC3ToConfiguration, summary.Id, summary.BluRayTitleInfo);
+                            string eac3ToPathPart = eacOutputService.GetEAC3ToPathPart();
+                            string bluRayStreamPart = eacOutputService.GetBluRayStreamPart();
+                            string chapterStreamPart = eacOutputService.GetChapterStreamPart();
+                            string videoStreamPart = eacOutputService.GetVideoStreamPart();
+                            string audioStreamPart = eacOutputService.GetAudioStreamPart();
+                            string subtitleStreamPart = eacOutputService.GetSubtitleStreamPart();
+
+                            using (StreamWriter sw = new StreamWriter(disc.EAC3ToConfiguration.BatFilePath, true))
+                            {
+                                sw.WriteLine(string.Format("{0} {1} {2} {3} {4} {5} -progressnumbers", eac3ToPathPart, bluRayStreamPart, chapterStreamPart, videoStreamPart, audioStreamPart,
+                                    subtitleStreamPart));
+                                sw.WriteLine();
+                                sw.WriteLine();
+                            }
+                        }
+                    } 
+                }
+                catch (Exception ex)
+                {
+                    //introduce logging at some point
+                    _errors.Add(new Error() { Description = string.Format("Error occurred: {0}", ex.Message) });
+                }
             }
             return _errors;
         }

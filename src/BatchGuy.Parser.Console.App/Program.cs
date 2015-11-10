@@ -1,4 +1,5 @@
-﻿using BatchGuy.App.Parser.Interfaces;
+﻿using BatchGuy.App.EAC.Models;
+using BatchGuy.App.Parser.Interfaces;
 using BatchGuy.App.Parser.Models;
 using BatchGuy.App.Parser.Services;
 using System;
@@ -15,11 +16,32 @@ namespace BatchGuy.Parser.Console.App
     {
         static void Main(string[] args)
         {
+            //config
+            string batchFilePath = @"C:\temp\My Torrent Encodes\Blu-ray";
+            string bluRayDiscPath = @"C:\temp\My Torrent Encodes\Blu-ray\DISC\Les.Revenants.S02D01.FRENCH.COMPLETE.BLURAY-MELBA";
+            string eac3ToPath = @"C:\exe\eac3to\eac3to.exe";
+
+            //Main object
+            List<BluRayDiscInfo> bluRayDiscList = new List<BluRayDiscInfo>();
+
+            BluRayDiscInfo bluRayDisc = new BluRayDiscInfo()
+            {
+                Id = 1,
+                IsSelected = true,
+                EAC3ToConfiguration = new EAC3ToConfiguration()
+                {
+                    BatFilePath = batchFilePath,
+                    BluRayPath = bluRayDiscPath,
+                    EAC3ToPath = eac3ToPath
+                }
+            };
+            bluRayDiscList.Add(bluRayDisc);
+
             //Build command line for blu ray summary ie eac3to disc
             CommandLineProcessStartInfo commandLineProcessStartInfoSummary = new CommandLineProcessStartInfo() 
             { 
-                FileName = @"C:\exe\eac3to\eac3to.exe",
-                Arguments = @"""C:\temp\My Torrent Encodes\Blu-ray\DISC\Les.Revenants.S02D01.FRENCH.COMPLETE.BLURAY-MELBA"""
+                FileName = eac3ToPath,
+                Arguments = string.Format("\"{0}\"", bluRayDiscPath)
             };
 
             //Service will allow you to get each line outputted on the screen
@@ -38,10 +60,10 @@ namespace BatchGuy.Parser.Console.App
                 //Group the summary line items ie 1), 2) etc etc
                 ILineItemIdentifierService lineItemServiceSummary = new BluRaySummaryLineItemIdentifierService();
                 IBluRaySummaryParserService parserServiceSummary = new BluRaySummaryParserService(lineItemServiceSummary, processOutputLineItemsSummary);
-                List<BluRaySummaryInfo> summaryList = parserServiceSummary.GetSummaryList();
+                bluRayDisc.BluRaySummaryInfoList = parserServiceSummary.GetSummaryList();
 
                 //Loop and output summary list if we choose
-                foreach (var summary in summaryList)
+                foreach (var summary in bluRayDisc.BluRaySummaryInfoList)
                 {
                     //System.Console.WriteLine(string.Format("Header: {0}",summary.HeaderText)); //write out if we choose
                     //System.Console.WriteLine(string.Format("Detail: {0}", summary.DetailText)); //write out if we choose
@@ -50,8 +72,8 @@ namespace BatchGuy.Parser.Console.App
                 //Build command line for blu ray title ie eac3to disc1 1)
                 CommandLineProcessStartInfo commandLineProcessStartInfoTitle = new CommandLineProcessStartInfo()
                 {
-                    FileName = @"C:\exe\eac3to\eac3to.exe",
-                    Arguments = string.Format(@"""C:\temp\My Torrent Encodes\Blu-ray\DISC\Les.Revenants.S02D01.FRENCH.COMPLETE.BLURAY-MELBA"" {0}", summaryList[1].Id)
+                    FileName = eac3ToPath,
+                    Arguments = string.Format("\"{0}\" {1}", bluRayDiscPath, bluRayDisc.BluRaySummaryInfoList[1].Id)
                 };
 
                 //Service will allow you to get each line outputted on the screen
@@ -73,15 +95,30 @@ namespace BatchGuy.Parser.Console.App
                     //This service will parse the line items and return an info object that tells about the specific title
                     IBluRayTitleParserService parserServiceTitle = new BluRayTitleParserService(lineItemServiceTitle, processOutputLineItemsTitle);
                     //Get the title info object
-                    BluRayTitleInfo info = parserServiceTitle.GetTitleInfo();
-                    if (info != null)
+                    bluRayDisc.BluRaySummaryInfoList[1].BluRayTitleInfo = parserServiceTitle.GetTitleInfo();
+                    if (bluRayDisc.BluRaySummaryInfoList[1].BluRayTitleInfo != null)
                     {
-                        System.Console.WriteLine(string.Format("Title: {0}",info.HeaderText)); //print header text if we choose too
-                        System.Console.WriteLine(string.Format("Chapters Id: {0}", info.Chapter.Id)); //print chapter id if we choose too
-                        System.Console.WriteLine(string.Format("Video Id: {0}", info.Video.Id)); //print video id if we choose too
-                        System.Console.WriteLine(string.Format("Audio1 ID and Language: {0} - {1}",info.AudioList[0].Id, info.AudioList[0].Language)); //print audio id/language if we choose too
-                        System.Console.WriteLine(string.Format("Subtitle1 ID and Language: {0} - {1}", info.Subtitles[0].Id, info.Subtitles[0].Language)); //print subtitle id/language if we choose too
+                        //System.Console.WriteLine(string.Format("Title: {0}",bluRayDisc.BluRaySummaryInfoList[1].BluRayTitleInfo.HeaderText)); //print header text if we choose too
+                        //System.Console.WriteLine(string.Format("Chapters Id: {0}", bluRayDisc.BluRaySummaryInfoList[1].BluRayTitleInfo.Chapter.Id)); //print chapter id if we choose too
+                        //System.Console.WriteLine(string.Format("Video Id: {0}", bluRayDisc.BluRaySummaryInfoList[1].BluRayTitleInfo.Video.Id)); //print video id if we choose too
+                        //System.Console.WriteLine(string.Format("Audio1 ID and Language: {0} - {1}",bluRayDisc.BluRaySummaryInfoList[1].BluRayTitleInfo.AudioList[0].Id, bluRayDisc.BluRaySummaryInfoList[1].BluRayTitleInfo.AudioList[0].Language)); //print audio id/language if we choose too
+                        //System.Console.WriteLine(string.Format("Subtitle1 ID and Language: {0} - {1}", bluRayDisc.BluRaySummaryInfoList[1].BluRayTitleInfo.Subtitles[0].Id, bluRayDisc.BluRaySummaryInfoList[1].BluRayTitleInfo.Subtitles[0].Language)); //print subtitle id/language if we choose too
                         //can also print out other fields for testing
+                    }
+
+                    //select/set items
+                    bluRayDiscList[0].IsSelected = true;
+                    bluRayDiscList[0].BluRaySummaryInfoList[1].IsSelected = true;
+                    bluRayDiscList[0].BluRaySummaryInfoList[1].BluRayTitleInfo.Video.IsSelected = true;
+                    bluRayDiscList[0].BluRaySummaryInfoList[1].BluRayTitleInfo.Chapter.IsSelected = true;
+                    bluRayDiscList[0].BluRaySummaryInfoList[1].BluRayTitleInfo.EpisodeNumber = "1";
+                    foreach (BluRayTitleAudio audio in bluRayDiscList[0].BluRaySummaryInfoList[1].BluRayTitleInfo.AudioList)
+                    {
+                        audio.IsSelected = true;
+                    }
+                    foreach (BluRayTitleSubtitle subtitle in bluRayDiscList[0].BluRaySummaryInfoList[1].BluRayTitleInfo.Subtitles)
+                    {
+                        subtitle.IsSelected = true;
                     }
                 }
                 else

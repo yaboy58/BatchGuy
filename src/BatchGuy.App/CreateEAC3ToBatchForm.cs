@@ -43,14 +43,11 @@ namespace BatchGuy.App
 
         private void WriteToBatchFile()
         {
+            /*
             IBatchFileWriteService batFileWriteService = new BatchFileWriteService(_bluRayDiscInfoList);
             batFileWriteService.Write();
             MessageBox.Show("Batch File created!", "Process Complete", MessageBoxButtons.OK,  MessageBoxIcon.Exclamation);
-        }
-
-        private void btnLoadBluRay_Click(object sender, EventArgs e)
-        {
-
+            */
         }
 
         private void btnAddBluRayDisc_Click(object sender, EventArgs e)
