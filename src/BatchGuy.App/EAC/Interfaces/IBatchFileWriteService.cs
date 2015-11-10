@@ -8,8 +8,10 @@ using BatchGuy.App.Shared.Models;
 
 namespace BatchGuy.App.EAC.Interfaces
 {
-    public interface IBatFileWriteService
+    public interface IBatchFileWriteService
     {
+        List<Error> Error { get;}
         List<Error> Write();
+        bool IsValid();
     }
 }

@@ -43,7 +43,7 @@ namespace BatchGuy.App
 
         private void WriteToBatchFile()
         {
-            IBatFileWriteService batFileWriteService = new BatFileWriteService(_bluRayDiscInfoList);
+            IBatchFileWriteService batFileWriteService = new BatchFileWriteService(_bluRayDiscInfoList);
             batFileWriteService.Write();
             MessageBox.Show("Batch File created!", "Process Complete", MessageBoxButtons.OK,  MessageBoxIcon.Exclamation);
         }
