@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace BatchGuy.App.Parser.Services
@@ -64,8 +65,13 @@ namespace BatchGuy.App.Parser.Services
 
         public bool IsIdHeader(ProcessOutputLineItem lineItem)
         {
-            bool isId = lineItem.Text.Contains(")");
-            return isId;
+            string firstPhrase = this.GetId(lineItem);
+            string pattern = @"^(\d+)\)";
+            Regex regEx = new Regex(pattern, RegexOptions.IgnoreCase);
+
+            bool isMatch = regEx.IsMatch(firstPhrase);
+
+            return isMatch;
         }
 
         public string GetId(ProcessOutputLineItem lineItem)

@@ -19,6 +19,7 @@ namespace BatchGuy.App
         private BluRaySummaryInfo _bluRaySummaryInfo;
         private CommandLineProcessStartInfo _commandLineProcessStartInfo;
         private BindingList<BluRayTitleAudio> _bindingListBluRayTitleAudio = new BindingList<BluRayTitleAudio>();
+        private BluRayTitleAudio _currentBluRayTitleAudio;
 
         public BluRayTitleInfoForm()
         {
@@ -93,15 +94,6 @@ namespace BatchGuy.App
 
             bsBluRayTitleAudio.DataSource = _bindingListBluRayTitleAudio;
             _bindingListBluRayTitleAudio.AllowEdit = true;
-
-            DataGridViewComboBoxColumn col = new DataGridViewComboBoxColumn();
-            col.Name = "Audio Type";
-            col.DataSource = Enum.GetValues(typeof(EnumAudioType));
-            col.ValueType = typeof(EnumAudioType);
-            col.DisplayIndex = 3;
-            col.DataPropertyName = EnumAudioType.AC3.ToString();
-            dgvAudio.Columns.Add(col);
-
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
@@ -113,5 +105,43 @@ namespace BatchGuy.App
         {
             this.Close();
         }
+
+        private void dgvAudio_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            this.HandleDgvAudioCellClick(e);
+        }
+
+        private void HandleDgvAudioCellClick(DataGridViewCellEventArgs e)
+        {
+            var id = dgvAudio.Rows[e.RowIndex].Cells[1].Value;
+            _currentBluRayTitleAudio = _bluRaySummaryInfo.BluRayTitleInfo.AudioList.SingleOrDefault(a => a.Id == id.ToString());
+            cbAudioType.SelectedIndex = cbAudioType.FindString(this.GetAudioTypeName(_currentBluRayTitleAudio.AudioType));
+            txtAudioTypeArguments.Text = _currentBluRayTitleAudio.Arguments;
+        }
+
+        private string GetAudioTypeName(EnumAudioType audioType)
+        {
+            string name = string.Empty;
+
+            switch (audioType)
+            {
+                case EnumAudioType.DTS:
+                    name = "DTS";
+                    break;
+                case EnumAudioType.AC3:
+                    name = "AC3";
+                    break;
+                case EnumAudioType.FLAC:
+                    name = "FLAC";
+                    break;
+                case EnumAudioType.TrueHD:
+                    name = "TrueHD";
+                    break;
+                default:
+                    throw new Exception("Invalid Audio Type");
+            }
+            return name;
+        }
+
     }
 }

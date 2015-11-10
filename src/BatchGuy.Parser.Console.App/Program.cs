@@ -19,7 +19,7 @@ namespace BatchGuy.Parser.Console.App
             CommandLineProcessStartInfo commandLineProcessStartInfoSummary = new CommandLineProcessStartInfo() 
             { 
                 FileName = @"C:\exe\eac3to\eac3to.exe",
-                Arguments = @"""C:\temp\My Torrent Encodes\Blu-ray\DISC\Les.Revenants.S02D01.FRENCH.COMPLETE.BLURAY-MELBA"""
+                Arguments = @"""\\KENSHIRO\My Old Encodes\Blu-ray\Hatchet II 2010 Unrated Directors Cut BluRay 720p DTS x264-EbP\DISC"""
             };
 
             //Service will allow you to get each line outputted on the screen
@@ -32,26 +32,26 @@ namespace BatchGuy.Parser.Console.App
                 List<ProcessOutputLineItem> processOutputLineItemsSummary = commandLineProcessServiceSummary.GetProcessOutputLineItems();
                 foreach (var line in processOutputLineItemsSummary)
                 {
-                    //System.Console.WriteLine(line.Text); //write out if we choose too
+                   //System.Console.WriteLine(line.Text); //write out if we choose too
                 }
 
                 //Group the summary line items ie 1), 2) etc etc
-                ILineItemIdentifierService lineItemServiceSummary = new BluRaySummaryLineItemIdentifierService();
-                IBluRaySummaryParserService parserServiceSummary = new BluRaySummaryParserService(lineItemServiceSummary, processOutputLineItemsSummary);
+                ILineItemIdentifierService lineItemIdentifierServiceSummary = new BluRaySummaryLineItemIdentifierService();
+                IBluRaySummaryParserService parserServiceSummary = new BluRaySummaryParserService(lineItemIdentifierServiceSummary, processOutputLineItemsSummary);
                 List<BluRaySummaryInfo> summaryList = parserServiceSummary.GetSummaryList();
 
                 //Loop and output summary list if we choose
                 foreach (var summary in summaryList)
                 {
-                    //System.Console.WriteLine(string.Format("Header: {0}",summary.HeaderText)); //write out if we choose
-                    //System.Console.WriteLine(string.Format("Detail: {0}", summary.DetailText)); //write out if we choose
+                    System.Console.WriteLine(string.Format("Header: {0}",summary.HeaderText)); //write out if we choose
+                    System.Console.WriteLine(string.Format("Detail: {0}", summary.DetailText)); //write out if we choose
                 }
 
                 //Build command line for blu ray title ie eac3to disc1 1)
                 CommandLineProcessStartInfo commandLineProcessStartInfoTitle = new CommandLineProcessStartInfo()
                 {
                     FileName = @"C:\exe\eac3to\eac3to.exe",
-                    Arguments = string.Format(@"""C:\temp\My Torrent Encodes\Blu-ray\DISC\Les.Revenants.S02D01.FRENCH.COMPLETE.BLURAY-MELBA"" {0}", summaryList[1].Id)
+                    Arguments = string.Format(@"""\\KENSHIRO\My Old Encodes\Blu-ray\Hatchet II 2010 Unrated Directors Cut BluRay 720p DTS x264-EbP\DISC"" {0}", summaryList[1].Id)
                 };
 
                 //Service will allow you to get each line outputted on the screen
@@ -76,11 +76,11 @@ namespace BatchGuy.Parser.Console.App
                     BluRayTitleInfo info = parserServiceTitle.GetTitleInfo();
                     if (info != null)
                     {
-                        System.Console.WriteLine(string.Format("Title: {0}",info.HeaderText)); //print header text if we choose too
-                        System.Console.WriteLine(string.Format("Chapters Id: {0}", info.Chapter.Id)); //print chapter id if we choose too
-                        System.Console.WriteLine(string.Format("Video Id: {0}", info.Video.Id)); //print video id if we choose too
-                        System.Console.WriteLine(string.Format("Audio1 ID and Language: {0} - {1}",info.AudioList[0].Id, info.AudioList[0].Language)); //print audio id/language if we choose too
-                        System.Console.WriteLine(string.Format("Subtitle1 ID and Language: {0} - {1}", info.Subtitles[0].Id, info.Subtitles[0].Language)); //print subtitle id/language if we choose too
+                        //System.Console.WriteLine(string.Format("Title: {0}",info.HeaderText)); //print header text if we choose too
+                        //System.Console.WriteLine(string.Format("Chapters Id: {0}", info.Chapter.Id)); //print chapter id if we choose too
+                        //System.Console.WriteLine(string.Format("Video Id: {0}", info.Video.Id)); //print video id if we choose too
+                        //System.Console.WriteLine(string.Format("Audio1 ID and Language: {0} - {1}",info.AudioList[0].Id, info.AudioList[0].Language)); //print audio id/language if we choose too
+                        //System.Console.WriteLine(string.Format("Subtitle1 ID and Language: {0} - {1}", info.Subtitles[0].Id, info.Subtitles[0].Language)); //print subtitle id/language if we choose too
                         //can also print out other fields for testing
                     }
                 }
