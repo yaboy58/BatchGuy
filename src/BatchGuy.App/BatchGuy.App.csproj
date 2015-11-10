@@ -86,6 +86,7 @@
     <Compile Include="AVS\Models\AVSFile.cs" />
     <Compile Include="AVS\Models\AVSScript.cs" />
     <Compile Include="Parser\Interfaces\IBluRayTitleParserService.cs" />
+    <Compile Include="Parser\Models\BluRayDiscInfo.cs" />
     <Compile Include="Parser\Models\BluRayTitleAudio.cs" />
     <Compile Include="Parser\Models\BluRayTitleChapter.cs" />
     <Compile Include="Parser\Models\BluRayTitleInfo.cs" />
@@ -144,6 +145,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="Properties\DataSources\BatchGuy.App.Parser.Models.BluRayDiscInfo.datasource" />
     <None Include="Properties\DataSources\BatchGuy.App.Parser.Models.BluRaySummaryInfo.datasource" />
     <None Include="Properties\DataSources\BatchGuy.App.Parser.Models.BluRayTitleAudio.datasource" />
     <None Include="Properties\DataSources\BatchGuy.App.Parser.Models.BluRayTitleChapter.datasource" />

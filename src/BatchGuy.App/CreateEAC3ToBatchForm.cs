@@ -19,9 +19,11 @@ namespace BatchGuy.App
 {
     public partial class CreateEAC3ToBatchForm : Form
     {
+        private List<BluRayDiscInfo> _bluRayDiscInfoList;
         private List<BluRaySummaryInfo> _summaryInfoList;
         private CommandLineProcessStartInfo _commandLineProcessStartInfo;
         private BindingList<BluRaySummaryInfo> _bindingListBluRaySummaryInfo = new BindingList<BluRaySummaryInfo>();
+        private BindingList<BluRayDiscInfo> _bindingListBluRayDiscInfo = new BindingList<BluRayDiscInfo>();
 
 
         public CreateEAC3ToBatchForm()
@@ -106,6 +108,34 @@ namespace BatchGuy.App
             BluRayTitleInfoForm form = new BluRayTitleInfoForm();
             form.SetBluRayTitleInfo(summaryInfo, _commandLineProcessStartInfo);
             form.ShowDialog();
+        }
+
+        private void btnAddBluRayDisc_Click(object sender, EventArgs e)
+        {
+            this.HandleAddBluRayDiscClick();
+        }
+
+        private void HandleAddBluRayDiscClick()
+        {
+            if (_bluRayDiscInfoList == null)
+                _bluRayDiscInfoList = new List<BluRayDiscInfo>();
+
+            BluRayDiscInfo info = new BluRayDiscInfo()
+            {
+                Id = _bluRayDiscInfoList.Count + 1,
+                IsSelected = false,
+                EAC3ToConfiguration = new EAC3ToConfiguration()
+                {
+                    BatFilePath = string.Format("\"{0}\"", txtBatFilePath.Text),
+                    BluRayPath = string.Format("\"{0}\"", txtBluRayPath.Text),
+                    EAC3ToPath = string.Format("\"{0}\"", txtEAC3ToPath.Text)
+                }
+            };
+
+            _bluRayDiscInfoList.Add(info);
+            _bindingListBluRayDiscInfo.Add(info);
+
+            bsBluRayDiscInfo.DataSource = _bindingListBluRayDiscInfo;
         }
     }
 }
