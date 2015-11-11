@@ -220,6 +220,7 @@
             this.dgvBluRaySummary.Name = "dgvBluRaySummary";
             this.dgvBluRaySummary.Size = new System.Drawing.Size(1229, 283);
             this.dgvBluRaySummary.TabIndex = 23;
+            this.dgvBluRaySummary.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBluRaySummary_CellClick);
             this.dgvBluRaySummary.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBluRaySummary_CellDoubleClick);
             // 
             // isSelectedDataGridViewCheckBoxColumn

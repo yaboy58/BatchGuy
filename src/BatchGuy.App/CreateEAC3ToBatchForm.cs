@@ -108,6 +108,7 @@ namespace BatchGuy.App
             }
             this.BindDgvBluRaySummaryGrid();
             gbDiscSummary.Text = string.Format("Disc Summary: {0}", _currentBluRayDiscInfo.DiscName);
+            dgvBluRayDiscInfo.Rows[e.RowIndex].Selected = true;
         }
 
         private void HandleDgvBluRayDiscInfoCellClick(DataGridViewCellEventArgs e)
@@ -203,6 +204,11 @@ namespace BatchGuy.App
                 return false;
             }
             return true;
+        }
+
+        private void dgvBluRaySummary_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            dgvBluRaySummary.Rows[e.RowIndex].Selected = true;
         }
     }
 }
