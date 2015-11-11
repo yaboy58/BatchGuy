@@ -235,10 +235,10 @@ namespace BatchGuy.App
 
         private void HandleOpenEac3ToFileDialogClick()
         {
-            DialogResult result = ofdEac3ToFileDialog.ShowDialog(this);
+            DialogResult result = ofdFileDialog.ShowDialog(this);
             if (result == System.Windows.Forms.DialogResult.OK)
             {
-                txtEAC3ToPath.Text = ofdEac3ToFileDialog.FileName;
+                txtEAC3ToPath.Text = ofdFileDialog.FileName;
             }
         }
 

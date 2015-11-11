@@ -44,7 +44,8 @@
             this.btnOpenBluRayPathDialog = new System.Windows.Forms.Button();
             this.fbdDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.btnOpenEac3ToFileDialog = new System.Windows.Forms.Button();
-            this.ofdEac3ToFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.ofdFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.btnOpenBatchFilePathDialog = new System.Windows.Forms.Button();
             this.isSelectedDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.episodeNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -57,7 +58,6 @@
             this.eAC3ToConfigurationDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.discNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bsBluRayDiscInfo = new System.Windows.Forms.BindingSource(this.components);
-            this.btnOpenBatchFilePathDialog = new System.Windows.Forms.Button();
             this.gbDisc.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBluRayDiscInfo)).BeginInit();
             this.gbDiscSummary.SuspendLayout();
@@ -217,9 +217,19 @@
             this.btnOpenEac3ToFileDialog.UseVisualStyleBackColor = true;
             this.btnOpenEac3ToFileDialog.Click += new System.EventHandler(this.btnOpenEac3ToFileDialog_Click);
             // 
-            // ofdEac3ToFileDialog
+            // ofdFileDialog
             // 
-            this.ofdEac3ToFileDialog.FileName = "openFileDialog1";
+            this.ofdFileDialog.FileName = "openFileDialog1";
+            // 
+            // btnOpenBatchFilePathDialog
+            // 
+            this.btnOpenBatchFilePathDialog.Image = global::BatchGuy.App.Properties.Resources.Avosoft_Warm_Toolbar_Folder_open;
+            this.btnOpenBatchFilePathDialog.Location = new System.Drawing.Point(875, 83);
+            this.btnOpenBatchFilePathDialog.Name = "btnOpenBatchFilePathDialog";
+            this.btnOpenBatchFilePathDialog.Size = new System.Drawing.Size(61, 33);
+            this.btnOpenBatchFilePathDialog.TabIndex = 29;
+            this.btnOpenBatchFilePathDialog.UseVisualStyleBackColor = true;
+            this.btnOpenBatchFilePathDialog.Click += new System.EventHandler(this.btnOpenBatchFilePathDialog_Click);
             // 
             // isSelectedDataGridViewCheckBoxColumn
             // 
@@ -304,16 +314,6 @@
             // 
             this.bsBluRayDiscInfo.DataSource = typeof(BatchGuy.App.Parser.Models.BluRayDiscInfo);
             // 
-            // btnOpenBatchFilePathDialog
-            // 
-            this.btnOpenBatchFilePathDialog.Image = global::BatchGuy.App.Properties.Resources.Avosoft_Warm_Toolbar_Folder_open;
-            this.btnOpenBatchFilePathDialog.Location = new System.Drawing.Point(875, 83);
-            this.btnOpenBatchFilePathDialog.Name = "btnOpenBatchFilePathDialog";
-            this.btnOpenBatchFilePathDialog.Size = new System.Drawing.Size(61, 33);
-            this.btnOpenBatchFilePathDialog.TabIndex = 29;
-            this.btnOpenBatchFilePathDialog.UseVisualStyleBackColor = true;
-            this.btnOpenBatchFilePathDialog.Click += new System.EventHandler(this.btnOpenBatchFilePathDialog_Click);
-            // 
             // CreateEAC3ToBatchForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -378,7 +378,7 @@
         private System.Windows.Forms.Button btnOpenBluRayPathDialog;
         private System.Windows.Forms.FolderBrowserDialog fbdDialog;
         private System.Windows.Forms.Button btnOpenEac3ToFileDialog;
-        private System.Windows.Forms.OpenFileDialog ofdEac3ToFileDialog;
+        private System.Windows.Forms.OpenFileDialog ofdFileDialog;
         private System.Windows.Forms.Button btnOpenBatchFilePathDialog;
     }
 }

@@ -97,13 +97,27 @@ namespace BatchGuy.App
             {
                 IFileService fileService = new FileService(x264FileSettings);
                 _x264Files = fileService.GetAVSFiles();
-                bsFiles.DataSource = _x264Files;
+                if (_x264Files.Count() == 0)
+                {
+                    MessageBox.Show("No AviSynth scripts found in directory!", "No Scripts Found", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                else
+                {
+                    bsFiles.DataSource = _x264Files;
+                }
             }
         }
 
         private void btnCreateX264BatFile_Click(object sender, EventArgs e)
         {
-            this.CreateX264BatFile();
+            if (_x264Files == null || _x264Files.Count() == 0)
+            {
+                MessageBox.Show("Please load AviSynth scripts", "AviSynth Scripts Not Load",  MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                this.CreateX264BatFile();
+            }
         }
 
         private void CreateX264BatFile()
@@ -131,6 +145,36 @@ namespace BatchGuy.App
         private void HandleRowsRemoved()
         {
             lblNumberOfFiles.Text = string.Format("Number of Files: {0}", _x264Files.Count());
+        }
+
+        private void btnOpenAviSynthScriptOutputDialog_Click(object sender, EventArgs e)
+        {
+            this.HandleBtnOpenAviSynchScriptOutputDialogClick();
+        }
+
+        private void HandleBtnOpenAviSynchScriptOutputDialogClick()
+        {
+            fbdDialog.ShowNewFolderButton = true;
+            fbdDialog.RootFolder = Environment.SpecialFolder.Desktop;
+            DialogResult result = fbdDialog.ShowDialog();
+            if (result == System.Windows.Forms.DialogResult.OK)
+            {
+              txtAVSFileLocation.Text = fbdDialog.SelectedPath;
+            }
+        }
+
+        private void btnOpenVfw4x264FileDialog_Click(object sender, EventArgs e)
+        {
+            this.HandleBtnOpenVfw4x264FileDialogClick();
+        }
+
+        private void HandleBtnOpenVfw4x264FileDialogClick()
+        {
+            DialogResult result = ofdFileDialog.ShowDialog(this);
+            if (result == System.Windows.Forms.DialogResult.OK)
+            {
+               txtVfw4x264exe.Text = ofdFileDialog.FileName;
+            }
         }
     }
 }

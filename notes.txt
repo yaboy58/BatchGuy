@@ -6,10 +6,9 @@
 
 
 --eac3To Form
-*de-couple bat path from folder where files are stored path
 *validation
+*de-couple bat path from folder where files are stored path
 *delete existing .bat file before writing new scripts (probably just check to see if it is on file#1)
-*make the paths dialog windows
 *sort the blu ray titles by episode, although it is a string
 *hardcode episode (ie 99), so you cannot do series greater than 100 episodes
 
@@ -21,6 +20,7 @@
 
 --x264 Form
 *validation
+	-ensure that an episode name is given for all avs file
 
 
 --bluray title info form
