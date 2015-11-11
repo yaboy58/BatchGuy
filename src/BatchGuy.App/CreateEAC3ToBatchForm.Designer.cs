@@ -39,26 +39,26 @@
             this.btnAddBluRayDisc = new System.Windows.Forms.Button();
             this.gbDisc = new System.Windows.Forms.GroupBox();
             this.dgvBluRayDiscInfo = new System.Windows.Forms.DataGridView();
-            this.gbDiscSummary = new System.Windows.Forms.GroupBox();
-            this.dgvBluRaySummary = new System.Windows.Forms.DataGridView();
-            this.bsBluRaySummaryInfo = new System.Windows.Forms.BindingSource(this.components);
             this.isSelectedDataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.idDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.eAC3ToConfigurationDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.discNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bsBluRayDiscInfo = new System.Windows.Forms.BindingSource(this.components);
+            this.gbDiscSummary = new System.Windows.Forms.GroupBox();
+            this.dgvBluRaySummary = new System.Windows.Forms.DataGridView();
             this.isSelectedDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.episodeNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.headerTextDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.detailTextDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bluRayTitleInfoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bsBluRaySummaryInfo = new System.Windows.Forms.BindingSource(this.components);
             this.gbDisc.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBluRayDiscInfo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsBluRayDiscInfo)).BeginInit();
             this.gbDiscSummary.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBluRaySummary)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsBluRaySummaryInfo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsBluRayDiscInfo)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -84,8 +84,6 @@
             this.txtBluRayPath.Name = "txtBluRayPath";
             this.txtBluRayPath.Size = new System.Drawing.Size(727, 20);
             this.txtBluRayPath.TabIndex = 0;
-            this.txtBluRayPath.Text = "C:\\temp\\My Torrent Encodes\\Blu-ray\\DISC\\Les.Revenants.S02D01.FRENCH.COMPLETE.BLUR" +
-    "AY-MELBA";
             // 
             // label2
             // 
@@ -102,7 +100,7 @@
             this.txtBatFilePath.Name = "txtBatFilePath";
             this.txtBatFilePath.Size = new System.Drawing.Size(725, 20);
             this.txtBatFilePath.TabIndex = 2;
-            this.txtBatFilePath.Text = "C:\\temp\\My Torrent Encodes\\Blu-ray\\bluray.bat";
+            this.txtBatFilePath.Text = "C:\\temp\\My Torrent Encodes\\Blu-ray";
             // 
             // label3
             // 
@@ -161,39 +159,6 @@
             this.dgvBluRayDiscInfo.TabIndex = 24;
             this.dgvBluRayDiscInfo.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBluRayDiscInfo_CellClick);
             // 
-            // gbDiscSummary
-            // 
-            this.gbDiscSummary.Controls.Add(this.dgvBluRaySummary);
-            this.gbDiscSummary.Location = new System.Drawing.Point(35, 353);
-            this.gbDiscSummary.Name = "gbDiscSummary";
-            this.gbDiscSummary.Size = new System.Drawing.Size(1241, 311);
-            this.gbDiscSummary.TabIndex = 26;
-            this.gbDiscSummary.TabStop = false;
-            this.gbDiscSummary.Text = "Disc Summary";
-            // 
-            // dgvBluRaySummary
-            // 
-            this.dgvBluRaySummary.AllowUserToAddRows = false;
-            this.dgvBluRaySummary.AutoGenerateColumns = false;
-            this.dgvBluRaySummary.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvBluRaySummary.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.isSelectedDataGridViewCheckBoxColumn,
-            this.idDataGridViewTextBoxColumn,
-            this.episodeNumberDataGridViewTextBoxColumn,
-            this.headerTextDataGridViewTextBoxColumn,
-            this.detailTextDataGridViewTextBoxColumn,
-            this.bluRayTitleInfoDataGridViewTextBoxColumn});
-            this.dgvBluRaySummary.DataSource = this.bsBluRaySummaryInfo;
-            this.dgvBluRaySummary.Location = new System.Drawing.Point(6, 19);
-            this.dgvBluRaySummary.Name = "dgvBluRaySummary";
-            this.dgvBluRaySummary.Size = new System.Drawing.Size(1229, 283);
-            this.dgvBluRaySummary.TabIndex = 23;
-            this.dgvBluRaySummary.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBluRaySummary_CellDoubleClick);
-            // 
-            // bsBluRaySummaryInfo
-            // 
-            this.bsBluRaySummaryInfo.DataSource = typeof(BatchGuy.App.Parser.Models.BluRaySummaryInfo);
-            // 
             // isSelectedDataGridViewCheckBoxColumn1
             // 
             this.isSelectedDataGridViewCheckBoxColumn1.DataPropertyName = "IsSelected";
@@ -227,6 +192,35 @@
             // bsBluRayDiscInfo
             // 
             this.bsBluRayDiscInfo.DataSource = typeof(BatchGuy.App.Parser.Models.BluRayDiscInfo);
+            // 
+            // gbDiscSummary
+            // 
+            this.gbDiscSummary.Controls.Add(this.dgvBluRaySummary);
+            this.gbDiscSummary.Location = new System.Drawing.Point(35, 353);
+            this.gbDiscSummary.Name = "gbDiscSummary";
+            this.gbDiscSummary.Size = new System.Drawing.Size(1241, 311);
+            this.gbDiscSummary.TabIndex = 26;
+            this.gbDiscSummary.TabStop = false;
+            this.gbDiscSummary.Text = "Disc Summary";
+            // 
+            // dgvBluRaySummary
+            // 
+            this.dgvBluRaySummary.AllowUserToAddRows = false;
+            this.dgvBluRaySummary.AutoGenerateColumns = false;
+            this.dgvBluRaySummary.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvBluRaySummary.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.isSelectedDataGridViewCheckBoxColumn,
+            this.idDataGridViewTextBoxColumn,
+            this.episodeNumberDataGridViewTextBoxColumn,
+            this.headerTextDataGridViewTextBoxColumn,
+            this.detailTextDataGridViewTextBoxColumn,
+            this.bluRayTitleInfoDataGridViewTextBoxColumn});
+            this.dgvBluRaySummary.DataSource = this.bsBluRaySummaryInfo;
+            this.dgvBluRaySummary.Location = new System.Drawing.Point(6, 19);
+            this.dgvBluRaySummary.Name = "dgvBluRaySummary";
+            this.dgvBluRaySummary.Size = new System.Drawing.Size(1229, 283);
+            this.dgvBluRaySummary.TabIndex = 23;
+            this.dgvBluRaySummary.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBluRaySummary_CellDoubleClick);
             // 
             // isSelectedDataGridViewCheckBoxColumn
             // 
@@ -273,6 +267,10 @@
             this.bluRayTitleInfoDataGridViewTextBoxColumn.Name = "bluRayTitleInfoDataGridViewTextBoxColumn";
             this.bluRayTitleInfoDataGridViewTextBoxColumn.Visible = false;
             // 
+            // bsBluRaySummaryInfo
+            // 
+            this.bsBluRaySummaryInfo.DataSource = typeof(BatchGuy.App.Parser.Models.BluRaySummaryInfo);
+            // 
             // CreateEAC3ToBatchForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -295,10 +293,10 @@
             this.Load += new System.EventHandler(this.CreateEAC3ToBatchForm_Load);
             this.gbDisc.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvBluRayDiscInfo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsBluRayDiscInfo)).EndInit();
             this.gbDiscSummary.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvBluRaySummary)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsBluRaySummaryInfo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsBluRayDiscInfo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

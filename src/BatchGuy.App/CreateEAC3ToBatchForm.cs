@@ -38,21 +38,34 @@ namespace BatchGuy.App
 
         private void btnWriteToBatFile_Click(object sender, EventArgs e)
         {
-            this.WriteToBatchFile();
+            if (this.IsAtLeastOneDiscLoaded())
+            {
+                this.WriteToBatchFile();                
+            }
         }
 
         private void WriteToBatchFile()
         {
-            /*
-            IBatchFileWriteService batFileWriteService = new BatchFileWriteService(_bluRayDiscInfoList);
-            batFileWriteService.Write();
-            MessageBox.Show("Batch File created!", "Process Complete", MessageBoxButtons.OK,  MessageBoxIcon.Exclamation);
-            */
+            IBatchFileWriteService batchFileWriteService = new BatchFileWriteService(_bluRayDiscInfoList);
+            batchFileWriteService.Write();
+            if (batchFileWriteService.Errors.Count() == 0)
+            {
+                MessageBox.Show("Batch File created!", "Process Complete", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                this.Close();   
+            }
+            else
+            {
+                MessageBox.Show(string.Format("Error: {0}", batchFileWriteService.Errors[0].Description), "Error occurred", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnAddBluRayDisc_Click(object sender, EventArgs e)
         {
-            this.HandleAddBluRayDiscClick();
+            if (this.IsScreenValid())
+            {
+                this.HandleAddBluRayDiscClick();
+                txtBluRayPath.Text = string.Empty;                
+            }
         }
 
         private void HandleAddBluRayDiscClick()
@@ -66,7 +79,7 @@ namespace BatchGuy.App
                 IsSelected = false,
                 EAC3ToConfiguration = new EAC3ToConfiguration()
                 {
-                    BatFilePath = txtBatFilePath.Text,
+                    BatchFilePath = txtBatFilePath.Text,
                     BluRayPath = txtBluRayPath.Text,
                     EAC3ToPath = txtEAC3ToPath.Text
                 }
@@ -111,7 +124,7 @@ namespace BatchGuy.App
             _commandLineProcessStartInfo = new CommandLineProcessStartInfo()
             {
                 FileName = txtEAC3ToPath.Text,
-                Arguments = string.Format("\"{0}\"", txtBluRayPath.Text)
+                Arguments = string.Format("\"{0}\"", _currentBluRayDiscInfo.EAC3ToConfiguration.BluRayPath)
             };
 
             ICommandLineProcessService commandLineProcessService = new CommandLineProcessService(_commandLineProcessStartInfo);
@@ -148,18 +161,48 @@ namespace BatchGuy.App
 
         private void dgvBluRaySummary_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            this.HandleDgvBluRaySummaryCellClick(e);
+            this.HandleDgvBluRaySummaryCellDoubleClick(e);
         }
 
-        private void HandleDgvBluRaySummaryCellClick(DataGridViewCellEventArgs e)
+        private void HandleDgvBluRaySummaryCellDoubleClick(DataGridViewCellEventArgs e)
         {
             var id = dgvBluRaySummary.Rows[e.RowIndex].Cells[1].Value;
             BluRaySummaryInfo summaryInfo = _currentBluRayDiscInfo.BluRaySummaryInfoList.SingleOrDefault(s => s.Id == id.ToString());
 
             BluRayTitleInfoForm form = new BluRayTitleInfoForm();
-            form.SetBluRayTitleInfo(summaryInfo, _commandLineProcessStartInfo);
+            form.SetBluRayTitleInfo(summaryInfo, _currentBluRayDiscInfo);
             form.ShowDialog();
             this.BindDgvBluRaySummaryGrid();
+        }
+
+        private bool IsScreenValid()
+        {
+            if (txtBatFilePath.Text == string.Empty)
+            {
+                MessageBox.Show("Please enter the path the batch file should be created!", "Error occurred", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;    
+            }
+            if (txtBluRayPath.Text == string.Empty)
+            {
+                MessageBox.Show("Please enter the path where the blu-ray disc is located!", "Error occurred", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            if (txtEAC3ToPath.Text == string.Empty)
+            {
+                MessageBox.Show("Please enter the eac3to.exe path with the exe in the path!", "Error occurred", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            return true;
+        }
+
+        private bool IsAtLeastOneDiscLoaded()
+        {
+            if (_bluRayDiscInfoList == null || _bluRayDiscInfoList.Count() == 0)
+            {
+                MessageBox.Show("Please load at least 1 blu-ray disck!", "Error occurred", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            return true;
         }
     }
 }

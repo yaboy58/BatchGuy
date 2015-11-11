@@ -17,7 +17,7 @@ namespace BatchGuy.App.EAC.Services
         private List<Error> _errors = new List<Error>();
         private List<BluRayDiscInfo> _bluRayDiscInfoList;
 
-        public List<Error> Error
+        public List<Error> Errors
         {
             get { return _errors; }
         }
@@ -34,16 +34,18 @@ namespace BatchGuy.App.EAC.Services
             {
                 try
                 {
-                    if (File.Exists(_bluRayDiscInfoList[0].EAC3ToConfiguration.BatFilePath))
+                    /*TODO: Do you really want to delete files without the user's permission?
+                    if (File.Exists(_bluRayDiscInfoList[0].EAC3ToConfiguration.BatchFilePath))
                     {
-                        File.Delete(_bluRayDiscInfoList[0].EAC3ToConfiguration.BatFilePath);
-                        File.Create(_bluRayDiscInfoList[0].EAC3ToConfiguration.BatFilePath);
+                        File.Delete(_bluRayDiscInfoList[0].EAC3ToConfiguration.BatchFilePath);
+                        File.Create(_bluRayDiscInfoList[0].EAC3ToConfiguration.BatchFilePath);
                     }
+                    */
                     foreach (BluRayDiscInfo disc in _bluRayDiscInfoList.Where(d => d.IsSelected))
                     {
                         foreach (BluRaySummaryInfo summary in disc.BluRaySummaryInfoList.Where(s => s.IsSelected))
                         {
-                            IEACOutputService eacOutputService = new EACOutputService(disc.EAC3ToConfiguration, summary.Id, summary.BluRayTitleInfo);
+                            IEAC3ToOutputService eacOutputService = new EAC3ToOutputService(disc.EAC3ToConfiguration, summary.Id, summary.BluRayTitleInfo);
                             string eac3ToPathPart = eacOutputService.GetEAC3ToPathPart();
                             string bluRayStreamPart = eacOutputService.GetBluRayStreamPart();
                             string chapterStreamPart = eacOutputService.GetChapterStreamPart();
@@ -51,7 +53,7 @@ namespace BatchGuy.App.EAC.Services
                             string audioStreamPart = eacOutputService.GetAudioStreamPart();
                             string subtitleStreamPart = eacOutputService.GetSubtitleStreamPart();
 
-                            using (StreamWriter sw = new StreamWriter(disc.EAC3ToConfiguration.BatFilePath, true))
+                            using (StreamWriter sw = new StreamWriter(string.Format("{0}\\bluray.bat",disc.EAC3ToConfiguration.BatchFilePath), true))
                             {
                                 sw.WriteLine(string.Format("{0} {1} {2} {3} {4} {5} -progressnumbers", eac3ToPathPart, bluRayStreamPart, chapterStreamPart, videoStreamPart, audioStreamPart,
                                     subtitleStreamPart));
@@ -119,7 +121,7 @@ namespace BatchGuy.App.EAC.Services
 
             foreach (BluRayDiscInfo disc in _bluRayDiscInfoList.Where(d => d.IsSelected))
             {
-                foreach (BluRaySummaryInfo info in disc.BluRaySummaryInfoList)
+                foreach (BluRaySummaryInfo info in disc.BluRaySummaryInfoList.Where(s => s.IsSelected))
                 {
                     if (((info.EpisodeNumber == string.Empty || info.EpisodeNumber == null)  && info.BluRayTitleInfo.Video.IsSelected))
                     {

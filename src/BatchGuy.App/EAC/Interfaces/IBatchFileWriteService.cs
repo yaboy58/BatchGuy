@@ -10,7 +10,7 @@ namespace BatchGuy.App.EAC.Interfaces
 {
     public interface IBatchFileWriteService
     {
-        List<Error> Error { get;}
+        List<Error> Errors { get;}
         List<Error> Write();
         bool IsValid();
     }

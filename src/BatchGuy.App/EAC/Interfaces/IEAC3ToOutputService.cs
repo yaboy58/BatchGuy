@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BatchGuy.App.EAC.Interfaces
 {
-    public interface IEACOutputService
+    public interface IEAC3ToOutputService
     {
         string GetEAC3ToPathPart();
         string GetBluRayStreamPart();

@@ -1,4 +1,6 @@
-﻿using BatchGuy.App.EAC.Models;
+﻿using BatchGuy.App.EAC.Interfaces;
+using BatchGuy.App.EAC.Models;
+using BatchGuy.App.EAC.Services;
 using BatchGuy.App.Parser.Interfaces;
 using BatchGuy.App.Parser.Models;
 using BatchGuy.App.Parser.Services;
@@ -30,7 +32,7 @@ namespace BatchGuy.Parser.Console.App
                 IsSelected = true,
                 EAC3ToConfiguration = new EAC3ToConfiguration()
                 {
-                    BatFilePath = batchFilePath,
+                    BatchFilePath = batchFilePath,
                     BluRayPath = bluRayDiscPath,
                     EAC3ToPath = eac3ToPath
                 }
@@ -119,6 +121,21 @@ namespace BatchGuy.Parser.Console.App
                     foreach (BluRayTitleSubtitle subtitle in bluRayDiscList[0].BluRaySummaryInfoList[1].BluRayTitleInfo.Subtitles)
                     {
                         subtitle.IsSelected = true;
+                    }
+
+                    //now time to write out the batch file
+                    IBatchFileWriteService batchFileWriteService = new BatchFileWriteService(bluRayDiscList);
+                    batchFileWriteService.Write();
+                    if (batchFileWriteService.Errors.Count() == 0)
+                    {
+                        System.Console.WriteLine("Batch file created successfully!");
+                    }
+                    else
+                    {
+                        foreach (var error in batchFileWriteService.Errors)
+                        {
+                            System.Console.WriteLine(string.Format("Error: {0}", error.Description));
+                        }
                     }
                 }
                 else

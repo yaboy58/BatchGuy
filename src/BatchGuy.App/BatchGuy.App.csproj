@@ -71,9 +71,9 @@
     <Compile Include="EAC\Models\EAC3ToBluRayFile.cs" />
     <Compile Include="EAC\Models\EAC3ToConfiguration.cs" />
     <Compile Include="EAC\Services\BatchFileWriteService.cs" />
-    <Compile Include="EAC\Services\EACOutputService.cs" />
+    <Compile Include="EAC\Services\EAC3ToOutputService.cs" />
     <Compile Include="EAC\Interfaces\IBatchFileWriteService.cs" />
-    <Compile Include="EAC\Interfaces\IEACOutputService.cs" />
+    <Compile Include="EAC\Interfaces\IEAC3ToOutputService.cs" />
     <Compile Include="Enums\Enums.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>

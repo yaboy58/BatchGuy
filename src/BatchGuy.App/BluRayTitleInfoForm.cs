@@ -17,8 +17,8 @@ namespace BatchGuy.App
 {
     public partial class BluRayTitleInfoForm : Form
     {
+        private BluRayDiscInfo _currentBluRayDisc;
         private BluRaySummaryInfo _bluRaySummaryInfo;
-        private CommandLineProcessStartInfo _commandLineProcessStartInfo;
         private BindingList<BluRayTitleAudio> _bindingListBluRayTitleAudio = new BindingList<BluRayTitleAudio>();
         private BindingList<BluRayTitleSubtitle> _bindingListBluRayTitleSubtitle = new BindingList<BluRayTitleSubtitle>();
         private BluRayTitleAudio _currentBluRayTitleAudio;
@@ -28,10 +28,10 @@ namespace BatchGuy.App
             InitializeComponent();
         }
 
-        public void SetBluRayTitleInfo(BluRaySummaryInfo bluRaySummaryInfo, CommandLineProcessStartInfo commandLineProcessStartInfo)
+        public void SetBluRayTitleInfo(BluRaySummaryInfo bluRaySummaryInfo, BluRayDiscInfo currentBluRayDisc)
         {
             _bluRaySummaryInfo = bluRaySummaryInfo;
-            _commandLineProcessStartInfo = commandLineProcessStartInfo;
+            _currentBluRayDisc = currentBluRayDisc;
         }
 
         private void BluRayTitleForm_Load(object sender, EventArgs e)
@@ -52,8 +52,8 @@ namespace BatchGuy.App
         {
             CommandLineProcessStartInfo commandLineProcessStartInfo = new CommandLineProcessStartInfo()
             {
-                FileName = _commandLineProcessStartInfo.FileName,
-                Arguments = string.Format("{0} {1}", _commandLineProcessStartInfo.Arguments, _bluRaySummaryInfo.Id)
+                FileName = _currentBluRayDisc.EAC3ToConfiguration.EAC3ToPath,
+                Arguments = string.Format("\"{0}\" {1}", _currentBluRayDisc.EAC3ToConfiguration.BluRayPath, _bluRaySummaryInfo.Id)
             };
             
             ICommandLineProcessService commandLineProcessService = new CommandLineProcessService(commandLineProcessStartInfo);
@@ -252,7 +252,6 @@ namespace BatchGuy.App
         {
             if (!HelperFunctions.IsNumeric(txtEpisodeNumber.Text))
             {
-                //MessageBox.Show("Episode Number must be numberic", "Invalid Episode Number", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 _bluRaySummaryInfo.BluRayTitleInfo.EpisodeNumber = "";
                 txtEpisodeNumber.Text = "";
             }
