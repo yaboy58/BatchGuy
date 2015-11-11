@@ -144,7 +144,10 @@ namespace BatchGuy.App
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            this.HandleUpdateClick();
+            if (this.IsScreenValid())
+            {
+                this.HandleUpdateClick();                
+            }
         }
 
         private void HandleUpdateClick()
@@ -261,6 +264,24 @@ namespace BatchGuy.App
             else
             {
                 _bluRaySummaryInfo.BluRayTitleInfo.EpisodeNumber = txtEpisodeNumber.Text;
+            }
+        }
+
+        private bool IsScreenValid()
+        {
+            if (_bluRaySummaryInfo.BluRayTitleInfo.Video.IsSelected && string.IsNullOrEmpty(_bluRaySummaryInfo.BluRayTitleInfo.EpisodeNumber))
+            {
+                MessageBox.Show("Please enter an episode number!", "Invalid episode number", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            return true;
+        }
+
+        private void BluRayTitleInfoForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (!this.IsScreenValid())
+            {
+                e.Cancel = true; 
             }
         }
     }
