@@ -12,7 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BatchGuy.Parser.Console.App
+namespace BatchGuy.EAC3To.Parser.Example.Console.App
 {
     class Program
     {

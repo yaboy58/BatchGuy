@@ -63,7 +63,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\src\BatchGuy.App\BatchGuy.App.csproj">
       <Project>{e9703e89-ae3a-46e6-bf68-30313a3f5e1a}</Project>
-      <Name>AviSynthBatchScriptCreator.App</Name>
+      <Name>BatchGuy.App</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

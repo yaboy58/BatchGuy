@@ -7,8 +7,8 @@
     <ProjectGuid>{7C31EBC1-0B88-4722-9C16-8819A551DD5C}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BatchGuy.Parser.Console.App</RootNamespace>
-    <AssemblyName>BatchGuy.Parser.Console.App</AssemblyName>
+    <RootNamespace>BatchGuy.EAC3To.Parser.Example.Console.App</RootNamespace>
+    <AssemblyName>BatchGuy.EAC3To.Parser.Example.Console.App</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
