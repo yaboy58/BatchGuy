@@ -1,11 +1,13 @@
-﻿using BatchGuy.App.Models;
-using BatchGuy.App.X264.Models;
+﻿using BatchGuy.App.X264.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using BatchGuy.App.X264.Interfaces;
+using BatchGuy.App.Enums;
+using BatchGuy.App.Shared.Models;
 
 namespace BatchGuy.App.X264.Services
 {

@@ -1,5 +1,9 @@
 --in general
 *make an icon for the app
+*introduce logging
+*documentation
+*screen prints
+
 
 --eac3To Form
 *possibly upgrade eac3to so you can specify the log file
@@ -7,10 +11,37 @@
 *de-couple bat path from folder where files are stored path
 *validation
 *delete existing .bat file before writing new scripts (probably just check to see if it is on file#1)
+*make the paths dialog windows
+*sort the blu ray titles by episode, although it is a string
+*hardcode episode (ie 99), so you cannot do series greater than 100 episodes
+
 
 --AviSynth Form
 *add a filter dropdown box so multiple filters can be used.
 *validation
 
+
 --x264 Form
 *validation
+
+
+--bluray title info form
+*validation
+*use serialization or some other mechanism to do undo/cancel
+
+
+--parsers
+*validation
+*error handling
+*hard coded languages
+*hard coded audio types
+
+
+--unit tests
+*unit test new helper function methods
+
+
+--Todo
+*account for mpa audio
+*prevent x button from being hit on some screens
+*highlight entire grid row when any cell is selected

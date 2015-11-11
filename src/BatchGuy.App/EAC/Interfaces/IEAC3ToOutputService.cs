@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BatchGuy.App.EAC.Services
+namespace BatchGuy.App.EAC.Interfaces
 {
-    public interface IEACOutputService
+    public interface IEAC3ToOutputService
     {
         string GetEAC3ToPathPart();
         string GetBluRayStreamPart();
         string GetChapterStreamPart();
-        string GetMovieStreamPart();
+        string GetVideoStreamPart();
         string GetAudioStreamPart();
         string GetSubtitleStreamPart();
     }

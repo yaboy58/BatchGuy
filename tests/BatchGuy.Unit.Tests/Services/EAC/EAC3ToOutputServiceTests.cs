@@ -8,19 +8,23 @@ using FluentAssert;
 using BatchGuy.App.EAC.Models;
 using BatchGuy.App.EAC.Services;
 using BatchGuy.App;
+using BatchGuy.App.EAC.Interfaces;
+using BatchGuy.App.Enums;
+using BatchGuy.App.Parser.Models;
 
 namespace BatchGuy.Unit.Tests.Services.EAC
 {
     [TestFixture]
-    public class EACOutputServiceTests
+    public class EAC3ToOutputServiceTests
     {
         [Test]
         public void eacoutputservice_can_set_eac3to_executable_path_test()
         {
+            
             //given eac3to path
             EAC3ToConfiguration config = new EAC3ToConfiguration() { EAC3ToPath = "c:\\exe\\eac3to" };
             //when I want the output
-            IEACOutputService service = new EACOutputService(config, new EAC3ToBluRayFile());
+            IEAC3ToOutputService service = new EAC3ToOutputService(config, "1)", new BluRayTitleInfo() { EpisodeNumber = "1" });
             //then the eac3to path is set
             string output = service.GetEAC3ToPathPart();
             output.ShouldContain(config.EAC3ToPath);
@@ -31,23 +35,21 @@ namespace BatchGuy.Unit.Tests.Services.EAC
         {
             //given bluray folder and stream#
             EAC3ToConfiguration config = new EAC3ToConfiguration() {  BluRayPath = "c:\\disc" };
-            EAC3ToBluRayFile file = new EAC3ToBluRayFile() { BluRaySteamNumber = "1" };
             //when I want the output
-            IEACOutputService service = new EACOutputService(config, file);
+            IEAC3ToOutputService service = new EAC3ToOutputService(config, "1)", new BluRayTitleInfo() { EpisodeNumber = "1" });
             //then the bluray path/stream# is set
             string output = service.GetBluRayStreamPart();
             output.ShouldContain(config.BluRayPath);
-            output.ShouldContain(file.BluRaySteamNumber);
+            output.ShouldContain("1)");
         }
 
         [Test]
         public void eacoutputservice_can_set_dts_audio_settings_test()
         {
             //given dts and audio settings
-            EAC3ToConfiguration config = new EAC3ToConfiguration() {  BatFilePath = "c:\\temp", AudioType = EnumAudioType.DTS, AudioSettings = "-core" };
-            EAC3ToBluRayFile file = new EAC3ToBluRayFile() {  MainAudioStreamNumber = "1" };
+            EAC3ToConfiguration config = new EAC3ToConfiguration() {  BatchFilePath = "c:\\temp" };
             //when I want the output
-            IEACOutputService service = new EACOutputService(config, file);
+            IEAC3ToOutputService service = new EAC3ToOutputService(config, "1)", new BluRayTitleInfo() { EpisodeNumber = "1", AudioList = new List<BluRayTitleAudio>() { new BluRayTitleAudio() { AudioType = EnumAudioType.DTS, IsSelected = true, Arguments = "-core"}} });
             //then the dts audio is set
             string output = service.GetAudioStreamPart();
             output.ShouldContain(".dts");
@@ -58,10 +60,10 @@ namespace BatchGuy.Unit.Tests.Services.EAC
         public void eacoutputservice_can_set_truehd_audio_settings_test()
         {
             //given truehd and audio settings
-            EAC3ToConfiguration config = new EAC3ToConfiguration() { BatFilePath = "c:\\temp", AudioType = EnumAudioType.TrueHD, AudioSettings = "-640" };
+            EAC3ToConfiguration config = new EAC3ToConfiguration() { BatchFilePath = "c:\\temp"};
             EAC3ToBluRayFile file = new EAC3ToBluRayFile() { MainAudioStreamNumber = "1" };
             //when I want the output
-            IEACOutputService service = new EACOutputService(config, file);
+            IEAC3ToOutputService service = new EAC3ToOutputService(config, "1)", new BluRayTitleInfo() { EpisodeNumber = "1", AudioList = new List<BluRayTitleAudio>() { new BluRayTitleAudio() { AudioType = EnumAudioType.TrueHD, IsSelected = true, Arguments = "-640" } } });
             //then the truehd audio is set
             string output = service.GetAudioStreamPart();
             output.ShouldContain(".ac3");

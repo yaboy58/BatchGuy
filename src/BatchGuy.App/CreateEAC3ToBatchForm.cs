@@ -9,12 +9,23 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using BatchGuy.App.EAC.Models;
 using BatchGuy.App.EAC.Services;
+using BatchGuy.App.Parser.Models;
+using BatchGuy.App.Parser.Services;
+using BatchGuy.App.EAC.Interfaces;
+using BatchGuy.App.Parser.Interfaces;
+using BatchGuy.App.Enums;
+using BatchGuy.App.Helpers;
 
 namespace BatchGuy.App
 {
     public partial class CreateEAC3ToBatchForm : Form
     {
-        private EnumAudioType AudioType { get; set; }
+        private List<BluRayDiscInfo> _bluRayDiscInfoList;
+        private BluRayDiscInfo _currentBluRayDiscInfo;
+        private CommandLineProcessStartInfo _commandLineProcessStartInfo;
+        private BindingList<BluRayDiscInfo> _bindingListBluRayDiscInfo = new BindingList<BluRayDiscInfo>();
+        private BindingList<BluRaySummaryInfo> _bindingListBluRaySummaryInfo;
+
 
         public CreateEAC3ToBatchForm()
         {
@@ -23,131 +34,175 @@ namespace BatchGuy.App
 
         private void CreateEAC3ToBatchForm_Load(object sender, EventArgs e)
         {
-            this.SetComboBoxAudioType();
-            this.SetAudioSettingsTextBox();
-            this.SetComboBoxAudioLanguage();
-
         }
 
         private void btnWriteToBatFile_Click(object sender, EventArgs e)
         {
-            this.WriteToBatchFile();
+            if (this.IsAtLeastOneDiscLoaded())
+            {
+                this.WriteToBatchFile();                
+            }
         }
 
         private void WriteToBatchFile()
         {
-            EAC3ToBluRayFile file = this.GetEAC3ToBluyRayFile();
-            EAC3ToConfiguration config = this.GetEAC3ToConfiguration();
-            IEACOutputService eacOutputService = new EACOutputService(config, file);
-            IBatFileWriteService batFileWriteService = new BatFileWriteService(config, file, eacOutputService);
-            batFileWriteService.Write();
-            this.Clear();
-            this.IncrementEpisodeNumber();
+            IBatchFileWriteService batchFileWriteService = new BatchFileWriteService(_bluRayDiscInfoList);
+            batchFileWriteService.Write();
+            if (batchFileWriteService.Errors.Count() == 0)
+            {
+                MessageBox.Show("Batch File created!", "Process Complete", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                this.Close();   
+            }
+            else
+            {
+                MessageBox.Show(string.Format("Error: {0}", batchFileWriteService.Errors[0].Description), "Error occurred", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
-        private EAC3ToConfiguration GetEAC3ToConfiguration()
+        private void btnAddBluRayDisc_Click(object sender, EventArgs e)
         {
-            return new EAC3ToConfiguration()
+            if (this.IsScreenValid())
             {
-                 BatFilePath = txtBatFilePath.Text,
-                  BluRayPath = txtBluRayPath.Text,
-                   EAC3ToPath = txtEAC3ToPath.Text,
-                    AudioSettings = txtAudioSettings.Text,
-                     AudioType = this.AudioType,
-                     AudioLanguage = cbAudioLanguage.Text
+                this.HandleAddBluRayDiscClick();
+                txtBluRayPath.Text = string.Empty;                
+            }
+        }
+
+        private void HandleAddBluRayDiscClick()
+        {
+            if (_bluRayDiscInfoList == null)
+                _bluRayDiscInfoList = new List<BluRayDiscInfo>();
+
+            BluRayDiscInfo info = new BluRayDiscInfo()
+            {
+                Id = _bluRayDiscInfoList.Count + 1,
+                IsSelected = false,
+                EAC3ToConfiguration = new EAC3ToConfiguration()
+                {
+                    BatchFilePath = txtBatFilePath.Text,
+                    BluRayPath = txtBluRayPath.Text,
+                    EAC3ToPath = txtEAC3ToPath.Text
+                }
             };
+
+            _bluRayDiscInfoList.Add(info);
+            _bindingListBluRayDiscInfo.Add(info);
+
+            bsBluRayDiscInfo.DataSource = _bindingListBluRayDiscInfo;
         }
 
-        private EAC3ToBluRayFile GetEAC3ToBluyRayFile()
+        private void dgvBluRayDiscInfo_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            return new EAC3ToBluRayFile()
+            this.HandleDgvBluRayDiscInfoCellClick(e);
+            if (_currentBluRayDiscInfo.BluRaySummaryInfoList == null)
             {
-                 BluRayEpisodeFolder = txtBluRayEpisodeFolder.Text,
-                  BluRaySteamNumber = txtBluRayStreamNumber.Text,
-                   MainAudioStreamNumber = txtMainAudioStreamNumber.Text,
-                   MainSubtitleStreamNumber = txtMainSubtitleStreamNumber.Text,
-                   ChapterStreamNumber = txtChapterStreamNumber.Text,
-                    MovieStreamNumber = txtMovieStreamNumber.Text
+                this.HandleLoadBluRay();
+            }
+            else
+            {
+                _bindingListBluRaySummaryInfo = new BindingList<BluRaySummaryInfo>();
+                foreach (BluRaySummaryInfo info in _currentBluRayDiscInfo.BluRaySummaryInfoList)
+                {
+                    _bindingListBluRaySummaryInfo.Add(info);
+                }
+            }
+            this.BindDgvBluRaySummaryGrid();
+            gbDiscSummary.Text = string.Format("Disc Summary: {0}", _currentBluRayDiscInfo.DiscName);
+        }
+
+        private void HandleDgvBluRayDiscInfoCellClick(DataGridViewCellEventArgs e)
+        {
+            var id = dgvBluRayDiscInfo.Rows[e.RowIndex].Cells[1].Value;
+            _currentBluRayDiscInfo = _bluRayDiscInfoList.SingleOrDefault(d => d.Id == HelperFunctions.StringToInt(id.ToString()));
+        }
+
+        private void HandleLoadBluRay()
+        {
+            _bindingListBluRaySummaryInfo = new BindingList<BluRaySummaryInfo>();
+
+            //Blu ray streams
+            _commandLineProcessStartInfo = new CommandLineProcessStartInfo()
+            {
+                FileName = txtEAC3ToPath.Text,
+                Arguments = string.Format("\"{0}\"", _currentBluRayDiscInfo.EAC3ToConfiguration.BluRayPath)
             };
-        }
 
-        private void Clear()
-        {
-            txtBluRayStreamNumber.Text = string.Empty;
-            txtBluRayStreamNumber.Focus();
-        }
-
-        private void IncrementEpisodeNumber()
-        {
-            int episode = Convert.ToInt32(txtBluRayEpisodeFolder.Text) + 1;
-            txtBluRayEpisodeFolder.Text = episode.ToString();
-        }
-
-        private void CreateEAC3ToBatchForm_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == 13)
+            ICommandLineProcessService commandLineProcessService = new CommandLineProcessService(_commandLineProcessStartInfo);
+            if (commandLineProcessService.Errors.Count() == 0)
             {
-                this.WriteToBatchFile();
+                //Get line items
+                List<ProcessOutputLineItem> processOutputLineItems = commandLineProcessService.GetProcessOutputLineItems();
+                ////:Get the Blu ray summary list
+                ILineItemIdentifierService lineItemService = new BluRaySummaryLineItemIdentifierService();
+                IBluRaySummaryParserService parserService = new BluRaySummaryParserService(lineItemService, processOutputLineItems);
+                _currentBluRayDiscInfo.BluRaySummaryInfoList = parserService.GetSummaryList();
+
+                foreach (BluRaySummaryInfo info in _currentBluRayDiscInfo.BluRaySummaryInfoList)
+                {
+                    _bindingListBluRaySummaryInfo.Add(info);
+                }
+            }
+            else
+            {
+                System.Console.WriteLine("The following errors were found:");
+                foreach (var error in commandLineProcessService.Errors)
+                {
+                    //TODO:Display Error Message
+                }
             }
         }
 
-        private void SetComboBoxAudioType()
+        private void BindDgvBluRaySummaryGrid()
         {
-            this.cbAudioType.SelectedIndex = 0;
+            bsBluRaySummaryInfo.DataSource = _bindingListBluRaySummaryInfo;
+            bsBluRaySummaryInfo.ResetBindings(false);
+            _bindingListBluRaySummaryInfo.AllowEdit = true;
         }
 
-        private void SetComboBoxAudioLanguage()
+        private void dgvBluRaySummary_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            this.cbAudioLanguage.SelectedIndex = 0;
+            this.HandleDgvBluRaySummaryCellDoubleClick(e);
         }
 
-        private void SetAudioSettingsTextBox()
+        private void HandleDgvBluRaySummaryCellDoubleClick(DataGridViewCellEventArgs e)
         {
-            switch (this.AudioType)
+            var id = dgvBluRaySummary.Rows[e.RowIndex].Cells[1].Value;
+            BluRaySummaryInfo summaryInfo = _currentBluRayDiscInfo.BluRaySummaryInfoList.SingleOrDefault(s => s.Id == id.ToString());
+
+            BluRayTitleInfoForm form = new BluRayTitleInfoForm();
+            form.SetBluRayTitleInfo(summaryInfo, _currentBluRayDiscInfo);
+            form.ShowDialog();
+            this.BindDgvBluRaySummaryGrid();
+        }
+
+        private bool IsScreenValid()
+        {
+            if (txtBatFilePath.Text == string.Empty)
             {
-                case EnumAudioType.DTS:
-                    txtAudioSettings.Text = "-core";
-                    break;
-                case EnumAudioType.AC3:
-                    txtAudioSettings.Text = string.Empty;
-                    break;
-                case EnumAudioType.FLAC:
-                    txtAudioSettings.Text = string.Empty;
-                    break;
-                case EnumAudioType.TrueHD:
-                    txtAudioSettings.Text = "-640";
-                    break;
-                default:
-                    break;
+                MessageBox.Show("Please enter the path the batch file should be created!", "Error occurred", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;    
             }
-        }
-
-        private void cbAudioType_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            this.HandleAudioTypeChanged(cbAudioType.Text);
-        }
-
-        private void HandleAudioTypeChanged(string value)
-        {
-            switch (value)
+            if (txtBluRayPath.Text == string.Empty)
             {
-                case "DTS":
-                    this.AudioType = EnumAudioType.DTS;
-                    break;
-                case "AC3":
-                    this.AudioType = EnumAudioType.AC3;
-                    break;
-                case "FLAC":
-                    this.AudioType = EnumAudioType.FLAC;
-                    break;
-                case "TrueHD":
-                    this.AudioType = EnumAudioType.TrueHD;
-                    break;
-                default:
-                    throw new Exception("Invalid Audio Type");
+                MessageBox.Show("Please enter the path where the blu-ray disc is located!", "Error occurred", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
+            if (txtEAC3ToPath.Text == string.Empty)
+            {
+                MessageBox.Show("Please enter the eac3to.exe path with the exe in the path!", "Error occurred", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            return true;
+        }
 
-            this.SetAudioSettingsTextBox();
+        private bool IsAtLeastOneDiscLoaded()
+        {
+            if (_bluRayDiscInfoList == null || _bluRayDiscInfoList.Count() == 0)
+            {
+                MessageBox.Show("Please load at least 1 blu-ray disck!", "Error occurred", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            return true;
         }
     }
 }
