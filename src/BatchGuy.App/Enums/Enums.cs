@@ -17,7 +17,8 @@ namespace BatchGuy.App.Enums
         DTS = 1,
         AC3 = 2,
         FLAC = 3,
-        TrueHD = 4
+        TrueHD = 4,
+        MPA = 5
     }
 
     public enum EnumLineItemType

@@ -183,6 +183,9 @@ namespace BatchGuy.App
                 case EnumAudioType.TrueHD:
                     name = "TrueHD";
                     break;
+                case EnumAudioType.MPA:
+                    name = "MPA";
+                    break;
                 default:
                     throw new Exception("Invalid Audio Type");
             }

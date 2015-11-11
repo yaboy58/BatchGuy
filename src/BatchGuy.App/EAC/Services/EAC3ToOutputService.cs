@@ -119,6 +119,9 @@ namespace BatchGuy.App.EAC.Services
                 case EnumAudioType.TrueHD:
                     audioExtension = "ac3";
                     break;
+                case EnumAudioType.MPA:
+                    audioExtension = "mpa";
+                    break;
                 default:
                     throw new Exception("Invalid Audio Type");
             }
