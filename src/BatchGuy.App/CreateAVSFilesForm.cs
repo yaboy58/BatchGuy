@@ -98,5 +98,21 @@ namespace BatchGuy.App
             }
             return true;
         }
+
+        private void btnOpenDialog_Click(object sender, EventArgs e)
+        {
+            this.HandleBtnOpenDialogClick();
+        }
+
+        private void HandleBtnOpenDialogClick()
+        {
+            fbdDialog.ShowNewFolderButton = true;
+            fbdDialog.RootFolder = Environment.SpecialFolder.Desktop;
+            DialogResult result = fbdDialog.ShowDialog();
+            if (result == System.Windows.Forms.DialogResult.OK)
+            {
+                txtDirectory.Text = fbdDialog.SelectedPath;
+            }
+        }
     }
 }

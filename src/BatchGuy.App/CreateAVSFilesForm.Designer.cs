@@ -35,6 +35,8 @@
             this.btnCreateAVSFiles = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.txtNumberOfFiles = new System.Windows.Forms.TextBox();
+            this.fbdDialog = new System.Windows.Forms.FolderBrowserDialog();
+            this.btnOpenDialog = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label2
@@ -50,9 +52,9 @@
             // 
             this.txtDirectory.Location = new System.Drawing.Point(142, 12);
             this.txtDirectory.Name = "txtDirectory";
+            this.txtDirectory.ReadOnly = true;
             this.txtDirectory.Size = new System.Drawing.Size(434, 20);
             this.txtDirectory.TabIndex = 0;
-            this.txtDirectory.Text = "C:\\temp\\My Torrent Encodes\\Blu-ray";
             // 
             // label1
             // 
@@ -97,11 +99,22 @@
             this.txtNumberOfFiles.Size = new System.Drawing.Size(54, 20);
             this.txtNumberOfFiles.TabIndex = 1;
             // 
+            // btnOpenDialog
+            // 
+            this.btnOpenDialog.Image = global::BatchGuy.App.Properties.Resources.Avosoft_Warm_Toolbar_Folder_open;
+            this.btnOpenDialog.Location = new System.Drawing.Point(582, 5);
+            this.btnOpenDialog.Name = "btnOpenDialog";
+            this.btnOpenDialog.Size = new System.Drawing.Size(61, 33);
+            this.btnOpenDialog.TabIndex = 11;
+            this.btnOpenDialog.UseVisualStyleBackColor = true;
+            this.btnOpenDialog.Click += new System.EventHandler(this.btnOpenDialog_Click);
+            // 
             // CreateAVSFilesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(820, 335);
+            this.Controls.Add(this.btnOpenDialog);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtNumberOfFiles);
             this.Controls.Add(this.btnCreateAVSFiles);
@@ -127,5 +140,7 @@
         private System.Windows.Forms.Button btnCreateAVSFiles;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtNumberOfFiles;
+        private System.Windows.Forms.FolderBrowserDialog fbdDialog;
+        private System.Windows.Forms.Button btnOpenDialog;
     }
 }
