@@ -210,5 +210,52 @@ namespace BatchGuy.App
         {
             dgvBluRaySummary.Rows[e.RowIndex].Selected = true;
         }
+
+        private void btnOpenBluRayPathDialog_Click(object sender, EventArgs e)
+        {
+            this.HandleBtnOpenBluRayPathDialogClick();
+        }
+
+        private void HandleBtnOpenBluRayPathDialogClick()
+        {
+            
+            fbdDialog.ShowNewFolderButton = true;
+            fbdDialog.RootFolder = Environment.SpecialFolder.Desktop;
+            DialogResult result = fbdDialog.ShowDialog();
+            if (result == System.Windows.Forms.DialogResult.OK)
+            {
+                txtBluRayPath.Text = fbdDialog.SelectedPath;
+            }
+        }
+
+        private void btnOpenEac3ToFileDialog_Click(object sender, EventArgs e)
+        {
+            this.HandleOpenEac3ToFileDialogClick();
+        }
+
+        private void HandleOpenEac3ToFileDialogClick()
+        {
+            DialogResult result = ofdEac3ToFileDialog.ShowDialog(this);
+            if (result == System.Windows.Forms.DialogResult.OK)
+            {
+                txtEAC3ToPath.Text = ofdEac3ToFileDialog.FileName;
+            }
+        }
+
+        private void btnOpenBatchFilePathDialog_Click(object sender, EventArgs e)
+        {
+            this.HandleBtnOpenBatchFilePathDialogClick();
+        }
+
+        private void HandleBtnOpenBatchFilePathDialogClick()
+        {
+            fbdDialog.ShowNewFolderButton = true;
+            fbdDialog.RootFolder = Environment.SpecialFolder.Desktop;
+            DialogResult result = fbdDialog.ShowDialog();
+            if (result == System.Windows.Forms.DialogResult.OK)
+            {
+               txtBatFilePath.Text= fbdDialog.SelectedPath;
+            }
+        }
     }
 }

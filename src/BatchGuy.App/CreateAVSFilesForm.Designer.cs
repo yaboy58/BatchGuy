@@ -55,6 +55,7 @@
             this.txtDirectory.ReadOnly = true;
             this.txtDirectory.Size = new System.Drawing.Size(434, 20);
             this.txtDirectory.TabIndex = 0;
+            this.txtDirectory.Text = "C:\\temp\\My Encodes\\Blu-ray";
             // 
             // label1
             // 
