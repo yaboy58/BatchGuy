@@ -6,8 +6,6 @@
 
 
 --eac3To Form
-*possibly upgrade eac3to so you can specify the log file
-*maybe even configure audio for commentary
 *de-couple bat path from folder where files are stored path
 *validation
 *delete existing .bat file before writing new scripts (probably just check to see if it is on file#1)

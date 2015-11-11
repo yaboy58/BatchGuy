@@ -11,6 +11,7 @@ using BatchGuy.App.AVS.Models;
 using BatchGuy.App.AVS.Services;
 using BatchGuy.App.AVS.Interfaces;
 using BatchGuy.App.Shared.Models;
+using BatchGuy.App.Helpers;
 
 namespace BatchGuy.App
 {
@@ -40,7 +41,10 @@ namespace BatchGuy.App
 
         private void btnCreateAVSFiles_Click(object sender, EventArgs e)
         {
-            Process();
+            if (this.IsScreenValid())
+            {
+                Process();                
+            }
         }
 
         private void Process()
@@ -78,6 +82,21 @@ namespace BatchGuy.App
         private AVSTemplateScript GetAVSScript()
         {
             return new AVSTemplateScript() { Script = txtAVSTemplate.Text };
+        }
+
+        private bool IsScreenValid()
+        {
+            if (txtDirectory.Text == string.Empty)
+            {
+                MessageBox.Show("Please enter a file directory", "Directory Error.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            if (txtNumberOfFiles.Text == string.Empty || !HelperFunctions.IsNumeric(txtNumberOfFiles.Text))
+            {
+                MessageBox.Show("Invalid number of files", "Number of files Error.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;                
+            }
+            return true;
         }
     }
 }
