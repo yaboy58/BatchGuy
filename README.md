@@ -14,7 +14,7 @@ BatchGuy was created to do a specific job, which is to allow the user to be able
 BatchGuy is not an AviSynth editor.  It has very limited AviSynth syntax capabilities (which could be expanded as the product evolves).  It allows you to copy/paste AviSynth syntax into it and it will create a (.avs) file for each video you extracted from your Blu-ray discs.
 
 
-BatchGuy is not an x264 encoder.  BatchGuy will create a (.bat) file to you can use to run x264.exe.  BatchGuy will not extract streams from Blu-ray discs for you.  BatchGuy will allow you to pick which streams you would like to extract and will create a (.bat) file that will use eac3to.exe that will extract the streams.
+BatchGuy is not an x264 encoder.  BatchGuy will create a (.bat) file thatyou can use to run the x264.exe encodder.  BatchGuy will not extract streams from Blu-ray discs for you.  BatchGuy will allow you to pick which streams you would like to extract and will create a (.bat) file that will use eac3to.exe that will extract the streams.
 
 
 <b>Overview</b>
