@@ -23,7 +23,7 @@ namespace BatchGuy.App.X264.Services
             _x264Files = x264Files;
             _x264FileSettings = x264FileSettings;
             _errors = new List<Error>();
-            _batFile = "encode.bat";
+            _batFile = "batchguy.encode.bluray.bat";
         }
 
         public List<Error> CreateX264File()

@@ -65,7 +65,7 @@ namespace BatchGuy.App
             }
             else
             {
-                MessageBox.Show("AVS Scripts have been created!");
+                MessageBox.Show("AVS Scripts have been created!", "Success.",  MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 

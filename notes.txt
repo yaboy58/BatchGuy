@@ -39,5 +39,5 @@
 
 --Todo
 *error occurs when sorting
-*sort the blu ray titles by episode, although it is a string
 *delete existing .bat file before writing new scripts (probably just check to see if it is on file#1)
+*resize update button on blu ray title info and when no episode# error, set focus to episode box

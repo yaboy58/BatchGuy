@@ -45,7 +45,7 @@ namespace BatchGuy.App.Eac3to.Services
                     */
                     foreach (BluRayDiscInfo disc in _bluRayDiscInfoList.Where(d => d.IsSelected))
                     {
-                        foreach (BluRaySummaryInfo summary in disc.BluRaySummaryInfoList.Where(s => s.IsSelected).OrderBy(s => s.Id.StringToInt()))
+                        foreach (BluRaySummaryInfo summary in disc.BluRaySummaryInfoList.Where(s => s.IsSelected).OrderBy(s => s.EpisodeNumber.StringToInt()))
                         {
                             IEAC3ToOutputService eacOutputService = new EAC3ToOutputService(disc.EAC3ToConfiguration, summary.Id, summary.BluRayTitleInfo);
                             string eac3ToPathPart = eacOutputService.GetEAC3ToPathPart();
@@ -55,7 +55,7 @@ namespace BatchGuy.App.Eac3to.Services
                             string audioStreamPart = eacOutputService.GetAudioStreamPart();
                             string subtitleStreamPart = eacOutputService.GetSubtitleStreamPart();
 
-                            using (StreamWriter sw = new StreamWriter(string.Format("{0}\\bluray.bat",disc.EAC3ToConfiguration.BatchFilePath), true))
+                            using (StreamWriter sw = new StreamWriter(string.Format("{0}\\batchguy.extract.bluray.bat",disc.EAC3ToConfiguration.BatchFilePath), true))
                             {
                                 sw.WriteLine(string.Format("{0} {1} {2} {3} {4} {5} -progressnumbers", eac3ToPathPart, bluRayStreamPart, chapterStreamPart, videoStreamPart, audioStreamPart,
                                     subtitleStreamPart));
