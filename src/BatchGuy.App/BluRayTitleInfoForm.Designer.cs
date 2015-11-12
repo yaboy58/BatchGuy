@@ -245,9 +245,9 @@
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(705, 651);
+            this.btnUpdate.Location = new System.Drawing.Point(826, 651);
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(203, 25);
+            this.btnUpdate.Size = new System.Drawing.Size(82, 25);
             this.btnUpdate.TabIndex = 3;
             this.btnUpdate.Text = "Update";
             this.btnUpdate.UseVisualStyleBackColor = true;

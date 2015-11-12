@@ -149,6 +149,10 @@ namespace BatchGuy.App
             {
                 this.HandleUpdateClick();                
             }
+            else
+            {
+                txtEpisodeNumber.Focus();
+            }
         }
 
         private void HandleUpdateClick()
