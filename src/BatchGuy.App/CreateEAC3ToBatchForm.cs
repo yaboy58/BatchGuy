@@ -16,6 +16,7 @@ using BatchGuy.App.Parser.Interfaces;
 using BatchGuy.App.Enums;
 using BatchGuy.App.Helpers;
 using BatchGuy.App.Eac3To.Interfaces;
+using BatchGuy.App.Extensions;
 
 namespace BatchGuy.App
 {
@@ -115,7 +116,7 @@ namespace BatchGuy.App
         private void HandleDgvBluRayDiscInfoCellClick(DataGridViewCellEventArgs e)
         {
             var id = dgvBluRayDiscInfo.Rows[e.RowIndex].Cells[1].Value;
-            _currentBluRayDiscInfo = _bluRayDiscInfoList.SingleOrDefault(d => d.Id == HelperFunctions.StringToInt(id.ToString()));
+            _currentBluRayDiscInfo = _bluRayDiscInfoList.SingleOrDefault(d => d.Id == id.ToString().StringToInt());
         }
 
         private void HandleLoadBluRay()

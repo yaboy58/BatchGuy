@@ -12,6 +12,7 @@ using BatchGuy.App.AviSynth.Services;
 using BatchGuy.App.AviSynth.Interfaces;
 using BatchGuy.App.Shared.Models;
 using BatchGuy.App.Helpers;
+using BatchGuy.App.Extensions;
 
 namespace BatchGuy.App
 {
@@ -91,7 +92,7 @@ namespace BatchGuy.App
                 MessageBox.Show("Please enter a file directory", "Directory Error.", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
-            if (txtNumberOfFiles.Text == string.Empty || !HelperFunctions.IsNumeric(txtNumberOfFiles.Text))
+            if (txtNumberOfFiles.Text == string.Empty || !txtNumberOfFiles.Text.IsNumeric())
             {
                 MessageBox.Show("Invalid number of files", "Number of files Error.", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;                

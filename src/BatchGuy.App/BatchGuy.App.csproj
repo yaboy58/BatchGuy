@@ -77,6 +77,7 @@
     <Compile Include="Eac3To\Interfaces\IBatchFileWriteService.cs" />
     <Compile Include="Eac3To\Interfaces\IEAC3ToOutputService.cs" />
     <Compile Include="Enums\Enums.cs" />
+    <Compile Include="Extensions\ExtensionMethods.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>

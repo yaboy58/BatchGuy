@@ -12,6 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BatchGuy.App.Helpers;
+using BatchGuy.App.Extensions;
 
 namespace BatchGuy.App
 {
@@ -257,7 +258,7 @@ namespace BatchGuy.App
 
         private void HandleTextBoxEpisodeNumberTextChanged()
         {
-            if (!HelperFunctions.IsNumeric(txtEpisodeNumber.Text))
+            if (!txtEpisodeNumber.Text.IsNumeric())
             {
                 _bluRaySummaryInfo.BluRayTitleInfo.EpisodeNumber = "";
                 txtEpisodeNumber.Text = "";

@@ -51,20 +51,5 @@ namespace BatchGuy.App.Helpers
             }
             return result.ToString().Trim();
         }
-
-        public static bool IsNumeric(string value)
-        {
-            int outValue;
-            bool isValid = int.TryParse(value, out outValue);
-            return isValid;
-        }
-
-        public static int StringToInt(string value)
-        {
-            int outValue;
-            bool isValid = int.TryParse(value, out outValue);
-            return outValue;
-        }
-
     }
 }

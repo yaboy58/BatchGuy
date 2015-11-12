@@ -10,6 +10,7 @@ using BatchGuy.App.Eac3to.Interfaces;
 using BatchGuy.App.Shared.Models;
 using BatchGuy.App.Parser.Models;
 using BatchGuy.App.Eac3To.Interfaces;
+using BatchGuy.App.Extensions;
 
 namespace BatchGuy.App.Eac3to.Services
 {
@@ -44,7 +45,7 @@ namespace BatchGuy.App.Eac3to.Services
                     */
                     foreach (BluRayDiscInfo disc in _bluRayDiscInfoList.Where(d => d.IsSelected))
                     {
-                        foreach (BluRaySummaryInfo summary in disc.BluRaySummaryInfoList.Where(s => s.IsSelected))
+                        foreach (BluRaySummaryInfo summary in disc.BluRaySummaryInfoList.Where(s => s.IsSelected).OrderBy(s => s.Id.StringToInt()))
                         {
                             IEAC3ToOutputService eacOutputService = new EAC3ToOutputService(disc.EAC3ToConfiguration, summary.Id, summary.BluRayTitleInfo);
                             string eac3ToPathPart = eacOutputService.GetEAC3ToPathPart();
