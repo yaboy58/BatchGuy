@@ -7,14 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using BatchGuy.App.EAC.Models;
-using BatchGuy.App.EAC.Services;
+using BatchGuy.App.Eac3to.Models;
+using BatchGuy.App.Eac3to.Services;
 using BatchGuy.App.Parser.Models;
 using BatchGuy.App.Parser.Services;
-using BatchGuy.App.EAC.Interfaces;
+using BatchGuy.App.Eac3to.Interfaces;
 using BatchGuy.App.Parser.Interfaces;
 using BatchGuy.App.Enums;
 using BatchGuy.App.Helpers;
+using BatchGuy.App.Eac3To.Interfaces;
 
 namespace BatchGuy.App
 {

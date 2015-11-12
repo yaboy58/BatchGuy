@@ -1,5 +1,5 @@
-﻿using BatchGuy.App.EAC.Interfaces;
-using BatchGuy.App.EAC.Models;
+﻿using BatchGuy.App.Eac3to.Interfaces;
+using BatchGuy.App.Eac3to.Models;
 using BatchGuy.App.Enums;
 using BatchGuy.App.Helpers;
 using BatchGuy.App.Parser.Models;
@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BatchGuy.App.EAC.Services
+namespace BatchGuy.App.Eac3to.Services
 {
     public class EAC3ToOutputService : IEAC3ToOutputService
     {

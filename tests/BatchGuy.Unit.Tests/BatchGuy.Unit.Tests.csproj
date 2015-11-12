@@ -31,6 +31,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Icontexto-Webdev-Webdev-config.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="FluentAssert, Version=1.0.0.11, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -70,6 +73,7 @@
     <Content Include="FluentAssert.License.txt" />
     <Content Include="FluentAssert.Provenance.txt" />
     <Content Include="FluentAssert.xml" />
+    <Content Include="Icontexto-Webdev-Webdev-config.ico" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

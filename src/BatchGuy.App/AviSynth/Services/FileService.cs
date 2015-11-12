@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BatchGuy.App.Helpers;
-using BatchGuy.App.AVS;
-using BatchGuy.App.AVS.Models;
-using BatchGuy.App.AVS.Interfaces;
+using BatchGuy.App.AviSynth;
+using BatchGuy.App.AviSynth.Models;
+using BatchGuy.App.AviSynth.Interfaces;
 
-namespace BatchGuy.App.AVS.Services
+namespace BatchGuy.App.AviSynth.Services
 {
     public class FileService : IFileService
     {

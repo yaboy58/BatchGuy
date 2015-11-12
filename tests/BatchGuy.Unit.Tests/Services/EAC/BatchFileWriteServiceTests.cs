@@ -5,10 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using FluentAssert;
 using NUnit.Framework;
-using BatchGuy.App.EAC.Interfaces;
-using BatchGuy.App.EAC.Services;
+using BatchGuy.App.Eac3to.Interfaces;
+using BatchGuy.App.Eac3to.Services;
 using BatchGuy.App.Parser.Models;
 using BatchGuy.App.Shared.Models;
+using BatchGuy.App.Eac3To.Interfaces;
 
 namespace BatchGuy.Unit.Tests.Services.EAC
 {

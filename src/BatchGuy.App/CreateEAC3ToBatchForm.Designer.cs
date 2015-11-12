@@ -154,6 +154,7 @@
             // 
             this.dgvBluRayDiscInfo.AllowUserToAddRows = false;
             this.dgvBluRayDiscInfo.AllowUserToDeleteRows = false;
+            this.dgvBluRayDiscInfo.AllowUserToOrderColumns = true;
             this.dgvBluRayDiscInfo.AutoGenerateColumns = false;
             this.dgvBluRayDiscInfo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvBluRayDiscInfo.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -214,7 +215,6 @@
             // 
             // dgvBluRaySummary
             // 
-            this.dgvBluRaySummary.AllowUserToAddRows = false;
             this.dgvBluRaySummary.AutoGenerateColumns = false;
             this.dgvBluRaySummary.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvBluRaySummary.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {

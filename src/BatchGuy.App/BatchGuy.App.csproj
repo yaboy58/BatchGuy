@@ -32,7 +32,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Icons\Walrick-Openphone-Settings.ico</ApplicationIcon>
+    <ApplicationIcon>Icons\Icontexto-Webdev-Webdev-config.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -71,12 +71,11 @@
     <Compile Include="CreateX264BatFileForm.Designer.cs">
       <DependentUpon>CreateX264BatFileForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="EAC\Models\EAC3ToBluRayFile.cs" />
-    <Compile Include="EAC\Models\EAC3ToConfiguration.cs" />
-    <Compile Include="EAC\Services\BatchFileWriteService.cs" />
-    <Compile Include="EAC\Services\EAC3ToOutputService.cs" />
-    <Compile Include="EAC\Interfaces\IBatchFileWriteService.cs" />
-    <Compile Include="EAC\Interfaces\IEAC3ToOutputService.cs" />
+    <Compile Include="Eac3To\Models\EAC3ToConfiguration.cs" />
+    <Compile Include="Eac3To\Services\BatchFileWriteService.cs" />
+    <Compile Include="Eac3To\Services\EAC3ToOutputService.cs" />
+    <Compile Include="Eac3To\Interfaces\IBatchFileWriteService.cs" />
+    <Compile Include="Eac3To\Interfaces\IEAC3ToOutputService.cs" />
     <Compile Include="Enums\Enums.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -85,9 +84,9 @@
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Helpers\HelperFunctions.cs" />
-    <Compile Include="AVS\Models\AVSBatchSettings.cs" />
-    <Compile Include="AVS\Models\AVSFile.cs" />
-    <Compile Include="AVS\Models\AVSScript.cs" />
+    <Compile Include="AviSynth\Models\AVSBatchSettings.cs" />
+    <Compile Include="AviSynth\Models\AVSFile.cs" />
+    <Compile Include="AviSynth\Models\AVSScript.cs" />
     <Compile Include="Parser\Interfaces\IBluRayTitleParserService.cs" />
     <Compile Include="Parser\Models\BluRayDiscInfo.cs" />
     <Compile Include="Parser\Models\BluRayTitleAudio.cs" />
@@ -109,12 +108,12 @@
     <Compile Include="Parser\Interfaces\ILineItemIdentifierService.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="AVS\Services\AVSService.cs" />
-    <Compile Include="AVS\Services\FileService.cs" />
-    <Compile Include="AVS\Interfaces\IAVSService.cs" />
-    <Compile Include="AVS\Interfaces\IFileService.cs" />
-    <Compile Include="AVS\Interfaces\IValidationService.cs" />
-    <Compile Include="AVS\Services\ValidationService.cs" />
+    <Compile Include="AviSynth\Services\AVSService.cs" />
+    <Compile Include="AviSynth\Services\FileService.cs" />
+    <Compile Include="AviSynth\Interfaces\IAVSService.cs" />
+    <Compile Include="AviSynth\Interfaces\IFileService.cs" />
+    <Compile Include="AviSynth\Interfaces\IValidationService.cs" />
+    <Compile Include="AviSynth\Services\ValidationService.cs" />
     <Compile Include="X264\Models\X264File.cs" />
     <Compile Include="X264\Models\X264FileSettings.cs" />
     <Compile Include="X264\Services\EncodeService.cs" />
@@ -171,7 +170,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Icons\Avosoft-Warm-Toolbar-Folder-open.ico" />
-    <Content Include="Icons\Walrick-Openphone-Settings.ico" />
+    <Content Include="Icons\Icontexto-Webdev-Webdev-config.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -7,9 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using BatchGuy.App.AVS.Models;
-using BatchGuy.App.AVS.Services;
-using BatchGuy.App.AVS.Interfaces;
+using BatchGuy.App.AviSynth.Models;
+using BatchGuy.App.AviSynth.Services;
+using BatchGuy.App.AviSynth.Interfaces;
 using BatchGuy.App.Shared.Models;
 using BatchGuy.App.Helpers;
 

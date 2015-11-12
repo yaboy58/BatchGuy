@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
 using FluentAssert;
-using BatchGuy.App.AVS.Models;
-using BatchGuy.App.AVS.Services;
-using BatchGuy.App.AVS.Interfaces;
+using BatchGuy.App.AviSynth.Models;
+using BatchGuy.App.AviSynth.Services;
+using BatchGuy.App.AviSynth.Interfaces;
 
 namespace BatchGuy.Unit.Tests
 {

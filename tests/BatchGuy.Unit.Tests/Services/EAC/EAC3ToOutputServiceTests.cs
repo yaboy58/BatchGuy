@@ -5,10 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FluentAssert;
-using BatchGuy.App.EAC.Models;
-using BatchGuy.App.EAC.Services;
+using BatchGuy.App.Eac3to.Models;
+using BatchGuy.App.Eac3to.Services;
 using BatchGuy.App;
-using BatchGuy.App.EAC.Interfaces;
+using BatchGuy.App.Eac3to.Interfaces;
 using BatchGuy.App.Enums;
 using BatchGuy.App.Parser.Models;
 
@@ -54,20 +54,6 @@ namespace BatchGuy.Unit.Tests.Services.EAC
             string output = service.GetAudioStreamPart();
             output.ShouldContain(".dts");
             output.ShouldContain("-core");
-        }
-
-        [Test]
-        public void eacoutputservice_can_set_truehd_audio_settings_test()
-        {
-            //given truehd and audio settings
-            EAC3ToConfiguration config = new EAC3ToConfiguration() { BatchFilePath = "c:\\temp"};
-            EAC3ToBluRayFile file = new EAC3ToBluRayFile() { MainAudioStreamNumber = "1" };
-            //when I want the output
-            IEAC3ToOutputService service = new EAC3ToOutputService(config, "1)", new BluRayTitleInfo() { EpisodeNumber = "1", AudioList = new List<BluRayTitleAudio>() { new BluRayTitleAudio() { AudioType = EnumAudioType.TrueHD, IsSelected = true, Arguments = "-640" } } });
-            //then the truehd audio is set
-            string output = service.GetAudioStreamPart();
-            output.ShouldContain(".ac3");
-            output.ShouldContain("-640");
         }
     }
 }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BatchGuy.App.EAC.Interfaces
+namespace BatchGuy.App.Eac3to.Interfaces
 {
     public interface IEAC3ToOutputService
     {

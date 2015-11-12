@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BatchGuy.App.AVS;
+using BatchGuy.App.AviSynth;
 using System.IO;
-using BatchGuy.App.AVS.Models;
-using BatchGuy.App.AVS.Interfaces;
+using BatchGuy.App.AviSynth.Models;
+using BatchGuy.App.AviSynth.Interfaces;
 using BatchGuy.App.Shared.Models;
 
-namespace BatchGuy.App.AVS.Services
+namespace BatchGuy.App.AviSynth.Services
 {
     public class ValidationService : IValidationService
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BatchGuy.App.EAC.Models;
+using BatchGuy.App.Eac3to.Models;
 using System.IO;
 
 namespace BatchGuy.App.Parser.Models

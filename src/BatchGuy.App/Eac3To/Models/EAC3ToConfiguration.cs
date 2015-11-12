@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BatchGuy.App.EAC.Models
+namespace BatchGuy.App.Eac3to.Models
 {
     public class EAC3ToConfiguration
     {
