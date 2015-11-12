@@ -60,29 +60,29 @@
             // createEac3ToBatFileToolStripMenuItem
             // 
             this.createEac3ToBatFileToolStripMenuItem.Name = "createEac3ToBatFileToolStripMenuItem";
-            this.createEac3ToBatFileToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
-            this.createEac3ToBatFileToolStripMenuItem.Text = "Create eac3To Bat File";
+            this.createEac3ToBatFileToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
+            this.createEac3ToBatFileToolStripMenuItem.Text = "Create eac3To Batch File";
             this.createEac3ToBatFileToolStripMenuItem.Click += new System.EventHandler(this.createEac3ToBatFileToolStripMenuItem_Click);
             // 
             // createAVSFilesToolStripMenuItem
             // 
             this.createAVSFilesToolStripMenuItem.Name = "createAVSFilesToolStripMenuItem";
-            this.createAVSFilesToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
-            this.createAVSFilesToolStripMenuItem.Text = "Create AVS Files";
+            this.createAVSFilesToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
+            this.createAVSFilesToolStripMenuItem.Text = "Create AviSynth Files";
             this.createAVSFilesToolStripMenuItem.Click += new System.EventHandler(this.createAVSFilesToolStripMenuItem_Click);
             // 
             // createX264BatFileToolStripMenuItem
             // 
             this.createX264BatFileToolStripMenuItem.Name = "createX264BatFileToolStripMenuItem";
-            this.createX264BatFileToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
-            this.createX264BatFileToolStripMenuItem.Text = "Create x264 Bat File";
+            this.createX264BatFileToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
+            this.createX264BatFileToolStripMenuItem.Text = "Create x264 Batch File";
             this.createX264BatFileToolStripMenuItem.Click += new System.EventHandler(this.createX264BatFileToolStripMenuItem_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 262);
+            this.ClientSize = new System.Drawing.Size(284, 86);
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
