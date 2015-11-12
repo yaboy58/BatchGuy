@@ -337,7 +337,7 @@
             this.KeyPreview = true;
             this.Name = "CreateEAC3ToBatchForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Create EAC3To Batch File";
+            this.Text = "Create eac3to Batch File";
             this.Load += new System.EventHandler(this.CreateEAC3ToBatchForm_Load);
             this.gbDisc.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvBluRayDiscInfo)).EndInit();
