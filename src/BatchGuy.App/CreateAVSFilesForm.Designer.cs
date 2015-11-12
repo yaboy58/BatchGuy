@@ -44,9 +44,9 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(20, 15);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(71, 13);
+            this.label2.Size = new System.Drawing.Size(84, 13);
             this.label2.TabIndex = 5;
-            this.label2.Text = "File Directory:";
+            this.label2.Text = "Output Directory";
             // 
             // txtDirectory
             // 
@@ -89,9 +89,9 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(20, 53);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(83, 13);
+            this.label3.Size = new System.Drawing.Size(80, 13);
             this.label3.TabIndex = 10;
-            this.label3.Text = "Number of Files:";
+            this.label3.Text = "Number of Files";
             // 
             // txtNumberOfFiles
             // 
