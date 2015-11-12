@@ -19,13 +19,13 @@ BatchGuy is not an x264 encoder.  BatchGuy will create a (.bat) file to you can 
 
 <b>Overview</b>
 <br><br>
-The BatchGuy GUI, in a nutshell allows you to choose Blu-ray dics on your hard drive, pick the chapters, video, audio and subtitles, specify what episode number they are and will create a batch file (.bat) called <i>"bluray.bat"</i> that you can run to extract all the streams.  The streams will be placed in directory you choose plus the episode number you gave it ie e01, e02 etc etc.
+The BatchGuy GUI, in a nutshell allows you to choose Blu-ray dics on your hard drive, pick the chapters, video, audio and subtitles, specify what episode number they are and will create a batch file (.bat) called <i>"batchguy.extract.bluray.bat"</i> that you can run to extract all the streams.  The streams will be placed in directory you choose plus the episode number you gave it ie e01, e02 etc etc.
 
 
 After you have extracted all of your files, BatchGuy will allow you create AviSynth Script files (.avs) for all of your extracted video streams (.mkv).  You just tell BatchGuy where you would like to output the scripts, specify some limited Avisynth syntax for each video ie cropping, resizing etc etc and how many many video streams (.mkv) you have.  BatchGuy will then create an AviSynth Script file for each video stream ie encode01.avs, encode02.avs and each script file will have the same AviSynth syntax.  BatchGuy is limited to FFVideoSource and the video stream (.mkv) location for FFVideoSource will be set to <i>“output_directory_selected\e01\encode01.mkv”</i>.
 
 
-Next, BatchGuy will allow you to choose the directory where the AviSynth scripts reside (.avs) and allow you to load them into the GUI.  The user can then associate each AviSynth Script with a title the user enters.  After this, the user can specify x264 settings to apply to all video streams (.mkv) and create a batch file (.bat) called <i>"encode.bat"</i> that the user can run to encode all extracted videos (.mkv), using the AviSynth scripts created (.avs) and the x264 settings specified.
+Next, BatchGuy will allow you to choose the directory where the AviSynth scripts reside (.avs) and allow you to load them into the GUI.  The user can then associate each AviSynth Script with a title the user enters.  After this, the user can specify x264 settings to apply to all video streams (.mkv) and create a batch file (.bat) called <i>"batchguy.encode.bluray.bat"</i> that the user can run to encode all extracted videos (.mkv), using the AviSynth scripts created (.avs) and the x264 settings specified.
 
 
 <b>Screenshots:</b>
