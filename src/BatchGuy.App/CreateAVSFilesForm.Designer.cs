@@ -51,7 +51,7 @@
             // 
             // txtDirectory
             // 
-            this.txtDirectory.Location = new System.Drawing.Point(142, 22);
+            this.txtDirectory.Location = new System.Drawing.Point(160, 22);
             this.txtDirectory.Name = "txtDirectory";
             this.txtDirectory.ReadOnly = true;
             this.txtDirectory.Size = new System.Drawing.Size(434, 20);
@@ -77,11 +77,11 @@
             // 
             // btnCreateAVSFiles
             // 
-            this.btnCreateAVSFiles.Location = new System.Drawing.Point(686, 284);
+            this.btnCreateAVSFiles.Location = new System.Drawing.Point(648, 284);
             this.btnCreateAVSFiles.Name = "btnCreateAVSFiles";
-            this.btnCreateAVSFiles.Size = new System.Drawing.Size(112, 35);
+            this.btnCreateAVSFiles.Size = new System.Drawing.Size(150, 35);
             this.btnCreateAVSFiles.TabIndex = 8;
-            this.btnCreateAVSFiles.Text = "Create AVS Files";
+            this.btnCreateAVSFiles.Text = "Create AviSynth (.avs) Files";
             this.btnCreateAVSFiles.UseVisualStyleBackColor = true;
             this.btnCreateAVSFiles.Click += new System.EventHandler(this.btnCreateAVSFiles_Click);
             // 
@@ -90,13 +90,13 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(20, 53);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(80, 13);
+            this.label3.Size = new System.Drawing.Size(132, 13);
             this.label3.TabIndex = 10;
-            this.label3.Text = "Number of Files";
+            this.label3.Text = "Number of Files (Episodes)";
             // 
             // txtNumberOfFiles
             // 
-            this.txtNumberOfFiles.Location = new System.Drawing.Point(142, 50);
+            this.txtNumberOfFiles.Location = new System.Drawing.Point(160, 50);
             this.txtNumberOfFiles.Name = "txtNumberOfFiles";
             this.txtNumberOfFiles.Size = new System.Drawing.Size(54, 20);
             this.txtNumberOfFiles.TabIndex = 1;
@@ -104,7 +104,7 @@
             // btnOpenDialog
             // 
             this.btnOpenDialog.Image = global::BatchGuy.App.Properties.Resources.Avosoft_Warm_Toolbar_Folder_open;
-            this.btnOpenDialog.Location = new System.Drawing.Point(582, 9);
+            this.btnOpenDialog.Location = new System.Drawing.Point(600, 9);
             this.btnOpenDialog.Name = "btnOpenDialog";
             this.btnOpenDialog.Size = new System.Drawing.Size(61, 33);
             this.btnOpenDialog.TabIndex = 11;
