@@ -8,8 +8,6 @@
 --eac3To Form
 *validation
 *de-couple bat path from folder where files are stored path
-*delete existing .bat file before writing new scripts (probably just check to see if it is on file#1)
-*sort the blu ray titles by episode, although it is a string
 *hardcode episode (ie 99), so you cannot do series greater than 100 episodes
 
 
@@ -37,3 +35,8 @@
 
 --unit tests
 *unit test new helper function methods
+
+--Todo
+*error occurs when sorting
+*sort the blu ray titles by episode, although it is a string
+*delete existing .bat file before writing new scripts (probably just check to see if it is on file#1)

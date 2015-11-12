@@ -176,5 +176,10 @@ namespace BatchGuy.App
                txtVfw4x264exe.Text = ofdFileDialog.FileName;
             }
         }
+
+        private void dgvFiles_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            dgvFiles.Rows[e.RowIndex].Selected = true;
+        }
     }
 }
