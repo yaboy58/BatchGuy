@@ -16,13 +16,13 @@ using BatchGuy.App.Extensions;
 
 namespace BatchGuy.App
 {
-    public partial class CreateAVSFilesForm : Form
+    public partial class CreateAviSynthFilesForm : Form
     {
         private IFileService _fileService; //ioc
         private IValidationService _validationService; //ioc
         private IAVSService _avsService; //ioc
 
-        public CreateAVSFilesForm()
+        public CreateAviSynthFilesForm()
         {
             InitializeComponent();
         }

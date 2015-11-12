@@ -22,7 +22,7 @@ namespace BatchGuy.App.X264.Services
 
         public List<X264File> GetAVSFiles()
         {
-            foreach (string avsFile in Directory.GetFiles(_x264FileSettings.AVSPath, _x264FileSettings.AVSFileFilter))
+            foreach (string avsFile in Directory.GetFiles(_x264FileSettings.AviSynthFileOutputPath, _x264FileSettings.AviSynthFileFilter))
             {
               FileInfo fileInfo = new FileInfo(avsFile);
               if (fileInfo.Extension == ".avs")

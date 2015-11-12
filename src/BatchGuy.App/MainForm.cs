@@ -20,7 +20,7 @@ namespace BatchGuy
 
         private void createAVSFilesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CreateAVSFilesForm form = new CreateAVSFilesForm();
+            CreateAviSynthFilesForm form = new CreateAviSynthFilesForm();
             form.ShowDialog();
         }
 
@@ -32,7 +32,7 @@ namespace BatchGuy
 
         private void createX264BatFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CreateX264BatFileForm form = new CreateX264BatFileForm();
+            CreateX264BatchFileForm form = new CreateX264BatchFileForm();
             form.ShowDialog();
         }
     }

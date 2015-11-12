@@ -14,23 +14,59 @@ namespace BatchGuy.App.X264.Services
     {
         private X264FileSettings _x264FileSettings;
         private List<Error> _errors;
+        private List<X264File> _x264Files;
 
-        public ValidationService(X264FileSettings x264FileSettings)
+        public ValidationService(X264FileSettings x264FileSettings, List<X264File> x264Files)
         {
             _x264FileSettings = x264FileSettings;
             _errors = new List<Error>();
+            _x264Files = x264Files;
         }
         public List<Error> Validate()
         {
+            this.IsValid();
             return _errors;
         }
 
-        private void ValidateAVSDirectory()
+        private bool IsValid()
         {
-            if (!Directory.Exists(_x264FileSettings.AVSPath))
+            if (!this.SettingsAndFilesNotNull())
+                return false;
+            if (!this.AllAviSynthFilesHaveEncodeName())
+                return false;
+            if (!this.IsDirectoryValidDirectory())
+                return false;
+            return true;
+        }
+
+        private bool SettingsAndFilesNotNull()
+        {
+            if (_x264FileSettings == null || _x264Files == null)
             {
-                this._errors.Add(new Error() { Description = "The AVS Folder does not exist" });
+                this._errors.Add(new Error() { Description = "x264 Settings or x264 files not found" });
+                return false;
             }
+            return true;
+        }
+
+        private bool AllAviSynthFilesHaveEncodeName()
+        {
+            if (_x264Files.Where(f => f.EncodeName == null || f.EncodeName == string.Empty).Count() > 0)
+            {
+                this._errors.Add(new Error() { Description = "All AviSynth files must have a encode name" });
+                return false;
+            }
+            return true;
+        }
+
+        private bool IsDirectoryValidDirectory()
+        {
+            if (!Directory.Exists(_x264FileSettings.AviSynthFileOutputPath))
+            {
+                this._errors.Add(new Error() { Description = "The Output Folder for AviSynth files does not exist" });
+                return false;
+            }
+            return true;
         }
     }
 }

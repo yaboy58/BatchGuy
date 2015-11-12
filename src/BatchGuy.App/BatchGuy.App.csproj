@@ -53,11 +53,11 @@
     <Compile Include="BluRayTitleInfoForm.Designer.cs">
       <DependentUpon>BluRayTitleInfoForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="CreateAVSFilesForm.cs">
+    <Compile Include="CreateAviSynthFilesForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CreateAVSFilesForm.Designer.cs">
-      <DependentUpon>CreateAVSFilesForm.cs</DependentUpon>
+    <Compile Include="CreateAviSynthFilesForm.Designer.cs">
+      <DependentUpon>CreateAviSynthFilesForm.cs</DependentUpon>
     </Compile>
     <Compile Include="CreateEAC3ToBatchForm.cs">
       <SubType>Form</SubType>
@@ -65,11 +65,11 @@
     <Compile Include="CreateEAC3ToBatchForm.Designer.cs">
       <DependentUpon>CreateEAC3ToBatchForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="CreateX264BatFileForm.cs">
+    <Compile Include="CreateX264BatchFileForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CreateX264BatFileForm.Designer.cs">
-      <DependentUpon>CreateX264BatFileForm.cs</DependentUpon>
+    <Compile Include="CreateX264BatchFileForm.Designer.cs">
+      <DependentUpon>CreateX264BatchFileForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Eac3To\Models\EAC3ToConfiguration.cs" />
     <Compile Include="Eac3To\Services\BatchFileWriteService.cs" />
@@ -126,14 +126,14 @@
     <EmbeddedResource Include="BluRayTitleInfoForm.resx">
       <DependentUpon>BluRayTitleInfoForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CreateAVSFilesForm.resx">
-      <DependentUpon>CreateAVSFilesForm.cs</DependentUpon>
+    <EmbeddedResource Include="CreateAviSynthFilesForm.resx">
+      <DependentUpon>CreateAviSynthFilesForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CreateEAC3ToBatchForm.resx">
       <DependentUpon>CreateEAC3ToBatchForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CreateX264BatFileForm.resx">
-      <DependentUpon>CreateX264BatFileForm.cs</DependentUpon>
+    <EmbeddedResource Include="CreateX264BatchFileForm.resx">
+      <DependentUpon>CreateX264BatchFileForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

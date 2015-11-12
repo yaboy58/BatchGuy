@@ -1,6 +1,6 @@
 ﻿namespace BatchGuy.App
 {
-    partial class CreateAVSFilesForm
+    partial class CreateAviSynthFilesForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CreateAVSFilesForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CreateAviSynthFilesForm));
             this.label2 = new System.Windows.Forms.Label();
             this.txtDirectory = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
