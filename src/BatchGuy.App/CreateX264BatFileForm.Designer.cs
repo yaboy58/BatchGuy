@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CreateX264BatFileForm));
             this.label4 = new System.Windows.Forms.Label();
             this.cbEncodeType = new System.Windows.Forms.ComboBox();
             this.btnCreateX264BatFile = new System.Windows.Forms.Button();
@@ -38,6 +39,7 @@
             this.txtAVSFileLocation = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.dgvFiles = new System.Windows.Forms.DataGridView();
+            this.bsFiles = new System.Windows.Forms.BindingSource(this.components);
             this.btnLoadAVSFiles = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.txtVfw4x264exe = new System.Windows.Forms.TextBox();
@@ -49,7 +51,6 @@
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.aVSFileNameOnlyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.encodeNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bsFiles = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dgvFiles)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsFiles)).BeginInit();
             this.SuspendLayout();
@@ -82,7 +83,7 @@
             this.btnCreateX264BatFile.Name = "btnCreateX264BatFile";
             this.btnCreateX264BatFile.Size = new System.Drawing.Size(168, 44);
             this.btnCreateX264BatFile.TabIndex = 14;
-            this.btnCreateX264BatFile.Text = "Create x264 Bat File";
+            this.btnCreateX264BatFile.Text = "Create x264 Batch File";
             this.btnCreateX264BatFile.UseVisualStyleBackColor = true;
             this.btnCreateX264BatFile.Click += new System.EventHandler(this.btnCreateX264BatFile_Click);
             // 
@@ -148,6 +149,10 @@
             this.dgvFiles.Size = new System.Drawing.Size(776, 222);
             this.dgvFiles.TabIndex = 19;
             this.dgvFiles.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.dgvFiles_RowsRemoved);
+            // 
+            // bsFiles
+            // 
+            this.bsFiles.DataSource = typeof(BatchGuy.App.X264.Models.X264File);
             // 
             // btnLoadAVSFiles
             // 
@@ -230,13 +235,9 @@
             // 
             this.encodeNameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.encodeNameDataGridViewTextBoxColumn.DataPropertyName = "EncodeName";
-            this.encodeNameDataGridViewTextBoxColumn.HeaderText = "Encode Name (EX: MyFile.mkv)";
+            this.encodeNameDataGridViewTextBoxColumn.HeaderText = "Encode Name (EX: Episode01.mkv)";
             this.encodeNameDataGridViewTextBoxColumn.MinimumWidth = 200;
             this.encodeNameDataGridViewTextBoxColumn.Name = "encodeNameDataGridViewTextBoxColumn";
-            // 
-            // bsFiles
-            // 
-            this.bsFiles.DataSource = typeof(BatchGuy.App.X264.Models.X264File);
             // 
             // CreateX264BatFileForm
             // 
@@ -258,6 +259,7 @@
             this.Controls.Add(this.txtX264Template);
             this.Controls.Add(this.lblAviSynthScriptsLocation);
             this.Controls.Add(this.txtAVSFileLocation);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "CreateX264BatFileForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Create x264 Batch File";
@@ -284,13 +286,13 @@
         private System.Windows.Forms.Button btnLoadAVSFiles;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtVfw4x264exe;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn aVSFileNameOnlyDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn encodeNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.Label lblNumberOfFiles;
         private System.Windows.Forms.OpenFileDialog ofdFileDialog;
         private System.Windows.Forms.FolderBrowserDialog fbdDialog;
         private System.Windows.Forms.Button btnOpenVfw4x264FileDialog;
         private System.Windows.Forms.Button btnOpenAviSynthScriptLocationDialog;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn aVSFileNameOnlyDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn encodeNameDataGridViewTextBoxColumn;
     }
 }

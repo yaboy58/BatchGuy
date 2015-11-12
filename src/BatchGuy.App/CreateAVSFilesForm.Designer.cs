@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CreateAVSFilesForm));
             this.label2 = new System.Windows.Forms.Label();
             this.txtDirectory = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -123,6 +124,7 @@
             this.Controls.Add(this.txtAVSTemplate);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtDirectory);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "CreateAVSFilesForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Create AviSynth Files";

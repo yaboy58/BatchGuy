@@ -31,6 +31,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Icons\Walrick-Openphone-Settings.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -168,6 +171,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Icons\Avosoft-Warm-Toolbar-Folder-open.ico" />
+    <Content Include="Icons\Walrick-Openphone-Settings.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

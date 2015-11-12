@@ -29,9 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BluRayTitleInfoForm));
             this.lblTitle = new System.Windows.Forms.Label();
             this.gbVideo = new System.Windows.Forms.GroupBox();
             this.chkVideo = new System.Windows.Forms.CheckBox();
+            this.bsBluRayTitleVideo = new System.Windows.Forms.BindingSource(this.components);
             this.gbAudio = new System.Windows.Forms.GroupBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblAudioTypeArguments = new System.Windows.Forms.Label();
@@ -39,37 +41,36 @@
             this.cbAudioType = new System.Windows.Forms.ComboBox();
             this.lblAudioType = new System.Windows.Forms.Label();
             this.dgvAudio = new System.Windows.Forms.DataGridView();
+            this.bsBluRayTitleAudio = new System.Windows.Forms.BindingSource(this.components);
             this.btnUpdate = new System.Windows.Forms.Button();
             this.gbSubtitles = new System.Windows.Forms.GroupBox();
             this.dgvSubtitles = new System.Windows.Forms.DataGridView();
+            this.bsBluRayTitleSubtitles = new System.Windows.Forms.BindingSource(this.components);
             this.gbChapters = new System.Windows.Forms.GroupBox();
             this.chkChapters = new System.Windows.Forms.CheckBox();
             this.lblEpisodeNumber = new System.Windows.Forms.Label();
             this.txtEpisodeNumber = new System.Windows.Forms.TextBox();
-            this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bsBluRayTitleSubtitles = new System.Windows.Forms.BindingSource(this.components);
+            this.bsBluRayTitleInfo = new System.Windows.Forms.BindingSource(this.components);
             this.isSelected = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.language = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.text = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.audioType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.arguments = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bsBluRayTitleAudio = new System.Windows.Forms.BindingSource(this.components);
-            this.bsBluRayTitleVideo = new System.Windows.Forms.BindingSource(this.components);
-            this.bsBluRayTitleInfo = new System.Windows.Forms.BindingSource(this.components);
+            this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gbVideo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bsBluRayTitleVideo)).BeginInit();
             this.gbAudio.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAudio)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsBluRayTitleAudio)).BeginInit();
             this.gbSubtitles.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSubtitles)).BeginInit();
-            this.gbChapters.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsBluRayTitleSubtitles)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsBluRayTitleAudio)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsBluRayTitleVideo)).BeginInit();
+            this.gbChapters.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsBluRayTitleInfo)).BeginInit();
             this.SuspendLayout();
             // 
@@ -103,6 +104,10 @@
             this.chkVideo.Text = "Video";
             this.chkVideo.UseVisualStyleBackColor = true;
             this.chkVideo.CheckedChanged += new System.EventHandler(this.chkVideo_CheckedChanged);
+            // 
+            // bsBluRayTitleVideo
+            // 
+            this.bsBluRayTitleVideo.DataSource = typeof(BatchGuy.App.Parser.Models.BluRayTitleVideo);
             // 
             // gbAudio
             // 
@@ -188,6 +193,10 @@
             this.dgvAudio.TabIndex = 2;
             this.dgvAudio.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAudio_CellClick);
             // 
+            // bsBluRayTitleAudio
+            // 
+            this.bsBluRayTitleAudio.DataSource = typeof(BatchGuy.App.Parser.Models.BluRayTitleAudio);
+            // 
             // btnUpdate
             // 
             this.btnUpdate.Location = new System.Drawing.Point(705, 651);
@@ -225,6 +234,10 @@
             this.dgvSubtitles.Size = new System.Drawing.Size(881, 146);
             this.dgvSubtitles.TabIndex = 5;
             this.dgvSubtitles.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSubtitles_CellClick);
+            // 
+            // bsBluRayTitleSubtitles
+            // 
+            this.bsBluRayTitleSubtitles.DataSource = typeof(BatchGuy.App.Parser.Models.BluRayTitleSubtitle);
             // 
             // gbChapters
             // 
@@ -264,43 +277,14 @@
             this.txtEpisodeNumber.TabIndex = 0;
             this.txtEpisodeNumber.TextChanged += new System.EventHandler(this.txtEpisodeNumber_TextChanged);
             // 
-            // dataGridViewCheckBoxColumn1
+            // bsBluRayTitleInfo
             // 
-            this.dataGridViewCheckBoxColumn1.DataPropertyName = "IsSelected";
-            this.dataGridViewCheckBoxColumn1.HeaderText = "IsSelected";
-            this.dataGridViewCheckBoxColumn1.Name = "dataGridViewCheckBoxColumn1";
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "Id";
-            this.dataGridViewTextBoxColumn1.HeaderText = "Id";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Width = 40;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "Language";
-            this.dataGridViewTextBoxColumn2.HeaderText = "Language";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "Text";
-            this.dataGridViewTextBoxColumn3.HeaderText = "Text";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            // 
-            // bsBluRayTitleSubtitles
-            // 
-            this.bsBluRayTitleSubtitles.DataSource = typeof(BatchGuy.App.Parser.Models.BluRayTitleSubtitle);
+            this.bsBluRayTitleInfo.DataSource = typeof(BatchGuy.App.Parser.Models.BluRayTitleInfo);
             // 
             // isSelected
             // 
             this.isSelected.DataPropertyName = "IsSelected";
-            this.isSelected.HeaderText = "IsSelected";
+            this.isSelected.HeaderText = "Is Selected";
             this.isSelected.Name = "isSelected";
             // 
             // id
@@ -329,7 +313,7 @@
             // audioType
             // 
             this.audioType.DataPropertyName = "AudioType";
-            this.audioType.HeaderText = "AudioType";
+            this.audioType.HeaderText = "Audio Type";
             this.audioType.Name = "audioType";
             this.audioType.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.audioType.Visible = false;
@@ -342,17 +326,34 @@
             this.arguments.Name = "arguments";
             this.arguments.Visible = false;
             // 
-            // bsBluRayTitleAudio
+            // dataGridViewCheckBoxColumn1
             // 
-            this.bsBluRayTitleAudio.DataSource = typeof(BatchGuy.App.Parser.Models.BluRayTitleAudio);
+            this.dataGridViewCheckBoxColumn1.DataPropertyName = "IsSelected";
+            this.dataGridViewCheckBoxColumn1.HeaderText = "Is Selected";
+            this.dataGridViewCheckBoxColumn1.Name = "dataGridViewCheckBoxColumn1";
             // 
-            // bsBluRayTitleVideo
+            // dataGridViewTextBoxColumn1
             // 
-            this.bsBluRayTitleVideo.DataSource = typeof(BatchGuy.App.Parser.Models.BluRayTitleVideo);
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "Id";
+            this.dataGridViewTextBoxColumn1.HeaderText = "Id";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Width = 40;
             // 
-            // bsBluRayTitleInfo
+            // dataGridViewTextBoxColumn2
             // 
-            this.bsBluRayTitleInfo.DataSource = typeof(BatchGuy.App.Parser.Models.BluRayTitleInfo);
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "Language";
+            this.dataGridViewTextBoxColumn2.HeaderText = "Language";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "Text";
+            this.dataGridViewTextBoxColumn3.HeaderText = "Text";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
             // 
             // BluRayTitleInfoForm
             // 
@@ -367,6 +368,7 @@
             this.Controls.Add(this.gbAudio);
             this.Controls.Add(this.gbVideo);
             this.Controls.Add(this.lblTitle);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "BluRayTitleInfoForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Blu-ray Title Info Form";
@@ -374,17 +376,17 @@
             this.Load += new System.EventHandler(this.BluRayTitleForm_Load);
             this.gbVideo.ResumeLayout(false);
             this.gbVideo.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bsBluRayTitleVideo)).EndInit();
             this.gbAudio.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAudio)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsBluRayTitleAudio)).EndInit();
             this.gbSubtitles.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvSubtitles)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsBluRayTitleSubtitles)).EndInit();
             this.gbChapters.ResumeLayout(false);
             this.gbChapters.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bsBluRayTitleSubtitles)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsBluRayTitleAudio)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsBluRayTitleVideo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsBluRayTitleInfo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -407,22 +409,22 @@
         private System.Windows.Forms.ComboBox cbAudioType;
         private System.Windows.Forms.Label lblAudioType;
         private System.Windows.Forms.Label lblAudioTypeArguments;
+        private System.Windows.Forms.GroupBox gbSubtitles;
+        private System.Windows.Forms.DataGridView dgvSubtitles;
+        private System.Windows.Forms.BindingSource bsBluRayTitleSubtitles;
+        private System.Windows.Forms.GroupBox gbChapters;
+        private System.Windows.Forms.CheckBox chkChapters;
+        private System.Windows.Forms.Label lblEpisodeNumber;
+        private System.Windows.Forms.TextBox txtEpisodeNumber;
         private System.Windows.Forms.DataGridViewCheckBoxColumn isSelected;
         private System.Windows.Forms.DataGridViewTextBoxColumn id;
         private System.Windows.Forms.DataGridViewTextBoxColumn language;
         private System.Windows.Forms.DataGridViewTextBoxColumn text;
         private System.Windows.Forms.DataGridViewTextBoxColumn audioType;
         private System.Windows.Forms.DataGridViewTextBoxColumn arguments;
-        private System.Windows.Forms.GroupBox gbSubtitles;
-        private System.Windows.Forms.DataGridView dgvSubtitles;
         private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.BindingSource bsBluRayTitleSubtitles;
-        private System.Windows.Forms.GroupBox gbChapters;
-        private System.Windows.Forms.CheckBox chkChapters;
-        private System.Windows.Forms.Label lblEpisodeNumber;
-        private System.Windows.Forms.TextBox txtEpisodeNumber;
     }
 }
