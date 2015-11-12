@@ -43,7 +43,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(20, 15);
+            this.label2.Location = new System.Drawing.Point(20, 25);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(84, 13);
             this.label2.TabIndex = 5;
@@ -51,7 +51,7 @@
             // 
             // txtDirectory
             // 
-            this.txtDirectory.Location = new System.Drawing.Point(142, 12);
+            this.txtDirectory.Location = new System.Drawing.Point(142, 22);
             this.txtDirectory.Name = "txtDirectory";
             this.txtDirectory.ReadOnly = true;
             this.txtDirectory.Size = new System.Drawing.Size(434, 20);
@@ -63,9 +63,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(20, 88);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(78, 13);
+            this.label1.Size = new System.Drawing.Size(99, 13);
             this.label1.TabIndex = 7;
-            this.label1.Text = "AVS Template:";
+            this.label1.Text = "AviSynth Template:";
             // 
             // txtAVSTemplate
             // 
@@ -104,7 +104,7 @@
             // btnOpenDialog
             // 
             this.btnOpenDialog.Image = global::BatchGuy.App.Properties.Resources.Avosoft_Warm_Toolbar_Folder_open;
-            this.btnOpenDialog.Location = new System.Drawing.Point(582, 5);
+            this.btnOpenDialog.Location = new System.Drawing.Point(582, 9);
             this.btnOpenDialog.Name = "btnOpenDialog";
             this.btnOpenDialog.Size = new System.Drawing.Size(61, 33);
             this.btnOpenDialog.TabIndex = 11;
