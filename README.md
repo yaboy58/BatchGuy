@@ -37,6 +37,6 @@ Coming Soon!
 <br><br>
 Windows 7+<br>
 .Net Framework 4.5+<br>
-eac3to.exe<br>
-vfw4x264.exe<br>
+eac3to<br>
+vfw4x264<br>
 AviSynth 2.5+<br>
