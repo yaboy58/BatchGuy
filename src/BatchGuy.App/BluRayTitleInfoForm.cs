@@ -162,6 +162,8 @@ namespace BatchGuy.App
 
         private void dgvAudio_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex == -1)
+                return;
             this.HandleDGVAudioCellClick(e);
             dgvAudio.Rows[e.RowIndex].Selected = true;
         }
@@ -293,6 +295,8 @@ namespace BatchGuy.App
 
         private void dgvSubtitles_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex == -1)
+                return;
             dgvSubtitles.Rows[e.RowIndex].Selected = true;
         }
     }

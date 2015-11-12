@@ -1,8 +1,5 @@
 --in general
-*make an icon for the app
 *introduce logging
-*documentation
-*screen prints
 
 
 --eac3To Form
@@ -38,5 +35,4 @@
 *unit test extension methods
 
 --Todo
-*error occurs when sorting
 *delete existing .bat file before writing new scripts (probably just check to see if it is on file#1)

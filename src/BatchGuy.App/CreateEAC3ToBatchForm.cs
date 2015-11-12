@@ -110,11 +110,15 @@ namespace BatchGuy.App
             }
             this.BindDgvBluRaySummaryGrid();
             gbDiscSummary.Text = string.Format("Disc Summary: {0}", _currentBluRayDiscInfo.DiscName);
-            dgvBluRayDiscInfo.Rows[e.RowIndex].Selected = true;
+
+            if (e.RowIndex != -1)
+                dgvBluRayDiscInfo.Rows[e.RowIndex].Selected = true;
         }
 
         private void HandleDgvBluRayDiscInfoCellClick(DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex == -1)
+                return;
             var id = dgvBluRayDiscInfo.Rows[e.RowIndex].Cells[1].Value;
             _currentBluRayDiscInfo = _bluRayDiscInfoList.SingleOrDefault(d => d.Id == id.ToString().StringToInt());
         }
@@ -169,6 +173,8 @@ namespace BatchGuy.App
 
         private void HandleDgvBluRaySummaryCellDoubleClick(DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex == -1)
+                return;
             var id = dgvBluRaySummary.Rows[e.RowIndex].Cells[1].Value;
             BluRaySummaryInfo summaryInfo = _currentBluRayDiscInfo.BluRaySummaryInfoList.SingleOrDefault(s => s.Id == id.ToString());
 
@@ -210,6 +216,8 @@ namespace BatchGuy.App
 
         private void dgvBluRaySummary_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex == -1)
+                return;
             dgvBluRaySummary.Rows[e.RowIndex].Selected = true;
         }
 
