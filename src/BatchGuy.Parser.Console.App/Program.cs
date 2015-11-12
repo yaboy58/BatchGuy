@@ -13,15 +13,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BatchGuy.EAC3To.Parser.Example.Console.App
+namespace BatchGuy.Eac3to.Parser.Example.Console.App
 {
     class Program
     {
         static void Main(string[] args)
         {
             //config
-            string batchFilePath = @"C:\temp\My Torrent Encodes\Blu-ray";
-            string bluRayDiscPath = @"C:\temp\My Torrent Encodes\Blu-ray\DISC\Les.Revenants.S02D01.FRENCH.COMPLETE.BLURAY-MELBA";
+            string batchFilePath = @"C:\temp\My Encodes\Blu-ray";
+            string bluRayDiscPath = @"C:\temp\My Encodes\Blu-ray\DISC\D1";
             string eac3ToPath = @"C:\exe\eac3to\eac3to.exe";
 
             //Main object

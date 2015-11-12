@@ -12,7 +12,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{BB9935
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BatchGuy.EAC3To.Parser.Example.Console.App", "src\BatchGuy.Parser.Console.App\BatchGuy.EAC3To.Parser.Example.Console.App.csproj", "{7C31EBC1-0B88-4722-9C16-8819A551DD5C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BatchGuy.Eac3to.Parser.Example.Console.App", "src\BatchGuy.Parser.Console.App\BatchGuy.Eac3to.Parser.Example.Console.App.csproj", "{7C31EBC1-0B88-4722-9C16-8819A551DD5C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
