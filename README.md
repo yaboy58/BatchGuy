@@ -30,7 +30,7 @@ Next, BatchGuy will allow you to choose the directory where the AviSynth scripts
 
 <b>Screenshots:</b>
 <br><br>
-Coming Soon!
+![alt text](assets/BatchGuyMenuScreen.png "BatchGuy Main Menu")
 
 
 <b>Requirements:</b>
