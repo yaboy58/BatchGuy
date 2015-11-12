@@ -30,7 +30,19 @@ Next, BatchGuy will allow you to choose the directory where the AviSynth scripts
 
 <b>Screenshots:</b>
 <br><br>
-![alt text](assets/BatchGuyMenuScreen.png "BatchGuy Main Menu")
+![alt text](assets/BatchGuyMenuScreen.png "BatchGuy Main Menu Screen")
+
+<br><br>
+![alt text](assets/CreateEac3toBatch File.png "BatchGuy Create eac3to Batch File Screen")
+
+<br><br>
+![alt text](assets/Blu-rayTitleInfoForm.png "BatchGuy Blu-ray Title Information Screen")
+
+<br><br>
+![alt text](assets/CreateAviSynthFiles.png "BatchGuy Create AviSynth Files Screen")
+
+<br><br>
+![alt text](assets/CreateX264BatchFile.png "BatchGuy Create x264 Batch File Screen")
 
 
 <b>Requirements:</b>
