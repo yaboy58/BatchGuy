@@ -36,3 +36,4 @@
 
 --Todo
 *delete existing .bat file before writing new scripts (probably just check to see if it is on file#1)
+*possibly create an admin page
