@@ -11,7 +11,7 @@ using BatchGuy.App.Parser.Models;
 using BatchGuy.App.Shared.Models;
 using BatchGuy.App.Eac3To.Interfaces;
 
-namespace BatchGuy.Unit.Tests.Services.EAC
+namespace BatchGuy.Unit.Tests.Services.Eac3to
 {
     [TestFixture]
     public class BatchFileWriteServiceTests

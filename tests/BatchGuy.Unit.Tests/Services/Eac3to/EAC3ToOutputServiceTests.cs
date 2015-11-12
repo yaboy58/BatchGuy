@@ -12,7 +12,7 @@ using BatchGuy.App.Eac3to.Interfaces;
 using BatchGuy.App.Enums;
 using BatchGuy.App.Parser.Models;
 
-namespace BatchGuy.Unit.Tests.Services.EAC
+namespace BatchGuy.Unit.Tests.Services.Eac3to
 {
     [TestFixture]
     public class EAC3ToOutputServiceTests

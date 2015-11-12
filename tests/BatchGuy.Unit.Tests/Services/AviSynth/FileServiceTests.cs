@@ -9,7 +9,7 @@ using BatchGuy.App.AviSynth.Models;
 using BatchGuy.App.AviSynth.Services;
 using BatchGuy.App.AviSynth.Interfaces;
 
-namespace BatchGuy.Unit.Tests
+namespace BatchGuy.Unit.Tests.Services.AviSynth
 {
     [TestFixture]
     public class FileServiceTests

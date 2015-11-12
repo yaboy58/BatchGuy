@@ -52,11 +52,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="HelperFunctions\PadNumberWithZerosTests.cs" />
-    <Compile Include="Services\AVS\FileServiceTests.cs" />
-    <Compile Include="Services\AVS\ValidationServiceTests.cs" />
+    <Compile Include="Services\AviSynth\FileServiceTests.cs" />
+    <Compile Include="Services\AviSynth\ValidationServiceTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\EAC\BatchFileWriteServiceTests.cs" />
-    <Compile Include="Services\EAC\EAC3ToOutputServiceTests.cs" />
+    <Compile Include="Services\Eac3to\BatchFileWriteServiceTests.cs" />
+    <Compile Include="Services\Eac3to\EAC3ToOutputServiceTests.cs" />
     <Compile Include="Services\Parser\BluRaySummaryLineItemIdentifierServiceTests.cs" />
     <Compile Include="Services\Parser\BluRaySummaryParserServiceTests.cs" />
     <Compile Include="Services\Parser\BluRayTitleLineItemIdentifierServiceTests.cs" />

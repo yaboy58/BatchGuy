@@ -10,7 +10,7 @@ using NUnit.Framework;
 using BatchGuy.App.AviSynth.Interfaces;
 using BatchGuy.App.Shared.Models;
 
-namespace BatchGuy.Unit.Tests
+namespace BatchGuy.Unit.Tests.Services.AviSynth
 {
     [TestFixture]
     public class ValidationServiceTests
