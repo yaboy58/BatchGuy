@@ -33,7 +33,7 @@
             this.btnAddBluRayDisc = new System.Windows.Forms.Button();
             this.fbdDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.ofdFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.bgwEac3to = new System.ComponentModel.BackgroundWorker();
+            this.bgwEac3toLoadSummary = new System.ComponentModel.BackgroundWorker();
             this.gbScreen = new System.Windows.Forms.GroupBox();
             this.btnWriteToBatFile = new System.Windows.Forms.Button();
             this.gbDiscSummary = new System.Windows.Forms.GroupBox();
@@ -61,6 +61,7 @@
             this.eAC3ToConfigurationDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.discNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bsBluRayDiscInfo = new System.Windows.Forms.BindingSource(this.components);
+            this.bgwEac3toWriteBatchFile = new System.ComponentModel.BackgroundWorker();
             this.gbScreen.SuspendLayout();
             this.gbDiscSummary.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBluRaySummary)).BeginInit();
@@ -84,10 +85,10 @@
             // 
             this.ofdFileDialog.FileName = "openFileDialog1";
             // 
-            // bgwEac3to
+            // bgwEac3toLoadSummary
             // 
-            this.bgwEac3to.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgwEac3to_DoWork);
-            this.bgwEac3to.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgwEac3to_RunWorkerCompleted);
+            this.bgwEac3toLoadSummary.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgwEac3to_DoWork);
+            this.bgwEac3toLoadSummary.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgwEac3to_RunWorkerCompleted);
             // 
             // gbScreen
             // 
@@ -347,6 +348,11 @@
             // 
             this.bsBluRayDiscInfo.DataSource = typeof(BatchGuy.App.Parser.Models.BluRayDiscInfo);
             // 
+            // bgwEac3toWriteBatchFile
+            // 
+            this.bgwEac3toWriteBatchFile.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgwEac3toWriteBatchFile_DoWork);
+            this.bgwEac3toWriteBatchFile.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgwEac3toWriteBatchFile_RunWorkerCompleted);
+            // 
             // CreateEAC3ToBatchForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -379,7 +385,7 @@
         private System.Windows.Forms.BindingSource bsBluRaySummaryInfo;
         private System.Windows.Forms.FolderBrowserDialog fbdDialog;
         private System.Windows.Forms.OpenFileDialog ofdFileDialog;
-        private System.ComponentModel.BackgroundWorker bgwEac3to;
+        private System.ComponentModel.BackgroundWorker bgwEac3toLoadSummary;
         private System.Windows.Forms.GroupBox gbScreen;
         private System.Windows.Forms.Button btnWriteToBatFile;
         private System.Windows.Forms.GroupBox gbDiscSummary;
@@ -405,5 +411,6 @@
         private System.Windows.Forms.Label lblBluRayFolderPath;
         private System.Windows.Forms.TextBox txtEAC3ToPath;
         private System.Windows.Forms.Label lblEac3ToExePath;
+        private System.ComponentModel.BackgroundWorker bgwEac3toWriteBatchFile;
     }
 }

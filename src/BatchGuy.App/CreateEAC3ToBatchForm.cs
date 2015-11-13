@@ -50,17 +50,9 @@ namespace BatchGuy.App
 
         private void WriteToBatchFile()
         {
+            gbScreen.SetEnabled(false);
             IBatchFileWriteService batchFileWriteService = new BatchFileWriteService(_bluRayDiscInfoList);
-            batchFileWriteService.Write();
-            if (batchFileWriteService.Errors.Count() == 0)
-            {
-                MessageBox.Show("Batch File created!", "Process Complete", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                this.Close();   
-            }
-            else
-            {
-                MessageBox.Show(string.Format("Error: {0}", batchFileWriteService.Errors[0].Description), "Error occurred", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            bgwEac3toWriteBatchFile.RunWorkerAsync(batchFileWriteService);
         }
 
         private void btnAddBluRayDisc_Click(object sender, EventArgs e)
@@ -137,7 +129,7 @@ namespace BatchGuy.App
             ICommandLineProcessService commandLineProcessService = new CommandLineProcessService(_commandLineProcessStartInfo);
             if (commandLineProcessService.Errors.Count() == 0)
             {
-                bgwEac3to.RunWorkerAsync(commandLineProcessService);
+                bgwEac3toLoadSummary.RunWorkerAsync(commandLineProcessService);
             }
             else
             {
@@ -292,6 +284,28 @@ namespace BatchGuy.App
                 _bindingListBluRaySummaryInfo.Add(info);
             }
             this.UpdateUIForBluRaySummary();
+        }
+
+        private void bgwEac3toWriteBatchFile_DoWork(object sender, DoWorkEventArgs e)
+        {
+            IBatchFileWriteService batchFileWriteService = e.Argument as BatchFileWriteService;
+            batchFileWriteService.Write();
+            e.Result = batchFileWriteService;
+        }
+
+        private void bgwEac3toWriteBatchFile_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            IBatchFileWriteService batchFileWriteService = e.Result as BatchFileWriteService;
+            if (batchFileWriteService.Errors.Count() == 0)
+            {
+                MessageBox.Show("Batch File created!", "Process Complete", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show(string.Format("Error: {0}", batchFileWriteService.Errors[0].Description), "Error occurred", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            gbScreen.SetEnabled(true);
         }
     }
 }
