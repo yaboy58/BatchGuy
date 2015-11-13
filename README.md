@@ -31,7 +31,7 @@ Next, BatchGuy will allow you to choose the directory where the AviSynth scripts
 
 <b>Blu-ray Title Info Screen: </b> When the user double-clicks on an item in the Disc Summary Grid on the Create Eac3to Batch File Screen, the user will be presented with this screen.  This screen allows the user to select video, audio, subtitle and chapter information they would like to extract.
 
-<b>Create AviSynth Files Screen: </b> This screen will allow the user to apply global AviSynth settings to each episode.  It has very limited AviSynth scripting and FFVideoSource is the default video filter.  The user will specify the location that the (.avs) files will be created, the number of files (episodes) and can enter AviSyth scripting.  Each (.avs) file will point the FFVideoSource video location as the "output_directory_chosen\exx\encodexx.mkv".
+<b>Create AviSynth Files Screen: </b> This screen will allow the user to apply global AviSynth settings to each episode.  It has very limited AviSynth scripting and FFVideoSource is the default video filter.  The user will specify the location that the (.avs) files will be created, the number of files (episodes) and can enter AviSyth scripting.  Each (.avs) file will point the FFVideoSource video location as the <i>"output_directory_chosen\exx\encodexx.mkv"</i>.
 
 <b>Create x264 Batch File Screen: </b> This allows the user to associate (.avs) files created with encode names and to apply global x264 settings to each (.avs) file.  The encode name is used for the x264 video and log files during encoding.  When the user chooses to create the (.bat) file, a (.bat) file called <i>"batchguy.encode.bluray.bat"</i> will be created containing x264 settings for each (.avs) file.
 
