@@ -33,6 +33,7 @@ namespace BatchGuy.App
         public CreateEAC3ToBatchForm()
         {
             InitializeComponent();
+            
         }
 
         private void CreateEAC3ToBatchForm_Load(object sender, EventArgs e)
@@ -96,7 +97,7 @@ namespace BatchGuy.App
 
         private void dgvBluRayDiscInfo_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            this.SetScreenEnabledStatus(false);
+            gbScreen.SetEnabled(false);
             this.HandleDgvBluRayDiscInfoCellClick(e);
             if (_currentBluRayDiscInfo.BluRaySummaryInfoList == null)
             {
@@ -110,19 +111,6 @@ namespace BatchGuy.App
                     _bindingListBluRaySummaryInfo.Add(info);
                 }
                 this.UpdateUIForBluRaySummary();
-            }
-        }
-
-        private void SetScreenEnabledStatus(bool enabled)
-        {
-            this.Enabled = enabled;
-            if (enabled)
-            {
-                Cursor.Current = Cursors.Default;
-            }
-            else
-            {
-                Cursor.Current = Cursors.WaitCursor;
             }
         }
 
@@ -149,7 +137,6 @@ namespace BatchGuy.App
             ICommandLineProcessService commandLineProcessService = new CommandLineProcessService(_commandLineProcessStartInfo);
             if (commandLineProcessService.Errors.Count() == 0)
             {
-                //CALL BGW HERE
                 bgwEac3to.RunWorkerAsync(commandLineProcessService);
             }
             else
@@ -169,8 +156,9 @@ namespace BatchGuy.App
 
             if (_currentBluRayDiscGridRowIndex != -1)
                 dgvBluRayDiscInfo.Rows[_currentBluRayDiscGridRowIndex].Selected = true;
-            this.SetScreenEnabledStatus(true);
+            gbScreen.SetEnabled(true);
         }
+
 
         private void BindDgvBluRaySummaryGrid()
         {
@@ -283,6 +271,7 @@ namespace BatchGuy.App
 
         private void bgwEac3to_DoWork(object sender, DoWorkEventArgs e)
         {
+            System.Threading.Thread.Sleep(10000);
             //Get line items
             ICommandLineProcessService commandLineProcessService = e.Argument as CommandLineProcessService;
             List<ProcessOutputLineItem> processOutputLineItems = commandLineProcessService.GetProcessOutputLineItems();

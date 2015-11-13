@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace BatchGuy.App.Extensions
 {
@@ -20,6 +21,19 @@ namespace BatchGuy.App.Extensions
             int outValue;
             bool isValid = int.TryParse(value, out outValue);
             return isValid;
+        }
+
+        public static void SetEnabled(this Control control, bool enabled)
+        {
+            control.Enabled = enabled;
+            if (enabled)
+            {
+                Cursor.Current = Cursors.Default;
+            }
+            else
+            {
+                Cursor.Current = Cursors.WaitCursor;
+            }
         }
     }
 }
