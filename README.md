@@ -1,4 +1,4 @@
-<b>What is BatchGuy?</b>
+<hr size=5>What is BatchGuy?</hr>
 <br><br>
 One of my hobbies is to collect full Blu-ray discs and to either remux or encode them.  I am a huge fan of TV Shows, so I typically work with multiple discs that contain tv series that can have over 30 episodes.
 
