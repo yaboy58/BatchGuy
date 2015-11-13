@@ -259,7 +259,6 @@ namespace BatchGuy.App
 
         private void bgwEac3to_DoWork(object sender, DoWorkEventArgs e)
         {
-            System.Threading.Thread.Sleep(10000);
             //Get line items
             ICommandLineProcessService commandLineProcessService = e.Argument as CommandLineProcessService;
             List<ProcessOutputLineItem> processOutputLineItems = commandLineProcessService.GetProcessOutputLineItems();

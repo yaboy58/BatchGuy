@@ -46,8 +46,6 @@ namespace BatchGuy.App
             else
             {
                 this.LoadBluRayTitleInfo();
-                this.LoadScreen();
-                txtEpisodeNumber.Focus();
             }
         }
 
@@ -62,10 +60,7 @@ namespace BatchGuy.App
             ICommandLineProcessService commandLineProcessService = new CommandLineProcessService(commandLineProcessStartInfo);
             if (commandLineProcessService.Errors.Count() == 0)
             {
-                List<ProcessOutputLineItem> processOutputLineItems = commandLineProcessService.GetProcessOutputLineItems();
-                ILineItemIdentifierService lineItemService = new BluRayTitleLineItemIdentifierService();
-                IBluRayTitleParserService parserService = new BluRayTitleParserService(lineItemService, processOutputLineItems);
-                _bluRaySummaryInfo.BluRayTitleInfo = parserService.GetTitleInfo();
+                bgwEac3toLoadTitle.RunWorkerAsync(commandLineProcessService);
             }
             else
             {
@@ -304,12 +299,18 @@ namespace BatchGuy.App
 
         private void bgwEac3toLoadTitle_DoWork(object sender, DoWorkEventArgs e)
         {
-
+            ICommandLineProcessService commandLineProcessService = e.Argument as CommandLineProcessService;
+            List<ProcessOutputLineItem> processOutputLineItems = commandLineProcessService.GetProcessOutputLineItems();
+            ILineItemIdentifierService lineItemService = new BluRayTitleLineItemIdentifierService();
+            IBluRayTitleParserService parserService = new BluRayTitleParserService(lineItemService, processOutputLineItems);
+            _bluRaySummaryInfo.BluRayTitleInfo = parserService.GetTitleInfo();
         }
 
         private void bgwEac3toLoadTitle_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-
+            this.LoadScreen();
+            txtEpisodeNumber.Focus();
+            gbScreen.SetEnabled(true);
         }
     }
 }

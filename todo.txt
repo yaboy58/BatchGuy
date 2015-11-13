@@ -43,3 +43,7 @@
 *Disable Audio Grid onload
 *Strongly Typed Error List so you can do a GetErrors Method -done
 *Make sure all errors are printed and no todos
+*Change error message in title info for no episode number entered to be more informative
+*keep eye on eac3to screen with header/detail navigation, sometimes detail seems not to load
+
+REMOVE HARD CODED PATHS WHEN DONE
