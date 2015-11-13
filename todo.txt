@@ -47,3 +47,4 @@
 *keep eye on eac3to screen with header/detail navigation, sometimes detail seems not to load
 
 REMOVE HARD CODED PATHS WHEN DONE
+UPDATE ASSEMBLY# OF ALL PROJECTS TO 1.1 WHEN DONE WITH BRANCH

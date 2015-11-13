@@ -12,6 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BatchGuy.App.Extensions;
 
 namespace BatchGuy.App
 {
@@ -81,6 +82,7 @@ namespace BatchGuy.App
 
         private void btnLoadAVSFiles_Click(object sender, EventArgs e)
         {
+            gbScreen.SetEnabled(false);
             this.LoadAVSFiles();
         }
 
@@ -94,16 +96,7 @@ namespace BatchGuy.App
         {
             X264FileSettings x264FileSettings = this.GetX264FileSettings();
             IFileService fileService = new FileService(x264FileSettings);
-
-            _x264Files = fileService.GetAVSFiles();
-            if (_x264Files.Count() == 0)
-            {
-                MessageBox.Show("No AviSynth scripts found in directory!", "No Scripts Found", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
-            else
-            {
-                bsFiles.DataSource = _x264Files;
-            }
+            bgwLoadAviSynthFiles.RunWorkerAsync(fileService);
         }
 
         private void btnCreateX264BatFile_Click(object sender, EventArgs e)
@@ -120,22 +113,11 @@ namespace BatchGuy.App
 
         private void CreateX264BatFile()
         {
+            gbScreen.SetEnabled(false);
             X264FileSettings x264Settings = this.GetX264FileSettings();
             IValidationService validationService = new ValidationService(x264Settings, _x264Files);
             IEncodeService encodeService = new EncodeService(validationService, x264Settings, _x264Files);
-            ErrorCollection errors = encodeService.CreateX264File();
-
-            if (errors.Count() == 0)
-            {
-                MessageBox.Show("The x264 batch file has been created!", "Success.", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.SetComboBoxEncodeType();
-                bsFiles.Clear();
-                this.HandleRowsRemoved();
-            }
-            else
-            {
-                MessageBox.Show(errors.GetErrorMessage(), "Errors Occurred.", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            bgwCreateX264BatchFile.RunWorkerAsync(encodeService);
         }
 
         private void dgvFiles_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
@@ -183,6 +165,49 @@ namespace BatchGuy.App
             if (e.RowIndex == -1)
                 return;
             dgvFiles.Rows[e.RowIndex].Selected = true;
+        }
+
+        private void bgwLoadAviSynthFiles_DoWork(object sender, DoWorkEventArgs e)
+        {
+            IFileService fileService = e.Argument as FileService;
+            _x264Files = fileService.GetAVSFiles();
+        }
+
+        private void bgwLoadAviSynthFiles_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            if (_x264Files.Count() == 0)
+            {
+                MessageBox.Show("No AviSynth scripts found in directory!", "No Scripts Found", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                bsFiles.DataSource = _x264Files;
+            }
+            gbScreen.SetEnabled(true);
+        }
+
+        private void bgwCreateX264BatchFile_DoWork(object sender, DoWorkEventArgs e)
+        {
+            IEncodeService encodeService = e.Argument as EncodeService;
+            ErrorCollection errors = encodeService.CreateX264File();
+            e.Result = errors;
+        }
+
+        private void bgwCreateX264BatchFile_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            ErrorCollection errors = e.Result as ErrorCollection;
+            if (errors.Count() == 0)
+            {
+                MessageBox.Show("The x264 batch file has been created!", "Success.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.SetComboBoxEncodeType();
+                bsFiles.Clear();
+                this.HandleRowsRemoved();
+            }
+            else
+            {
+                MessageBox.Show(errors.GetErrorMessage(), "Errors Occurred.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            gbScreen.SetEnabled(true);
         }
     }
 }
