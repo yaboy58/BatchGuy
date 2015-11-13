@@ -47,6 +47,7 @@
             this.btnOpenEac3ToFileDialog = new System.Windows.Forms.Button();
             this.ofdFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.btnOpenBatchFilePathDialog = new System.Windows.Forms.Button();
+            this.bgwEac3to = new System.ComponentModel.BackgroundWorker();
             this.isSelectedDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.episodeNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -92,6 +93,7 @@
             this.txtBluRayPath.ReadOnly = true;
             this.txtBluRayPath.Size = new System.Drawing.Size(727, 20);
             this.txtBluRayPath.TabIndex = 0;
+            this.txtBluRayPath.Text = "C:\\temp\\My Encodes\\Blu-ray\\DISC\\D1";
             // 
             // lblBluRayFolderPath
             // 
@@ -233,6 +235,11 @@
             this.btnOpenBatchFilePathDialog.TabIndex = 29;
             this.btnOpenBatchFilePathDialog.UseVisualStyleBackColor = true;
             this.btnOpenBatchFilePathDialog.Click += new System.EventHandler(this.btnOpenBatchFilePathDialog_Click);
+            // 
+            // bgwEac3to
+            // 
+            this.bgwEac3to.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgwEac3to_DoWork);
+            this.bgwEac3to.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgwEac3to_RunWorkerCompleted);
             // 
             // isSelectedDataGridViewCheckBoxColumn
             // 
@@ -384,5 +391,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn headerTextDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn detailTextDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn bluRayTitleInfoDataGridViewTextBoxColumn;
+        private System.ComponentModel.BackgroundWorker bgwEac3to;
     }
 }
