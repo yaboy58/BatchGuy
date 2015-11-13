@@ -1,5 +1,6 @@
 --in general
 *introduce logging
+*possibly create an admin page
 
 
 --eac3To Form
@@ -35,5 +36,6 @@
 *unit test extension methods
 
 --Todo
+*introduce multi-threading, so screen is disabled but doesn't freeze while processing
 *delete existing .bat file before writing new scripts (probably just check to see if it is on file#1)
-*possibly create an admin page
+
