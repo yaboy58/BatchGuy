@@ -52,7 +52,7 @@ Next, BatchGuy will allow you to choose the directory where the AviSynth scripts
 
 
 <h1>Requirements:</h1>
-Windows 7 x64 <br>
+Windows 7, 8.1 x64 <br>
 .Net Framework 4.5+<br>
 eac3to<br>
 vfw4x264<br>
