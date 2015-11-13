@@ -11,6 +11,6 @@ namespace BatchGuy.App.AviSynth.Interfaces
 {
     public interface IAVSService
     {
-        List<Error> CreateAVSFiles();
+       ErrorCollection CreateAVSFiles();
     }
 }

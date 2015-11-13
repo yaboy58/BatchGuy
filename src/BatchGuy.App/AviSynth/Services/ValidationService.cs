@@ -14,15 +14,15 @@ namespace BatchGuy.App.AviSynth.Services
     public class ValidationService : IValidationService
     {
         private AVSBatchSettings _avsBatchSettings;
-        private List<Error> _errors;
+        private ErrorCollection _errors;
 
         public ValidationService(AVSBatchSettings avsBatchSettings)
         {
             _avsBatchSettings = avsBatchSettings;
-            _errors = new List<Error>();
+            _errors = new ErrorCollection();
         }
 
-        public List<Error> Validate()
+        public ErrorCollection Validate()
         {
             BatchDirectoryIsNotEmpty();
             BatchDirectoryIsValid();

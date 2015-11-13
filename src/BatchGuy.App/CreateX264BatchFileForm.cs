@@ -123,7 +123,7 @@ namespace BatchGuy.App
             X264FileSettings x264Settings = this.GetX264FileSettings();
             IValidationService validationService = new ValidationService(x264Settings, _x264Files);
             IEncodeService encodeService = new EncodeService(validationService, x264Settings, _x264Files);
-            List<Error> errors = encodeService.CreateX264File();
+            ErrorCollection errors = encodeService.CreateX264File();
 
             if (errors.Count() == 0)
             {
@@ -134,7 +134,7 @@ namespace BatchGuy.App
             }
             else
             {
-                MessageBox.Show(string.Join(@"\n", errors.Select(e => e.Description)), "Errors Occurred.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(errors.GetErrorMessage(), "Errors Occurred.", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

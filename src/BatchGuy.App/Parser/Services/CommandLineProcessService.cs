@@ -15,16 +15,16 @@ namespace BatchGuy.App.Parser.Services
     public class CommandLineProcessService : ICommandLineProcessService
     {
         private CommandLineProcessStartInfo _commandLineProcessStartInfo;
-        private readonly List<Error> _errors;
+        private readonly ErrorCollection _errors;
 
         public CommandLineProcessService(CommandLineProcessStartInfo commandLineProcessStartInfo)
         {
             _commandLineProcessStartInfo = commandLineProcessStartInfo;
-            _errors = new List<Error>();
+            _errors = new ErrorCollection();
             this.CheckErrors();
         }
 
-        public List<Error> Errors
+        public ErrorCollection Errors
         {
             get { return _errors; }
         }
@@ -68,7 +68,7 @@ namespace BatchGuy.App.Parser.Services
             return processOutputLineItems;
         }
 
-        private List<Error> CheckErrors()
+        private ErrorCollection CheckErrors()
         {
             this.CheckFileName();
             this.CheckArguments();

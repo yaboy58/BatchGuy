@@ -11,6 +11,6 @@ namespace BatchGuy.App.AviSynth.Interfaces
 {
     public interface IValidationService
     {
-        List<Error> Validate();
+        ErrorCollection Validate();
     }
 }

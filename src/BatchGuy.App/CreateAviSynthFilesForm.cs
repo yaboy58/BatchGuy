@@ -57,11 +57,11 @@ namespace BatchGuy.App
             _validationService = new ValidationService(avsBatchSettings);
             _avsService = new AVSService(_fileService, _validationService, avsTemplateScript, avsBatchSettings);
 
-            List<Error> errors = _avsService.CreateAVSFiles();
+            ErrorCollection errors = _avsService.CreateAVSFiles();
 
             if (errors.Count() > 0 ) // errors
             {
-                MessageBox.Show("Errors occurred!"); //print errors in a loop at some point
+                MessageBox.Show(errors.GetErrorMessage(), "Errors Occurred.", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {

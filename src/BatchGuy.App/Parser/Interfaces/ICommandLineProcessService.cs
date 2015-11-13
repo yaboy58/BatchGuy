@@ -11,7 +11,7 @@ namespace BatchGuy.App.Parser.Interfaces
 {
     public interface ICommandLineProcessService
     {
-        List<Error> Errors { get;}
+        ErrorCollection Errors { get;}
         List<ProcessOutputLineItem> GetProcessOutputLineItems();
     }
 }

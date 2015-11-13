@@ -15,7 +15,7 @@ namespace BatchGuy.App.X264.Services
     {
         private X264FileSettings _x264FileSettings;
         private List<X264File> _x264Files;
-        private List<Error> _errors;
+        private ErrorCollection _errors;
         private string _batFile;
         private IValidationService _validationService;
 
@@ -23,12 +23,12 @@ namespace BatchGuy.App.X264.Services
         {
             _x264Files = x264Files;
             _x264FileSettings = x264FileSettings;
-            _errors = new List<Error>();
+            _errors = new ErrorCollection();
             _batFile = "batchguy.encode.bluray.bat";
             _validationService = validationService;
         }
 
-        public List<Error> CreateX264File()
+        public ErrorCollection CreateX264File()
         {
             _errors = _validationService.Validate();
 

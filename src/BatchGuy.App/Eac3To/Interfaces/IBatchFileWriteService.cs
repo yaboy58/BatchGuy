@@ -10,8 +10,8 @@ namespace BatchGuy.App.Eac3To.Interfaces
 {
     public interface IBatchFileWriteService
     {
-        List<Error> Errors { get;}
-        List<Error> Write();
+        ErrorCollection Errors { get;}
+        ErrorCollection Write();
         bool IsValid();
     }
 }

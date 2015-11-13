@@ -133,11 +133,7 @@ namespace BatchGuy.App
             }
             else
             {
-                System.Console.WriteLine("The following errors were found:");
-                foreach (var error in commandLineProcessService.Errors)
-                {
-                    //TODO:Display Error Message
-                }
+                MessageBox.Show(commandLineProcessService.Errors.GetErrorMessage(), "Errors Occurred.", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

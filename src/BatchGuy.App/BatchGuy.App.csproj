@@ -115,6 +115,7 @@
     <Compile Include="AviSynth\Interfaces\IFileService.cs" />
     <Compile Include="AviSynth\Interfaces\IValidationService.cs" />
     <Compile Include="AviSynth\Services\ValidationService.cs" />
+    <Compile Include="Shared\Models\ErrorCollection.cs" />
     <Compile Include="X264\Models\X264File.cs" />
     <Compile Include="X264\Models\X264FileSettings.cs" />
     <Compile Include="X264\Services\EncodeService.cs" />

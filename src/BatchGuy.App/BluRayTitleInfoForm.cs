@@ -37,9 +37,11 @@ namespace BatchGuy.App
 
         private void BluRayTitleForm_Load(object sender, EventArgs e)
         {
+            gbScreen.SetEnabled(false);
             if (_bluRaySummaryInfo.BluRayTitleInfo != null)
             {
-                this.LoadScreen();   
+                this.LoadScreen();
+                gbScreen.SetEnabled(true);
             }
             else
             {
@@ -67,7 +69,7 @@ namespace BatchGuy.App
             }
             else
             {
-                //error handling
+                MessageBox.Show(commandLineProcessService.Errors.GetErrorMessage(), "Errors Occurred.", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -298,6 +300,16 @@ namespace BatchGuy.App
             if (e.RowIndex == -1)
                 return;
             dgvSubtitles.Rows[e.RowIndex].Selected = true;
+        }
+
+        private void bgwEac3toLoadTitle_DoWork(object sender, DoWorkEventArgs e)
+        {
+
+        }
+
+        private void bgwEac3toLoadTitle_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+
         }
     }
 }
