@@ -6,7 +6,7 @@ The problem that I faced is that most of the GUI tools available do not allow yo
 
 
 <h1>What BatchGuy isn’t?</h1>
-BatchGuy was created to do a specific job, which is to allow the user to be able to easily extract streams from multiple ripped Blu-ray dics, place them in an individual episode number directory, create N number of AviSynth scripts per episode and apply global x264 encode settings for each episode.  
+BatchGuy was created to do a specific job, which is to allow the user to be able to easily extract streams from multiple ripped Blu-ray dics, place them in an individual episode number directory, create AviSynth scripts per episode and apply global x264 encode settings for each episode.  
 
 
 BatchGuy is not an AviSynth editor.  It has very limited AviSynth syntax capabilities (which could be expanded as the product evolves).  It allows you to copy/paste AviSynth syntax into it and it will create a (.avs) file for each video you extracted from your Blu-ray discs.
