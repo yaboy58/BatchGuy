@@ -15,8 +15,6 @@
 
 --x264 Form
 *validation
-	-ensure that an episode name is given for all avs file
-
 
 --bluray title info form
 *validation
@@ -42,7 +40,7 @@
 *About Screen - done
 *Fixed bug in parser when eac3to throws an error
 
-
+*Fix bug where invalid blu-ray, it is removed from grid but summary grid errors, you need to clear the grid
 *delete existing .bat file(s) before writing new scripts (probably just check to see if it is on file#1)
 *Admin Screen
 *Disable Audio Grid onload
