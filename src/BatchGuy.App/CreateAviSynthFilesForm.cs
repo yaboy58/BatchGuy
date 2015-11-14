@@ -89,10 +89,15 @@ namespace BatchGuy.App
                 MessageBox.Show("Please enter a file directory", "Directory Error.", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
-            if (txtNumberOfFiles.Text == string.Empty || !txtNumberOfFiles.Text.IsNumeric())
+            if (txtNumberOfFiles.Text == string.Empty || !txtNumberOfFiles.Text.IsNumeric()  || txtNumberOfFiles.Text.StringToInt() <= 0)
             {
                 MessageBox.Show("Invalid number of files", "Number of files Error.", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;                
+            }
+            if (string.IsNullOrEmpty(txtAVSTemplate.Text))
+            {
+                MessageBox.Show("Please enter AviSynth Scripts", "Invalid AviSynth Script.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;                                
             }
             return true;
         }
