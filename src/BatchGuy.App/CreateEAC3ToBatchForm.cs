@@ -301,6 +301,7 @@ namespace BatchGuy.App
                 _bindingListBluRayDiscInfo.Remove(disc);
                 this.BindDgvBluRayDiscInfoGrid();
                 gbScreen.SetEnabled(true);
+                dgvBluRaySummary.Rows.Clear();
             }
       
         }
