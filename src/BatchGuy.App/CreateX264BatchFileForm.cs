@@ -105,11 +105,7 @@ namespace BatchGuy.App
 
         private void btnCreateX264BatFile_Click(object sender, EventArgs e)
         {
-            if (_x264Files == null || _x264Files.Count() == 0)
-            {
-                MessageBox.Show("Please load AviSynth scripts", "AviSynth Scripts Not Load",  MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
-            else
+            if (this.IsScreenValid())
             {
                 this.CreateX264BatFile();
             }
@@ -212,6 +208,21 @@ namespace BatchGuy.App
                 MessageBox.Show(errors.GetErrorMessage(), "Errors Occurred.", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             gbScreen.SetEnabled(true);
+        }
+
+        private bool IsScreenValid()
+        {
+            if (_x264Files == null || _x264Files.Count() == 0)
+            {
+                MessageBox.Show("Please load AviSynth scripts", "AviSynth Scripts Not Loaded", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return false;
+            }
+            if (string.IsNullOrEmpty(txtX264Template.Text))
+            {
+                MessageBox.Show("Please enter x264 settings", "Invalid x264 settings", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return false;                
+            }
+            return true;
         }
     }
 }

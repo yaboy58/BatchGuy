@@ -121,6 +121,12 @@ namespace BatchGuy.App
         private void bgwCreateAviSynthFiles_DoWork(object sender, DoWorkEventArgs e)
         {
             ErrorCollection errors = _avsService.CreateAVSFiles();
+            e.Result = errors;
+        }
+
+        private void bgwCreateAviSynthFiles_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            ErrorCollection errors = e.Result as ErrorCollection;
 
             if (errors.Count() > 0)
             {
@@ -129,11 +135,10 @@ namespace BatchGuy.App
             else
             {
                 MessageBox.Show("AVS Scripts have been created!", "Success.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.SetAVSTemplateTextBox();
+                txtNumberOfFiles.Text = "";
+                txtNumberOfFiles.Focus();
             }
-        }
-
-        private void bgwCreateAviSynthFiles_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
             gbScreen.SetEnabled(true);
         }
     }
