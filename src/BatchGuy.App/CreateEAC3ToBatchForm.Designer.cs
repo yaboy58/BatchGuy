@@ -228,7 +228,7 @@
             this.dgvBluRayDiscInfo.Name = "dgvBluRayDiscInfo";
             this.dgvBluRayDiscInfo.Size = new System.Drawing.Size(1241, 150);
             this.dgvBluRayDiscInfo.TabIndex = 24;
-            this.dgvBluRayDiscInfo.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBluRayDiscInfo_CellClick);
+            this.dgvBluRayDiscInfo.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBluRayDiscInfo_CellClick);
             // 
             // isSelectedDataGridViewCheckBoxColumn1
             // 

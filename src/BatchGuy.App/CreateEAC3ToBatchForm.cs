@@ -89,10 +89,10 @@ namespace BatchGuy.App
 
         private void dgvBluRayDiscInfo_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            gbScreen.SetEnabled(false);
             this.HandleDgvBluRayDiscInfoCellClick(e);
             if (_currentBluRayDiscInfo.BluRaySummaryInfoList == null)
             {
+                gbScreen.SetEnabled(false);
                 this.HandleLoadBluRay();
             }
             else
@@ -262,23 +262,32 @@ namespace BatchGuy.App
             //Get line items
             ICommandLineProcessService commandLineProcessService = e.Argument as CommandLineProcessService;
             List<ProcessOutputLineItem> processOutputLineItems = commandLineProcessService.GetProcessOutputLineItems();
-            ////:Get the Blu ray summary list
-            ILineItemIdentifierService lineItemService = new BluRaySummaryLineItemIdentifierService();
-            IBluRaySummaryParserService parserService = new BluRaySummaryParserService(lineItemService, processOutputLineItems);
-            e.Result = parserService.GetSummaryList();
+
+            e.Result = processOutputLineItems;
         }
 
         private void bgwEac3to_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            List<BluRaySummaryInfo> bluRaySummaries = e.Result as List<BluRaySummaryInfo>;
-            _currentBluRayDiscInfo.BluRaySummaryInfoList = bluRaySummaries;
+            List<ProcessOutputLineItem> processOutputLineItems = e.Result as List<ProcessOutputLineItem>;
+            ILineItemIdentifierService lineItemService = new BluRaySummaryLineItemIdentifierService();
+            IBluRaySummaryParserService parserService = new BluRaySummaryParserService(lineItemService, processOutputLineItems);
+            List<BluRaySummaryInfo> bluRaySummaries = parserService.GetSummaryList();
 
-            //This code will occur in the completed event handler
-            foreach (BluRaySummaryInfo info in _currentBluRayDiscInfo.BluRaySummaryInfoList)
+            if (parserService.Errors.Count() == 0)
             {
-                _bindingListBluRaySummaryInfo.Add(info);
+                _currentBluRayDiscInfo.BluRaySummaryInfoList = bluRaySummaries;
+                foreach (BluRaySummaryInfo info in _currentBluRayDiscInfo.BluRaySummaryInfoList)
+                {
+                    _bindingListBluRaySummaryInfo.Add(info);
+                }
+                this.UpdateUIForBluRaySummary();         
             }
-            this.UpdateUIForBluRaySummary();
+            else
+            {
+                MessageBox.Show(parserService.Errors.GetErrorMessage(), "Error Occurred.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                gbScreen.SetEnabled(true);
+            }
+      
         }
 
         private void bgwEac3toWriteBatchFile_DoWork(object sender, DoWorkEventArgs e)

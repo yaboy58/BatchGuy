@@ -1,6 +1,7 @@
 ﻿using BatchGuy.App.Enums;
 using BatchGuy.App.Parser.Interfaces;
 using BatchGuy.App.Parser.Models;
+using BatchGuy.App.Shared.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,12 +16,19 @@ namespace BatchGuy.App.Parser.Services
         private ILineItemIdentifierService _lineItemIdentifierService;
         private List<ProcessOutputLineItem> _processOutputLineItems;
         private List<BluRaySummaryInfo> _summaryList;
+        private ErrorCollection _errors;
+
+        public ErrorCollection Errors
+        {
+            get { return _errors; }
+        }
 
         public BluRaySummaryParserService(ILineItemIdentifierService lineItemIdentifierService, List<ProcessOutputLineItem> processOutputLineItems)
         {
             _lineItemIdentifierService = lineItemIdentifierService;
             _processOutputLineItems = processOutputLineItems;
             _summaryList = new List<BluRaySummaryInfo>();
+            _errors = new ErrorCollection();
         }
 
         public List<BluRaySummaryInfo> GetSummaryList()
@@ -55,6 +63,9 @@ namespace BatchGuy.App.Parser.Services
                         summaryInfo.HeaderText = sbHeader.ToString();
                         summaryInfo.DetailText = sbDetail.ToString();
                         _summaryList.Add(summaryInfo);
+                        break;
+                    case EnumLineItemType.BluRayError:
+                        _errors.Add(new Error() { Description = item.Text });
                         break;
                     default:
                         break;

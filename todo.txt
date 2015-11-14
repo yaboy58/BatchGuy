@@ -40,10 +40,11 @@
 *Change error message in title info for no episode number entered to be more informative - done
 *Multi-threaded processing - done
 *About Screen - done
+*Fixed bug in parser when eac3to throws an error
 
 
 *delete existing .bat file(s) before writing new scripts (probably just check to see if it is on file#1)
 *Admin Screen
 *Disable Audio Grid onload
-*keep eye on eac3to screen with header/detail navigation, sometimes detail seems not to load
+
 

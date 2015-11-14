@@ -23,9 +23,13 @@ namespace BatchGuy.App.Parser.Services
             {
                 type = EnumLineItemType.BluRaySummaryDetailLine;    
             }
-            else
+            else if (this.IsEmptyLine(processOutputLineItem))
             {
                 type = EnumLineItemType.BluRaySummaryEmptyLine;
+            }
+            else
+            {
+                type = EnumLineItemType.BluRayError;
             }
 
             return type;
@@ -47,6 +51,14 @@ namespace BatchGuy.App.Parser.Services
             bool isDetail = values.Any(v => processOutputLineItem.Text.ToLower().Contains(v));
 
             return isDetail;
+        }
+
+        private bool IsEmptyLine(ProcessOutputLineItem processOutputLineItem)
+        {
+            if (processOutputLineItem.Text == "")
+                return true;
+            else
+                return false;
         }
     }
 }

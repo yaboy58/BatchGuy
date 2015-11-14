@@ -39,12 +39,7 @@ namespace BatchGuy.App.Helpers
             StringBuilder result = new StringBuilder(hasBackspace.Length);
             foreach (char c in hasBackspace)
             {
-                if (c == '\b')
-                {
-                    if (result.Length > 0)
-                        result.Length--;
-                }
-                else
+                if (c != '\b')
                 {
                     result.Append(c);
                 }

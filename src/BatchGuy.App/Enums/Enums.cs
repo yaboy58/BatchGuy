@@ -31,6 +31,7 @@ namespace BatchGuy.App.Enums
         BluRayTitleChapterLine = 6,
         BluRayTitleVideoLine = 7,
         BluRayTitleAudioLine = 8,
-        BluRayTitleSubtitleLine = 9
+        BluRayTitleSubtitleLine = 9,
+        BluRayError = 10
     }
 }
