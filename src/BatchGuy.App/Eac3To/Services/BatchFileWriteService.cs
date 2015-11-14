@@ -16,10 +16,10 @@ namespace BatchGuy.App.Eac3to.Services
 {
     public class BatchFileWriteService : IBatchFileWriteService
     {
-        private List<Error> _errors = new List<Error>();
+        private ErrorCollection _errors = new ErrorCollection();
         private List<BluRayDiscInfo> _bluRayDiscInfoList;
 
-        public List<Error> Errors
+        public ErrorCollection Errors
         {
             get { return _errors; }
         }
@@ -27,10 +27,10 @@ namespace BatchGuy.App.Eac3to.Services
         public BatchFileWriteService(List<BluRayDiscInfo> bluRayDiscInfo)
         {
             _bluRayDiscInfoList = bluRayDiscInfo;
-            _errors = new List<Error>();
+            _errors = new ErrorCollection();
         }
 
-        public List<Error> Write()
+        public ErrorCollection Write()
         {
             if (this.IsValid())
             {

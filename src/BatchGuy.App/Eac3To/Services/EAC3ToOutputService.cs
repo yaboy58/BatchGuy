@@ -16,7 +16,7 @@ namespace BatchGuy.App.Eac3to.Services
     public class EAC3ToOutputService : IEAC3ToOutputService
     {
         private EAC3ToConfiguration _config;
-        private List<Error> _errors = new List<Error>();
+        private ErrorCollection _errors = new ErrorCollection();
         private string _filesOutputPath;
         private string _paddedEpisode;
         private BluRayTitleInfo _bluRayTitleInfo;

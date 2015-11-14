@@ -37,15 +37,15 @@ namespace BatchGuy.App
 
         private void BluRayTitleForm_Load(object sender, EventArgs e)
         {
+            gbScreen.SetEnabled(false);
             if (_bluRaySummaryInfo.BluRayTitleInfo != null)
             {
-                this.LoadScreen();   
+                this.LoadScreen();
+                gbScreen.SetEnabled(true);
             }
             else
             {
                 this.LoadBluRayTitleInfo();
-                this.LoadScreen();
-                txtEpisodeNumber.Focus();
             }
         }
 
@@ -60,14 +60,11 @@ namespace BatchGuy.App
             ICommandLineProcessService commandLineProcessService = new CommandLineProcessService(commandLineProcessStartInfo);
             if (commandLineProcessService.Errors.Count() == 0)
             {
-                List<ProcessOutputLineItem> processOutputLineItems = commandLineProcessService.GetProcessOutputLineItems();
-                ILineItemIdentifierService lineItemService = new BluRayTitleLineItemIdentifierService();
-                IBluRayTitleParserService parserService = new BluRayTitleParserService(lineItemService, processOutputLineItems);
-                _bluRaySummaryInfo.BluRayTitleInfo = parserService.GetTitleInfo();
+                bgwEac3toLoadTitle.RunWorkerAsync(commandLineProcessService);
             }
             else
             {
-                //error handling
+                MessageBox.Show(commandLineProcessService.Errors.GetErrorMessage(), "Errors Occurred.", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -279,7 +276,7 @@ namespace BatchGuy.App
         {
             if (_bluRaySummaryInfo.BluRayTitleInfo.Video.IsSelected && string.IsNullOrEmpty(_bluRaySummaryInfo.BluRayTitleInfo.EpisodeNumber))
             {
-                MessageBox.Show("Please enter an episode number!", "Invalid episode number", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Please enter an episode number or uncheck Video!", "Invalid episode number", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
             return true;
@@ -298,6 +295,22 @@ namespace BatchGuy.App
             if (e.RowIndex == -1)
                 return;
             dgvSubtitles.Rows[e.RowIndex].Selected = true;
+        }
+
+        private void bgwEac3toLoadTitle_DoWork(object sender, DoWorkEventArgs e)
+        {
+            ICommandLineProcessService commandLineProcessService = e.Argument as CommandLineProcessService;
+            List<ProcessOutputLineItem> processOutputLineItems = commandLineProcessService.GetProcessOutputLineItems();
+            ILineItemIdentifierService lineItemService = new BluRayTitleLineItemIdentifierService();
+            IBluRayTitleParserService parserService = new BluRayTitleParserService(lineItemService, processOutputLineItems);
+            _bluRaySummaryInfo.BluRayTitleInfo = parserService.GetTitleInfo();
+        }
+
+        private void bgwEac3toLoadTitle_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            this.LoadScreen();
+            txtEpisodeNumber.Focus();
+            gbScreen.SetEnabled(true);
         }
     }
 }

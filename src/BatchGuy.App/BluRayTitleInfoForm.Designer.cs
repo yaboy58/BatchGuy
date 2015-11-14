@@ -60,7 +60,9 @@
             this.chkChapters = new System.Windows.Forms.CheckBox();
             this.lblEpisodeNumber = new System.Windows.Forms.Label();
             this.txtEpisodeNumber = new System.Windows.Forms.TextBox();
+            this.gbScreen = new System.Windows.Forms.GroupBox();
             this.bsBluRayTitleInfo = new System.Windows.Forms.BindingSource(this.components);
+            this.bgwEac3toLoadTitle = new System.ComponentModel.BackgroundWorker();
             this.gbVideo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsBluRayTitleVideo)).BeginInit();
             this.gbAudio.SuspendLayout();
@@ -71,13 +73,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvSubtitles)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsBluRayTitleSubtitles)).BeginInit();
             this.gbChapters.SuspendLayout();
+            this.gbScreen.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsBluRayTitleInfo)).BeginInit();
             this.SuspendLayout();
             // 
             // lblTitle
             // 
             this.lblTitle.AutoSize = true;
-            this.lblTitle.Location = new System.Drawing.Point(12, 22);
+            this.lblTitle.Location = new System.Drawing.Point(26, 19);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(30, 13);
             this.lblTitle.TabIndex = 0;
@@ -86,9 +89,9 @@
             // gbVideo
             // 
             this.gbVideo.Controls.Add(this.chkVideo);
-            this.gbVideo.Location = new System.Drawing.Point(15, 51);
+            this.gbVideo.Location = new System.Drawing.Point(26, 54);
             this.gbVideo.Name = "gbVideo";
-            this.gbVideo.Size = new System.Drawing.Size(896, 65);
+            this.gbVideo.Size = new System.Drawing.Size(904, 65);
             this.gbVideo.TabIndex = 1;
             this.gbVideo.TabStop = false;
             this.gbVideo.Text = "Video";
@@ -113,9 +116,9 @@
             // 
             this.gbAudio.Controls.Add(this.panel1);
             this.gbAudio.Controls.Add(this.dgvAudio);
-            this.gbAudio.Location = new System.Drawing.Point(12, 131);
+            this.gbAudio.Location = new System.Drawing.Point(26, 136);
             this.gbAudio.Name = "gbAudio";
-            this.gbAudio.Size = new System.Drawing.Size(896, 262);
+            this.gbAudio.Size = new System.Drawing.Size(904, 262);
             this.gbAudio.TabIndex = 2;
             this.gbAudio.TabStop = false;
             this.gbAudio.Text = "Audio";
@@ -245,7 +248,7 @@
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(826, 651);
+            this.btnUpdate.Location = new System.Drawing.Point(848, 656);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(82, 25);
             this.btnUpdate.TabIndex = 3;
@@ -256,9 +259,9 @@
             // gbSubtitles
             // 
             this.gbSubtitles.Controls.Add(this.dgvSubtitles);
-            this.gbSubtitles.Location = new System.Drawing.Point(12, 399);
+            this.gbSubtitles.Location = new System.Drawing.Point(26, 404);
             this.gbSubtitles.Name = "gbSubtitles";
-            this.gbSubtitles.Size = new System.Drawing.Size(896, 192);
+            this.gbSubtitles.Size = new System.Drawing.Size(904, 192);
             this.gbSubtitles.TabIndex = 4;
             this.gbSubtitles.TabStop = false;
             this.gbSubtitles.Text = "Subtitles";
@@ -318,9 +321,9 @@
             // gbChapters
             // 
             this.gbChapters.Controls.Add(this.chkChapters);
-            this.gbChapters.Location = new System.Drawing.Point(15, 597);
+            this.gbChapters.Location = new System.Drawing.Point(29, 602);
             this.gbChapters.Name = "gbChapters";
-            this.gbChapters.Size = new System.Drawing.Size(887, 48);
+            this.gbChapters.Size = new System.Drawing.Size(901, 48);
             this.gbChapters.TabIndex = 5;
             this.gbChapters.TabStop = false;
             this.gbChapters.Text = "Chapters";
@@ -339,7 +342,7 @@
             // lblEpisodeNumber
             // 
             this.lblEpisodeNumber.AutoSize = true;
-            this.lblEpisodeNumber.Location = new System.Drawing.Point(763, 22);
+            this.lblEpisodeNumber.Location = new System.Drawing.Point(777, 19);
             this.lblEpisodeNumber.Name = "lblEpisodeNumber";
             this.lblEpisodeNumber.Size = new System.Drawing.Size(58, 13);
             this.lblEpisodeNumber.TabIndex = 6;
@@ -347,29 +350,43 @@
             // 
             // txtEpisodeNumber
             // 
-            this.txtEpisodeNumber.Location = new System.Drawing.Point(826, 19);
+            this.txtEpisodeNumber.Location = new System.Drawing.Point(840, 16);
             this.txtEpisodeNumber.Name = "txtEpisodeNumber";
-            this.txtEpisodeNumber.Size = new System.Drawing.Size(82, 20);
+            this.txtEpisodeNumber.Size = new System.Drawing.Size(90, 20);
             this.txtEpisodeNumber.TabIndex = 0;
             this.txtEpisodeNumber.TextChanged += new System.EventHandler(this.txtEpisodeNumber_TextChanged);
+            // 
+            // gbScreen
+            // 
+            this.gbScreen.Controls.Add(this.txtEpisodeNumber);
+            this.gbScreen.Controls.Add(this.gbChapters);
+            this.gbScreen.Controls.Add(this.lblEpisodeNumber);
+            this.gbScreen.Controls.Add(this.gbSubtitles);
+            this.gbScreen.Controls.Add(this.btnUpdate);
+            this.gbScreen.Controls.Add(this.gbAudio);
+            this.gbScreen.Controls.Add(this.lblTitle);
+            this.gbScreen.Controls.Add(this.gbVideo);
+            this.gbScreen.Location = new System.Drawing.Point(12, 12);
+            this.gbScreen.Name = "gbScreen";
+            this.gbScreen.Size = new System.Drawing.Size(951, 689);
+            this.gbScreen.TabIndex = 7;
+            this.gbScreen.TabStop = false;
             // 
             // bsBluRayTitleInfo
             // 
             this.bsBluRayTitleInfo.DataSource = typeof(BatchGuy.App.Parser.Models.BluRayTitleInfo);
             // 
+            // bgwEac3toLoadTitle
+            // 
+            this.bgwEac3toLoadTitle.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgwEac3toLoadTitle_DoWork);
+            this.bgwEac3toLoadTitle.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgwEac3toLoadTitle_RunWorkerCompleted);
+            // 
             // BluRayTitleInfoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(931, 688);
-            this.Controls.Add(this.txtEpisodeNumber);
-            this.Controls.Add(this.lblEpisodeNumber);
-            this.Controls.Add(this.gbChapters);
-            this.Controls.Add(this.gbSubtitles);
-            this.Controls.Add(this.btnUpdate);
-            this.Controls.Add(this.gbAudio);
-            this.Controls.Add(this.gbVideo);
-            this.Controls.Add(this.lblTitle);
+            this.ClientSize = new System.Drawing.Size(976, 713);
+            this.Controls.Add(this.gbScreen);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "BluRayTitleInfoForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
@@ -389,9 +406,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.bsBluRayTitleSubtitles)).EndInit();
             this.gbChapters.ResumeLayout(false);
             this.gbChapters.PerformLayout();
+            this.gbScreen.ResumeLayout(false);
+            this.gbScreen.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsBluRayTitleInfo)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -428,5 +446,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.GroupBox gbScreen;
+        private System.ComponentModel.BackgroundWorker bgwEac3toLoadTitle;
     }
 }

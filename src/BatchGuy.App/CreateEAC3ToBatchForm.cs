@@ -27,11 +27,18 @@ namespace BatchGuy.App
         private CommandLineProcessStartInfo _commandLineProcessStartInfo;
         private BindingList<BluRayDiscInfo> _bindingListBluRayDiscInfo = new BindingList<BluRayDiscInfo>();
         private BindingList<BluRaySummaryInfo> _bindingListBluRaySummaryInfo;
+        private int _currentBluRayDiscGridRowIndex;
 
 
         public CreateEAC3ToBatchForm()
         {
             InitializeComponent();
+#if DEBUG
+            txtBluRayPath.Text = @"C:\temp\My Encodes\Blu-ray\DISC\D1";   
+            txtEAC3ToPath.Text = @"C:\exe\eac3to\eac3to.exe";
+            txtBatFilePath.Text = @"C:\temp\My Encodes\Blu-ray";
+#endif
+            
         }
 
         private void CreateEAC3ToBatchForm_Load(object sender, EventArgs e)
@@ -48,17 +55,9 @@ namespace BatchGuy.App
 
         private void WriteToBatchFile()
         {
+            gbScreen.SetEnabled(false);
             IBatchFileWriteService batchFileWriteService = new BatchFileWriteService(_bluRayDiscInfoList);
-            batchFileWriteService.Write();
-            if (batchFileWriteService.Errors.Count() == 0)
-            {
-                MessageBox.Show("Batch File created!", "Process Complete", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                this.Close();   
-            }
-            else
-            {
-                MessageBox.Show(string.Format("Error: {0}", batchFileWriteService.Errors[0].Description), "Error occurred", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            bgwEac3toWriteBatchFile.RunWorkerAsync(batchFileWriteService);
         }
 
         private void btnAddBluRayDisc_Click(object sender, EventArgs e)
@@ -93,11 +92,19 @@ namespace BatchGuy.App
             bsBluRayDiscInfo.DataSource = _bindingListBluRayDiscInfo;
         }
 
+        private void BindDgvBluRayDiscInfoGrid()
+        {
+            bsBluRayDiscInfo.DataSource = _bindingListBluRayDiscInfo;
+            bsBluRayDiscInfo.ResetBindings(false);
+            _bindingListBluRayDiscInfo.AllowEdit = true;
+        }
+
         private void dgvBluRayDiscInfo_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             this.HandleDgvBluRayDiscInfoCellClick(e);
             if (_currentBluRayDiscInfo.BluRaySummaryInfoList == null)
             {
+                gbScreen.SetEnabled(false);
                 this.HandleLoadBluRay();
             }
             else
@@ -107,12 +114,8 @@ namespace BatchGuy.App
                 {
                     _bindingListBluRaySummaryInfo.Add(info);
                 }
+                this.UpdateUIForBluRaySummary();
             }
-            this.BindDgvBluRaySummaryGrid();
-            gbDiscSummary.Text = string.Format("Disc Summary: {0}", _currentBluRayDiscInfo.DiscName);
-
-            if (e.RowIndex != -1)
-                dgvBluRayDiscInfo.Rows[e.RowIndex].Selected = true;
         }
 
         private void HandleDgvBluRayDiscInfoCellClick(DataGridViewCellEventArgs e)
@@ -121,6 +124,7 @@ namespace BatchGuy.App
                 return;
             var id = dgvBluRayDiscInfo.Rows[e.RowIndex].Cells[1].Value;
             _currentBluRayDiscInfo = _bluRayDiscInfoList.SingleOrDefault(d => d.Id == id.ToString().StringToInt());
+            _currentBluRayDiscGridRowIndex = e.RowIndex;
         }
 
         private void HandleLoadBluRay()
@@ -137,27 +141,24 @@ namespace BatchGuy.App
             ICommandLineProcessService commandLineProcessService = new CommandLineProcessService(_commandLineProcessStartInfo);
             if (commandLineProcessService.Errors.Count() == 0)
             {
-                //Get line items
-                List<ProcessOutputLineItem> processOutputLineItems = commandLineProcessService.GetProcessOutputLineItems();
-                ////:Get the Blu ray summary list
-                ILineItemIdentifierService lineItemService = new BluRaySummaryLineItemIdentifierService();
-                IBluRaySummaryParserService parserService = new BluRaySummaryParserService(lineItemService, processOutputLineItems);
-                _currentBluRayDiscInfo.BluRaySummaryInfoList = parserService.GetSummaryList();
-
-                foreach (BluRaySummaryInfo info in _currentBluRayDiscInfo.BluRaySummaryInfoList)
-                {
-                    _bindingListBluRaySummaryInfo.Add(info);
-                }
+                bgwEac3toLoadSummary.RunWorkerAsync(commandLineProcessService);
             }
             else
             {
-                System.Console.WriteLine("The following errors were found:");
-                foreach (var error in commandLineProcessService.Errors)
-                {
-                    //TODO:Display Error Message
-                }
+                MessageBox.Show(commandLineProcessService.Errors.GetErrorMessage(), "Errors Occurred.", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void UpdateUIForBluRaySummary()
+        {
+            this.BindDgvBluRaySummaryGrid();
+            gbDiscSummary.Text = string.Format("Disc Summary: {0}", _currentBluRayDiscInfo.DiscName);
+
+            if (_currentBluRayDiscGridRowIndex != -1)
+                dgvBluRayDiscInfo.Rows[_currentBluRayDiscGridRowIndex].Selected = true;
+            gbScreen.SetEnabled(true);
+        }
+
 
         private void BindDgvBluRaySummaryGrid()
         {
@@ -267,5 +268,64 @@ namespace BatchGuy.App
                txtBatFilePath.Text= fbdDialog.SelectedPath;
             }
         }
+
+        private void bgwEac3toLoadSummary_DoWork(object sender, DoWorkEventArgs e)
+        {
+            //Get line items
+            ICommandLineProcessService commandLineProcessService = e.Argument as CommandLineProcessService;
+            List<ProcessOutputLineItem> processOutputLineItems = commandLineProcessService.GetProcessOutputLineItems();
+
+            e.Result = processOutputLineItems;
+        }
+
+        private void bgwEac3toLoadSummary_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            List<ProcessOutputLineItem> processOutputLineItems = e.Result as List<ProcessOutputLineItem>;
+            ILineItemIdentifierService lineItemService = new BluRaySummaryLineItemIdentifierService();
+            IBluRaySummaryParserService parserService = new BluRaySummaryParserService(lineItemService, processOutputLineItems);
+            List<BluRaySummaryInfo> bluRaySummaries = parserService.GetSummaryList();
+
+            if (parserService.Errors.Count() == 0)
+            {
+                _currentBluRayDiscInfo.BluRaySummaryInfoList = bluRaySummaries;
+                foreach (BluRaySummaryInfo info in _currentBluRayDiscInfo.BluRaySummaryInfoList)
+                {
+                    _bindingListBluRaySummaryInfo.Add(info);
+                }
+                this.UpdateUIForBluRaySummary();         
+            }
+            else
+            {
+                MessageBox.Show(parserService.Errors.GetErrorMessage(), "Error Occurred.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                BluRayDiscInfo disc = _bindingListBluRayDiscInfo.SingleOrDefault(d => d.Id == _currentBluRayDiscInfo.Id);
+                _bindingListBluRayDiscInfo.Remove(disc);
+                this.BindDgvBluRayDiscInfoGrid();
+                gbScreen.SetEnabled(true);
+            }
+      
+        }
+
+        private void bgwEac3toWriteBatchFile_DoWork(object sender, DoWorkEventArgs e)
+        {
+            IBatchFileWriteService batchFileWriteService = e.Argument as BatchFileWriteService;
+            batchFileWriteService.Write();
+            e.Result = batchFileWriteService;
+        }
+
+        private void bgwEac3toWriteBatchFile_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            IBatchFileWriteService batchFileWriteService = e.Result as BatchFileWriteService;
+            if (batchFileWriteService.Errors.Count() == 0)
+            {
+                MessageBox.Show("Batch File created!", "Process Complete", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show(string.Format("Error: {0}", batchFileWriteService.Errors[0].Description), "Error occurred", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            gbScreen.SetEnabled(true);
+        }
+
     }
 }

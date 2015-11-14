@@ -25,11 +25,16 @@ namespace BatchGuy.App
         public CreateAviSynthFilesForm()
         {
             InitializeComponent();
+            txtNumberOfFiles.Focus();
         }
 
         private void CreateAVSFilesForm_Load(object sender, EventArgs e)
         {
             this.SetAVSTemplateTextBox();
+#if DEBUG
+            txtDirectory.Text = @"C:\temp\My Encodes\Blu-ray";   
+#endif
+
         }
 
         private void SetAVSTemplateTextBox()
@@ -44,6 +49,7 @@ namespace BatchGuy.App
         {
             if (this.IsScreenValid())
             {
+                gbScreen.SetEnabled(false);
                 Process();                
             }
         }
@@ -56,17 +62,8 @@ namespace BatchGuy.App
             _fileService = new FileService(avsBatchSettings, avsTemplateScript);
             _validationService = new ValidationService(avsBatchSettings);
             _avsService = new AVSService(_fileService, _validationService, avsTemplateScript, avsBatchSettings);
+            bgwCreateAviSynthFiles.RunWorkerAsync();
 
-            List<Error> errors = _avsService.CreateAVSFiles();
-
-            if (errors.Count() > 0 ) // errors
-            {
-                MessageBox.Show("Errors occurred!"); //print errors in a loop at some point
-            }
-            else
-            {
-                MessageBox.Show("AVS Scripts have been created!", "Success.",  MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
         }
 
         private AVSBatchSettings GetAVSBatchSettings()
@@ -114,6 +111,25 @@ namespace BatchGuy.App
             {
                 txtDirectory.Text = fbdDialog.SelectedPath;
             }
+        }
+
+        private void bgwCreateAviSynthFiles_DoWork(object sender, DoWorkEventArgs e)
+        {
+            ErrorCollection errors = _avsService.CreateAVSFiles();
+
+            if (errors.Count() > 0)
+            {
+                MessageBox.Show(errors.GetErrorMessage(), "Errors Occurred.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                MessageBox.Show("AVS Scripts have been created!", "Success.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void bgwCreateAviSynthFiles_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            gbScreen.SetEnabled(true);
         }
     }
 }

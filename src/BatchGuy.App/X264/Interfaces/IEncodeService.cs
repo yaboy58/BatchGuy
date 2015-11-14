@@ -9,6 +9,6 @@ namespace BatchGuy.App.X264.Interfaces
 {
     public interface IEncodeService
     {
-        List<Error> CreateX264File(); 
+        ErrorCollection CreateX264File(); 
     }
 }

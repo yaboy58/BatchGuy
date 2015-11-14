@@ -25,7 +25,7 @@ namespace BatchGuy.Unit.Tests.Services.AviSynth
             avsBatchSettings = new AVSBatchSettings() { BatchDirectoryPath = string.Empty, NamingConvention = "NamingConvention", NumberOfFiles = 1 };
             //when I validate
             validationService = new ValidationService(avsBatchSettings);
-            List<Error> errors = validationService.Validate();
+            ErrorCollection errors = validationService.Validate();
             //then error list contains error
             Assert.AreEqual(errors[0].Description, "Batch Directory is required!");
         }
@@ -40,7 +40,7 @@ namespace BatchGuy.Unit.Tests.Services.AviSynth
             avsBatchSettings = new AVSBatchSettings() { BatchDirectoryPath = "BatchDirectory", NamingConvention = "NamingConvention", NumberOfFiles = 1 };
             //when I validate
             validationService = new ValidationService(avsBatchSettings);
-            List<Error> errors = validationService.Validate();
+            ErrorCollection errors = validationService.Validate();
             //then error list contains error
             Assert.AreEqual(errors[0].Description, "Batch Directory does not exist!");
         }
@@ -55,7 +55,7 @@ namespace BatchGuy.Unit.Tests.Services.AviSynth
             avsBatchSettings = new AVSBatchSettings() { BatchDirectoryPath = "C:\\temp", NamingConvention = string.Empty, NumberOfFiles = 1 };
             //when I validate
             validationService = new ValidationService(avsBatchSettings);
-            List<Error> errors = validationService.Validate();
+            ErrorCollection errors = validationService.Validate();
             //then error list contains error
             Assert.AreEqual(errors[0].Description, "Naming Convention is required");
         }

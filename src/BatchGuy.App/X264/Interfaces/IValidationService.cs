@@ -9,6 +9,6 @@ namespace BatchGuy.App.X264.Interfaces
 {
     public interface IValidationService
     {
-        List<Error> Validate();
+        ErrorCollection Validate();
     }
 }

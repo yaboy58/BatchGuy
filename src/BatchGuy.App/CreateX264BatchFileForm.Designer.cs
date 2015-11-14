@@ -51,14 +51,18 @@
             this.fbdDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.btnOpenVfw4x264FileDialog = new System.Windows.Forms.Button();
             this.btnOpenAviSynthScriptLocationDialog = new System.Windows.Forms.Button();
+            this.gbScreen = new System.Windows.Forms.GroupBox();
+            this.bgwCreateX264BatchFile = new System.ComponentModel.BackgroundWorker();
+            this.bgwLoadAviSynthFiles = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFiles)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsFiles)).BeginInit();
+            this.gbScreen.SuspendLayout();
             this.SuspendLayout();
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(551, 376);
+            this.label4.Location = new System.Drawing.Point(562, 416);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(74, 13);
             this.label4.TabIndex = 16;
@@ -71,7 +75,7 @@
             this.cbEncodeType.Items.AddRange(new object[] {
             "CRF",
             "2Pass"});
-            this.cbEncodeType.Location = new System.Drawing.Point(641, 369);
+            this.cbEncodeType.Location = new System.Drawing.Point(652, 409);
             this.cbEncodeType.Name = "cbEncodeType";
             this.cbEncodeType.Size = new System.Drawing.Size(148, 21);
             this.cbEncodeType.TabIndex = 15;
@@ -79,7 +83,7 @@
             // 
             // btnCreateX264BatFile
             // 
-            this.btnCreateX264BatFile.Location = new System.Drawing.Point(621, 621);
+            this.btnCreateX264BatFile.Location = new System.Drawing.Point(633, 619);
             this.btnCreateX264BatFile.Name = "btnCreateX264BatFile";
             this.btnCreateX264BatFile.Size = new System.Drawing.Size(168, 44);
             this.btnCreateX264BatFile.TabIndex = 14;
@@ -90,7 +94,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(11, 379);
+            this.label3.Location = new System.Drawing.Point(22, 419);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(80, 13);
             this.label3.TabIndex = 13;
@@ -98,16 +102,16 @@
             // 
             // txtX264Template
             // 
-            this.txtX264Template.Location = new System.Drawing.Point(14, 396);
+            this.txtX264Template.Location = new System.Drawing.Point(25, 436);
             this.txtX264Template.Multiline = true;
             this.txtX264Template.Name = "txtX264Template";
-            this.txtX264Template.Size = new System.Drawing.Size(775, 219);
+            this.txtX264Template.Size = new System.Drawing.Size(775, 168);
             this.txtX264Template.TabIndex = 12;
             // 
             // lblAviSynthScriptsLocation
             // 
             this.lblAviSynthScriptsLocation.AutoSize = true;
-            this.lblAviSynthScriptsLocation.Location = new System.Drawing.Point(12, 17);
+            this.lblAviSynthScriptsLocation.Location = new System.Drawing.Point(24, 28);
             this.lblAviSynthScriptsLocation.Name = "lblAviSynthScriptsLocation";
             this.lblAviSynthScriptsLocation.Size = new System.Drawing.Size(128, 13);
             this.lblAviSynthScriptsLocation.TabIndex = 11;
@@ -115,17 +119,16 @@
             // 
             // txtAVSFileLocation
             // 
-            this.txtAVSFileLocation.Location = new System.Drawing.Point(150, 10);
+            this.txtAVSFileLocation.Location = new System.Drawing.Point(162, 21);
             this.txtAVSFileLocation.Name = "txtAVSFileLocation";
             this.txtAVSFileLocation.ReadOnly = true;
             this.txtAVSFileLocation.Size = new System.Drawing.Size(434, 20);
             this.txtAVSFileLocation.TabIndex = 10;
-            this.txtAVSFileLocation.Text = "C:\\temp\\My Encodes\\Blu-ray";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 84);
+            this.label1.Location = new System.Drawing.Point(23, 124);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(62, 13);
             this.label1.TabIndex = 18;
@@ -142,7 +145,7 @@
             this.aVSFileNameOnlyDataGridViewTextBoxColumn,
             this.encodeNameDataGridViewTextBoxColumn});
             this.dgvFiles.DataSource = this.bsFiles;
-            this.dgvFiles.Location = new System.Drawing.Point(14, 107);
+            this.dgvFiles.Location = new System.Drawing.Point(25, 147);
             this.dgvFiles.Margin = new System.Windows.Forms.Padding(2);
             this.dgvFiles.Name = "dgvFiles";
             this.dgvFiles.RowTemplate.Height = 24;
@@ -180,7 +183,7 @@
             // 
             // btnLoadAVSFiles
             // 
-            this.btnLoadAVSFiles.Location = new System.Drawing.Point(653, 78);
+            this.btnLoadAVSFiles.Location = new System.Drawing.Point(664, 118);
             this.btnLoadAVSFiles.Margin = new System.Windows.Forms.Padding(2);
             this.btnLoadAVSFiles.Name = "btnLoadAVSFiles";
             this.btnLoadAVSFiles.Size = new System.Drawing.Size(136, 24);
@@ -192,7 +195,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(12, 55);
+            this.label5.Location = new System.Drawing.Point(24, 66);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(73, 13);
             this.label5.TabIndex = 22;
@@ -200,17 +203,16 @@
             // 
             // txtVfw4x264exe
             // 
-            this.txtVfw4x264exe.Location = new System.Drawing.Point(150, 52);
+            this.txtVfw4x264exe.Location = new System.Drawing.Point(162, 63);
             this.txtVfw4x264exe.Name = "txtVfw4x264exe";
             this.txtVfw4x264exe.ReadOnly = true;
             this.txtVfw4x264exe.Size = new System.Drawing.Size(434, 20);
             this.txtVfw4x264exe.TabIndex = 21;
-            this.txtVfw4x264exe.Text = "C:\\exe\\vfw4x264\\vfw4x264.exe";
             // 
             // lblNumberOfFiles
             // 
             this.lblNumberOfFiles.AutoSize = true;
-            this.lblNumberOfFiles.Location = new System.Drawing.Point(11, 331);
+            this.lblNumberOfFiles.Location = new System.Drawing.Point(22, 371);
             this.lblNumberOfFiles.Name = "lblNumberOfFiles";
             this.lblNumberOfFiles.Size = new System.Drawing.Size(83, 13);
             this.lblNumberOfFiles.TabIndex = 23;
@@ -223,7 +225,7 @@
             // btnOpenVfw4x264FileDialog
             // 
             this.btnOpenVfw4x264FileDialog.Image = global::BatchGuy.App.Properties.Resources.Avosoft_Warm_Toolbar_Folder_open;
-            this.btnOpenVfw4x264FileDialog.Location = new System.Drawing.Point(590, 41);
+            this.btnOpenVfw4x264FileDialog.Location = new System.Drawing.Point(602, 52);
             this.btnOpenVfw4x264FileDialog.Name = "btnOpenVfw4x264FileDialog";
             this.btnOpenVfw4x264FileDialog.Size = new System.Drawing.Size(61, 33);
             this.btnOpenVfw4x264FileDialog.TabIndex = 30;
@@ -233,42 +235,62 @@
             // btnOpenAviSynthScriptLocationDialog
             // 
             this.btnOpenAviSynthScriptLocationDialog.Image = global::BatchGuy.App.Properties.Resources.Avosoft_Warm_Toolbar_Folder_open;
-            this.btnOpenAviSynthScriptLocationDialog.Location = new System.Drawing.Point(590, 3);
+            this.btnOpenAviSynthScriptLocationDialog.Location = new System.Drawing.Point(602, 14);
             this.btnOpenAviSynthScriptLocationDialog.Name = "btnOpenAviSynthScriptLocationDialog";
             this.btnOpenAviSynthScriptLocationDialog.Size = new System.Drawing.Size(61, 33);
             this.btnOpenAviSynthScriptLocationDialog.TabIndex = 29;
             this.btnOpenAviSynthScriptLocationDialog.UseVisualStyleBackColor = true;
             this.btnOpenAviSynthScriptLocationDialog.Click += new System.EventHandler(this.btnOpenAviSynthScriptOutputDialog_Click);
             // 
-            // CreateX264BatFileForm
+            // gbScreen
+            // 
+            this.gbScreen.Controls.Add(this.lblAviSynthScriptsLocation);
+            this.gbScreen.Controls.Add(this.btnOpenVfw4x264FileDialog);
+            this.gbScreen.Controls.Add(this.txtAVSFileLocation);
+            this.gbScreen.Controls.Add(this.btnOpenAviSynthScriptLocationDialog);
+            this.gbScreen.Controls.Add(this.txtX264Template);
+            this.gbScreen.Controls.Add(this.lblNumberOfFiles);
+            this.gbScreen.Controls.Add(this.label3);
+            this.gbScreen.Controls.Add(this.label5);
+            this.gbScreen.Controls.Add(this.btnCreateX264BatFile);
+            this.gbScreen.Controls.Add(this.txtVfw4x264exe);
+            this.gbScreen.Controls.Add(this.cbEncodeType);
+            this.gbScreen.Controls.Add(this.btnLoadAVSFiles);
+            this.gbScreen.Controls.Add(this.label4);
+            this.gbScreen.Controls.Add(this.dgvFiles);
+            this.gbScreen.Controls.Add(this.label1);
+            this.gbScreen.Location = new System.Drawing.Point(12, 12);
+            this.gbScreen.Name = "gbScreen";
+            this.gbScreen.Size = new System.Drawing.Size(824, 687);
+            this.gbScreen.TabIndex = 31;
+            this.gbScreen.TabStop = false;
+            // 
+            // bgwCreateX264BatchFile
+            // 
+            this.bgwCreateX264BatchFile.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgwCreateX264BatchFile_DoWork);
+            this.bgwCreateX264BatchFile.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgwCreateX264BatchFile_RunWorkerCompleted);
+            // 
+            // bgwLoadAviSynthFiles
+            // 
+            this.bgwLoadAviSynthFiles.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgwLoadAviSynthFiles_DoWork);
+            this.bgwLoadAviSynthFiles.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgwLoadAviSynthFiles_RunWorkerCompleted);
+            // 
+            // CreateX264BatchFileForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(805, 682);
-            this.Controls.Add(this.btnOpenVfw4x264FileDialog);
-            this.Controls.Add(this.btnOpenAviSynthScriptLocationDialog);
-            this.Controls.Add(this.lblNumberOfFiles);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.txtVfw4x264exe);
-            this.Controls.Add(this.btnLoadAVSFiles);
-            this.Controls.Add(this.dgvFiles);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.cbEncodeType);
-            this.Controls.Add(this.btnCreateX264BatFile);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.txtX264Template);
-            this.Controls.Add(this.lblAviSynthScriptsLocation);
-            this.Controls.Add(this.txtAVSFileLocation);
+            this.ClientSize = new System.Drawing.Size(849, 711);
+            this.Controls.Add(this.gbScreen);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "CreateX264BatFileForm";
+            this.Name = "CreateX264BatchFileForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Create x264 Batch File";
             this.Load += new System.EventHandler(this.CreateX264BatFileForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvFiles)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsFiles)).EndInit();
+            this.gbScreen.ResumeLayout(false);
+            this.gbScreen.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -295,5 +317,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn aVSFileNameOnlyDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn encodeNameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.GroupBox gbScreen;
+        private System.ComponentModel.BackgroundWorker bgwCreateX264BatchFile;
+        private System.ComponentModel.BackgroundWorker bgwLoadAviSynthFiles;
     }
 }

@@ -69,5 +69,25 @@ namespace BatchGuy.App.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Icontexto_Webdev_Webdev_config {
+            get {
+                object obj = ResourceManager.GetObject("Icontexto-Webdev-Webdev-config", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap webdev_config_icon {
+            get {
+                object obj = ResourceManager.GetObject("webdev-config-icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

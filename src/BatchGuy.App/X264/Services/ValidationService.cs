@@ -13,16 +13,16 @@ namespace BatchGuy.App.X264.Services
     public class ValidationService : IValidationService
     {
         private X264FileSettings _x264FileSettings;
-        private List<Error> _errors;
+        private ErrorCollection _errors;
         private List<X264File> _x264Files;
 
         public ValidationService(X264FileSettings x264FileSettings, List<X264File> x264Files)
         {
             _x264FileSettings = x264FileSettings;
-            _errors = new List<Error>();
+            _errors = new ErrorCollection();
             _x264Files = x264Files;
         }
-        public List<Error> Validate()
+        public ErrorCollection Validate()
         {
             this.IsValid();
             return _errors;

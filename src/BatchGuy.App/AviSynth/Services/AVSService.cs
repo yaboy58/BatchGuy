@@ -13,7 +13,7 @@ namespace BatchGuy.App.AviSynth.Services
 {
     public class AVSService : IAVSService
     {
-        private List<Error> _errors;
+        private ErrorCollection _errors;
         private IFileService _fileService;
         private IValidationService _validationService;
         private List<AVSFile> _avsFiles;
@@ -28,7 +28,7 @@ namespace BatchGuy.App.AviSynth.Services
             _avsBatchSettings = avsBatchSettings;
         }
 
-        public List<Error> CreateAVSFiles()
+        public ErrorCollection CreateAVSFiles()
         {
             _errors = _validationService.Validate();
             if (_errors.Count == 0)
