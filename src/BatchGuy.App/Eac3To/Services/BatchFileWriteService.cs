@@ -78,7 +78,9 @@ namespace BatchGuy.App.Eac3to.Services
         {
             if (!this.IsAtLeastOneDiscSelected())
                 return false;
-            if (!this.IsAtLeastOneEpisodeSelected())
+            if (!this.IsAtLeastOneSummarySelected())
+                return false;
+            if (!this.WhenSummarySelectedAtLeastOneStreamSelected())
                 return false;
             if (!this.IsAllEpisodeNumbersSet())
                 return false;
@@ -98,7 +100,7 @@ namespace BatchGuy.App.Eac3to.Services
             return isValid;
         }
 
-        private bool IsAtLeastOneEpisodeSelected()
+        private bool IsAtLeastOneSummarySelected()
         {
             bool isValid = false;
 
@@ -117,6 +119,42 @@ namespace BatchGuy.App.Eac3to.Services
             return isValid;
         }
 
+        private bool WhenSummarySelectedAtLeastOneStreamSelected()
+        {
+            bool isValid = false;
+
+            foreach (BluRayDiscInfo disc in _bluRayDiscInfoList.Where(d => d.IsSelected))
+            {
+                foreach (BluRaySummaryInfo summary in disc.BluRaySummaryInfoList.Where(s => s.IsSelected))
+                {
+                    if (summary.BluRayTitleInfo != null && summary.BluRayTitleInfo.Video.IsSelected)
+                    {
+                        isValid = true;
+                    }
+                    if (summary.BluRayTitleInfo != null && summary.BluRayTitleInfo.AudioList != null && summary.BluRayTitleInfo.AudioList.Where(a => a.IsSelected).Count() > 0)
+                    {
+                        isValid = true;
+                    }
+                    if (summary.BluRayTitleInfo != null && summary.BluRayTitleInfo.Subtitles != null && summary.BluRayTitleInfo.Subtitles.Where(s => s.IsSelected).Count() > 0 )
+                    {
+                        isValid = true;
+                    }
+                    if (summary.BluRayTitleInfo != null && summary.BluRayTitleInfo.Chapter != null && summary.BluRayTitleInfo.Chapter.IsSelected)
+                    {
+                        isValid = true;
+                    }
+                    if (!isValid)
+                    {
+                        this._errors.Add(new Error() { Description = "Some selected titles have no streams selected." });
+                        return isValid;
+                    }
+                    isValid = false;
+                }
+
+            }
+            return true;
+        }
+
         private bool IsAllEpisodeNumbersSet()
         {
             bool isValid = true;
@@ -125,10 +163,10 @@ namespace BatchGuy.App.Eac3to.Services
             {
                 foreach (BluRaySummaryInfo info in disc.BluRaySummaryInfoList.Where(s => s.IsSelected))
                 {
-                    if (((info.EpisodeNumber == string.Empty || info.EpisodeNumber == null)  && info.BluRayTitleInfo.Video.IsSelected))
+                    if (info.EpisodeNumber == string.Empty || info.EpisodeNumber == null || info.EpisodeNumber.IsNumeric() == false)
                     {
                         isValid = false;
-                    }
+                    }             
                 }
             }
 
