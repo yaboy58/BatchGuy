@@ -33,6 +33,11 @@ namespace BatchGuy.App
         public CreateEAC3ToBatchForm()
         {
             InitializeComponent();
+#if DEBUG
+            txtBluRayPath.Text = @"C:\temp\My Encodes\Blu-ray\DISC\D1";   
+            txtEAC3ToPath.Text = @"C:\exe\eac3to\eac3to.exe";
+            txtBatFilePath.Text = @"C:\temp\My Encodes\Blu-ray";
+#endif
             
         }
 

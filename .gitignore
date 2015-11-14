@@ -146,3 +146,5 @@
 /src/BatchGuy.Parser.Console.App/obj/Release/BatchGuy.EAC3To.Parser.Example.Console.App.csprojResolveAssemblyReference.cache
 /src/BatchGuy.App/obj/Debug/BatchGuy.App.CreateAviSynthFilesForm.resources
 /src/BatchGuy.App/obj/Debug/BatchGuy.App.CreateX264BatchFileForm.resources
+/src/BatchGuy.Parser.Console.App/obj/Release/build.force
+/tests/BatchGuy.Unit.Tests/obj/Release/build.force

@@ -301,7 +301,6 @@
             this.txtBatFilePath.ReadOnly = true;
             this.txtBatFilePath.Size = new System.Drawing.Size(725, 20);
             this.txtBatFilePath.TabIndex = 33;
-            this.txtBatFilePath.Text = "C:\\temp\\My Encodes\\Blu-ray";
             // 
             // lblBatchFilePath
             // 
@@ -319,7 +318,6 @@
             this.txtBluRayPath.ReadOnly = true;
             this.txtBluRayPath.Size = new System.Drawing.Size(727, 20);
             this.txtBluRayPath.TabIndex = 30;
-            this.txtBluRayPath.Text = "C:\\temp\\My Encodes\\Blu-ray\\DISC\\D1";
             // 
             // lblBluRayFolderPath
             // 
@@ -337,7 +335,6 @@
             this.txtEAC3ToPath.ReadOnly = true;
             this.txtEAC3ToPath.Size = new System.Drawing.Size(727, 20);
             this.txtEAC3ToPath.TabIndex = 32;
-            this.txtEAC3ToPath.Text = "C:\\exe\\eac3to\\eac3to.exe";
             // 
             // lblEac3ToExePath
             // 

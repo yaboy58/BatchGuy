@@ -24,6 +24,10 @@ namespace BatchGuy.App
         public CreateX264BatchFileForm()
         {
             InitializeComponent();
+#if DEBUG
+            txtAVSFileLocation.Text = @"C:\temp\My Encodes\Blu-ray";
+            txtVfw4x264exe.Text = @"C:\exe\vfw4x264\vfw4x264.exe";
+#endif
         }
 
         private void CreateX264BatFileForm_Load(object sender, EventArgs e)

@@ -31,6 +31,10 @@ namespace BatchGuy.App
         private void CreateAVSFilesForm_Load(object sender, EventArgs e)
         {
             this.SetAVSTemplateTextBox();
+#if DEBUG
+            txtDirectory.Text = @"C:\temp\My Encodes\Blu-ray";   
+#endif
+
         }
 
         private void SetAVSTemplateTextBox()
