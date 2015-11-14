@@ -37,40 +37,47 @@ namespace BatchGuy.App.Parser.Services
             StringBuilder sbDetail = null;
             BluRaySummaryInfo summaryInfo = null;
 
-            foreach (ProcessOutputLineItem item in _processOutputLineItems)
+            try
             {
-                EnumLineItemType type = _lineItemIdentifierService.GetLineItemType(item);
-                switch (type)
+                foreach (ProcessOutputLineItem item in _processOutputLineItems)
                 {
-                    case EnumLineItemType.BluRaySummaryHeaderLine:
-                        if (this.IsIdHeader(item))
-                        {
-                            sbHeader = new StringBuilder();
-                            sbDetail = new StringBuilder();
-                            summaryInfo = new BluRaySummaryInfo();
-                            summaryInfo.Id = this.GetId(item);
-                            sbHeader.Append(item.Text);
-                        }
-                        else
-                        {
-                            sbHeader.AppendLine(string.Format(" {0}",item.Text));
-                        }
-                        break;
-                    case EnumLineItemType.BluRaySummaryDetailLine:
-                        sbDetail.AppendLine(item.Text);
-                        break;
-                    case EnumLineItemType.BluRaySummaryEmptyLine:
-                        summaryInfo.HeaderText = sbHeader.ToString();
-                        summaryInfo.DetailText = sbDetail.ToString();
-                        _summaryList.Add(summaryInfo);
-                        break;
-                    case EnumLineItemType.BluRayError:
-                        _errors.Add(new Error() { Description = item.Text });
-                        break;
-                    default:
-                        break;
+                    EnumLineItemType type = _lineItemIdentifierService.GetLineItemType(item);
+                    switch (type)
+                    {
+                        case EnumLineItemType.BluRaySummaryHeaderLine:
+                            if (this.IsIdHeader(item))
+                            {
+                                sbHeader = new StringBuilder();
+                                sbDetail = new StringBuilder();
+                                summaryInfo = new BluRaySummaryInfo();
+                                summaryInfo.Id = this.GetId(item);
+                                sbHeader.Append(item.Text);
+                            }
+                            else
+                            {
+                                sbHeader.AppendLine(string.Format(" {0}", item.Text));
+                            }
+                            break;
+                        case EnumLineItemType.BluRaySummaryDetailLine:
+                            sbDetail.AppendLine(item.Text);
+                            break;
+                        case EnumLineItemType.BluRaySummaryEmptyLine:
+                            summaryInfo.HeaderText = sbHeader.ToString();
+                            summaryInfo.DetailText = sbDetail.ToString();
+                            _summaryList.Add(summaryInfo);
+                            break;
+                        case EnumLineItemType.BluRayError:
+                            throw new Exception(item.Text);
+                        default:
+                            break;
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                _errors.Add(new Error() { Description = ex.Message });
+            }
+
             return _summaryList;
         }
 

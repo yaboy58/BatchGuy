@@ -87,6 +87,13 @@ namespace BatchGuy.App
             bsBluRayDiscInfo.DataSource = _bindingListBluRayDiscInfo;
         }
 
+        private void BindDgvBluRayDiscInfoGrid()
+        {
+            bsBluRayDiscInfo.DataSource = _bindingListBluRayDiscInfo;
+            bsBluRayDiscInfo.ResetBindings(false);
+            _bindingListBluRayDiscInfo.AllowEdit = true;
+        }
+
         private void dgvBluRayDiscInfo_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             this.HandleDgvBluRayDiscInfoCellClick(e);
@@ -257,7 +264,7 @@ namespace BatchGuy.App
             }
         }
 
-        private void bgwEac3to_DoWork(object sender, DoWorkEventArgs e)
+        private void bgwEac3toLoadSummary_DoWork(object sender, DoWorkEventArgs e)
         {
             //Get line items
             ICommandLineProcessService commandLineProcessService = e.Argument as CommandLineProcessService;
@@ -266,7 +273,7 @@ namespace BatchGuy.App
             e.Result = processOutputLineItems;
         }
 
-        private void bgwEac3to_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        private void bgwEac3toLoadSummary_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             List<ProcessOutputLineItem> processOutputLineItems = e.Result as List<ProcessOutputLineItem>;
             ILineItemIdentifierService lineItemService = new BluRaySummaryLineItemIdentifierService();
@@ -285,6 +292,9 @@ namespace BatchGuy.App
             else
             {
                 MessageBox.Show(parserService.Errors.GetErrorMessage(), "Error Occurred.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                BluRayDiscInfo disc = _bindingListBluRayDiscInfo.SingleOrDefault(d => d.Id == _currentBluRayDiscInfo.Id);
+                _bindingListBluRayDiscInfo.Remove(disc);
+                this.BindDgvBluRayDiscInfoGrid();
                 gbScreen.SetEnabled(true);
             }
       
@@ -311,5 +321,6 @@ namespace BatchGuy.App
             }
             gbScreen.SetEnabled(true);
         }
+
     }
 }

@@ -35,5 +35,21 @@ namespace BatchGuy.App.Extensions
                 Cursor.Current = Cursors.WaitCursor;
             }
         }
+
+        public static string RemoveBackspaceCharacters(this string value)
+        {
+            if (string.IsNullOrEmpty(value))
+                return value;
+
+            StringBuilder result = new StringBuilder(value.Length);
+            foreach (char c in value)
+            {
+                if (c != '\b')
+                {
+                    result.Append(c);
+                }
+            }
+            return result.ToString().Trim();
+        }
     }
 }

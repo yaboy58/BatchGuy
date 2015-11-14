@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using BatchGuy.App.Helpers;
 using BatchGuy.App.Parser.Interfaces;
 using BatchGuy.App.Shared.Models;
+using BatchGuy.App.Extensions;
 
 namespace BatchGuy.App.Parser.Services
 {
@@ -50,7 +51,7 @@ namespace BatchGuy.App.Parser.Services
                     string[] splitted = output.Split('\n');
                     foreach (string item in splitted)
                     {
-                        processOutputLineItems.Add(new ProcessOutputLineItem() { Id = id, Text = HelperFunctions.ReplaceBackspace(item) });
+                        processOutputLineItems.Add(new ProcessOutputLineItem() { Id = id, Text = item.RemoveBackspaceCharacters() });
                         id++;                        
                     }
                 }
