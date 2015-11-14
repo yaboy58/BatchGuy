@@ -32,9 +32,14 @@
 *unit test new helper function methods
 *unit test extension methods
 
---Todo
+--todo
 *delete existing .bat file(s) before writing new scripts (probably just check to see if it is on file#1)
 *Admin Screen
+
+--v1.2 todo
+*change Id columns to Summary Id/Title Number or something more intuitive
+*introduce sorting
+*introduce dts-ma
 *Disable Audio Grid onload
 *look into why the busy mouse indicator doesn't seem to work
 
