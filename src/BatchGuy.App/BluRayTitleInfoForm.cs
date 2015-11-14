@@ -276,7 +276,7 @@ namespace BatchGuy.App
         {
             if (_bluRaySummaryInfo.BluRayTitleInfo.Video.IsSelected && string.IsNullOrEmpty(_bluRaySummaryInfo.BluRayTitleInfo.EpisodeNumber))
             {
-                MessageBox.Show("Please enter an episode number!", "Invalid episode number", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Please enter an episode number or uncheck Video!", "Invalid episode number", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
             return true;

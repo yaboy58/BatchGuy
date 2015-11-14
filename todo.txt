@@ -1,6 +1,5 @@
 --in general
 *introduce logging
-*possibly create an admin page
 
 
 --eac3To Form
@@ -36,15 +35,15 @@
 *unit test extension methods
 
 --Todo
-*delete existing .bat file before writing new scripts (probably just check to see if it is on file#1)
-*Multi-threaded processing
-*About Screen
+*Strongly Typed Error List so you can do a GetErrors Method - done
+*Make sure all errors are printed and no todos -done
+*Change error message in title info for no episode number entered to be more informative - done
+*Multi-threaded processing - done
+*About Screen - done
+
+
+*delete existing .bat file(s) before writing new scripts (probably just check to see if it is on file#1)
 *Admin Screen
 *Disable Audio Grid onload
-*Strongly Typed Error List so you can do a GetErrors Method -done
-*Make sure all errors are printed and no todos
-*Change error message in title info for no episode number entered to be more informative
 *keep eye on eac3to screen with header/detail navigation, sometimes detail seems not to load
 
-REMOVE HARD CODED PATHS WHEN DONE
-UPDATE ASSEMBLY# OF ALL PROJECTS TO 1.1 WHEN DONE WITH BRANCH

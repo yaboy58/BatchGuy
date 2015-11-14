@@ -35,5 +35,11 @@ namespace BatchGuy
             CreateX264BatchFileForm form = new CreateX264BatchFileForm();
             form.ShowDialog();
         }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AboutForm form = new AboutForm();
+            form.ShowDialog();
+        }
     }
 }
