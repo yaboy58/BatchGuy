@@ -267,7 +267,7 @@
             // btnOpenBatchFilePathDialog
             // 
             this.btnOpenBatchFilePathDialog.Image = global::BatchGuy.App.Properties.Resources.Avosoft_Warm_Toolbar_Folder_open;
-            this.btnOpenBatchFilePathDialog.Location = new System.Drawing.Point(869, 91);
+            this.btnOpenBatchFilePathDialog.Location = new System.Drawing.Point(899, 91);
             this.btnOpenBatchFilePathDialog.Name = "btnOpenBatchFilePathDialog";
             this.btnOpenBatchFilePathDialog.Size = new System.Drawing.Size(61, 33);
             this.btnOpenBatchFilePathDialog.TabIndex = 38;
@@ -277,7 +277,7 @@
             // btnOpenEac3ToFileDialog
             // 
             this.btnOpenEac3ToFileDialog.Image = global::BatchGuy.App.Properties.Resources.Avosoft_Warm_Toolbar_Folder_open;
-            this.btnOpenEac3ToFileDialog.Location = new System.Drawing.Point(869, 52);
+            this.btnOpenEac3ToFileDialog.Location = new System.Drawing.Point(899, 52);
             this.btnOpenEac3ToFileDialog.Name = "btnOpenEac3ToFileDialog";
             this.btnOpenEac3ToFileDialog.Size = new System.Drawing.Size(61, 33);
             this.btnOpenEac3ToFileDialog.TabIndex = 37;
@@ -287,7 +287,7 @@
             // btnOpenBluRayPathDialog
             // 
             this.btnOpenBluRayPathDialog.Image = global::BatchGuy.App.Properties.Resources.Avosoft_Warm_Toolbar_Folder_open;
-            this.btnOpenBluRayPathDialog.Location = new System.Drawing.Point(869, 14);
+            this.btnOpenBluRayPathDialog.Location = new System.Drawing.Point(899, 14);
             this.btnOpenBluRayPathDialog.Name = "btnOpenBluRayPathDialog";
             this.btnOpenBluRayPathDialog.Size = new System.Drawing.Size(61, 33);
             this.btnOpenBluRayPathDialog.TabIndex = 36;
@@ -296,7 +296,7 @@
             // 
             // txtBatFilePath
             // 
-            this.txtBatFilePath.Location = new System.Drawing.Point(138, 104);
+            this.txtBatFilePath.Location = new System.Drawing.Point(168, 104);
             this.txtBatFilePath.Name = "txtBatFilePath";
             this.txtBatFilePath.ReadOnly = true;
             this.txtBatFilePath.Size = new System.Drawing.Size(725, 20);
@@ -307,13 +307,13 @@
             this.lblBatchFilePath.AutoSize = true;
             this.lblBatchFilePath.Location = new System.Drawing.Point(26, 111);
             this.lblBatchFilePath.Name = "lblBatchFilePath";
-            this.lblBatchFilePath.Size = new System.Drawing.Size(99, 13);
+            this.lblBatchFilePath.Size = new System.Drawing.Size(134, 13);
             this.lblBatchFilePath.TabIndex = 35;
-            this.lblBatchFilePath.Text = "Batch File Directory";
+            this.lblBatchFilePath.Text = "Batch File Output Directory";
             // 
             // txtBluRayPath
             // 
-            this.txtBluRayPath.Location = new System.Drawing.Point(136, 27);
+            this.txtBluRayPath.Location = new System.Drawing.Point(166, 27);
             this.txtBluRayPath.Name = "txtBluRayPath";
             this.txtBluRayPath.ReadOnly = true;
             this.txtBluRayPath.Size = new System.Drawing.Size(727, 20);
@@ -330,7 +330,7 @@
             // 
             // txtEAC3ToPath
             // 
-            this.txtEAC3ToPath.Location = new System.Drawing.Point(136, 65);
+            this.txtEAC3ToPath.Location = new System.Drawing.Point(166, 65);
             this.txtEAC3ToPath.Name = "txtEAC3ToPath";
             this.txtEAC3ToPath.ReadOnly = true;
             this.txtEAC3ToPath.Size = new System.Drawing.Size(727, 20);
@@ -341,9 +341,9 @@
             this.lblEac3ToExePath.AutoSize = true;
             this.lblEac3ToExePath.Location = new System.Drawing.Point(26, 72);
             this.lblEac3ToExePath.Name = "lblEac3ToExePath";
-            this.lblEac3ToExePath.Size = new System.Drawing.Size(64, 13);
+            this.lblEac3ToExePath.Size = new System.Drawing.Size(60, 13);
             this.lblEac3ToExePath.TabIndex = 31;
-            this.lblEac3ToExePath.Text = "eac3To.exe";
+            this.lblEac3ToExePath.Text = "eac3to.exe";
             // 
             // bgwEac3toWriteBatchFile
             // 
