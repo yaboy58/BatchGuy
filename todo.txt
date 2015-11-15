@@ -52,6 +52,7 @@
 *flow layout (just prevented resize of forms, made some screens smaller and minwidth on grid columns) -done
 *fixed but in x264 screen where when you remove an item from the grid, count isn't updated and the files list not refreshed -done
 *removed directory filter (Encode*) from load .avs files process on x264 screen -done
+*sorting on .avs file name on create x264 .bat creation even if grid is sorted by another field -done
 
 *Admin Screen
 *look into why the busy mouse indicator doesn't seem to work

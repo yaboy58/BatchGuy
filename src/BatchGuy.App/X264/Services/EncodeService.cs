@@ -56,7 +56,7 @@ namespace BatchGuy.App.X264.Services
             {
                 using (StreamWriter sw = new StreamWriter(string.Format("{0}\\{1}", _x264FileSettings.AviSynthFileOutputPath, _batFile), false))
                 {
-                    foreach (X264File x264File in _x264Files)
+                    foreach (X264File x264File in _x264Files.OrderBy(f => f.AVSFileNameOnly))
                     {
                         StringBuilder sb = new StringBuilder();
                         sb.Append(string.Format("\"{0}\"", _x264FileSettings.vfw4x264Exe));
@@ -81,7 +81,7 @@ namespace BatchGuy.App.X264.Services
             {
                 using (StreamWriter sw = new StreamWriter(string.Format("{0}\\{1}", _x264FileSettings.AviSynthFileOutputPath, _batFile), false))
                 {
-                    foreach (X264File x264File in _x264Files)
+                    foreach (X264File x264File in _x264Files.OrderBy(f => f.AVSFileNameOnly))
                     {
                         //1st pass
                         StringBuilder sb1stPass = new StringBuilder();
