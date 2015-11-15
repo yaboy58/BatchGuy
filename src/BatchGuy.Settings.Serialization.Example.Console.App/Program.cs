@@ -18,7 +18,7 @@ namespace BatchGuy.Settings.Serialization.Example.Console.App
             IApplicationSettingsService applicationSettingsService = new ApplicationSettingsService(binarySerializationService); //application service
 
             //get current application settings
-            ApplicationSettings applicationSettings = applicationSettingsService.ApplicationSettings;
+            ApplicationSettings applicationSettings = applicationSettingsService.GetApplicationSettings();
 
             //add
             applicationSettings.Settings.Add(new Setting() { Name = "eac3to", Path = @"c:\exe\eac3to.exe" });
@@ -28,7 +28,7 @@ namespace BatchGuy.Settings.Serialization.Example.Console.App
             var errors = applicationSettingsService.Errors;
 
             //get settings
-            applicationSettings = applicationSettingsService.Get();
+            applicationSettings = applicationSettingsService.GetApplicationSettings();
 
             errors = applicationSettingsService.Errors;
 

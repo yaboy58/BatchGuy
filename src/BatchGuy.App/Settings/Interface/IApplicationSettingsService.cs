@@ -12,9 +12,10 @@ namespace BatchGuy.App.Settings.Interface
     {
         ErrorCollection Errors { get; }
 
-        ApplicationSettings ApplicationSettings {get;}
         void Save(ApplicationSettings applicationSettings);
 
-        ApplicationSettings Get();
+        ApplicationSettings GetApplicationSettings();
+
+        Setting GetSettingByName(string settingName);
     }
 }

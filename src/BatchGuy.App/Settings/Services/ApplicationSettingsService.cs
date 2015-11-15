@@ -23,10 +23,6 @@ namespace BatchGuy.App.Settings.Services
             get { return _errors; }
         }
 
-        public ApplicationSettings ApplicationSettings
-        {
-            get { return _applicationSettings; }
-        }
 
         public ApplicationSettingsService(IBinarySerializationService<ApplicationSettings> binarySerializationService)
         {
@@ -41,7 +37,7 @@ namespace BatchGuy.App.Settings.Services
             }
         }
 
-        public ApplicationSettings Get()
+        public ApplicationSettings GetApplicationSettings()
         {
             return _applicationSettings;
         }
@@ -73,5 +69,9 @@ namespace BatchGuy.App.Settings.Services
             }
         }
 
+        public Setting GetSettingByName(string settingName)
+        {
+            return _applicationSettings.Settings.SingleOrDefault(s => s.Name == settingName);
+        }
     }
 }

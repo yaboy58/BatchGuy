@@ -42,5 +42,11 @@ namespace BatchGuy
             AboutForm form = new AboutForm();
             form.ShowDialog();
         }
+
+        private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SettingsForm form = new SettingsForm();
+            form.ShowDialog();
+        }
     }
 }
