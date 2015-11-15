@@ -21,6 +21,7 @@ using System.Linq.Dynamic;
 using BatchGuy.App.Shared.Models;
 using BatchGuy.App.Shared.Interfaces;
 using BatchGuy.App.Shared.Services;
+using BatchGuy.App.ThirdParty.FolderSelectDialog;
 
 namespace BatchGuy.App
 {
@@ -246,13 +247,12 @@ namespace BatchGuy.App
 
         private void HandleBtnOpenBluRayPathDialogClick()
         {
-            
-            fbdDialog.ShowNewFolderButton = true;
-            fbdDialog.RootFolder = Environment.SpecialFolder.Desktop;
-            DialogResult result = fbdDialog.ShowDialog();
-            if (result == System.Windows.Forms.DialogResult.OK)
+            var fsd = new FolderSelectDialog();
+            fsd.Title = "Blu-ray folder directory";
+            fsd.InitialDirectory = @"c:\";
+            if (fsd.ShowDialog(IntPtr.Zero))
             {
-                txtBluRayPath.Text = fbdDialog.SelectedPath;
+                txtBluRayPath.Text = fsd.FileName;
             }
         }
 
@@ -263,7 +263,8 @@ namespace BatchGuy.App
 
         private void HandleOpenEac3ToFileDialogClick()
         {
-            DialogResult result = ofdFileDialog.ShowDialog(this);
+            ofdFileDialog.FileName = "";
+            DialogResult result = ofdFileDialog.ShowDialog();
             if (result == System.Windows.Forms.DialogResult.OK)
             {
                 txtEAC3ToPath.Text = ofdFileDialog.FileName;
@@ -277,12 +278,12 @@ namespace BatchGuy.App
 
         private void HandleBtnOpenBatchFilePathDialogClick()
         {
-            fbdDialog.ShowNewFolderButton = true;
-            fbdDialog.RootFolder = Environment.SpecialFolder.Desktop;
-            DialogResult result = fbdDialog.ShowDialog();
-            if (result == System.Windows.Forms.DialogResult.OK)
+            var fsd = new FolderSelectDialog();
+            fsd.Title = "Batch file output directory";
+            fsd.InitialDirectory = @"c:\";
+            if (fsd.ShowDialog(IntPtr.Zero))
             {
-               txtBatFilePath.Text= fbdDialog.SelectedPath;
+                txtBatFilePath.Text = fsd.FileName;
             }
         }
 

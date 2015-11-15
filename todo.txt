@@ -50,3 +50,5 @@
 *put the bluray title on the title info page
 *set grid column min widths for x264 screen -done
 *fix bug where double .avs files loaded when you put load avs files multiple times -done
+*test with latest version of eac3to
+*replaced built-in .net folder browser with 3rd party FolderSelectDialog

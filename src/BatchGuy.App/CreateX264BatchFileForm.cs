@@ -15,6 +15,7 @@ using System.Windows.Forms;
 using BatchGuy.App.Extensions;
 using BatchGuy.App.Shared.Interfaces;
 using BatchGuy.App.Shared.Services;
+using BatchGuy.App.ThirdParty.FolderSelectDialog;
 
 namespace BatchGuy.App
 {
@@ -29,7 +30,7 @@ namespace BatchGuy.App
         {
             InitializeComponent();
 #if DEBUG
-            txtAVSFileLocation.Text = @"C:\temp\My Encodes\Blu-ray";
+            txtAviSynthFileDirectory.Text = @"C:\temp\My Encodes\Blu-ray";
             txtVfw4x264exe.Text = @"C:\exe\vfw4x264\vfw4x264.exe";
 #endif
         }
@@ -96,7 +97,7 @@ namespace BatchGuy.App
 
         private X264FileSettings GetX264FileSettings()
         {
-            return new X264FileSettings() { AviSynthFileFilter = "encode*", AviSynthFileOutputPath = txtAVSFileLocation.Text, EncodeType = EncodeType,
+            return new X264FileSettings() { AviSynthFileFilter = "encode*", AviSynthFileOutputPath = txtAviSynthFileDirectory.Text, EncodeType = EncodeType,
              vfw4x264Exe = txtVfw4x264exe.Text, X264Template = txtX264Template.Text};
         }
 
@@ -141,12 +142,12 @@ namespace BatchGuy.App
 
         private void HandleBtnOpenAviSynchScriptOutputDialogClick()
         {
-            fbdDialog.ShowNewFolderButton = true;
-            fbdDialog.RootFolder = Environment.SpecialFolder.Desktop;
-            DialogResult result = fbdDialog.ShowDialog();
-            if (result == System.Windows.Forms.DialogResult.OK)
+            var fsd = new FolderSelectDialog();
+            fsd.Title = "Blu-ray folder directory";
+            fsd.InitialDirectory = @"c:\";
+            if (fsd.ShowDialog(IntPtr.Zero))
             {
-              txtAVSFileLocation.Text = fbdDialog.SelectedPath;
+                txtAviSynthFileDirectory.Text = fsd.FileName;
             }
         }
 
@@ -157,6 +158,7 @@ namespace BatchGuy.App
 
         private void HandleBtnOpenVfw4x264FileDialogClick()
         {
+            ofdFileDialog.FileName = "";
             DialogResult result = ofdFileDialog.ShowDialog(this);
             if (result == System.Windows.Forms.DialogResult.OK)
             {

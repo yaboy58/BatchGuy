@@ -132,6 +132,8 @@
     <Compile Include="Shared\Models\SortConfiguration.cs" />
     <Compile Include="Shared\Services\BindingListSortService.cs" />
     <Compile Include="Shared\Services\SortService.cs" />
+    <Compile Include="ThirdParty\FolderSelectDialog\FolderSelectDialog.cs" />
+    <Compile Include="ThirdParty\FolderSelectDialog\Reflector.cs" />
     <Compile Include="X264\Models\X264File.cs" />
     <Compile Include="X264\Models\X264FileSettings.cs" />
     <Compile Include="X264\Services\EncodeService.cs" />
