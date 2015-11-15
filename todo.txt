@@ -42,5 +42,6 @@
 *introduce dts-ma
 *Disable Audio Grid onload
 *look into why the busy mouse indicator doesn't seem to work
-
+*flow layout
+*put the bluray title on the title info page
 

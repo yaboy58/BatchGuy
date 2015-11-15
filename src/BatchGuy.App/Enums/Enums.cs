@@ -34,4 +34,10 @@ namespace BatchGuy.App.Enums
         BluRayTitleSubtitleLine = 9,
         BluRayError = 10
     }
+
+    public enum EnumSortDirection
+    {
+        Asc = 1, 
+        Desc =2
+    }
 }

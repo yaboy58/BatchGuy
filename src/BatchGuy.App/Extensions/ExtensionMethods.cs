@@ -16,6 +16,16 @@ namespace BatchGuy.App.Extensions
             return outValue;
         }
 
+        public static int? StringToNullInt(this string value)
+        {
+            if (string.IsNullOrEmpty(value))
+                return null;
+
+            int outValue;
+            bool isValid = int.TryParse(value, out outValue);
+            return outValue;
+        }
+
         public static bool IsNumeric(this string value)
         {
             int outValue;
@@ -47,18 +57,10 @@ namespace BatchGuy.App.Extensions
                 return value;
 
             lastOccurrence += 1;
-            //StringBuilder result = new StringBuilder(value.Length);
 
             StringBuilder result = new StringBuilder((value.Length - lastOccurrence) + 1);
             result.Append(value.Substring(lastOccurrence,  (value.Length - lastOccurrence)));
 
-            /*foreach (char c in value)
-            {
-                if (c != '\b')
-                {
-                    result.Append(c);
-                }
-            }*/
             return result.ToString().Trim();
         }
     }

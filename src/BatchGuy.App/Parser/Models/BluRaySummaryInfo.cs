@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using BatchGuy.App.Extensions;
 namespace BatchGuy.App.Parser.Models
 {
     public class BluRaySummaryInfo
@@ -13,23 +13,15 @@ namespace BatchGuy.App.Parser.Models
         public string DetailText { get; set; }
         public bool IsSelected { get; set; }
         public BluRayTitleInfo BluRayTitleInfo { get; set; }
-        public string EpisodeNumber 
+        public int? EpisodeNumber 
         { 
             get
             {
                 if (this.BluRayTitleInfo == null)
-                    return string.Empty;
+                    return null;
                 else
-                    return this.BluRayTitleInfo.EpisodeNumber;
+                    return this.BluRayTitleInfo.EpisodeNumber.StringToNullInt();
             }
-            set
-            {
-                if (this.BluRayTitleInfo != null)
-                {
-                    this.BluRayTitleInfo.EpisodeNumber = value;
-                }
-            }
- 
         }
     }
 }

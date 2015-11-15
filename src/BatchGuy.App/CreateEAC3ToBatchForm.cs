@@ -17,6 +17,10 @@ using BatchGuy.App.Enums;
 using BatchGuy.App.Helpers;
 using BatchGuy.App.Eac3To.Interfaces;
 using BatchGuy.App.Extensions;
+using System.Linq.Dynamic;
+using BatchGuy.App.Shared.Models;
+using BatchGuy.App.Shared.Interfaces;
+using BatchGuy.App.Shared.Services;
 
 namespace BatchGuy.App
 {
@@ -28,7 +32,8 @@ namespace BatchGuy.App
         private BindingList<BluRayDiscInfo> _bindingListBluRayDiscInfo = new BindingList<BluRayDiscInfo>();
         private BindingList<BluRaySummaryInfo> _bindingListBluRaySummaryInfo;
         private int _currentBluRayDiscGridRowIndex;
-
+        private SortConfiguration _bluRaySummaryGridSortConfiguration = new SortConfiguration();
+        private SortConfiguration _bluRayDiscGridSortConfiguration = new SortConfiguration();
 
         public CreateEAC3ToBatchForm()
         {
@@ -101,20 +106,27 @@ namespace BatchGuy.App
 
         private void dgvBluRayDiscInfo_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            this.HandleDgvBluRayDiscInfoCellClick(e);
-            if (_currentBluRayDiscInfo.BluRaySummaryInfoList == null)
+            if (e.RowIndex == -1)
             {
-                gbScreen.SetEnabled(false);
-                this.HandleLoadBluRay();
+                this.SortBluRayDiscGrid(e.ColumnIndex);
             }
             else
             {
-                _bindingListBluRaySummaryInfo = new BindingList<BluRaySummaryInfo>();
-                foreach (BluRaySummaryInfo info in _currentBluRayDiscInfo.BluRaySummaryInfoList)
+                this.HandleDgvBluRayDiscInfoCellClick(e);
+                if (_currentBluRayDiscInfo.BluRaySummaryInfoList == null)
                 {
-                    _bindingListBluRaySummaryInfo.Add(info);
+                    gbScreen.SetEnabled(false);
+                    this.HandleLoadBluRay();
                 }
-                this.UpdateUIForBluRaySummary();
+                else
+                {
+                    _bindingListBluRaySummaryInfo = new BindingList<BluRaySummaryInfo>();
+                    foreach (BluRaySummaryInfo info in _currentBluRayDiscInfo.BluRaySummaryInfoList)
+                    {
+                        _bindingListBluRaySummaryInfo.Add(info);
+                    }
+                    this.UpdateUIForBluRaySummary();
+                }
             }
         }
 
@@ -218,8 +230,13 @@ namespace BatchGuy.App
         private void dgvBluRaySummary_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex == -1)
-                return;
-            dgvBluRaySummary.Rows[e.RowIndex].Selected = true;
+            {
+                this.SortBluRaySummaryGrid(e.ColumnIndex);
+            }
+            else
+            {
+                dgvBluRaySummary.Rows[e.RowIndex].Selected = true;
+            }
         }
 
         private void btnOpenBluRayPathDialog_Click(object sender, EventArgs e)
@@ -326,6 +343,39 @@ namespace BatchGuy.App
                 MessageBox.Show(string.Format("Error: {0}", batchFileWriteService.Errors[0].Description), "Error occurred", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             gbScreen.SetEnabled(true);
+        }
+
+        private void SortBluRayDiscGrid(int sortColumnNumber)
+        {
+            if (_bluRayDiscInfoList == null)
+                return;
+
+            string sortColumnName = dgvBluRayDiscInfo.Columns[sortColumnNumber].DataPropertyName;
+            _bluRayDiscGridSortConfiguration.SortByColumnName = sortColumnName;
+            ISortService<BluRayDiscInfo> sortService = new SortService<BluRayDiscInfo>(_bluRayDiscGridSortConfiguration, _bluRayDiscInfoList);
+
+            IBindingListSortService<BluRayDiscInfo> bindingListSortService = new BindingListSortService<BluRayDiscInfo>(_bluRayDiscInfoList, dgvBluRayDiscInfo, _bluRayDiscGridSortConfiguration, sortService);
+            _bindingListBluRayDiscInfo = bindingListSortService.Sort();
+
+            this.BindDgvBluRayDiscInfoGrid();
+
+        }
+
+        private void SortBluRaySummaryGrid(int sortColumnNumber)
+        {
+            if (_currentBluRayDiscInfo == null)
+                return;
+
+            string sortColumnName = dgvBluRaySummary.Columns[sortColumnNumber].DataPropertyName;
+            _bluRaySummaryGridSortConfiguration.SortByColumnName = sortColumnName;
+            ISortService<BluRaySummaryInfo> sortService = new SortService<BluRaySummaryInfo>(_bluRaySummaryGridSortConfiguration, _currentBluRayDiscInfo.BluRaySummaryInfoList);
+
+            IBindingListSortService<BluRaySummaryInfo> bindingListSortService = new BindingListSortService<BluRaySummaryInfo>(_currentBluRayDiscInfo.BluRaySummaryInfoList,
+                dgvBluRaySummary, _bluRaySummaryGridSortConfiguration, sortService);
+
+            _bindingListBluRaySummaryInfo = bindingListSortService.Sort();
+
+            this.BindDgvBluRaySummaryGrid();
         }
 
     }

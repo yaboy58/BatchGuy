@@ -38,12 +38,6 @@
             this.btnWriteToBatFile = new System.Windows.Forms.Button();
             this.gbDiscSummary = new System.Windows.Forms.GroupBox();
             this.dgvBluRaySummary = new System.Windows.Forms.DataGridView();
-            this.isSelectedDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.episodeNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.headerTextDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.detailTextDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bluRayTitleInfoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bsBluRaySummaryInfo = new System.Windows.Forms.BindingSource(this.components);
             this.gbDisc = new System.Windows.Forms.GroupBox();
             this.dgvBluRayDiscInfo = new System.Windows.Forms.DataGridView();
@@ -62,6 +56,12 @@
             this.txtEAC3ToPath = new System.Windows.Forms.TextBox();
             this.lblEac3ToExePath = new System.Windows.Forms.Label();
             this.bgwEac3toWriteBatchFile = new System.ComponentModel.BackgroundWorker();
+            this.IsSelected = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EpisodeNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.HeaderText = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DetailText = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bluRayTitleInfoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gbScreen.SuspendLayout();
             this.gbDiscSummary.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBluRaySummary)).BeginInit();
@@ -138,11 +138,11 @@
             this.dgvBluRaySummary.AutoGenerateColumns = false;
             this.dgvBluRaySummary.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvBluRaySummary.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.isSelectedDataGridViewCheckBoxColumn,
-            this.idDataGridViewTextBoxColumn,
-            this.episodeNumberDataGridViewTextBoxColumn,
-            this.headerTextDataGridViewTextBoxColumn,
-            this.detailTextDataGridViewTextBoxColumn,
+            this.IsSelected,
+            this.Id,
+            this.EpisodeNumber,
+            this.HeaderText,
+            this.DetailText,
             this.bluRayTitleInfoDataGridViewTextBoxColumn});
             this.dgvBluRaySummary.DataSource = this.bsBluRaySummaryInfo;
             this.dgvBluRaySummary.Location = new System.Drawing.Point(6, 19);
@@ -151,51 +151,6 @@
             this.dgvBluRaySummary.TabIndex = 23;
             this.dgvBluRaySummary.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBluRaySummary_CellClick);
             this.dgvBluRaySummary.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBluRaySummary_CellDoubleClick);
-            // 
-            // isSelectedDataGridViewCheckBoxColumn
-            // 
-            this.isSelectedDataGridViewCheckBoxColumn.DataPropertyName = "IsSelected";
-            this.isSelectedDataGridViewCheckBoxColumn.HeaderText = "Is Selected";
-            this.isSelectedDataGridViewCheckBoxColumn.Name = "isSelectedDataGridViewCheckBoxColumn";
-            this.isSelectedDataGridViewCheckBoxColumn.Width = 70;
-            // 
-            // idDataGridViewTextBoxColumn
-            // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            this.idDataGridViewTextBoxColumn.Width = 50;
-            // 
-            // episodeNumberDataGridViewTextBoxColumn
-            // 
-            this.episodeNumberDataGridViewTextBoxColumn.DataPropertyName = "EpisodeNumber";
-            this.episodeNumberDataGridViewTextBoxColumn.HeaderText = "Episode#";
-            this.episodeNumberDataGridViewTextBoxColumn.Name = "episodeNumberDataGridViewTextBoxColumn";
-            this.episodeNumberDataGridViewTextBoxColumn.ReadOnly = true;
-            this.episodeNumberDataGridViewTextBoxColumn.Width = 90;
-            // 
-            // headerTextDataGridViewTextBoxColumn
-            // 
-            this.headerTextDataGridViewTextBoxColumn.DataPropertyName = "HeaderText";
-            this.headerTextDataGridViewTextBoxColumn.HeaderText = "Header";
-            this.headerTextDataGridViewTextBoxColumn.Name = "headerTextDataGridViewTextBoxColumn";
-            this.headerTextDataGridViewTextBoxColumn.ReadOnly = true;
-            this.headerTextDataGridViewTextBoxColumn.Width = 400;
-            // 
-            // detailTextDataGridViewTextBoxColumn
-            // 
-            this.detailTextDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.detailTextDataGridViewTextBoxColumn.DataPropertyName = "DetailText";
-            this.detailTextDataGridViewTextBoxColumn.HeaderText = "Detail";
-            this.detailTextDataGridViewTextBoxColumn.Name = "detailTextDataGridViewTextBoxColumn";
-            this.detailTextDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // bluRayTitleInfoDataGridViewTextBoxColumn
-            // 
-            this.bluRayTitleInfoDataGridViewTextBoxColumn.DataPropertyName = "BluRayTitleInfo";
-            this.bluRayTitleInfoDataGridViewTextBoxColumn.HeaderText = "BluRayTitleInfo";
-            this.bluRayTitleInfoDataGridViewTextBoxColumn.Name = "bluRayTitleInfoDataGridViewTextBoxColumn";
-            this.bluRayTitleInfoDataGridViewTextBoxColumn.Visible = false;
             // 
             // bsBluRaySummaryInfo
             // 
@@ -350,6 +305,51 @@
             this.bgwEac3toWriteBatchFile.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgwEac3toWriteBatchFile_DoWork);
             this.bgwEac3toWriteBatchFile.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgwEac3toWriteBatchFile_RunWorkerCompleted);
             // 
+            // IsSelected
+            // 
+            this.IsSelected.DataPropertyName = "IsSelected";
+            this.IsSelected.HeaderText = "Is Selected";
+            this.IsSelected.Name = "IsSelected";
+            this.IsSelected.Width = 70;
+            // 
+            // Id
+            // 
+            this.Id.DataPropertyName = "Id";
+            this.Id.HeaderText = "Id";
+            this.Id.Name = "Id";
+            this.Id.Width = 50;
+            // 
+            // EpisodeNumber
+            // 
+            this.EpisodeNumber.DataPropertyName = "EpisodeNumber";
+            this.EpisodeNumber.HeaderText = "Episode#";
+            this.EpisodeNumber.Name = "EpisodeNumber";
+            this.EpisodeNumber.ReadOnly = true;
+            this.EpisodeNumber.Width = 90;
+            // 
+            // HeaderText
+            // 
+            this.HeaderText.DataPropertyName = "HeaderText";
+            this.HeaderText.HeaderText = "Header";
+            this.HeaderText.Name = "HeaderText";
+            this.HeaderText.ReadOnly = true;
+            this.HeaderText.Width = 400;
+            // 
+            // DetailText
+            // 
+            this.DetailText.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.DetailText.DataPropertyName = "DetailText";
+            this.DetailText.HeaderText = "Detail";
+            this.DetailText.Name = "DetailText";
+            this.DetailText.ReadOnly = true;
+            // 
+            // bluRayTitleInfoDataGridViewTextBoxColumn
+            // 
+            this.bluRayTitleInfoDataGridViewTextBoxColumn.DataPropertyName = "BluRayTitleInfo";
+            this.bluRayTitleInfoDataGridViewTextBoxColumn.HeaderText = "BluRayTitleInfo";
+            this.bluRayTitleInfoDataGridViewTextBoxColumn.Name = "bluRayTitleInfoDataGridViewTextBoxColumn";
+            this.bluRayTitleInfoDataGridViewTextBoxColumn.Visible = false;
+            // 
             // CreateEAC3ToBatchForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -387,12 +387,6 @@
         private System.Windows.Forms.Button btnWriteToBatFile;
         private System.Windows.Forms.GroupBox gbDiscSummary;
         private System.Windows.Forms.DataGridView dgvBluRaySummary;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn isSelectedDataGridViewCheckBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn episodeNumberDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn headerTextDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn detailTextDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn bluRayTitleInfoDataGridViewTextBoxColumn;
         private System.Windows.Forms.GroupBox gbDisc;
         private System.Windows.Forms.DataGridView dgvBluRayDiscInfo;
         private System.Windows.Forms.DataGridViewCheckBoxColumn isSelectedDataGridViewCheckBoxColumn1;
@@ -409,5 +403,11 @@
         private System.Windows.Forms.TextBox txtEAC3ToPath;
         private System.Windows.Forms.Label lblEac3ToExePath;
         private System.ComponentModel.BackgroundWorker bgwEac3toWriteBatchFile;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn IsSelected;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn EpisodeNumber;
+        private System.Windows.Forms.DataGridViewTextBoxColumn HeaderText;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DetailText;
+        private System.Windows.Forms.DataGridViewTextBoxColumn bluRayTitleInfoDataGridViewTextBoxColumn;
     }
 }
