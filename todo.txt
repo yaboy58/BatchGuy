@@ -32,12 +32,15 @@
 *unit test new helper function methods
 *unit test extension methods
 
+
 --todo
 *delete existing .bat file(s) before writing new scripts (probably just check to see if it is on file#1)
 *Disable Audio Grid onload
 *remux focus ie allow folder names other than #
 *allow the ability to name output folders/track names
 *mkvmerge integration
+*look into why the busy mouse indicator doesn't seem to work
+*put the bluray title on the title info page
 
 
 --v1.2 todo
@@ -55,8 +58,9 @@
 *sorting on .avs file name on create x264 .bat creation even if grid is sorted by another field -done
 *closing create x264 form after create process completes
 *create x264 batch file button on create x264 batch file screen is disabled unless .avs are loaded -done
+*Settings screen added so user to can set exe paths -done
+*fixed bug where application doesn't check if .avs file location is set -done
+*allow user to set the x264 batch file path -done
 
-*Admin Screen
-*look into why the busy mouse indicator doesn't seem to work
-*put the bluray title on the title info page
+
 
