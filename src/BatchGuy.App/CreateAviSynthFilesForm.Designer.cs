@@ -73,12 +73,12 @@
             this.txtAVSTemplate.Location = new System.Drawing.Point(20, 108);
             this.txtAVSTemplate.Multiline = true;
             this.txtAVSTemplate.Name = "txtAVSTemplate";
-            this.txtAVSTemplate.Size = new System.Drawing.Size(775, 161);
+            this.txtAVSTemplate.Size = new System.Drawing.Size(638, 161);
             this.txtAVSTemplate.TabIndex = 1;
             // 
             // btnCreateAVSFiles
             // 
-            this.btnCreateAVSFiles.Location = new System.Drawing.Point(645, 288);
+            this.btnCreateAVSFiles.Location = new System.Drawing.Point(508, 293);
             this.btnCreateAVSFiles.Name = "btnCreateAVSFiles";
             this.btnCreateAVSFiles.Size = new System.Drawing.Size(150, 35);
             this.btnCreateAVSFiles.TabIndex = 2;
@@ -124,7 +124,7 @@
             this.gbScreen.Controls.Add(this.label1);
             this.gbScreen.Location = new System.Drawing.Point(12, 2);
             this.gbScreen.Name = "gbScreen";
-            this.gbScreen.Size = new System.Drawing.Size(816, 334);
+            this.gbScreen.Size = new System.Drawing.Size(679, 334);
             this.gbScreen.TabIndex = 12;
             this.gbScreen.TabStop = false;
             // 
@@ -137,7 +137,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(844, 348);
+            this.ClientSize = new System.Drawing.Size(705, 348);
             this.Controls.Add(this.gbScreen);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "CreateAviSynthFilesForm";

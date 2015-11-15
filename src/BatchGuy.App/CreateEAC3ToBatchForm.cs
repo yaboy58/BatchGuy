@@ -39,6 +39,7 @@ namespace BatchGuy.App
         public CreateEAC3ToBatchForm()
         {
             InitializeComponent();
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 #if DEBUG
             txtBluRayPath.Text = @"C:\temp\My Torrent Downloads\Better Call Saul S01 1080p EUR Blu-ray AVC DTS-HD MA 5.1\Disc_1";   
             txtEAC3ToPath.Text = @"C:\exe\eac3to\eac3to.exe";

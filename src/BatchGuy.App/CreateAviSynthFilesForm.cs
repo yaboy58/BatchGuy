@@ -26,6 +26,7 @@ namespace BatchGuy.App
         public CreateAviSynthFilesForm()
         {
             InitializeComponent();
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             txtNumberOfFiles.Focus();
         }
 

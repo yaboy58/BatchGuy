@@ -32,6 +32,7 @@ namespace BatchGuy.App
         public BluRayTitleInfoForm()
         {
             InitializeComponent();
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
         }
 
         public void SetBluRayTitleInfo(BluRaySummaryInfo bluRaySummaryInfo, BluRayDiscInfo currentBluRayDisc)

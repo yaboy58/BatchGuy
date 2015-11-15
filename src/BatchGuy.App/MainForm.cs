@@ -16,6 +16,7 @@ namespace BatchGuy
         public MainForm()
         {
             InitializeComponent();
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
         }
 
         private void createAVSFilesToolStripMenuItem_Click(object sender, EventArgs e)

@@ -29,6 +29,7 @@ namespace BatchGuy.App
         public CreateX264BatchFileForm()
         {
             InitializeComponent();
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 #if DEBUG
             txtAviSynthFileDirectory.Text = @"C:\temp\My Encodes\Blu-ray";
             txtVfw4x264exe.Text = @"C:\exe\vfw4x264\vfw4x264.exe";

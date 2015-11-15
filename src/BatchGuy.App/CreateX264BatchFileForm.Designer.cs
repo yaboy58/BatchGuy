@@ -61,7 +61,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(562, 416);
+            this.label4.Location = new System.Drawing.Point(562, 402);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(74, 13);
             this.label4.TabIndex = 16;
@@ -74,7 +74,7 @@
             this.cbEncodeType.Items.AddRange(new object[] {
             "CRF",
             "2Pass"});
-            this.cbEncodeType.Location = new System.Drawing.Point(652, 409);
+            this.cbEncodeType.Location = new System.Drawing.Point(652, 395);
             this.cbEncodeType.Name = "cbEncodeType";
             this.cbEncodeType.Size = new System.Drawing.Size(148, 21);
             this.cbEncodeType.TabIndex = 15;
@@ -82,7 +82,7 @@
             // 
             // btnCreateX264BatFile
             // 
-            this.btnCreateX264BatFile.Location = new System.Drawing.Point(633, 619);
+            this.btnCreateX264BatFile.Location = new System.Drawing.Point(632, 606);
             this.btnCreateX264BatFile.Name = "btnCreateX264BatFile";
             this.btnCreateX264BatFile.Size = new System.Drawing.Size(168, 44);
             this.btnCreateX264BatFile.TabIndex = 14;
@@ -93,7 +93,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(22, 419);
+            this.label3.Location = new System.Drawing.Point(25, 405);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(80, 13);
             this.label3.TabIndex = 13;
@@ -101,7 +101,7 @@
             // 
             // txtX264Template
             // 
-            this.txtX264Template.Location = new System.Drawing.Point(25, 436);
+            this.txtX264Template.Location = new System.Drawing.Point(25, 421);
             this.txtX264Template.Multiline = true;
             this.txtX264Template.Name = "txtX264Template";
             this.txtX264Template.Size = new System.Drawing.Size(775, 168);
@@ -260,7 +260,7 @@
             this.gbScreen.Controls.Add(this.label1);
             this.gbScreen.Location = new System.Drawing.Point(12, 12);
             this.gbScreen.Name = "gbScreen";
-            this.gbScreen.Size = new System.Drawing.Size(824, 687);
+            this.gbScreen.Size = new System.Drawing.Size(824, 661);
             this.gbScreen.TabIndex = 31;
             this.gbScreen.TabStop = false;
             // 
@@ -278,7 +278,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(849, 711);
+            this.ClientSize = new System.Drawing.Size(849, 686);
             this.Controls.Add(this.gbScreen);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "CreateX264BatchFileForm";
