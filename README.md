@@ -50,6 +50,8 @@ Next, BatchGuy will allow you to choose the directory where the AviSynth scripts
 <br><br>
 ![alt text](assets/CreateX264BatchFile.png "BatchGuy Create x264 Batch File Screen")
 
+<h1>Installation</h1>
+Unzip the BatchGuy folder to any location of your choosing.  With the introduction of BatchGuy Version 1.2, the user can save settings, so it is best to keep the BatchGuy.exe in the BatchGuy folder, which is where the settings file <i>(config.batchGuySettings)</i> will be saved.  However, a shortcut to the BatchGuy.exe can be placed anywhere.
 
 <h1>Requirements:</h1>
 Windows 7, 8.1 x64 <br>
