@@ -140,6 +140,7 @@
             this.ClientSize = new System.Drawing.Size(705, 348);
             this.Controls.Add(this.gbScreen);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "CreateAviSynthFilesForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Create AviSynth Files";

@@ -35,7 +35,6 @@
 
 --todo
 *delete existing .bat file(s) before writing new scripts (probably just check to see if it is on file#1)
-*Disable Audio Grid onload
 *remux focus ie allow folder names other than #
 *allow the ability to name output folders/track names
 *mkvmerge integration
@@ -61,6 +60,5 @@
 *Settings screen added so user to can set exe paths -done
 *fixed bug where application doesn't check if .avs file location is set -done
 *allow user to set the x264 batch file path -done
-
-
-
+*fixed blu-ray title info screen audio drop down bug where arguments are not being set correctly -done
+*fixed blu-ray title info screen audio drop down bug where exception is thrown when you choose an audio type without selecting a audio title -done

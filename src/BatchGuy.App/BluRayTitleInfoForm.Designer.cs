@@ -35,7 +35,7 @@
             this.chkVideo = new System.Windows.Forms.CheckBox();
             this.bsBluRayTitleVideo = new System.Windows.Forms.BindingSource(this.components);
             this.gbAudio = new System.Windows.Forms.GroupBox();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.panelAudioType = new System.Windows.Forms.Panel();
             this.lblAudioTypeArguments = new System.Windows.Forms.Label();
             this.txtAudioTypeArguments = new System.Windows.Forms.TextBox();
             this.cbAudioType = new System.Windows.Forms.ComboBox();
@@ -66,7 +66,7 @@
             this.gbVideo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsBluRayTitleVideo)).BeginInit();
             this.gbAudio.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this.panelAudioType.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAudio)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsBluRayTitleAudio)).BeginInit();
             this.gbSubtitles.SuspendLayout();
@@ -114,7 +114,7 @@
             // 
             // gbAudio
             // 
-            this.gbAudio.Controls.Add(this.panel1);
+            this.gbAudio.Controls.Add(this.panelAudioType);
             this.gbAudio.Controls.Add(this.dgvAudio);
             this.gbAudio.Location = new System.Drawing.Point(26, 136);
             this.gbAudio.Name = "gbAudio";
@@ -123,16 +123,17 @@
             this.gbAudio.TabStop = false;
             this.gbAudio.Text = "Audio";
             // 
-            // panel1
+            // panelAudioType
             // 
-            this.panel1.Controls.Add(this.lblAudioTypeArguments);
-            this.panel1.Controls.Add(this.txtAudioTypeArguments);
-            this.panel1.Controls.Add(this.cbAudioType);
-            this.panel1.Controls.Add(this.lblAudioType);
-            this.panel1.Location = new System.Drawing.Point(9, 195);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(881, 53);
-            this.panel1.TabIndex = 1;
+            this.panelAudioType.Controls.Add(this.lblAudioTypeArguments);
+            this.panelAudioType.Controls.Add(this.txtAudioTypeArguments);
+            this.panelAudioType.Controls.Add(this.cbAudioType);
+            this.panelAudioType.Controls.Add(this.lblAudioType);
+            this.panelAudioType.Enabled = false;
+            this.panelAudioType.Location = new System.Drawing.Point(9, 195);
+            this.panelAudioType.Name = "panelAudioType";
+            this.panelAudioType.Size = new System.Drawing.Size(881, 53);
+            this.panelAudioType.TabIndex = 1;
             // 
             // lblAudioTypeArguments
             // 
@@ -397,6 +398,7 @@
             this.ClientSize = new System.Drawing.Size(976, 713);
             this.Controls.Add(this.gbScreen);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "BluRayTitleInfoForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Blu-ray Title Info Form";
@@ -406,8 +408,8 @@
             this.gbVideo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsBluRayTitleVideo)).EndInit();
             this.gbAudio.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.panelAudioType.ResumeLayout(false);
+            this.panelAudioType.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAudio)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsBluRayTitleAudio)).EndInit();
             this.gbSubtitles.ResumeLayout(false);
@@ -433,7 +435,7 @@
         private System.Windows.Forms.DataGridView dgvAudio;
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.BindingSource bsBluRayTitleAudio;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panelAudioType;
         private System.Windows.Forms.TextBox txtAudioTypeArguments;
         private System.Windows.Forms.ComboBox cbAudioType;
         private System.Windows.Forms.Label lblAudioType;

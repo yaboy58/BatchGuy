@@ -141,7 +141,7 @@ namespace BatchGuy.App
                 txtNumberOfFiles.Text = "";
                 txtNumberOfFiles.Focus();
             }
-            gbScreen.SetEnabled(true);
+            this.Close();
         }
     }
 }

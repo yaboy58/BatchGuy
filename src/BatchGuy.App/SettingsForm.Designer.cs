@@ -30,15 +30,15 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingsForm));
             this.gbScreen = new System.Windows.Forms.GroupBox();
-            this.btnSave = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtEac3toPath = new System.Windows.Forms.TextBox();
-            this.btnOpenEac3toFileDialog = new System.Windows.Forms.Button();
-            this.ofdFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.btnOpenVfw4x264FileDialog = new System.Windows.Forms.Button();
             this.txtVfw4x264 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.btnOpenEac3toFileDialog = new System.Windows.Forms.Button();
+            this.txtEac3toPath = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.ofdFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.gbScreen.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -52,16 +52,6 @@
             this.gbScreen.TabIndex = 0;
             this.gbScreen.TabStop = false;
             this.gbScreen.Text = "Settings";
-            // 
-            // btnSave
-            // 
-            this.btnSave.Location = new System.Drawing.Point(621, 263);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(107, 25);
-            this.btnSave.TabIndex = 2;
-            this.btnSave.Text = "Save";
-            this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // groupBox1
             // 
@@ -77,37 +67,6 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Executables";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(15, 30);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(60, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "eac3to.exe";
-            // 
-            // txtEac3toPath
-            // 
-            this.txtEac3toPath.Location = new System.Drawing.Point(98, 23);
-            this.txtEac3toPath.Name = "txtEac3toPath";
-            this.txtEac3toPath.ReadOnly = true;
-            this.txtEac3toPath.Size = new System.Drawing.Size(476, 20);
-            this.txtEac3toPath.TabIndex = 22;
-            // 
-            // btnOpenEac3toFileDialog
-            // 
-            this.btnOpenEac3toFileDialog.Image = global::BatchGuy.App.Properties.Resources.Avosoft_Warm_Toolbar_Folder_open;
-            this.btnOpenEac3toFileDialog.Location = new System.Drawing.Point(592, 10);
-            this.btnOpenEac3toFileDialog.Name = "btnOpenEac3toFileDialog";
-            this.btnOpenEac3toFileDialog.Size = new System.Drawing.Size(61, 33);
-            this.btnOpenEac3toFileDialog.TabIndex = 0;
-            this.btnOpenEac3toFileDialog.UseVisualStyleBackColor = true;
-            this.btnOpenEac3toFileDialog.Click += new System.EventHandler(this.btnOpenEac3toFileDialog_Click);
-            // 
-            // ofdFileDialog
-            // 
-            this.ofdFileDialog.FileName = "openFileDialog1";
             // 
             // btnOpenVfw4x264FileDialog
             // 
@@ -136,6 +95,47 @@
             this.label2.TabIndex = 13;
             this.label2.Text = "vfw4x264.exe";
             // 
+            // btnOpenEac3toFileDialog
+            // 
+            this.btnOpenEac3toFileDialog.Image = global::BatchGuy.App.Properties.Resources.Avosoft_Warm_Toolbar_Folder_open;
+            this.btnOpenEac3toFileDialog.Location = new System.Drawing.Point(592, 10);
+            this.btnOpenEac3toFileDialog.Name = "btnOpenEac3toFileDialog";
+            this.btnOpenEac3toFileDialog.Size = new System.Drawing.Size(61, 33);
+            this.btnOpenEac3toFileDialog.TabIndex = 0;
+            this.btnOpenEac3toFileDialog.UseVisualStyleBackColor = true;
+            this.btnOpenEac3toFileDialog.Click += new System.EventHandler(this.btnOpenEac3toFileDialog_Click);
+            // 
+            // txtEac3toPath
+            // 
+            this.txtEac3toPath.Location = new System.Drawing.Point(98, 23);
+            this.txtEac3toPath.Name = "txtEac3toPath";
+            this.txtEac3toPath.ReadOnly = true;
+            this.txtEac3toPath.Size = new System.Drawing.Size(476, 20);
+            this.txtEac3toPath.TabIndex = 22;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(15, 30);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(60, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "eac3to.exe";
+            // 
+            // btnSave
+            // 
+            this.btnSave.Location = new System.Drawing.Point(621, 263);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(107, 25);
+            this.btnSave.TabIndex = 2;
+            this.btnSave.Text = "Save";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // ofdFileDialog
+            // 
+            this.ofdFileDialog.FileName = "openFileDialog1";
+            // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -144,6 +144,7 @@
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.gbScreen);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "SettingsForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "BatchGuy Settings";

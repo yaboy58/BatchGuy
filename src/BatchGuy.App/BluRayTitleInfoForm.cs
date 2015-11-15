@@ -171,6 +171,7 @@ namespace BatchGuy.App
             }
             else
             {
+                panelAudioType.SetEnabled(true);
                 this.HandleDGVAudioCellClick(e);
                 dgvAudio.Rows[e.RowIndex].Selected = true;
             }
@@ -227,6 +228,7 @@ namespace BatchGuy.App
         private void cbAudioType_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.HandleComboBoxAudioTypeSelectedIndexChanged(cbAudioType.Text);
+            txtAudioTypeArguments.Text = _currentBluRayTitleAudio.Arguments;
         }
 
         private void HandleComboBoxAudioTypeSelectedIndexChanged(string value)
@@ -235,18 +237,23 @@ namespace BatchGuy.App
             {
                 case "DTS":
                     _currentBluRayTitleAudio.AudioType = EnumAudioType.DTS;
+                    _currentBluRayTitleAudio.Arguments = "-core";
                     break;
                 case "AC3":
                     _currentBluRayTitleAudio.AudioType = EnumAudioType.AC3;
+                    _currentBluRayTitleAudio.Arguments = "";
                     break;
                 case "FLAC":
                     _currentBluRayTitleAudio.AudioType = EnumAudioType.FLAC;
+                    _currentBluRayTitleAudio.Arguments = "";
                     break;
                 case "TrueHD":
                     _currentBluRayTitleAudio.AudioType = EnumAudioType.TrueHD;
+                    _currentBluRayTitleAudio.Arguments = "-640";
                     break;
                 case "DTSMA":
                     _currentBluRayTitleAudio.AudioType = EnumAudioType.DTSMA;
+                    _currentBluRayTitleAudio.Arguments = "";
                     break;
             }
         }

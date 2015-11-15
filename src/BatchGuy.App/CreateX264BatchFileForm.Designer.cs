@@ -282,6 +282,7 @@
             this.ClientSize = new System.Drawing.Size(848, 651);
             this.Controls.Add(this.gbScreen);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "CreateX264BatchFileForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Create x264 Batch File";
