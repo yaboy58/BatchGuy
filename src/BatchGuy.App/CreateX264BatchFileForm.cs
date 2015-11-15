@@ -98,7 +98,7 @@ namespace BatchGuy.App
 
         private X264FileSettings GetX264FileSettings()
         {
-            return new X264FileSettings() { AviSynthFileFilter = "encode*", AviSynthFileOutputPath = txtAviSynthFileDirectory.Text, EncodeType = EncodeType,
+            return new X264FileSettings() { AviSynthFileFilter = "*.avs", AviSynthFileOutputPath = txtAviSynthFileDirectory.Text, EncodeType = EncodeType,
              vfw4x264Exe = txtVfw4x264exe.Text, X264Template = txtX264Template.Text};
         }
 
@@ -133,6 +133,12 @@ namespace BatchGuy.App
 
         private void HandleRowsRemoved()
         {
+            List<X264File> files = new List<X264File>();
+            foreach (X264File file in _bindingListFiles)
+            {
+                files.Add(file);
+            }
+            _x264Files = files;
             lblNumberOfFiles.Text = string.Format("Number of Files: {0}", _x264Files.Count());
         }
 
