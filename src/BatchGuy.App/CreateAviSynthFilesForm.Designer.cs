@@ -30,13 +30,12 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CreateAviSynthFilesForm));
             this.label2 = new System.Windows.Forms.Label();
-            this.txtDirectory = new System.Windows.Forms.TextBox();
+            this.txtOutputDirectory = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtAVSTemplate = new System.Windows.Forms.TextBox();
             this.btnCreateAVSFiles = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.txtNumberOfFiles = new System.Windows.Forms.TextBox();
-            this.fbdDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.btnOpenDialog = new System.Windows.Forms.Button();
             this.gbScreen = new System.Windows.Forms.GroupBox();
             this.bgwCreateAviSynthFiles = new System.ComponentModel.BackgroundWorker();
@@ -52,13 +51,13 @@
             this.label2.TabIndex = 5;
             this.label2.Text = "Output Directory";
             // 
-            // txtDirectory
+            // txtOutputDirectory
             // 
-            this.txtDirectory.Location = new System.Drawing.Point(157, 23);
-            this.txtDirectory.Name = "txtDirectory";
-            this.txtDirectory.ReadOnly = true;
-            this.txtDirectory.Size = new System.Drawing.Size(434, 20);
-            this.txtDirectory.TabIndex = 10;
+            this.txtOutputDirectory.Location = new System.Drawing.Point(157, 23);
+            this.txtOutputDirectory.Name = "txtOutputDirectory";
+            this.txtOutputDirectory.ReadOnly = true;
+            this.txtOutputDirectory.Size = new System.Drawing.Size(434, 20);
+            this.txtOutputDirectory.TabIndex = 10;
             // 
             // label1
             // 
@@ -74,12 +73,12 @@
             this.txtAVSTemplate.Location = new System.Drawing.Point(20, 108);
             this.txtAVSTemplate.Multiline = true;
             this.txtAVSTemplate.Name = "txtAVSTemplate";
-            this.txtAVSTemplate.Size = new System.Drawing.Size(775, 161);
+            this.txtAVSTemplate.Size = new System.Drawing.Size(638, 161);
             this.txtAVSTemplate.TabIndex = 1;
             // 
             // btnCreateAVSFiles
             // 
-            this.btnCreateAVSFiles.Location = new System.Drawing.Point(645, 288);
+            this.btnCreateAVSFiles.Location = new System.Drawing.Point(508, 293);
             this.btnCreateAVSFiles.Name = "btnCreateAVSFiles";
             this.btnCreateAVSFiles.Size = new System.Drawing.Size(150, 35);
             this.btnCreateAVSFiles.TabIndex = 2;
@@ -115,7 +114,7 @@
             // 
             // gbScreen
             // 
-            this.gbScreen.Controls.Add(this.txtDirectory);
+            this.gbScreen.Controls.Add(this.txtOutputDirectory);
             this.gbScreen.Controls.Add(this.label3);
             this.gbScreen.Controls.Add(this.btnOpenDialog);
             this.gbScreen.Controls.Add(this.txtNumberOfFiles);
@@ -125,7 +124,7 @@
             this.gbScreen.Controls.Add(this.label1);
             this.gbScreen.Location = new System.Drawing.Point(12, 2);
             this.gbScreen.Name = "gbScreen";
-            this.gbScreen.Size = new System.Drawing.Size(816, 334);
+            this.gbScreen.Size = new System.Drawing.Size(679, 334);
             this.gbScreen.TabIndex = 12;
             this.gbScreen.TabStop = false;
             // 
@@ -138,9 +137,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(844, 348);
+            this.ClientSize = new System.Drawing.Size(705, 348);
             this.Controls.Add(this.gbScreen);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "CreateAviSynthFilesForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Create AviSynth Files";
@@ -154,13 +154,12 @@
         #endregion
 
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtDirectory;
+        private System.Windows.Forms.TextBox txtOutputDirectory;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtAVSTemplate;
         private System.Windows.Forms.Button btnCreateAVSFiles;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtNumberOfFiles;
-        private System.Windows.Forms.FolderBrowserDialog fbdDialog;
         private System.Windows.Forms.Button btnOpenDialog;
         private System.Windows.Forms.GroupBox gbScreen;
         private System.ComponentModel.BackgroundWorker bgwCreateAviSynthFiles;

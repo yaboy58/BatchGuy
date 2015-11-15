@@ -61,7 +61,7 @@ namespace BatchGuy.App.X264.Services
 
         private bool IsDirectoryValidDirectory()
         {
-            if (!Directory.Exists(_x264FileSettings.AviSynthFileOutputPath))
+            if (!Directory.Exists(_x264FileSettings.AviSynthFilesPath))
             {
                 this._errors.Add(new Error() { Description = "The Output Folder for AviSynth files does not exist" });
                 return false;

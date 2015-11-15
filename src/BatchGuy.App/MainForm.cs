@@ -16,6 +16,7 @@ namespace BatchGuy
         public MainForm()
         {
             InitializeComponent();
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
         }
 
         private void createAVSFilesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -39,6 +40,12 @@ namespace BatchGuy
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AboutForm form = new AboutForm();
+            form.ShowDialog();
+        }
+
+        private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SettingsForm form = new SettingsForm();
             form.ShowDialog();
         }
     }

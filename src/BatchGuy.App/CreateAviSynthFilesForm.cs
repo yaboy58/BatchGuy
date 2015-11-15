@@ -13,6 +13,7 @@ using BatchGuy.App.AviSynth.Interfaces;
 using BatchGuy.App.Shared.Models;
 using BatchGuy.App.Helpers;
 using BatchGuy.App.Extensions;
+using BatchGuy.App.ThirdParty.FolderSelectDialog;
 
 namespace BatchGuy.App
 {
@@ -25,6 +26,7 @@ namespace BatchGuy.App
         public CreateAviSynthFilesForm()
         {
             InitializeComponent();
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             txtNumberOfFiles.Focus();
         }
 
@@ -32,7 +34,7 @@ namespace BatchGuy.App
         {
             this.SetAVSTemplateTextBox();
 #if DEBUG
-            txtDirectory.Text = @"C:\temp\My Encodes\Blu-ray";   
+            txtOutputDirectory.Text = @"C:\temp\My Encodes\Blu-ray";   
 #endif
 
         }
@@ -70,7 +72,7 @@ namespace BatchGuy.App
         {
             return new AVSBatchSettings()
             {
-                 BatchDirectoryPath = txtDirectory.Text,
+                 BatchDirectoryPath = txtOutputDirectory.Text,
                   NamingConvention = "encode", //hardcoded for now
                    NumberOfFiles = Convert.ToInt32(txtNumberOfFiles.Text),
                     VideoFilter = "FFVideoSource" //hardcoded for now
@@ -84,7 +86,7 @@ namespace BatchGuy.App
 
         private bool IsScreenValid()
         {
-            if (txtDirectory.Text == string.Empty)
+            if (txtOutputDirectory.Text == string.Empty)
             {
                 MessageBox.Show("Please enter a file directory", "Directory Error.", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
@@ -109,12 +111,12 @@ namespace BatchGuy.App
 
         private void HandleBtnOpenDialogClick()
         {
-            fbdDialog.ShowNewFolderButton = true;
-            fbdDialog.RootFolder = Environment.SpecialFolder.Desktop;
-            DialogResult result = fbdDialog.ShowDialog();
-            if (result == System.Windows.Forms.DialogResult.OK)
+            var fsd = new FolderSelectDialog();
+            fsd.Title = "AviSynth files output directory";
+            fsd.InitialDirectory = @"c:\";
+            if (fsd.ShowDialog(IntPtr.Zero))
             {
-                txtDirectory.Text = fbdDialog.SelectedPath;
+                txtOutputDirectory.Text = fsd.FileName;
             }
         }
 
@@ -139,7 +141,7 @@ namespace BatchGuy.App
                 txtNumberOfFiles.Text = "";
                 txtNumberOfFiles.Focus();
             }
-            gbScreen.SetEnabled(true);
+            this.Close();
         }
     }
 }

@@ -54,16 +54,16 @@ namespace BatchGuy.App.X264.Services
         {
             try
             {
-                using (StreamWriter sw = new StreamWriter(string.Format("{0}\\{1}", _x264FileSettings.AviSynthFileOutputPath, _batFile), false))
+                using (StreamWriter sw = new StreamWriter(string.Format("{0}\\{1}", _x264FileSettings.X264FileOutputPath, _batFile), false))
                 {
-                    foreach (X264File x264File in _x264Files)
+                    foreach (X264File x264File in _x264Files.OrderBy(f => f.AVSFileNameOnly))
                     {
                         StringBuilder sb = new StringBuilder();
                         sb.Append(string.Format("\"{0}\"", _x264FileSettings.vfw4x264Exe));
                         sb.Append(string.Format(" \"{0}\"", x264File.AVSFilePath));
                         sb.Append(string.Format(" {0}", _x264FileSettings.X264Template));
-                        sb.Append(string.Format(" --output \"{0}\\{1}\"", _x264FileSettings.AviSynthFileOutputPath, x264File.EncodeName));
-                        sb.Append(string.Format(" - 2> \"{0}\\{1}.x264.log\"", _x264FileSettings.AviSynthFileOutputPath, x264File.EncodeName));
+                        sb.Append(string.Format(" --output \"{0}\\{1}\"", _x264FileSettings.AviSynthFilesPath, x264File.EncodeName));
+                        sb.Append(string.Format(" - 2> \"{0}\\{1}.x264.log\"", _x264FileSettings.AviSynthFilesPath, x264File.EncodeName));
                         sw.WriteLine(sb.ToString());
                         sw.WriteLine();
                     }
@@ -79,9 +79,9 @@ namespace BatchGuy.App.X264.Services
         {
             try
             {
-                using (StreamWriter sw = new StreamWriter(string.Format("{0}\\{1}", _x264FileSettings.AviSynthFileOutputPath, _batFile), false))
+                using (StreamWriter sw = new StreamWriter(string.Format("{0}\\{1}", _x264FileSettings.AviSynthFilesPath, _batFile), false))
                 {
-                    foreach (X264File x264File in _x264Files)
+                    foreach (X264File x264File in _x264Files.OrderBy(f => f.AVSFileNameOnly))
                     {
                         //1st pass
                         StringBuilder sb1stPass = new StringBuilder();
@@ -89,7 +89,7 @@ namespace BatchGuy.App.X264.Services
                         sb1stPass.Append(string.Format(" \"{0}\"", x264File.AVSFilePath));
                         sb1stPass.Append(" --pass 1");
                         sb1stPass.Append(string.Format(" {0}", _x264FileSettings.X264Template));
-                        sb1stPass.Append(string.Format(" --output NUL - 2> \"{0}\\{1}.x264.log\"", _x264FileSettings.AviSynthFileOutputPath, x264File.EncodeName));
+                        sb1stPass.Append(string.Format(" --output NUL - 2> \"{0}\\{1}.x264.log\"", _x264FileSettings.AviSynthFilesPath, x264File.EncodeName));
                         sw.WriteLine(sb1stPass.ToString());
                         sw.WriteLine();
 
@@ -99,8 +99,8 @@ namespace BatchGuy.App.X264.Services
                         sb2ndPass.Append(string.Format(" \"{0}\"", x264File.AVSFilePath));
                         sb1stPass.Append(" --pass 2");
                         sb2ndPass.Append(string.Format(" {0}", _x264FileSettings.X264Template));
-                        sb2ndPass.Append(string.Format(" --output \"{0}\\{1}\"", _x264FileSettings.AviSynthFileOutputPath, x264File.EncodeName));
-                        sb2ndPass.Append(string.Format(" - 2> \"{0}\\{1}.x264.log\"", _x264FileSettings.AviSynthFileOutputPath, x264File.EncodeName));
+                        sb2ndPass.Append(string.Format(" --output \"{0}\\{1}\"", _x264FileSettings.AviSynthFilesPath, x264File.EncodeName));
+                        sb2ndPass.Append(string.Format(" - 2> \"{0}\\{1}.x264.log\"", _x264FileSettings.AviSynthFilesPath, x264File.EncodeName));
                         sw.WriteLine(sb2ndPass.ToString());
                         sw.WriteLine();
                         sw.WriteLine();

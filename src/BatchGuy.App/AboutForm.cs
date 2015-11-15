@@ -15,6 +15,7 @@ namespace BatchGuy.App
         public AboutForm()
         {
             InitializeComponent();
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
         }
 
         private void AboutForm_Load(object sender, EventArgs e)

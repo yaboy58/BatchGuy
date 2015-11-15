@@ -19,7 +19,7 @@ namespace BatchGuy.Unit.Tests.Services.X264
         public void validationservice_has_the_output_folder_for_avisynth_files_does_not_exist_test()
         {
             //given an invalid output path
-            X264FileSettings x264FileSettings = new X264FileSettings() { AviSynthFileOutputPath = string.Empty};
+            X264FileSettings x264FileSettings = new X264FileSettings() { AviSynthFilesPath = string.Empty};
             List<X264File> x264Files = new List<X264File>();
             //when i attempt to write out a x264 bat file
             IValidationService service = new ValidationService(x264FileSettings, x264Files);
@@ -31,7 +31,7 @@ namespace BatchGuy.Unit.Tests.Services.X264
         public void validationservice_has_all_avisynth_files_must_have_an_encode_name_exist_test()
         {
             //given an invalid output path
-            X264FileSettings x264FileSettings = new X264FileSettings() { AviSynthFileOutputPath = string.Empty };
+            X264FileSettings x264FileSettings = new X264FileSettings() { AviSynthFilesPath = string.Empty };
             List<X264File> x264Files = new List<X264File>() { new X264File() { Id = 1, EncodeName = null}};
             //when i attempt to write out a x264 bat file
             IValidationService service = new ValidationService(x264FileSettings, x264Files);

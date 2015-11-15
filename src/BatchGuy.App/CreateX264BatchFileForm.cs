@@ -13,6 +13,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BatchGuy.App.Extensions;
+using BatchGuy.App.Shared.Interfaces;
+using BatchGuy.App.Shared.Services;
+using BatchGuy.App.ThirdParty.FolderSelectDialog;
+using BatchGuy.App.Settings.Models;
 
 namespace BatchGuy.App
 {
@@ -20,19 +24,40 @@ namespace BatchGuy.App
     {
         private EnumEncodeType EncodeType { get; set; }
         private List<X264File> _x264Files;
-
+        private SortConfiguration _filesGridSortConfiguration = new SortConfiguration();
+        private BindingList<X264File> _bindingListFiles = new BindingList<X264File>();
+        private string _vfw4x264Path = string.Empty;
         public CreateX264BatchFileForm()
         {
             InitializeComponent();
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 #if DEBUG
-            txtAVSFileLocation.Text = @"C:\temp\My Encodes\Blu-ray";
-            txtVfw4x264exe.Text = @"C:\exe\vfw4x264\vfw4x264.exe";
+            txtAviSynthFilesDirectory.Text = @"C:\temp\My Encodes\Blu-ray";
 #endif
         }
 
         private void CreateX264BatFileForm_Load(object sender, EventArgs e)
         {
-            this.SetComboBoxEncodeType();
+            if (!this.IsVfw4x264PathSetInSettings())
+            {
+                MessageBox.Show("Please go to the settings screen and set the vfw4x264.exe path", "vfw4x264 path not set", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                gbScreen.SetEnabled(false);
+            }
+            else
+            {
+                Setting setting = Program.ApplicationSettingsService.GetSettingByName("vfw4x264");
+                _vfw4x264Path = setting.Path;
+                this.SetComboBoxEncodeType();
+            }
+        }
+
+        private bool IsVfw4x264PathSetInSettings()
+        {
+            Setting setting = Program.ApplicationSettingsService.GetSettingByName("vfw4x264");
+            if (setting == null)
+                return false;
+            else
+                return true;
         }
 
         private void SetComboBoxEncodeType()
@@ -86,14 +111,17 @@ namespace BatchGuy.App
 
         private void btnLoadAVSFiles_Click(object sender, EventArgs e)
         {
-            gbScreen.SetEnabled(false);
-            this.LoadAVSFiles();
+            if (this.IsScreenValidForLoadAviSynthFiles())
+            {
+                gbScreen.SetEnabled(false);
+                this.LoadAVSFiles();                
+            }
         }
 
         private X264FileSettings GetX264FileSettings()
         {
-            return new X264FileSettings() { AviSynthFileFilter = "encode*", AviSynthFileOutputPath = txtAVSFileLocation.Text, EncodeType = EncodeType,
-             vfw4x264Exe = txtVfw4x264exe.Text, X264Template = txtX264Template.Text};
+            return new X264FileSettings() { AviSynthFileFilter = "*.avs", AviSynthFilesPath = txtAviSynthFilesDirectory.Text, EncodeType = EncodeType,
+             vfw4x264Exe = _vfw4x264Path, X264Template = txtX264Template.Text, X264FileOutputPath = txtX264BatchFileOutputDirectory.Text};
         }
 
         private void LoadAVSFiles()
@@ -105,7 +133,7 @@ namespace BatchGuy.App
 
         private void btnCreateX264BatFile_Click(object sender, EventArgs e)
         {
-            if (this.IsScreenValid())
+            if (this.IsScreenValidForWriteX264BatchFile())
             {
                 this.CreateX264BatFile();
             }
@@ -127,7 +155,16 @@ namespace BatchGuy.App
 
         private void HandleRowsRemoved()
         {
+            List<X264File> files = new List<X264File>();
+            foreach (X264File file in _bindingListFiles)
+            {
+                files.Add(file);
+            }
+            _x264Files = files;
+
             lblNumberOfFiles.Text = string.Format("Number of Files: {0}", _x264Files.Count());
+            if (_x264Files.Count() == 0)
+                btnCreateX264BatchFile.SetEnabled(false);
         }
 
         private void btnOpenAviSynthScriptOutputDialog_Click(object sender, EventArgs e)
@@ -137,34 +174,26 @@ namespace BatchGuy.App
 
         private void HandleBtnOpenAviSynchScriptOutputDialogClick()
         {
-            fbdDialog.ShowNewFolderButton = true;
-            fbdDialog.RootFolder = Environment.SpecialFolder.Desktop;
-            DialogResult result = fbdDialog.ShowDialog();
-            if (result == System.Windows.Forms.DialogResult.OK)
+            var fsd = new FolderSelectDialog();
+            fsd.Title = "Blu-ray folder directory";
+            fsd.InitialDirectory = @"c:\";
+            if (fsd.ShowDialog(IntPtr.Zero))
             {
-              txtAVSFileLocation.Text = fbdDialog.SelectedPath;
+                txtAviSynthFilesDirectory.Text = fsd.FileName;
             }
         }
 
-        private void btnOpenVfw4x264FileDialog_Click(object sender, EventArgs e)
-        {
-            this.HandleBtnOpenVfw4x264FileDialogClick();
-        }
-
-        private void HandleBtnOpenVfw4x264FileDialogClick()
-        {
-            DialogResult result = ofdFileDialog.ShowDialog(this);
-            if (result == System.Windows.Forms.DialogResult.OK)
-            {
-               txtVfw4x264exe.Text = ofdFileDialog.FileName;
-            }
-        }
 
         private void dgvFiles_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex == -1)
-                return;
-            dgvFiles.Rows[e.RowIndex].Selected = true;
+            {
+                this.SortFilesGrid(e.ColumnIndex);
+            }
+            else
+            {
+                dgvFiles.Rows[e.RowIndex].Selected = true;
+            }
         }
 
         private void bgwLoadAviSynthFiles_DoWork(object sender, DoWorkEventArgs e)
@@ -177,11 +206,20 @@ namespace BatchGuy.App
         {
             if (_x264Files.Count() == 0)
             {
+                btnCreateX264BatchFile.SetEnabled(false);
                 MessageBox.Show("No AviSynth scripts found in directory!", "No Scripts Found", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             else
             {
-                bsFiles.DataSource = _x264Files;
+                btnCreateX264BatchFile.SetEnabled(true);
+                _bindingListFiles.Clear();
+                foreach (X264File file in _x264Files)
+                {
+                    _bindingListFiles.Add(file);
+                }
+                bsFiles.DataSource = _bindingListFiles;
+                bsFiles.ResetBindings(false);
+                _bindingListFiles.AllowEdit = true;
             }
             gbScreen.SetEnabled(true);
         }
@@ -199,9 +237,7 @@ namespace BatchGuy.App
             if (errors.Count() == 0)
             {
                 MessageBox.Show("The x264 batch file has been created!", "Success.", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.SetComboBoxEncodeType();
-                bsFiles.Clear();
-                this.HandleRowsRemoved();
+                this.Close();
             }
             else
             {
@@ -210,8 +246,28 @@ namespace BatchGuy.App
             gbScreen.SetEnabled(true);
         }
 
-        private bool IsScreenValid()
+        private bool IsScreenValidForLoadAviSynthFiles()
         {
+            if (string.IsNullOrEmpty(txtAviSynthFilesDirectory.Text))
+            {
+                MessageBox.Show("Please set the location of the AviSynth files directory", "AviSynth files directory not set", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return false;
+            }
+            return true;
+        }
+
+        private bool IsScreenValidForWriteX264BatchFile()
+        {
+            if (string.IsNullOrEmpty(txtAviSynthFilesDirectory.Text))
+            {
+                MessageBox.Show("Please set the location of the AviSynth files directory", "AviSynth files directory not set", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return false;
+            }
+            if (string.IsNullOrEmpty(txtX264BatchFileOutputDirectory.Text))
+            {
+                MessageBox.Show("Please set the x264 batch file output directory", "x264 batch file output directory not set", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return false;
+            }
             if (_x264Files == null || _x264Files.Count() == 0)
             {
                 MessageBox.Show("Please load AviSynth scripts", "AviSynth Scripts Not Loaded", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -220,9 +276,48 @@ namespace BatchGuy.App
             if (string.IsNullOrEmpty(txtX264Template.Text))
             {
                 MessageBox.Show("Please enter x264 settings", "Invalid x264 settings", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return false;                
+                return false;
             }
             return true;
+        }
+
+        private void SortFilesGrid(int sortColumnNumber)
+        {
+            if (_x264Files.Count() == 0)
+                return;
+
+            string sortColumnName = dgvFiles.Columns[sortColumnNumber].DataPropertyName;
+            _filesGridSortConfiguration.SortByColumnName = sortColumnName;
+            ISortService<X264File> sortService = new SortService<X264File>(_filesGridSortConfiguration, _x264Files);
+
+            IBindingListSortService<X264File> bindingListSortService = new BindingListSortService<X264File>(_x264Files, dgvFiles,
+                _filesGridSortConfiguration, sortService);
+            _bindingListFiles = bindingListSortService.Sort();
+
+            this.BindFilesGrid();
+        }
+
+        private void BindFilesGrid()
+        {
+            bsFiles.DataSource = _bindingListFiles;
+           bsFiles.ResetBindings(false);
+          _bindingListFiles.AllowEdit = true;
+        }
+
+        private void btnOpenX264BatchFileOutputDialog_Click(object sender, EventArgs e)
+        {
+            this.HandleBtnOpenX264BatchFileOutputDialogClick();
+        }
+
+        private void HandleBtnOpenX264BatchFileOutputDialogClick()
+        {
+            var fsd = new FolderSelectDialog();
+            fsd.Title = "Blu-ray folder directory";
+            fsd.InitialDirectory = @"c:\";
+            if (fsd.ShowDialog(IntPtr.Zero))
+            {
+               txtX264BatchFileOutputDirectory.Text = fsd.FileName;
+            }
         }
     }
 }

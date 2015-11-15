@@ -32,15 +32,33 @@
 *unit test new helper function methods
 *unit test extension methods
 
+
 --todo
 *delete existing .bat file(s) before writing new scripts (probably just check to see if it is on file#1)
-*Admin Screen
+*remux focus ie allow folder names other than #
+*allow the ability to name output folders/track names
+*mkvmerge integration
+*look into why the busy mouse indicator doesn't seem to work
+*put the bluray title on the title info page
+
 
 --v1.2 todo
-*change Id columns to Summary Id/Title Number or something more intuitive
-*introduce sorting
-*introduce dts-ma
-*Disable Audio Grid onload
-*look into why the busy mouse indicator doesn't seem to work
-
-
+*change Id columns to Summary Id/Title Number or something more intuitive -done
+*introduce sorting -done
+*introduce dts-ma -done
+*set grid column min widths for x264 screen -done
+*fix bug where double .avs files loaded when you put load avs files multiple times -done
+*replaced built-in .net folder browser with 3rd party FolderSelectDialog -done
+*tested with eac3to 3.31 -done
+*fixed bug in EACOutputService where there was no space in multiple audio/subtitle tracks in batch file -done
+*flow layout (just prevented resize of forms, made some screens smaller and minwidth on grid columns) -done
+*fixed but in x264 screen where when you remove an item from the grid, count isn't updated and the files list not refreshed -done
+*removed directory filter (Encode*) from load .avs files process on x264 screen -done
+*sorting on .avs file name on create x264 .bat creation even if grid is sorted by another field -done
+*closing create x264 form after create process completes
+*create x264 batch file button on create x264 batch file screen is disabled unless .avs are loaded -done
+*Settings screen added so user to can set exe paths -done
+*fixed bug where application doesn't check if .avs file location is set -done
+*allow user to set the x264 batch file path -done
+*fixed blu-ray title info screen audio drop down bug where arguments are not being set correctly -done
+*fixed blu-ray title info screen audio drop down bug where exception is thrown when you choose an audio type without selecting a audio title -done

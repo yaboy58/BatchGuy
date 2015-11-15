@@ -17,6 +17,12 @@ using BatchGuy.App.Enums;
 using BatchGuy.App.Helpers;
 using BatchGuy.App.Eac3To.Interfaces;
 using BatchGuy.App.Extensions;
+using System.Linq.Dynamic;
+using BatchGuy.App.Shared.Models;
+using BatchGuy.App.Shared.Interfaces;
+using BatchGuy.App.Shared.Services;
+using BatchGuy.App.ThirdParty.FolderSelectDialog;
+using BatchGuy.App.Settings.Models;
 
 namespace BatchGuy.App
 {
@@ -28,21 +34,41 @@ namespace BatchGuy.App
         private BindingList<BluRayDiscInfo> _bindingListBluRayDiscInfo = new BindingList<BluRayDiscInfo>();
         private BindingList<BluRaySummaryInfo> _bindingListBluRaySummaryInfo;
         private int _currentBluRayDiscGridRowIndex;
-
+        private SortConfiguration _bluRaySummaryGridSortConfiguration = new SortConfiguration();
+        private SortConfiguration _bluRayDiscGridSortConfiguration = new SortConfiguration();
+        private string _eac3ToPath = string.Empty;
 
         public CreateEAC3ToBatchForm()
         {
             InitializeComponent();
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 #if DEBUG
-            txtBluRayPath.Text = @"C:\temp\My Encodes\Blu-ray\DISC\D1";   
-            txtEAC3ToPath.Text = @"C:\exe\eac3to\eac3to.exe";
+            txtBluRayPath.Text = @"C:\temp\My Torrent Downloads\Better Call Saul S01 1080p EUR Blu-ray AVC DTS-HD MA 5.1\Disc_1";   
             txtBatFilePath.Text = @"C:\temp\My Encodes\Blu-ray";
 #endif
-            
         }
 
         private void CreateEAC3ToBatchForm_Load(object sender, EventArgs e)
         {
+            if (!this.IsEac3ToPathSetInSettings())
+            {
+                MessageBox.Show("Please go to the settings screen and set the eac3to.exe path", "eac3to path not set", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                gbScreen.SetEnabled(false);
+            }
+            else
+            {
+                Setting setting = Program.ApplicationSettingsService.GetSettingByName("eac3to");
+                _eac3ToPath = setting.Path;
+            }
+        }
+
+        private bool IsEac3ToPathSetInSettings()
+        {
+            Setting setting = Program.ApplicationSettingsService.GetSettingByName("eac3to");
+            if (setting == null)
+                return false;
+            else
+                return true;
         }
 
         private void btnWriteToBatFile_Click(object sender, EventArgs e)
@@ -82,7 +108,7 @@ namespace BatchGuy.App
                 {
                     BatchFilePath = txtBatFilePath.Text,
                     BluRayPath = txtBluRayPath.Text,
-                    EAC3ToPath = txtEAC3ToPath.Text
+                    EAC3ToPath = _eac3ToPath
                 }
             };
 
@@ -101,20 +127,27 @@ namespace BatchGuy.App
 
         private void dgvBluRayDiscInfo_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            this.HandleDgvBluRayDiscInfoCellClick(e);
-            if (_currentBluRayDiscInfo.BluRaySummaryInfoList == null)
+            if (e.RowIndex == -1)
             {
-                gbScreen.SetEnabled(false);
-                this.HandleLoadBluRay();
+                this.SortBluRayDiscGrid(e.ColumnIndex);
             }
             else
             {
-                _bindingListBluRaySummaryInfo = new BindingList<BluRaySummaryInfo>();
-                foreach (BluRaySummaryInfo info in _currentBluRayDiscInfo.BluRaySummaryInfoList)
+                this.HandleDgvBluRayDiscInfoCellClick(e);
+                if (_currentBluRayDiscInfo.BluRaySummaryInfoList == null)
                 {
-                    _bindingListBluRaySummaryInfo.Add(info);
+                    gbScreen.SetEnabled(false);
+                    this.HandleLoadBluRay();
                 }
-                this.UpdateUIForBluRaySummary();
+                else
+                {
+                    _bindingListBluRaySummaryInfo = new BindingList<BluRaySummaryInfo>();
+                    foreach (BluRaySummaryInfo info in _currentBluRayDiscInfo.BluRaySummaryInfoList)
+                    {
+                        _bindingListBluRaySummaryInfo.Add(info);
+                    }
+                    this.UpdateUIForBluRaySummary();
+                }
             }
         }
 
@@ -134,7 +167,7 @@ namespace BatchGuy.App
             //Blu ray streams
             _commandLineProcessStartInfo = new CommandLineProcessStartInfo()
             {
-                FileName = txtEAC3ToPath.Text,
+                FileName = _eac3ToPath,
                 Arguments = string.Format("\"{0}\"", _currentBluRayDiscInfo.EAC3ToConfiguration.BluRayPath)
             };
 
@@ -197,7 +230,7 @@ namespace BatchGuy.App
                 MessageBox.Show("Please enter the path where the blu-ray disc is located!", "Error occurred", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
-            if (txtEAC3ToPath.Text == string.Empty)
+            if (_eac3ToPath == string.Empty)
             {
                 MessageBox.Show("Please enter the eac3to.exe path with the exe in the path!", "Error occurred", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
@@ -218,8 +251,13 @@ namespace BatchGuy.App
         private void dgvBluRaySummary_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex == -1)
-                return;
-            dgvBluRaySummary.Rows[e.RowIndex].Selected = true;
+            {
+                this.SortBluRaySummaryGrid(e.ColumnIndex);
+            }
+            else
+            {
+                dgvBluRaySummary.Rows[e.RowIndex].Selected = true;
+            }
         }
 
         private void btnOpenBluRayPathDialog_Click(object sender, EventArgs e)
@@ -229,27 +267,12 @@ namespace BatchGuy.App
 
         private void HandleBtnOpenBluRayPathDialogClick()
         {
-            
-            fbdDialog.ShowNewFolderButton = true;
-            fbdDialog.RootFolder = Environment.SpecialFolder.Desktop;
-            DialogResult result = fbdDialog.ShowDialog();
-            if (result == System.Windows.Forms.DialogResult.OK)
+            var fsd = new FolderSelectDialog();
+            fsd.Title = "Blu-ray folder directory";
+            fsd.InitialDirectory = @"c:\";
+            if (fsd.ShowDialog(IntPtr.Zero))
             {
-                txtBluRayPath.Text = fbdDialog.SelectedPath;
-            }
-        }
-
-        private void btnOpenEac3ToFileDialog_Click(object sender, EventArgs e)
-        {
-            this.HandleOpenEac3ToFileDialogClick();
-        }
-
-        private void HandleOpenEac3ToFileDialogClick()
-        {
-            DialogResult result = ofdFileDialog.ShowDialog(this);
-            if (result == System.Windows.Forms.DialogResult.OK)
-            {
-                txtEAC3ToPath.Text = ofdFileDialog.FileName;
+                txtBluRayPath.Text = fsd.FileName;
             }
         }
 
@@ -260,12 +283,12 @@ namespace BatchGuy.App
 
         private void HandleBtnOpenBatchFilePathDialogClick()
         {
-            fbdDialog.ShowNewFolderButton = true;
-            fbdDialog.RootFolder = Environment.SpecialFolder.Desktop;
-            DialogResult result = fbdDialog.ShowDialog();
-            if (result == System.Windows.Forms.DialogResult.OK)
+            var fsd = new FolderSelectDialog();
+            fsd.Title = "Batch file output directory";
+            fsd.InitialDirectory = @"c:\";
+            if (fsd.ShowDialog(IntPtr.Zero))
             {
-               txtBatFilePath.Text= fbdDialog.SelectedPath;
+                txtBatFilePath.Text = fsd.FileName;
             }
         }
 
@@ -326,6 +349,39 @@ namespace BatchGuy.App
                 MessageBox.Show(string.Format("Error: {0}", batchFileWriteService.Errors[0].Description), "Error occurred", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             gbScreen.SetEnabled(true);
+        }
+
+        private void SortBluRayDiscGrid(int sortColumnNumber)
+        {
+            if (_bluRayDiscInfoList == null)
+                return;
+
+            string sortColumnName = dgvBluRayDiscInfo.Columns[sortColumnNumber].DataPropertyName;
+            _bluRayDiscGridSortConfiguration.SortByColumnName = sortColumnName;
+            ISortService<BluRayDiscInfo> sortService = new SortService<BluRayDiscInfo>(_bluRayDiscGridSortConfiguration, _bluRayDiscInfoList);
+
+            IBindingListSortService<BluRayDiscInfo> bindingListSortService = new BindingListSortService<BluRayDiscInfo>(_bluRayDiscInfoList, dgvBluRayDiscInfo, _bluRayDiscGridSortConfiguration, sortService);
+            _bindingListBluRayDiscInfo = bindingListSortService.Sort();
+
+            this.BindDgvBluRayDiscInfoGrid();
+
+        }
+
+        private void SortBluRaySummaryGrid(int sortColumnNumber)
+        {
+            if (_currentBluRayDiscInfo == null)
+                return;
+
+            string sortColumnName = dgvBluRaySummary.Columns[sortColumnNumber].DataPropertyName;
+            _bluRaySummaryGridSortConfiguration.SortByColumnName = sortColumnName;
+            ISortService<BluRaySummaryInfo> sortService = new SortService<BluRaySummaryInfo>(_bluRaySummaryGridSortConfiguration, _currentBluRayDiscInfo.BluRaySummaryInfoList);
+
+            IBindingListSortService<BluRaySummaryInfo> bindingListSortService = new BindingListSortService<BluRaySummaryInfo>(_currentBluRayDiscInfo.BluRaySummaryInfoList,
+                dgvBluRaySummary, _bluRaySummaryGridSortConfiguration, sortService);
+
+            _bindingListBluRaySummaryInfo = bindingListSortService.Sort();
+
+            this.BindDgvBluRaySummaryGrid();
         }
 
     }

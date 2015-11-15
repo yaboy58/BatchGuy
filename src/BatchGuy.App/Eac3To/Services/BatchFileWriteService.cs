@@ -45,7 +45,7 @@ namespace BatchGuy.App.Eac3to.Services
                     */
                     foreach (BluRayDiscInfo disc in _bluRayDiscInfoList.Where(d => d.IsSelected))
                     {
-                        foreach (BluRaySummaryInfo summary in disc.BluRaySummaryInfoList.Where(s => s.IsSelected).OrderBy(s => s.EpisodeNumber.StringToInt()))
+                        foreach (BluRaySummaryInfo summary in disc.BluRaySummaryInfoList.Where(s => s.IsSelected).OrderBy(s => s.EpisodeNumber))
                         {
                             IEAC3ToOutputService eacOutputService = new EAC3ToOutputService(disc.EAC3ToConfiguration, summary.Id, summary.BluRayTitleInfo);
                             string eac3ToPathPart = eacOutputService.GetEAC3ToPathPart();
@@ -163,7 +163,7 @@ namespace BatchGuy.App.Eac3to.Services
             {
                 foreach (BluRaySummaryInfo info in disc.BluRaySummaryInfoList.Where(s => s.IsSelected))
                 {
-                    if (info.EpisodeNumber == string.Empty || info.EpisodeNumber == null || info.EpisodeNumber.IsNumeric() == false)
+                    if (info.EpisodeNumber == null)
                     {
                         isValid = false;
                     }             
