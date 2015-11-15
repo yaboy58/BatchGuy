@@ -108,6 +108,12 @@
     <Compile Include="Parser\Models\BluRayTitleSubtitle.cs" />
     <Compile Include="Parser\Services\BluRayTitleLineItemIdentifierService.cs" />
     <Compile Include="Parser\Services\BluRayTitleParserService.cs" />
+    <Compile Include="Settings\Interface\IApplicationSettingsService.cs" />
+    <Compile Include="Settings\Interface\IBinarySerializationService.cs" />
+    <Compile Include="Settings\Models\ApplicationSettings.cs" />
+    <Compile Include="Settings\Models\Setting.cs" />
+    <Compile Include="Settings\Services\ApplicationSettingsService.cs" />
+    <Compile Include="Settings\Services\BinarySerializationService.cs" />
     <Compile Include="Shared\Interfaces\IBindingListSortService.cs" />
     <Compile Include="Shared\Interfaces\ISortService.cs" />
     <Compile Include="Shared\Models\Error.cs" />
