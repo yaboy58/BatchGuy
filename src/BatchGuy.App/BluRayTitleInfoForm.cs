@@ -204,6 +204,9 @@ namespace BatchGuy.App
                 case EnumAudioType.MPA:
                     name = "MPA";
                     break;
+                case EnumAudioType.DTSMA:
+                    name = "DTSMA";
+                    break;
                 default:
                     throw new Exception("Invalid Audio Type");
             }
@@ -240,6 +243,9 @@ namespace BatchGuy.App
                     break;
                 case "TrueHD":
                     _currentBluRayTitleAudio.AudioType = EnumAudioType.TrueHD;
+                    break;
+                case "DTSMA":
+                    _currentBluRayTitleAudio.AudioType = EnumAudioType.DTSMA;
                     break;
             }
         }

@@ -382,7 +382,6 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridViewCheckBoxColumn ignoreDataGridViewCheckBoxColumn;
         private System.Windows.Forms.BindingSource bsBluRayDiscInfo;
         private System.Windows.Forms.Button btnAddBluRayDisc;
         private System.Windows.Forms.BindingSource bsBluRaySummaryInfo;
