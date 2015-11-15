@@ -32,7 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CreateX264BatchFileForm));
             this.label4 = new System.Windows.Forms.Label();
             this.cbEncodeType = new System.Windows.Forms.ComboBox();
-            this.btnCreateX264BatFile = new System.Windows.Forms.Button();
+            this.btnCreateX264BatchFile = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.txtX264Template = new System.Windows.Forms.TextBox();
             this.lblAviSynthScriptsLocation = new System.Windows.Forms.Label();
@@ -80,15 +80,16 @@
             this.cbEncodeType.TabIndex = 15;
             this.cbEncodeType.SelectedIndexChanged += new System.EventHandler(this.cbEncodeType_SelectedIndexChanged);
             // 
-            // btnCreateX264BatFile
+            // btnCreateX264BatchFile
             // 
-            this.btnCreateX264BatFile.Location = new System.Drawing.Point(632, 606);
-            this.btnCreateX264BatFile.Name = "btnCreateX264BatFile";
-            this.btnCreateX264BatFile.Size = new System.Drawing.Size(168, 44);
-            this.btnCreateX264BatFile.TabIndex = 14;
-            this.btnCreateX264BatFile.Text = "Create x264 Batch File";
-            this.btnCreateX264BatFile.UseVisualStyleBackColor = true;
-            this.btnCreateX264BatFile.Click += new System.EventHandler(this.btnCreateX264BatFile_Click);
+            this.btnCreateX264BatchFile.Enabled = false;
+            this.btnCreateX264BatchFile.Location = new System.Drawing.Point(632, 606);
+            this.btnCreateX264BatchFile.Name = "btnCreateX264BatchFile";
+            this.btnCreateX264BatchFile.Size = new System.Drawing.Size(168, 44);
+            this.btnCreateX264BatchFile.TabIndex = 14;
+            this.btnCreateX264BatchFile.Text = "Create x264 Batch File";
+            this.btnCreateX264BatchFile.UseVisualStyleBackColor = true;
+            this.btnCreateX264BatchFile.Click += new System.EventHandler(this.btnCreateX264BatFile_Click);
             // 
             // label3
             // 
@@ -251,7 +252,7 @@
             this.gbScreen.Controls.Add(this.lblNumberOfFiles);
             this.gbScreen.Controls.Add(this.label3);
             this.gbScreen.Controls.Add(this.label5);
-            this.gbScreen.Controls.Add(this.btnCreateX264BatFile);
+            this.gbScreen.Controls.Add(this.btnCreateX264BatchFile);
             this.gbScreen.Controls.Add(this.txtVfw4x264exe);
             this.gbScreen.Controls.Add(this.cbEncodeType);
             this.gbScreen.Controls.Add(this.btnLoadAVSFiles);
@@ -297,7 +298,7 @@
 
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox cbEncodeType;
-        private System.Windows.Forms.Button btnCreateX264BatFile;
+        private System.Windows.Forms.Button btnCreateX264BatchFile;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtX264Template;
         private System.Windows.Forms.Label lblAviSynthScriptsLocation;

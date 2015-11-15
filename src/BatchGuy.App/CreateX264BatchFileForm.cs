@@ -139,7 +139,10 @@ namespace BatchGuy.App
                 files.Add(file);
             }
             _x264Files = files;
+
             lblNumberOfFiles.Text = string.Format("Number of Files: {0}", _x264Files.Count());
+            if (_x264Files.Count() == 0)
+                btnCreateX264BatchFile.SetEnabled(false);
         }
 
         private void btnOpenAviSynthScriptOutputDialog_Click(object sender, EventArgs e)
@@ -195,10 +198,12 @@ namespace BatchGuy.App
         {
             if (_x264Files.Count() == 0)
             {
+                btnCreateX264BatchFile.SetEnabled(false);
                 MessageBox.Show("No AviSynth scripts found in directory!", "No Scripts Found", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             else
             {
+                btnCreateX264BatchFile.SetEnabled(true);
                 _bindingListFiles.Clear();
                 foreach (X264File file in _x264Files)
                 {
@@ -224,9 +229,7 @@ namespace BatchGuy.App
             if (errors.Count() == 0)
             {
                 MessageBox.Show("The x264 batch file has been created!", "Success.", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.SetComboBoxEncodeType();
-                bsFiles.Clear();
-                this.HandleRowsRemoved();
+                this.Close();
             }
             else
             {
