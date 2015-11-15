@@ -13,6 +13,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using BatchGuy.App.Helpers;
 using BatchGuy.App.Extensions;
+using BatchGuy.App.Shared.Models;
+using BatchGuy.App.Shared.Interfaces;
+using BatchGuy.App.Shared.Services;
 
 namespace BatchGuy.App
 {
@@ -23,7 +26,9 @@ namespace BatchGuy.App
         private BindingList<BluRayTitleAudio> _bindingListBluRayTitleAudio = new BindingList<BluRayTitleAudio>();
         private BindingList<BluRayTitleSubtitle> _bindingListBluRayTitleSubtitle = new BindingList<BluRayTitleSubtitle>();
         private BluRayTitleAudio _currentBluRayTitleAudio;
-
+        private SortConfiguration _audioGridSortConfiguration = new SortConfiguration();
+        private SortConfiguration _subtitleGridSortConfiguration = new SortConfiguration();
+        
         public BluRayTitleInfoForm()
         {
             InitializeComponent();
@@ -160,9 +165,14 @@ namespace BatchGuy.App
         private void dgvAudio_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex == -1)
-                return;
-            this.HandleDGVAudioCellClick(e);
-            dgvAudio.Rows[e.RowIndex].Selected = true;
+            {
+                this.SortAudioGrid(e.ColumnIndex);
+            }
+            else
+            {
+                this.HandleDGVAudioCellClick(e);
+                dgvAudio.Rows[e.RowIndex].Selected = true;
+            }
         }
 
         private void HandleDGVAudioCellClick(DataGridViewCellEventArgs e)
@@ -293,8 +303,13 @@ namespace BatchGuy.App
         private void dgvSubtitles_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex == -1)
-                return;
-            dgvSubtitles.Rows[e.RowIndex].Selected = true;
+            {
+                this.SortSubtitleGrid(e.ColumnIndex);
+            }
+            else
+            {
+                dgvSubtitles.Rows[e.RowIndex].Selected = true;
+            }
         }
 
         private void bgwEac3toLoadTitle_DoWork(object sender, DoWorkEventArgs e)
@@ -311,6 +326,53 @@ namespace BatchGuy.App
             this.LoadScreen();
             txtEpisodeNumber.Focus();
             gbScreen.SetEnabled(true);
+        }
+
+        private void SortAudioGrid(int sortColumnNumber)
+        {
+            if (_bluRaySummaryInfo.BluRayTitleInfo.AudioList == null || _bluRaySummaryInfo.BluRayTitleInfo.AudioList.Count() == 0)
+                return;
+
+
+            string sortColumnName = dgvAudio.Columns[sortColumnNumber].DataPropertyName;
+           _audioGridSortConfiguration.SortByColumnName = sortColumnName;
+           ISortService<BluRayTitleAudio> sortService = new SortService<BluRayTitleAudio>(_audioGridSortConfiguration, _bluRaySummaryInfo.BluRayTitleInfo.AudioList);
+
+           IBindingListSortService<BluRayTitleAudio> bindingListSortService = new BindingListSortService<BluRayTitleAudio>(_bluRaySummaryInfo.BluRayTitleInfo.AudioList, dgvAudio,
+               _audioGridSortConfiguration, sortService);
+           _bindingListBluRayTitleAudio = bindingListSortService.Sort();
+
+           this.BindAudioGrid();
+        }
+
+        private void BindAudioGrid()
+        {
+            bsBluRayTitleAudio.DataSource = _bindingListBluRayTitleAudio;
+            bsBluRayTitleAudio.ResetBindings(false);
+            _bindingListBluRayTitleAudio.AllowEdit = true;
+        }
+
+        private void SortSubtitleGrid(int sortColumnNumber)
+        {
+            if (_bluRaySummaryInfo.BluRayTitleInfo.Subtitles == null || _bluRaySummaryInfo.BluRayTitleInfo.Subtitles.Count() == 0)
+                return;
+
+            string sortColumnName = dgvSubtitles.Columns[sortColumnNumber].DataPropertyName;
+            _subtitleGridSortConfiguration.SortByColumnName = sortColumnName;
+            ISortService<BluRayTitleSubtitle> sortService = new SortService<BluRayTitleSubtitle>(_subtitleGridSortConfiguration, _bluRaySummaryInfo.BluRayTitleInfo.Subtitles);
+
+            IBindingListSortService<BluRayTitleSubtitle> bindingListSortService = new BindingListSortService<BluRayTitleSubtitle>(_bluRaySummaryInfo.BluRayTitleInfo.Subtitles, dgvSubtitles,
+                _subtitleGridSortConfiguration, sortService);
+            _bindingListBluRayTitleSubtitle = bindingListSortService.Sort();
+
+            this.BindSubtitleGrid();
+        }
+
+        private void BindSubtitleGrid()
+        {
+            bsBluRayTitleSubtitles.DataSource = _bindingListBluRayTitleSubtitle;
+            bsBluRayTitleSubtitles.ResetBindings(false);
+            _bindingListBluRayTitleSubtitle.AllowEdit = true;
         }
     }
 }

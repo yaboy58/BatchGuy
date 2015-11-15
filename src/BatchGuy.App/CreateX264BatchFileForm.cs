@@ -13,6 +13,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BatchGuy.App.Extensions;
+using BatchGuy.App.Shared.Interfaces;
+using BatchGuy.App.Shared.Services;
 
 namespace BatchGuy.App
 {
@@ -20,6 +22,8 @@ namespace BatchGuy.App
     {
         private EnumEncodeType EncodeType { get; set; }
         private List<X264File> _x264Files;
+        private SortConfiguration _filesGridSortConfiguration = new SortConfiguration();
+        private BindingList<X264File> _bindingListFiles = new BindingList<X264File>();
 
         public CreateX264BatchFileForm()
         {
@@ -163,8 +167,13 @@ namespace BatchGuy.App
         private void dgvFiles_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex == -1)
-                return;
-            dgvFiles.Rows[e.RowIndex].Selected = true;
+            {
+                this.SortFilesGrid(e.ColumnIndex);
+            }
+            else
+            {
+                dgvFiles.Rows[e.RowIndex].Selected = true;
+            }
         }
 
         private void bgwLoadAviSynthFiles_DoWork(object sender, DoWorkEventArgs e)
@@ -181,7 +190,14 @@ namespace BatchGuy.App
             }
             else
             {
-                bsFiles.DataSource = _x264Files;
+                _bindingListFiles.Clear();
+                foreach (X264File file in _x264Files)
+                {
+                    _bindingListFiles.Add(file);
+                }
+                bsFiles.DataSource = _bindingListFiles;
+                bsFiles.ResetBindings(false);
+                _bindingListFiles.AllowEdit = true;
             }
             gbScreen.SetEnabled(true);
         }
@@ -223,6 +239,29 @@ namespace BatchGuy.App
                 return false;                
             }
             return true;
+        }
+
+        private void SortFilesGrid(int sortColumnNumber)
+        {
+            if (_x264Files.Count() == 0)
+                return;
+
+            string sortColumnName = dgvFiles.Columns[sortColumnNumber].DataPropertyName;
+            _filesGridSortConfiguration.SortByColumnName = sortColumnName;
+            ISortService<X264File> sortService = new SortService<X264File>(_filesGridSortConfiguration, _x264Files);
+
+            IBindingListSortService<X264File> bindingListSortService = new BindingListSortService<X264File>(_x264Files, dgvFiles,
+                _filesGridSortConfiguration, sortService);
+            _bindingListFiles = bindingListSortService.Sort();
+
+            this.BindFilesGrid();
+        }
+
+        private void BindFilesGrid()
+        {
+            bsFiles.DataSource = _bindingListFiles;
+           bsFiles.ResetBindings(false);
+          _bindingListFiles.AllowEdit = true;
         }
     }
 }

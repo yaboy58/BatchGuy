@@ -39,7 +39,7 @@ namespace BatchGuy.App
         {
             InitializeComponent();
 #if DEBUG
-            txtBluRayPath.Text = @"C:\temp\My Encodes\Blu-ray\DISC\D1";   
+            txtBluRayPath.Text = @"C:\temp\My Torrent Downloads\Better Call Saul S01 1080p EUR Blu-ray AVC DTS-HD MA 5.1\Disc_1";   
             txtEAC3ToPath.Text = @"C:\exe\eac3to\eac3to.exe";
             txtBatFilePath.Text = @"C:\temp\My Encodes\Blu-ray";
 #endif
