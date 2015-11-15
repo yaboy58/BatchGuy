@@ -22,6 +22,7 @@ using BatchGuy.App.Shared.Models;
 using BatchGuy.App.Shared.Interfaces;
 using BatchGuy.App.Shared.Services;
 using BatchGuy.App.ThirdParty.FolderSelectDialog;
+using BatchGuy.App.Settings.Models;
 
 namespace BatchGuy.App
 {
@@ -35,6 +36,7 @@ namespace BatchGuy.App
         private int _currentBluRayDiscGridRowIndex;
         private SortConfiguration _bluRaySummaryGridSortConfiguration = new SortConfiguration();
         private SortConfiguration _bluRayDiscGridSortConfiguration = new SortConfiguration();
+        private string _eac3ToPath = string.Empty;
 
         public CreateEAC3ToBatchForm()
         {
@@ -42,14 +44,31 @@ namespace BatchGuy.App
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 #if DEBUG
             txtBluRayPath.Text = @"C:\temp\My Torrent Downloads\Better Call Saul S01 1080p EUR Blu-ray AVC DTS-HD MA 5.1\Disc_1";   
-            txtEAC3ToPath.Text = @"C:\exe\eac3to\eac3to.exe";
             txtBatFilePath.Text = @"C:\temp\My Encodes\Blu-ray";
 #endif
-            
         }
 
         private void CreateEAC3ToBatchForm_Load(object sender, EventArgs e)
         {
+            if (!this.IsEac3ToPathSetInSettings())
+            {
+                MessageBox.Show("Please go to the settings screen and set the eac3to.exe path", "eac3to path not set", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                gbScreen.SetEnabled(false);
+            }
+            else
+            {
+                Setting setting = Program.ApplicationSettingsService.GetSettingByName("eac3to");
+                _eac3ToPath = setting.Path;
+            }
+        }
+
+        private bool IsEac3ToPathSetInSettings()
+        {
+            Setting setting = Program.ApplicationSettingsService.GetSettingByName("eac3to");
+            if (setting == null)
+                return false;
+            else
+                return true;
         }
 
         private void btnWriteToBatFile_Click(object sender, EventArgs e)
@@ -89,7 +108,7 @@ namespace BatchGuy.App
                 {
                     BatchFilePath = txtBatFilePath.Text,
                     BluRayPath = txtBluRayPath.Text,
-                    EAC3ToPath = txtEAC3ToPath.Text
+                    EAC3ToPath = _eac3ToPath
                 }
             };
 
@@ -148,7 +167,7 @@ namespace BatchGuy.App
             //Blu ray streams
             _commandLineProcessStartInfo = new CommandLineProcessStartInfo()
             {
-                FileName = txtEAC3ToPath.Text,
+                FileName = _eac3ToPath,
                 Arguments = string.Format("\"{0}\"", _currentBluRayDiscInfo.EAC3ToConfiguration.BluRayPath)
             };
 
@@ -211,7 +230,7 @@ namespace BatchGuy.App
                 MessageBox.Show("Please enter the path where the blu-ray disc is located!", "Error occurred", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
-            if (txtEAC3ToPath.Text == string.Empty)
+            if (_eac3ToPath == string.Empty)
             {
                 MessageBox.Show("Please enter the eac3to.exe path with the exe in the path!", "Error occurred", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
@@ -268,7 +287,7 @@ namespace BatchGuy.App
             DialogResult result = ofdFileDialog.ShowDialog();
             if (result == System.Windows.Forms.DialogResult.OK)
             {
-                txtEAC3ToPath.Text = ofdFileDialog.FileName;
+                _eac3ToPath = ofdFileDialog.FileName;
             }
         }
 

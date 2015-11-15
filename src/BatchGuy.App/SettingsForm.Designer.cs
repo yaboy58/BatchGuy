@@ -58,7 +58,7 @@
             this.btnSave.Location = new System.Drawing.Point(621, 263);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(107, 25);
-            this.btnSave.TabIndex = 1;
+            this.btnSave.TabIndex = 2;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -93,7 +93,7 @@
             this.txtEac3toPath.Name = "txtEac3toPath";
             this.txtEac3toPath.ReadOnly = true;
             this.txtEac3toPath.Size = new System.Drawing.Size(476, 20);
-            this.txtEac3toPath.TabIndex = 1;
+            this.txtEac3toPath.TabIndex = 22;
             // 
             // btnOpenEac3toFileDialog
             // 
@@ -101,7 +101,7 @@
             this.btnOpenEac3toFileDialog.Location = new System.Drawing.Point(592, 10);
             this.btnOpenEac3toFileDialog.Name = "btnOpenEac3toFileDialog";
             this.btnOpenEac3toFileDialog.Size = new System.Drawing.Size(61, 33);
-            this.btnOpenEac3toFileDialog.TabIndex = 12;
+            this.btnOpenEac3toFileDialog.TabIndex = 0;
             this.btnOpenEac3toFileDialog.UseVisualStyleBackColor = true;
             this.btnOpenEac3toFileDialog.Click += new System.EventHandler(this.btnOpenEac3toFileDialog_Click);
             // 
@@ -115,7 +115,7 @@
             this.btnOpenVfw4x264FileDialog.Location = new System.Drawing.Point(592, 50);
             this.btnOpenVfw4x264FileDialog.Name = "btnOpenVfw4x264FileDialog";
             this.btnOpenVfw4x264FileDialog.Size = new System.Drawing.Size(61, 33);
-            this.btnOpenVfw4x264FileDialog.TabIndex = 15;
+            this.btnOpenVfw4x264FileDialog.TabIndex = 1;
             this.btnOpenVfw4x264FileDialog.UseVisualStyleBackColor = true;
             this.btnOpenVfw4x264FileDialog.Click += new System.EventHandler(this.btnOpenVfw4x264FileDialog_Click);
             // 
@@ -125,7 +125,7 @@
             this.txtVfw4x264.Name = "txtVfw4x264";
             this.txtVfw4x264.ReadOnly = true;
             this.txtVfw4x264.Size = new System.Drawing.Size(476, 20);
-            this.txtVfw4x264.TabIndex = 14;
+            this.txtVfw4x264.TabIndex = 23;
             // 
             // label2
             // 

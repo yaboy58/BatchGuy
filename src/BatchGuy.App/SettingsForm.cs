@@ -61,7 +61,7 @@ namespace BatchGuy.App
         {
             gbScreen.SetEnabled(false);
             this.HandleSaveClick();
-            gbScreen.SetEnabled(true);
+            this.Close();
         }
 
         private void HandleSaveClick()
