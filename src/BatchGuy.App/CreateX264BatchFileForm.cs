@@ -16,6 +16,7 @@ using BatchGuy.App.Extensions;
 using BatchGuy.App.Shared.Interfaces;
 using BatchGuy.App.Shared.Services;
 using BatchGuy.App.ThirdParty.FolderSelectDialog;
+using BatchGuy.App.Settings.Models;
 
 namespace BatchGuy.App
 {
@@ -25,20 +26,38 @@ namespace BatchGuy.App
         private List<X264File> _x264Files;
         private SortConfiguration _filesGridSortConfiguration = new SortConfiguration();
         private BindingList<X264File> _bindingListFiles = new BindingList<X264File>();
-
+        private string _vfw4x264Path = string.Empty;
         public CreateX264BatchFileForm()
         {
             InitializeComponent();
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 #if DEBUG
             txtAviSynthFileDirectory.Text = @"C:\temp\My Encodes\Blu-ray";
-            txtVfw4x264exe.Text = @"C:\exe\vfw4x264\vfw4x264.exe";
 #endif
         }
 
         private void CreateX264BatFileForm_Load(object sender, EventArgs e)
         {
-            this.SetComboBoxEncodeType();
+            if (!this.IsVfw4x264PathSetInSettings())
+            {
+                MessageBox.Show("Please go to the settings screen and set the vfw4x264.exe path", "vfw4x264 path not set", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                gbScreen.SetEnabled(false);
+            }
+            else
+            {
+                Setting setting = Program.ApplicationSettingsService.GetSettingByName("vfw4x264");
+                _vfw4x264Path = setting.Path;
+                this.SetComboBoxEncodeType();
+            }
+        }
+
+        private bool IsVfw4x264PathSetInSettings()
+        {
+            Setting setting = Program.ApplicationSettingsService.GetSettingByName("vfw4x264");
+            if (setting == null)
+                return false;
+            else
+                return true;
         }
 
         private void SetComboBoxEncodeType()
@@ -99,7 +118,7 @@ namespace BatchGuy.App
         private X264FileSettings GetX264FileSettings()
         {
             return new X264FileSettings() { AviSynthFileFilter = "*.avs", AviSynthFileOutputPath = txtAviSynthFileDirectory.Text, EncodeType = EncodeType,
-             vfw4x264Exe = txtVfw4x264exe.Text, X264Template = txtX264Template.Text};
+             vfw4x264Exe = _vfw4x264Path, X264Template = txtX264Template.Text};
         }
 
         private void LoadAVSFiles()
@@ -161,20 +180,6 @@ namespace BatchGuy.App
             }
         }
 
-        private void btnOpenVfw4x264FileDialog_Click(object sender, EventArgs e)
-        {
-            this.HandleBtnOpenVfw4x264FileDialogClick();
-        }
-
-        private void HandleBtnOpenVfw4x264FileDialogClick()
-        {
-            ofdFileDialog.FileName = "";
-            DialogResult result = ofdFileDialog.ShowDialog(this);
-            if (result == System.Windows.Forms.DialogResult.OK)
-            {
-               txtVfw4x264exe.Text = ofdFileDialog.FileName;
-            }
-        }
 
         private void dgvFiles_CellClick(object sender, DataGridViewCellEventArgs e)
         {

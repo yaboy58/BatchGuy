@@ -276,21 +276,6 @@ namespace BatchGuy.App
             }
         }
 
-        private void btnOpenEac3ToFileDialog_Click(object sender, EventArgs e)
-        {
-            this.HandleOpenEac3ToFileDialogClick();
-        }
-
-        private void HandleOpenEac3ToFileDialogClick()
-        {
-            ofdFileDialog.FileName = "";
-            DialogResult result = ofdFileDialog.ShowDialog();
-            if (result == System.Windows.Forms.DialogResult.OK)
-            {
-                _eac3ToPath = ofdFileDialog.FileName;
-            }
-        }
-
         private void btnOpenBatchFilePathDialog_Click(object sender, EventArgs e)
         {
             this.HandleBtnOpenBatchFilePathDialogClick();
