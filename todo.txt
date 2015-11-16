@@ -42,3 +42,8 @@
 *remux focus ie allow folder names other than #
 *allow the ability to name output folders/track names
 *mkvmerge integration
+*change output from encode0* to video0*
+*introduce drag n drop
+*possibly convert to json serializer
+http://blog.danskingdom.com/saving-and-loading-a-c-objects-data-to-an-xml-json-or-binary-file/
+
