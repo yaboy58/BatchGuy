@@ -134,9 +134,9 @@
     <Compile Include="Parser\Interfaces\ILineItemIdentifierService.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="AviSynth\Services\AviSynthService.cs" />
+    <Compile Include="AviSynth\Services\AviSynthWriteService.cs" />
     <Compile Include="AviSynth\Services\AviSynthFileService.cs" />
-    <Compile Include="AviSynth\Interfaces\IAviSynthService.cs" />
+    <Compile Include="AviSynth\Interfaces\IAviSynthWriteService.cs" />
     <Compile Include="AviSynth\Interfaces\IAviSynthFileService.cs" />
     <Compile Include="AviSynth\Interfaces\IAviSynthValidationService.cs" />
     <Compile Include="AviSynth\Services\AviSynthValidationService.cs" />
