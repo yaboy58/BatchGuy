@@ -266,3 +266,4 @@
 /src/BatchGuy.Settings.Serialization.Example.Console.App/bin/Debug/config.batchGuySettings
 /tests/BatchGuy.Unit.Tests/bin/Debug/Newtonsoft.Json.dll
 /tests/BatchGuy.Unit.Tests/bin/Debug/Newtonsoft.Json.xml
+/src/BatchGuy.App/obj/Debug/BatchGuy.App.UserControls.SetOutputDirectoryUserControl.resources

@@ -41,4 +41,10 @@ namespace BatchGuy.App.Enums
         Asc = 1, 
         Desc =2
     }
+
+    public enum EnumOutputDirectoryType
+    {
+        SingleDirectory = 1,
+        DirectoryPerEpisode = 2
+    }
 }

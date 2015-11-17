@@ -38,12 +38,16 @@
 http://blog.danskingdom.com/saving-and-loading-a-c-objects-data-to-an-xml-json-or-binary-file/
 *change output from encode0* to video0* -done
 
+*put drop down on all major screens.  eac3to Output in single directory, eac3to Output in episodes directory (e##)
+*introduce drag n drop
+
+
+*ability to save/load eac3to batch guy data
 *remux focus ie allow folder names other than #
 *allow the ability to name output folders/track names
 *mkvmerge integration
-*introduce drag n drop
 *look into why the busy mouse indicator doesn't seem to work
 *put the bluray title on the title info page
 *delete existing .bat file(s) before writing new scripts (probably just check to see if it is on file#1)
-*put checkbox on eac3to to put everything in 1 folder, instead of episodes.  I may just want to get .subs
+
 
