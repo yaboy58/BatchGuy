@@ -33,8 +33,15 @@ namespace BatchGuy.App.Eac3to.Services
         private void Init()
         {
             _paddedEpisode = HelperFunctions.PadNumberWithZeros(99, _bluRayTitleInfo.EpisodeNumber.StringToInt());
-            string folderName = string.Format("e{0}", _paddedEpisode);
-            _filesOutputPath = string.Format("{0}\\{1}", _config.BatchFilePath, folderName);
+            if (_config.OutputDirectoryType == EnumOutputDirectoryType.DirectoryPerEpisode)
+            {
+                string folderName = string.Format("e{0}", _paddedEpisode);
+                _filesOutputPath = string.Format("{0}\\{1}", _config.BatchFilePath, folderName);                
+            }
+            else
+            {
+                _filesOutputPath = string.Format("{0}", _config.EAC3ToOutputPath);                
+            }
         }
 
         public string GetEAC3ToPathPart()

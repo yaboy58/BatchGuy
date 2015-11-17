@@ -76,7 +76,10 @@ namespace BatchGuy.App.UserControls
                    break;
                case "Directory Per Episode":
                    _outputDirectoryType = EnumOutputDirectoryType.DirectoryPerEpisode;
-                   stringLabelOutputDirectoryText = string.Format(@"{0} Output Directory: {1}\e##", _clilName, txtSetOuptDirectoryUserControl.Text);
+                   if (_cliOutputDirectory != string.Empty)
+                   {
+                       stringLabelOutputDirectoryText = string.Format(@"{0} Output Directory (example: e01, e02): {1}\e##", _clilName, txtSetOuptDirectoryUserControl.Text);                       
+                   }
                    break;
                default:
                    break;

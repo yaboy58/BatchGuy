@@ -37,20 +37,8 @@
             this.btnWriteToBatFile = new System.Windows.Forms.Button();
             this.gbDiscSummary = new System.Windows.Forms.GroupBox();
             this.dgvBluRaySummary = new System.Windows.Forms.DataGridView();
-            this.IsSelected = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EpisodeNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.HeaderText = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DetailText = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bluRayTitleInfoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bsBluRaySummaryInfo = new System.Windows.Forms.BindingSource(this.components);
             this.gbDisc = new System.Windows.Forms.GroupBox();
             this.dgvBluRayDiscInfo = new System.Windows.Forms.DataGridView();
-            this.isSelectedDataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.idDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.eAC3ToConfigurationDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.discNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bsBluRayDiscInfo = new System.Windows.Forms.BindingSource(this.components);
             this.btnOpenBatchFilePathDialog = new System.Windows.Forms.Button();
             this.btnOpenBluRayPathDialog = new System.Windows.Forms.Button();
             this.txtBatFilePath = new System.Windows.Forms.TextBox();
@@ -58,18 +46,31 @@
             this.txtBluRayPath = new System.Windows.Forms.TextBox();
             this.lblBluRayFolderPath = new System.Windows.Forms.Label();
             this.bgwEac3toWriteBatchFile = new System.ComponentModel.BackgroundWorker();
+            this.setOutputDirectoryUserControl = new BatchGuy.App.UserControls.SetOutputDirectoryUserControl();
+            this.IsSelected = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EpisodeNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.HeaderText = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DetailText = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bluRayTitleInfoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bsBluRaySummaryInfo = new System.Windows.Forms.BindingSource(this.components);
+            this.isSelectedDataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.idDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.eAC3ToConfigurationDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.discNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bsBluRayDiscInfo = new System.Windows.Forms.BindingSource(this.components);
             this.gbScreen.SuspendLayout();
             this.gbDiscSummary.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBluRaySummary)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsBluRaySummaryInfo)).BeginInit();
             this.gbDisc.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBluRayDiscInfo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsBluRaySummaryInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsBluRayDiscInfo)).BeginInit();
             this.SuspendLayout();
             // 
             // btnAddBluRayDisc
             // 
-            this.btnAddBluRayDisc.Location = new System.Drawing.Point(1134, 78);
+            this.btnAddBluRayDisc.Location = new System.Drawing.Point(1135, 126);
             this.btnAddBluRayDisc.Name = "btnAddBluRayDisc";
             this.btnAddBluRayDisc.Size = new System.Drawing.Size(132, 33);
             this.btnAddBluRayDisc.TabIndex = 2;
@@ -88,6 +89,7 @@
             // 
             // gbScreen
             // 
+            this.gbScreen.Controls.Add(this.setOutputDirectoryUserControl);
             this.gbScreen.Controls.Add(this.btnWriteToBatFile);
             this.gbScreen.Controls.Add(this.gbDiscSummary);
             this.gbScreen.Controls.Add(this.gbDisc);
@@ -100,13 +102,13 @@
             this.gbScreen.Controls.Add(this.btnAddBluRayDisc);
             this.gbScreen.Location = new System.Drawing.Point(12, 12);
             this.gbScreen.Name = "gbScreen";
-            this.gbScreen.Size = new System.Drawing.Size(1284, 634);
+            this.gbScreen.Size = new System.Drawing.Size(1284, 668);
             this.gbScreen.TabIndex = 30;
             this.gbScreen.TabStop = false;
             // 
             // btnWriteToBatFile
             // 
-            this.btnWriteToBatFile.Location = new System.Drawing.Point(1133, 581);
+            this.btnWriteToBatFile.Location = new System.Drawing.Point(1135, 611);
             this.btnWriteToBatFile.Name = "btnWriteToBatFile";
             this.btnWriteToBatFile.Size = new System.Drawing.Size(133, 40);
             this.btnWriteToBatFile.TabIndex = 3;
@@ -117,9 +119,9 @@
             // gbDiscSummary
             // 
             this.gbDiscSummary.Controls.Add(this.dgvBluRaySummary);
-            this.gbDiscSummary.Location = new System.Drawing.Point(14, 332);
+            this.gbDiscSummary.Location = new System.Drawing.Point(9, 367);
             this.gbDiscSummary.Name = "gbDiscSummary";
-            this.gbDiscSummary.Size = new System.Drawing.Size(1253, 243);
+            this.gbDiscSummary.Size = new System.Drawing.Size(1258, 238);
             this.gbDiscSummary.TabIndex = 40;
             this.gbDiscSummary.TabStop = false;
             this.gbDiscSummary.Text = "Disc Summary";
@@ -140,10 +142,106 @@
             this.dgvBluRaySummary.DataSource = this.bsBluRaySummaryInfo;
             this.dgvBluRaySummary.Location = new System.Drawing.Point(6, 19);
             this.dgvBluRaySummary.Name = "dgvBluRaySummary";
-            this.dgvBluRaySummary.Size = new System.Drawing.Size(1241, 208);
+            this.dgvBluRaySummary.Size = new System.Drawing.Size(1246, 208);
             this.dgvBluRaySummary.TabIndex = 23;
             this.dgvBluRaySummary.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBluRaySummary_CellClick);
             this.dgvBluRaySummary.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBluRaySummary_CellDoubleClick);
+            // 
+            // gbDisc
+            // 
+            this.gbDisc.Controls.Add(this.dgvBluRayDiscInfo);
+            this.gbDisc.Location = new System.Drawing.Point(14, 165);
+            this.gbDisc.Name = "gbDisc";
+            this.gbDisc.Size = new System.Drawing.Size(1253, 180);
+            this.gbDisc.TabIndex = 39;
+            this.gbDisc.TabStop = false;
+            this.gbDisc.Text = "Disc";
+            // 
+            // dgvBluRayDiscInfo
+            // 
+            this.dgvBluRayDiscInfo.AllowUserToAddRows = false;
+            this.dgvBluRayDiscInfo.AllowUserToDeleteRows = false;
+            this.dgvBluRayDiscInfo.AllowUserToOrderColumns = true;
+            this.dgvBluRayDiscInfo.AutoGenerateColumns = false;
+            this.dgvBluRayDiscInfo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvBluRayDiscInfo.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.isSelectedDataGridViewCheckBoxColumn1,
+            this.idDataGridViewTextBoxColumn1,
+            this.eAC3ToConfigurationDataGridViewTextBoxColumn,
+            this.discNameDataGridViewTextBoxColumn});
+            this.dgvBluRayDiscInfo.DataSource = this.bsBluRayDiscInfo;
+            this.dgvBluRayDiscInfo.Location = new System.Drawing.Point(6, 19);
+            this.dgvBluRayDiscInfo.Name = "dgvBluRayDiscInfo";
+            this.dgvBluRayDiscInfo.Size = new System.Drawing.Size(1241, 150);
+            this.dgvBluRayDiscInfo.TabIndex = 24;
+            this.dgvBluRayDiscInfo.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBluRayDiscInfo_CellClick);
+            // 
+            // btnOpenBatchFilePathDialog
+            // 
+            this.btnOpenBatchFilePathDialog.Image = global::BatchGuy.App.Properties.Resources.Avosoft_Warm_Toolbar_Folder_open;
+            this.btnOpenBatchFilePathDialog.Location = new System.Drawing.Point(610, 48);
+            this.btnOpenBatchFilePathDialog.Name = "btnOpenBatchFilePathDialog";
+            this.btnOpenBatchFilePathDialog.Size = new System.Drawing.Size(61, 33);
+            this.btnOpenBatchFilePathDialog.TabIndex = 1;
+            this.btnOpenBatchFilePathDialog.UseVisualStyleBackColor = true;
+            this.btnOpenBatchFilePathDialog.Click += new System.EventHandler(this.btnOpenBatchFilePathDialog_Click);
+            // 
+            // btnOpenBluRayPathDialog
+            // 
+            this.btnOpenBluRayPathDialog.Image = global::BatchGuy.App.Properties.Resources.Avosoft_Warm_Toolbar_Folder_open;
+            this.btnOpenBluRayPathDialog.Location = new System.Drawing.Point(610, 12);
+            this.btnOpenBluRayPathDialog.Name = "btnOpenBluRayPathDialog";
+            this.btnOpenBluRayPathDialog.Size = new System.Drawing.Size(61, 33);
+            this.btnOpenBluRayPathDialog.TabIndex = 0;
+            this.btnOpenBluRayPathDialog.UseVisualStyleBackColor = true;
+            this.btnOpenBluRayPathDialog.Click += new System.EventHandler(this.btnOpenBluRayPathDialog_Click);
+            // 
+            // txtBatFilePath
+            // 
+            this.txtBatFilePath.Location = new System.Drawing.Point(159, 61);
+            this.txtBatFilePath.Name = "txtBatFilePath";
+            this.txtBatFilePath.ReadOnly = true;
+            this.txtBatFilePath.Size = new System.Drawing.Size(434, 20);
+            this.txtBatFilePath.TabIndex = 33;
+            // 
+            // lblBatchFilePath
+            // 
+            this.lblBatchFilePath.AutoSize = true;
+            this.lblBatchFilePath.Location = new System.Drawing.Point(17, 68);
+            this.lblBatchFilePath.Name = "lblBatchFilePath";
+            this.lblBatchFilePath.Size = new System.Drawing.Size(134, 13);
+            this.lblBatchFilePath.TabIndex = 35;
+            this.lblBatchFilePath.Text = "Batch File Output Directory";
+            // 
+            // txtBluRayPath
+            // 
+            this.txtBluRayPath.Location = new System.Drawing.Point(157, 25);
+            this.txtBluRayPath.Name = "txtBluRayPath";
+            this.txtBluRayPath.ReadOnly = true;
+            this.txtBluRayPath.Size = new System.Drawing.Size(434, 20);
+            this.txtBluRayPath.TabIndex = 30;
+            // 
+            // lblBluRayFolderPath
+            // 
+            this.lblBluRayFolderPath.AutoSize = true;
+            this.lblBluRayFolderPath.Location = new System.Drawing.Point(17, 32);
+            this.lblBluRayFolderPath.Name = "lblBluRayFolderPath";
+            this.lblBluRayFolderPath.Size = new System.Drawing.Size(84, 13);
+            this.lblBluRayFolderPath.TabIndex = 34;
+            this.lblBluRayFolderPath.Text = "Blu-ray Directory";
+            // 
+            // bgwEac3toWriteBatchFile
+            // 
+            this.bgwEac3toWriteBatchFile.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgwEac3toWriteBatchFile_DoWork);
+            this.bgwEac3toWriteBatchFile.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgwEac3toWriteBatchFile_RunWorkerCompleted);
+            // 
+            // setOutputDirectoryUserControl
+            // 
+            this.setOutputDirectoryUserControl.CLIName = "";
+            this.setOutputDirectoryUserControl.Location = new System.Drawing.Point(14, 81);
+            this.setOutputDirectoryUserControl.Name = "setOutputDirectoryUserControl";
+            this.setOutputDirectoryUserControl.Size = new System.Drawing.Size(824, 71);
+            this.setOutputDirectoryUserControl.TabIndex = 41;
             // 
             // IsSelected
             // 
@@ -199,35 +297,6 @@
             // 
             this.bsBluRaySummaryInfo.DataSource = typeof(BatchGuy.App.Parser.Models.BluRaySummaryInfo);
             // 
-            // gbDisc
-            // 
-            this.gbDisc.Controls.Add(this.dgvBluRayDiscInfo);
-            this.gbDisc.Location = new System.Drawing.Point(14, 117);
-            this.gbDisc.Name = "gbDisc";
-            this.gbDisc.Size = new System.Drawing.Size(1253, 194);
-            this.gbDisc.TabIndex = 39;
-            this.gbDisc.TabStop = false;
-            this.gbDisc.Text = "Disc";
-            // 
-            // dgvBluRayDiscInfo
-            // 
-            this.dgvBluRayDiscInfo.AllowUserToAddRows = false;
-            this.dgvBluRayDiscInfo.AllowUserToDeleteRows = false;
-            this.dgvBluRayDiscInfo.AllowUserToOrderColumns = true;
-            this.dgvBluRayDiscInfo.AutoGenerateColumns = false;
-            this.dgvBluRayDiscInfo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvBluRayDiscInfo.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.isSelectedDataGridViewCheckBoxColumn1,
-            this.idDataGridViewTextBoxColumn1,
-            this.eAC3ToConfigurationDataGridViewTextBoxColumn,
-            this.discNameDataGridViewTextBoxColumn});
-            this.dgvBluRayDiscInfo.DataSource = this.bsBluRayDiscInfo;
-            this.dgvBluRayDiscInfo.Location = new System.Drawing.Point(6, 22);
-            this.dgvBluRayDiscInfo.Name = "dgvBluRayDiscInfo";
-            this.dgvBluRayDiscInfo.Size = new System.Drawing.Size(1241, 150);
-            this.dgvBluRayDiscInfo.TabIndex = 24;
-            this.dgvBluRayDiscInfo.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBluRayDiscInfo_CellClick);
-            // 
             // isSelectedDataGridViewCheckBoxColumn1
             // 
             this.isSelectedDataGridViewCheckBoxColumn1.DataPropertyName = "IsSelected";
@@ -264,70 +333,11 @@
             // 
             this.bsBluRayDiscInfo.DataSource = typeof(BatchGuy.App.Parser.Models.BluRayDiscInfo);
             // 
-            // btnOpenBatchFilePathDialog
-            // 
-            this.btnOpenBatchFilePathDialog.Image = global::BatchGuy.App.Properties.Resources.Avosoft_Warm_Toolbar_Folder_open;
-            this.btnOpenBatchFilePathDialog.Location = new System.Drawing.Point(890, 48);
-            this.btnOpenBatchFilePathDialog.Name = "btnOpenBatchFilePathDialog";
-            this.btnOpenBatchFilePathDialog.Size = new System.Drawing.Size(61, 33);
-            this.btnOpenBatchFilePathDialog.TabIndex = 1;
-            this.btnOpenBatchFilePathDialog.UseVisualStyleBackColor = true;
-            this.btnOpenBatchFilePathDialog.Click += new System.EventHandler(this.btnOpenBatchFilePathDialog_Click);
-            // 
-            // btnOpenBluRayPathDialog
-            // 
-            this.btnOpenBluRayPathDialog.Image = global::BatchGuy.App.Properties.Resources.Avosoft_Warm_Toolbar_Folder_open;
-            this.btnOpenBluRayPathDialog.Location = new System.Drawing.Point(890, 12);
-            this.btnOpenBluRayPathDialog.Name = "btnOpenBluRayPathDialog";
-            this.btnOpenBluRayPathDialog.Size = new System.Drawing.Size(61, 33);
-            this.btnOpenBluRayPathDialog.TabIndex = 0;
-            this.btnOpenBluRayPathDialog.UseVisualStyleBackColor = true;
-            this.btnOpenBluRayPathDialog.Click += new System.EventHandler(this.btnOpenBluRayPathDialog_Click);
-            // 
-            // txtBatFilePath
-            // 
-            this.txtBatFilePath.Location = new System.Drawing.Point(159, 61);
-            this.txtBatFilePath.Name = "txtBatFilePath";
-            this.txtBatFilePath.ReadOnly = true;
-            this.txtBatFilePath.Size = new System.Drawing.Size(725, 20);
-            this.txtBatFilePath.TabIndex = 33;
-            // 
-            // lblBatchFilePath
-            // 
-            this.lblBatchFilePath.AutoSize = true;
-            this.lblBatchFilePath.Location = new System.Drawing.Point(17, 68);
-            this.lblBatchFilePath.Name = "lblBatchFilePath";
-            this.lblBatchFilePath.Size = new System.Drawing.Size(134, 13);
-            this.lblBatchFilePath.TabIndex = 35;
-            this.lblBatchFilePath.Text = "Batch File Output Directory";
-            // 
-            // txtBluRayPath
-            // 
-            this.txtBluRayPath.Location = new System.Drawing.Point(157, 25);
-            this.txtBluRayPath.Name = "txtBluRayPath";
-            this.txtBluRayPath.ReadOnly = true;
-            this.txtBluRayPath.Size = new System.Drawing.Size(727, 20);
-            this.txtBluRayPath.TabIndex = 30;
-            // 
-            // lblBluRayFolderPath
-            // 
-            this.lblBluRayFolderPath.AutoSize = true;
-            this.lblBluRayFolderPath.Location = new System.Drawing.Point(17, 32);
-            this.lblBluRayFolderPath.Name = "lblBluRayFolderPath";
-            this.lblBluRayFolderPath.Size = new System.Drawing.Size(84, 13);
-            this.lblBluRayFolderPath.TabIndex = 34;
-            this.lblBluRayFolderPath.Text = "Blu-ray Directory";
-            // 
-            // bgwEac3toWriteBatchFile
-            // 
-            this.bgwEac3toWriteBatchFile.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgwEac3toWriteBatchFile_DoWork);
-            this.bgwEac3toWriteBatchFile.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgwEac3toWriteBatchFile_RunWorkerCompleted);
-            // 
             // CreateEAC3ToBatchForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1308, 654);
+            this.ClientSize = new System.Drawing.Size(1308, 688);
             this.Controls.Add(this.gbScreen);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
@@ -340,9 +350,9 @@
             this.gbScreen.PerformLayout();
             this.gbDiscSummary.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvBluRaySummary)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsBluRaySummaryInfo)).EndInit();
             this.gbDisc.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvBluRayDiscInfo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsBluRaySummaryInfo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsBluRayDiscInfo)).EndInit();
             this.ResumeLayout(false);
 
@@ -378,5 +388,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn eAC3ToConfigurationDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn discNameDataGridViewTextBoxColumn;
+        private UserControls.SetOutputDirectoryUserControl setOutputDirectoryUserControl;
     }
 }
