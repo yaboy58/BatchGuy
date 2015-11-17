@@ -11,12 +11,12 @@ using BatchGuy.App.Shared.Models;
 
 namespace BatchGuy.App.AviSynth.Services
 {
-    public class ValidationService : IValidationService
+    public class AviSynthValidationService : IAviSynthValidationService
     {
         private AVSBatchSettings _avsBatchSettings;
         private ErrorCollection _errors;
 
-        public ValidationService(AVSBatchSettings avsBatchSettings)
+        public AviSynthValidationService(AVSBatchSettings avsBatchSettings)
         {
             _avsBatchSettings = avsBatchSettings;
             _errors = new ErrorCollection();

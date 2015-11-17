@@ -17,9 +17,9 @@ namespace BatchGuy.App.X264.Services
         private List<X264File> _x264Files;
         private ErrorCollection _errors;
         private string _batFile;
-        private IValidationService _validationService;
+        private IX264ValidationService _validationService;
 
-        public X264EncodeService(IValidationService validationService, X264FileSettings x264FileSettings, List<X264File> x264Files)
+        public X264EncodeService(IX264ValidationService validationService, X264FileSettings x264FileSettings, List<X264File> x264Files)
         {
             _x264Files = x264Files;
             _x264FileSettings = x264FileSettings;

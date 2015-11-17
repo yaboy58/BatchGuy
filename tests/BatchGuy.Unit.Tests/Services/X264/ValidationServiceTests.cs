@@ -22,7 +22,7 @@ namespace BatchGuy.Unit.Tests.Services.X264
             X264FileSettings x264FileSettings = new X264FileSettings() { AviSynthFilesPath = string.Empty};
             List<X264File> x264Files = new List<X264File>();
             //when i attempt to write out a x264 bat file
-            IValidationService service = new ValidationService(x264FileSettings, x264Files);
+            IX264ValidationService service = new X264ValidationService(x264FileSettings, x264Files);
             //then there is an error
             ErrorCollection error = service.Validate();
             error.Where(e => e.Description == "The Output Folder for AviSynth files does not exist").Count().ShouldBeEqualTo(1);
@@ -34,7 +34,7 @@ namespace BatchGuy.Unit.Tests.Services.X264
             X264FileSettings x264FileSettings = new X264FileSettings() { AviSynthFilesPath = string.Empty };
             List<X264File> x264Files = new List<X264File>() { new X264File() { Id = 1, EncodeName = null}};
             //when i attempt to write out a x264 bat file
-            IValidationService service = new ValidationService(x264FileSettings, x264Files);
+            IX264ValidationService service = new X264ValidationService(x264FileSettings, x264Files);
             //then there is an error
             ErrorCollection error = service.Validate();
             error.Where(e => e.Description == "All AviSynth files must have a encode name").Count().ShouldBeEqualTo(1);

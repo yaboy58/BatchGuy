@@ -135,11 +135,11 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="AviSynth\Services\AviSynthService.cs" />
-    <Compile Include="AviSynth\Services\FileService.cs" />
+    <Compile Include="AviSynth\Services\AviSynthFileService.cs" />
     <Compile Include="AviSynth\Interfaces\IAviSynthService.cs" />
-    <Compile Include="AviSynth\Interfaces\IFileService.cs" />
-    <Compile Include="AviSynth\Interfaces\IValidationService.cs" />
-    <Compile Include="AviSynth\Services\ValidationService.cs" />
+    <Compile Include="AviSynth\Interfaces\IAviSynthFileService.cs" />
+    <Compile Include="AviSynth\Interfaces\IAviSynthValidationService.cs" />
+    <Compile Include="AviSynth\Services\AviSynthValidationService.cs" />
     <Compile Include="Shared\Models\ErrorCollection.cs" />
     <Compile Include="Shared\Models\SortConfiguration.cs" />
     <Compile Include="Shared\Services\BindingListSortService.cs" />
@@ -149,11 +149,11 @@
     <Compile Include="X264\Models\X264File.cs" />
     <Compile Include="X264\Models\X264FileSettings.cs" />
     <Compile Include="X264\Services\X264EncodeService.cs" />
-    <Compile Include="X264\Services\FileService.cs" />
+    <Compile Include="X264\Services\X264FileService.cs" />
     <Compile Include="X264\Interfaces\IX264EncodeService.cs" />
-    <Compile Include="X264\Interfaces\IFileService.cs" />
-    <Compile Include="X264\Interfaces\IValidationService.cs" />
-    <Compile Include="X264\Services\ValidationService.cs" />
+    <Compile Include="X264\Interfaces\IX264FileService.cs" />
+    <Compile Include="X264\Interfaces\IX264ValidationService.cs" />
+    <Compile Include="X264\Services\X264ValidationService.cs" />
     <EmbeddedResource Include="AboutForm.resx">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </EmbeddedResource>

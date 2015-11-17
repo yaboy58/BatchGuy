@@ -1,4 +1,4 @@
-﻿using BatchGuy.App.Shared.Models;
+﻿using BatchGuy.App.X264.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace BatchGuy.App.X264.Interfaces
 {
-    public interface IValidationService
+    public interface IX264FileService
     {
-        ErrorCollection Validate();
+        List<X264File> GetAVSFiles();
     }
 }

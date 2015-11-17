@@ -10,13 +10,13 @@ using BatchGuy.App.AviSynth.Interfaces;
 
 namespace BatchGuy.App.AviSynth.Services
 {
-    public class FileService : IFileService
+    public class AviSynthFileService : IAviSynthFileService
     {
         private AVSBatchSettings _avsBatchSettings;
         private List<AVSFile> _avsFiles;
         private AVSTemplateScript _avsTemplateScript;
 
-        public FileService(AVSBatchSettings avsBatchSettings, AVSTemplateScript avsTemplateScript)
+        public AviSynthFileService(AVSBatchSettings avsBatchSettings, AVSTemplateScript avsTemplateScript)
         {
             _avsBatchSettings = avsBatchSettings;
             _avsTemplateScript = avsTemplateScript;

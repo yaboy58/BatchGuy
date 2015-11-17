@@ -14,13 +14,13 @@ namespace BatchGuy.App.AviSynth.Services
     public class AviSynthService : IAviSynthService
     {
         private ErrorCollection _errors;
-        private IFileService _fileService;
-        private IValidationService _validationService;
+        private IAviSynthFileService _fileService;
+        private IAviSynthValidationService _validationService;
         private List<AVSFile> _avsFiles;
         private AVSTemplateScript _avsScript;
         private AVSBatchSettings _avsBatchSettings;
 
-        public AviSynthService(IFileService fileService, IValidationService validationService, AVSTemplateScript avsScript, AVSBatchSettings avsBatchSettings)
+        public AviSynthService(IAviSynthFileService fileService, IAviSynthValidationService validationService, AVSTemplateScript avsScript, AVSBatchSettings avsBatchSettings)
         {
             _fileService = fileService;
             _validationService = validationService;

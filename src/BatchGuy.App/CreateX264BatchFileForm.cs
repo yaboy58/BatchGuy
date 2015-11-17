@@ -127,7 +127,7 @@ namespace BatchGuy.App
         private void LoadAVSFiles()
         {
             X264FileSettings x264FileSettings = this.GetX264FileSettings();
-            IFileService fileService = new FileService(x264FileSettings);
+            IX264FileService fileService = new X264FileService(x264FileSettings);
             bgwLoadAviSynthFiles.RunWorkerAsync(fileService);
         }
 
@@ -143,7 +143,7 @@ namespace BatchGuy.App
         {
             gbScreen.SetEnabled(false);
             X264FileSettings x264Settings = this.GetX264FileSettings();
-            IValidationService validationService = new ValidationService(x264Settings, _x264Files);
+            IX264ValidationService validationService = new X264ValidationService(x264Settings, _x264Files);
             IX264EncodeService encodeService = new X264EncodeService(validationService, x264Settings, _x264Files);
             bgwCreateX264BatchFile.RunWorkerAsync(encodeService);
         }
@@ -198,7 +198,7 @@ namespace BatchGuy.App
 
         private void bgwLoadAviSynthFiles_DoWork(object sender, DoWorkEventArgs e)
         {
-            IFileService fileService = e.Argument as FileService;
+            IX264FileService fileService = e.Argument as X264FileService;
             _x264Files = fileService.GetAVSFiles();
         }
 
