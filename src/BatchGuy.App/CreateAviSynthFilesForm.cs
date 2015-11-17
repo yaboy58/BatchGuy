@@ -21,7 +21,7 @@ namespace BatchGuy.App
     {
         private IAviSynthFileService _fileService; //ioc
         private IAviSynthValidationService _validationService; //ioc
-        private IAviSynthService _avsService; //ioc
+        private IAviSynthWriteService _avsService; //ioc
 
         public CreateAviSynthFilesForm()
         {
@@ -63,7 +63,7 @@ namespace BatchGuy.App
 
             _fileService = new AviSynthFileService(avsBatchSettings, avsTemplateScript);
             _validationService = new AviSynthValidationService(avsBatchSettings);
-            _avsService = new AviSynthService(_fileService, _validationService, avsTemplateScript, avsBatchSettings);
+            _avsService = new AviSynthWriteService(_fileService, _validationService, avsTemplateScript, avsBatchSettings);
             bgwCreateAviSynthFiles.RunWorkerAsync();
 
         }

@@ -9,7 +9,7 @@ using BatchGuy.App.Shared.Models;
 
 namespace BatchGuy.App.AviSynth.Interfaces
 {
-    public interface IAviSynthService
+    public interface IAviSynthWriteService
     {
        ErrorCollection CreateAVSFiles();
     }
