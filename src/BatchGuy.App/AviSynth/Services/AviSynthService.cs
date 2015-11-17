@@ -11,7 +11,7 @@ using BatchGuy.App.Shared.Models;
 
 namespace BatchGuy.App.AviSynth.Services
 {
-    public class AVSService : IAVSService
+    public class AviSynthService : IAviSynthService
     {
         private ErrorCollection _errors;
         private IFileService _fileService;
@@ -20,7 +20,7 @@ namespace BatchGuy.App.AviSynth.Services
         private AVSTemplateScript _avsScript;
         private AVSBatchSettings _avsBatchSettings;
 
-        public AVSService(IFileService fileService, IValidationService validationService, AVSTemplateScript avsScript, AVSBatchSettings avsBatchSettings)
+        public AviSynthService(IFileService fileService, IValidationService validationService, AVSTemplateScript avsScript, AVSBatchSettings avsBatchSettings)
         {
             _fileService = fileService;
             _validationService = validationService;
