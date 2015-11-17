@@ -16,8 +16,11 @@ namespace BatchGuy.App.UserControls
     {
        private string _clilName;
        private EnumOutputDirectoryType _outputDirectoryType;
+       private string _cliOutputDirectory;
 
        public string CLIName { get { return _clilName; } set { _clilName = value; } }
+       public EnumOutputDirectoryType OutputDirectoryType { get { return _outputDirectoryType;} }
+       public string CLIOutputDirectory { get { return _cliOutputDirectory; } }
 
         public SetOutputDirectoryUserControl()
         {
@@ -30,6 +33,8 @@ namespace BatchGuy.App.UserControls
             _clilName = string.Empty;
             _outputDirectoryType = EnumOutputDirectoryType.DirectoryPerEpisode;
             cbSetOutputDirectoryUserControlType.SelectedIndex = 0;
+            lblSetOutputDirectoryText.Text = "";
+            _cliOutputDirectory = string.Empty;
         }
 
         private void btnSetOutputDirectoryUserControlOpenDialog_Click(object sender, EventArgs e)
@@ -45,6 +50,8 @@ namespace BatchGuy.App.UserControls
             if (fsd.ShowDialog(IntPtr.Zero))
             {
                 txtSetOuptDirectoryUserControl.Text = fsd.FileName;
+                this.HandleCbSetOutputDirectoryUserControlTypeSelectedIndexChanged(cbSetOutputDirectoryUserControlType.Text);
+                _cliOutputDirectory = txtSetOuptDirectoryUserControl.Text;
             }
         }
 
@@ -60,6 +67,8 @@ namespace BatchGuy.App.UserControls
 
        private void HandleCbSetOutputDirectoryUserControlTypeSelectedIndexChanged(string value)
        {
+           string stringLabelOutputDirectoryText = string.Empty;
+
            switch (value)
            {
                case "Single Directory":
@@ -67,10 +76,12 @@ namespace BatchGuy.App.UserControls
                    break;
                case "Directory Per Episode":
                    _outputDirectoryType = EnumOutputDirectoryType.DirectoryPerEpisode;
+                   stringLabelOutputDirectoryText = string.Format(@"{0} Output Directory: {1}\e##", _clilName, txtSetOuptDirectoryUserControl.Text);
                    break;
                default:
                    break;
            }
+           lblSetOutputDirectoryText.Text = stringLabelOutputDirectoryText;
        }
     }
 }
