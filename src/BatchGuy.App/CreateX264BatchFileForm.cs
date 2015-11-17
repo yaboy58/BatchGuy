@@ -144,7 +144,7 @@ namespace BatchGuy.App
             gbScreen.SetEnabled(false);
             X264FileSettings x264Settings = this.GetX264FileSettings();
             IValidationService validationService = new ValidationService(x264Settings, _x264Files);
-            IEncodeService encodeService = new EncodeService(validationService, x264Settings, _x264Files);
+            IX264EncodeService encodeService = new X264EncodeService(validationService, x264Settings, _x264Files);
             bgwCreateX264BatchFile.RunWorkerAsync(encodeService);
         }
 
@@ -226,7 +226,7 @@ namespace BatchGuy.App
 
         private void bgwCreateX264BatchFile_DoWork(object sender, DoWorkEventArgs e)
         {
-            IEncodeService encodeService = e.Argument as EncodeService;
+            IX264EncodeService encodeService = e.Argument as X264EncodeService;
             ErrorCollection errors = encodeService.CreateX264File();
             e.Result = errors;
         }

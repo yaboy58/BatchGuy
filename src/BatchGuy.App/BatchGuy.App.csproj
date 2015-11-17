@@ -148,9 +148,9 @@
     <Compile Include="ThirdParty\FolderSelectDialog\Reflector.cs" />
     <Compile Include="X264\Models\X264File.cs" />
     <Compile Include="X264\Models\X264FileSettings.cs" />
-    <Compile Include="X264\Services\EncodeService.cs" />
+    <Compile Include="X264\Services\X264EncodeService.cs" />
     <Compile Include="X264\Services\FileService.cs" />
-    <Compile Include="X264\Interfaces\IEncodeService.cs" />
+    <Compile Include="X264\Interfaces\IX264EncodeService.cs" />
     <Compile Include="X264\Interfaces\IFileService.cs" />
     <Compile Include="X264\Interfaces\IValidationService.cs" />
     <Compile Include="X264\Services\ValidationService.cs" />

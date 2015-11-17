@@ -67,7 +67,7 @@ namespace BatchGuy.App.Eac3to.Services
             if (_bluRayTitleInfo.Video.IsSelected)
 	        {
                 sb.Append(string.Format("{0} ", _bluRayTitleInfo.Video.Id));
-                sb.Append(string.Format("\"{0}\\encode{1}.mkv\"", _filesOutputPath, _paddedEpisode));		 
+                sb.Append(string.Format("\"{0}\\video{1}.mkv\"", _filesOutputPath, _paddedEpisode));		 
 	        }            
             return sb.ToString();
         }

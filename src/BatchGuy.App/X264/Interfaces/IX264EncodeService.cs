@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BatchGuy.App.X264.Interfaces
 {
-    public interface IEncodeService
+    public interface IX264EncodeService
     {
         ErrorCollection CreateX264File(); 
     }
