@@ -34,19 +34,10 @@
             this.ofdFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.bgwEac3toLoadSummary = new System.ComponentModel.BackgroundWorker();
             this.gbScreen = new System.Windows.Forms.GroupBox();
+            this.setDirectoryUserControl = new BatchGuy.App.UserControls.SetDirectoryUserControl();
             this.btnWriteToBatFile = new System.Windows.Forms.Button();
             this.gbDiscSummary = new System.Windows.Forms.GroupBox();
             this.dgvBluRaySummary = new System.Windows.Forms.DataGridView();
-            this.gbDisc = new System.Windows.Forms.GroupBox();
-            this.dgvBluRayDiscInfo = new System.Windows.Forms.DataGridView();
-            this.btnOpenBatchFilePathDialog = new System.Windows.Forms.Button();
-            this.btnOpenBluRayPathDialog = new System.Windows.Forms.Button();
-            this.txtBatFilePath = new System.Windows.Forms.TextBox();
-            this.lblBatchFilePath = new System.Windows.Forms.Label();
-            this.txtBluRayPath = new System.Windows.Forms.TextBox();
-            this.lblBluRayFolderPath = new System.Windows.Forms.Label();
-            this.bgwEac3toWriteBatchFile = new System.ComponentModel.BackgroundWorker();
-            this.setOutputDirectoryUserControl = new BatchGuy.App.UserControls.SetOutputDirectoryUserControl();
             this.IsSelected = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EpisodeNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -54,17 +45,26 @@
             this.DetailText = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bluRayTitleInfoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bsBluRaySummaryInfo = new System.Windows.Forms.BindingSource(this.components);
+            this.gbDisc = new System.Windows.Forms.GroupBox();
+            this.dgvBluRayDiscInfo = new System.Windows.Forms.DataGridView();
             this.isSelectedDataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.idDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.eAC3ToConfigurationDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.discNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bsBluRayDiscInfo = new System.Windows.Forms.BindingSource(this.components);
+            this.btnOpenBatchFilePathDialog = new System.Windows.Forms.Button();
+            this.btnOpenBluRayPathDialog = new System.Windows.Forms.Button();
+            this.txtBatFilePath = new System.Windows.Forms.TextBox();
+            this.lblBatchFilePath = new System.Windows.Forms.Label();
+            this.txtBluRayPath = new System.Windows.Forms.TextBox();
+            this.lblBluRayFolderPath = new System.Windows.Forms.Label();
+            this.bgwEac3toWriteBatchFile = new System.ComponentModel.BackgroundWorker();
             this.gbScreen.SuspendLayout();
             this.gbDiscSummary.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBluRaySummary)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsBluRaySummaryInfo)).BeginInit();
             this.gbDisc.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBluRayDiscInfo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsBluRaySummaryInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsBluRayDiscInfo)).BeginInit();
             this.SuspendLayout();
             // 
@@ -89,7 +89,7 @@
             // 
             // gbScreen
             // 
-            this.gbScreen.Controls.Add(this.setOutputDirectoryUserControl);
+            this.gbScreen.Controls.Add(this.setDirectoryUserControl);
             this.gbScreen.Controls.Add(this.btnWriteToBatFile);
             this.gbScreen.Controls.Add(this.gbDiscSummary);
             this.gbScreen.Controls.Add(this.gbDisc);
@@ -105,6 +105,14 @@
             this.gbScreen.Size = new System.Drawing.Size(1284, 668);
             this.gbScreen.TabIndex = 30;
             this.gbScreen.TabStop = false;
+            // 
+            // setDirectoryUserControl
+            // 
+            this.setDirectoryUserControl.ComboBoxCaptionText = "";
+            this.setDirectoryUserControl.Location = new System.Drawing.Point(14, 81);
+            this.setDirectoryUserControl.Name = "setDirectoryUserControl";
+            this.setDirectoryUserControl.Size = new System.Drawing.Size(824, 71);
+            this.setDirectoryUserControl.TabIndex = 41;
             // 
             // btnWriteToBatFile
             // 
@@ -147,6 +155,60 @@
             this.dgvBluRaySummary.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBluRaySummary_CellClick);
             this.dgvBluRaySummary.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBluRaySummary_CellDoubleClick);
             // 
+            // IsSelected
+            // 
+            this.IsSelected.DataPropertyName = "IsSelected";
+            this.IsSelected.HeaderText = "Is Selected";
+            this.IsSelected.MinimumWidth = 70;
+            this.IsSelected.Name = "IsSelected";
+            this.IsSelected.Width = 70;
+            // 
+            // Id
+            // 
+            this.Id.DataPropertyName = "Id";
+            this.Id.HeaderText = "eac3to Id";
+            this.Id.MinimumWidth = 80;
+            this.Id.Name = "Id";
+            this.Id.Width = 80;
+            // 
+            // EpisodeNumber
+            // 
+            this.EpisodeNumber.DataPropertyName = "EpisodeNumber";
+            this.EpisodeNumber.HeaderText = "Episode#";
+            this.EpisodeNumber.MinimumWidth = 90;
+            this.EpisodeNumber.Name = "EpisodeNumber";
+            this.EpisodeNumber.ReadOnly = true;
+            this.EpisodeNumber.Width = 90;
+            // 
+            // HeaderText
+            // 
+            this.HeaderText.DataPropertyName = "HeaderText";
+            this.HeaderText.HeaderText = "Header";
+            this.HeaderText.MinimumWidth = 250;
+            this.HeaderText.Name = "HeaderText";
+            this.HeaderText.ReadOnly = true;
+            this.HeaderText.Width = 400;
+            // 
+            // DetailText
+            // 
+            this.DetailText.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.DetailText.DataPropertyName = "DetailText";
+            this.DetailText.HeaderText = "Detail";
+            this.DetailText.MinimumWidth = 250;
+            this.DetailText.Name = "DetailText";
+            this.DetailText.ReadOnly = true;
+            // 
+            // bluRayTitleInfoDataGridViewTextBoxColumn
+            // 
+            this.bluRayTitleInfoDataGridViewTextBoxColumn.DataPropertyName = "BluRayTitleInfo";
+            this.bluRayTitleInfoDataGridViewTextBoxColumn.HeaderText = "BluRayTitleInfo";
+            this.bluRayTitleInfoDataGridViewTextBoxColumn.Name = "bluRayTitleInfoDataGridViewTextBoxColumn";
+            this.bluRayTitleInfoDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // bsBluRaySummaryInfo
+            // 
+            this.bsBluRaySummaryInfo.DataSource = typeof(BatchGuy.App.Parser.Models.BluRaySummaryInfo);
+            // 
             // gbDisc
             // 
             this.gbDisc.Controls.Add(this.dgvBluRayDiscInfo);
@@ -175,6 +237,42 @@
             this.dgvBluRayDiscInfo.Size = new System.Drawing.Size(1241, 150);
             this.dgvBluRayDiscInfo.TabIndex = 24;
             this.dgvBluRayDiscInfo.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBluRayDiscInfo_CellClick);
+            // 
+            // isSelectedDataGridViewCheckBoxColumn1
+            // 
+            this.isSelectedDataGridViewCheckBoxColumn1.DataPropertyName = "IsSelected";
+            this.isSelectedDataGridViewCheckBoxColumn1.HeaderText = "Is Selected";
+            this.isSelectedDataGridViewCheckBoxColumn1.MinimumWidth = 100;
+            this.isSelectedDataGridViewCheckBoxColumn1.Name = "isSelectedDataGridViewCheckBoxColumn1";
+            // 
+            // idDataGridViewTextBoxColumn1
+            // 
+            this.idDataGridViewTextBoxColumn1.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn1.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn1.Name = "idDataGridViewTextBoxColumn1";
+            this.idDataGridViewTextBoxColumn1.ReadOnly = true;
+            this.idDataGridViewTextBoxColumn1.Visible = false;
+            // 
+            // eAC3ToConfigurationDataGridViewTextBoxColumn
+            // 
+            this.eAC3ToConfigurationDataGridViewTextBoxColumn.DataPropertyName = "EAC3ToConfiguration";
+            this.eAC3ToConfigurationDataGridViewTextBoxColumn.HeaderText = "EAC3ToConfiguration";
+            this.eAC3ToConfigurationDataGridViewTextBoxColumn.Name = "eAC3ToConfigurationDataGridViewTextBoxColumn";
+            this.eAC3ToConfigurationDataGridViewTextBoxColumn.ReadOnly = true;
+            this.eAC3ToConfigurationDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // discNameDataGridViewTextBoxColumn
+            // 
+            this.discNameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.discNameDataGridViewTextBoxColumn.DataPropertyName = "DiscName";
+            this.discNameDataGridViewTextBoxColumn.HeaderText = "Disc Name";
+            this.discNameDataGridViewTextBoxColumn.MinimumWidth = 300;
+            this.discNameDataGridViewTextBoxColumn.Name = "discNameDataGridViewTextBoxColumn";
+            this.discNameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // bsBluRayDiscInfo
+            // 
+            this.bsBluRayDiscInfo.DataSource = typeof(BatchGuy.App.Parser.Models.BluRayDiscInfo);
             // 
             // btnOpenBatchFilePathDialog
             // 
@@ -235,104 +333,6 @@
             this.bgwEac3toWriteBatchFile.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgwEac3toWriteBatchFile_DoWork);
             this.bgwEac3toWriteBatchFile.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgwEac3toWriteBatchFile_RunWorkerCompleted);
             // 
-            // setOutputDirectoryUserControl
-            // 
-            this.setOutputDirectoryUserControl.CLIName = "";
-            this.setOutputDirectoryUserControl.Location = new System.Drawing.Point(14, 81);
-            this.setOutputDirectoryUserControl.Name = "setOutputDirectoryUserControl";
-            this.setOutputDirectoryUserControl.Size = new System.Drawing.Size(824, 71);
-            this.setOutputDirectoryUserControl.TabIndex = 41;
-            // 
-            // IsSelected
-            // 
-            this.IsSelected.DataPropertyName = "IsSelected";
-            this.IsSelected.HeaderText = "Is Selected";
-            this.IsSelected.MinimumWidth = 70;
-            this.IsSelected.Name = "IsSelected";
-            this.IsSelected.Width = 70;
-            // 
-            // Id
-            // 
-            this.Id.DataPropertyName = "Id";
-            this.Id.HeaderText = "eac3to Id";
-            this.Id.MinimumWidth = 80;
-            this.Id.Name = "Id";
-            this.Id.Width = 80;
-            // 
-            // EpisodeNumber
-            // 
-            this.EpisodeNumber.DataPropertyName = "EpisodeNumber";
-            this.EpisodeNumber.HeaderText = "Episode#";
-            this.EpisodeNumber.MinimumWidth = 90;
-            this.EpisodeNumber.Name = "EpisodeNumber";
-            this.EpisodeNumber.ReadOnly = true;
-            this.EpisodeNumber.Width = 90;
-            // 
-            // HeaderText
-            // 
-            this.HeaderText.DataPropertyName = "HeaderText";
-            this.HeaderText.HeaderText = "Header";
-            this.HeaderText.MinimumWidth = 250;
-            this.HeaderText.Name = "HeaderText";
-            this.HeaderText.ReadOnly = true;
-            this.HeaderText.Width = 400;
-            // 
-            // DetailText
-            // 
-            this.DetailText.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.DetailText.DataPropertyName = "DetailText";
-            this.DetailText.HeaderText = "Detail";
-            this.DetailText.MinimumWidth = 250;
-            this.DetailText.Name = "DetailText";
-            this.DetailText.ReadOnly = true;
-            // 
-            // bluRayTitleInfoDataGridViewTextBoxColumn
-            // 
-            this.bluRayTitleInfoDataGridViewTextBoxColumn.DataPropertyName = "BluRayTitleInfo";
-            this.bluRayTitleInfoDataGridViewTextBoxColumn.HeaderText = "BluRayTitleInfo";
-            this.bluRayTitleInfoDataGridViewTextBoxColumn.Name = "bluRayTitleInfoDataGridViewTextBoxColumn";
-            this.bluRayTitleInfoDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // bsBluRaySummaryInfo
-            // 
-            this.bsBluRaySummaryInfo.DataSource = typeof(BatchGuy.App.Parser.Models.BluRaySummaryInfo);
-            // 
-            // isSelectedDataGridViewCheckBoxColumn1
-            // 
-            this.isSelectedDataGridViewCheckBoxColumn1.DataPropertyName = "IsSelected";
-            this.isSelectedDataGridViewCheckBoxColumn1.HeaderText = "Is Selected";
-            this.isSelectedDataGridViewCheckBoxColumn1.MinimumWidth = 100;
-            this.isSelectedDataGridViewCheckBoxColumn1.Name = "isSelectedDataGridViewCheckBoxColumn1";
-            // 
-            // idDataGridViewTextBoxColumn1
-            // 
-            this.idDataGridViewTextBoxColumn1.DataPropertyName = "Id";
-            this.idDataGridViewTextBoxColumn1.HeaderText = "Id";
-            this.idDataGridViewTextBoxColumn1.Name = "idDataGridViewTextBoxColumn1";
-            this.idDataGridViewTextBoxColumn1.ReadOnly = true;
-            this.idDataGridViewTextBoxColumn1.Visible = false;
-            // 
-            // eAC3ToConfigurationDataGridViewTextBoxColumn
-            // 
-            this.eAC3ToConfigurationDataGridViewTextBoxColumn.DataPropertyName = "EAC3ToConfiguration";
-            this.eAC3ToConfigurationDataGridViewTextBoxColumn.HeaderText = "EAC3ToConfiguration";
-            this.eAC3ToConfigurationDataGridViewTextBoxColumn.Name = "eAC3ToConfigurationDataGridViewTextBoxColumn";
-            this.eAC3ToConfigurationDataGridViewTextBoxColumn.ReadOnly = true;
-            this.eAC3ToConfigurationDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // discNameDataGridViewTextBoxColumn
-            // 
-            this.discNameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.discNameDataGridViewTextBoxColumn.DataPropertyName = "DiscName";
-            this.discNameDataGridViewTextBoxColumn.HeaderText = "Disc Name";
-            this.discNameDataGridViewTextBoxColumn.MinimumWidth = 300;
-            this.discNameDataGridViewTextBoxColumn.Name = "discNameDataGridViewTextBoxColumn";
-            this.discNameDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // bsBluRayDiscInfo
-            // 
-            this.bsBluRayDiscInfo.DataSource = typeof(BatchGuy.App.Parser.Models.BluRayDiscInfo);
-            // 
             // CreateEAC3ToBatchForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -350,9 +350,9 @@
             this.gbScreen.PerformLayout();
             this.gbDiscSummary.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvBluRaySummary)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsBluRaySummaryInfo)).EndInit();
             this.gbDisc.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvBluRayDiscInfo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsBluRaySummaryInfo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsBluRayDiscInfo)).EndInit();
             this.ResumeLayout(false);
 
@@ -388,6 +388,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn eAC3ToConfigurationDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn discNameDataGridViewTextBoxColumn;
-        private UserControls.SetOutputDirectoryUserControl setOutputDirectoryUserControl;
+        private UserControls.SetDirectoryUserControl setDirectoryUserControl;
     }
 }

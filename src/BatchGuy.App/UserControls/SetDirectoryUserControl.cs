@@ -12,28 +12,29 @@ using BatchGuy.App.Enums;
 
 namespace BatchGuy.App.UserControls
 {
-   public partial class SetOutputDirectoryUserControl : UserControl
+   public partial class SetDirectoryUserControl : UserControl
     {
-       private string _clilName;
+       private string _comboBoxCaptionText;
+       private string _labelOutputDirectoryCaptionText;
        private EnumOutputDirectoryType _outputDirectoryType;
        private string _cliOutputDirectory;
 
-       public string CLIName { get { return _clilName; } set { _clilName = value; } }
+       public string ComboBoxCaptionText { get { return _comboBoxCaptionText; } set { _comboBoxCaptionText = value; } }
+       public string LabelOutputDirectoryCaptionText { get { return _labelOutputDirectoryCaptionText; } set { _labelOutputDirectoryCaptionText = value; } }
        public EnumOutputDirectoryType OutputDirectoryType { get { return _outputDirectoryType;} }
        public string CLIOutputDirectory { get { return _cliOutputDirectory; } }
 
-        public SetOutputDirectoryUserControl()
+        public SetDirectoryUserControl()
         {
             InitializeComponent();
-            this.SetDefaults();
         }
 
         private void SetDefaults()
         {
-            _clilName = string.Empty;
+            lblComboBoxCaption.Text = string.Format("{0} Output Directory", _comboBoxCaptionText);
             _outputDirectoryType = EnumOutputDirectoryType.DirectoryPerEpisode;
             cbSetOutputDirectoryUserControlType.SelectedIndex = 0;
-            lblSetOutputDirectoryText.Text = "";
+            lblDirectoryOutputCaption.Text = "";
             _cliOutputDirectory = string.Empty;
         }
 
@@ -45,19 +46,19 @@ namespace BatchGuy.App.UserControls
        private void HandleBtnSetOutputDirectoryUserControlOpenDialogClick()
         {
             var fsd = new FolderSelectDialog();
-            fsd.Title = string.Format("{0} output directory", _clilName);
+            fsd.Title = string.Format("{0} output directory", _comboBoxCaptionText);
             fsd.InitialDirectory = @"c:\";
             if (fsd.ShowDialog(IntPtr.Zero))
             {
                 txtSetOuptDirectoryUserControl.Text = fsd.FileName;
-                this.HandleCbSetOutputDirectoryUserControlTypeSelectedIndexChanged(cbSetOutputDirectoryUserControlType.Text);
                 _cliOutputDirectory = txtSetOuptDirectoryUserControl.Text;
+                this.HandleCbSetOutputDirectoryUserControlTypeSelectedIndexChanged(cbSetOutputDirectoryUserControlType.Text);
             }
         }
 
        private void SetOutputDirectoryUserControl_Load(object sender, EventArgs e)
        {
-           lblSetOutputDirectoryUserControlOutputType.Text = string.Format("{0} Output Directory",_clilName);
+           this.SetDefaults();
        }
 
        private void cbSetOutputDirectoryUserControlType_SelectedIndexChanged(object sender, EventArgs e)
@@ -78,13 +79,13 @@ namespace BatchGuy.App.UserControls
                    _outputDirectoryType = EnumOutputDirectoryType.DirectoryPerEpisode;
                    if (_cliOutputDirectory != string.Empty)
                    {
-                       stringLabelOutputDirectoryText = string.Format(@"{0} Output Directory (example: e01, e02): {1}\e##", _clilName, txtSetOuptDirectoryUserControl.Text);                       
+                       stringLabelOutputDirectoryText = string.Format(_labelOutputDirectoryCaptionText, txtSetOuptDirectoryUserControl.Text);                       
                    }
                    break;
                default:
                    break;
            }
-           lblSetOutputDirectoryText.Text = stringLabelOutputDirectoryText;
+           lblDirectoryOutputCaption.Text = stringLabelOutputDirectoryText;
        }
     }
 }

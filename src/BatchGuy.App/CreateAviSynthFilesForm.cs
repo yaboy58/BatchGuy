@@ -32,19 +32,24 @@ namespace BatchGuy.App
 
         private void CreateAVSFilesForm_Load(object sender, EventArgs e)
         {
-            this.SetAVSTemplateTextBox();
+            this.SetAviSynthTemplateTextBox();
 #if DEBUG
             txtOutputDirectory.Text = @"C:\temp\My Encodes\Blu-ray";   
 #endif
 
         }
 
-        private void SetAVSTemplateTextBox()
+        private void SetAviSynthTemplateTextBox()
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("Crop(0,0,0,0)");
             sb.AppendLine(string.Format("{0}Spline36Resize(1280,720)",Environment.NewLine));
             txtAVSTemplate.Text = sb.ToString();
+        }
+
+        private void SetDirectoryUserControlCLIName()
+        {
+            setDirectoryUserControl.ComboBoxCaptionText = "AviSynth .mkv & .log";
         }
 
         private void btnCreateAVSFiles_Click(object sender, EventArgs e)
@@ -137,7 +142,7 @@ namespace BatchGuy.App
             else
             {
                 MessageBox.Show("AVS Scripts have been created!", "Success.", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.SetAVSTemplateTextBox();
+                this.SetAviSynthTemplateTextBox();
                 txtNumberOfFiles.Text = "";
                 txtNumberOfFiles.Focus();
             }

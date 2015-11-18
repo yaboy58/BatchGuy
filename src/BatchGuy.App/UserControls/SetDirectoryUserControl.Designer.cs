@@ -1,6 +1,6 @@
 ﻿namespace BatchGuy.App.UserControls
 {
-    partial class SetOutputDirectoryUserControl
+    partial class SetDirectoryUserControl
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,21 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lblSetOutputDirectoryUserControlOutputType = new System.Windows.Forms.Label();
+            this.lblComboBoxCaption = new System.Windows.Forms.Label();
             this.cbSetOutputDirectoryUserControlType = new System.Windows.Forms.ComboBox();
             this.btnSetOutputDirectoryUserControlOpenDialog = new System.Windows.Forms.Button();
             this.txtSetOuptDirectoryUserControl = new System.Windows.Forms.TextBox();
-            this.lblSetOutputDirectoryText = new System.Windows.Forms.Label();
+            this.lblDirectoryOutputCaption = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // lblSetOutputDirectoryUserControlOutputType
+            // lblComboBoxCaption
             // 
-            this.lblSetOutputDirectoryUserControlOutputType.AutoSize = true;
-            this.lblSetOutputDirectoryUserControlOutputType.Location = new System.Drawing.Point(2, 22);
-            this.lblSetOutputDirectoryUserControlOutputType.Name = "lblSetOutputDirectoryUserControlOutputType";
-            this.lblSetOutputDirectoryUserControlOutputType.Size = new System.Drawing.Size(84, 13);
-            this.lblSetOutputDirectoryUserControlOutputType.TabIndex = 0;
-            this.lblSetOutputDirectoryUserControlOutputType.Text = "Output Directory";
+            this.lblComboBoxCaption.AutoSize = true;
+            this.lblComboBoxCaption.Location = new System.Drawing.Point(2, 22);
+            this.lblComboBoxCaption.Name = "lblComboBoxCaption";
+            this.lblComboBoxCaption.Size = new System.Drawing.Size(84, 13);
+            this.lblComboBoxCaption.TabIndex = 0;
+            this.lblComboBoxCaption.Text = "Output Directory";
             // 
             // cbSetOutputDirectoryUserControlType
             // 
@@ -75,25 +75,25 @@
             this.txtSetOuptDirectoryUserControl.Size = new System.Drawing.Size(434, 20);
             this.txtSetOuptDirectoryUserControl.TabIndex = 13;
             // 
-            // lblSetOutputDirectoryText
+            // lblDirectoryOutputCaption
             // 
-            this.lblSetOutputDirectoryText.AutoSize = true;
-            this.lblSetOutputDirectoryText.Location = new System.Drawing.Point(126, 48);
-            this.lblSetOutputDirectoryText.Name = "lblSetOutputDirectoryText";
-            this.lblSetOutputDirectoryText.Size = new System.Drawing.Size(42, 13);
-            this.lblSetOutputDirectoryText.TabIndex = 14;
-            this.lblSetOutputDirectoryText.Text = "Output:";
+            this.lblDirectoryOutputCaption.AutoSize = true;
+            this.lblDirectoryOutputCaption.Location = new System.Drawing.Point(126, 48);
+            this.lblDirectoryOutputCaption.Name = "lblDirectoryOutputCaption";
+            this.lblDirectoryOutputCaption.Size = new System.Drawing.Size(42, 13);
+            this.lblDirectoryOutputCaption.TabIndex = 14;
+            this.lblDirectoryOutputCaption.Text = "Output:";
             // 
-            // SetOutputDirectoryUserControl
+            // SetDirectoryUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.lblSetOutputDirectoryUserControlOutputType);
-            this.Controls.Add(this.lblSetOutputDirectoryText);
+            this.Controls.Add(this.lblComboBoxCaption);
+            this.Controls.Add(this.lblDirectoryOutputCaption);
             this.Controls.Add(this.cbSetOutputDirectoryUserControlType);
             this.Controls.Add(this.btnSetOutputDirectoryUserControlOpenDialog);
             this.Controls.Add(this.txtSetOuptDirectoryUserControl);
-            this.Name = "SetOutputDirectoryUserControl";
+            this.Name = "SetDirectoryUserControl";
             this.Size = new System.Drawing.Size(824, 71);
             this.Load += new System.EventHandler(this.SetOutputDirectoryUserControl_Load);
             this.ResumeLayout(false);
@@ -103,10 +103,10 @@
 
         #endregion
 
-        private System.Windows.Forms.Label lblSetOutputDirectoryUserControlOutputType;
+        private System.Windows.Forms.Label lblComboBoxCaption;
         private System.Windows.Forms.ComboBox cbSetOutputDirectoryUserControlType;
         private System.Windows.Forms.Button btnSetOutputDirectoryUserControlOpenDialog;
         private System.Windows.Forms.TextBox txtSetOuptDirectoryUserControl;
-        private System.Windows.Forms.Label lblSetOutputDirectoryText;
+        private System.Windows.Forms.Label lblDirectoryOutputCaption;
     }
 }

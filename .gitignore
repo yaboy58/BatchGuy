@@ -267,3 +267,4 @@
 /tests/BatchGuy.Unit.Tests/bin/Debug/Newtonsoft.Json.dll
 /tests/BatchGuy.Unit.Tests/bin/Debug/Newtonsoft.Json.xml
 /src/BatchGuy.App/obj/Debug/BatchGuy.App.UserControls.SetOutputDirectoryUserControl.resources
+/src/BatchGuy.App/obj/Debug/BatchGuy.App.UserControls.SetDirectoryUserControl.resources

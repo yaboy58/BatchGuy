@@ -149,11 +149,11 @@
     <Compile Include="Shared\Services\SortService.cs" />
     <Compile Include="ThirdParty\FolderSelectDialog\FolderSelectDialog.cs" />
     <Compile Include="ThirdParty\FolderSelectDialog\Reflector.cs" />
-    <Compile Include="UserControls\SetOutputDirectoryUserControl.cs">
+    <Compile Include="UserControls\SetDirectoryUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserControls\SetOutputDirectoryUserControl.Designer.cs">
-      <DependentUpon>SetOutputDirectoryUserControl.cs</DependentUpon>
+    <Compile Include="UserControls\SetDirectoryUserControl.Designer.cs">
+      <DependentUpon>SetDirectoryUserControl.cs</DependentUpon>
     </Compile>
     <Compile Include="X264\Models\X264File.cs" />
     <Compile Include="X264\Models\X264FileSettings.cs" />
@@ -194,8 +194,8 @@
     <EmbeddedResource Include="SettingsForm.resx">
       <DependentUpon>SettingsForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\SetOutputDirectoryUserControl.resx">
-      <DependentUpon>SetOutputDirectoryUserControl.cs</DependentUpon>
+    <EmbeddedResource Include="UserControls\SetDirectoryUserControl.resx">
+      <DependentUpon>SetDirectoryUserControl.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\BatchGuy.App.Parser.Models.BluRayDiscInfo.datasource" />

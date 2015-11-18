@@ -39,6 +39,7 @@
             this.btnOpenDialog = new System.Windows.Forms.Button();
             this.gbScreen = new System.Windows.Forms.GroupBox();
             this.bgwCreateAviSynthFiles = new System.ComponentModel.BackgroundWorker();
+            this.setDirectoryUserControl = new BatchGuy.App.UserControls.SetDirectoryUserControl();
             this.gbScreen.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -47,9 +48,9 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(17, 26);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(84, 13);
+            this.label2.Size = new System.Drawing.Size(137, 13);
             this.label2.TabIndex = 5;
-            this.label2.Text = "Output Directory";
+            this.label2.Text = "(.avs) Files Output Directory";
             // 
             // txtOutputDirectory
             // 
@@ -62,7 +63,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(17, 92);
+            this.label1.Location = new System.Drawing.Point(17, 153);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(99, 13);
             this.label1.TabIndex = 7;
@@ -70,7 +71,7 @@
             // 
             // txtAVSTemplate
             // 
-            this.txtAVSTemplate.Location = new System.Drawing.Point(20, 108);
+            this.txtAVSTemplate.Location = new System.Drawing.Point(16, 169);
             this.txtAVSTemplate.Multiline = true;
             this.txtAVSTemplate.Name = "txtAVSTemplate";
             this.txtAVSTemplate.Size = new System.Drawing.Size(638, 161);
@@ -78,7 +79,7 @@
             // 
             // btnCreateAVSFiles
             // 
-            this.btnCreateAVSFiles.Location = new System.Drawing.Point(508, 293);
+            this.btnCreateAVSFiles.Location = new System.Drawing.Point(504, 354);
             this.btnCreateAVSFiles.Name = "btnCreateAVSFiles";
             this.btnCreateAVSFiles.Size = new System.Drawing.Size(150, 35);
             this.btnCreateAVSFiles.TabIndex = 2;
@@ -114,6 +115,7 @@
             // 
             // gbScreen
             // 
+            this.gbScreen.Controls.Add(this.setDirectoryUserControl);
             this.gbScreen.Controls.Add(this.txtOutputDirectory);
             this.gbScreen.Controls.Add(this.label3);
             this.gbScreen.Controls.Add(this.btnOpenDialog);
@@ -124,7 +126,7 @@
             this.gbScreen.Controls.Add(this.label1);
             this.gbScreen.Location = new System.Drawing.Point(12, 2);
             this.gbScreen.Name = "gbScreen";
-            this.gbScreen.Size = new System.Drawing.Size(679, 334);
+            this.gbScreen.Size = new System.Drawing.Size(846, 400);
             this.gbScreen.TabIndex = 12;
             this.gbScreen.TabStop = false;
             // 
@@ -133,11 +135,19 @@
             this.bgwCreateAviSynthFiles.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgwCreateAviSynthFiles_DoWork);
             this.bgwCreateAviSynthFiles.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgwCreateAviSynthFiles_RunWorkerCompleted);
             // 
+            // setDirectoryUserControl
+            // 
+            this.setDirectoryUserControl.ComboBoxCaptionText = "";
+            this.setDirectoryUserControl.Location = new System.Drawing.Point(16, 80);
+            this.setDirectoryUserControl.Name = "setDirectoryUserControl";
+            this.setDirectoryUserControl.Size = new System.Drawing.Size(824, 71);
+            this.setDirectoryUserControl.TabIndex = 12;
+            // 
             // CreateAviSynthFilesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(705, 348);
+            this.ClientSize = new System.Drawing.Size(870, 414);
             this.Controls.Add(this.gbScreen);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -163,5 +173,6 @@
         private System.Windows.Forms.Button btnOpenDialog;
         private System.Windows.Forms.GroupBox gbScreen;
         private System.ComponentModel.BackgroundWorker bgwCreateAviSynthFiles;
+        private UserControls.SetDirectoryUserControl setDirectoryUserControl;
     }
 }
