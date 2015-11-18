@@ -27,16 +27,17 @@ namespace BatchGuy.App
         {
             InitializeComponent();
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.SetAviSynthTemplateTextBox();
+            this.SetDirectoryUserControlValues();
+            this.SetToolTips();
             txtNumberOfFiles.Focus();
         }
 
         private void CreateAVSFilesForm_Load(object sender, EventArgs e)
         {
-            this.SetAviSynthTemplateTextBox();
 #if DEBUG
             txtOutputDirectory.Text = @"C:\temp\My Encodes\Blu-ray";   
 #endif
-
         }
 
         private void SetAviSynthTemplateTextBox()
@@ -47,9 +48,17 @@ namespace BatchGuy.App
             txtAVSTemplate.Text = sb.ToString();
         }
 
-        private void SetDirectoryUserControlCLIName()
+        private void SetDirectoryUserControlValues()
         {
-            setDirectoryUserControl.ComboBoxCaptionText = "AviSynth .mkv & .log";
+            setDirectoryUserControl.ComboBoxCaptionText = "(.mkv) Files Directory";
+            setDirectoryUserControl.LabelOutputDirectoryCaptionText = @"Example: FFVideoSource(""{0}\e01\video01.mkv"")";
+        }
+
+        private void SetToolTips()
+        {
+            ttAviSynthOutputDirectory.SetToolTip(txtOutputDirectory, "Directory where AviSynth Files will be saved");
+            ttNumberOfFiles.SetToolTip(txtNumberOfFiles, "Number of episodes");
+            ttUserControl.SetToolTip(setDirectoryUserControl, "(.mkv) files directory for FFVideoSource");
         }
 
         private void btnCreateAVSFiles_Click(object sender, EventArgs e)

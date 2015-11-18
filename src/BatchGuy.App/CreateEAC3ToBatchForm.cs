@@ -42,7 +42,7 @@ namespace BatchGuy.App
         {
             InitializeComponent();
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            setDirectoryUserControl.ComboBoxCaptionText = "eac3to";
+            setDirectoryUserControl.ComboBoxCaptionText = "eac3to Output Directory";
             setDirectoryUserControl.LabelOutputDirectoryCaptionText = @"eac3to Output Directory (example: e01, e02): {0}\e##";
 #if DEBUG
             txtBluRayPath.Text = @"C:\temp\My Torrent Downloads\Better Call Saul S01 1080p EUR Blu-ray AVC DTS-HD MA 5.1\Disc_1";   

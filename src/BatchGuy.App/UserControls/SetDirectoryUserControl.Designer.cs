@@ -49,8 +49,8 @@
             this.cbSetOutputDirectoryUserControlType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbSetOutputDirectoryUserControlType.FormattingEnabled = true;
             this.cbSetOutputDirectoryUserControlType.Items.AddRange(new object[] {
-            "Single Directory",
-            "Directory Per Episode"});
+            "Directory Per Episode",
+            "Single Directory"});
             this.cbSetOutputDirectoryUserControlType.Location = new System.Drawing.Point(129, 15);
             this.cbSetOutputDirectoryUserControlType.Name = "cbSetOutputDirectoryUserControlType";
             this.cbSetOutputDirectoryUserControlType.Size = new System.Drawing.Size(181, 21);

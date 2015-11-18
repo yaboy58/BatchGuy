@@ -40,7 +40,7 @@ http://blog.danskingdom.com/saving-and-loading-a-c-objects-data-to-an-xml-json-o
 
 *put drop down on all major screens.  eac3to Output in single directory, eac3to Output in episodes directory (e##)
 *introduce drag n drop
-
+*similar to avs screen, add tool tips to other screens
 
 *ability to save/load eac3to batch guy data
 *remux focus ie allow folder names other than #

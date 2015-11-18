@@ -27,11 +27,11 @@ namespace BatchGuy.App.UserControls
         public SetDirectoryUserControl()
         {
             InitializeComponent();
+            this.SetDefaults();
         }
 
         private void SetDefaults()
         {
-            lblComboBoxCaption.Text = string.Format("{0} Output Directory", _comboBoxCaptionText);
             _outputDirectoryType = EnumOutputDirectoryType.DirectoryPerEpisode;
             cbSetOutputDirectoryUserControlType.SelectedIndex = 0;
             lblDirectoryOutputCaption.Text = "";
@@ -58,7 +58,7 @@ namespace BatchGuy.App.UserControls
 
        private void SetOutputDirectoryUserControl_Load(object sender, EventArgs e)
        {
-           this.SetDefaults();
+           lblComboBoxCaption.Text = string.Format("{0}", _comboBoxCaptionText);
        }
 
        private void cbSetOutputDirectoryUserControlType_SelectedIndexChanged(object sender, EventArgs e)
@@ -77,7 +77,7 @@ namespace BatchGuy.App.UserControls
                    break;
                case "Directory Per Episode":
                    _outputDirectoryType = EnumOutputDirectoryType.DirectoryPerEpisode;
-                   if (_cliOutputDirectory != string.Empty)
+                   if (!string.IsNullOrEmpty(_cliOutputDirectory) && !string.IsNullOrEmpty(txtSetOuptDirectoryUserControl.Text))
                    {
                        stringLabelOutputDirectoryText = string.Format(_labelOutputDirectoryCaptionText, txtSetOuptDirectoryUserControl.Text);                       
                    }

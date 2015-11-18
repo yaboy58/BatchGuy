@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CreateAviSynthFilesForm));
             this.label2 = new System.Windows.Forms.Label();
             this.txtOutputDirectory = new System.Windows.Forms.TextBox();
@@ -38,8 +39,12 @@
             this.txtNumberOfFiles = new System.Windows.Forms.TextBox();
             this.btnOpenDialog = new System.Windows.Forms.Button();
             this.gbScreen = new System.Windows.Forms.GroupBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.bgwCreateAviSynthFiles = new System.ComponentModel.BackgroundWorker();
             this.setDirectoryUserControl = new BatchGuy.App.UserControls.SetDirectoryUserControl();
+            this.ttAviSynthOutputDirectory = new System.Windows.Forms.ToolTip(this.components);
+            this.ttNumberOfFiles = new System.Windows.Forms.ToolTip(this.components);
+            this.ttUserControl = new System.Windows.Forms.ToolTip(this.components);
             this.gbScreen.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -63,7 +68,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(17, 153);
+            this.label1.Location = new System.Drawing.Point(17, 171);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(99, 13);
             this.label1.TabIndex = 7;
@@ -71,15 +76,15 @@
             // 
             // txtAVSTemplate
             // 
-            this.txtAVSTemplate.Location = new System.Drawing.Point(16, 169);
+            this.txtAVSTemplate.Location = new System.Drawing.Point(16, 187);
             this.txtAVSTemplate.Multiline = true;
             this.txtAVSTemplate.Name = "txtAVSTemplate";
-            this.txtAVSTemplate.Size = new System.Drawing.Size(638, 161);
+            this.txtAVSTemplate.Size = new System.Drawing.Size(814, 161);
             this.txtAVSTemplate.TabIndex = 1;
             // 
             // btnCreateAVSFiles
             // 
-            this.btnCreateAVSFiles.Location = new System.Drawing.Point(504, 354);
+            this.btnCreateAVSFiles.Location = new System.Drawing.Point(680, 354);
             this.btnCreateAVSFiles.Name = "btnCreateAVSFiles";
             this.btnCreateAVSFiles.Size = new System.Drawing.Size(150, 35);
             this.btnCreateAVSFiles.TabIndex = 2;
@@ -90,7 +95,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(17, 57);
+            this.label3.Location = new System.Drawing.Point(17, 128);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(132, 13);
             this.label3.TabIndex = 10;
@@ -98,10 +103,10 @@
             // 
             // txtNumberOfFiles
             // 
-            this.txtNumberOfFiles.Location = new System.Drawing.Point(157, 54);
+            this.txtNumberOfFiles.Location = new System.Drawing.Point(157, 125);
             this.txtNumberOfFiles.Name = "txtNumberOfFiles";
             this.txtNumberOfFiles.Size = new System.Drawing.Size(54, 20);
-            this.txtNumberOfFiles.TabIndex = 0;
+            this.txtNumberOfFiles.TabIndex = 1;
             // 
             // btnOpenDialog
             // 
@@ -115,6 +120,7 @@
             // 
             // gbScreen
             // 
+            this.gbScreen.Controls.Add(this.label4);
             this.gbScreen.Controls.Add(this.setDirectoryUserControl);
             this.gbScreen.Controls.Add(this.txtOutputDirectory);
             this.gbScreen.Controls.Add(this.label3);
@@ -130,6 +136,15 @@
             this.gbScreen.TabIndex = 12;
             this.gbScreen.TabStop = false;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(17, 351);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(330, 13);
+            this.label4.TabIndex = 13;
+            this.label4.Text = "*BatchGuy uses the FFVideoSource filter and will add it automatically";
+            // 
             // bgwCreateAviSynthFiles
             // 
             this.bgwCreateAviSynthFiles.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgwCreateAviSynthFiles_DoWork);
@@ -138,10 +153,11 @@
             // setDirectoryUserControl
             // 
             this.setDirectoryUserControl.ComboBoxCaptionText = "";
-            this.setDirectoryUserControl.Location = new System.Drawing.Point(16, 80);
+            this.setDirectoryUserControl.LabelOutputDirectoryCaptionText = null;
+            this.setDirectoryUserControl.Location = new System.Drawing.Point(16, 49);
             this.setDirectoryUserControl.Name = "setDirectoryUserControl";
-            this.setDirectoryUserControl.Size = new System.Drawing.Size(824, 71);
-            this.setDirectoryUserControl.TabIndex = 12;
+            this.setDirectoryUserControl.Size = new System.Drawing.Size(824, 70);
+            this.setDirectoryUserControl.TabIndex = 0;
             // 
             // CreateAviSynthFilesForm
             // 
@@ -174,5 +190,9 @@
         private System.Windows.Forms.GroupBox gbScreen;
         private System.ComponentModel.BackgroundWorker bgwCreateAviSynthFiles;
         private UserControls.SetDirectoryUserControl setDirectoryUserControl;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ToolTip ttAviSynthOutputDirectory;
+        private System.Windows.Forms.ToolTip ttNumberOfFiles;
+        private System.Windows.Forms.ToolTip ttUserControl;
     }
 }
