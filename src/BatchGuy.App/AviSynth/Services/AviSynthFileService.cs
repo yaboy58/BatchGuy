@@ -12,18 +12,18 @@ namespace BatchGuy.App.AviSynth.Services
 {
     public class AviSynthFileService : IAviSynthFileService
     {
-        private AVSBatchSettings _avsBatchSettings;
-        private List<AVSFile> _avsFiles;
-        private AVSTemplateScript _avsTemplateScript;
+        private AviSynthBatchSettings _avsBatchSettings;
+        private List<AviSynthFile> _avsFiles;
+        private AviSynthTemplateScript _avsTemplateScript;
 
-        public AviSynthFileService(AVSBatchSettings avsBatchSettings, AVSTemplateScript avsTemplateScript)
+        public AviSynthFileService(AviSynthBatchSettings avsBatchSettings, AviSynthTemplateScript avsTemplateScript)
         {
             _avsBatchSettings = avsBatchSettings;
             _avsTemplateScript = avsTemplateScript;
-            _avsFiles = new List<AVSFile>();
+            _avsFiles = new List<AviSynthFile>();
         }
 
-        public List<AVSFile> CreateAVSFileList()
+        public List<AviSynthFile> CreateAVSFileList()
         {
             CreateList();
             CreateAVSScript();
@@ -36,7 +36,7 @@ namespace BatchGuy.App.AviSynth.Services
             {
                 string fileNameOnly = string.Format("{0}{1}.avs", _avsBatchSettings.NamingConvention, HelperFunctions.PadNumberWithZeros(_avsBatchSettings.NumberOfFiles, i));
                 string directoryPath = String.Format("{0}\\{1}", _avsBatchSettings.BatchDirectoryPath, fileNameOnly);
-                AVSFile avsFile = new AVSFile() { FileNameOnly =  fileNameOnly, FullPath = directoryPath};
+                AviSynthFile avsFile = new AviSynthFile() { FileNameOnly =  fileNameOnly, FullPath = directoryPath};
                 avsFile.Number = i;
                 _avsFiles.Add(avsFile);
             }
@@ -44,7 +44,7 @@ namespace BatchGuy.App.AviSynth.Services
 
         private void CreateAVSScript()
         {
-            foreach (AVSFile file in _avsFiles)
+            foreach (AviSynthFile file in _avsFiles)
             {
                 StringBuilder sb = new StringBuilder();
                 string paddedNumber = HelperFunctions.PadNumberWithZeros(_avsBatchSettings.NumberOfFiles, file.Number);

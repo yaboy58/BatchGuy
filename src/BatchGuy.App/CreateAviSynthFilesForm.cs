@@ -72,8 +72,8 @@ namespace BatchGuy.App
 
         private void Process()
         {
-            AVSBatchSettings avsBatchSettings = this.GetAVSBatchSettings();
-            AVSTemplateScript avsTemplateScript = this.GetAVSScript();
+            AviSynthBatchSettings avsBatchSettings = this.GetAVSBatchSettings();
+            AviSynthTemplateScript avsTemplateScript = this.GetAVSScript();
 
             _fileService = new AviSynthFileService(avsBatchSettings, avsTemplateScript);
             _validationService = new AviSynthValidationService(avsBatchSettings);
@@ -82,9 +82,9 @@ namespace BatchGuy.App
 
         }
 
-        private AVSBatchSettings GetAVSBatchSettings()
+        private AviSynthBatchSettings GetAVSBatchSettings()
         {
-            return new AVSBatchSettings()
+            return new AviSynthBatchSettings()
             {
                  BatchDirectoryPath = txtOutputDirectory.Text,
                   NamingConvention = "encode", //hardcoded for now
@@ -93,9 +93,9 @@ namespace BatchGuy.App
             };
         }
 
-        private AVSTemplateScript GetAVSScript()
+        private AviSynthTemplateScript GetAVSScript()
         {
-            return new AVSTemplateScript() { Script = txtAVSTemplate.Text };
+            return new AviSynthTemplateScript() { Script = txtAVSTemplate.Text };
         }
 
         private bool IsScreenValid()

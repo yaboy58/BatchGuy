@@ -13,10 +13,10 @@ namespace BatchGuy.App.AviSynth.Services
 {
     public class AviSynthValidationService : IAviSynthValidationService
     {
-        private AVSBatchSettings _avsBatchSettings;
+        private AviSynthBatchSettings _avsBatchSettings;
         private ErrorCollection _errors;
 
-        public AviSynthValidationService(AVSBatchSettings avsBatchSettings)
+        public AviSynthValidationService(AviSynthBatchSettings avsBatchSettings)
         {
             _avsBatchSettings = avsBatchSettings;
             _errors = new ErrorCollection();

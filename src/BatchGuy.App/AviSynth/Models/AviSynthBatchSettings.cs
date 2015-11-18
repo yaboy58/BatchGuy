@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BatchGuy.App.AviSynth.Models
 {
-    public class AVSBatchSettings
+    public class AviSynthBatchSettings
     {
         public string BatchDirectoryPath { get; set; }
         public string NamingConvention { get; set; }

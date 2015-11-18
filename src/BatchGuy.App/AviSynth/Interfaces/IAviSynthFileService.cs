@@ -10,6 +10,6 @@ namespace BatchGuy.App.AviSynth.Interfaces
 {
     public interface IAviSynthFileService
     {
-        List<AVSFile> CreateAVSFileList();
+        List<AviSynthFile> CreateAVSFileList();
     }
 }

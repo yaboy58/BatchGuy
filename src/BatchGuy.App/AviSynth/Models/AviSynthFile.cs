@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BatchGuy.App.AviSynth.Models
 {
-    public class AVSFile
+    public class AviSynthFile
     {
         public string FileNameOnly { get; set; }
         public string FullPath { get; set; }

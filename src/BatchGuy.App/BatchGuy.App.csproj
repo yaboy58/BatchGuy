@@ -99,9 +99,9 @@
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Helpers\HelperFunctions.cs" />
-    <Compile Include="AviSynth\Models\AVSBatchSettings.cs" />
-    <Compile Include="AviSynth\Models\AVSFile.cs" />
-    <Compile Include="AviSynth\Models\AVSScript.cs" />
+    <Compile Include="AviSynth\Models\AviSynthBatchSettings.cs" />
+    <Compile Include="AviSynth\Models\AviSynthFile.cs" />
+    <Compile Include="AviSynth\Models\AviSynthTemplateScript.cs" />
     <Compile Include="Parser\Interfaces\IBluRayTitleParserService.cs" />
     <Compile Include="Parser\Models\BluRayDiscInfo.cs" />
     <Compile Include="Parser\Models\BluRayTitleAudio.cs" />

@@ -17,16 +17,16 @@ namespace BatchGuy.Unit.Tests.Services.AviSynth
         [Test]
         public void avsfile_has_correct_name_test()
         {
-            AVSBatchSettings avsBatchSettings;
+            AviSynthBatchSettings avsBatchSettings;
             IAviSynthFileService fileService;
-            AVSTemplateScript avsTemplateScript;
+            AviSynthTemplateScript avsTemplateScript;
 
             //given correct settings
-            avsBatchSettings = new AVSBatchSettings() { BatchDirectoryPath = "C:\\Temp", NamingConvention = "encode", NumberOfFiles = 9 };
-            avsTemplateScript = new AVSTemplateScript() {  Script = string.Empty};
+            avsBatchSettings = new AviSynthBatchSettings() { BatchDirectoryPath = "C:\\Temp", NamingConvention = "encode", NumberOfFiles = 9 };
+            avsTemplateScript = new AviSynthTemplateScript() {  Script = string.Empty};
             //when I create the avs file batch
             fileService = new AviSynthFileService(avsBatchSettings, avsTemplateScript);
-            List<AVSFile> avsFiles = fileService.CreateAVSFileList();
+            List<AviSynthFile> avsFiles = fileService.CreateAVSFileList();
             //then error list contains error
             avsFiles[0].FileNameOnly.ShouldBeEqualTo("encode01.avs");
         }

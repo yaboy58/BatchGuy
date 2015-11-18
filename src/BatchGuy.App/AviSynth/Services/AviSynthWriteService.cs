@@ -16,11 +16,11 @@ namespace BatchGuy.App.AviSynth.Services
         private ErrorCollection _errors;
         private IAviSynthFileService _fileService;
         private IAviSynthValidationService _validationService;
-        private List<AVSFile> _avsFiles;
-        private AVSTemplateScript _avsScript;
-        private AVSBatchSettings _avsBatchSettings;
+        private List<AviSynthFile> _avsFiles;
+        private AviSynthTemplateScript _avsScript;
+        private AviSynthBatchSettings _avsBatchSettings;
 
-        public AviSynthWriteService(IAviSynthFileService fileService, IAviSynthValidationService validationService, AVSTemplateScript avsScript, AVSBatchSettings avsBatchSettings)
+        public AviSynthWriteService(IAviSynthFileService fileService, IAviSynthValidationService validationService, AviSynthTemplateScript avsScript, AviSynthBatchSettings avsBatchSettings)
         {
             _fileService = fileService;
             _validationService = validationService;
