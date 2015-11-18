@@ -46,7 +46,7 @@ namespace BatchGuy.App.AviSynth.Services
             {
                 using (StreamWriter sw = new StreamWriter(file.FullPath))
                 {
-                    sw.WriteLine(file.AVSScript);
+                    sw.WriteLine(file.AviSynthScript);
                 }
             }
         }

@@ -10,7 +10,7 @@ namespace BatchGuy.App.AviSynth.Models
     {
         public string FileNameOnly { get; set; }
         public string FullPath { get; set; }
-        public string AVSScript { get; set; }
+        public string AviSynthScript { get; set; }
         public int Number { get; set; }
     }
 }

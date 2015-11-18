@@ -12,5 +12,7 @@ namespace BatchGuy.App.AviSynth.Models
         public string NamingConvention { get; set; }
         public int NumberOfFiles { get; set; }
         public string VideoFilter { get; set; }
+
+
     }
 }
