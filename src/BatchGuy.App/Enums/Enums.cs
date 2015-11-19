@@ -42,7 +42,7 @@ namespace BatchGuy.App.Enums
         Desc =2
     }
 
-    public enum EnumOutputDirectoryType
+    public enum EnumDirectoryType
     {
         SingleDirectory = 1,
         DirectoryPerEpisode = 2

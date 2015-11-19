@@ -14,6 +14,6 @@ namespace BatchGuy.App.Eac3to.Models
         public string BatchFilePath { get; set; }
         public string EAC3ToOutputPath { get; set; }
 
-        public EnumOutputDirectoryType OutputDirectoryType { get; set; }
+        public EnumDirectoryType OutputDirectoryType { get; set; }
     }
 }

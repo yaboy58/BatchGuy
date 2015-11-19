@@ -41,10 +41,11 @@
             this.gbScreen = new System.Windows.Forms.GroupBox();
             this.label4 = new System.Windows.Forms.Label();
             this.bgwCreateAviSynthFiles = new System.ComponentModel.BackgroundWorker();
-            this.setDirectoryUserControl = new BatchGuy.App.UserControls.SetDirectoryUserControl();
             this.ttAviSynthOutputDirectory = new System.Windows.Forms.ToolTip(this.components);
             this.ttNumberOfFiles = new System.Windows.Forms.ToolTip(this.components);
             this.ttUserControl = new System.Windows.Forms.ToolTip(this.components);
+            this.label5 = new System.Windows.Forms.Label();
+            this.setDirectoryUserControl = new BatchGuy.App.UserControls.SetDirectoryUserControl();
             this.gbScreen.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -120,6 +121,7 @@
             // 
             // gbScreen
             // 
+            this.gbScreen.Controls.Add(this.label5);
             this.gbScreen.Controls.Add(this.label4);
             this.gbScreen.Controls.Add(this.setDirectoryUserControl);
             this.gbScreen.Controls.Add(this.txtOutputDirectory);
@@ -150,10 +152,20 @@
             this.bgwCreateAviSynthFiles.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgwCreateAviSynthFiles_DoWork);
             this.bgwCreateAviSynthFiles.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgwCreateAviSynthFiles_RunWorkerCompleted);
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(17, 370);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(537, 13);
+            this.label5.TabIndex = 14;
+            this.label5.Text = "*Single Directory = video files in a single directory && Per Episode = videos in " +
+    "e01\\video01.mkv, e02\\video02.mkv";
+            // 
             // setDirectoryUserControl
             // 
             this.setDirectoryUserControl.ComboBoxCaptionText = "";
-            this.setDirectoryUserControl.LabelOutputDirectoryCaptionText = null;
+            this.setDirectoryUserControl.LabelDirectoryCaptionText = null;
             this.setDirectoryUserControl.Location = new System.Drawing.Point(16, 49);
             this.setDirectoryUserControl.Name = "setDirectoryUserControl";
             this.setDirectoryUserControl.Size = new System.Drawing.Size(824, 70);
@@ -194,5 +206,6 @@
         private System.Windows.Forms.ToolTip ttAviSynthOutputDirectory;
         private System.Windows.Forms.ToolTip ttNumberOfFiles;
         private System.Windows.Forms.ToolTip ttUserControl;
+        private System.Windows.Forms.Label label5;
     }
 }

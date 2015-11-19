@@ -15,14 +15,14 @@ namespace BatchGuy.App.UserControls
    public partial class SetDirectoryUserControl : UserControl
     {
        private string _comboBoxCaptionText;
-       private string _labelOutputDirectoryCaptionText;
-       private EnumOutputDirectoryType _outputDirectoryType;
+       private string _labelDirectoryCaptionText;
+       private EnumDirectoryType _directoryType;
        private string _cliOutputDirectory;
 
        public string ComboBoxCaptionText { get { return _comboBoxCaptionText; } set { _comboBoxCaptionText = value; } }
-       public string LabelOutputDirectoryCaptionText { get { return _labelOutputDirectoryCaptionText; } set { _labelOutputDirectoryCaptionText = value; } }
-       public EnumOutputDirectoryType OutputDirectoryType { get { return _outputDirectoryType;} }
-       public string CLIOutputDirectory { get { return _cliOutputDirectory; } }
+       public string LabelDirectoryCaptionText { get { return _labelDirectoryCaptionText; } set { _labelDirectoryCaptionText = value; } }
+       public EnumDirectoryType OutputDirectoryType { get { return _directoryType;} }
+       public string CLIDirectory { get { return _cliOutputDirectory; } }
 
         public SetDirectoryUserControl()
         {
@@ -32,7 +32,7 @@ namespace BatchGuy.App.UserControls
 
         private void SetDefaults()
         {
-            _outputDirectoryType = EnumOutputDirectoryType.DirectoryPerEpisode;
+            _directoryType = EnumDirectoryType.DirectoryPerEpisode;
             cbSetOutputDirectoryUserControlType.SelectedIndex = 0;
             lblDirectoryOutputCaption.Text = "";
             _cliOutputDirectory = string.Empty;
@@ -73,13 +73,13 @@ namespace BatchGuy.App.UserControls
            switch (value)
            {
                case "Single Directory":
-                   _outputDirectoryType = EnumOutputDirectoryType.SingleDirectory;
+                   _directoryType = EnumDirectoryType.SingleDirectory;
                    break;
                case "Directory Per Episode":
-                   _outputDirectoryType = EnumOutputDirectoryType.DirectoryPerEpisode;
+                   _directoryType = EnumDirectoryType.DirectoryPerEpisode;
                    if (!string.IsNullOrEmpty(_cliOutputDirectory) && !string.IsNullOrEmpty(txtSetOuptDirectoryUserControl.Text))
                    {
-                       stringLabelOutputDirectoryText = string.Format(_labelOutputDirectoryCaptionText, txtSetOuptDirectoryUserControl.Text);                       
+                       stringLabelOutputDirectoryText = string.Format(_labelDirectoryCaptionText, txtSetOuptDirectoryUserControl.Text);                       
                    }
                    break;
                default:

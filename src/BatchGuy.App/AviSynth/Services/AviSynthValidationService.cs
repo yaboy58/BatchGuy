@@ -24,15 +24,15 @@ namespace BatchGuy.App.AviSynth.Services
 
         public ErrorCollection Validate()
         {
-            BatchDirectoryIsNotEmpty();
-            BatchDirectoryIsValid();
-            NamingConventionIsNotEmpty();
+            this.BatchDirectoryIsNotEmpty();
+            this.BatchDirectoryIsValid();
+            this.NamingConventionIsNotEmpty();
             return _errors;
         }
 
         private void BatchDirectoryIsNotEmpty() 
         {
-            if (_avsBatchSettings.BatchDirectoryPath == string.Empty)
+            if (_avsBatchSettings.AviSynthFilesOutputDirectoryPath == string.Empty)
             {
                 _errors.Add(new Error() { Id = 0, Description = "Batch Directory is required!"});
             }
@@ -40,7 +40,7 @@ namespace BatchGuy.App.AviSynth.Services
 
         private void BatchDirectoryIsValid()
         {
-            if (!Directory.Exists(_avsBatchSettings.BatchDirectoryPath))
+            if (!Directory.Exists(_avsBatchSettings.AviSynthFilesOutputDirectoryPath))
             {
                 _errors.Add(new Error() { Id = 0, Description = "Batch Directory does not exist!" });                
             }

@@ -7,6 +7,7 @@ using BatchGuy.App.Helpers;
 using BatchGuy.App.AviSynth;
 using BatchGuy.App.AviSynth.Models;
 using BatchGuy.App.AviSynth.Interfaces;
+using BatchGuy.App.Enums;
 
 namespace BatchGuy.App.AviSynth.Services
 {
@@ -35,7 +36,7 @@ namespace BatchGuy.App.AviSynth.Services
             for (int i = 1; i <= _avsBatchSettings.NumberOfFiles; i++)
             {
                 string fileNameOnly = string.Format("{0}{1}.avs", _avsBatchSettings.NamingConvention, HelperFunctions.PadNumberWithZeros(_avsBatchSettings.NumberOfFiles, i));
-                string directoryPath = String.Format("{0}\\{1}", _avsBatchSettings.BatchDirectoryPath, fileNameOnly);
+                string directoryPath = String.Format("{0}\\{1}", _avsBatchSettings.AviSynthFilesOutputDirectoryPath, fileNameOnly);
                 AviSynthFile avsFile = new AviSynthFile() { FileNameOnly =  fileNameOnly, FullPath = directoryPath};
                 avsFile.Number = i;
                 _avsFiles.Add(avsFile);
@@ -50,7 +51,14 @@ namespace BatchGuy.App.AviSynth.Services
                 string paddedNumber = HelperFunctions.PadNumberWithZeros(_avsBatchSettings.NumberOfFiles, file.Number);
                 string encodeFileFolder = string.Format("e{0}", paddedNumber);
                 string encodeFile = string.Format("video{0}.mkv", paddedNumber); //hardcoded to mkv
-                sb.Append(string.Format("{0}(\"{1}\\{2}\\{3}\")",_avsBatchSettings.VideoFilter, _avsBatchSettings.BatchDirectoryPath, encodeFileFolder, encodeFile));
+                if (_avsBatchSettings.VideoToEncodeDirectoryType ==  EnumDirectoryType.DirectoryPerEpisode)
+                {
+                    sb.Append(string.Format("{0}(\"{1}\\{2}\\{3}\")", _avsBatchSettings.VideoFilter, _avsBatchSettings.VideoToEncodeDirectory, encodeFileFolder, encodeFile));                    
+                }
+                else
+                {
+                    sb.Append(string.Format("{0}(\"{1}\\{2}\")", _avsBatchSettings.VideoFilter, _avsBatchSettings.VideoToEncodeDirectory, encodeFile));                    
+                }
                 sb.Append(string.Format("{0}{1}",Environment.NewLine,_avsTemplateScript.Script));
                 file.AviSynthScript = sb.ToString();
             }

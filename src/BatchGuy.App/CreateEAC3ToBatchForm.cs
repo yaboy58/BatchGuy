@@ -43,7 +43,7 @@ namespace BatchGuy.App
             InitializeComponent();
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             setDirectoryUserControl.ComboBoxCaptionText = "eac3to Output Directory";
-            setDirectoryUserControl.LabelOutputDirectoryCaptionText = @"eac3to Output Directory (example: e01, e02): {0}\e##";
+            setDirectoryUserControl.LabelDirectoryCaptionText = @"eac3to Output Directory (example: e01, e02): {0}\e##";
 #if DEBUG
             txtBluRayPath.Text = @"C:\temp\My Torrent Downloads\Better Call Saul S01 1080p EUR Blu-ray AVC DTS-HD MA 5.1\Disc_1";   
             txtBatFilePath.Text = @"C:\temp\My Encodes\Blu-ray";
@@ -111,7 +111,7 @@ namespace BatchGuy.App
                     BatchFilePath = txtBatFilePath.Text,
                     BluRayPath = txtBluRayPath.Text,
                     EAC3ToPath = _eac3ToPath,
-                     EAC3ToOutputPath = setDirectoryUserControl.CLIOutputDirectory,
+                     EAC3ToOutputPath = setDirectoryUserControl.CLIDirectory,
                      OutputDirectoryType = setDirectoryUserControl.OutputDirectoryType
                 }
             };
@@ -239,7 +239,7 @@ namespace BatchGuy.App
                 MessageBox.Show("Please enter the eac3to.exe path with the exe in the path!", "Error occurred", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
-            if (setDirectoryUserControl.CLIOutputDirectory == string.Empty)
+            if (setDirectoryUserControl.CLIDirectory == string.Empty)
             {
                 MessageBox.Show("Please choose an eac3to output path!", "Error occurred", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;                

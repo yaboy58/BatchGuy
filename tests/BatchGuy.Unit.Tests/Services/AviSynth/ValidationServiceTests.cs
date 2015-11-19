@@ -22,7 +22,7 @@ namespace BatchGuy.Unit.Tests.Services.AviSynth
             IAviSynthValidationService validationService;
 
             //given an empty batch directory
-            avsBatchSettings = new AviSynthBatchSettings() { BatchDirectoryPath = string.Empty, NamingConvention = "NamingConvention", NumberOfFiles = 1 };
+            avsBatchSettings = new AviSynthBatchSettings() { AviSynthFilesOutputDirectoryPath = string.Empty, NamingConvention = "NamingConvention", NumberOfFiles = 1 };
             //when I validate
             validationService = new AviSynthValidationService(avsBatchSettings);
             ErrorCollection errors = validationService.Validate();
@@ -37,7 +37,7 @@ namespace BatchGuy.Unit.Tests.Services.AviSynth
             IAviSynthValidationService validationService;
 
             //given an empty batch directory
-            avsBatchSettings = new AviSynthBatchSettings() { BatchDirectoryPath = "BatchDirectory", NamingConvention = "NamingConvention", NumberOfFiles = 1 };
+            avsBatchSettings = new AviSynthBatchSettings() { AviSynthFilesOutputDirectoryPath = "BatchDirectory", NamingConvention = "NamingConvention", NumberOfFiles = 1 };
             //when I validate
             validationService = new AviSynthValidationService(avsBatchSettings);
             ErrorCollection errors = validationService.Validate();
@@ -52,7 +52,7 @@ namespace BatchGuy.Unit.Tests.Services.AviSynth
             IAviSynthValidationService validationService;
 
             //given an empty batch directory
-            avsBatchSettings = new AviSynthBatchSettings() { BatchDirectoryPath = "C:\\temp", NamingConvention = string.Empty, NumberOfFiles = 1 };
+            avsBatchSettings = new AviSynthBatchSettings() { AviSynthFilesOutputDirectoryPath = "C:\\temp", NamingConvention = string.Empty, NumberOfFiles = 1 };
             //when I validate
             validationService = new AviSynthValidationService(avsBatchSettings);
             ErrorCollection errors = validationService.Validate();

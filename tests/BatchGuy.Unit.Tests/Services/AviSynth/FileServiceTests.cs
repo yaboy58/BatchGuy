@@ -22,7 +22,7 @@ namespace BatchGuy.Unit.Tests.Services.AviSynth
             AviSynthTemplateScript avsTemplateScript;
 
             //given correct settings
-            avsBatchSettings = new AviSynthBatchSettings() { BatchDirectoryPath = "C:\\Temp", NamingConvention = "encode", NumberOfFiles = 9 };
+            avsBatchSettings = new AviSynthBatchSettings() { AviSynthFilesOutputDirectoryPath = "C:\\Temp", NamingConvention = "encode", NumberOfFiles = 9 };
             avsTemplateScript = new AviSynthTemplateScript() {  Script = string.Empty};
             //when I create the avs file batch
             fileService = new AviSynthFileService(avsBatchSettings, avsTemplateScript);

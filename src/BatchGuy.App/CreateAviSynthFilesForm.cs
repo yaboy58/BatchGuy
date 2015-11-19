@@ -51,7 +51,7 @@ namespace BatchGuy.App
         private void SetDirectoryUserControlValues()
         {
             setDirectoryUserControl.ComboBoxCaptionText = "(.mkv) Files Directory";
-            setDirectoryUserControl.LabelOutputDirectoryCaptionText = @"Example: FFVideoSource(""{0}\e01\video01.mkv"")";
+            setDirectoryUserControl.LabelDirectoryCaptionText = @"Example: FFVideoSource(""{0}\e01\video01.mkv"")";
         }
 
         private void SetToolTips()
@@ -86,10 +86,12 @@ namespace BatchGuy.App
         {
             return new AviSynthBatchSettings()
             {
-                 BatchDirectoryPath = txtOutputDirectory.Text,
-                  NamingConvention = "encode", //hardcoded for now
+                 AviSynthFilesOutputDirectoryPath = txtOutputDirectory.Text,
+                  NamingConvention = "video", //hardcoded for now
                    NumberOfFiles = Convert.ToInt32(txtNumberOfFiles.Text),
-                    VideoFilter = "FFVideoSource" //hardcoded for now
+                    VideoFilter = "FFVideoSource", //hardcoded for now
+                      VideoToEncodeDirectory = setDirectoryUserControl.CLIDirectory,
+                       VideoToEncodeDirectoryType = setDirectoryUserControl.OutputDirectoryType
             };
         }
 
@@ -103,6 +105,11 @@ namespace BatchGuy.App
             if (txtOutputDirectory.Text == string.Empty)
             {
                 MessageBox.Show("Please enter a file directory", "Directory Error.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            if (string.IsNullOrEmpty(setDirectoryUserControl.CLIDirectory))
+            {
+                MessageBox.Show("Please enter the directory where the videos to encode are located", "Invalid AviSynth Script.", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
             if (txtNumberOfFiles.Text == string.Empty || !txtNumberOfFiles.Text.IsNumeric()  || txtNumberOfFiles.Text.StringToInt() <= 0)
