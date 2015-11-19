@@ -13,7 +13,7 @@ namespace BatchGuy.App.Settings.Services
     public class ApplicationSettingsService : IApplicationSettingsService
     {
         private ErrorCollection _errors;
-        private IJsonSerializationService<ApplicationSettings> _jsonySerializationService;
+        private IBinarySerializationService<ApplicationSettings> _binarySerializationService;
         private ApplicationSettings _applicationSettings;
         private string _applicationDirectory;
 
@@ -24,10 +24,10 @@ namespace BatchGuy.App.Settings.Services
         }
 
 
-        public ApplicationSettingsService(IJsonSerializationService<ApplicationSettings> jsonSerializationService)
+        public ApplicationSettingsService(IBinarySerializationService<ApplicationSettings> binarySerializationService)
         {
             _errors = new ErrorCollection();
-            _jsonySerializationService = jsonSerializationService;
+            _binarySerializationService = binarySerializationService;
             Uri uri = new Uri(System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().CodeBase));
             _applicationDirectory =  uri.LocalPath;
             _applicationSettings = new ApplicationSettings() { ApplicationDirectory = _applicationDirectory };
@@ -47,7 +47,7 @@ namespace BatchGuy.App.Settings.Services
             try
             {
                 _errors.Clear();
-                _jsonySerializationService.WriteToJsonFile(applicationSettings.SettingsFile, applicationSettings, false);
+                _binarySerializationService.WriteToBinaryFile(applicationSettings.SettingsFile, applicationSettings, false);
                 _applicationSettings = applicationSettings;
             }
             catch (Exception ex)
@@ -61,7 +61,7 @@ namespace BatchGuy.App.Settings.Services
             try
             {
                 _errors.Clear();
-                _applicationSettings = _jsonySerializationService.ReadFromJsonFile<ApplicationSettings>(_applicationSettings.SettingsFile);
+                _applicationSettings = _binarySerializationService.ReadFromBinaryFile<ApplicationSettings>(_applicationSettings.SettingsFile);
             }
             catch (Exception ex)
             {

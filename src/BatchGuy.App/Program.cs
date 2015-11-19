@@ -11,7 +11,7 @@ namespace BatchGuy
 {
     static class Program
     {
-        private static IJsonSerializationService<ApplicationSettings> _jsonSerializationService;
+        private static IBinarySerializationService<ApplicationSettings> _binarySerializationService;
         private static IApplicationSettingsService _applicationSettingsService;
 
         public static IApplicationSettingsService ApplicationSettingsService { get { return Program._applicationSettingsService; } }
@@ -31,8 +31,8 @@ namespace BatchGuy
 
         public static void LoadApplicationSettings()
         {
-            Program._jsonSerializationService = new JsonSerializationService<ApplicationSettings>();
-            Program._applicationSettingsService = new ApplicationSettingsService(_jsonSerializationService);
+            Program._binarySerializationService = new BinarySerializationService<ApplicationSettings>();
+            Program._applicationSettingsService = new ApplicationSettingsService(_binarySerializationService);
         }
     }
 }

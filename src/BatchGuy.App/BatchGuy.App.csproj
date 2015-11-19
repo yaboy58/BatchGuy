@@ -118,11 +118,11 @@
       <DependentUpon>SettingsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Settings\Interface\IApplicationSettingsService.cs" />
-    <Compile Include="Settings\Interface\IJsonSerializationService.cs" />
+    <Compile Include="Settings\Interface\IBinarySerializationService.cs" />
     <Compile Include="Settings\Models\ApplicationSettings.cs" />
     <Compile Include="Settings\Models\Setting.cs" />
     <Compile Include="Settings\Services\ApplicationSettingsService.cs" />
-    <Compile Include="Settings\Services\JsonSerializationServicecs.cs" />
+    <Compile Include="Settings\Services\BinarySerializationService.cs" />
     <Compile Include="Shared\Interfaces\IBindingListSortService.cs" />
     <Compile Include="Shared\Interfaces\ISortService.cs" />
     <Compile Include="Shared\Models\Error.cs" />
