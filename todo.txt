@@ -34,11 +34,14 @@
 
 
 --v1.3 todo
-*possibly convert to json serializer - done
-http://blog.danskingdom.com/saving-and-loading-a-c-objects-data-to-an-xml-json-or-binary-file/
 *change output from encode0* to video0* -done
-*re-added binary serializer as I had file write issues with json serializer -done
+*re-added binary serializer as I would not embedd json.net dll in exe -done
+http://blog.danskingdom.com/saving-and-loading-a-c-objects-data-to-an-xml-json-or-binary-file/
+*embedd 3rd part dlls -done
+*sorting grid columns throws an exception -done
 
+*truehd is hardcoded to ac3, switch it to .thd
+*allow the ability to name output .bat files
 *put drop down on all major screens.  eac3to Output in single directory, eac3to Output in episodes directory (e##)
 *introduce drag n drop
 *similar to avs screen, add tool tips to other screens

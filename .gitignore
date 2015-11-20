@@ -268,3 +268,7 @@
 /tests/BatchGuy.Unit.Tests/bin/Debug/Newtonsoft.Json.xml
 /src/BatchGuy.App/obj/Debug/BatchGuy.App.UserControls.SetOutputDirectoryUserControl.resources
 /src/BatchGuy.App/obj/Debug/BatchGuy.App.UserControls.SetDirectoryUserControl.resources
+/publish/*.exe
+/packages/ilmerge.2.14.1208/ilmerge.2.14.1208.nupkg
+/packages/ilmerge.2.14.1208/tools/ILMerge.doc
+/packages/ilmerge.2.14.1208/tools/ILMerge.exe
