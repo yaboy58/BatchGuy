@@ -63,7 +63,7 @@ namespace BatchGuy.App.Eac3to.Services
             if (_bluRayTitleInfo.Chapter.IsSelected)
             {
                 sb.Append(string.Format("{0} ", _bluRayTitleInfo.Chapter.Id));
-                sb.Append(string.Format("\"{0}\\chapters.txt\"", _filesOutputPath));                
+                sb.Append(string.Format("\"{0}\\chapters{1}.txt\"", _filesOutputPath, _paddedEpisode));                
             }
             return sb.ToString();
         }

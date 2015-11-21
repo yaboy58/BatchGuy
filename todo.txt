@@ -51,6 +51,7 @@
 
 
 --upcoming
+*remux screen, drag/drop or multi-select the files for remux 
 *allow the ability to name output .bat files
 *introduce drag n drop
 *create a screen that will get relevant x264 .log lines to make getting them simple
