@@ -46,7 +46,7 @@ namespace BatchGuy.App
             setDirectoryUserControl.LabelDirectoryCaptionText = @"eac3to Output Directory (example: e01, e02): {0}\e##";
             this.SetToolTips();
 #if DEBUG
-            txtBluRayPath.Text = @"C:\temp\My Encodes\Blu-ray\DISC\D1";   
+            txtBluRayPath.Text = @"\\KENSHIRO\My Old Encodes\Blu-ray\Road Hard 2015 720p BluRay DD5.1 x264-EbP\DISC";   
             txtBatFilePath.Text = @"C:\temp\My Encodes\Blu-ray";
 #endif
         }

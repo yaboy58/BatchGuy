@@ -45,17 +45,17 @@ http://blog.danskingdom.com/saving-and-loading-a-c-objects-data-to-an-xml-json-o
 *Can now specify eac3to output either in a single directory or in their own episode folder ie e01, e02 etc etc
 *Can now specify avisynth ffvideosource video encode location, either in a single directory or in their own episode folder ie e01, e02 etc etc
 *Can now specify x264 encode and (.log) file output directory, either  either in a single directory or in their own episode folder ie e01, e02 etc etc
-*when no streams are selected on blu-ray title info screen, episode number is not required
+*when no streams are selected on the blu-ray title info screen, episode number is not required
+*Fixed bug where TrueHD audio throws exception
 
-
-*remove all buttons for exes that are set in settings
 *truehd is hardcoded to ac3, switch it to .thd
+*remove all buttons for exes that are set in settings
 
+
+--upcoming
 *allow the ability to name output .bat files
 *introduce drag n drop
-
 *create a screen that will get relevant x264 .log lines to make getting them simple
-
 *ability to save/load eac3to batch guy data
 *remux focus ie allow folder names other than #
 *allow the ability to name output folders/track names
