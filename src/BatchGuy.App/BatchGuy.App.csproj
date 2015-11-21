@@ -155,7 +155,11 @@
       <DependentUpon>SetDirectoryUserControl.cs</DependentUpon>
     </Compile>
     <Compile Include="X264Log\Interfaces\IX264LogLineItemIdentifierService.cs" />
+    <Compile Include="X264Log\Interfaces\IX264LogParserService.cs" />
+    <Compile Include="X264Log\Models\X264LogFile.cs" />
+    <Compile Include="X264Log\Models\X264LogFileSettings.cs" />
     <Compile Include="X264Log\Services\X264LogLineItemIdentifierService.cs" />
+    <Compile Include="X264Log\Services\X264LogParserService.cs" />
     <Compile Include="X264\Models\X264File.cs" />
     <Compile Include="X264\Models\X264FileSettings.cs" />
     <Compile Include="X264\Services\X264EncodeService.cs" />

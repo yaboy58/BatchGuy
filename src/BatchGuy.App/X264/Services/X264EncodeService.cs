@@ -58,11 +58,11 @@ namespace BatchGuy.App.X264.Services
                 int episodeNumber = 1;
                 using (StreamWriter sw = new StreamWriter(string.Format("{0}\\{1}", _x264FileSettings.X264BatchFileOutputPath, _batFile), false))
                 {
-                    foreach (X264File x264File in _x264Files.OrderBy(f => f.AVSFileNameOnly))
+                    foreach (X264File x264File in _x264Files.OrderBy(f => f.AviSynthFileNameOnly))
                     {
                         StringBuilder sb = new StringBuilder();
                         sb.Append(string.Format("\"{0}\"", _x264FileSettings.vfw4x264Exe));
-                        sb.Append(string.Format(" \"{0}\"", x264File.AVSFilePath));
+                        sb.Append(string.Format(" \"{0}\"", x264File.AviSynthFilePath));
                         sb.Append(string.Format(" {0}", _x264FileSettings.X264Template));
                         if (_x264FileSettings.X264EncodeAndLogFileOutputDirectoryPathType == EnumDirectoryType.DirectoryPerEpisode)
                         {
@@ -95,12 +95,12 @@ namespace BatchGuy.App.X264.Services
                 int episodeNumber = 1;
                 using (StreamWriter sw = new StreamWriter(string.Format("{0}\\{1}", _x264FileSettings.AviSynthFilesPath, _batFile), false))
                 {
-                    foreach (X264File x264File in _x264Files.OrderBy(f => f.AVSFileNameOnly))
+                    foreach (X264File x264File in _x264Files.OrderBy(f => f.AviSynthFileNameOnly))
                     {
                         //1st pass
                         StringBuilder sb1stPass = new StringBuilder();
                         sb1stPass.Append(string.Format("\"{0}\"", _x264FileSettings.vfw4x264Exe));
-                        sb1stPass.Append(string.Format(" \"{0}\"", x264File.AVSFilePath));
+                        sb1stPass.Append(string.Format(" \"{0}\"", x264File.AviSynthFilePath));
                         sb1stPass.Append(" --pass 1");
                         sb1stPass.Append(string.Format(" {0}", _x264FileSettings.X264Template));
                         if (_x264FileSettings.X264EncodeAndLogFileOutputDirectoryPathType == EnumDirectoryType.DirectoryPerEpisode)
@@ -119,7 +119,7 @@ namespace BatchGuy.App.X264.Services
                         //2nd pass
                         StringBuilder sb2ndPass = new StringBuilder();
                         sb2ndPass.Append(string.Format("\"{0}\"", _x264FileSettings.vfw4x264Exe));
-                        sb2ndPass.Append(string.Format(" \"{0}\"", x264File.AVSFilePath));
+                        sb2ndPass.Append(string.Format(" \"{0}\"", x264File.AviSynthFilePath));
                         sb1stPass.Append(" --pass 2");
                         sb2ndPass.Append(string.Format(" {0}", _x264FileSettings.X264Template));
                         if (_x264FileSettings.X264EncodeAndLogFileOutputDirectoryPathType == EnumDirectoryType.DirectoryPerEpisode)

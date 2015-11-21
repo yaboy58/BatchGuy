@@ -29,8 +29,8 @@ namespace BatchGuy.App.X264.Services
               {
                   X264File x264File = new X264File()
                   {
-                      AVSFilePath = avsFile,
-                      AVSFileNameOnly = fileInfo.Name
+                      AviSynthFilePath = avsFile,
+                      AviSynthFileNameOnly = fileInfo.Name
                   };
                   _files.Add(x264File);                  
               }
