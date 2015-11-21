@@ -37,7 +37,7 @@
 *Fixed bug in sort where the asc/desc logic was wrong when you sorted on a new column.
 
 *create a screen that will get relevant x264 .log lines to make getting them simple
-*introduce drag n drop
+*Add drag/drop to AviSynth scree
 
 --upcoming
 *remux screen, drag/drop or multi-select the files for remux 

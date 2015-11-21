@@ -54,6 +54,8 @@ namespace BatchGuy.App.X264Log.Services
                 {
                     if (_x264LogFileSerttings.BBCodeBoldLogFileName)
                         sb.AppendLine(string.Format("[b]{0}[/b]", logFile.FileNameOnly));
+                    else
+                        sb.AppendLine(string.Format("{0}", logFile.FileNameOnly));
 
                     sb.AppendLine();
 

@@ -27,6 +27,7 @@ namespace BatchGuy.App
         public X264LogFileForm()
         {
             InitializeComponent();
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
         }
 
         private void dgvLogFiles_DragEnter(object sender, DragEventArgs e)
@@ -188,7 +189,10 @@ namespace BatchGuy.App
 
             if (parserService.Errors.Count() == 0)
             {
-                logs = parserService.Logs;    
+                logs = parserService.Logs;
+                X264LogFileDisplayForm form = new X264LogFileDisplayForm();
+                form.SetLogs(logs);
+                form.ShowDialog();
             }
             else
             {
