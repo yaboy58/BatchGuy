@@ -23,6 +23,7 @@ using BatchGuy.App.Shared.Interfaces;
 using BatchGuy.App.Shared.Services;
 using BatchGuy.App.ThirdParty.FolderSelectDialog;
 using BatchGuy.App.Settings.Models;
+using System.IO;
 
 namespace BatchGuy.App
 {
@@ -47,7 +48,6 @@ namespace BatchGuy.App
             this.SetToolTips();
 #if DEBUG
             txtBluRayPath.Text = @"C:\temp\My Encodes\Blu-ray\DISC\D1";   
-            txtBatFilePath.Text = @"C:\temp\My Encodes\Blu-ray";
 #endif
         }
 
@@ -300,12 +300,18 @@ namespace BatchGuy.App
 
         private void HandleBtnOpenBatchFilePathDialogClick()
         {
-            var fsd = new FolderSelectDialog();
-            fsd.Title = "Batch file output directory";
-            fsd.InitialDirectory = @"c:\";
-            if (fsd.ShowDialog(IntPtr.Zero))
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Filter = "Batch File|*.bat";
+            sfd.Title = "Save eac3to Batch File";
+#if DEBUG
+            sfd.InitialDirectory = @"C:\temp\My Encodes\Blu-ray";
+#endif
+            sfd.ShowDialog();
+
+            if (!string.IsNullOrEmpty(sfd.FileName))
             {
-                txtBatFilePath.Text = fsd.FileName;
+                File.Create(sfd.FileName);
+                txtBatFilePath.Text = sfd.FileName;
             }
         }
 

@@ -36,7 +36,7 @@ namespace BatchGuy.App.Eac3to.Services
             if (_config.OutputDirectoryType == EnumDirectoryType.DirectoryPerEpisode)
             {
                 string folderName = string.Format("e{0}", _paddedEpisode);
-                _filesOutputPath = string.Format("{0}\\{1}", _config.BatchFilePath, folderName);                
+                _filesOutputPath = string.Format("{0}\\{1}", _config.EAC3ToOutputPath, folderName);                
             }
             else
             {

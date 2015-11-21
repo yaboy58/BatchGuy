@@ -41,20 +41,22 @@
 *Removed X264FileService, it is obsolete with drag and drop added to Create x264 Batch File screen
 *Removed uneeded properties from X264FileSettings class after drag and drop feature added to Create x264 Batch File screen
 *Removed obsolete unit tests for x264 batch file after drag and drop feature added to Create x264 Batch File screen
-
-*If settings not set, go to settings screen
+*Users redirected to settings form if settings not set of certain screens
 *Made main form bigger and put a panel at the bottom of screen that displays the version
+*Users can now name the eac3to batch file
+*Fixed bug where when user chooses per episode on the eac3to screen, it goes to the wrong output directory
+
 *Update readme file on github
 
 --upcoming
 *remux screen, drag/drop or multi-select the files for remux 
-*allow the ability to name output .bat files
+
 *ability to save/load eac3to batch guy data
 *remux focus ie allow folder names other than #
 *allow the ability to name output folders/track names
 *mkvmerge integration
 *look into why the busy mouse indicator doesn't seem to work
 *put the bluray title on the title info page
-*delete existing .bat file(s) before writing new scripts (probably just check to see if it is on file#1)
+
 
 

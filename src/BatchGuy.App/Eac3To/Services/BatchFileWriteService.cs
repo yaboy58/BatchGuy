@@ -36,13 +36,6 @@ namespace BatchGuy.App.Eac3to.Services
             {
                 try
                 {
-                    /*TODO: Do you really want to delete files without the user's permission?
-                    if (File.Exists(_bluRayDiscInfoList[0].EAC3ToConfiguration.BatchFilePath))
-                    {
-                        File.Delete(_bluRayDiscInfoList[0].EAC3ToConfiguration.BatchFilePath);
-                        File.Create(_bluRayDiscInfoList[0].EAC3ToConfiguration.BatchFilePath);
-                    }
-                    */
                     foreach (BluRayDiscInfo disc in _bluRayDiscInfoList.Where(d => d.IsSelected))
                     {
                         foreach (BluRaySummaryInfo summary in disc.BluRaySummaryInfoList.Where(s => s.IsSelected).OrderBy(s => s.EpisodeNumber))
@@ -55,7 +48,7 @@ namespace BatchGuy.App.Eac3to.Services
                             string audioStreamPart = eacOutputService.GetAudioStreamPart();
                             string subtitleStreamPart = eacOutputService.GetSubtitleStreamPart();
 
-                            using (StreamWriter sw = new StreamWriter(string.Format("{0}\\batchguy.extract.bluray.bat",disc.EAC3ToConfiguration.BatchFilePath), true))
+                            using (StreamWriter sw = new StreamWriter(disc.EAC3ToConfiguration.BatchFilePath, true))
                             {
                                 sw.WriteLine(string.Format("{0} {1} {2} {3} {4} {5} -progressnumbers", eac3ToPathPart, bluRayStreamPart, chapterStreamPart, videoStreamPart, audioStreamPart,
                                     subtitleStreamPart));
