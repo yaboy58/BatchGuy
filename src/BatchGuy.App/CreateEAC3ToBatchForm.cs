@@ -45,7 +45,7 @@ namespace BatchGuy.App
             setDirectoryUserControl.ComboBoxCaptionText = "eac3to Output Directory";
             setDirectoryUserControl.LabelDirectoryCaptionText = @"eac3to Output Directory (example: e01, e02): {0}\e##";
 #if DEBUG
-            txtBluRayPath.Text = @"C:\temp\My Torrent Downloads\Better Call Saul S01 1080p EUR Blu-ray AVC DTS-HD MA 5.1\Disc_1";   
+            txtBluRayPath.Text = @"C:\temp\My Encodes\Blu-ray\DISC\D1";   
             txtBatFilePath.Text = @"C:\temp\My Encodes\Blu-ray";
 #endif
         }

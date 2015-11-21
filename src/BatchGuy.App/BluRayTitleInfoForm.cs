@@ -298,10 +298,14 @@ namespace BatchGuy.App
 
         private bool IsScreenValid()
         {
-            if (string.IsNullOrEmpty(_bluRaySummaryInfo.BluRayTitleInfo.EpisodeNumber) || _bluRaySummaryInfo.BluRayTitleInfo.EpisodeNumber.IsNumeric() == false)
+            if (string.IsNullOrEmpty(_bluRaySummaryInfo.BluRayTitleInfo.EpisodeNumber))
             {
-                MessageBox.Show("Please enter an episode number!", "Invalid episode number", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
+                if (_bluRaySummaryInfo.BluRayTitleInfo.AudioList.Where(a => a.IsSelected).Count() > 0 || _bluRaySummaryInfo.BluRayTitleInfo.Subtitles.Where(s => s.IsSelected).Count() > 0 ||
+                    _bluRaySummaryInfo.BluRayTitleInfo.Chapter.IsSelected || _bluRaySummaryInfo.BluRayTitleInfo.Video.IsSelected)
+                {
+                    MessageBox.Show("Please enter an episode number!", "Episode number required", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
             }
             return true;
         }

@@ -34,20 +34,21 @@
 
 
 --v1.3 todo
-*Change internal output from encode0* to video0* -done
-*Re-added binary serializer as I would not embedd json.net dll in exe -done
+*Changed internal output from encode0* to video0*
+*Re-added binary serializer as I would not embedd json.net dll in exe
 http://blog.danskingdom.com/saving-and-loading-a-c-objects-data-to-an-xml-json-or-binary-file/
-*Embedd 3rd party dlls using ilmerge -done
-*Fixed bug where sorting grid columns throws an exception -done
-*Tool tips added to certain control on avs screen -done
-*Tool tips added to the x264 batch file screen -done
+*Embed 3rd party dlls using ilmerge
+*Fixed bug where sorting grid columns throws an exception
+*Tool tips added to certain control on avs screen
+*Tool tips added to the x264 batch file screen
 *Can now specify eac3to output either in a single directory or in their own episode folder ie e01, e02 etc etc
 *Can now specify avisynth ffvideosource video encode location, either in a single directory or in their own episode folder ie e01, e02 etc etc
 *Can now specify x264 encode and (.log) file output directory, either  either in a single directory or in their own episode folder ie e01, e02 etc etc
+*when no streams are selected on blu-ray title info screen, episode number is not required
 
 
 *remove all buttons for exes that are set in settings
-*when nothing selected on title info screen, episode is not required
+
 *truehd is hardcoded to ac3, switch it to .thd
 *allow the ability to name output .bat files
 
