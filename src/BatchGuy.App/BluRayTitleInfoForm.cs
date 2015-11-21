@@ -249,7 +249,7 @@ namespace BatchGuy.App
                     break;
                 case "TrueHD":
                     _currentBluRayTitleAudio.AudioType = EnumAudioType.TrueHD;
-                    _currentBluRayTitleAudio.Arguments = "-640";
+                    _currentBluRayTitleAudio.Arguments = "";
                     break;
                 case "DTSMA":
                     _currentBluRayTitleAudio.AudioType = EnumAudioType.DTSMA;

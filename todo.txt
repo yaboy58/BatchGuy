@@ -47,6 +47,8 @@ http://blog.danskingdom.com/saving-and-loading-a-c-objects-data-to-an-xml-json-o
 *Can now specify x264 encode and (.log) file output directory, either  either in a single directory or in their own episode folder ie e01, e02 etc etc
 *when no streams are selected on the blu-ray title info screen, episode number is not required
 *Fixed bug where TrueHD audio throws exception
+*TrueHD no longer hardcode to (.ac3) and defaulted to -640
+*TrueHD audio extracts to (.thd)
 
 *truehd is hardcoded to ac3, switch it to .thd
 *remove all buttons for exes that are set in settings

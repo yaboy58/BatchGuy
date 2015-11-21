@@ -129,7 +129,7 @@ namespace BatchGuy.App.Eac3to.Services
                     audioExtension = "flac";
                     break;
                 case EnumAudioType.TrueHD:
-                    audioExtension = "ac3";
+                    audioExtension = "thd";
                     break;
                 case EnumAudioType.MPA:
                     audioExtension = "mpa";
