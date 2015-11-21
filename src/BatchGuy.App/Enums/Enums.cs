@@ -54,7 +54,7 @@ namespace BatchGuy.App.Enums
         PFrame = 2,
         BFrame = 3,
         ConsecutiveBFrames = 4,
-        EncodeFrames = 5,
+        EncodedFrames = 5,
         None = 6
     }
 }

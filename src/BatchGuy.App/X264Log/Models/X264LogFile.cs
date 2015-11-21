@@ -10,10 +10,7 @@ namespace BatchGuy.App.X264Log.Models
     {
         public string FileNameOnly { get; set; }
         public string  FilePath { get; set; }
-        public string  IFrameText { get; set; }
-        public string PFrameText { get; set; }
-        public string BFrameText { get; set; }
-        public string ConsecutiveBFramesText { get; set; }
-        public string EncodedFramesText { get; set; }
+        public string Log { get; set; }
+        public string PathAndFileName { get { return string.Format(@"{0}\\{1}", this.FilePath, this.FileNameOnly); } }
     }
 }

@@ -71,7 +71,7 @@ namespace BatchGuy.Unit.Tests.Services.X264Log
             IX264LogLineItemIdentifierService service = new X264LogLineItemIdentifierService();
             EnumX264LogLineItemType lineItemType = service.GetLineItemType(lineItem);
             //then line item type is encode frames
-            lineItemType.ShouldBeEqualTo(EnumX264LogLineItemType.EncodeFrames);
+            lineItemType.ShouldBeEqualTo(EnumX264LogLineItemType.EncodedFrames);
         }
     }
 }

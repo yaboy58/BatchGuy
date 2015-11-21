@@ -21,7 +21,7 @@ namespace BatchGuy.App.X264Log.Services
             if (this.IsConsecutiveBFrames(lineItem))
                 return EnumX264LogLineItemType.ConsecutiveBFrames;
             if (this.IsEncodeFrames(lineItem))
-                return EnumX264LogLineItemType.EncodeFrames;
+                return EnumX264LogLineItemType.EncodedFrames;
 
             return EnumX264LogLineItemType.None;
         }
