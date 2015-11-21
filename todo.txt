@@ -35,9 +35,12 @@
 
 --v1.4 todo
 *Fixed bug in sort where the asc/desc logic was wrong when you sorted on a new column.
-
-*create a screen that will get relevant x264 .log lines to make getting them simple
-*Add drag/drop to AviSynth scree
+*x264 (.log) file screen implemented.  Makes the retrieval of I,P,B,Consecutive-B Frame and Encode Frames count portion of logs easier
+*Fixed bug where x264 2pass batch file goes to the wrong output directory
+*Added dragand drop feature to Create x264 Batch File screen
+*Removed X264FileService, it is obsolete with drag and drop added to Create x264 Batch File screen
+*Removed uneeded properties from X264FileSettings class after drag and drop feature added to Create x264 Batch File screen
+*Removed obsolete unit tests for x264 batch file after drag and drop feature added to Create x264 Batch File screen
 
 --upcoming
 *remux screen, drag/drop or multi-select the files for remux 

@@ -34,8 +34,6 @@ namespace BatchGuy.App.X264.Services
                 return false;
             if (!this.AllAviSynthFilesHaveEncodeName())
                 return false;
-            if (!this.IsDirectoryValidDirectory())
-                return false;
             if (!this.X264EncodeAndLogFileOutputDirectoryPathNotNull())
                 return false;
             return true;
@@ -56,16 +54,6 @@ namespace BatchGuy.App.X264.Services
             if (_x264Files.Where(f => f.EncodeName == null || f.EncodeName == string.Empty).Count() > 0)
             {
                 this._errors.Add(new Error() { Description = "All AviSynth files must have a encode name" });
-                return false;
-            }
-            return true;
-        }
-
-        private bool IsDirectoryValidDirectory()
-        {
-            if (!Directory.Exists(_x264FileSettings.AviSynthFilesPath))
-            {
-                this._errors.Add(new Error() { Description = "The Directory where the AviSynth files are located does not exist" });
                 return false;
             }
             return true;

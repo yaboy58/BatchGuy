@@ -23,7 +23,7 @@ namespace BatchGuy.Unit.Tests.Services.Shared
             List<BluRaySummaryInfo> unsortedList = new List<BluRaySummaryInfo>() { new BluRaySummaryInfo() { Id = "1)",  BluRayTitleInfo = new BluRayTitleInfo() { EpisodeNumber = "1"} }, 
                 new BluRaySummaryInfo() { Id = "8)", BluRayTitleInfo = new BluRayTitleInfo() { EpisodeNumber = "8"} }, new BluRaySummaryInfo() { Id = "4)", BluRayTitleInfo = new BluRayTitleInfo() { EpisodeNumber = "4"} } };
             //when i attempt to sort by a column in desc order
-            SortConfiguration config = new SortConfiguration() { LastSortByColumnName = string.Empty, SortByColumnName = "EpisodeNumber", SortDirection = EnumSortDirection.Desc };
+            SortConfiguration config = new SortConfiguration() { LastSortByColumnName = "EpisodeNumber", SortByColumnName = "EpisodeNumber", SortDirection = EnumSortDirection.Asc };
             ISortService<BluRaySummaryInfo> service = new SortService<BluRaySummaryInfo>(config, unsortedList);
             //list should be ordered by column in desc order
             List<BluRaySummaryInfo> sortedList = service.Sort();

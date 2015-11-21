@@ -93,7 +93,7 @@ namespace BatchGuy.App.X264.Services
             try
             {
                 int episodeNumber = 1;
-                using (StreamWriter sw = new StreamWriter(string.Format("{0}\\{1}", _x264FileSettings.AviSynthFilesPath, _batFile), false))
+                using (StreamWriter sw = new StreamWriter(string.Format("{0}\\{1}", _x264FileSettings.X264BatchFileOutputPath, _batFile), false))
                 {
                     foreach (X264File x264File in _x264Files.OrderBy(f => f.AviSynthFileNameOnly))
                     {

@@ -64,7 +64,6 @@
     <Compile Include="Services\Parser\CommandLineProcessServiceTests.cs" />
     <Compile Include="Services\Shared\SortServiceTests.cs" />
     <Compile Include="Services\X264Log\X264LogLineItemIdentifierServiceTests.cs" />
-    <Compile Include="Services\X264\ValidationServiceTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\BatchGuy.App\BatchGuy.App.csproj">
@@ -80,6 +79,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Services\X264\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />

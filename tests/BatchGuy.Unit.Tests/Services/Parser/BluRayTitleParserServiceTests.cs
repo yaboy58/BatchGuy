@@ -130,21 +130,6 @@ namespace BatchGuy.Unit.Tests.Services.Parser
         }
 
         [Test]
-        public void bluraytitleparserservice_can_set_arguments_for_audio_type_truehd_test()
-        {
-            List<ProcessOutputLineItem> lineItems = new List<ProcessOutputLineItem> 
-            {
-                new ProcessOutputLineItem()  { Id = 1, Text = "3: English / Dolby TrueHD Audio / 5.1 / 48 kHz / 3136 kbps / 24-bit (AC3 Embedded: 5.1 / 48 kHz / 448 kbps)" }
-            };
-            ILineItemIdentifierService lineItemService = new BluRayTitleLineItemIdentifierService();
-            IBluRayTitleParserService parserService = new BluRayTitleParserService(lineItemService, lineItems);
-            BluRayTitleInfo info = parserService.GetTitleInfo();
-
-            info.AudioList[0].Arguments.ShouldNotBeNull();
-            info.AudioList[0].Arguments.ShouldBeEqualTo("-640");
-        }
-
-        [Test]
         public void bluraytitleparserservice_can_set_audio_type_flac_test()
         {
             List<ProcessOutputLineItem> lineItems = new List<ProcessOutputLineItem> 

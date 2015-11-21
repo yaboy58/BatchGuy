@@ -175,9 +175,7 @@
     <Compile Include="X264\Models\X264File.cs" />
     <Compile Include="X264\Models\X264FileSettings.cs" />
     <Compile Include="X264\Services\X264EncodeService.cs" />
-    <Compile Include="X264\Services\X264FileService.cs" />
     <Compile Include="X264\Interfaces\IX264EncodeService.cs" />
-    <Compile Include="X264\Interfaces\IX264FileService.cs" />
     <Compile Include="X264\Interfaces\IX264ValidationService.cs" />
     <Compile Include="X264\Services\X264ValidationService.cs" />
     <EmbeddedResource Include="AboutForm.resx">
