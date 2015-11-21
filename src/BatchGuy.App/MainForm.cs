@@ -48,5 +48,11 @@ namespace BatchGuy
             SettingsForm form = new SettingsForm();
             form.ShowDialog();
         }
+
+        private void viewX264LogsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            X264LogFileForm form = new X264LogFileForm();
+            form.ShowDialog();
+        }
     }
 }

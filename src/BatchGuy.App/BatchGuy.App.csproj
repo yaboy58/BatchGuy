@@ -154,6 +154,12 @@
     <Compile Include="UserControls\SetDirectoryUserControl.Designer.cs">
       <DependentUpon>SetDirectoryUserControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="X264LogFileForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="X264LogFileForm.Designer.cs">
+      <DependentUpon>X264LogFileForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="X264Log\Interfaces\IX264LogLineItemIdentifierService.cs" />
     <Compile Include="X264Log\Interfaces\IX264LogParserService.cs" />
     <Compile Include="X264Log\Models\X264LogFile.cs" />
@@ -202,6 +208,9 @@
     <EmbeddedResource Include="UserControls\SetDirectoryUserControl.resx">
       <DependentUpon>SetDirectoryUserControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="X264LogFileForm.resx">
+      <DependentUpon>X264LogFileForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\BatchGuy.App.Parser.Models.BluRayDiscInfo.datasource" />
     <None Include="Properties\DataSources\BatchGuy.App.Parser.Models.BluRaySummaryInfo.datasource" />
@@ -211,6 +220,7 @@
     <None Include="Properties\DataSources\BatchGuy.App.Parser.Models.BluRayTitleSubtitle.datasource" />
     <None Include="Properties\DataSources\BatchGuy.App.Parser.Models.BluRayTitleVideo.datasource" />
     <None Include="Properties\DataSources\BatchGuy.App.X264.Models.X264File.datasource" />
+    <None Include="Properties\DataSources\BatchGuy.App.X264Log.Models.X264LogFile.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
