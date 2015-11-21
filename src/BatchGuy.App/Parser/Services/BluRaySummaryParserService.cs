@@ -41,10 +41,10 @@ namespace BatchGuy.App.Parser.Services
             {
                 foreach (ProcessOutputLineItem item in _processOutputLineItems)
                 {
-                    EnumLineItemType type = _lineItemIdentifierService.GetLineItemType(item);
+                    EnumBluRayLineItemType type = _lineItemIdentifierService.GetLineItemType(item);
                     switch (type)
                     {
-                        case EnumLineItemType.BluRaySummaryHeaderLine:
+                        case EnumBluRayLineItemType.BluRaySummaryHeaderLine:
                             if (this.IsIdHeader(item))
                             {
                                 sbHeader = new StringBuilder();
@@ -58,15 +58,15 @@ namespace BatchGuy.App.Parser.Services
                                 sbHeader.AppendLine(string.Format(" {0}", item.Text));
                             }
                             break;
-                        case EnumLineItemType.BluRaySummaryDetailLine:
+                        case EnumBluRayLineItemType.BluRaySummaryDetailLine:
                             sbDetail.AppendLine(item.Text);
                             break;
-                        case EnumLineItemType.BluRaySummaryEmptyLine:
+                        case EnumBluRayLineItemType.BluRaySummaryEmptyLine:
                             summaryInfo.HeaderText = sbHeader.ToString();
                             summaryInfo.DetailText = sbDetail.ToString();
                             _summaryList.Add(summaryInfo);
                             break;
-                        case EnumLineItemType.BluRayError:
+                        case EnumBluRayLineItemType.BluRayError:
                             throw new Exception(item.Text);
                         default:
                             break;

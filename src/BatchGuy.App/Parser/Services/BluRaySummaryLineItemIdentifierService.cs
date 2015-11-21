@@ -11,25 +11,25 @@ namespace BatchGuy.App.Parser.Services
 {
     public class BluRaySummaryLineItemIdentifierService : ILineItemIdentifierService
     {
-        public EnumLineItemType GetLineItemType(ProcessOutputLineItem processOutputLineItem)
+        public EnumBluRayLineItemType GetLineItemType(ProcessOutputLineItem processOutputLineItem)
         {
-            EnumLineItemType type;
+            EnumBluRayLineItemType type;
 
             if (this.IsHeaderLine(processOutputLineItem))
             {
-                type = EnumLineItemType.BluRaySummaryHeaderLine;
+                type = EnumBluRayLineItemType.BluRaySummaryHeaderLine;
             }
             else if (this.IsDetailLine(processOutputLineItem))
             {
-                type = EnumLineItemType.BluRaySummaryDetailLine;    
+                type = EnumBluRayLineItemType.BluRaySummaryDetailLine;    
             }
             else if (this.IsEmptyLine(processOutputLineItem))
             {
-                type = EnumLineItemType.BluRaySummaryEmptyLine;
+                type = EnumBluRayLineItemType.BluRaySummaryEmptyLine;
             }
             else
             {
-                type = EnumLineItemType.BluRayError;
+                type = EnumBluRayLineItemType.BluRayError;
             }
 
             return type;

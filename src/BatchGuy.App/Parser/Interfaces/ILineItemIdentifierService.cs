@@ -10,6 +10,6 @@ namespace BatchGuy.App.Parser.Interfaces
 {
     public interface ILineItemIdentifierService
     {
-        EnumLineItemType GetLineItemType(ProcessOutputLineItem processOutputLineItem);
+        EnumBluRayLineItemType GetLineItemType(ProcessOutputLineItem processOutputLineItem);
     }
 }

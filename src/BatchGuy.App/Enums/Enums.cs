@@ -22,7 +22,7 @@ namespace BatchGuy.App.Enums
         DTSMA = 6
     }
 
-    public enum EnumLineItemType
+    public enum EnumBluRayLineItemType
     {
         BluRaySummaryHeaderLine = 1,
         BluRaySummaryDetailLine = 2,

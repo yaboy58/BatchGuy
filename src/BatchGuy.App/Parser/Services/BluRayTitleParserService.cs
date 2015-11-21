@@ -27,23 +27,23 @@ namespace BatchGuy.App.Parser.Services
         {
             foreach (ProcessOutputLineItem item in _processOutputLineItems)
             {
-                EnumLineItemType type = _lineItemIdentifierService.GetLineItemType(item);
+                EnumBluRayLineItemType type = _lineItemIdentifierService.GetLineItemType(item);
 
                 switch (type)
                 {
-                    case EnumLineItemType.BluRayTitleHeaderLine:
+                    case EnumBluRayLineItemType.BluRayTitleHeaderLine:
                         _bluRayTtileInfo.HeaderText = item.Text;
                         break;
-                    case EnumLineItemType.BluRayTitleChapterLine:
+                    case EnumBluRayLineItemType.BluRayTitleChapterLine:
                         this.SetChapter(item);
                         break;
-                    case EnumLineItemType.BluRayTitleVideoLine:
+                    case EnumBluRayLineItemType.BluRayTitleVideoLine:
                         this.SetVideo(item);
                         break;
-                    case EnumLineItemType.BluRayTitleAudioLine:
+                    case EnumBluRayLineItemType.BluRayTitleAudioLine:
                         this.SetAudio(item);
                         break;
-                    case EnumLineItemType.BluRayTitleSubtitleLine:
+                    case EnumBluRayLineItemType.BluRayTitleSubtitleLine:
                         this.SetSubtitle(item);
                         break;
                     default:

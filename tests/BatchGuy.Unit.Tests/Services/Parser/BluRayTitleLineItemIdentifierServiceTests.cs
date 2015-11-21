@@ -20,8 +20,8 @@ namespace BatchGuy.Unit.Tests.Services.Parser
         {
             ProcessOutputLineItem lineItem = new ProcessOutputLineItem() { Id = 1, Text = "M2TS, 1 video track, 1 audio track, 1 subtitle track, 0:58:28, 50i" };
             ILineItemIdentifierService service = new BluRayTitleLineItemIdentifierService();
-            EnumLineItemType type = service.GetLineItemType(lineItem);
-            type.ShouldBeEqualTo(EnumLineItemType.BluRayTitleHeaderLine);
+            EnumBluRayLineItemType type = service.GetLineItemType(lineItem);
+            type.ShouldBeEqualTo(EnumBluRayLineItemType.BluRayTitleHeaderLine);
         }
 
         [Test]
@@ -29,8 +29,8 @@ namespace BatchGuy.Unit.Tests.Services.Parser
         {
             ProcessOutputLineItem lineItem = new ProcessOutputLineItem() { Id = 1, Text = "1: Chapters, 6 chapters" };
             ILineItemIdentifierService service = new BluRayTitleLineItemIdentifierService();
-            EnumLineItemType type = service.GetLineItemType(lineItem);
-            type.ShouldBeEqualTo(EnumLineItemType.BluRayTitleChapterLine);
+            EnumBluRayLineItemType type = service.GetLineItemType(lineItem);
+            type.ShouldBeEqualTo(EnumBluRayLineItemType.BluRayTitleChapterLine);
         }
 
         [Test]
@@ -38,8 +38,8 @@ namespace BatchGuy.Unit.Tests.Services.Parser
         {
             ProcessOutputLineItem lineItem = new ProcessOutputLineItem() { Id = 1, Text = "2: h264/AVC, 1080i50 (16:9)" };
             ILineItemIdentifierService service = new BluRayTitleLineItemIdentifierService();
-            EnumLineItemType type = service.GetLineItemType(lineItem);
-            type.ShouldBeEqualTo(EnumLineItemType.BluRayTitleVideoLine);
+            EnumBluRayLineItemType type = service.GetLineItemType(lineItem);
+            type.ShouldBeEqualTo(EnumBluRayLineItemType.BluRayTitleVideoLine);
         }
 
         [Test]
@@ -47,8 +47,8 @@ namespace BatchGuy.Unit.Tests.Services.Parser
         {
             ProcessOutputLineItem lineItem = new ProcessOutputLineItem() { Id = 1, Text = "3: DTS Master Audio, French, 5.1 channels, 24 bits, 48kHz" };
             ILineItemIdentifierService service = new BluRayTitleLineItemIdentifierService();
-            EnumLineItemType type = service.GetLineItemType(lineItem);
-            type.ShouldBeEqualTo(EnumLineItemType.BluRayTitleAudioLine);
+            EnumBluRayLineItemType type = service.GetLineItemType(lineItem);
+            type.ShouldBeEqualTo(EnumBluRayLineItemType.BluRayTitleAudioLine);
         }
 
         [Test]
@@ -56,8 +56,8 @@ namespace BatchGuy.Unit.Tests.Services.Parser
         {
             ProcessOutputLineItem lineItem = new ProcessOutputLineItem() { Id = 1, Text = "4: Subtitle (pgs), French" };
             ILineItemIdentifierService service = new BluRayTitleLineItemIdentifierService();
-            EnumLineItemType type = service.GetLineItemType(lineItem);
-            type.ShouldBeEqualTo(EnumLineItemType.BluRayTitleSubtitleLine);
+            EnumBluRayLineItemType type = service.GetLineItemType(lineItem);
+            type.ShouldBeEqualTo(EnumBluRayLineItemType.BluRayTitleSubtitleLine);
         }
 
         [Test]
@@ -65,8 +65,8 @@ namespace BatchGuy.Unit.Tests.Services.Parser
         {
             ProcessOutputLineItem lineItem = new ProcessOutputLineItem() { Id = 1, Text = "" };
             ILineItemIdentifierService service = new BluRayTitleLineItemIdentifierService();
-            EnumLineItemType type = service.GetLineItemType(lineItem);
-            type.ShouldBeEqualTo(EnumLineItemType.BluRayTitleEmptyLine);
+            EnumBluRayLineItemType type = service.GetLineItemType(lineItem);
+            type.ShouldBeEqualTo(EnumBluRayLineItemType.BluRayTitleEmptyLine);
         }
     }
 }
