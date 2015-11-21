@@ -47,4 +47,14 @@ namespace BatchGuy.App.Enums
         SingleDirectory = 1,
         DirectoryPerEpisode = 2
     }
+
+    public enum EnumX264LogLineItemType
+    {
+        IFrame = 1,
+        PFrame = 2,
+        BFrame = 3,
+        ConsecutiveBFrames = 4,
+        EncodeFrames = 5,
+        None = 6
+    }
 }
