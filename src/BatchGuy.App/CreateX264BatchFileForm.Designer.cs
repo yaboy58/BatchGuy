@@ -39,10 +39,6 @@
             this.txtAviSynthFilesDirectory = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.dgvFiles = new System.Windows.Forms.DataGridView();
-            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.aVSFileNameOnlyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.encodeNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bsFiles = new System.Windows.Forms.BindingSource(this.components);
             this.btnLoadAVSFiles = new System.Windows.Forms.Button();
             this.lblNumberOfFiles = new System.Windows.Forms.Label();
             this.ofdFileDialog = new System.Windows.Forms.OpenFileDialog();
@@ -53,15 +49,23 @@
             this.btnOpenX264BatchFileOutputDialog = new System.Windows.Forms.Button();
             this.bgwCreateX264BatchFile = new System.ComponentModel.BackgroundWorker();
             this.bgwLoadAviSynthFiles = new System.ComponentModel.BackgroundWorker();
+            this.setDirectoryUserControl = new BatchGuy.App.UserControls.SetDirectoryUserControl();
+            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.aVSFileNameOnlyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.encodeNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bsFiles = new System.Windows.Forms.BindingSource(this.components);
+            this.ttAviSynthScriptsDirectory = new System.Windows.Forms.ToolTip(this.components);
+            this.ttX264BatchFileOutputDirectory = new System.Windows.Forms.ToolTip(this.components);
+            this.ttDirectoryUserControl = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dgvFiles)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsFiles)).BeginInit();
             this.gbScreen.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bsFiles)).BeginInit();
             this.SuspendLayout();
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(572, 425);
+            this.label4.Location = new System.Drawing.Point(570, 500);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(74, 13);
             this.label4.TabIndex = 16;
@@ -74,7 +78,7 @@
             this.cbEncodeType.Items.AddRange(new object[] {
             "CRF",
             "2Pass"});
-            this.cbEncodeType.Location = new System.Drawing.Point(662, 418);
+            this.cbEncodeType.Location = new System.Drawing.Point(660, 493);
             this.cbEncodeType.Name = "cbEncodeType";
             this.cbEncodeType.Size = new System.Drawing.Size(148, 21);
             this.cbEncodeType.TabIndex = 3;
@@ -83,7 +87,7 @@
             // btnCreateX264BatchFile
             // 
             this.btnCreateX264BatchFile.Enabled = false;
-            this.btnCreateX264BatchFile.Location = new System.Drawing.Point(642, 583);
+            this.btnCreateX264BatchFile.Location = new System.Drawing.Point(640, 658);
             this.btnCreateX264BatchFile.Name = "btnCreateX264BatchFile";
             this.btnCreateX264BatchFile.Size = new System.Drawing.Size(168, 33);
             this.btnCreateX264BatchFile.TabIndex = 4;
@@ -94,7 +98,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(21, 428);
+            this.label3.Location = new System.Drawing.Point(19, 503);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(80, 13);
             this.label3.TabIndex = 13;
@@ -102,7 +106,7 @@
             // 
             // txtX264Template
             // 
-            this.txtX264Template.Location = new System.Drawing.Point(21, 444);
+            this.txtX264Template.Location = new System.Drawing.Point(19, 519);
             this.txtX264Template.Multiline = true;
             this.txtX264Template.Name = "txtX264Template";
             this.txtX264Template.Size = new System.Drawing.Size(789, 133);
@@ -145,7 +149,7 @@
             this.aVSFileNameOnlyDataGridViewTextBoxColumn,
             this.encodeNameDataGridViewTextBoxColumn});
             this.dgvFiles.DataSource = this.bsFiles;
-            this.dgvFiles.Location = new System.Drawing.Point(21, 177);
+            this.dgvFiles.Location = new System.Drawing.Point(19, 252);
             this.dgvFiles.Margin = new System.Windows.Forms.Padding(2);
             this.dgvFiles.Name = "dgvFiles";
             this.dgvFiles.RowTemplate.Height = 24;
@@ -154,36 +158,9 @@
             this.dgvFiles.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvFiles_CellClick);
             this.dgvFiles.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.dgvFiles_RowsRemoved);
             // 
-            // idDataGridViewTextBoxColumn
-            // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            this.idDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // aVSFileNameOnlyDataGridViewTextBoxColumn
-            // 
-            this.aVSFileNameOnlyDataGridViewTextBoxColumn.DataPropertyName = "AVSFileNameOnly";
-            this.aVSFileNameOnlyDataGridViewTextBoxColumn.HeaderText = "AviSynth File";
-            this.aVSFileNameOnlyDataGridViewTextBoxColumn.MinimumWidth = 200;
-            this.aVSFileNameOnlyDataGridViewTextBoxColumn.Name = "aVSFileNameOnlyDataGridViewTextBoxColumn";
-            this.aVSFileNameOnlyDataGridViewTextBoxColumn.Width = 200;
-            // 
-            // encodeNameDataGridViewTextBoxColumn
-            // 
-            this.encodeNameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.encodeNameDataGridViewTextBoxColumn.DataPropertyName = "EncodeName";
-            this.encodeNameDataGridViewTextBoxColumn.HeaderText = "Encode Name (EX: Episode01.mkv)";
-            this.encodeNameDataGridViewTextBoxColumn.MinimumWidth = 200;
-            this.encodeNameDataGridViewTextBoxColumn.Name = "encodeNameDataGridViewTextBoxColumn";
-            // 
-            // bsFiles
-            // 
-            this.bsFiles.DataSource = typeof(BatchGuy.App.X264.Models.X264File);
-            // 
             // btnLoadAVSFiles
             // 
-            this.btnLoadAVSFiles.Location = new System.Drawing.Point(674, 134);
+            this.btnLoadAVSFiles.Location = new System.Drawing.Point(672, 209);
             this.btnLoadAVSFiles.Margin = new System.Windows.Forms.Padding(2);
             this.btnLoadAVSFiles.Name = "btnLoadAVSFiles";
             this.btnLoadAVSFiles.Size = new System.Drawing.Size(136, 29);
@@ -195,7 +172,7 @@
             // lblNumberOfFiles
             // 
             this.lblNumberOfFiles.AutoSize = true;
-            this.lblNumberOfFiles.Location = new System.Drawing.Point(18, 401);
+            this.lblNumberOfFiles.Location = new System.Drawing.Point(16, 476);
             this.lblNumberOfFiles.Name = "lblNumberOfFiles";
             this.lblNumberOfFiles.Size = new System.Drawing.Size(83, 13);
             this.lblNumberOfFiles.TabIndex = 23;
@@ -217,6 +194,7 @@
             // 
             // gbScreen
             // 
+            this.gbScreen.Controls.Add(this.setDirectoryUserControl);
             this.gbScreen.Controls.Add(this.label2);
             this.gbScreen.Controls.Add(this.txtX264BatchFileOutputDirectory);
             this.gbScreen.Controls.Add(this.btnOpenX264BatchFileOutputDialog);
@@ -234,7 +212,7 @@
             this.gbScreen.Controls.Add(this.label1);
             this.gbScreen.Location = new System.Drawing.Point(12, 12);
             this.gbScreen.Name = "gbScreen";
-            this.gbScreen.Size = new System.Drawing.Size(828, 630);
+            this.gbScreen.Size = new System.Drawing.Size(885, 713);
             this.gbScreen.TabIndex = 31;
             this.gbScreen.TabStop = false;
             // 
@@ -275,11 +253,47 @@
             this.bgwLoadAviSynthFiles.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgwLoadAviSynthFiles_DoWork);
             this.bgwLoadAviSynthFiles.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgwLoadAviSynthFiles_RunWorkerCompleted);
             // 
+            // setDirectoryUserControl
+            // 
+            this.setDirectoryUserControl.ComboBoxCaptionText = null;
+            this.setDirectoryUserControl.LabelDirectoryCaptionText = null;
+            this.setDirectoryUserControl.Location = new System.Drawing.Point(19, 112);
+            this.setDirectoryUserControl.Name = "setDirectoryUserControl";
+            this.setDirectoryUserControl.Size = new System.Drawing.Size(824, 71);
+            this.setDirectoryUserControl.TabIndex = 27;
+            // 
+            // idDataGridViewTextBoxColumn
+            // 
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            this.idDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // aVSFileNameOnlyDataGridViewTextBoxColumn
+            // 
+            this.aVSFileNameOnlyDataGridViewTextBoxColumn.DataPropertyName = "AVSFileNameOnly";
+            this.aVSFileNameOnlyDataGridViewTextBoxColumn.HeaderText = "AviSynth File";
+            this.aVSFileNameOnlyDataGridViewTextBoxColumn.MinimumWidth = 200;
+            this.aVSFileNameOnlyDataGridViewTextBoxColumn.Name = "aVSFileNameOnlyDataGridViewTextBoxColumn";
+            this.aVSFileNameOnlyDataGridViewTextBoxColumn.Width = 200;
+            // 
+            // encodeNameDataGridViewTextBoxColumn
+            // 
+            this.encodeNameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.encodeNameDataGridViewTextBoxColumn.DataPropertyName = "EncodeName";
+            this.encodeNameDataGridViewTextBoxColumn.HeaderText = "Encode Name (EX: Episode01.mkv)";
+            this.encodeNameDataGridViewTextBoxColumn.MinimumWidth = 200;
+            this.encodeNameDataGridViewTextBoxColumn.Name = "encodeNameDataGridViewTextBoxColumn";
+            // 
+            // bsFiles
+            // 
+            this.bsFiles.DataSource = typeof(BatchGuy.App.X264.Models.X264File);
+            // 
             // CreateX264BatchFileForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(848, 651);
+            this.ClientSize = new System.Drawing.Size(909, 737);
             this.Controls.Add(this.gbScreen);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -288,9 +302,9 @@
             this.Text = "Create x264 Batch File";
             this.Load += new System.EventHandler(this.CreateX264BatFileForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvFiles)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsFiles)).EndInit();
             this.gbScreen.ResumeLayout(false);
             this.gbScreen.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bsFiles)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -320,5 +334,9 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtX264BatchFileOutputDirectory;
         private System.Windows.Forms.Button btnOpenX264BatchFileOutputDialog;
+        private UserControls.SetDirectoryUserControl setDirectoryUserControl;
+        private System.Windows.Forms.ToolTip ttAviSynthScriptsDirectory;
+        private System.Windows.Forms.ToolTip ttX264BatchFileOutputDirectory;
+        private System.Windows.Forms.ToolTip ttDirectoryUserControl;
     }
 }

@@ -34,17 +34,25 @@
 
 
 --v1.3 todo
-*change output from encode0* to video0* -done
-*re-added binary serializer as I would not embedd json.net dll in exe -done
+*Change internal output from encode0* to video0* -done
+*Re-added binary serializer as I would not embedd json.net dll in exe -done
 http://blog.danskingdom.com/saving-and-loading-a-c-objects-data-to-an-xml-json-or-binary-file/
-*embedd 3rd part dlls -done
-*sorting grid columns throws an exception -done
+*Embedd 3rd party dlls using ilmerge -done
+*Fixed bug where sorting grid columns throws an exception -done
+*Tool tips added to certain control on avs screen -done
+*Tool tips added to the x264 batch file screen -done
+*Can now specify eac3to output either in a single directory or in their own episode folder ie e01, e02 etc etc
+*Can now specify avisynth ffvideosource video encode location, either in a single directory or in their own episode folder ie e01, e02 etc etc
+*Can now specify x264 encode and (.log) file output directory, either  either in a single directory or in their own episode folder ie e01, e02 etc etc
 
+
+*remove all buttons for exes that are set in settings
+*when nothing selected on title info screen, episode is not required
 *truehd is hardcoded to ac3, switch it to .thd
 *allow the ability to name output .bat files
-*put drop down on all major screens.  eac3to Output in single directory, eac3to Output in episodes directory (e##)
+
 *introduce drag n drop
-*similar to avs screen, add tool tips to other screens
+
 *create a screen that will get relevant x264 .log lines to make getting them simple
 
 *ability to save/load eac3to batch guy data

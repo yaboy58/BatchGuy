@@ -31,6 +31,8 @@ namespace BatchGuy.App
         {
             InitializeComponent();
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.SetDirectoryUserControlValues();
+            this.SetToolTips();
 #if DEBUG
             txtAviSynthFilesDirectory.Text = @"C:\temp\My Encodes\Blu-ray";
 #endif
@@ -49,6 +51,19 @@ namespace BatchGuy.App
                 _vfw4x264Path = setting.Path;
                 this.SetComboBoxEncodeType();
             }
+        }
+
+        private void SetDirectoryUserControlValues()
+        {
+            setDirectoryUserControl.ComboBoxCaptionText = "--output && (.log) Directory";
+            setDirectoryUserControl.LabelDirectoryCaptionText = @"Example: --output ""{0}\e01\encode_name.mkv"", ""{0}\e01\encode_name.log""";
+        }
+
+        private void SetToolTips()
+        {
+            ttAviSynthScriptsDirectory.SetToolTip(txtAviSynthFilesDirectory, "Directory where (.avs) files are located");
+            ttX264BatchFileOutputDirectory.SetToolTip(txtX264BatchFileOutputDirectory, "Directory where the x264 batch file will be saved");
+            ttDirectoryUserControl.SetToolTip(setDirectoryUserControl, "Determines where the x264 output and log file will be saved");
         }
 
         private bool IsVfw4x264PathSetInSettings()
@@ -121,7 +136,8 @@ namespace BatchGuy.App
         private X264FileSettings GetX264FileSettings()
         {
             return new X264FileSettings() { AviSynthFileFilter = "*.avs", AviSynthFilesPath = txtAviSynthFilesDirectory.Text, EncodeType = EncodeType,
-             vfw4x264Exe = _vfw4x264Path, X264Template = txtX264Template.Text, X264FileOutputPath = txtX264BatchFileOutputDirectory.Text};
+             vfw4x264Exe = _vfw4x264Path, X264Template = txtX264Template.Text, X264BatchFileOutputPath = txtX264BatchFileOutputDirectory.Text,
+             X264EncodeAndLogFileOutputDirectoryPathType = setDirectoryUserControl.OutputDirectoryType, X264EncodeAndLogFileOutputDirectoryPath = setDirectoryUserControl.CLIDirectory};
         }
 
         private void LoadAVSFiles()
@@ -277,6 +293,11 @@ namespace BatchGuy.App
             {
                 MessageBox.Show("Please enter x264 settings", "Invalid x264 settings", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return false;
+            }
+            if (string.IsNullOrEmpty(setDirectoryUserControl.CLIDirectory))
+            {
+                MessageBox.Show("Please choose the x264 output and (.log) file save directory", "Invalid x264 settings", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return false;                
             }
             return true;
         }

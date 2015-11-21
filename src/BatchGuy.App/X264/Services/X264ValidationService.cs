@@ -36,6 +36,8 @@ namespace BatchGuy.App.X264.Services
                 return false;
             if (!this.IsDirectoryValidDirectory())
                 return false;
+            if (!this.X264EncodeAndLogFileOutputDirectoryPathNotNull())
+                return false;
             return true;
         }
 
@@ -63,8 +65,18 @@ namespace BatchGuy.App.X264.Services
         {
             if (!Directory.Exists(_x264FileSettings.AviSynthFilesPath))
             {
-                this._errors.Add(new Error() { Description = "The Output Folder for AviSynth files does not exist" });
+                this._errors.Add(new Error() { Description = "The Directory where the AviSynth files are located does not exist" });
                 return false;
+            }
+            return true;
+        }
+
+        private bool X264EncodeAndLogFileOutputDirectoryPathNotNull()
+        {
+            if (string.IsNullOrEmpty(_x264FileSettings.X264EncodeAndLogFileOutputDirectoryPath))
+            {
+                this._errors.Add(new Error() { Description = "The x264 encode and (.log) file Output directory is required" });
+                return false;                
             }
             return true;
         }

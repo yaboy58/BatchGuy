@@ -32,7 +32,7 @@ namespace BatchGuy.App.Eac3to.Services
 
         private void Init()
         {
-            _paddedEpisode = HelperFunctions.PadNumberWithZeros(99, _bluRayTitleInfo.EpisodeNumber.StringToInt());
+            _paddedEpisode = HelperFunctions.PadNumberWithZeros(99, _bluRayTitleInfo.EpisodeNumber.StringToInt()); //hardcoded count
             if (_config.OutputDirectoryType == EnumDirectoryType.DirectoryPerEpisode)
             {
                 string folderName = string.Format("e{0}", _paddedEpisode);

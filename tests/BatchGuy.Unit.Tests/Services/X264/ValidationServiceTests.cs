@@ -25,7 +25,7 @@ namespace BatchGuy.Unit.Tests.Services.X264
             IX264ValidationService service = new X264ValidationService(x264FileSettings, x264Files);
             //then there is an error
             ErrorCollection error = service.Validate();
-            error.Where(e => e.Description == "The Output Folder for AviSynth files does not exist").Count().ShouldBeEqualTo(1);
+            error.Where(e => e.Description == "The Directory where the AviSynth files are located does not exist").Count().ShouldBeEqualTo(1);
         }
 
         public void validationservice_has_all_avisynth_files_must_have_an_encode_name_exist_test()
