@@ -49,7 +49,8 @@ namespace BatchGuy.App
 
         private void HandleOpenEac3ToFileDialogClick()
         {
-            ofdFileDialog.FileName = "";
+            ofdFileDialog.FileName = "eac3to executable";
+            ofdFileDialog.Filter = "Files|*.exe";
             DialogResult result = ofdFileDialog.ShowDialog();
             if (result == System.Windows.Forms.DialogResult.OK)
             {
@@ -59,6 +60,9 @@ namespace BatchGuy.App
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            if (!this.IsScreenValid())
+                return;
+
             gbScreen.SetEnabled(false);
             this.HandleSaveClick();
             this.Close();
@@ -73,6 +77,16 @@ namespace BatchGuy.App
             Program.ApplicationSettingsService.Save(Program.ApplicationSettings);
         }
 
+        private bool IsScreenValid()
+        {
+            if (string.IsNullOrEmpty(txtEac3toPath.Text) || string.IsNullOrEmpty(txtVfw4x264.Text))
+            {
+                MessageBox.Show("All settings must be entered to save!", "Settings Information Not Provided", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            return true;
+        }
+
         private void btnOpenVfw4x264FileDialog_Click(object sender, EventArgs e)
         {
             this.HandleOpenVfw4x264FileDialogClick();
@@ -80,7 +94,8 @@ namespace BatchGuy.App
 
         private void HandleOpenVfw4x264FileDialogClick()
         {
-            ofdFileDialog.FileName = "";
+            ofdFileDialog.FileName = "Vfw4x264 executable";
+            ofdFileDialog.Filter = "Files|*.exe";
             DialogResult result = ofdFileDialog.ShowDialog();
             if (result == System.Windows.Forms.DialogResult.OK)
             {
