@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using BatchGuy.App.Shared.Interfaces;
 using BatchGuy.App.Shared.Models;
 using System.Linq.Dynamic;
+using BatchGuy.App.Enums;
 
 namespace BatchGuy.App.Shared.Services
 {
@@ -23,6 +24,13 @@ namespace BatchGuy.App.Shared.Services
         public List<T> Sort()
         {
             List<T> sortedList = new List<T>();
+
+            if (_sortConfiguration.LastSortByColumnName == _sortConfiguration.SortByColumnName)
+                _sortConfiguration.SortDirection = _sortConfiguration.SortDirection == EnumSortDirection.Asc ? EnumSortDirection.Desc : EnumSortDirection.Asc;
+            else
+                _sortConfiguration.SortDirection = EnumSortDirection.Asc;
+
+
             string orderBy = string.Format("{0} {1}", _sortConfiguration.SortByColumnName, this.GetSortDirectionString());
             _sortConfiguration.LastSortByColumnName = _sortConfiguration.SortByColumnName;
 

@@ -30,12 +30,6 @@ namespace BatchGuy.App.Shared.Services
         {
             _grid.CommitEdit(DataGridViewDataErrorContexts.CurrentCellChange);
 
-
-            if (_sortConfiguration.LastSortByColumnName == _sortConfiguration.SortByColumnName)
-                _sortConfiguration.SortDirection = _sortConfiguration.SortDirection == EnumSortDirection.Asc ? EnumSortDirection.Desc : EnumSortDirection.Asc;
-
-            _sortConfiguration.LastSortByColumnName = _sortConfiguration.SortByColumnName;
-
             ISortService<T> sortService = new SortService<T>(_sortConfiguration, _unsortedList);
             List<T> sortedList = sortService.Sort();
 

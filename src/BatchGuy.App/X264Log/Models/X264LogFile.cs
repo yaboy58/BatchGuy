@@ -11,6 +11,5 @@ namespace BatchGuy.App.X264Log.Models
         public string FileNameOnly { get; set; }
         public string  FilePath { get; set; }
         public string Log { get; set; }
-        public string PathAndFileName { get { return string.Format(@"{0}\\{1}", this.FilePath, this.FileNameOnly); } }
     }
 }

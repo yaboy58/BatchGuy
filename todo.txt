@@ -33,28 +33,15 @@
 *unit test extension methods
 
 
---v1.3 todo
-*Changed internal naming convention of outputs/inputs (eac3to, avisynth, x264) from encode0* to video0*
-*Re-added binary serializer, as opposed to newtonsoft's json serializer, to avoid having to embed the dll
-*Embed 3rd party dlls using ilmerge
-*Fixed bug where sorting grid columns throws an exception
-*Tool tips added to certain controls on the avisynth screen
-*Tool tips added to certain controls on the x264 batch file screen
-*Tool tips added to certain controls on the eac3to screen
-*Can now specify eac3to output either in a single directory or in their own episode folder ie e01, e02 etc etc
-*Can now specify avisynth ffvideosource video encode location, either in a single directory or in their own episode folder ie e01, e02 etc etc
-*Can now specify x264 encode and (.log) file output directory, either  either in a single directory or in their own episode folder ie e01, e02 etc etc
-*when no streams are selected on the blu-ray title info screen, episode number is not required
-*Fixed bug where TrueHD audio throws exception
-*TrueHD no longer hardcoded to (.ac3) and defaulted to -640
-*TrueHD audio extracts to (.thd)
+--v1.4 todo
+*Fixed bug in sort where the asc/desc logic was wrong when you sorted on a new column.
 
+*create a screen that will get relevant x264 .log lines to make getting them simple
+*introduce drag n drop
 
 --upcoming
 *remux screen, drag/drop or multi-select the files for remux 
 *allow the ability to name output .bat files
-*introduce drag n drop
-*create a screen that will get relevant x264 .log lines to make getting them simple
 *ability to save/load eac3to batch guy data
 *remux focus ie allow folder names other than #
 *allow the ability to name output folders/track names

@@ -51,7 +51,7 @@ namespace BatchGuy.App.X264Log.Services
 
                     sb.AppendLine();
 
-                    using (StreamReader sw = new StreamReader(logFile.PathAndFileName))
+                    using (StreamReader sw = new StreamReader(logFile.FilePath))
                     {
                         while (true)
                         {

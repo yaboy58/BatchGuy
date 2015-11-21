@@ -22,14 +22,14 @@ namespace BatchGuy.X264Log.Parser.Example.Console.App
             
             //log files
             List<X264LogFile> logFiles = new List<X264LogFile>() { 
-                new X264LogFile() { FileNameOnly = "Les Revenants S02E01 The Child 720p BluRay DTS x264.mkv.x264.log", FilePath = @"C:\temp\My Encodes\Blu-ray" }, 
-                new X264LogFile() { FileNameOnly = "Les Revenants S02E02 Milan 720p BluRay DTS x264.mkv.x264.log", FilePath = @"C:\temp\My Encodes\Blu-ray" },
-                new X264LogFile() {  FileNameOnly = "Les Revenants S02E03 Morgane 720p BluRay DTS x264.mkv.x264.log", FilePath = @"C:\temp\My Encodes\Blu-ray" }, 
-                new X264LogFile() {  FileNameOnly = "Les Revenants S02E04 Virgil 720p BluRay DTS x264.mkv.x264.log", FilePath = @"C:\temp\My Encodes\Blu-ray" }, 
-                new X264LogFile() {  FileNameOnly = "Les Revenants S02E05 Madame Costa 720p BluRay DTS x264.mkv.x264.log", FilePath = @"C:\temp\My Encodes\Blu-ray" },
-                new X264LogFile() {  FileNameOnly = "Les Revenants S02E06 Esther 720p BluRay DTS x264.mkv.x264.log", FilePath = @"C:\temp\My Encodes\Blu-ray" }, 
-                new X264LogFile() {  FileNameOnly = "Les Revenants S02E07 Étienne 720p BluRay DTS x264.mkv.x264.log", FilePath = @"C:\temp\My Encodes\Blu-ray" }, 
-                new X264LogFile() {  FileNameOnly = "Les Revenants S02E08 Les Revenants 720p BluRay DTS x264.mkv.x264.log", FilePath = @"C:\temp\My Encodes\Blu-ray" }};
+                new X264LogFile() { FileNameOnly = "Les Revenants S02E01 The Child 720p BluRay DTS x264.mkv.x264.log", FilePath = @"C:\temp\My Encodes\Blu-ray\Les Revenants S02E01 The Child 720p BluRay DTS x264.mkv.x264.log" }, 
+                new X264LogFile() { FileNameOnly = "Les Revenants S02E02 Milan 720p BluRay DTS x264.mkv.x264.log", FilePath = @"C:\temp\My Encodes\Blu-ray\Les Revenants S02E02 Milan 720p BluRay DTS x264.mkv.x264.log" },
+                new X264LogFile() {  FileNameOnly = "Les Revenants S02E03 Morgane 720p BluRay DTS x264.mkv.x264.log", FilePath = @"C:\temp\My Encodes\Blu-ray\Les Revenants S02E03 Morgane 720p BluRay DTS x264.mkv.x264.log" }, 
+                new X264LogFile() {  FileNameOnly = "Les Revenants S02E04 Virgil 720p BluRay DTS x264.mkv.x264.log", FilePath = @"C:\temp\My Encodes\Blu-ray\Les Revenants S02E04 Virgil 720p BluRay DTS x264.mkv.x264.log" }, 
+                new X264LogFile() {  FileNameOnly = "Les Revenants S02E05 Madame Costa 720p BluRay DTS x264.mkv.x264.log", FilePath = @"C:\temp\My Encodes\Blu-ray\Les Revenants S02E05 Madame Costa 720p BluRay DTS x264.mkv.x264.log" },
+                new X264LogFile() {  FileNameOnly = "Les Revenants S02E06 Esther 720p BluRay DTS x264.mkv.x264.log", FilePath = @"C:\temp\My Encodes\Blu-ray\Les Revenants S02E06 Esther 720p BluRay DTS x264.mkv.x264.log" }, 
+                new X264LogFile() {  FileNameOnly = "Les Revenants S02E07 Étienne 720p BluRay DTS x264.mkv.x264.log", FilePath = @"C:\temp\My Encodes\Blu-ray\Les Revenants S02E07 Étienne 720p BluRay DTS x264.mkv.x264.log" }, 
+                new X264LogFile() {  FileNameOnly = "Les Revenants S02E08 Les Revenants 720p BluRay DTS x264.mkv.x264.log", FilePath = @"C:\temp\My Encodes\Blu-ray\Les Revenants S02E08 Les Revenants 720p BluRay DTS x264.mkv.x264.log" }};
 
             //parser service
             IX264LogParserService parserService = new X264LogParserService(x264LogLineItemIdentifierService, x264LogFileSerttings, logFiles);
