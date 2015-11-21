@@ -42,6 +42,10 @@
 *Removed uneeded properties from X264FileSettings class after drag and drop feature added to Create x264 Batch File screen
 *Removed obsolete unit tests for x264 batch file after drag and drop feature added to Create x264 Batch File screen
 
+*If settings not set, go to settings screen
+*Made main form bigger and put a panel at the bottom of screen that displays the version
+*Update readme file on github
+
 --upcoming
 *remux screen, drag/drop or multi-select the files for remux 
 *allow the ability to name output .bat files

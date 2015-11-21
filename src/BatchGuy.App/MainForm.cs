@@ -27,14 +27,32 @@ namespace BatchGuy
 
         private void createEac3ToBatFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CreateEAC3ToBatchForm form = new CreateEAC3ToBatchForm();
-            form.ShowDialog();
+            if (Program.ApplicationSettingsService.GetSettingByName("eac3to") != null)
+            {
+                CreateEAC3ToBatchForm form = new CreateEAC3ToBatchForm();
+                form.ShowDialog();                
+            }
+            else
+            {
+                SettingsForm form = new SettingsForm();
+                form.ShowDialog();
+            }
+
         }
 
         private void createX264BatFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CreateX264BatchFileForm form = new CreateX264BatchFileForm();
-            form.ShowDialog();
+            if (Program.ApplicationSettingsService.GetSettingByName("vfw4x264") != null)
+            {
+                CreateX264BatchFileForm form = new CreateX264BatchFileForm();
+                form.ShowDialog();                
+            }
+            else
+            {
+                SettingsForm form = new SettingsForm();
+                form.ShowDialog();
+            }
+
         }
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -53,6 +71,11 @@ namespace BatchGuy
         {
             X264LogFileForm form = new X264LogFileForm();
             form.ShowDialog();
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            statusStrip.Items[0].Text = string.Format("Version: {0}.{1}", System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.Major.ToString(), System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.Minor.ToString());
         }
     }
 }
