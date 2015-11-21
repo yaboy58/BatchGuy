@@ -13,6 +13,8 @@ using BatchGuy.App.Shared.Models;
 using BatchGuy.App.Shared.Interfaces;
 using BatchGuy.App.Shared.Services;
 using BatchGuy.App.Extensions;
+using BatchGuy.App.X264Log.Interfaces;
+using BatchGuy.App.X264Log.Services;
 
 namespace BatchGuy.App
 {
@@ -91,7 +93,20 @@ namespace BatchGuy.App
         }
 
         private void HandleBtnViewLogs()
-        { 
+        {
+            if (!this.IsScreenValid())
+                return;
+
+            gbScreen.SetEnabled(false);
+            List<X264LogFile> logFiles = new List<X264LogFile>();
+            foreach (X264LogFile log in _bindingListLogFiles)
+            {
+                logFiles.Add(new X264LogFile() { FileNameOnly = log.FileNameOnly, FilePath = log.FilePath });
+            }
+            IX264LogLineItemIdentifierService x264LogLineItemIdentifierService = new X264LogLineItemIdentifierService();
+            X264LogFileSettings settings = new X264LogFileSettings() { BBCodeBoldLogFileName = chkBBCodeBoldLogFileName.Checked, BBCodeHiddenAroundLogs = chkBBCodeHidden.Checked };
+            X264LogParserService parserService = new X264LogParserService(x264LogLineItemIdentifierService, settings, logFiles);
+            bgwLogFiles.RunWorkerAsync(parserService);
         }
 
         private void dgvLogFiles_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
@@ -114,6 +129,10 @@ namespace BatchGuy.App
             if (e.RowIndex == -1)
             {
                 this.SortLogFilesGrid(e.ColumnIndex);
+            }
+            else
+            {
+              dgvLogFiles.Rows[e.RowIndex].Selected = true;
             }
         }
 
@@ -141,6 +160,40 @@ namespace BatchGuy.App
             this.BindLogFilesGrid();
 
            gbScreen.SetEnabled(true);
+        }
+
+        private bool IsScreenValid()
+        {
+            if (_bindingListLogFiles.Count() == 0)
+            {
+                MessageBox.Show("Please add x264 (.log) files", "No x264 log files", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return false;                
+            }
+            return true;
+        }
+
+        private void bgwLogFiles_DoWork(object sender, DoWorkEventArgs e)
+        {
+            X264LogParserService parserService = e.Argument as X264LogParserService;
+            parserService.GetLogs();
+            e.Result = parserService;
+        }
+
+        private void bgwLogFiles_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            string logs = string.Empty;
+
+            gbScreen.SetEnabled(true);
+            X264LogParserService parserService = e.Result as X264LogParserService;
+
+            if (parserService.Errors.Count() == 0)
+            {
+                logs = parserService.Logs;    
+            }
+            else
+            {
+                MessageBox.Show(parserService.Errors[0].Description, "Errors occurred", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

@@ -34,10 +34,13 @@
             this.gbScreen = new System.Windows.Forms.GroupBox();
             this.btnViewLogs = new System.Windows.Forms.Button();
             this.lblLogFileCount = new System.Windows.Forms.Label();
-            this.bsLogFiles = new System.Windows.Forms.BindingSource(this.components);
             this.fileNameOnlyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.filePathDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.logDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bsLogFiles = new System.Windows.Forms.BindingSource(this.components);
+            this.bgwLogFiles = new System.ComponentModel.BackgroundWorker();
+            this.chkBBCodeBoldLogFileName = new System.Windows.Forms.CheckBox();
+            this.chkBBCodeHidden = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLogFiles)).BeginInit();
             this.gbScreen.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsLogFiles)).BeginInit();
@@ -54,7 +57,7 @@
             this.filePathDataGridViewTextBoxColumn,
             this.logDataGridViewTextBoxColumn});
             this.dgvLogFiles.DataSource = this.bsLogFiles;
-            this.dgvLogFiles.Location = new System.Drawing.Point(6, 36);
+            this.dgvLogFiles.Location = new System.Drawing.Point(6, 84);
             this.dgvLogFiles.Name = "dgvLogFiles";
             this.dgvLogFiles.Size = new System.Drawing.Size(1030, 417);
             this.dgvLogFiles.TabIndex = 0;
@@ -65,19 +68,21 @@
             // 
             // gbScreen
             // 
+            this.gbScreen.Controls.Add(this.chkBBCodeHidden);
+            this.gbScreen.Controls.Add(this.chkBBCodeBoldLogFileName);
             this.gbScreen.Controls.Add(this.lblLogFileCount);
             this.gbScreen.Controls.Add(this.dgvLogFiles);
             this.gbScreen.Controls.Add(this.btnViewLogs);
             this.gbScreen.Location = new System.Drawing.Point(12, 12);
             this.gbScreen.Name = "gbScreen";
-            this.gbScreen.Size = new System.Drawing.Size(1042, 510);
+            this.gbScreen.Size = new System.Drawing.Size(1042, 589);
             this.gbScreen.TabIndex = 1;
             this.gbScreen.TabStop = false;
             this.gbScreen.Text = "groupBox1";
             // 
             // btnViewLogs
             // 
-            this.btnViewLogs.Location = new System.Drawing.Point(899, 469);
+            this.btnViewLogs.Location = new System.Drawing.Point(899, 517);
             this.btnViewLogs.Name = "btnViewLogs";
             this.btnViewLogs.Size = new System.Drawing.Size(137, 25);
             this.btnViewLogs.TabIndex = 2;
@@ -88,24 +93,20 @@
             // lblLogFileCount
             // 
             this.lblLogFileCount.AutoSize = true;
-            this.lblLogFileCount.Location = new System.Drawing.Point(6, 456);
+            this.lblLogFileCount.Location = new System.Drawing.Point(6, 504);
             this.lblLogFileCount.Name = "lblLogFileCount";
             this.lblLogFileCount.Size = new System.Drawing.Size(38, 13);
             this.lblLogFileCount.TabIndex = 3;
             this.lblLogFileCount.Text = "Count:";
             // 
-            // bsLogFiles
-            // 
-            this.bsLogFiles.DataSource = typeof(BatchGuy.App.X264Log.Models.X264LogFile);
-            // 
             // fileNameOnlyDataGridViewTextBoxColumn
             // 
             this.fileNameOnlyDataGridViewTextBoxColumn.DataPropertyName = "FileNameOnly";
             this.fileNameOnlyDataGridViewTextBoxColumn.HeaderText = "File Name";
-            this.fileNameOnlyDataGridViewTextBoxColumn.MinimumWidth = 250;
+            this.fileNameOnlyDataGridViewTextBoxColumn.MinimumWidth = 400;
             this.fileNameOnlyDataGridViewTextBoxColumn.Name = "fileNameOnlyDataGridViewTextBoxColumn";
             this.fileNameOnlyDataGridViewTextBoxColumn.ReadOnly = true;
-            this.fileNameOnlyDataGridViewTextBoxColumn.Width = 250;
+            this.fileNameOnlyDataGridViewTextBoxColumn.Width = 400;
             // 
             // filePathDataGridViewTextBoxColumn
             // 
@@ -122,6 +123,39 @@
             this.logDataGridViewTextBoxColumn.HeaderText = "Log";
             this.logDataGridViewTextBoxColumn.Name = "logDataGridViewTextBoxColumn";
             this.logDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // bsLogFiles
+            // 
+            this.bsLogFiles.DataSource = typeof(BatchGuy.App.X264Log.Models.X264LogFile);
+            // 
+            // bgwLogFiles
+            // 
+            this.bgwLogFiles.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgwLogFiles_DoWork);
+            this.bgwLogFiles.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgwLogFiles_RunWorkerCompleted);
+            // 
+            // chkBBCodeBoldLogFileName
+            // 
+            this.chkBBCodeBoldLogFileName.AutoSize = true;
+            this.chkBBCodeBoldLogFileName.Checked = true;
+            this.chkBBCodeBoldLogFileName.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkBBCodeBoldLogFileName.Location = new System.Drawing.Point(9, 29);
+            this.chkBBCodeBoldLogFileName.Name = "chkBBCodeBoldLogFileName";
+            this.chkBBCodeBoldLogFileName.Size = new System.Drawing.Size(211, 17);
+            this.chkBBCodeBoldLogFileName.TabIndex = 4;
+            this.chkBBCodeBoldLogFileName.Text = "Place [b][/b] tags around log file names";
+            this.chkBBCodeBoldLogFileName.UseVisualStyleBackColor = true;
+            // 
+            // chkBBCodeHidden
+            // 
+            this.chkBBCodeHidden.AutoSize = true;
+            this.chkBBCodeHidden.Checked = true;
+            this.chkBBCodeHidden.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkBBCodeHidden.Location = new System.Drawing.Point(404, 29);
+            this.chkBBCodeHidden.Name = "chkBBCodeHidden";
+            this.chkBBCodeHidden.Size = new System.Drawing.Size(205, 17);
+            this.chkBBCodeHidden.TabIndex = 5;
+            this.chkBBCodeHidden.Text = "Place [hide][/hide] tags around output";
+            this.chkBBCodeHidden.UseVisualStyleBackColor = true;
             // 
             // X264LogFileForm
             // 
@@ -152,5 +186,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn fileNameOnlyDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn filePathDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn logDataGridViewTextBoxColumn;
+        private System.ComponentModel.BackgroundWorker bgwLogFiles;
+        private System.Windows.Forms.CheckBox chkBBCodeBoldLogFileName;
+        private System.Windows.Forms.CheckBox chkBBCodeHidden;
     }
 }

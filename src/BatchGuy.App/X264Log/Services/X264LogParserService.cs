@@ -17,10 +17,16 @@ namespace BatchGuy.App.X264Log.Services
         private IX264LogLineItemIdentifierService _x264LogLineItemIdentifierService;
         private X264LogFileSettings _x264LogFileSerttings;
         private List<X264LogFile> _logFiles;
+        private string _logs = string.Empty;
 
         public ErrorCollection Errors
         {
             get { return _errors; }
+        }
+
+        public string Logs
+        {
+            get { return _logs; }
         }
 
         public X264LogParserService(IX264LogLineItemIdentifierService x264LogLineItemIdentifierService, X264LogFileSettings x264LogFileSerttings, List<X264LogFile> logFiles)
@@ -44,7 +50,7 @@ namespace BatchGuy.App.X264Log.Services
                 if (_x264LogFileSerttings.BBCodeHiddenAroundLogs)
                     sb.AppendLine("[hide]");
 
-                foreach (X264LogFile logFile in _logFiles)
+                foreach (X264LogFile logFile in _logFiles.OrderBy(l => l.FileNameOnly))
                 {
                     if (_x264LogFileSerttings.BBCodeBoldLogFileName)
                         sb.AppendLine(string.Format("[b]{0}[/b]", logFile.FileNameOnly));
@@ -83,6 +89,8 @@ namespace BatchGuy.App.X264Log.Services
             {
                 _errors.Add(new Error() { Description = string.Format("Error: {0}", ex.Message) });
             }
+
+            _logs = sb.ToString();
 
             return sb.ToString();
         }
