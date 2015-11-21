@@ -44,6 +44,7 @@ namespace BatchGuy.App
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             setDirectoryUserControl.ComboBoxCaptionText = "eac3to Output Directory";
             setDirectoryUserControl.LabelDirectoryCaptionText = @"eac3to Output Directory (example: e01, e02): {0}\e##";
+            this.SetToolTips();
 #if DEBUG
             txtBluRayPath.Text = @"C:\temp\My Encodes\Blu-ray\DISC\D1";   
             txtBatFilePath.Text = @"C:\temp\My Encodes\Blu-ray";
@@ -62,6 +63,13 @@ namespace BatchGuy.App
                 Setting setting = Program.ApplicationSettingsService.GetSettingByName("eac3to");
                 _eac3ToPath = setting.Path;
             }
+        }
+
+        private void SetToolTips()
+        {
+            ttBluRayDirectory.SetToolTip(txtBluRayPath, "Directory where Blu-ray disc structure is located");
+            ttBatchFileOutputDirectory.SetToolTip(txtBatFilePath, "Directory where eac3to batch file will be saved");
+            ttDirectoryUserControl.SetToolTip(setDirectoryUserControl, "eac3to stream extract directory");
         }
 
         private bool IsEac3ToPathSetInSettings()

@@ -39,8 +39,9 @@
 http://blog.danskingdom.com/saving-and-loading-a-c-objects-data-to-an-xml-json-or-binary-file/
 *Embed 3rd party dlls using ilmerge
 *Fixed bug where sorting grid columns throws an exception
-*Tool tips added to certain control on avs screen
-*Tool tips added to the x264 batch file screen
+*Tool tips added to certain controls on the avisynth screen
+*Tool tips added to certain controls on the x264 batch file screen
+*Tool tips added to certain controls on the eac3to screen
 *Can now specify eac3to output either in a single directory or in their own episode folder ie e01, e02 etc etc
 *Can now specify avisynth ffvideosource video encode location, either in a single directory or in their own episode folder ie e01, e02 etc etc
 *Can now specify x264 encode and (.log) file output directory, either  either in a single directory or in their own episode folder ie e01, e02 etc etc
@@ -48,10 +49,9 @@ http://blog.danskingdom.com/saving-and-loading-a-c-objects-data-to-an-xml-json-o
 
 
 *remove all buttons for exes that are set in settings
-
 *truehd is hardcoded to ac3, switch it to .thd
-*allow the ability to name output .bat files
 
+*allow the ability to name output .bat files
 *introduce drag n drop
 
 *create a screen that will get relevant x264 .log lines to make getting them simple
