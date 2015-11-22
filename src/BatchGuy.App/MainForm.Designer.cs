@@ -60,40 +60,40 @@
             // createEac3ToBatFileToolStripMenuItem
             // 
             this.createEac3ToBatFileToolStripMenuItem.Name = "createEac3ToBatFileToolStripMenuItem";
-            this.createEac3ToBatFileToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
+            this.createEac3ToBatFileToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
             this.createEac3ToBatFileToolStripMenuItem.Text = "Create eac3To Batch File";
             this.createEac3ToBatFileToolStripMenuItem.Click += new System.EventHandler(this.createEac3ToBatFileToolStripMenuItem_Click);
             // 
             // createAVSFilesToolStripMenuItem
             // 
             this.createAVSFilesToolStripMenuItem.Name = "createAVSFilesToolStripMenuItem";
-            this.createAVSFilesToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
+            this.createAVSFilesToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
             this.createAVSFilesToolStripMenuItem.Text = "Create AviSynth Files";
             this.createAVSFilesToolStripMenuItem.Click += new System.EventHandler(this.createAVSFilesToolStripMenuItem_Click);
             // 
             // createX264BatFileToolStripMenuItem
             // 
             this.createX264BatFileToolStripMenuItem.Name = "createX264BatFileToolStripMenuItem";
-            this.createX264BatFileToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
+            this.createX264BatFileToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
             this.createX264BatFileToolStripMenuItem.Text = "Create x264 Batch File";
             this.createX264BatFileToolStripMenuItem.Click += new System.EventHandler(this.createX264BatFileToolStripMenuItem_Click);
             // 
             // viewX264LogsToolStripMenuItem
             // 
             this.viewX264LogsToolStripMenuItem.Name = "viewX264LogsToolStripMenuItem";
-            this.viewX264LogsToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
-            this.viewX264LogsToolStripMenuItem.Text = "View x264 Logs";
+            this.viewX264LogsToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
+            this.viewX264LogsToolStripMenuItem.Text = "View Summarized x264 Logs";
             this.viewX264LogsToolStripMenuItem.Click += new System.EventHandler(this.viewX264LogsToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(200, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(219, 6);
             // 
             // settingsToolStripMenuItem
             // 
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
             this.settingsToolStripMenuItem.Text = "Settings";
             this.settingsToolStripMenuItem.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
             // 

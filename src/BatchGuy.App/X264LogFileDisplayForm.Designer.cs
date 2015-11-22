@@ -63,7 +63,7 @@
             this.MaximizeBox = false;
             this.Name = "X264LogFileDisplayForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "x264 Log File Display";
+            this.Text = "x264 Log File Summary Display";
             this.Load += new System.EventHandler(this.X264LogFileDisplayForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
