@@ -303,6 +303,7 @@ namespace BatchGuy.App
             SaveFileDialog sfd = new SaveFileDialog();
             sfd.Filter = "Batch File|*.bat";
             sfd.Title = "Save eac3to Batch File";
+            sfd.InitialDirectory = @"C:\temp";
 #if DEBUG
             sfd.InitialDirectory = @"C:\temp\My Encodes\Blu-ray";
 #endif
@@ -310,7 +311,9 @@ namespace BatchGuy.App
 
             if (!string.IsNullOrEmpty(sfd.FileName))
             {
-                File.Create(sfd.FileName);
+                using (FileStream fs = File.Create(sfd.FileName))
+                {
+                }
                 txtBatFilePath.Text = sfd.FileName;
             }
         }

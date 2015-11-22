@@ -124,7 +124,7 @@ namespace BatchGuy.App
         private X264FileSettings GetX264FileSettings()
         {
             return new X264FileSettings() { EncodeType = EncodeType,
-             vfw4x264Exe = _vfw4x264Path, X264Template = txtX264Template.Text, X264BatchFileOutputPath = txtX264BatchFileOutputDirectory.Text,
+             vfw4x264Exe = _vfw4x264Path, X264Template = txtX264Template.Text, X264BatchFilePath = txtX264BatchFileOutputDirectory.Text,
              X264EncodeAndLogFileOutputDirectoryPathType = setDirectoryUserControl.OutputDirectoryType, X264EncodeAndLogFileOutputDirectoryPath = setDirectoryUserControl.CLIDirectory};
         }
 
@@ -251,12 +251,21 @@ namespace BatchGuy.App
 
         private void HandleBtnOpenX264BatchFileOutputDialogClick()
         {
-            var fsd = new FolderSelectDialog();
-            fsd.Title = "Blu-ray folder directory";
-            fsd.InitialDirectory = @"c:\";
-            if (fsd.ShowDialog(IntPtr.Zero))
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Filter = "Batch File|*.bat";
+            sfd.Title = "Save eac3to Batch File";
+            sfd.InitialDirectory = @"C:\temp";
+#if DEBUG
+            sfd.InitialDirectory = @"C:\temp\My Encodes\Blu-ray";
+#endif
+            sfd.ShowDialog();
+
+            if (!string.IsNullOrEmpty(sfd.FileName))
             {
-               txtX264BatchFileOutputDirectory.Text = fsd.FileName;
+                using (FileStream fs = File.Create(sfd.FileName))
+                {
+                }
+                txtX264BatchFileOutputDirectory.Text = sfd.FileName;
             }
         }
 

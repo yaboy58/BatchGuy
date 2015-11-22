@@ -45,6 +45,7 @@
 *Made main form bigger and put a panel at the bottom of screen that displays the version
 *Users can now name the eac3to batch file
 *Fixed bug where when user chooses per episode on the eac3to screen, it goes to the wrong output directory
+*Users can now name the x264 batch file
 
 *Update readme file on github
 

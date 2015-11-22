@@ -311,9 +311,9 @@
             this.lblBatchFilePath.AutoSize = true;
             this.lblBatchFilePath.Location = new System.Drawing.Point(17, 68);
             this.lblBatchFilePath.Name = "lblBatchFilePath";
-            this.lblBatchFilePath.Size = new System.Drawing.Size(134, 13);
+            this.lblBatchFilePath.Size = new System.Drawing.Size(127, 13);
             this.lblBatchFilePath.TabIndex = 35;
-            this.lblBatchFilePath.Text = "Batch File Output Directory";
+            this.lblBatchFilePath.Text = "Batch File Save Directory";
             // 
             // txtBluRayPath
             // 
