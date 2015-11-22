@@ -39,16 +39,16 @@ Next, BatchGuy will allow you to choose the directory where the AviSynth scripts
 ![alt text](assets/BatchGuyMenuScreen.png "BatchGuy Main Menu Screen")
 
 <br><br>
-![alt text](assets/CreateEac3toBatch File.png "BatchGuy Create eac3to Batch File Screen")
+![alt text](assets/CreateEac3toBatchFileScreen.png "BatchGuy Create eac3to Batch File Screen")
 
 <br><br>
-![alt text](assets/Blu-rayTitleInfoForm.png "BatchGuy Blu-ray Title Information Screen")
+![alt text](assets/Blu-rayTitleInfoScreen.png "BatchGuy Blu-ray Title Information Screen")
 
 <br><br>
-![alt text](assets/CreateAviSynthFiles.png "BatchGuy Create AviSynth Files Screen")
+![alt text](assets/CreateAviSynthFilesScreen.png "BatchGuy Create AviSynth Files Screen")
 
 <br><br>
-![alt text](assets/CreateX264BatchFile.png "BatchGuy Create x264 Batch File Screen")
+![alt text](assets/CreateX264BatchFileScreen.png "BatchGuy Create x264 Batch File Screen")
 
 <h1>Installation</h1>
 Unzip the BatchGuy folder to any location of your choosing.  With the introduction of BatchGuy Version 1.2, the user can save settings, so it is best to keep the BatchGuy.exe in the BatchGuy folder, which is where the settings file <i>(config.batchGuySettings)</i> will be saved.  However, a shortcut to the BatchGuy.exe can be placed anywhere.
