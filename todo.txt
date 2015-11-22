@@ -35,7 +35,7 @@
 
 --v1.4 todo
 *Fixed bug in sort where the asc/desc logic was wrong when you sorted on a new column.
-*x264 (.log) file screen implemented.  Makes the retrieval of I,P,B,Consecutive-B Frame and Encode Frames count portion of logs easier
+*x264 (.log) file summary screen implemented.  Makes the retrieval of I,P,B,Consecutive-B Frame and Encode Frames count portion of batch logs easier
 *Fixed bug where x264 2pass batch file goes to the wrong output directory
 *Added dragand drop feature to Create x264 Batch File screen
 *Removed X264FileService, it is obsolete with drag and drop added to Create x264 Batch File screen
@@ -47,11 +47,9 @@
 *Fixed bug where when user chooses per episode on the eac3to screen, it goes to the wrong output directory
 *Users can now name the x264 batch file
 
-*Update readme file on github
 
 --upcoming
 *remux screen, drag/drop or multi-select the files for remux 
-
 *ability to save/load eac3to batch guy data
 *remux focus ie allow folder names other than #
 *allow the ability to name output folders/track names
