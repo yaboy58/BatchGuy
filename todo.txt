@@ -37,9 +37,9 @@
 *Fixed bug in sort where the asc/desc logic was wrong when you sorted on a new column.
 *x264 (.log) file summary screen implemented.  Makes the retrieval of I,P,B,Consecutive-B Frame and Encode Frames count portion of batch logs easier
 *Fixed bug where x264 2pass batch file goes to the wrong output directory
-*Added dragand drop feature to Create x264 Batch File screen
+*Added drag and drop feature to Create x264 Batch File screen
 *Removed X264FileService, it is obsolete with drag and drop added to Create x264 Batch File screen
-*Removed uneeded properties from X264FileSettings class after drag and drop feature added to Create x264 Batch File screen
+*Removed obsolete uneeded properties from X264FileSettings class after drag and drop feature added to Create x264 Batch File screen
 *Removed obsolete unit tests for x264 batch file after drag and drop feature added to Create x264 Batch File screen
 *Users redirected to settings form if settings not set of certain screens
 *Made main form bigger and put a panel at the bottom of screen that displays the version
