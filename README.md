@@ -30,7 +30,7 @@ Many encoders like to view and/or save summary x264 (.log) information but if yo
 <h1>The Application</h1>
 <b>BatchGuy Menu: </b> This is the main screen and allows the user to navigate to each screen.  The items on the menu are ordered based upon the natural steps the user would perform in order ie extract streams from Blu-ray disc(s), create (.avs) files and then apply x264 encode settings.
 
-<b>BatchGuy Settings Screen: </b>This screen allows the user to save the location of executables like eac3to and vfw4x264.  Certain screens require these settings to be set before you can use them.
+<b>Settings Screen: </b>This screen allows the user to save the location of executables like eac3to and vfw4x264.  Certain screens require these settings to be set before you can use them.
 
 <b>Create Eac3to Batch File Screen: </b> Using eac3to.exe, this screen is used to load ripped Blu-ray disc(s) information and allows the user to pick which Blu-ray summary items they want to rip.  After all relevant information is chosen on this screen and the Blu-ray Title Info Screen, this screen will output a (.bat) file called <i>"batchguy.extract.bluray.bat"</i> that will have the eac3to arguments to extract all the streams chosen.  It will place each "episode" in its own folder, denoted as exx ie e01, e02, etc etc.  Video files will be denoted as encodexx.mkv, chapters will be chapterxx.txt, subtitles will be the languagexx.sup and audio will be languagexx and the correct audio extension ie english01.ac3.
 
