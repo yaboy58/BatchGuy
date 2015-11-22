@@ -24,6 +24,9 @@ After you have extracted all of your files, BatchGuy will allow you create AviSy
 
 Next, BatchGuy will allow you to choose the directory where the AviSynth scripts reside (.avs) and allow you to load them into the application.  The user can then associate each AviSynth Script file with a title the user enters.  After this, the user can specify x264 settings to apply to all video streams (.mkv) and create a batch file (.bat) called <i>"batchguy.encode.bluray.bat"</i> that the user can run to encode all extracted videos (.mkv), using the AviSynth scripts created (.avs) and the x264 settings specified.
 
+
+Many encoders like to view and/or save summary x264 (.log) information but if you have 26 episodes (26 (.log) files) as an example, it is very tedious to compile all of this informmation yourself.  The x264 Log File Selection and Summary Display Screens makes this task a breeze.  Just drag and drop your x264 (.log) files into the selection grid and press the <b>"view logs"</b> button and BatchGuy will grab the I, P, B Frame, Consecutive B-Frames and Encoded Frames sections of each of the x264 log files in your batch and display it.  You can then modify the text and copy it to your clipboard.
+
 <h1>The Application</h1>
 <b>BatchGuy Menu: </b> This is the main screen and allows the user to navigate to each screen.  The items on the menu are ordered based upon the natural steps the user would perform in order ie extract streams from Blu-ray disc(s), create (.avs) files and then apply x264 encode settings.
 
