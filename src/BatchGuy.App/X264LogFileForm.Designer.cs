@@ -31,19 +31,19 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(X264LogFileForm));
             this.dgvLogFiles = new System.Windows.Forms.DataGridView();
-            this.gbScreen = new System.Windows.Forms.GroupBox();
-            this.btnViewLogs = new System.Windows.Forms.Button();
-            this.lblLogFileCount = new System.Windows.Forms.Label();
-            this.bgwLogFiles = new System.ComponentModel.BackgroundWorker();
-            this.chkBBCodeBoldLogFileName = new System.Windows.Forms.CheckBox();
-            this.chkBBCodeHidden = new System.Windows.Forms.CheckBox();
             this.fileNameOnlyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.filePathDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.logDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bsLogFiles = new System.Windows.Forms.BindingSource(this.components);
+            this.gbScreen = new System.Windows.Forms.GroupBox();
+            this.chkBBCodeHidden = new System.Windows.Forms.CheckBox();
+            this.chkBBCodeBoldLogFileName = new System.Windows.Forms.CheckBox();
+            this.lblLogFileCount = new System.Windows.Forms.Label();
+            this.btnViewLogs = new System.Windows.Forms.Button();
+            this.bgwLogFiles = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLogFiles)).BeginInit();
-            this.gbScreen.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsLogFiles)).BeginInit();
+            this.gbScreen.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvLogFiles
@@ -65,68 +65,6 @@
             this.dgvLogFiles.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.dgvLogFiles_RowsRemoved);
             this.dgvLogFiles.DragDrop += new System.Windows.Forms.DragEventHandler(this.dgvLogFiles_DragDrop);
             this.dgvLogFiles.DragEnter += new System.Windows.Forms.DragEventHandler(this.dgvLogFiles_DragEnter);
-            // 
-            // gbScreen
-            // 
-            this.gbScreen.Controls.Add(this.chkBBCodeHidden);
-            this.gbScreen.Controls.Add(this.chkBBCodeBoldLogFileName);
-            this.gbScreen.Controls.Add(this.lblLogFileCount);
-            this.gbScreen.Controls.Add(this.dgvLogFiles);
-            this.gbScreen.Controls.Add(this.btnViewLogs);
-            this.gbScreen.Location = new System.Drawing.Point(12, 12);
-            this.gbScreen.Name = "gbScreen";
-            this.gbScreen.Size = new System.Drawing.Size(1042, 549);
-            this.gbScreen.TabIndex = 1;
-            this.gbScreen.TabStop = false;
-            this.gbScreen.Text = "Drag N Drop x264 (.log) files";
-            // 
-            // btnViewLogs
-            // 
-            this.btnViewLogs.Location = new System.Drawing.Point(899, 512);
-            this.btnViewLogs.Name = "btnViewLogs";
-            this.btnViewLogs.Size = new System.Drawing.Size(137, 25);
-            this.btnViewLogs.TabIndex = 2;
-            this.btnViewLogs.Text = "View Logs";
-            this.btnViewLogs.UseVisualStyleBackColor = true;
-            this.btnViewLogs.Click += new System.EventHandler(this.btnViewLogs_Click);
-            // 
-            // lblLogFileCount
-            // 
-            this.lblLogFileCount.AutoSize = true;
-            this.lblLogFileCount.Location = new System.Drawing.Point(6, 518);
-            this.lblLogFileCount.Name = "lblLogFileCount";
-            this.lblLogFileCount.Size = new System.Drawing.Size(38, 13);
-            this.lblLogFileCount.TabIndex = 3;
-            this.lblLogFileCount.Text = "Count:";
-            // 
-            // bgwLogFiles
-            // 
-            this.bgwLogFiles.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgwLogFiles_DoWork);
-            this.bgwLogFiles.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgwLogFiles_RunWorkerCompleted);
-            // 
-            // chkBBCodeBoldLogFileName
-            // 
-            this.chkBBCodeBoldLogFileName.AutoSize = true;
-            this.chkBBCodeBoldLogFileName.Checked = true;
-            this.chkBBCodeBoldLogFileName.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkBBCodeBoldLogFileName.Location = new System.Drawing.Point(9, 43);
-            this.chkBBCodeBoldLogFileName.Name = "chkBBCodeBoldLogFileName";
-            this.chkBBCodeBoldLogFileName.Size = new System.Drawing.Size(211, 17);
-            this.chkBBCodeBoldLogFileName.TabIndex = 4;
-            this.chkBBCodeBoldLogFileName.Text = "Place [b][/b] tags around log file names";
-            this.chkBBCodeBoldLogFileName.UseVisualStyleBackColor = true;
-            // 
-            // chkBBCodeHidden
-            // 
-            this.chkBBCodeHidden.AutoSize = true;
-            this.chkBBCodeHidden.Checked = true;
-            this.chkBBCodeHidden.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkBBCodeHidden.Location = new System.Drawing.Point(404, 43);
-            this.chkBBCodeHidden.Name = "chkBBCodeHidden";
-            this.chkBBCodeHidden.Size = new System.Drawing.Size(205, 17);
-            this.chkBBCodeHidden.TabIndex = 5;
-            this.chkBBCodeHidden.Text = "Place [hide][/hide] tags around output";
-            this.chkBBCodeHidden.UseVisualStyleBackColor = true;
             // 
             // fileNameOnlyDataGridViewTextBoxColumn
             // 
@@ -157,6 +95,68 @@
             // 
             this.bsLogFiles.DataSource = typeof(BatchGuy.App.X264Log.Models.X264LogFile);
             // 
+            // gbScreen
+            // 
+            this.gbScreen.Controls.Add(this.chkBBCodeHidden);
+            this.gbScreen.Controls.Add(this.chkBBCodeBoldLogFileName);
+            this.gbScreen.Controls.Add(this.lblLogFileCount);
+            this.gbScreen.Controls.Add(this.dgvLogFiles);
+            this.gbScreen.Controls.Add(this.btnViewLogs);
+            this.gbScreen.Location = new System.Drawing.Point(12, 12);
+            this.gbScreen.Name = "gbScreen";
+            this.gbScreen.Size = new System.Drawing.Size(1042, 549);
+            this.gbScreen.TabIndex = 1;
+            this.gbScreen.TabStop = false;
+            this.gbScreen.Text = "Drag N Drop x264 (.log) files";
+            // 
+            // chkBBCodeHidden
+            // 
+            this.chkBBCodeHidden.AutoSize = true;
+            this.chkBBCodeHidden.Checked = true;
+            this.chkBBCodeHidden.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkBBCodeHidden.Location = new System.Drawing.Point(404, 43);
+            this.chkBBCodeHidden.Name = "chkBBCodeHidden";
+            this.chkBBCodeHidden.Size = new System.Drawing.Size(205, 17);
+            this.chkBBCodeHidden.TabIndex = 5;
+            this.chkBBCodeHidden.Text = "Place [hide][/hide] tags around output";
+            this.chkBBCodeHidden.UseVisualStyleBackColor = true;
+            // 
+            // chkBBCodeBoldLogFileName
+            // 
+            this.chkBBCodeBoldLogFileName.AutoSize = true;
+            this.chkBBCodeBoldLogFileName.Checked = true;
+            this.chkBBCodeBoldLogFileName.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkBBCodeBoldLogFileName.Location = new System.Drawing.Point(9, 43);
+            this.chkBBCodeBoldLogFileName.Name = "chkBBCodeBoldLogFileName";
+            this.chkBBCodeBoldLogFileName.Size = new System.Drawing.Size(211, 17);
+            this.chkBBCodeBoldLogFileName.TabIndex = 4;
+            this.chkBBCodeBoldLogFileName.Text = "Place [b][/b] tags around log file names";
+            this.chkBBCodeBoldLogFileName.UseVisualStyleBackColor = true;
+            // 
+            // lblLogFileCount
+            // 
+            this.lblLogFileCount.AutoSize = true;
+            this.lblLogFileCount.Location = new System.Drawing.Point(6, 518);
+            this.lblLogFileCount.Name = "lblLogFileCount";
+            this.lblLogFileCount.Size = new System.Drawing.Size(38, 13);
+            this.lblLogFileCount.TabIndex = 3;
+            this.lblLogFileCount.Text = "Count:";
+            // 
+            // btnViewLogs
+            // 
+            this.btnViewLogs.Location = new System.Drawing.Point(899, 512);
+            this.btnViewLogs.Name = "btnViewLogs";
+            this.btnViewLogs.Size = new System.Drawing.Size(137, 25);
+            this.btnViewLogs.TabIndex = 2;
+            this.btnViewLogs.Text = "View Logs";
+            this.btnViewLogs.UseVisualStyleBackColor = true;
+            this.btnViewLogs.Click += new System.EventHandler(this.btnViewLogs_Click);
+            // 
+            // bgwLogFiles
+            // 
+            this.bgwLogFiles.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgwLogFiles_DoWork);
+            this.bgwLogFiles.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgwLogFiles_RunWorkerCompleted);
+            // 
             // X264LogFileForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -167,11 +167,11 @@
             this.MaximizeBox = false;
             this.Name = "X264LogFileForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "x264 Log File Viewer";
+            this.Text = "x264 Log File Selection";
             ((System.ComponentModel.ISupportInitialize)(this.dgvLogFiles)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsLogFiles)).EndInit();
             this.gbScreen.ResumeLayout(false);
             this.gbScreen.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bsLogFiles)).EndInit();
             this.ResumeLayout(false);
 
         }

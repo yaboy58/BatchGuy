@@ -253,7 +253,7 @@ namespace BatchGuy.App
         {
             SaveFileDialog sfd = new SaveFileDialog();
             sfd.Filter = "Batch File|*.bat";
-            sfd.Title = "Save eac3to Batch File";
+            sfd.Title = "Save x264 Batch File";
             sfd.InitialDirectory = @"C:\temp";
 #if DEBUG
             sfd.InitialDirectory = @"C:\temp\My Encodes\Blu-ray";
