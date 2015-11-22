@@ -60,10 +60,13 @@ namespace BatchGuy.App.Eac3to.Services
         public string GetChapterStreamPart()
         {
             StringBuilder sb = new StringBuilder();
-            if (_bluRayTitleInfo.Chapter.IsSelected)
+            if (_bluRayTitleInfo.Chapter != null)
             {
-                sb.Append(string.Format("{0} ", _bluRayTitleInfo.Chapter.Id));
-                sb.Append(string.Format("\"{0}\\chapters{1}.txt\"", _filesOutputPath, _paddedEpisode));                
+                if (_bluRayTitleInfo.Chapter.IsSelected)
+                {
+                    sb.Append(string.Format("{0} ", _bluRayTitleInfo.Chapter.Id));
+                    sb.Append(string.Format("\"{0}\\chapters{1}.txt\"", _filesOutputPath, _paddedEpisode));
+                }                
             }
             return sb.ToString();
         }
@@ -71,11 +74,14 @@ namespace BatchGuy.App.Eac3to.Services
         public string GetVideoStreamPart()
         {
             StringBuilder sb = new StringBuilder();
-            if (_bluRayTitleInfo.Video.IsSelected)
-	        {
-                sb.Append(string.Format("{0} ", _bluRayTitleInfo.Video.Id));
-                sb.Append(string.Format("\"{0}\\video{1}.mkv\"", _filesOutputPath, _paddedEpisode));		 
-	        }            
+            if (_bluRayTitleInfo.Video != null)
+            {
+                if (_bluRayTitleInfo.Video.IsSelected)
+                {
+                    sb.Append(string.Format("{0} ", _bluRayTitleInfo.Video.Id));
+                    sb.Append(string.Format("\"{0}\\video{1}.mkv\"", _filesOutputPath, _paddedEpisode));
+                }                            
+            }
             return sb.ToString();
         }
 

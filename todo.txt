@@ -33,19 +33,11 @@
 *unit test extension methods
 
 
---v1.4 todo
-*Fixed bug in sort where the asc/desc logic was wrong when you sorted on a new column.
-*x264 (.log) file summary screen implemented.  Makes the retrieval of I,P,B,Consecutive-B Frame and Encode Frames count portion of batch logs easier
-*Fixed bug where x264 2pass batch file goes to the wrong output directory
-*Added drag and drop feature to Create x264 Batch File screen
-*Removed X264FileService, it is obsolete with drag and drop added to Create x264 Batch File screen
-*Removed obsolete uneeded properties from X264FileSettings class after drag and drop feature added to Create x264 Batch File screen
-*Removed obsolete unit tests for x264 batch file after drag and drop feature added to Create x264 Batch File screen
-*Users redirected to settings form if settings not set of certain screens
-*Made main form bigger and put a panel at the bottom of screen that displays the version
-*Users can now name the eac3to batch file
-*Fixed bug where when user chooses per episode on the eac3to screen, it goes to the wrong output directory
-*Users can now name the x264 batch file
+--1.6 todo
+*Add logging and better errors
+*Maybe keep track of the Blu-ray folder directory, so you will open up the same directory every time
+
+
 
 
 --upcoming
