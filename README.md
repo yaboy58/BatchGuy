@@ -75,4 +75,4 @@ Windows 7, 8.1 x64 <br>
 .Net Framework 4.5+<br>
 eac3to<br>
 vfw4x264<br>
-AviSynth 2.5+<br>
+AviSynth 2.5+ and all relevant plugins<br>
