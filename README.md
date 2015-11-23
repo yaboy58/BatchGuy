@@ -39,7 +39,7 @@ Many encoders like to view and/or save summary x264 (.log) information but if yo
 
 <b>Create AviSynth Files Screen: </b> This screen will allow the user to apply global AviSynth settings to each episode.  It has very limited AviSynth scripting and FFVideoSource is the default video filter.  The user will specify the location that the (.avs) files will be created, the number of files (episodes) and can enter AviSynth scripting.  Each (.avs) file will point the FFVideoSource video location as <i>"output_directory_selected\exx\encodexx.mkv"</i>.
 
-<b>Create x264 Batch File Screen: </b> This screen allows the user to associate (.avs) files created with encode names and to apply global x264 settings to each (.avs) file.  The encode name is used for the x264 video and log file output names during encoding.  When the user chooses to create the (.bat) file, a (.bat) file called <i>"batchguy.encode.bluray.bat"</i> will be created containing x264 settings for each (.avs) file.
+<b>Create x264 Batch File Screen: </b> This screen allows the user to associate (.avs) files created with encode names and to apply global x264 settings to each (.avs) file.  The encode name is used for the x264 video and log file output names during encoding.  When the user chooses to create the (.bat) file, a (.bat) file will be created containing x264 settings for each (.avs) file.
 
 <b>x264 Log File Selection Screen:</b>  This screen allows the user to drag and drop x264 (.log) files onto the grid.  The user can choose some simple bbcode formatting and view the I, P, B, Consecutive-B Frames and Encoded Frames section of each x264 (.log) file, modify the information and copy it to the clipboard.
 
