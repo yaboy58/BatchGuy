@@ -34,17 +34,19 @@
 
 
 --1.6 todo
+*allow the ability to name output folders/track names
 *Add logging and better errors
 *Maybe keep track of the Blu-ray folder directory, so you will open up the same directory every time
+*Add ffvideosource/dss drop down to x264 screen and the ability to add video filter args
 
-
+*ability to save/load eac3to batch guy data
 
 
 --upcoming
 *remux screen, drag/drop or multi-select the files for remux 
-*ability to save/load eac3to batch guy data
+
 *remux focus ie allow folder names other than #
-*allow the ability to name output folders/track names
+
 *mkvmerge integration
 *look into why the busy mouse indicator doesn't seem to work
 *put the bluray title on the title info page
