@@ -1,4 +1,5 @@
-﻿using BatchGuy.App.Settings.Interface;
+﻿using BatchGuy.App.Bootstrap;
+using BatchGuy.App.Settings.Interface;
 using BatchGuy.App.Settings.Models;
 using BatchGuy.App.Settings.Services;
 using System;
@@ -25,6 +26,7 @@ namespace BatchGuy
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            Logging.Register();
             Program.LoadApplicationSettings();
             Application.Run(new MainForm());
         }

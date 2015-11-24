@@ -36,6 +36,7 @@
 --1.6 todo
 *allow the ability to name output folders/track names
 *Add logging and better errors
+http://stackoverflow.com/questions/16336917/can-you-configure-log4net-in-code-instead-of-using-a-config-file
 *Maybe keep track of the Blu-ray folder directory, so you will open up the same directory every time
 *Add ffvideosource/dss drop down to x264 screen and the ability to add video filter args
 
