@@ -16,18 +16,20 @@ using BatchGuy.App.Extensions;
 using BatchGuy.App.Shared.Models;
 using BatchGuy.App.Shared.Interfaces;
 using BatchGuy.App.Shared.Services;
+using BatchGuy.App.Eac3to.Models;
 
 namespace BatchGuy.App
 {
     public partial class BluRayTitleInfoForm : Form
     {
-        private BluRayDiscInfo _currentBluRayDisc;
         private BluRaySummaryInfo _bluRaySummaryInfo;
         private BindingList<BluRayTitleAudio> _bindingListBluRayTitleAudio = new BindingList<BluRayTitleAudio>();
         private BindingList<BluRayTitleSubtitle> _bindingListBluRayTitleSubtitle = new BindingList<BluRayTitleSubtitle>();
         private BluRayTitleAudio _currentBluRayTitleAudio;
         private SortConfiguration _audioGridSortConfiguration = new SortConfiguration();
         private SortConfiguration _subtitleGridSortConfiguration = new SortConfiguration();
+        private EAC3ToConfiguration _eac3ToConfiguration;
+        private string _bluRayPath;
         
         public BluRayTitleInfoForm()
         {
@@ -35,10 +37,11 @@ namespace BatchGuy.App
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
         }
 
-        public void SetBluRayTitleInfo(BluRaySummaryInfo bluRaySummaryInfo, BluRayDiscInfo currentBluRayDisc)
+        public void SetBluRayTitleInfo(EAC3ToConfiguration eac3ToConfiguration, string bluRayPath, BluRaySummaryInfo bluRaySummaryInfo)
         {
             _bluRaySummaryInfo = bluRaySummaryInfo;
-            _currentBluRayDisc = currentBluRayDisc;
+            _eac3ToConfiguration = eac3ToConfiguration;
+            _bluRayPath = bluRayPath;
         }
 
         private void BluRayTitleForm_Load(object sender, EventArgs e)
@@ -59,8 +62,8 @@ namespace BatchGuy.App
         {
             CommandLineProcessStartInfo commandLineProcessStartInfo = new CommandLineProcessStartInfo()
             {
-                FileName = _currentBluRayDisc.EAC3ToConfiguration.EAC3ToPath,
-                Arguments = string.Format("\"{0}\" {1}", _currentBluRayDisc.EAC3ToConfiguration.BluRayPath, _bluRaySummaryInfo.Id)
+                FileName = _eac3ToConfiguration.EAC3ToPath,
+                Arguments = string.Format("\"{0}\" {1}",  _bluRayPath, _bluRaySummaryInfo.Id)
             };
             
             ICommandLineProcessService commandLineProcessService = new CommandLineProcessService(commandLineProcessStartInfo);

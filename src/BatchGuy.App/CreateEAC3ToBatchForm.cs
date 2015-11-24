@@ -38,6 +38,7 @@ namespace BatchGuy.App
         private SortConfiguration _bluRaySummaryGridSortConfiguration = new SortConfiguration();
         private SortConfiguration _bluRayDiscGridSortConfiguration = new SortConfiguration();
         private string _eac3ToPath = string.Empty;
+        private EAC3ToConfiguration _eac3toConfiguration;
 
         public CreateEAC3ToBatchForm()
         {
@@ -83,8 +84,9 @@ namespace BatchGuy.App
 
         private void btnWriteToBatFile_Click(object sender, EventArgs e)
         {
-            if (this.IsAtLeastOneDiscLoaded())
+            if (this.IsAtLeastOneDiscLoaded() && this.IsScreenValid())
             {
+                this.SetEac3ToConfiguration();
                 this.WriteToBatchFile();                
             }
         }
@@ -92,7 +94,7 @@ namespace BatchGuy.App
         private void WriteToBatchFile()
         {
             gbScreen.SetEnabled(false);
-            IBatchFileWriteService batchFileWriteService = new BatchFileWriteService(_bluRayDiscInfoList);
+            IBatchFileWriteService batchFileWriteService = new BatchFileWriteService(_eac3toConfiguration,_bluRayDiscInfoList);
             bgwEac3toWriteBatchFile.RunWorkerAsync(batchFileWriteService);
         }
 
@@ -101,6 +103,7 @@ namespace BatchGuy.App
             if (this.IsScreenValid())
             {
                 this.HandleAddBluRayDiscClick();
+                this.SetEac3ToConfiguration();
                 txtBluRayPath.Text = string.Empty;                
             }
         }
@@ -114,14 +117,7 @@ namespace BatchGuy.App
             {
                 Id = _bluRayDiscInfoList.Count + 1,
                 IsSelected = false,
-                EAC3ToConfiguration = new EAC3ToConfiguration()
-                {
-                    BatchFilePath = txtBatFilePath.Text,
-                    BluRayPath = txtBluRayPath.Text,
-                    EAC3ToPath = _eac3ToPath,
-                     EAC3ToOutputPath = setDirectoryUserControl.CLIDirectory,
-                     OutputDirectoryType = setDirectoryUserControl.OutputDirectoryType
-                }
+                BluRayPath = txtBluRayPath.Text
             };
 
             _bluRayDiscInfoList.Add(info);
@@ -180,7 +176,7 @@ namespace BatchGuy.App
             _commandLineProcessStartInfo = new CommandLineProcessStartInfo()
             {
                 FileName = _eac3ToPath,
-                Arguments = string.Format("\"{0}\"", _currentBluRayDiscInfo.EAC3ToConfiguration.BluRayPath)
+                Arguments = string.Format("\"{0}\"", _currentBluRayDiscInfo.BluRayPath)
             };
 
             ICommandLineProcessService commandLineProcessService = new CommandLineProcessService(_commandLineProcessStartInfo);
@@ -225,7 +221,7 @@ namespace BatchGuy.App
             BluRaySummaryInfo summaryInfo = _currentBluRayDiscInfo.BluRaySummaryInfoList.SingleOrDefault(s => s.Id == id.ToString());
 
             BluRayTitleInfoForm form = new BluRayTitleInfoForm();
-            form.SetBluRayTitleInfo(summaryInfo, _currentBluRayDiscInfo);
+            form.SetBluRayTitleInfo(_eac3toConfiguration,_currentBluRayDiscInfo.BluRayPath,summaryInfo);
             form.ShowDialog();
             this.BindDgvBluRaySummaryGrid();
         }
@@ -236,11 +232,6 @@ namespace BatchGuy.App
             {
                 MessageBox.Show("Please enter the path the batch file should be created!", "Error occurred", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;    
-            }
-            if (txtBluRayPath.Text == string.Empty)
-            {
-                MessageBox.Show("Please enter the path where the blu-ray disc is located!", "Error occurred", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
             }
             if (_eac3ToPath == string.Empty)
             {
@@ -408,6 +399,17 @@ namespace BatchGuy.App
             _bindingListBluRaySummaryInfo = bindingListSortService.Sort();
 
             this.BindDgvBluRaySummaryGrid();
+        }
+
+        private void SetEac3ToConfiguration()
+        {
+            _eac3toConfiguration = new EAC3ToConfiguration()
+            {
+                BatchFilePath = txtBatFilePath.Text,
+                EAC3ToPath = _eac3ToPath,
+                EAC3ToOutputPath = setDirectoryUserControl.CLIDirectory,
+                OutputDirectoryType = setDirectoryUserControl.OutputDirectoryType
+            };
         }
 
     }

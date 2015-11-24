@@ -18,15 +18,17 @@ namespace BatchGuy.App.Eac3to.Services
     {
         private ErrorCollection _errors = new ErrorCollection();
         private List<BluRayDiscInfo> _bluRayDiscInfoList;
+        private EAC3ToConfiguration _eac3toConfiguration;
 
         public ErrorCollection Errors
         {
             get { return _errors; }
         }
-        
-        public BatchFileWriteService(List<BluRayDiscInfo> bluRayDiscInfo)
+
+        public BatchFileWriteService(EAC3ToConfiguration eac3toConfiguration, List<BluRayDiscInfo> bluRayDiscInfo)
         {
             _bluRayDiscInfoList = bluRayDiscInfo;
+            _eac3toConfiguration = eac3toConfiguration;
             _errors = new ErrorCollection();
         }
 
@@ -40,7 +42,7 @@ namespace BatchGuy.App.Eac3to.Services
                     {
                         foreach (BluRaySummaryInfo summary in disc.BluRaySummaryInfoList.Where(s => s.IsSelected).OrderBy(s => s.EpisodeNumber))
                         {
-                            IEAC3ToOutputService eacOutputService = new EAC3ToOutputService(disc.EAC3ToConfiguration, summary.Id, summary.BluRayTitleInfo);
+                            IEAC3ToOutputService eacOutputService = new EAC3ToOutputService(_eac3toConfiguration,disc.BluRayPath, summary);
                             string eac3ToPathPart = eacOutputService.GetEAC3ToPathPart();
                             string bluRayStreamPart = eacOutputService.GetBluRayStreamPart();
                             string chapterStreamPart = eacOutputService.GetChapterStreamPart();
@@ -49,7 +51,7 @@ namespace BatchGuy.App.Eac3to.Services
                             string subtitleStreamPart = eacOutputService.GetSubtitleStreamPart();
                             string logPart = eacOutputService.GetLogPart();
 
-                            using (StreamWriter sw = new StreamWriter(disc.EAC3ToConfiguration.BatchFilePath, true))
+                            using (StreamWriter sw = new StreamWriter(_eac3toConfiguration.BatchFilePath, true))
                             {
                                 sw.WriteLine(string.Format("{0} {1} {2} {3} {4} {5} {6} -progressnumbers", eac3ToPathPart, bluRayStreamPart, chapterStreamPart, videoStreamPart, audioStreamPart,
                                     subtitleStreamPart, logPart));

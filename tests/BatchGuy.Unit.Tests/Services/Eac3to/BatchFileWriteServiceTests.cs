@@ -10,6 +10,7 @@ using BatchGuy.App.Eac3to.Services;
 using BatchGuy.App.Parser.Models;
 using BatchGuy.App.Shared.Models;
 using BatchGuy.App.Eac3To.Interfaces;
+using BatchGuy.App.Eac3to.Models;
 
 namespace BatchGuy.Unit.Tests.Services.Eac3to
 {
@@ -20,7 +21,8 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
         public void batchfilewriterservice_has_no_disc_selected_error_when_no_disc_selected_test()
         {
             List<BluRayDiscInfo> discList = new List<BluRayDiscInfo>() {new BluRayDiscInfo() { Id = 1, IsSelected = false }};
-            IBatchFileWriteService service = new BatchFileWriteService(discList);
+            EAC3ToConfiguration config = new EAC3ToConfiguration();
+            IBatchFileWriteService service = new BatchFileWriteService(config, discList);
             bool isValid = service.IsValid();
             service.Errors[0].Description.ShouldBeEqualTo("No Disc was selected.");
         }
@@ -29,7 +31,8 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
         public void batchfilewriterservice_has_no_episodes_selected_error_when_no_episodes_selected_test()
         {
             List<BluRayDiscInfo> discList = new List<BluRayDiscInfo>() { new BluRayDiscInfo() { Id = 1, IsSelected = true, BluRaySummaryInfoList = new List<BluRaySummaryInfo>() { new BluRaySummaryInfo() { IsSelected = false} } } };
-            IBatchFileWriteService service = new BatchFileWriteService(discList);
+            EAC3ToConfiguration config = new EAC3ToConfiguration();
+            IBatchFileWriteService service = new BatchFileWriteService(config,discList);
             bool isValid = service.IsValid();
             service.Errors[0].Description.ShouldBeEqualTo("No episodes selected.");
         }
@@ -39,7 +42,8 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
         {
             List<BluRayDiscInfo> discList = new List<BluRayDiscInfo>() { new BluRayDiscInfo() { Id = 1, IsSelected = true, BluRaySummaryInfoList = new List<BluRaySummaryInfo>() { new BluRaySummaryInfo() { IsSelected = true,
              BluRayTitleInfo = new BluRayTitleInfo() { Video = new BluRayTitleVideo() { IsSelected = true} }} } } };
-            IBatchFileWriteService service = new BatchFileWriteService(discList);
+            EAC3ToConfiguration config = new EAC3ToConfiguration();
+            IBatchFileWriteService service = new BatchFileWriteService(config, discList);
             bool isValid = service.IsValid();
             service.Errors[0].Description.ShouldBeEqualTo("Episode not set for all titles.");
         }

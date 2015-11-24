@@ -23,6 +23,12 @@ namespace BatchGuy.Eac3to.Parser.Example.Console.App
             string batchFilePath = @"C:\temp\My Encodes\Blu-ray";
             string bluRayDiscPath = @"C:\temp\My Encodes\Blu-ray\DISC\D1";
             string eac3ToPath = @"C:\exe\eac3to\eac3to.exe";
+            EAC3ToConfiguration eac3toConfiguation = new EAC3ToConfiguration()
+            {
+                BatchFilePath = batchFilePath,
+                EAC3ToPath = eac3ToPath
+            };
+
 
             //Main object
             List<BluRayDiscInfo> bluRayDiscList = new List<BluRayDiscInfo>();
@@ -31,12 +37,7 @@ namespace BatchGuy.Eac3to.Parser.Example.Console.App
             {
                 Id = 1,
                 IsSelected = true,
-                EAC3ToConfiguration = new EAC3ToConfiguration()
-                {
-                    BatchFilePath = batchFilePath,
-                    BluRayPath = bluRayDiscPath,
-                    EAC3ToPath = eac3ToPath
-                }
+                BluRayPath = bluRayDiscPath
             };
             bluRayDiscList.Add(bluRayDisc);
 
@@ -125,7 +126,7 @@ namespace BatchGuy.Eac3to.Parser.Example.Console.App
                     }
 
                     //now time to write out the batch file
-                    IBatchFileWriteService batchFileWriteService = new BatchFileWriteService(bluRayDiscList);
+                    IBatchFileWriteService batchFileWriteService = new BatchFileWriteService(eac3toConfiguation,bluRayDiscList);
                     batchFileWriteService.Write();
                     if (batchFileWriteService.Errors.Count() == 0)
                     {
