@@ -14,5 +14,6 @@ namespace BatchGuy.App.Eac3to.Interfaces
         string GetVideoStreamPart();
         string GetAudioStreamPart();
         string GetSubtitleStreamPart();
+        string GetLogPart();
     }
 }

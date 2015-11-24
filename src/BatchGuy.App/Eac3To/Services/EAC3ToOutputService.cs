@@ -125,6 +125,13 @@ namespace BatchGuy.App.Eac3to.Services
             return sb.ToString();
         }
 
+        public string GetLogPart()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append(string.Format(" -log=\"{0}\\log{1}.txt\"", _filesOutputPath, _paddedEpisode));
+            return sb.ToString();
+        }
+
         private string GetAudioExtension(EnumAudioType audioType)
         {
             string audioExtension = string.Empty;

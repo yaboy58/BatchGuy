@@ -47,11 +47,12 @@ namespace BatchGuy.App.Eac3to.Services
                             string videoStreamPart = eacOutputService.GetVideoStreamPart();
                             string audioStreamPart = eacOutputService.GetAudioStreamPart();
                             string subtitleStreamPart = eacOutputService.GetSubtitleStreamPart();
+                            string logPart = eacOutputService.GetLogPart();
 
                             using (StreamWriter sw = new StreamWriter(disc.EAC3ToConfiguration.BatchFilePath, true))
                             {
-                                sw.WriteLine(string.Format("{0} {1} {2} {3} {4} {5} -progressnumbers", eac3ToPathPart, bluRayStreamPart, chapterStreamPart, videoStreamPart, audioStreamPart,
-                                    subtitleStreamPart));
+                                sw.WriteLine(string.Format("{0} {1} {2} {3} {4} {5} {6} -progressnumbers", eac3ToPathPart, bluRayStreamPart, chapterStreamPart, videoStreamPart, audioStreamPart,
+                                    subtitleStreamPart, logPart));
                                 sw.WriteLine();
                                 sw.WriteLine();
                             }

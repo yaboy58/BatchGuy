@@ -344,3 +344,4 @@
 /tests/BatchGuy.Unit.Tests/bin/Debug/log4net.xml
 /tests/BatchGuy.Unit.Tests/bin/Release/log4net.dll
 /tests/BatchGuy.Unit.Tests/bin/Release/log4net.xml
+/src/BatchGuy.App/bin/Debug/Logs/*.log
