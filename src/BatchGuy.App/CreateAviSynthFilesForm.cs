@@ -38,6 +38,7 @@ namespace BatchGuy.App
 #if DEBUG
             txtOutputDirectory.Text = @"C:\temp\My Encodes\Blu-ray";   
 #endif
+            cbVideoFilter.SelectedIndex = 1;
         }
 
         private void SetAviSynthTemplateTextBox()
@@ -89,7 +90,7 @@ namespace BatchGuy.App
                  AviSynthFilesOutputDirectoryPath = txtOutputDirectory.Text,
                   NamingConvention = "video", //hardcoded for now
                    NumberOfFiles = Convert.ToInt32(txtNumberOfFiles.Text),
-                    VideoFilter = "FFVideoSource", //hardcoded for now
+                    VideoFilter = cbVideoFilter.Text,
                       VideoToEncodeDirectory = setDirectoryUserControl.CLIDirectory,
                        VideoToEncodeDirectoryType = setDirectoryUserControl.OutputDirectoryType
             };

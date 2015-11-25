@@ -44,6 +44,8 @@
             this.setDirectoryUserControl = new BatchGuy.App.UserControls.SetDirectoryUserControl();
             this.bgwCreateAviSynthFiles = new System.ComponentModel.BackgroundWorker();
             this.ttNumberOfFiles = new System.Windows.Forms.ToolTip(this.components);
+            this.label6 = new System.Windows.Forms.Label();
+            this.cbVideoFilter = new System.Windows.Forms.ComboBox();
             this.gbScreen.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -119,6 +121,8 @@
             // 
             // gbScreen
             // 
+            this.gbScreen.Controls.Add(this.cbVideoFilter);
+            this.gbScreen.Controls.Add(this.label6);
             this.gbScreen.Controls.Add(this.label5);
             this.gbScreen.Controls.Add(this.label4);
             this.gbScreen.Controls.Add(this.setDirectoryUserControl);
@@ -151,9 +155,9 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(17, 351);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(330, 13);
+            this.label4.Size = new System.Drawing.Size(211, 13);
             this.label4.TabIndex = 13;
-            this.label4.Text = "*BatchGuy uses the FFVideoSource filter and will add it automatically";
+            this.label4.Text = "*BatchGuy will add video filter automatically";
             // 
             // setDirectoryUserControl
             // 
@@ -168,6 +172,27 @@
             // 
             this.bgwCreateAviSynthFiles.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgwCreateAviSynthFiles_DoWork);
             this.bgwCreateAviSynthFiles.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgwCreateAviSynthFiles_RunWorkerCompleted);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(629, 171);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(59, 13);
+            this.label6.TabIndex = 15;
+            this.label6.Text = "Video Filter";
+            // 
+            // cbVideoFilter
+            // 
+            this.cbVideoFilter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbVideoFilter.FormattingEnabled = true;
+            this.cbVideoFilter.Items.AddRange(new object[] {
+            "dss2",
+            "FFVideoSource"});
+            this.cbVideoFilter.Location = new System.Drawing.Point(709, 163);
+            this.cbVideoFilter.Name = "cbVideoFilter";
+            this.cbVideoFilter.Size = new System.Drawing.Size(121, 21);
+            this.cbVideoFilter.TabIndex = 16;
             // 
             // CreateAviSynthFilesForm
             // 
@@ -203,5 +228,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ToolTip ttNumberOfFiles;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox cbVideoFilter;
+        private System.Windows.Forms.Label label6;
     }
 }

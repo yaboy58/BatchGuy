@@ -44,18 +44,17 @@
 *Tooltips created dynamically on create x264 batch file screen
 *Tooltips created dynamically on create avisynth files screen
 *Tooltips created dynamically on eac3to screen
+*Tooltips created for eac3to remux controls on eac3to screen
+*User can now choose FFVideoSource or dss2 as the video filter on create avisynth files screen
 
 
-*Tooltips for eac3 remux control
 *Update documentation.  Explain remuxing and the BatchGuy Workflow
 *mabye allow the user to specify x264 encode and .log to different directories
-*Add ffvideosource/dss drop down to x264 screen and the ability to add video filter args
 *Maybe put some yes/no when user presses buttons that launches processes
-*ability to create sample.avs/sample.encode.bat
-
 
 
 --upcoming
+*ability to create sample.avs/sample.encode.bat
 *Maybe keep track of the Blu-ray folder directory, so you will open up the same directory every time
 *ability to save/load eac3to batch guy data
 *find where you have number of files hardcoded to 99 and put the real value in it

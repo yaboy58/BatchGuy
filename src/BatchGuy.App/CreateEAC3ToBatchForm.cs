@@ -69,6 +69,12 @@ namespace BatchGuy.App
         {
             new ToolTip().SetToolTip(txtBatFilePath, "Directory where eac3to batch file will be saved");
             new ToolTip().SetToolTip(setDirectoryUserControl, "eac3to stream extract directory");
+            new ToolTip().SetToolTip(txtSeriesName,"Series name");
+            new ToolTip().SetToolTip(txtSeasonNumber, "Season number");
+            new ToolTip().SetToolTip(txtSeasonYear, "Season year");
+            new ToolTip().SetToolTip(cbVideoResolution, "Video resolution");
+            new ToolTip().SetToolTip(txtAudioType, "Audio type i.e. FLAC 7.1");
+            new ToolTip().SetToolTip(txtTag, "Tag to place at the end of each file i.e. BGuy");
         }
 
         private bool IsEac3ToPathSetInSettings()
