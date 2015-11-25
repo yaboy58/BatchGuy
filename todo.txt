@@ -48,9 +48,11 @@
 *User can now choose FFVideoSource or dss2 as the video filter on create avisynth files screen
 *Fixed bug where x264 batch file 2pass log files on 1st and 2nd pass had the same name and overwrote each other
 *Users can now specify save directories for x264 --output and (.log) on the create x264 batch file screen
+*Users now prompted with yes/no dialog when creating eac3to/x264 batch file and avisynth files
+
 
 *Update documentation.  Explain remuxing and the BatchGuy Workflow
-*Maybe put some yes/no when user presses buttons that launches processes
+
 
 
 --upcoming

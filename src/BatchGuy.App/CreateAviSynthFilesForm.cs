@@ -64,10 +64,15 @@ namespace BatchGuy.App
 
         private void btnCreateAVSFiles_Click(object sender, EventArgs e)
         {
-            if (this.IsScreenValid())
+            DialogResult result = MessageBox.Show("Create AviSynth files?", "Start Process?", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+
+            if (result == System.Windows.Forms.DialogResult.Yes)
             {
-                gbScreen.SetEnabled(false);
-                Process();                
+                if (this.IsScreenValid())
+                {
+                    gbScreen.SetEnabled(false);
+                    Process();
+                }
             }
         }
 

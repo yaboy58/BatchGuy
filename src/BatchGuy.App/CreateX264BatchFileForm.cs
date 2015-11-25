@@ -136,9 +136,14 @@ namespace BatchGuy.App
 
         private void btnCreateX264BatFile_Click(object sender, EventArgs e)
         {
-            if (this.IsScreenValidForWriteX264BatchFile())
+            DialogResult result = MessageBox.Show("Create x264 batch file?", "Start Process?", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+
+            if (result == System.Windows.Forms.DialogResult.Yes)
             {
-                this.CreateX264BatFile();
+                if (this.IsScreenValidForWriteX264BatchFile())
+                {
+                    this.CreateX264BatFile();
+                }
             }
         }
 

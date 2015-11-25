@@ -88,11 +88,16 @@ namespace BatchGuy.App
 
         private void btnWriteToBatFile_Click(object sender, EventArgs e)
         {
-            this.SetEac3ToConfiguration();
-            this.SetEAC3ToRemuxFileNameTemplate();
-            if (this.IsAtLeastOneDiscLoaded() && this.IsScreenValid())
+            DialogResult result = MessageBox.Show("Create eac3to batch file?", "Start Process?", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+
+            if (result == System.Windows.Forms.DialogResult.Yes)
             {
-                this.WriteToBatchFile();                
+                this.SetEac3ToConfiguration();
+                this.SetEAC3ToRemuxFileNameTemplate();
+                if (this.IsAtLeastOneDiscLoaded() && this.IsScreenValid())
+                {
+                    this.WriteToBatchFile();
+                }                
             }
         }
 
