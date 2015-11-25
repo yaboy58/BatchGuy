@@ -36,6 +36,8 @@ namespace BatchGuy.App.X264.Services
                 return false;
             if (!this.X264EncodeAndLogFileOutputDirectoryPathNotNull())
                 return false;
+            if (!this.X264LogFileOutputDirectoryPathNotNullWhenSaveLogToDifferentDirectory())
+                return false;
             return true;
         }
 
@@ -65,6 +67,16 @@ namespace BatchGuy.App.X264.Services
             {
                 this._errors.Add(new Error() { Description = "The x264 encode and (.log) file Output directory is required" });
                 return false;                
+            }
+            return true;
+        }
+
+        private bool X264LogFileOutputDirectoryPathNotNullWhenSaveLogToDifferentDirectory()
+        {
+            if (_x264FileSettings.SaveX264LogFileToDifferentDirectory && string.IsNullOrEmpty(_x264FileSettings.X264LogFileOutputDirectoryPath))
+            {
+                this._errors.Add(new Error() { Description = "The x264 (.log) file Output directory is required" });
+                return false;
             }
             return true;
         }

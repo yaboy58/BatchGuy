@@ -46,10 +46,10 @@
 *Tooltips created dynamically on eac3to screen
 *Tooltips created for eac3to remux controls on eac3to screen
 *User can now choose FFVideoSource or dss2 as the video filter on create avisynth files screen
-
+*Fixed bug where x264 batch file 2pass log files on 1st and 2nd pass had the same name and overwrote each other
+*Users can now specify save directories for x264 --output and (.log) on the create x264 batch file screen
 
 *Update documentation.  Explain remuxing and the BatchGuy Workflow
-*mabye allow the user to specify x264 encode and .log to different directories
 *Maybe put some yes/no when user presses buttons that launches processes
 
 
