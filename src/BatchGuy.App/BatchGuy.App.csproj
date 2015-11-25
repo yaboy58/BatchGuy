@@ -90,6 +90,7 @@
       <DependentUpon>CreateX264BatchFileForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Eac3To\Models\EAC3ToConfiguration.cs" />
+    <Compile Include="Eac3To\Models\EAC3ToRemuxFileNameTemplate.cs" />
     <Compile Include="Eac3To\Services\BatchFileWriteService.cs" />
     <Compile Include="Eac3To\Services\EAC3ToOutputService.cs" />
     <Compile Include="Eac3To\Interfaces\IBatchFileWriteService.cs" />
