@@ -59,8 +59,8 @@ namespace BatchGuy.App
 
         private void SetToolTips()
         {
-            ttX264BatchFileOutputDirectory.SetToolTip(txtX264BatchFileOutputDirectory, "Directory where the x264 batch file will be saved");
-            ttDirectoryUserControl.SetToolTip(setDirectoryUserControl, "Determines where the x264 output and log file will be saved");
+            new ToolTip().SetToolTip(txtX264BatchFileOutputDirectory, "Directory where the x264 batch file will be saved");
+            new ToolTip().SetToolTip(setDirectoryUserControl, "Determines where the x264 output and log file will be saved");
         }
 
         private bool IsVfw4x264PathSetInSettings()

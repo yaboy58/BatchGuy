@@ -56,9 +56,9 @@ namespace BatchGuy.App
 
         private void SetToolTips()
         {
-            ttAviSynthOutputDirectory.SetToolTip(txtOutputDirectory, "Directory where AviSynth Files will be saved");
-            ttNumberOfFiles.SetToolTip(txtNumberOfFiles, "Number of episodes");
-            ttUserControl.SetToolTip(setDirectoryUserControl, "(.mkv) files directory for FFVideoSource");
+           new ToolTip().SetToolTip(txtOutputDirectory, "Directory where AviSynth Files will be saved");
+           new ToolTip().SetToolTip(txtNumberOfFiles, "Number of episodes");
+           new ToolTip().SetToolTip(setDirectoryUserControl, "(.mkv) files directory for FFVideoSource");
         }
 
         private void btnCreateAVSFiles_Click(object sender, EventArgs e)

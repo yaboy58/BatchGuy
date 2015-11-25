@@ -67,8 +67,8 @@ namespace BatchGuy.App
 
         private void SetToolTips()
         {
-            ttBatchFileOutputDirectory.SetToolTip(txtBatFilePath, "Directory where eac3to batch file will be saved");
-            ttDirectoryUserControl.SetToolTip(setDirectoryUserControl, "eac3to stream extract directory");
+            new ToolTip().SetToolTip(txtBatFilePath, "Directory where eac3to batch file will be saved");
+            new ToolTip().SetToolTip(setDirectoryUserControl, "eac3to stream extract directory");
         }
 
         private bool IsEac3ToPathSetInSettings()
