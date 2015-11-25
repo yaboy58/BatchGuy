@@ -46,7 +46,7 @@ namespace BatchGuy.App.UserControls
        private void HandleBtnSetOutputDirectoryUserControlOpenDialogClick()
         {
             var fsd = new FolderSelectDialog();
-            fsd.Title = string.Format("{0} output directory", _comboBoxCaptionText);
+            fsd.Title = string.Format("{0}", _comboBoxCaptionText);
             fsd.InitialDirectory = @"c:\";
             if (fsd.ShowDialog(IntPtr.Zero))
             {

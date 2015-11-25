@@ -45,7 +45,7 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
             IEAC3ToOutputNamingService service = new EAC3ToOutputNamingService();
             string chapterName = service.GetChapterName(config, filesOutputPath, paddedEpisodeNumber);
             //then chapter name should be based on the remux template
-            chapterName.ShouldBeEqualTo("\"c:\\bluray\\BatchGuy S02E01 1080p Remux AVC FLAC 5.1-Guy chapters.txt\"");
+            chapterName.ShouldBeEqualTo("\"c:\\bluray\\BatchGuy 1978 S02E01 1080p Remux AVC FLAC 5.1-Guy chapters.txt\"");
         }
 
         [Test]
@@ -85,7 +85,7 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
             IEAC3ToOutputNamingService service = new EAC3ToOutputNamingService();
             string videoName = service.GetVideoName(config, filesOutputPath, paddedEpisodeNumber);
             //then video name should be based on the remux template
-            videoName.ShouldBeEqualTo("\"c:\\bluray\\BatchGuy S02E01 1080p Remux AVC FLAC 5.1-Guy.mkv\"");
+            videoName.ShouldBeEqualTo("\"c:\\bluray\\BatchGuy 1978 S02E01 1080p Remux AVC FLAC 5.1-Guy.mkv\"");
         }
 
         [Test]
@@ -127,7 +127,7 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
             BluRayTitleAudio audio = new BluRayTitleAudio() { AudioType = EnumAudioType.DTS, Language = "english" };
             string audioName = service.GetAudioName(config, audio, filesOutputPath, paddedEpisodeNumber, 1);
             //then audio name should be based on the remux template
-            audioName.ShouldBeEqualTo("\"c:\\bluray\\BatchGuy S02E01 1080p Remux AVC FLAC 5.1-Guy english01-1.dts\"");
+            audioName.ShouldBeEqualTo("\"c:\\bluray\\BatchGuy 1978 S02E01 1080p Remux AVC FLAC 5.1-Guy english01-1.dts\"");
         }
 
         [Test]
@@ -169,7 +169,7 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
             BluRayTitleSubtitle subtitle = new BluRayTitleSubtitle() { Language = "english" };
             string subtitleName = service.GetSubtitleName(config, subtitle, filesOutputPath, paddedEpisodeNumber, 1);
             //then subtitle name should be based on the remux template
-            subtitleName.ShouldBeEqualTo("\"c:\\bluray\\BatchGuy S02E01 1080p Remux AVC FLAC 5.1-Guy english01-1.sup\"");
+            subtitleName.ShouldBeEqualTo("\"c:\\bluray\\BatchGuy 1978 S02E01 1080p Remux AVC FLAC 5.1-Guy english01-1.sup\"");
         }
     }
 }

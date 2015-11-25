@@ -225,7 +225,7 @@
             this.setDirectoryUserControl.LabelDirectoryCaptionText = null;
             this.setDirectoryUserControl.Location = new System.Drawing.Point(21, 64);
             this.setDirectoryUserControl.Name = "setDirectoryUserControl";
-            this.setDirectoryUserControl.Size = new System.Drawing.Size(824, 71);
+            this.setDirectoryUserControl.Size = new System.Drawing.Size(835, 71);
             this.setDirectoryUserControl.TabIndex = 27;
             // 
             // label2

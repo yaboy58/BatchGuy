@@ -24,6 +24,7 @@ using BatchGuy.App.Shared.Services;
 using BatchGuy.App.ThirdParty.FolderSelectDialog;
 using BatchGuy.App.Settings.Models;
 using System.IO;
+using BatchGuy.App.Eac3To.Models;
 
 namespace BatchGuy.App
 {
@@ -37,7 +38,7 @@ namespace BatchGuy.App
         private SortConfiguration _bluRaySummaryGridSortConfiguration = new SortConfiguration();
         private SortConfiguration _bluRayDiscGridSortConfiguration = new SortConfiguration();
         private string _eac3ToPath = string.Empty;
-        private EAC3ToConfiguration _eac3toConfiguration;
+        private EAC3ToConfiguration _eac3toConfiguration = new EAC3ToConfiguration() { RemuxFileNameTemplate = new EAC3ToRemuxFileNameTemplate() };
 
         public CreateEAC3ToBatchForm()
         {
@@ -60,6 +61,7 @@ namespace BatchGuy.App
                 Setting setting = Program.ApplicationSettingsService.GetSettingByName("eac3to");
                 _eac3ToPath = setting.Path;
                 this.SetEac3ToConfiguration();
+                cbVideoResolution.SelectedIndex = 2;
             }
         }
 
@@ -81,6 +83,7 @@ namespace BatchGuy.App
         private void btnWriteToBatFile_Click(object sender, EventArgs e)
         {
             this.SetEac3ToConfiguration();
+            this.SetEAC3ToRemuxFileNameTemplate();
             if (this.IsAtLeastOneDiscLoaded() && this.IsScreenValid())
             {
                 this.WriteToBatchFile();                
@@ -211,6 +214,24 @@ namespace BatchGuy.App
             {
                 MessageBox.Show("Please choose an eac3to output path!", "Error occurred", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;                
+            }
+            if (_eac3toConfiguration.IsExtractForRemux)
+            {
+                if (_eac3toConfiguration.RemuxFileNameTemplate.SeriesName == null || _eac3toConfiguration.RemuxFileNameTemplate.SeriesName == string.Empty)
+                {
+                    MessageBox.Show("Please enter a Series Name!", "Error occurred", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;        
+                }
+                if (_eac3toConfiguration.RemuxFileNameTemplate.SeasonNumber == 0)
+                {
+                    MessageBox.Show("Please enter a Season Number!", "Error occurred", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+                if (_eac3toConfiguration.RemuxFileNameTemplate.AudioType == null || _eac3toConfiguration.RemuxFileNameTemplate.AudioType == string.Empty)
+                {
+                    MessageBox.Show("Please enter a Audio Type!", "Error occurred", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
             }
             return true;
         }
@@ -357,13 +378,11 @@ namespace BatchGuy.App
 
         private void SetEac3ToConfiguration()
         {
-            _eac3toConfiguration = new EAC3ToConfiguration()
-            {
-                BatchFilePath = txtBatFilePath.Text,
-                EAC3ToPath = _eac3ToPath,
-                EAC3ToOutputPath = setDirectoryUserControl.CLIDirectory,
-                OutputDirectoryType = setDirectoryUserControl.OutputDirectoryType
-            };
+            _eac3toConfiguration.BatchFilePath = txtBatFilePath.Text;
+            _eac3toConfiguration.EAC3ToPath = _eac3ToPath;
+            _eac3toConfiguration.EAC3ToOutputPath = setDirectoryUserControl.CLIDirectory;
+            _eac3toConfiguration.OutputDirectoryType = setDirectoryUserControl.OutputDirectoryType;
+            _eac3toConfiguration.IsExtractForRemux = chkExtractForRemux.Checked;
         }
 
         private void dgvBluRayDiscInfo_DragDrop(object sender, DragEventArgs e)
@@ -423,6 +442,62 @@ namespace BatchGuy.App
                 discs.Add(disc);
             }
             return discs;
+        }
+
+        private void chkExtractForRemux_CheckedChanged(object sender, EventArgs e)
+        {
+            this.HandleChkExtractForRemuxCheckedChanged();
+        }
+
+        private void HandleChkExtractForRemuxCheckedChanged()
+        {
+            gbExtractForRemux.Enabled = chkExtractForRemux.Checked;
+            _eac3toConfiguration.IsExtractForRemux = chkExtractForRemux.Checked;
+        }
+
+        private void txtSeasonNumber_TextChanged(object sender, EventArgs e)
+        {
+            this.HandleTxtSeasonNumberTextChanged();
+        }
+
+        private void HandleTxtSeasonNumberTextChanged()
+        {
+            this.ValidateNumbericTextBox(txtSeasonNumber);
+        }
+
+        private void ValidateNumbericTextBox(TextBox textBox)
+        {
+            if (!textBox.Text.IsNumeric())
+            {
+                textBox.Text = "";
+            }
+        }
+
+        private void txtSeasonYear_TextChanged(object sender, EventArgs e)
+        {
+            this.HandleTxtSeasonYearTextChanged();
+        }
+
+        private void HandleTxtSeasonYearTextChanged()
+        {
+            this.ValidateNumbericTextBox(txtSeasonYear);
+        }
+
+        private void SetEAC3ToRemuxFileNameTemplate()
+        {
+            if (_eac3toConfiguration.IsExtractForRemux)
+            {
+                _eac3toConfiguration.RemuxFileNameTemplate = new EAC3ToRemuxFileNameTemplate() { AudioType = txtAudioType.Text.Trim(), Tag = txtTag.Text.Trim(), SeriesName = txtSeriesName.Text.Trim(),
+                 VideoResolution = cbVideoResolution.Text};
+
+                if (txtSeasonNumber.Text.IsNumeric())
+                    _eac3toConfiguration.RemuxFileNameTemplate.SeasonNumber = txtSeasonNumber.Text.StringToInt();
+
+                if (txtSeasonYear.Text.IsNumeric())
+                    _eac3toConfiguration.RemuxFileNameTemplate.SeasonYear = txtSeasonYear.Text.StringToInt();
+                else
+                    _eac3toConfiguration.RemuxFileNameTemplate.SeasonYear = null;
+            }
         }
 
     }

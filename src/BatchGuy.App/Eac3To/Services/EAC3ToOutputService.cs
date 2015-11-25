@@ -131,7 +131,7 @@ namespace BatchGuy.App.Eac3to.Services
         public string GetLogPart()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append(string.Format(" -log=\"{0}\\log{1}.txt\"", _filesOutputPath, _paddedEpisodeNumber));
+            sb.Append(_eac3ToOutputNamingService.GetLogName(_config, _filesOutputPath, _paddedEpisodeNumber));
             return sb.ToString();
         }
 
