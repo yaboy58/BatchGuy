@@ -18,7 +18,7 @@ namespace BatchGuy.App.Eac3to.Services
         private EAC3ToConfiguration _config;
         private ErrorCollection _errors = new ErrorCollection();
         private string _filesOutputPath;
-        private string _paddedEpisode;
+        private string _paddedEpisodeNumber;
         private string _bluRayPath;
         private BluRaySummaryInfo _bluRaySummaryInfo;
 
@@ -32,10 +32,10 @@ namespace BatchGuy.App.Eac3to.Services
 
         private void Init()
         {
-            _paddedEpisode = HelperFunctions.PadNumberWithZeros(99, _bluRaySummaryInfo.BluRayTitleInfo.EpisodeNumber.StringToInt()); //hardcoded count
+            _paddedEpisodeNumber = HelperFunctions.PadNumberWithZeros(99, _bluRaySummaryInfo.BluRayTitleInfo.EpisodeNumber.StringToInt()); //hardcoded count
             if (_config.OutputDirectoryType == EnumDirectoryType.DirectoryPerEpisode)
             {
-                string folderName = string.Format("e{0}", _paddedEpisode);
+                string folderName = string.Format("e{0}", _paddedEpisodeNumber);
                 _filesOutputPath = string.Format("{0}\\{1}", _config.EAC3ToOutputPath, folderName);                
             }
             else
@@ -65,7 +65,7 @@ namespace BatchGuy.App.Eac3to.Services
                 if (_bluRaySummaryInfo.BluRayTitleInfo.Chapter.IsSelected)
                 {
                     sb.Append(string.Format("{0} ",_bluRaySummaryInfo.BluRayTitleInfo.Chapter.Id));
-                    sb.Append(string.Format("\"{0}\\chapters{1}.txt\"", _filesOutputPath, _paddedEpisode));
+                    sb.Append(string.Format("\"{0}\\chapters{1}.txt\"", _filesOutputPath, _paddedEpisodeNumber));
                 }                
             }
             return sb.ToString();
@@ -79,7 +79,7 @@ namespace BatchGuy.App.Eac3to.Services
                 if (_bluRaySummaryInfo.BluRayTitleInfo.Video.IsSelected)
                 {
                     sb.Append(string.Format("{0} ", _bluRaySummaryInfo.BluRayTitleInfo.Video.Id));
-                    sb.Append(string.Format("\"{0}\\video{1}.mkv\"", _filesOutputPath, _paddedEpisode));
+                    sb.Append(string.Format("\"{0}\\video{1}.mkv\"", _filesOutputPath, _paddedEpisodeNumber));
                 }                            
             }
             return sb.ToString();
@@ -96,7 +96,7 @@ namespace BatchGuy.App.Eac3to.Services
                     if (audio.IsSelected)
                     {
                         sb.Append(string.Format(" {0} ", audio.Id));
-                        sb.Append(string.Format("\"{0}\\{1}{2}-{3}.{4}\"", _filesOutputPath, audio.Language, _paddedEpisode, number.ToString(), this.GetAudioExtension(audio.AudioType)));
+                        sb.Append(string.Format("\"{0}\\{1}{2}-{3}.{4}\"", _filesOutputPath, audio.Language, _paddedEpisodeNumber, number.ToString(), this.GetAudioExtension(audio.AudioType)));
                         sb.Append(string.Format(" {0}", audio.Arguments));
                         sb.Append(" ");
                         number++;
@@ -117,7 +117,7 @@ namespace BatchGuy.App.Eac3to.Services
                     if (subtitle.IsSelected)
                     {
                         sb.Append(string.Format(" {0} ", subtitle.Id));
-                        sb.Append(string.Format("\"{0}\\{1}{2}-{3}.sup\"", _filesOutputPath, subtitle.Language, _paddedEpisode, number.ToString()));
+                        sb.Append(string.Format("\"{0}\\{1}{2}-{3}.sup\"", _filesOutputPath, subtitle.Language, _paddedEpisodeNumber, number.ToString()));
                         number++;
                     }
                 }                
@@ -128,7 +128,7 @@ namespace BatchGuy.App.Eac3to.Services
         public string GetLogPart()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append(string.Format(" -log=\"{0}\\log{1}.txt\"", _filesOutputPath, _paddedEpisode));
+            sb.Append(string.Format(" -log=\"{0}\\log{1}.txt\"", _filesOutputPath, _paddedEpisodeNumber));
             return sb.ToString();
         }
 

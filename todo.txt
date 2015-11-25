@@ -44,7 +44,7 @@
 
 
 *allow the ability to name output folders/track names
-For this, you will make a new service call EAC3ToOutNamingService and EAC3ToOutputService will use it
+For this, you will make a new service call EAC3ToOutputNamingService and EAC3ToOutputService will use it
 The Big Bang Theory S08E01 1080p Remux AVC FLAC 5.1-VietHD.mkv
 
 
