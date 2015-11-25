@@ -36,5 +36,10 @@ namespace BatchGuy
             Program._binarySerializationService = new BinarySerializationService<ApplicationSettings>();
             Program._applicationSettingsService = new ApplicationSettingsService(_binarySerializationService);
         }
+
+        public static string GetLogErrorFormat()
+        {
+            return "Error: {0}.  Method: {1}.";
+        }
     }
 }

@@ -2,9 +2,11 @@
 using BatchGuy.App.Parser.Interfaces;
 using BatchGuy.App.Parser.Models;
 using BatchGuy.App.Shared.Models;
+using log4net;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -17,6 +19,8 @@ namespace BatchGuy.App.Parser.Services
         private List<ProcessOutputLineItem> _processOutputLineItems;
         private List<BluRaySummaryInfo> _summaryList;
         private ErrorCollection _errors;
+
+        public static readonly ILog _log = LogManager.GetLogger(typeof(BluRaySummaryParserService));
 
         public ErrorCollection Errors
         {
@@ -75,7 +79,8 @@ namespace BatchGuy.App.Parser.Services
             }
             catch (Exception ex)
             {
-                _errors.Add(new Error() { Description = ex.Message });
+                _log.ErrorFormat(Program.GetLogErrorFormat(), ex.Message, MethodBase.GetCurrentMethod().Name);
+                _errors.Add(new Error() { Description = "There was an error trying to parse the blu-ray disc" });
             }
 
             return _summaryList;

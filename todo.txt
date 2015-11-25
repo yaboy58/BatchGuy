@@ -37,8 +37,13 @@
 *Add logging and more meaningful error messages -done
 *Added -log paramter to eac3to parameters -done
 *BluRay Disc info object no longer has its own eac3to configuration.  This is global for all discs and the eac3to configuration has been pulled out -done
+*Fixed bug where eac3to output directory select directory dialog had duplicate verbiage in the title -done
+*User now Drag and Drop blu-ray folders onto the disc grid on the eac3to screen -done
+*Added a lot more log4net logging and user friendly error messages.  Also created a global error format template -done
 
-*Drag/Drop blu-ray folders
+
+
+
 *allow the ability to name output folders/track names
 For this, you will make a new service call EAC3ToOutNamingService and EAC3ToOutputService will use it
 The Big Bang Theory S08E01 1080p Remux AVC FLAC 5.1-VietHD.mkv
@@ -58,3 +63,7 @@ The Big Bang Theory S08E01 1080p Remux AVC FLAC 5.1-VietHD.mkv
 *mkvmerge integration
 *look into why the busy mouse indicator doesn't seem to work
 *put the bluray title on the title info page
+
+d1 = 4)
+d2 = 4)
+d3 = 3)

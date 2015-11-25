@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BatchGuy.App.Enums;
 using System.Text.RegularExpressions;
+using log4net;
 
 namespace BatchGuy.App.Parser.Services
 {
@@ -15,6 +16,7 @@ namespace BatchGuy.App.Parser.Services
         private ILineItemIdentifierService _lineItemIdentifierService;
         private List<ProcessOutputLineItem> _processOutputLineItems;
         private readonly BluRayTitleInfo _bluRayTtileInfo;
+
 
         public BluRayTitleParserService(ILineItemIdentifierService lineItemIdentifierService, List<ProcessOutputLineItem> processOutputLineItems)
         {

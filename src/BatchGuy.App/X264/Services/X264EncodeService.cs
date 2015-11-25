@@ -9,6 +9,8 @@ using BatchGuy.App.X264.Interfaces;
 using BatchGuy.App.Enums;
 using BatchGuy.App.Shared.Models;
 using BatchGuy.App.Helpers;
+using log4net;
+using System.Reflection;
 
 namespace BatchGuy.App.X264.Services
 {
@@ -19,6 +21,8 @@ namespace BatchGuy.App.X264.Services
         private ErrorCollection _errors;
         private string _batFile;
         private IX264ValidationService _validationService;
+
+        public static readonly ILog _log = LogManager.GetLogger(typeof(X264EncodeService));
 
         public X264EncodeService(IX264ValidationService validationService, X264FileSettings x264FileSettings, List<X264File> x264Files)
         {
@@ -84,7 +88,8 @@ namespace BatchGuy.App.X264.Services
             }
             catch (Exception ex)
             {
-                _errors.Add(new Error() { Description =  ex.Message});
+                _log.ErrorFormat(Program.GetLogErrorFormat(), ex.Message, MethodBase.GetCurrentMethod().Name);
+                _errors.Add(new Error() { Description =  "There was an error trying to create the x264 batch file"});
             }
         }
 
@@ -143,7 +148,8 @@ namespace BatchGuy.App.X264.Services
             }
             catch (Exception ex)
             {
-                _errors.Add(new Error() { Description = ex.Message });
+                _log.ErrorFormat(Program.GetLogErrorFormat(), ex.Message, MethodBase.GetCurrentMethod().Name);
+                _errors.Add(new Error() { Description = "There was an error trying to create the x264 batch file" });
             }
         }
     }

@@ -11,6 +11,8 @@ using BatchGuy.App.Shared.Models;
 using BatchGuy.App.Parser.Models;
 using BatchGuy.App.Eac3To.Interfaces;
 using BatchGuy.App.Extensions;
+using log4net;
+using System.Reflection;
 
 namespace BatchGuy.App.Eac3to.Services
 {
@@ -19,6 +21,8 @@ namespace BatchGuy.App.Eac3to.Services
         private ErrorCollection _errors = new ErrorCollection();
         private List<BluRayDiscInfo> _bluRayDiscInfoList;
         private EAC3ToConfiguration _eac3toConfiguration;
+
+        public static readonly ILog _log = LogManager.GetLogger(typeof(BatchFileWriteService));
 
         public ErrorCollection Errors
         {
@@ -63,8 +67,8 @@ namespace BatchGuy.App.Eac3to.Services
                 }
                 catch (Exception ex)
                 {
-                    //introduce logging at some point
-                    _errors.Add(new Error() { Description = string.Format("Error occurred: {0}", ex.Message) });
+                    _log.ErrorFormat(Program.GetLogErrorFormat(), ex.Message, MethodBase.GetCurrentMethod().Name);
+                    _errors.Add(new Error() { Description = "There was an error will creating the eac3to batch file." });
                 }
             }
             return _errors;

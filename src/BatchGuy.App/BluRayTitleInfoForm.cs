@@ -30,6 +30,7 @@ namespace BatchGuy.App
         private SortConfiguration _subtitleGridSortConfiguration = new SortConfiguration();
         private EAC3ToConfiguration _eac3ToConfiguration;
         private string _bluRayPath;
+
         
         public BluRayTitleInfoForm()
         {
