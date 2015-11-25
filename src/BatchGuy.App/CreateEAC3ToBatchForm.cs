@@ -43,7 +43,7 @@ namespace BatchGuy.App
         {
             InitializeComponent();
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            setDirectoryUserControl.ComboBoxCaptionText = "eac3to";
+            setDirectoryUserControl.ComboBoxCaptionText = "eac3to output directory";
             setDirectoryUserControl.LabelDirectoryCaptionText = @"eac3to Output Directory (example: e01, e02): {0}\e##";
             this.SetToolTips();
         }

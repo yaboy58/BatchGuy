@@ -37,7 +37,7 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
         public void eac3ToOutputNamingService_can_set_chapter_name_when_is_extract_for_remux()
         {
             //given not extract for remux
-            EAC3ToConfiguration config = new EAC3ToConfiguration() { IsExtractForRemux = true, RemuxFileNameTemplate = new EAC3ToRemuxFileNameTemplate() { AudioType = "FLAC 5.1", SeasonName = "BatchGuy",
+            EAC3ToConfiguration config = new EAC3ToConfiguration() { IsExtractForRemux = true, RemuxFileNameTemplate = new EAC3ToRemuxFileNameTemplate() { AudioType = "FLAC 5.1", SeriesName = "BatchGuy",
              SeasonNumber = 2, SeasonYear = 1978, Tag = "Guy", VideoResolution = "1080p"} };
             string filesOutputPath = "c:\\bluray";
             string paddedEpisodeNumber = "01";
@@ -72,7 +72,7 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
                 RemuxFileNameTemplate = new EAC3ToRemuxFileNameTemplate()
                 {
                     AudioType = "FLAC 5.1",
-                    SeasonName = "BatchGuy",
+                    SeriesName = "BatchGuy",
                     SeasonNumber = 2,
                     SeasonYear = 1978,
                     Tag = "Guy",
@@ -113,7 +113,7 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
                 RemuxFileNameTemplate = new EAC3ToRemuxFileNameTemplate()
                 {
                     AudioType = "FLAC 5.1",
-                    SeasonName = "BatchGuy",
+                    SeriesName = "BatchGuy",
                     SeasonNumber = 2,
                     SeasonYear = 1978,
                     Tag = "Guy",
@@ -155,7 +155,7 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
                 RemuxFileNameTemplate = new EAC3ToRemuxFileNameTemplate()
                 {
                     AudioType = "FLAC 5.1",
-                    SeasonName = "BatchGuy",
+                    SeriesName = "BatchGuy",
                     SeasonNumber = 2,
                     SeasonYear = 1978,
                     Tag = "Guy",

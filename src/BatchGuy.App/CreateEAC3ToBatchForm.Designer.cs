@@ -45,6 +45,20 @@
             this.ttBluRayDirectory = new System.Windows.Forms.ToolTip(this.components);
             this.ttBatchFileOutputDirectory = new System.Windows.Forms.ToolTip(this.components);
             this.ttDirectoryUserControl = new System.Windows.Forms.ToolTip(this.components);
+            this.gbExtractForRemux = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.chkExtractForRemux = new System.Windows.Forms.CheckBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.textBox5 = new System.Windows.Forms.TextBox();
             this.setDirectoryUserControl = new BatchGuy.App.UserControls.SetDirectoryUserControl();
             this.IsSelected = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -62,6 +76,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvBluRaySummary)).BeginInit();
             this.gbDisc.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBluRayDiscInfo)).BeginInit();
+            this.gbExtractForRemux.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsBluRaySummaryInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsBluRayDiscInfo)).BeginInit();
             this.SuspendLayout();
@@ -77,6 +92,8 @@
             // 
             // gbScreen
             // 
+            this.gbScreen.Controls.Add(this.chkExtractForRemux);
+            this.gbScreen.Controls.Add(this.gbExtractForRemux);
             this.gbScreen.Controls.Add(this.setDirectoryUserControl);
             this.gbScreen.Controls.Add(this.btnWriteToBatFile);
             this.gbScreen.Controls.Add(this.gbDiscSummary);
@@ -86,13 +103,13 @@
             this.gbScreen.Controls.Add(this.lblBatchFilePath);
             this.gbScreen.Location = new System.Drawing.Point(12, 12);
             this.gbScreen.Name = "gbScreen";
-            this.gbScreen.Size = new System.Drawing.Size(1284, 632);
+            this.gbScreen.Size = new System.Drawing.Size(1284, 700);
             this.gbScreen.TabIndex = 30;
             this.gbScreen.TabStop = false;
             // 
             // btnWriteToBatFile
             // 
-            this.btnWriteToBatFile.Location = new System.Drawing.Point(1138, 578);
+            this.btnWriteToBatFile.Location = new System.Drawing.Point(1137, 654);
             this.btnWriteToBatFile.Name = "btnWriteToBatFile";
             this.btnWriteToBatFile.Size = new System.Drawing.Size(133, 40);
             this.btnWriteToBatFile.TabIndex = 3;
@@ -103,7 +120,7 @@
             // gbDiscSummary
             // 
             this.gbDiscSummary.Controls.Add(this.dgvBluRaySummary);
-            this.gbDiscSummary.Location = new System.Drawing.Point(12, 334);
+            this.gbDiscSummary.Location = new System.Drawing.Point(12, 400);
             this.gbDiscSummary.Name = "gbDiscSummary";
             this.gbDiscSummary.Size = new System.Drawing.Size(1258, 238);
             this.gbDiscSummary.TabIndex = 40;
@@ -134,7 +151,7 @@
             // gbDisc
             // 
             this.gbDisc.Controls.Add(this.dgvBluRayDiscInfo);
-            this.gbDisc.Location = new System.Drawing.Point(17, 132);
+            this.gbDisc.Location = new System.Drawing.Point(12, 214);
             this.gbDisc.Name = "gbDisc";
             this.gbDisc.Size = new System.Drawing.Size(1253, 180);
             this.gbDisc.TabIndex = 39;
@@ -193,6 +210,136 @@
             // 
             this.bgwEac3toWriteBatchFile.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgwEac3toWriteBatchFile_DoWork);
             this.bgwEac3toWriteBatchFile.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgwEac3toWriteBatchFile_RunWorkerCompleted);
+            // 
+            // gbExtractForRemux
+            // 
+            this.gbExtractForRemux.Controls.Add(this.textBox5);
+            this.gbExtractForRemux.Controls.Add(this.label6);
+            this.gbExtractForRemux.Controls.Add(this.textBox4);
+            this.gbExtractForRemux.Controls.Add(this.label5);
+            this.gbExtractForRemux.Controls.Add(this.comboBox1);
+            this.gbExtractForRemux.Controls.Add(this.label4);
+            this.gbExtractForRemux.Controls.Add(this.textBox3);
+            this.gbExtractForRemux.Controls.Add(this.label3);
+            this.gbExtractForRemux.Controls.Add(this.textBox2);
+            this.gbExtractForRemux.Controls.Add(this.label2);
+            this.gbExtractForRemux.Controls.Add(this.textBox1);
+            this.gbExtractForRemux.Controls.Add(this.label1);
+            this.gbExtractForRemux.Enabled = false;
+            this.gbExtractForRemux.Location = new System.Drawing.Point(864, 19);
+            this.gbExtractForRemux.Name = "gbExtractForRemux";
+            this.gbExtractForRemux.Size = new System.Drawing.Size(401, 177);
+            this.gbExtractForRemux.TabIndex = 42;
+            this.gbExtractForRemux.TabStop = false;
+            this.gbExtractForRemux.Text = "Extract for Remux Naming Convention";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(7, 32);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(70, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Series Name:";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(88, 29);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(301, 20);
+            this.textBox1.TabIndex = 1;
+            // 
+            // chkExtractForRemux
+            // 
+            this.chkExtractForRemux.AutoSize = true;
+            this.chkExtractForRemux.Location = new System.Drawing.Point(23, 135);
+            this.chkExtractForRemux.Name = "chkExtractForRemux";
+            this.chkExtractForRemux.Size = new System.Drawing.Size(113, 17);
+            this.chkExtractForRemux.TabIndex = 43;
+            this.chkExtractForRemux.Text = "Extract For Remux";
+            this.chkExtractForRemux.UseVisualStyleBackColor = true;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(10, 71);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(53, 13);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Season#:";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(91, 64);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(70, 20);
+            this.textBox2.TabIndex = 3;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(184, 68);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(78, 13);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Year (optional):";
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(268, 64);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(70, 20);
+            this.textBox3.TabIndex = 5;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(11, 110);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(60, 13);
+            this.label4.TabIndex = 6;
+            this.label4.Text = "Resolution:";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(92, 102);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(170, 21);
+            this.comboBox1.TabIndex = 7;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(7, 144);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(64, 13);
+            this.label5.TabIndex = 8;
+            this.label5.Text = "Audio Type:";
+            // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(88, 138);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(137, 20);
+            this.textBox4.TabIndex = 9;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(231, 141);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(75, 13);
+            this.label6.TabIndex = 10;
+            this.label6.Text = "Tag (optional):";
+            // 
+            // textBox5
+            // 
+            this.textBox5.Location = new System.Drawing.Point(304, 138);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(85, 20);
+            this.textBox5.TabIndex = 11;
             // 
             // setDirectoryUserControl
             // 
@@ -289,7 +436,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1308, 655);
+            this.ClientSize = new System.Drawing.Size(1308, 724);
             this.Controls.Add(this.gbScreen);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
@@ -304,6 +451,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvBluRaySummary)).EndInit();
             this.gbDisc.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvBluRayDiscInfo)).EndInit();
+            this.gbExtractForRemux.ResumeLayout(false);
+            this.gbExtractForRemux.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsBluRaySummaryInfo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsBluRayDiscInfo)).EndInit();
             this.ResumeLayout(false);
@@ -340,5 +489,19 @@
         private System.Windows.Forms.ToolTip ttBluRayDirectory;
         private System.Windows.Forms.ToolTip ttBatchFileOutputDirectory;
         private System.Windows.Forms.ToolTip ttDirectoryUserControl;
+        private System.Windows.Forms.GroupBox gbExtractForRemux;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.CheckBox chkExtractForRemux;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.Label label5;
     }
 }
