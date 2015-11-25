@@ -13,6 +13,7 @@ using BatchGuy.App.Eac3To.Interfaces;
 using BatchGuy.App.Extensions;
 using log4net;
 using System.Reflection;
+using BatchGuy.App.Eac3To.Services;
 
 namespace BatchGuy.App.Eac3to.Services
 {
@@ -42,11 +43,12 @@ namespace BatchGuy.App.Eac3to.Services
             {
                 try
                 {
+                    IEAC3ToOutputNamingService eac3ToOutputNamingService = new EAC3ToOutputNamingService();
                     foreach (BluRayDiscInfo disc in _bluRayDiscInfoList.Where(d => d.IsSelected))
                     {
                         foreach (BluRaySummaryInfo summary in disc.BluRaySummaryInfoList.Where(s => s.IsSelected).OrderBy(s => s.EpisodeNumber))
                         {
-                            IEAC3ToOutputService eacOutputService = new EAC3ToOutputService(_eac3toConfiguration,disc.BluRayPath, summary);
+                            IEAC3ToOutputService eacOutputService = new EAC3ToOutputService(_eac3toConfiguration, eac3ToOutputNamingService, disc.BluRayPath, summary);
                             string eac3ToPathPart = eacOutputService.GetEAC3ToPathPart();
                             string bluRayStreamPart = eacOutputService.GetBluRayStreamPart();
                             string chapterStreamPart = eacOutputService.GetChapterStreamPart();
