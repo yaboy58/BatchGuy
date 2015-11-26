@@ -19,7 +19,6 @@ namespace BatchGuy.App.X264.Services
         private X264FileSettings _x264FileSettings;
         private List<X264File> _x264Files;
         private ErrorCollection _errors;
-        private string _batFile;
         private IX264ValidationService _validationService;
 
         public static readonly ILog _log = LogManager.GetLogger(typeof(X264EncodeService));

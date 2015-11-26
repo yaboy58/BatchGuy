@@ -36,6 +36,7 @@
 --1.7 todo
 *If no extension on encode names on create x264, then add .mkv programmically
 *ability to create sample.avs/sample.encode.bat
+*ability to save/load eac3to batch guy data
 
 [couldn't reproduce]
 *Bug where you can't close title info screen because episode required even though nothing is chosen.  Button works but not the x at the top
@@ -46,7 +47,6 @@
 
 --upcoming
 *Maybe keep track of the Blu-ray folder directory, so you will open up the same directory every time
-*ability to save/load eac3to batch guy data
 *find where you have number of files hardcoded to 99 and put the real value in it
 *look into why the busy mouse indicator doesn't seem to work
 *put the bluray title on the title info page

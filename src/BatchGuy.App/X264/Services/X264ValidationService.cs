@@ -38,6 +38,10 @@ namespace BatchGuy.App.X264.Services
                 return false;
             if (!this.X264LogFileOutputDirectoryPathNotNullWhenSaveLogToDifferentDirectory())
                 return false;
+            if (!this.AllEncodeNamesHaveAnMatraskaExtension())
+                return false;
+            if (!this.AllEncodeNamesAreUnique())
+                return false;
             return true;
         }
 
@@ -77,6 +81,29 @@ namespace BatchGuy.App.X264.Services
             {
                 this._errors.Add(new Error() { Description = "The x264 (.log) file Output directory is required" });
                 return false;
+            }
+            return true;
+        }
+
+        private bool AllEncodeNamesHaveAnMatraskaExtension()
+        {
+            int numberOfEncodeNamesWithMatraskaExtension = _x264Files.Where(f => f.EncodeName.Substring(f.EncodeName.Length - 4, 4) == ".mkv").Count();
+            if (numberOfEncodeNamesWithMatraskaExtension != _x264Files.Count())
+            {
+                this._errors.Add(new Error() { Description = "All of the encode names must have a (.mkv) extension" });
+                return false;
+            }
+
+            return true;
+        }
+
+        private bool AllEncodeNamesAreUnique()
+        {
+            int uniqueCount = _x264Files.GroupBy(f => f.EncodeName).Count();
+            if (uniqueCount != _x264Files.Count())
+            {
+                this._errors.Add(new Error() { Description = "All of the encode names must be unique" });
+                return false;                
             }
             return true;
         }
