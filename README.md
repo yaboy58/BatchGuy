@@ -46,7 +46,7 @@ Unzip the BatchGuy folder to any location of your choosing.  With the introducti
 <h1>Requirements:</h1>
 <ul>
 <li>Windows 7, 8.1 x64 </li>
-<li>.Net Framework 4.5+</li>
+<li>Microsoft .Net Framework 4.5+</li>
 <li>eac3to</li>
 <li>vfw4x264</li>
 <li>AviSynth 2.5+ and all relevant plugins</li>
