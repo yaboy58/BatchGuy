@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BatchGuy.App.Extensions;
+using BatchGuy.App.Eac3To.Interfaces;
 
 namespace BatchGuy.App.Eac3to.Services
 {
@@ -18,24 +19,26 @@ namespace BatchGuy.App.Eac3to.Services
         private EAC3ToConfiguration _config;
         private ErrorCollection _errors = new ErrorCollection();
         private string _filesOutputPath;
-        private string _paddedEpisode;
-        private BluRayTitleInfo _bluRayTitleInfo;
-        private string _bluRaySummaryId;
+        private string _paddedEpisodeNumber;
+        private string _bluRayPath;
+        private BluRaySummaryInfo _bluRaySummaryInfo;
+        private IEAC3ToOutputNamingService _eac3ToOutputNamingService;
 
-        public EAC3ToOutputService(EAC3ToConfiguration config, string bluRaySummaryId, BluRayTitleInfo bluRayTitleInfo)
+        public EAC3ToOutputService(EAC3ToConfiguration config, IEAC3ToOutputNamingService eac3ToOutputNamingService, string bluRayPath, BluRaySummaryInfo bluRaySummaryInfo)
         {
             _config = config;
-            _bluRayTitleInfo = bluRayTitleInfo;
-            _bluRaySummaryId = bluRaySummaryId;
+            _eac3ToOutputNamingService = eac3ToOutputNamingService;
+            _bluRayPath = bluRayPath;
+            _bluRaySummaryInfo = bluRaySummaryInfo;
             this.Init();
         }
 
         private void Init()
         {
-            _paddedEpisode = HelperFunctions.PadNumberWithZeros(99, _bluRayTitleInfo.EpisodeNumber.StringToInt()); //hardcoded count
+            _paddedEpisodeNumber = HelperFunctions.PadNumberWithZeros(99, _bluRaySummaryInfo.BluRayTitleInfo.EpisodeNumber.StringToInt()); //hardcoded count
             if (_config.OutputDirectoryType == EnumDirectoryType.DirectoryPerEpisode)
             {
-                string folderName = string.Format("e{0}", _paddedEpisode);
+                string folderName = string.Format("e{0}", _paddedEpisodeNumber);
                 _filesOutputPath = string.Format("{0}\\{1}", _config.EAC3ToOutputPath, folderName);                
             }
             else
@@ -52,20 +55,20 @@ namespace BatchGuy.App.Eac3to.Services
         public string GetBluRayStreamPart()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append(string.Format("\"{0}\"", _config.BluRayPath));
-            sb.Append(string.Format(" {0}", _bluRaySummaryId));
+            sb.Append(string.Format("\"{0}\"", _bluRayPath));
+            sb.Append(string.Format(" {0}", _bluRaySummaryInfo.Id));
             return sb.ToString();
         }
 
         public string GetChapterStreamPart()
         {
             StringBuilder sb = new StringBuilder();
-            if (_bluRayTitleInfo.Chapter != null)
+            if (_bluRaySummaryInfo.BluRayTitleInfo.Chapter != null)
             {
-                if (_bluRayTitleInfo.Chapter.IsSelected)
+                if (_bluRaySummaryInfo.BluRayTitleInfo.Chapter.IsSelected)
                 {
-                    sb.Append(string.Format("{0} ", _bluRayTitleInfo.Chapter.Id));
-                    sb.Append(string.Format("\"{0}\\chapters{1}.txt\"", _filesOutputPath, _paddedEpisode));
+                    sb.Append(string.Format("{0} ",_bluRaySummaryInfo.BluRayTitleInfo.Chapter.Id));
+                    sb.Append(_eac3ToOutputNamingService.GetChapterName(_config, _filesOutputPath, _paddedEpisodeNumber));
                 }                
             }
             return sb.ToString();
@@ -74,12 +77,12 @@ namespace BatchGuy.App.Eac3to.Services
         public string GetVideoStreamPart()
         {
             StringBuilder sb = new StringBuilder();
-            if (_bluRayTitleInfo.Video != null)
+            if (_bluRaySummaryInfo.BluRayTitleInfo.Video != null)
             {
-                if (_bluRayTitleInfo.Video.IsSelected)
+                if (_bluRaySummaryInfo.BluRayTitleInfo.Video.IsSelected)
                 {
-                    sb.Append(string.Format("{0} ", _bluRayTitleInfo.Video.Id));
-                    sb.Append(string.Format("\"{0}\\video{1}.mkv\"", _filesOutputPath, _paddedEpisode));
+                    sb.Append(string.Format("{0} ", _bluRaySummaryInfo.BluRayTitleInfo.Video.Id));
+                    sb.Append(_eac3ToOutputNamingService.GetVideoName(_config, _filesOutputPath, _paddedEpisodeNumber));
                 }                            
             }
             return sb.ToString();
@@ -88,15 +91,15 @@ namespace BatchGuy.App.Eac3to.Services
         public string GetAudioStreamPart()
         {
             StringBuilder sb = new StringBuilder();
-            if (_bluRayTitleInfo.AudioList != null)
+            if (_bluRaySummaryInfo.BluRayTitleInfo.AudioList != null)
             {
                 int number = 1;
-                foreach (BluRayTitleAudio audio in _bluRayTitleInfo.AudioList)
+                foreach (BluRayTitleAudio audio in _bluRaySummaryInfo.BluRayTitleInfo.AudioList)
                 {
                     if (audio.IsSelected)
                     {
                         sb.Append(string.Format(" {0} ", audio.Id));
-                        sb.Append(string.Format("\"{0}\\{1}{2}-{3}.{4}\"", _filesOutputPath, audio.Language, _paddedEpisode, number.ToString(), this.GetAudioExtension(audio.AudioType)));
+                        sb.Append(_eac3ToOutputNamingService.GetAudioName(_config,audio, _filesOutputPath, _paddedEpisodeNumber, number));
                         sb.Append(string.Format(" {0}", audio.Arguments));
                         sb.Append(" ");
                         number++;
@@ -109,19 +112,26 @@ namespace BatchGuy.App.Eac3to.Services
         public string GetSubtitleStreamPart()
         {
             StringBuilder sb = new StringBuilder();
-            if (_bluRayTitleInfo.Subtitles != null)
+            if (_bluRaySummaryInfo.BluRayTitleInfo.Subtitles != null)
             {
                 int number = 1;
-                foreach (BluRayTitleSubtitle subtitle in _bluRayTitleInfo.Subtitles)
+                foreach (BluRayTitleSubtitle subtitle in _bluRaySummaryInfo.BluRayTitleInfo.Subtitles)
                 {
                     if (subtitle.IsSelected)
                     {
                         sb.Append(string.Format(" {0} ", subtitle.Id));
-                        sb.Append(string.Format("\"{0}\\{1}{2}-{3}.sup\"", _filesOutputPath, subtitle.Language, _paddedEpisode, number.ToString()));
+                        sb.Append(_eac3ToOutputNamingService.GetSubtitleName(_config, subtitle,_filesOutputPath, _paddedEpisodeNumber, number));
                         number++;
                     }
                 }                
             }
+            return sb.ToString();
+        }
+
+        public string GetLogPart()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append(_eac3ToOutputNamingService.GetLogName(_config, _filesOutputPath, _paddedEpisodeNumber));
             return sb.ToString();
         }
 

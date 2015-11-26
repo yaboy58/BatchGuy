@@ -38,6 +38,7 @@ namespace BatchGuy.App
 #if DEBUG
             txtOutputDirectory.Text = @"C:\temp\My Encodes\Blu-ray";   
 #endif
+            cbVideoFilter.SelectedIndex = 1;
         }
 
         private void SetAviSynthTemplateTextBox()
@@ -56,17 +57,22 @@ namespace BatchGuy.App
 
         private void SetToolTips()
         {
-            ttAviSynthOutputDirectory.SetToolTip(txtOutputDirectory, "Directory where AviSynth Files will be saved");
-            ttNumberOfFiles.SetToolTip(txtNumberOfFiles, "Number of episodes");
-            ttUserControl.SetToolTip(setDirectoryUserControl, "(.mkv) files directory for FFVideoSource");
+           new ToolTip().SetToolTip(txtOutputDirectory, "Directory where AviSynth Files will be saved");
+           new ToolTip().SetToolTip(txtNumberOfFiles, "Number of episodes");
+           new ToolTip().SetToolTip(setDirectoryUserControl, "(.mkv) files directory for FFVideoSource");
         }
 
         private void btnCreateAVSFiles_Click(object sender, EventArgs e)
         {
-            if (this.IsScreenValid())
+            DialogResult result = MessageBox.Show("Create AviSynth files?", "Start Process?", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+
+            if (result == System.Windows.Forms.DialogResult.Yes)
             {
-                gbScreen.SetEnabled(false);
-                Process();                
+                if (this.IsScreenValid())
+                {
+                    gbScreen.SetEnabled(false);
+                    Process();
+                }
             }
         }
 
@@ -89,7 +95,7 @@ namespace BatchGuy.App
                  AviSynthFilesOutputDirectoryPath = txtOutputDirectory.Text,
                   NamingConvention = "video", //hardcoded for now
                    NumberOfFiles = Convert.ToInt32(txtNumberOfFiles.Text),
-                    VideoFilter = "FFVideoSource", //hardcoded for now
+                    VideoFilter = cbVideoFilter.Text,
                       VideoToEncodeDirectory = setDirectoryUserControl.CLIDirectory,
                        VideoToEncodeDirectoryType = setDirectoryUserControl.OutputDirectoryType
             };

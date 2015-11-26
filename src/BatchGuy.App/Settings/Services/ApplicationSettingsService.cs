@@ -7,6 +7,7 @@ using BatchGuy.App.Settings.Interface;
 using BatchGuy.App.Shared.Models;
 using BatchGuy.App.Settings.Models;
 using System.IO;
+using log4net;
 
 namespace BatchGuy.App.Settings.Services
 {
@@ -23,6 +24,7 @@ namespace BatchGuy.App.Settings.Services
             get { return _errors; }
         }
 
+        public static readonly ILog _log = LogManager.GetLogger(typeof(ApplicationSettingsService));
 
         public ApplicationSettingsService(IBinarySerializationService<ApplicationSettings> binarySerializationService)
         {

@@ -24,12 +24,12 @@ using BatchGuy.App.Shared.Services;
 using BatchGuy.App.ThirdParty.FolderSelectDialog;
 using BatchGuy.App.Settings.Models;
 using System.IO;
+using BatchGuy.App.Eac3To.Models;
 
 namespace BatchGuy.App
 {
     public partial class CreateEAC3ToBatchForm : Form
     {
-        private List<BluRayDiscInfo> _bluRayDiscInfoList;
         private BluRayDiscInfo _currentBluRayDiscInfo;
         private CommandLineProcessStartInfo _commandLineProcessStartInfo;
         private BindingList<BluRayDiscInfo> _bindingListBluRayDiscInfo = new BindingList<BluRayDiscInfo>();
@@ -38,17 +38,15 @@ namespace BatchGuy.App
         private SortConfiguration _bluRaySummaryGridSortConfiguration = new SortConfiguration();
         private SortConfiguration _bluRayDiscGridSortConfiguration = new SortConfiguration();
         private string _eac3ToPath = string.Empty;
+        private EAC3ToConfiguration _eac3toConfiguration = new EAC3ToConfiguration() { RemuxFileNameTemplate = new EAC3ToRemuxFileNameTemplate() };
 
         public CreateEAC3ToBatchForm()
         {
             InitializeComponent();
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            setDirectoryUserControl.ComboBoxCaptionText = "eac3to Output Directory";
+            setDirectoryUserControl.ComboBoxCaptionText = "eac3to output directory";
             setDirectoryUserControl.LabelDirectoryCaptionText = @"eac3to Output Directory (example: e01, e02): {0}\e##";
             this.SetToolTips();
-#if DEBUG
-            txtBluRayPath.Text = @"C:\temp\My Encodes\Blu-ray\DISC\D1";   
-#endif
         }
 
         private void CreateEAC3ToBatchForm_Load(object sender, EventArgs e)
@@ -62,14 +60,21 @@ namespace BatchGuy.App
             {
                 Setting setting = Program.ApplicationSettingsService.GetSettingByName("eac3to");
                 _eac3ToPath = setting.Path;
+                this.SetEac3ToConfiguration();
+                cbVideoResolution.SelectedIndex = 2;
             }
         }
 
         private void SetToolTips()
         {
-            ttBluRayDirectory.SetToolTip(txtBluRayPath, "Directory where Blu-ray disc structure is located");
-            ttBatchFileOutputDirectory.SetToolTip(txtBatFilePath, "Directory where eac3to batch file will be saved");
-            ttDirectoryUserControl.SetToolTip(setDirectoryUserControl, "eac3to stream extract directory");
+            new ToolTip().SetToolTip(txtBatFilePath, "Directory where eac3to batch file will be saved");
+            new ToolTip().SetToolTip(setDirectoryUserControl, "eac3to stream extract directory");
+            new ToolTip().SetToolTip(txtSeriesName,"Series name");
+            new ToolTip().SetToolTip(txtSeasonNumber, "Season number");
+            new ToolTip().SetToolTip(txtSeasonYear, "Season year");
+            new ToolTip().SetToolTip(cbVideoResolution, "Video resolution");
+            new ToolTip().SetToolTip(txtAudioType, "Audio type i.e. FLAC 7.1");
+            new ToolTip().SetToolTip(txtTag, "Tag to place at the end of each file i.e. BGuy");
         }
 
         private bool IsEac3ToPathSetInSettings()
@@ -83,51 +88,25 @@ namespace BatchGuy.App
 
         private void btnWriteToBatFile_Click(object sender, EventArgs e)
         {
-            if (this.IsAtLeastOneDiscLoaded())
+            DialogResult result = MessageBox.Show("Create eac3to batch file?", "Start Process?", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+
+            if (result == System.Windows.Forms.DialogResult.Yes)
             {
-                this.WriteToBatchFile();                
+                this.SetEac3ToConfiguration();
+                this.SetEAC3ToRemuxFileNameTemplate();
+                if (this.IsAtLeastOneDiscLoaded() && this.IsScreenValid())
+                {
+                    this.WriteToBatchFile();
+                }                
             }
         }
 
         private void WriteToBatchFile()
         {
             gbScreen.SetEnabled(false);
-            IBatchFileWriteService batchFileWriteService = new BatchFileWriteService(_bluRayDiscInfoList);
+            List<BluRayDiscInfo> discs = this.GetBluRayDiscInfoList();
+            IBatchFileWriteService batchFileWriteService = new BatchFileWriteService(_eac3toConfiguration,discs);
             bgwEac3toWriteBatchFile.RunWorkerAsync(batchFileWriteService);
-        }
-
-        private void btnAddBluRayDisc_Click(object sender, EventArgs e)
-        {
-            if (this.IsScreenValid())
-            {
-                this.HandleAddBluRayDiscClick();
-                txtBluRayPath.Text = string.Empty;                
-            }
-        }
-
-        private void HandleAddBluRayDiscClick()
-        {
-            if (_bluRayDiscInfoList == null)
-                _bluRayDiscInfoList = new List<BluRayDiscInfo>();
-
-            BluRayDiscInfo info = new BluRayDiscInfo()
-            {
-                Id = _bluRayDiscInfoList.Count + 1,
-                IsSelected = false,
-                EAC3ToConfiguration = new EAC3ToConfiguration()
-                {
-                    BatchFilePath = txtBatFilePath.Text,
-                    BluRayPath = txtBluRayPath.Text,
-                    EAC3ToPath = _eac3ToPath,
-                     EAC3ToOutputPath = setDirectoryUserControl.CLIDirectory,
-                     OutputDirectoryType = setDirectoryUserControl.OutputDirectoryType
-                }
-            };
-
-            _bluRayDiscInfoList.Add(info);
-            _bindingListBluRayDiscInfo.Add(info);
-
-            bsBluRayDiscInfo.DataSource = _bindingListBluRayDiscInfo;
         }
 
         private void BindDgvBluRayDiscInfoGrid()
@@ -168,7 +147,7 @@ namespace BatchGuy.App
             if (e.RowIndex == -1)
                 return;
             var id = dgvBluRayDiscInfo.Rows[e.RowIndex].Cells[1].Value;
-            _currentBluRayDiscInfo = _bluRayDiscInfoList.SingleOrDefault(d => d.Id == id.ToString().StringToInt());
+            _currentBluRayDiscInfo = _bindingListBluRayDiscInfo.SingleOrDefault(d => d.Id == id.ToString().StringToInt());
             _currentBluRayDiscGridRowIndex = e.RowIndex;
         }
 
@@ -180,7 +159,7 @@ namespace BatchGuy.App
             _commandLineProcessStartInfo = new CommandLineProcessStartInfo()
             {
                 FileName = _eac3ToPath,
-                Arguments = string.Format("\"{0}\"", _currentBluRayDiscInfo.EAC3ToConfiguration.BluRayPath)
+                Arguments = string.Format("\"{0}\"", _currentBluRayDiscInfo.BluRayPath)
             };
 
             ICommandLineProcessService commandLineProcessService = new CommandLineProcessService(_commandLineProcessStartInfo);
@@ -225,39 +204,52 @@ namespace BatchGuy.App
             BluRaySummaryInfo summaryInfo = _currentBluRayDiscInfo.BluRaySummaryInfoList.SingleOrDefault(s => s.Id == id.ToString());
 
             BluRayTitleInfoForm form = new BluRayTitleInfoForm();
-            form.SetBluRayTitleInfo(summaryInfo, _currentBluRayDiscInfo);
+            form.SetBluRayTitleInfo(_eac3toConfiguration,_currentBluRayDiscInfo.BluRayPath,summaryInfo);
             form.ShowDialog();
             this.BindDgvBluRaySummaryGrid();
         }
 
         private bool IsScreenValid()
         {
-            if (txtBatFilePath.Text == string.Empty)
+            if (_eac3toConfiguration.BatchFilePath == null || _eac3toConfiguration.BatchFilePath == string.Empty)
             {
                 MessageBox.Show("Please enter the path the batch file should be created!", "Error occurred", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;    
             }
-            if (txtBluRayPath.Text == string.Empty)
-            {
-                MessageBox.Show("Please enter the path where the blu-ray disc is located!", "Error occurred", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-            if (_eac3ToPath == string.Empty)
+            if (_eac3toConfiguration.EAC3ToPath == null || _eac3toConfiguration.EAC3ToPath == string.Empty)
             {
                 MessageBox.Show("Please enter the eac3to.exe path with the exe in the path!", "Error occurred", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
-            if (setDirectoryUserControl.CLIDirectory == string.Empty)
+            if (_eac3toConfiguration.EAC3ToOutputPath == null || _eac3toConfiguration.EAC3ToOutputPath == string.Empty)
             {
                 MessageBox.Show("Please choose an eac3to output path!", "Error occurred", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;                
+            }
+            if (_eac3toConfiguration.IsExtractForRemux)
+            {
+                if (_eac3toConfiguration.RemuxFileNameTemplate.SeriesName == null || _eac3toConfiguration.RemuxFileNameTemplate.SeriesName == string.Empty)
+                {
+                    MessageBox.Show("Please enter a Series Name!", "Error occurred", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;        
+                }
+                if (_eac3toConfiguration.RemuxFileNameTemplate.SeasonNumber == 0)
+                {
+                    MessageBox.Show("Please enter a Season Number!", "Error occurred", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+                if (_eac3toConfiguration.RemuxFileNameTemplate.AudioType == null || _eac3toConfiguration.RemuxFileNameTemplate.AudioType == string.Empty)
+                {
+                    MessageBox.Show("Please enter a Audio Type!", "Error occurred", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
             }
             return true;
         }
 
         private bool IsAtLeastOneDiscLoaded()
         {
-            if (_bluRayDiscInfoList == null || _bluRayDiscInfoList.Count() == 0)
+            if (_bindingListBluRayDiscInfo == null || _bindingListBluRayDiscInfo.Count() == 0)
             {
                 MessageBox.Show("Please load at least 1 blu-ray disck!", "Error occurred", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
@@ -274,22 +266,6 @@ namespace BatchGuy.App
             else
             {
                 dgvBluRaySummary.Rows[e.RowIndex].Selected = true;
-            }
-        }
-
-        private void btnOpenBluRayPathDialog_Click(object sender, EventArgs e)
-        {
-            this.HandleBtnOpenBluRayPathDialogClick();
-        }
-
-        private void HandleBtnOpenBluRayPathDialogClick()
-        {
-            var fsd = new FolderSelectDialog();
-            fsd.Title = "Blu-ray folder directory";
-            fsd.InitialDirectory = @"c:\";
-            if (fsd.ShowDialog(IntPtr.Zero))
-            {
-                txtBluRayPath.Text = fsd.FileName;
             }
         }
 
@@ -379,14 +355,15 @@ namespace BatchGuy.App
 
         private void SortBluRayDiscGrid(int sortColumnNumber)
         {
-            if (_bluRayDiscInfoList == null)
+            if (_bindingListBluRayDiscInfo.Count() == 0)
                 return;
 
             string sortColumnName = dgvBluRayDiscInfo.Columns[sortColumnNumber].DataPropertyName;
             _bluRayDiscGridSortConfiguration.SortByColumnName = sortColumnName;
-            ISortService<BluRayDiscInfo> sortService = new SortService<BluRayDiscInfo>(_bluRayDiscGridSortConfiguration, _bluRayDiscInfoList);
+            List<BluRayDiscInfo> discs = this.GetBluRayDiscInfoList();
+            ISortService<BluRayDiscInfo> sortService = new SortService<BluRayDiscInfo>(_bluRayDiscGridSortConfiguration, discs);
 
-            IBindingListSortService<BluRayDiscInfo> bindingListSortService = new BindingListSortService<BluRayDiscInfo>(_bluRayDiscInfoList, dgvBluRayDiscInfo, _bluRayDiscGridSortConfiguration, sortService);
+            IBindingListSortService<BluRayDiscInfo> bindingListSortService = new BindingListSortService<BluRayDiscInfo>(discs, dgvBluRayDiscInfo, _bluRayDiscGridSortConfiguration, sortService);
             _bindingListBluRayDiscInfo = bindingListSortService.Sort();
 
             this.BindDgvBluRayDiscInfoGrid();
@@ -408,6 +385,130 @@ namespace BatchGuy.App
             _bindingListBluRaySummaryInfo = bindingListSortService.Sort();
 
             this.BindDgvBluRaySummaryGrid();
+        }
+
+        private void SetEac3ToConfiguration()
+        {
+            _eac3toConfiguration.BatchFilePath = txtBatFilePath.Text;
+            _eac3toConfiguration.EAC3ToPath = _eac3ToPath;
+            _eac3toConfiguration.EAC3ToOutputPath = setDirectoryUserControl.CLIDirectory;
+            _eac3toConfiguration.OutputDirectoryType = setDirectoryUserControl.OutputDirectoryType;
+            _eac3toConfiguration.IsExtractForRemux = chkExtractForRemux.Checked;
+        }
+
+        private void dgvBluRayDiscInfo_DragDrop(object sender, DragEventArgs e)
+        {
+            this.HandleDgvBluRayDiscInfoDragDrop(e);
+        }
+
+        private void HandleDgvBluRayDiscInfoDragDrop(DragEventArgs e)
+        {
+            foreach (string folder in (Array)e.Data.GetData(DataFormats.FileDrop))
+            {
+                if (this.IsADirectory(folder) && this.NotADuplicate(folder))
+                {
+                   _bindingListBluRayDiscInfo.Add(new BluRayDiscInfo() {Id = _bindingListBluRayDiscInfo.Count() + 1, IsSelected = false, BluRayPath = folder});
+                }
+            }
+            if (_bindingListBluRayDiscInfo.Count() > 0)
+            {
+                this.BindDgvBluRayDiscInfoGrid();
+            }
+        }
+
+        private bool IsADirectory(string folder)
+        {
+            if (Directory.Exists(folder))
+                return true;
+            else
+                return false;
+        }
+
+        private bool NotADuplicate(string folder)
+        {
+            if (_bindingListBluRayDiscInfo.Where(d => d.BluRayPath == folder).Count() == 0)
+                return true;
+            else
+                return false;
+        }
+
+        private void dgvBluRayDiscInfo_DragEnter(object sender, DragEventArgs e)
+        {
+            this.HandleDgvBluRayDiscInfoDragEnter(e);
+        }
+
+        private void HandleDgvBluRayDiscInfoDragEnter(DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                e.Effect = DragDropEffects.Copy;
+            }
+        }
+
+        private List<BluRayDiscInfo> GetBluRayDiscInfoList()
+        {
+            List<BluRayDiscInfo> discs = new List<BluRayDiscInfo>();
+            foreach (BluRayDiscInfo disc in _bindingListBluRayDiscInfo)
+            {
+                discs.Add(disc);
+            }
+            return discs;
+        }
+
+        private void chkExtractForRemux_CheckedChanged(object sender, EventArgs e)
+        {
+            this.HandleChkExtractForRemuxCheckedChanged();
+        }
+
+        private void HandleChkExtractForRemuxCheckedChanged()
+        {
+            gbExtractForRemux.Enabled = chkExtractForRemux.Checked;
+            _eac3toConfiguration.IsExtractForRemux = chkExtractForRemux.Checked;
+        }
+
+        private void txtSeasonNumber_TextChanged(object sender, EventArgs e)
+        {
+            this.HandleTxtSeasonNumberTextChanged();
+        }
+
+        private void HandleTxtSeasonNumberTextChanged()
+        {
+            this.ValidateNumbericTextBox(txtSeasonNumber);
+        }
+
+        private void ValidateNumbericTextBox(TextBox textBox)
+        {
+            if (!textBox.Text.IsNumeric())
+            {
+                textBox.Text = "";
+            }
+        }
+
+        private void txtSeasonYear_TextChanged(object sender, EventArgs e)
+        {
+            this.HandleTxtSeasonYearTextChanged();
+        }
+
+        private void HandleTxtSeasonYearTextChanged()
+        {
+            this.ValidateNumbericTextBox(txtSeasonYear);
+        }
+
+        private void SetEAC3ToRemuxFileNameTemplate()
+        {
+            if (_eac3toConfiguration.IsExtractForRemux)
+            {
+                _eac3toConfiguration.RemuxFileNameTemplate = new EAC3ToRemuxFileNameTemplate() { AudioType = txtAudioType.Text.Trim(), Tag = txtTag.Text.Trim(), SeriesName = txtSeriesName.Text.Trim(),
+                 VideoResolution = cbVideoResolution.Text};
+
+                if (txtSeasonNumber.Text.IsNumeric())
+                    _eac3toConfiguration.RemuxFileNameTemplate.SeasonNumber = txtSeasonNumber.Text.StringToInt();
+
+                if (txtSeasonYear.Text.IsNumeric())
+                    _eac3toConfiguration.RemuxFileNameTemplate.SeasonYear = txtSeasonYear.Text.StringToInt();
+                else
+                    _eac3toConfiguration.RemuxFileNameTemplate.SeasonYear = null;
+            }
         }
 
     }

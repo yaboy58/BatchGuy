@@ -15,5 +15,8 @@ namespace BatchGuy.App.X264.Models
         public string X264BatchFilePath { get; set; }
         public string X264EncodeAndLogFileOutputDirectoryPath { get; set; }
         public EnumDirectoryType X264EncodeAndLogFileOutputDirectoryPathType { get; set; }
+        public bool SaveX264LogFileToDifferentDirectory { get; set; }
+        public string X264LogFileOutputDirectoryPath { get; set; }
+
     }
 }

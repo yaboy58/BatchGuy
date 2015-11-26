@@ -10,6 +10,8 @@ using BatchGuy.App.Helpers;
 using BatchGuy.App.Parser.Interfaces;
 using BatchGuy.App.Shared.Models;
 using BatchGuy.App.Extensions;
+using log4net;
+using System.Reflection;
 
 namespace BatchGuy.App.Parser.Services
 {
@@ -17,6 +19,8 @@ namespace BatchGuy.App.Parser.Services
     {
         private CommandLineProcessStartInfo _commandLineProcessStartInfo;
         private readonly ErrorCollection _errors;
+
+        public static readonly ILog _log = LogManager.GetLogger(typeof(CommandLineProcessService));
 
         public CommandLineProcessService(CommandLineProcessStartInfo commandLineProcessStartInfo)
         {
@@ -63,7 +67,8 @@ namespace BatchGuy.App.Parser.Services
             }
             catch (Exception ex)
             {
-                _errors.Add(new Error() { Description = ex.Message });
+                _log.ErrorFormat(Program.GetLogErrorFormat(), ex.Message, MethodBase.GetCurrentMethod().Name);
+                _errors.Add(new Error() { Description = "There was an error while trying to execute the cli executable" });
             }
 
             return processOutputLineItems;

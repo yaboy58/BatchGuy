@@ -12,14 +12,14 @@ namespace BatchGuy.App.Parser.Models
     {
         public int Id { get; set; }
         public bool IsSelected { get; set; }
-        public EAC3ToConfiguration EAC3ToConfiguration { get; set; }
         public List<BluRaySummaryInfo>  BluRaySummaryInfoList { get; set; }
+        public string BluRayPath { get; set; }
         public string DiscName 
         { 
             get 
             {
-                if (this.EAC3ToConfiguration != null)
-                    return this.EAC3ToConfiguration.BluRayPath; 
+                if (this.BluRayPath != null)
+                    return this.BluRayPath; 
                 else
                     return string.Empty;
             } 

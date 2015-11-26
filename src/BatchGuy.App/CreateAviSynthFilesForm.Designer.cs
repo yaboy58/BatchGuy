@@ -39,13 +39,13 @@
             this.txtNumberOfFiles = new System.Windows.Forms.TextBox();
             this.btnOpenDialog = new System.Windows.Forms.Button();
             this.gbScreen = new System.Windows.Forms.GroupBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.bgwCreateAviSynthFiles = new System.ComponentModel.BackgroundWorker();
-            this.ttAviSynthOutputDirectory = new System.Windows.Forms.ToolTip(this.components);
-            this.ttNumberOfFiles = new System.Windows.Forms.ToolTip(this.components);
-            this.ttUserControl = new System.Windows.Forms.ToolTip(this.components);
             this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.setDirectoryUserControl = new BatchGuy.App.UserControls.SetDirectoryUserControl();
+            this.bgwCreateAviSynthFiles = new System.ComponentModel.BackgroundWorker();
+            this.ttNumberOfFiles = new System.Windows.Forms.ToolTip(this.components);
+            this.label6 = new System.Windows.Forms.Label();
+            this.cbVideoFilter = new System.Windows.Forms.ComboBox();
             this.gbScreen.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -121,6 +121,8 @@
             // 
             // gbScreen
             // 
+            this.gbScreen.Controls.Add(this.cbVideoFilter);
+            this.gbScreen.Controls.Add(this.label6);
             this.gbScreen.Controls.Add(this.label5);
             this.gbScreen.Controls.Add(this.label4);
             this.gbScreen.Controls.Add(this.setDirectoryUserControl);
@@ -138,20 +140,6 @@
             this.gbScreen.TabIndex = 12;
             this.gbScreen.TabStop = false;
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(17, 351);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(330, 13);
-            this.label4.TabIndex = 13;
-            this.label4.Text = "*BatchGuy uses the FFVideoSource filter and will add it automatically";
-            // 
-            // bgwCreateAviSynthFiles
-            // 
-            this.bgwCreateAviSynthFiles.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgwCreateAviSynthFiles_DoWork);
-            this.bgwCreateAviSynthFiles.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgwCreateAviSynthFiles_RunWorkerCompleted);
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -162,6 +150,15 @@
             this.label5.Text = "*Single Directory = video files in a single directory && Per Episode = videos in " +
     "e01\\video01.mkv, e02\\video02.mkv";
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(17, 351);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(211, 13);
+            this.label4.TabIndex = 13;
+            this.label4.Text = "*BatchGuy will add video filter automatically";
+            // 
             // setDirectoryUserControl
             // 
             this.setDirectoryUserControl.ComboBoxCaptionText = "";
@@ -170,6 +167,32 @@
             this.setDirectoryUserControl.Name = "setDirectoryUserControl";
             this.setDirectoryUserControl.Size = new System.Drawing.Size(824, 70);
             this.setDirectoryUserControl.TabIndex = 0;
+            // 
+            // bgwCreateAviSynthFiles
+            // 
+            this.bgwCreateAviSynthFiles.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgwCreateAviSynthFiles_DoWork);
+            this.bgwCreateAviSynthFiles.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgwCreateAviSynthFiles_RunWorkerCompleted);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(629, 171);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(59, 13);
+            this.label6.TabIndex = 15;
+            this.label6.Text = "Video Filter";
+            // 
+            // cbVideoFilter
+            // 
+            this.cbVideoFilter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbVideoFilter.FormattingEnabled = true;
+            this.cbVideoFilter.Items.AddRange(new object[] {
+            "dss2",
+            "FFVideoSource"});
+            this.cbVideoFilter.Location = new System.Drawing.Point(709, 163);
+            this.cbVideoFilter.Name = "cbVideoFilter";
+            this.cbVideoFilter.Size = new System.Drawing.Size(121, 21);
+            this.cbVideoFilter.TabIndex = 16;
             // 
             // CreateAviSynthFilesForm
             // 
@@ -203,9 +226,9 @@
         private System.ComponentModel.BackgroundWorker bgwCreateAviSynthFiles;
         private UserControls.SetDirectoryUserControl setDirectoryUserControl;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ToolTip ttAviSynthOutputDirectory;
         private System.Windows.Forms.ToolTip ttNumberOfFiles;
-        private System.Windows.Forms.ToolTip ttUserControl;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox cbVideoFilter;
+        private System.Windows.Forms.Label label6;
     }
 }

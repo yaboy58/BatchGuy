@@ -9,6 +9,8 @@ using BatchGuy.App.X264.Interfaces;
 using BatchGuy.App.Enums;
 using BatchGuy.App.Shared.Models;
 using BatchGuy.App.Helpers;
+using log4net;
+using System.Reflection;
 
 namespace BatchGuy.App.X264.Services
 {
@@ -20,12 +22,13 @@ namespace BatchGuy.App.X264.Services
         private string _batFile;
         private IX264ValidationService _validationService;
 
+        public static readonly ILog _log = LogManager.GetLogger(typeof(X264EncodeService));
+
         public X264EncodeService(IX264ValidationService validationService, X264FileSettings x264FileSettings, List<X264File> x264Files)
         {
             _x264Files = x264Files;
             _x264FileSettings = x264FileSettings;
             _errors = new ErrorCollection();
-            _batFile = "batchguy.encode.bluray.bat";
             _validationService = validationService;
         }
 
@@ -67,13 +70,21 @@ namespace BatchGuy.App.X264.Services
                         if (_x264FileSettings.X264EncodeAndLogFileOutputDirectoryPathType == EnumDirectoryType.DirectoryPerEpisode)
                         {
                             string episodeFolderName = HelperFunctions.PadNumberWithZeros(_x264Files.Count(),episodeNumber);
-                            sb.Append(string.Format(" --output \"{0}\\{1}\\{2}\"", _x264FileSettings.X264EncodeAndLogFileOutputDirectoryPath,episodeFolderName, x264File.EncodeName));
-                            sb.Append(string.Format(" - 2> \"{0}\\{1}\\{2}.x264.log\"", _x264FileSettings.X264EncodeAndLogFileOutputDirectoryPath,episodeFolderName, x264File.EncodeName));     
+                            sb.Append(string.Format(" --output \"{0}\\e{1}\\{2}\"", _x264FileSettings.X264EncodeAndLogFileOutputDirectoryPath,episodeFolderName, x264File.EncodeName));
+
+                            if (_x264FileSettings.SaveX264LogFileToDifferentDirectory)
+                                sb.Append(string.Format(" - 2> \"{0}\\{1}.x264.log\"", _x264FileSettings.X264LogFileOutputDirectoryPath, x264File.EncodeName));  
+                            else
+                                sb.Append(string.Format(" - 2> \"{0}\\e{1}\\{2}.x264.log\"", _x264FileSettings.X264EncodeAndLogFileOutputDirectoryPath, episodeFolderName, x264File.EncodeName));     
                         }
                         else
                         {
                             sb.Append(string.Format(" --output \"{0}\\{1}\"", _x264FileSettings.X264EncodeAndLogFileOutputDirectoryPath, x264File.EncodeName));
-                            sb.Append(string.Format(" - 2> \"{0}\\{1}.x264.log\"", _x264FileSettings.X264EncodeAndLogFileOutputDirectoryPath, x264File.EncodeName));                            
+
+                            if (_x264FileSettings.SaveX264LogFileToDifferentDirectory)
+                                sb.Append(string.Format(" - 2> \"{0}\\{1}.x264.log\"", _x264FileSettings.X264LogFileOutputDirectoryPath, x264File.EncodeName));                            
+                            else
+                                sb.Append(string.Format(" - 2> \"{0}\\{1}.x264.log\"", _x264FileSettings.X264EncodeAndLogFileOutputDirectoryPath, x264File.EncodeName));                            
                         }
 
                         episodeNumber++;
@@ -84,7 +95,8 @@ namespace BatchGuy.App.X264.Services
             }
             catch (Exception ex)
             {
-                _errors.Add(new Error() { Description =  ex.Message});
+                _log.ErrorFormat(Program.GetLogErrorFormat(), ex.Message, MethodBase.GetCurrentMethod().Name);
+                _errors.Add(new Error() { Description =  "There was an error trying to create the x264 batch file"});
             }
         }
 
@@ -106,11 +118,18 @@ namespace BatchGuy.App.X264.Services
                         if (_x264FileSettings.X264EncodeAndLogFileOutputDirectoryPathType == EnumDirectoryType.DirectoryPerEpisode)
                         {
                             string episodeFolderName = HelperFunctions.PadNumberWithZeros(_x264Files.Count(),episodeNumber);
-                            sb1stPass.Append(string.Format(" --output NUL - 2> \"{0}\\{1}\\{2}.x264.log\"", _x264FileSettings.X264EncodeAndLogFileOutputDirectoryPath, episodeFolderName, x264File.EncodeName));
+
+                            if (_x264FileSettings.SaveX264LogFileToDifferentDirectory)
+                                sb1stPass.Append(string.Format(" --output NUL - 2> \"{0}\\{1}.x264.pass1.log\"", _x264FileSettings.X264LogFileOutputDirectoryPath, x264File.EncodeName));
+                            else
+                                sb1stPass.Append(string.Format(" --output NUL - 2> \"{0}\\e{1}\\{2}.x264.pass1.log\"", _x264FileSettings.X264EncodeAndLogFileOutputDirectoryPath, episodeFolderName, x264File.EncodeName));
                         }
                         else
                         {
-                            sb1stPass.Append(string.Format(" --output NUL - 2> \"{0}\\{1}.x264.log\"", _x264FileSettings.X264EncodeAndLogFileOutputDirectoryPath, x264File.EncodeName));
+                            if (_x264FileSettings.SaveX264LogFileToDifferentDirectory)
+                                sb1stPass.Append(string.Format(" --output NUL - 2> \"{0}\\{1}.x264.pass1.log\"", _x264FileSettings.X264LogFileOutputDirectoryPath, x264File.EncodeName));
+                            else
+                                sb1stPass.Append(string.Format(" --output NUL - 2> \"{0}\\{1}.x264.pass1.log\"", _x264FileSettings.X264EncodeAndLogFileOutputDirectoryPath, x264File.EncodeName));
                         }
 
                         sw.WriteLine(sb1stPass.ToString());
@@ -125,13 +144,22 @@ namespace BatchGuy.App.X264.Services
                         if (_x264FileSettings.X264EncodeAndLogFileOutputDirectoryPathType == EnumDirectoryType.DirectoryPerEpisode)
                         {
                             string episodeFolderName = HelperFunctions.PadNumberWithZeros(_x264Files.Count(), episodeNumber);
-                            sb2ndPass.Append(string.Format(" --output \"{0}\\{1}\\{2}\"", _x264FileSettings.X264EncodeAndLogFileOutputDirectoryPath,episodeFolderName, x264File.EncodeName));
-                            sb2ndPass.Append(string.Format(" - 2> \"{0}\\{1}\\{2}.x264.log\"", _x264FileSettings.X264EncodeAndLogFileOutputDirectoryPath,episodeFolderName, x264File.EncodeName));
+                            sb2ndPass.Append(string.Format(" --output \"{0}\\e{1}\\{2}\"", _x264FileSettings.X264EncodeAndLogFileOutputDirectoryPath,episodeFolderName, x264File.EncodeName));
+
+                            if (_x264FileSettings.SaveX264LogFileToDifferentDirectory)
+                                sb2ndPass.Append(string.Format(" - 2> \"{0}\\{1}.x264.pass2.log\"", _x264FileSettings.X264LogFileOutputDirectoryPath, x264File.EncodeName));
+                            else
+                                sb2ndPass.Append(string.Format(" - 2> \"{0}\\e{1}\\{2}.x264.pass2.log\"", _x264FileSettings.X264EncodeAndLogFileOutputDirectoryPath, episodeFolderName, x264File.EncodeName));
                         }
                         else
                         {
                             sb2ndPass.Append(string.Format(" --output \"{0}\\{1}\"", _x264FileSettings.X264EncodeAndLogFileOutputDirectoryPath, x264File.EncodeName));
-                            sb2ndPass.Append(string.Format(" - 2> \"{0}\\{1}.x264.log\"", _x264FileSettings.X264EncodeAndLogFileOutputDirectoryPath, x264File.EncodeName));
+
+                            if (_x264FileSettings.SaveX264LogFileToDifferentDirectory)
+                                sb2ndPass.Append(string.Format(" - 2> \"{0}\\{1}.x264.pass2.log\"", _x264FileSettings.X264LogFileOutputDirectoryPath, x264File.EncodeName));
+                            else
+                                sb2ndPass.Append(string.Format(" - 2> \"{0}\\{1}.x264.pass2.log\"", _x264FileSettings.X264EncodeAndLogFileOutputDirectoryPath, x264File.EncodeName));
+
                         }
 
                         sw.WriteLine(sb2ndPass.ToString());
@@ -143,7 +171,8 @@ namespace BatchGuy.App.X264.Services
             }
             catch (Exception ex)
             {
-                _errors.Add(new Error() { Description = ex.Message });
+                _log.ErrorFormat(Program.GetLogErrorFormat(), ex.Message, MethodBase.GetCurrentMethod().Name);
+                _errors.Add(new Error() { Description = "There was an error trying to create the x264 batch file" });
             }
         }
     }

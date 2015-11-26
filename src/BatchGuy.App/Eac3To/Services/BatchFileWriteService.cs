@@ -11,6 +11,9 @@ using BatchGuy.App.Shared.Models;
 using BatchGuy.App.Parser.Models;
 using BatchGuy.App.Eac3To.Interfaces;
 using BatchGuy.App.Extensions;
+using log4net;
+using System.Reflection;
+using BatchGuy.App.Eac3To.Services;
 
 namespace BatchGuy.App.Eac3to.Services
 {
@@ -18,15 +21,19 @@ namespace BatchGuy.App.Eac3to.Services
     {
         private ErrorCollection _errors = new ErrorCollection();
         private List<BluRayDiscInfo> _bluRayDiscInfoList;
+        private EAC3ToConfiguration _eac3toConfiguration;
+
+        public static readonly ILog _log = LogManager.GetLogger(typeof(BatchFileWriteService));
 
         public ErrorCollection Errors
         {
             get { return _errors; }
         }
-        
-        public BatchFileWriteService(List<BluRayDiscInfo> bluRayDiscInfo)
+
+        public BatchFileWriteService(EAC3ToConfiguration eac3toConfiguration, List<BluRayDiscInfo> bluRayDiscInfo)
         {
             _bluRayDiscInfoList = bluRayDiscInfo;
+            _eac3toConfiguration = eac3toConfiguration;
             _errors = new ErrorCollection();
         }
 
@@ -36,22 +43,24 @@ namespace BatchGuy.App.Eac3to.Services
             {
                 try
                 {
+                    IEAC3ToOutputNamingService eac3ToOutputNamingService = new EAC3ToOutputNamingService();
                     foreach (BluRayDiscInfo disc in _bluRayDiscInfoList.Where(d => d.IsSelected))
                     {
                         foreach (BluRaySummaryInfo summary in disc.BluRaySummaryInfoList.Where(s => s.IsSelected).OrderBy(s => s.EpisodeNumber))
                         {
-                            IEAC3ToOutputService eacOutputService = new EAC3ToOutputService(disc.EAC3ToConfiguration, summary.Id, summary.BluRayTitleInfo);
+                            IEAC3ToOutputService eacOutputService = new EAC3ToOutputService(_eac3toConfiguration, eac3ToOutputNamingService, disc.BluRayPath, summary);
                             string eac3ToPathPart = eacOutputService.GetEAC3ToPathPart();
                             string bluRayStreamPart = eacOutputService.GetBluRayStreamPart();
                             string chapterStreamPart = eacOutputService.GetChapterStreamPart();
                             string videoStreamPart = eacOutputService.GetVideoStreamPart();
                             string audioStreamPart = eacOutputService.GetAudioStreamPart();
                             string subtitleStreamPart = eacOutputService.GetSubtitleStreamPart();
+                            string logPart = eacOutputService.GetLogPart();
 
-                            using (StreamWriter sw = new StreamWriter(disc.EAC3ToConfiguration.BatchFilePath, true))
+                            using (StreamWriter sw = new StreamWriter(_eac3toConfiguration.BatchFilePath, true))
                             {
-                                sw.WriteLine(string.Format("{0} {1} {2} {3} {4} {5} -progressnumbers", eac3ToPathPart, bluRayStreamPart, chapterStreamPart, videoStreamPart, audioStreamPart,
-                                    subtitleStreamPart));
+                                sw.WriteLine(string.Format("{0} {1} {2} {3} {4} {5} {6} -progressnumbers", eac3ToPathPart, bluRayStreamPart, chapterStreamPart, videoStreamPart, audioStreamPart,
+                                    subtitleStreamPart, logPart));
                                 sw.WriteLine();
                                 sw.WriteLine();
                             }
@@ -60,8 +69,8 @@ namespace BatchGuy.App.Eac3to.Services
                 }
                 catch (Exception ex)
                 {
-                    //introduce logging at some point
-                    _errors.Add(new Error() { Description = string.Format("Error occurred: {0}", ex.Message) });
+                    _log.ErrorFormat(Program.GetLogErrorFormat(), ex.Message, MethodBase.GetCurrentMethod().Name);
+                    _errors.Add(new Error() { Description = "There was an error will creating the eac3to batch file." });
                 }
             }
             return _errors;

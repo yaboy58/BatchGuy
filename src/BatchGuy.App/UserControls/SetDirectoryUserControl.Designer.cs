@@ -51,9 +51,9 @@
             this.cbSetOutputDirectoryUserControlType.Items.AddRange(new object[] {
             "Directory Per Episode",
             "Single Directory"});
-            this.cbSetOutputDirectoryUserControlType.Location = new System.Drawing.Point(129, 15);
+            this.cbSetOutputDirectoryUserControlType.Location = new System.Drawing.Point(153, 15);
             this.cbSetOutputDirectoryUserControlType.Name = "cbSetOutputDirectoryUserControlType";
-            this.cbSetOutputDirectoryUserControlType.Size = new System.Drawing.Size(181, 21);
+            this.cbSetOutputDirectoryUserControlType.Size = new System.Drawing.Size(157, 21);
             this.cbSetOutputDirectoryUserControlType.TabIndex = 1;
             this.cbSetOutputDirectoryUserControlType.SelectedIndexChanged += new System.EventHandler(this.cbSetOutputDirectoryUserControlType_SelectedIndexChanged);
             // 

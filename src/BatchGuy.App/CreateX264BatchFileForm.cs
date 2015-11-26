@@ -53,14 +53,14 @@ namespace BatchGuy.App
 
         private void SetDirectoryUserControlValues()
         {
-            setDirectoryUserControl.ComboBoxCaptionText = "--output && (.log) Directory";
-            setDirectoryUserControl.LabelDirectoryCaptionText = @"Example: --output ""{0}\e01\encode_name.mkv"", ""{0}\e01\encode_name.log""";
+            setDirectoryUserControlX264Output.ComboBoxCaptionText = "--output and (.log) Directory";
+            setDirectoryUserControlX264Output.LabelDirectoryCaptionText = @"Example: --output ""{0}\e01\encode_name.mkv"", ""{0}\e01\encode_name.log""";
         }
 
         private void SetToolTips()
         {
-            ttX264BatchFileOutputDirectory.SetToolTip(txtX264BatchFileOutputDirectory, "Directory where the x264 batch file will be saved");
-            ttDirectoryUserControl.SetToolTip(setDirectoryUserControl, "Determines where the x264 output and log file will be saved");
+            new ToolTip().SetToolTip(txtX264BatchFileOutputDirectory, "Directory where the x264 batch file will be saved");
+            new ToolTip().SetToolTip(setDirectoryUserControlX264Output, "Determines where the x264 output and log file will be saved");
         }
 
         private bool IsVfw4x264PathSetInSettings()
@@ -123,16 +123,27 @@ namespace BatchGuy.App
 
         private X264FileSettings GetX264FileSettings()
         {
-            return new X264FileSettings() { EncodeType = EncodeType,
+            X264FileSettings settings = new X264FileSettings() { EncodeType = EncodeType,
              vfw4x264Exe = _vfw4x264Path, X264Template = txtX264Template.Text, X264BatchFilePath = txtX264BatchFileOutputDirectory.Text,
-             X264EncodeAndLogFileOutputDirectoryPathType = setDirectoryUserControl.OutputDirectoryType, X264EncodeAndLogFileOutputDirectoryPath = setDirectoryUserControl.CLIDirectory};
+             X264EncodeAndLogFileOutputDirectoryPathType = setDirectoryUserControlX264Output.OutputDirectoryType, X264EncodeAndLogFileOutputDirectoryPath = setDirectoryUserControlX264Output.CLIDirectory};
+
+            settings.SaveX264LogFileToDifferentDirectory = chkSaveLogFileToDifferentDirectory.Checked;
+            if (settings.SaveX264LogFileToDifferentDirectory)
+                settings.X264LogFileOutputDirectoryPath = txtX264LogFileSaveDirectory.Text;
+
+            return settings;
         }
 
         private void btnCreateX264BatFile_Click(object sender, EventArgs e)
         {
-            if (this.IsScreenValidForWriteX264BatchFile())
+            DialogResult result = MessageBox.Show("Create x264 batch file?", "Start Process?", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+
+            if (result == System.Windows.Forms.DialogResult.Yes)
             {
-                this.CreateX264BatFile();
+                if (this.IsScreenValidForWriteX264BatchFile())
+                {
+                    this.CreateX264BatFile();
+                }
             }
         }
 
@@ -212,10 +223,15 @@ namespace BatchGuy.App
                 MessageBox.Show("Please enter x264 settings", "Invalid x264 settings", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return false;
             }
-            if (string.IsNullOrEmpty(setDirectoryUserControl.CLIDirectory))
+            if (string.IsNullOrEmpty(setDirectoryUserControlX264Output.CLIDirectory))
             {
                 MessageBox.Show("Please choose the x264 output and (.log) file save directory", "Invalid x264 settings", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return false;                
+            }
+            if (chkSaveLogFileToDifferentDirectory.Checked && string.IsNullOrEmpty(txtX264LogFileSaveDirectory.Text))
+            {
+                MessageBox.Show("Please choose the x264 (.log) file save directory", "Invalid x264 settings", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return false;                     
             }
             return true;
         }
@@ -327,6 +343,33 @@ namespace BatchGuy.App
                 return true;
             else
                 return false;
+        }
+
+        private void btnOpenX264LogFileOutputDialog_Click(object sender, EventArgs e)
+        {
+            this.HandleBtnOpenX264LogFileOutputDialog();
+        }
+
+        private void HandleBtnOpenX264LogFileOutputDialog()
+        {
+            var fsd = new FolderSelectDialog();
+            fsd.Title = "x264 (.log) files save directory";
+            fsd.InitialDirectory = @"c:\";
+            if (fsd.ShowDialog(IntPtr.Zero))
+            {
+                txtX264LogFileSaveDirectory.Text = fsd.FileName;
+            }
+        }
+
+        private void chkSaveLogFileToDifferentDirectory_CheckedChanged(object sender, EventArgs e)
+        {
+            this.HandleChkSaveLogFileToDifferentDirectoryCheckedChanged();
+        }
+
+        private void HandleChkSaveLogFileToDifferentDirectoryCheckedChanged()
+        {
+            txtX264LogFileSaveDirectory.SetEnabled(chkSaveLogFileToDifferentDirectory.Checked);
+            btnOpenX264LogFileOutputDialog.SetEnabled(chkSaveLogFileToDifferentDirectory.Checked);
         }
     }
 }
