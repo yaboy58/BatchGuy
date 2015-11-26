@@ -33,26 +33,11 @@
 *unit test extension methods
 
 
---1.6 todo
-*Added -log paramter to eac3to parameters
-*BluRay Disc info object no longer has its own eac3to configuration.  This is global for all discs and the eac3to configuration has been pulled out
-*Users now can Drag and Drop blu-ray folders onto the blu-ray disc grid on the eac3to screen, instead of using a open directory dialog
-*Added a lot more log4net logging and user friendly error messages.  Also created a global error format template
-*Users can name eac3to output tracks on the eac3to screen, making it easier to remux them with a tool such as MKVMergeGUI
-*eac3to output file name is now in it's own service, which makes unit testing and changes easier
-*Fixed bug where eac3to output directory select directory dialog popup had duplicate verbiage in the title
-*Tooltips created dynamically on create x264 batch file screen
-*Tooltips created dynamically on create avisynth files screen
-*Tooltips created dynamically on eac3to screen
-*Tooltips created for eac3to remux controls on eac3to screen
-*User can now choose FFVideoSource or dss2 as the video filter on create avisynth files screen
-*Fixed bug where x264 batch file 2pass log files on 1st and 2nd pass had the same name and overwrote each other
-*Users can now specify save directories for x264 --output and (.log) on the create x264 batch file screen
-*Users now prompted with yes/no dialog when creating eac3to/x264 batch file and avisynth files
-*Wiki created: https://github.com/yaboy58/BatchGuy/wiki
-*Fixed bug where PCM/WAVE audio was defaulting to AC3
-*Fixed bug where "e" was not being attached to paths for x264 screen for per episode.
+--1.7 todo
+*If no extension on encode names on create x264, then add .mkv programmically
+*ability to create sample.avs/sample.encode.bat
 
+[couldn't reproduce]
 *Bug where you can't close title info screen because episode required even though nothing is chosen.  Button works but not the x at the top
 
 
@@ -60,13 +45,9 @@
 
 
 --upcoming
-*ability to create sample.avs/sample.encode.bat
 *Maybe keep track of the Blu-ray folder directory, so you will open up the same directory every time
 *ability to save/load eac3to batch guy data
 *find where you have number of files hardcoded to 99 and put the real value in it
-*remux screen, drag/drop or multi-select the files for remux 
-*remux focus ie allow folder names other than #
-*mkvmerge integration
 *look into why the busy mouse indicator doesn't seem to work
 *put the bluray title on the title info page
 
