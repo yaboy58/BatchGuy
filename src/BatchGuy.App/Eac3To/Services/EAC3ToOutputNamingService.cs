@@ -154,6 +154,9 @@ namespace BatchGuy.App.Eac3To.Services
                 case EnumAudioType.DTSMA:
                     audioExtension = "dtsma";
                     break;
+                case EnumAudioType.WAVE:
+                    audioExtension = "wav";
+                    break;
                 default:
                     throw new Exception("Invalid Audio Type");
             }

@@ -19,7 +19,8 @@ namespace BatchGuy.App.Enums
         FLAC = 3,
         TrueHD = 4,
         MPA = 5,
-        DTSMA = 6
+        DTSMA = 6,
+        WAVE = 7
     }
 
     public enum EnumBluRayLineItemType

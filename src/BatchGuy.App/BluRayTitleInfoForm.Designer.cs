@@ -162,7 +162,8 @@
             "DTSMA",
             "FLAC",
             "MPA",
-            "TrueHD"});
+            "TrueHD",
+            "Wave"});
             this.cbAudioType.Location = new System.Drawing.Point(94, 10);
             this.cbAudioType.Name = "cbAudioType";
             this.cbAudioType.Size = new System.Drawing.Size(186, 21);

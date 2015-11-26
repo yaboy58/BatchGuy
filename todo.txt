@@ -50,10 +50,11 @@
 *Users can now specify save directories for x264 --output and (.log) on the create x264 batch file screen
 *Users now prompted with yes/no dialog when creating eac3to/x264 batch file and avisynth files
 *Wiki created: https://github.com/yaboy58/BatchGuy/wiki
-
+*Fixed bug where PCM/WAVE audio was defaulting to AC3
+*Fixed bug where "e" was not being attached to paths for x264 screen for per episode.
 
 *Bug where you can't close title info screen because episode required even though nothing is chosen.  Button works but not the x at the top
-*Why does LPCM audio default to ac3
+
 
 
 

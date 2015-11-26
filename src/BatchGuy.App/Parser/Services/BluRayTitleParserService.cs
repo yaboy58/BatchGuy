@@ -74,7 +74,7 @@ namespace BatchGuy.App.Parser.Services
             {
                 type = EnumAudioType.TrueHD;
             }
-            else if (this.IsAudioType(lineItem, "lpcm"))
+            else if (this.IsAudioType(lineItem, "pcm"))
             {
                 type = EnumAudioType.FLAC;
             }
