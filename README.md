@@ -44,8 +44,10 @@ BatchGuy is not an x264 encoder.  BatchGuy will create a (.bat) file that you ca
 Unzip the BatchGuy folder to any location of your choosing.  With the introduction of BatchGuy Version 1.2, the user can save settings, so it is best to keep the BatchGuy.exe in the BatchGuy folder, which is where the settings file <i>(config.batchGuySettings)</i> will be saved.  However, a shortcut to the BatchGuy.exe can be placed anywhere.
 
 <h1>Requirements:</h1>
-Windows 7, 8.1 x64 <br>
-.Net Framework 4.5+<br>
-eac3to<br>
-vfw4x264<br>
-AviSynth 2.5+ and all relevant plugins<br>
+<ul>
+<li>Windows 7, 8.1 x64 </li>
+<li>.Net Framework 4.5+</li>
+<li>eac3to</li>
+<li>vfw4x264</li>
+<li>AviSynth 2.5+ and all relevant plugins</li>
+</ul>
