@@ -57,6 +57,7 @@ namespace BatchGuy.App
             {
                 this.LoadBluRayTitleInfo();
             }
+            txtEpisodeName.SetEnabled(_eac3ToConfiguration.IsExtractForRemux);
         }
 
         private void LoadBluRayTitleInfo()
@@ -82,6 +83,7 @@ namespace BatchGuy.App
         {
             this.LoadTitle();
             this.LoadEpisodeNumber();
+            this.LoadEpisodeName();
             this.LoadVideo();
             this.LoadAudio();
             this.LoadSubtitles();
@@ -98,6 +100,14 @@ namespace BatchGuy.App
             if (_bluRaySummaryInfo.BluRayTitleInfo.EpisodeNumber != null)
             {
                 txtEpisodeNumber.Text = _bluRaySummaryInfo.BluRayTitleInfo.EpisodeNumber.ToString();
+            }
+        }
+
+        public void LoadEpisodeName()
+        {
+            if (_bluRaySummaryInfo.BluRayTitleInfo.EpisodeName != null && _eac3ToConfiguration.IsExtractForRemux)
+            {
+                txtEpisodeName.Text = _bluRaySummaryInfo.BluRayTitleInfo.EpisodeName;
             }
         }
 
@@ -409,6 +419,16 @@ namespace BatchGuy.App
             bsBluRayTitleSubtitles.DataSource = _bindingListBluRayTitleSubtitle;
             bsBluRayTitleSubtitles.ResetBindings(false);
             _bindingListBluRayTitleSubtitle.AllowEdit = true;
+        }
+
+        private void txtEpisodeName_TextChanged(object sender, EventArgs e)
+        {
+            this.HandleTxtEpisodeNameTextChanged();
+        }
+
+        private void HandleTxtEpisodeNameTextChanged()
+        {
+            _bluRaySummaryInfo.BluRayTitleInfo.EpisodeName = txtEpisodeName.Text.Trim();
         }
     }
 }

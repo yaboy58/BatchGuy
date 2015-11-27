@@ -63,6 +63,8 @@
             this.gbScreen = new System.Windows.Forms.GroupBox();
             this.bsBluRayTitleInfo = new System.Windows.Forms.BindingSource(this.components);
             this.bgwEac3toLoadTitle = new System.ComponentModel.BackgroundWorker();
+            this.txtEpisodeName = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.gbVideo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsBluRayTitleVideo)).BeginInit();
             this.gbAudio.SuspendLayout();
@@ -353,7 +355,7 @@
             // lblEpisodeNumber
             // 
             this.lblEpisodeNumber.AutoSize = true;
-            this.lblEpisodeNumber.Location = new System.Drawing.Point(777, 19);
+            this.lblEpisodeNumber.Location = new System.Drawing.Point(418, 19);
             this.lblEpisodeNumber.Name = "lblEpisodeNumber";
             this.lblEpisodeNumber.Size = new System.Drawing.Size(58, 13);
             this.lblEpisodeNumber.TabIndex = 6;
@@ -361,14 +363,16 @@
             // 
             // txtEpisodeNumber
             // 
-            this.txtEpisodeNumber.Location = new System.Drawing.Point(840, 16);
+            this.txtEpisodeNumber.Location = new System.Drawing.Point(482, 16);
             this.txtEpisodeNumber.Name = "txtEpisodeNumber";
-            this.txtEpisodeNumber.Size = new System.Drawing.Size(90, 20);
+            this.txtEpisodeNumber.Size = new System.Drawing.Size(65, 20);
             this.txtEpisodeNumber.TabIndex = 0;
             this.txtEpisodeNumber.TextChanged += new System.EventHandler(this.txtEpisodeNumber_TextChanged);
             // 
             // gbScreen
             // 
+            this.gbScreen.Controls.Add(this.txtEpisodeName);
+            this.gbScreen.Controls.Add(this.label1);
             this.gbScreen.Controls.Add(this.txtEpisodeNumber);
             this.gbScreen.Controls.Add(this.gbChapters);
             this.gbScreen.Controls.Add(this.lblEpisodeNumber);
@@ -391,6 +395,23 @@
             // 
             this.bgwEac3toLoadTitle.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgwEac3toLoadTitle_DoWork);
             this.bgwEac3toLoadTitle.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgwEac3toLoadTitle_RunWorkerCompleted);
+            // 
+            // txtEpisodeName
+            // 
+            this.txtEpisodeName.Location = new System.Drawing.Point(642, 16);
+            this.txtEpisodeName.Name = "txtEpisodeName";
+            this.txtEpisodeName.Size = new System.Drawing.Size(288, 20);
+            this.txtEpisodeName.TabIndex = 7;
+            this.txtEpisodeName.TextChanged += new System.EventHandler(this.txtEpisodeName_TextChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(557, 19);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(79, 13);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "Episode Name:";
             // 
             // BluRayTitleInfoForm
             // 
@@ -460,5 +481,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.TextBox txtEpisodeName;
+        private System.Windows.Forms.Label label1;
     }
 }
