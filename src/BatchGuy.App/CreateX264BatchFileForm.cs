@@ -278,7 +278,7 @@ namespace BatchGuy.App
             sfd.Title = "Save x264 Batch File";
             sfd.InitialDirectory = @"C:\temp";
 #if DEBUG
-            sfd.InitialDirectory = @"C:\temp\My Encodes\Blu-ray";
+            sfd.InitialDirectory = @"C:\temp\My BatchGuy Tests";
 #endif
             sfd.ShowDialog();
 

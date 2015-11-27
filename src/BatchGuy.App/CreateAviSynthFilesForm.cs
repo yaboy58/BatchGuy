@@ -36,7 +36,7 @@ namespace BatchGuy.App
         private void CreateAVSFilesForm_Load(object sender, EventArgs e)
         {
 #if DEBUG
-            txtOutputDirectory.Text = @"C:\temp\My Encodes\Blu-ray";   
+            txtOutputDirectory.Text = @"C:\temp\My BatchGuy Tests";   
 #endif
             cbVideoFilter.SelectedIndex = 1;
         }
