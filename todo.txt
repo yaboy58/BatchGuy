@@ -38,7 +38,7 @@
 *User receives error message if encode names on create x264 batch file screen are not unique
 *Fixed bug where x264 template script text was not being trimmed for spaces and causing problems with the x264 batch file
 
-
+*add a episode name textbox to title info screen, only enable if extract for remux is selected
 *look into the grid column size of encode name on x264.  when you copy a long text, it should put it all on there, not just the first line when there is a break
 *ability to create sample.avs/sample.encode.bat
 *ability to save/load eac3to batch guy data
