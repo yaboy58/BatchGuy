@@ -37,7 +37,7 @@
 *User receives error message if encode names on create x264 batch file screen don't have (.mkv) extension
 *User receives error message if encode names on create x264 batch file screen are not unique
 *Fixed bug where x264 template script text was not being trimmed for spaces and causing problems with the x264 batch file
-*Fixed bug where if you enter eac3to audio arguments on the title info screen, save and the come back and select the same audio, the arguments arguments are cleared
+*Fixed bug where if you enter eac3to audio arguments on the title info screen, save and the come back and select the same audio, the existing arguments are cleared
 *PCM audio will default to FLAC
 *User can now set episode name on eac3to screen when extracting for remux
 *TrueHD audio will default to AC3 with -640 argument
@@ -49,8 +49,7 @@
 
 
 --upcoming
-[couldn't reproduce]
-*Bug where you can't close title info screen because episode required even though nothing is chosen.  Button works but not the x at the top
+*Bug where you can't close title info screen because episode required even though nothing is chosen.  Button works but not the x at the top [couldn't reproduce]
 *ability to create sample.avs/sample.encode.bat
 *ability to save/load eac3to batch guy data
 *Maybe keep track of the Blu-ray folder directory, so you will open up the same directory every time
