@@ -30,7 +30,7 @@ namespace BatchGuy.App
         private SortConfiguration _subtitleGridSortConfiguration = new SortConfiguration();
         private EAC3ToConfiguration _eac3ToConfiguration;
         private string _bluRayPath;
-
+        private bool _cbAudioTypeChangeTriggeredByDgvAudioCellClick;
         
         public BluRayTitleInfoForm()
         {
@@ -183,6 +183,7 @@ namespace BatchGuy.App
 
         private void HandleDGVAudioCellClick(DataGridViewCellEventArgs e)
         {
+            _cbAudioTypeChangeTriggeredByDgvAudioCellClick = true;
             var id = dgvAudio.Rows[e.RowIndex].Cells[1].Value;
             _currentBluRayTitleAudio = _bluRaySummaryInfo.BluRayTitleInfo.AudioList.SingleOrDefault(a => a.Id == id.ToString());
             cbAudioType.SelectedIndex = cbAudioType.FindString(this.GetAudioTypeName(_currentBluRayTitleAudio.AudioType));
@@ -240,6 +241,12 @@ namespace BatchGuy.App
 
         private void HandleComboBoxAudioTypeSelectedIndexChanged(string value)
         {
+            if (_cbAudioTypeChangeTriggeredByDgvAudioCellClick)
+            {
+                _cbAudioTypeChangeTriggeredByDgvAudioCellClick = false;
+                return;
+            }
+
             switch (value)
             {
                 case "DTS":
