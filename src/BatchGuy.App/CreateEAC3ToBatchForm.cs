@@ -281,7 +281,7 @@ namespace BatchGuy.App
             sfd.Title = "Save eac3to Batch File";
             sfd.InitialDirectory = @"C:\temp";
 #if DEBUG
-            sfd.InitialDirectory = @"C:\temp\My Encodes\Blu-ray";
+            sfd.InitialDirectory = @"C:\temp\My BatchGuy Tests";
 #endif
             sfd.ShowDialog();
 

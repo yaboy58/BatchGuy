@@ -13,7 +13,7 @@ namespace BatchGuy.App.Eac3To.Services
 {
     public class EAC3ToOutputNamingService : IEAC3ToOutputNamingService
     {
-        public string GetChapterName(EAC3ToConfiguration eac3toConfiguration, string filesOutputPath, string paddedEpisodeNumber)
+        public string GetChapterName(EAC3ToConfiguration eac3toConfiguration, string filesOutputPath, string paddedEpisodeNumber, string episodeName)
         {
             StringBuilder sb = new StringBuilder();
             if (eac3toConfiguration.IsExtractForRemux != true)
@@ -25,14 +25,14 @@ namespace BatchGuy.App.Eac3To.Services
                 string tag = this.GetTag(eac3toConfiguration);
                 string year = this.GetYear(eac3toConfiguration);
 
-                sb.Append(string.Format("\"{0}\\{1}{2}S{3}E{4} {5} Remux AVC {6}{7} chapters.txt\"", filesOutputPath, eac3toConfiguration.RemuxFileNameTemplate.SeriesName, year,
+                sb.Append(string.Format("\"{0}\\{1}{2}S{3}E{4}{5}{6} Remux AVC {7}{8} chapters.txt\"", filesOutputPath, eac3toConfiguration.RemuxFileNameTemplate.SeriesName, year,
                     this.PadNumberWithZeros(99, eac3toConfiguration.RemuxFileNameTemplate.SeasonNumber),
-                    paddedEpisodeNumber, eac3toConfiguration.RemuxFileNameTemplate.VideoResolution, eac3toConfiguration.RemuxFileNameTemplate.AudioType, tag));
+                    paddedEpisodeNumber,this.GetFormattedEpisodeName(episodeName), eac3toConfiguration.RemuxFileNameTemplate.VideoResolution, eac3toConfiguration.RemuxFileNameTemplate.AudioType, tag));
             }
             return sb.ToString();
         }
 
-        public string GetVideoName(EAC3ToConfiguration eac3toConfiguration, string filesOutputPath, string paddedEpisodeNumber)
+        public string GetVideoName(EAC3ToConfiguration eac3toConfiguration, string filesOutputPath, string paddedEpisodeNumber, string episodeName)
         {
             StringBuilder sb = new StringBuilder();
             if (eac3toConfiguration.IsExtractForRemux != true)
@@ -44,15 +44,15 @@ namespace BatchGuy.App.Eac3To.Services
                 string tag = this.GetTag(eac3toConfiguration);
                 string year = this.GetYear(eac3toConfiguration);
 
-                sb.Append(string.Format("\"{0}\\{1}{2}S{3}E{4} {5} Remux AVC {6}{7}.mkv\"", filesOutputPath, eac3toConfiguration.RemuxFileNameTemplate.SeriesName,year,
+                sb.Append(string.Format("\"{0}\\{1}{2}S{3}E{4}{5}{6} Remux AVC {7}{8}.mkv\"", filesOutputPath, eac3toConfiguration.RemuxFileNameTemplate.SeriesName,year,
                     this.PadNumberWithZeros(99, eac3toConfiguration.RemuxFileNameTemplate.SeasonNumber),
-                    paddedEpisodeNumber, eac3toConfiguration.RemuxFileNameTemplate.VideoResolution, eac3toConfiguration.RemuxFileNameTemplate.AudioType, tag));
+                    paddedEpisodeNumber, this.GetFormattedEpisodeName(episodeName), eac3toConfiguration.RemuxFileNameTemplate.VideoResolution, eac3toConfiguration.RemuxFileNameTemplate.AudioType, tag));
             }
             return sb.ToString();
 
         }
 
-        public string GetAudioName(EAC3ToConfiguration eac3toConfiguration, Parser.Models.BluRayTitleAudio audio, string filesOutputPath, string paddedEpisodeNumber, int itemNumber)
+        public string GetAudioName(EAC3ToConfiguration eac3toConfiguration, Parser.Models.BluRayTitleAudio audio, string filesOutputPath, string paddedEpisodeNumber, string episodeName, int itemNumber)
         {
             StringBuilder sb = new StringBuilder();
             if (eac3toConfiguration.IsExtractForRemux != true)
@@ -64,15 +64,15 @@ namespace BatchGuy.App.Eac3To.Services
                 string tag = this.GetTag(eac3toConfiguration);
                 string year = this.GetYear(eac3toConfiguration);
 
-                sb.Append(string.Format("\"{0}\\{1}{2}S{3}E{4} {5} Remux AVC {6}{7} {8}{9}-{10}.{11}\"", filesOutputPath, eac3toConfiguration.RemuxFileNameTemplate.SeriesName,year,
+                sb.Append(string.Format("\"{0}\\{1}{2}S{3}E{4}{5}{6} Remux AVC {7}{8} {9}{10}-{11}.{12}\"", filesOutputPath, eac3toConfiguration.RemuxFileNameTemplate.SeriesName,year,
                     this.PadNumberWithZeros(99, eac3toConfiguration.RemuxFileNameTemplate.SeasonNumber),
-                    paddedEpisodeNumber, eac3toConfiguration.RemuxFileNameTemplate.VideoResolution, eac3toConfiguration.RemuxFileNameTemplate.AudioType, tag, audio.Language, paddedEpisodeNumber, itemNumber.ToString(),
+                    paddedEpisodeNumber, this.GetFormattedEpisodeName(episodeName), eac3toConfiguration.RemuxFileNameTemplate.VideoResolution, eac3toConfiguration.RemuxFileNameTemplate.AudioType, tag, audio.Language, paddedEpisodeNumber, itemNumber.ToString(),
                     this.GetAudioExtension(audio.AudioType)));
             }
             return sb.ToString();
         }
 
-        public string GetSubtitleName(EAC3ToConfiguration eac3toConfiguration, BluRayTitleSubtitle subtitle, string filesOutputPath, string paddedEpisodeNumber, int itemNumber)
+        public string GetSubtitleName(EAC3ToConfiguration eac3toConfiguration, BluRayTitleSubtitle subtitle, string filesOutputPath, string paddedEpisodeNumber, string episodeName, int itemNumber)
         {
             StringBuilder sb = new StringBuilder();
             if (eac3toConfiguration.IsExtractForRemux != true)
@@ -84,13 +84,13 @@ namespace BatchGuy.App.Eac3To.Services
                 string tag = this.GetTag(eac3toConfiguration);
                 string year = this.GetYear(eac3toConfiguration);
 
-                sb.Append(string.Format("\"{0}\\{1}{2}S{3}E{4} {5} Remux AVC {6}{7} {8}{9}-{10}.sup\"", filesOutputPath, eac3toConfiguration.RemuxFileNameTemplate.SeriesName,year,
+                sb.Append(string.Format("\"{0}\\{1}{2}S{3}E{4}{5}{6} Remux AVC {7}{8} {9}{10}-{11}.sup\"", filesOutputPath, eac3toConfiguration.RemuxFileNameTemplate.SeriesName,year,
                     this.PadNumberWithZeros(99, eac3toConfiguration.RemuxFileNameTemplate.SeasonNumber),
-                    paddedEpisodeNumber, eac3toConfiguration.RemuxFileNameTemplate.VideoResolution, eac3toConfiguration.RemuxFileNameTemplate.AudioType, tag, subtitle.Language, paddedEpisodeNumber, itemNumber.ToString()));
+                    paddedEpisodeNumber, this.GetFormattedEpisodeName(episodeName), eac3toConfiguration.RemuxFileNameTemplate.VideoResolution, eac3toConfiguration.RemuxFileNameTemplate.AudioType, tag, subtitle.Language, paddedEpisodeNumber, itemNumber.ToString()));
             }
             return sb.ToString();
         }
-        public string GetLogName(EAC3ToConfiguration eac3toConfiguration, string filesOutputPath, string paddedEpisodeNumber)
+        public string GetLogName(EAC3ToConfiguration eac3toConfiguration, string filesOutputPath, string paddedEpisodeNumber, string episodeName)
         {
             StringBuilder sb = new StringBuilder();
             if (eac3toConfiguration.IsExtractForRemux != true)
@@ -102,9 +102,9 @@ namespace BatchGuy.App.Eac3To.Services
                 string tag = this.GetTag(eac3toConfiguration);
                 string year = this.GetYear(eac3toConfiguration);
 
-                sb.Append(string.Format(" -log=\"{0}\\{1}{2}S{3}E{4} {5} Remux AVC {6}{7} log.txt\"", filesOutputPath, eac3toConfiguration.RemuxFileNameTemplate.SeriesName, year,
+                sb.Append(string.Format(" -log=\"{0}\\{1}{2}S{3}E{4}{5}{6} Remux AVC {7}{8} log.txt\"", filesOutputPath, eac3toConfiguration.RemuxFileNameTemplate.SeriesName, year,
                     this.PadNumberWithZeros(99, eac3toConfiguration.RemuxFileNameTemplate.SeasonNumber),
-                    paddedEpisodeNumber, eac3toConfiguration.RemuxFileNameTemplate.VideoResolution, eac3toConfiguration.RemuxFileNameTemplate.AudioType, tag));
+                    paddedEpisodeNumber, this.GetFormattedEpisodeName(episodeName), eac3toConfiguration.RemuxFileNameTemplate.VideoResolution, eac3toConfiguration.RemuxFileNameTemplate.AudioType, tag));
             }
             return sb.ToString();
         }
@@ -161,6 +161,17 @@ namespace BatchGuy.App.Eac3To.Services
                     throw new Exception("Invalid Audio Type");
             }
             return audioExtension;
+        }
+
+        private string GetFormattedEpisodeName(string episodeName)
+        {
+            string formmattedEpisodeName = " ";
+            if (!string.IsNullOrEmpty(episodeName))
+            {
+                formmattedEpisodeName = string.Format(" {0} ",episodeName.Trim());
+            }
+
+            return formmattedEpisodeName;
         }
     }
 }

@@ -48,7 +48,13 @@ namespace BatchGuy.App
                 Setting setting = Program.ApplicationSettingsService.GetSettingByName("vfw4x264");
                 _vfw4x264Path = setting.Path;
                 this.SetComboBoxEncodeType();
+                this.ConfigureDgvFilesGridColumns();
             }
+        }
+
+        private void ConfigureDgvFilesGridColumns()
+        {
+            dgvFiles.Columns[3].DefaultCellStyle.WrapMode = DataGridViewTriState.True;
         }
 
         private void SetDirectoryUserControlValues()
@@ -124,12 +130,12 @@ namespace BatchGuy.App
         private X264FileSettings GetX264FileSettings()
         {
             X264FileSettings settings = new X264FileSettings() { EncodeType = EncodeType,
-             vfw4x264Exe = _vfw4x264Path, X264Template = txtX264Template.Text, X264BatchFilePath = txtX264BatchFileOutputDirectory.Text,
+             vfw4x264Exe = _vfw4x264Path, X264Template = txtX264Template.Text.Trim(), X264BatchFilePath = txtX264BatchFileOutputDirectory.Text.Trim(),
              X264EncodeAndLogFileOutputDirectoryPathType = setDirectoryUserControlX264Output.OutputDirectoryType, X264EncodeAndLogFileOutputDirectoryPath = setDirectoryUserControlX264Output.CLIDirectory};
 
             settings.SaveX264LogFileToDifferentDirectory = chkSaveLogFileToDifferentDirectory.Checked;
             if (settings.SaveX264LogFileToDifferentDirectory)
-                settings.X264LogFileOutputDirectoryPath = txtX264LogFileSaveDirectory.Text;
+                settings.X264LogFileOutputDirectoryPath = txtX264LogFileSaveDirectory.Text.Trim();
 
             return settings;
         }
@@ -272,7 +278,7 @@ namespace BatchGuy.App
             sfd.Title = "Save x264 Batch File";
             sfd.InitialDirectory = @"C:\temp";
 #if DEBUG
-            sfd.InitialDirectory = @"C:\temp\My Encodes\Blu-ray";
+            sfd.InitialDirectory = @"C:\temp\My BatchGuy Tests";
 #endif
             sfd.ShowDialog();
 

@@ -30,7 +30,7 @@ namespace BatchGuy.App
         private SortConfiguration _subtitleGridSortConfiguration = new SortConfiguration();
         private EAC3ToConfiguration _eac3ToConfiguration;
         private string _bluRayPath;
-
+        private bool _cbAudioTypeChangeTriggeredByDgvAudioCellClick;
         
         public BluRayTitleInfoForm()
         {
@@ -57,6 +57,7 @@ namespace BatchGuy.App
             {
                 this.LoadBluRayTitleInfo();
             }
+            txtEpisodeName.SetEnabled(_eac3ToConfiguration.IsExtractForRemux);
         }
 
         private void LoadBluRayTitleInfo()
@@ -74,6 +75,7 @@ namespace BatchGuy.App
             }
             else
             {
+                gbScreen.SetEnabled(true);
                 MessageBox.Show(commandLineProcessService.Errors.GetErrorMessage(), "Errors Occurred.", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -82,6 +84,7 @@ namespace BatchGuy.App
         {
             this.LoadTitle();
             this.LoadEpisodeNumber();
+            this.LoadEpisodeName();
             this.LoadVideo();
             this.LoadAudio();
             this.LoadSubtitles();
@@ -98,6 +101,14 @@ namespace BatchGuy.App
             if (_bluRaySummaryInfo.BluRayTitleInfo.EpisodeNumber != null)
             {
                 txtEpisodeNumber.Text = _bluRaySummaryInfo.BluRayTitleInfo.EpisodeNumber.ToString();
+            }
+        }
+
+        public void LoadEpisodeName()
+        {
+            if (_bluRaySummaryInfo.BluRayTitleInfo.EpisodeName != null && _eac3ToConfiguration.IsExtractForRemux)
+            {
+                txtEpisodeName.Text = _bluRaySummaryInfo.BluRayTitleInfo.EpisodeName;
             }
         }
 
@@ -183,6 +194,7 @@ namespace BatchGuy.App
 
         private void HandleDGVAudioCellClick(DataGridViewCellEventArgs e)
         {
+            _cbAudioTypeChangeTriggeredByDgvAudioCellClick = true;
             var id = dgvAudio.Rows[e.RowIndex].Cells[1].Value;
             _currentBluRayTitleAudio = _bluRaySummaryInfo.BluRayTitleInfo.AudioList.SingleOrDefault(a => a.Id == id.ToString());
             cbAudioType.SelectedIndex = cbAudioType.FindString(this.GetAudioTypeName(_currentBluRayTitleAudio.AudioType));
@@ -240,6 +252,12 @@ namespace BatchGuy.App
 
         private void HandleComboBoxAudioTypeSelectedIndexChanged(string value)
         {
+            if (_cbAudioTypeChangeTriggeredByDgvAudioCellClick)
+            {
+                _cbAudioTypeChangeTriggeredByDgvAudioCellClick = false;
+                return;
+            }
+
             switch (value)
             {
                 case "DTS":
@@ -402,6 +420,16 @@ namespace BatchGuy.App
             bsBluRayTitleSubtitles.DataSource = _bindingListBluRayTitleSubtitle;
             bsBluRayTitleSubtitles.ResetBindings(false);
             _bindingListBluRayTitleSubtitle.AllowEdit = true;
+        }
+
+        private void txtEpisodeName_TextChanged(object sender, EventArgs e)
+        {
+            this.HandleTxtEpisodeNameTextChanged();
+        }
+
+        private void HandleTxtEpisodeNameTextChanged()
+        {
+            _bluRaySummaryInfo.BluRayTitleInfo.EpisodeName = txtEpisodeName.Text.Trim();
         }
     }
 }
