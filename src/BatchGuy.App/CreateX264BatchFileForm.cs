@@ -48,7 +48,13 @@ namespace BatchGuy.App
                 Setting setting = Program.ApplicationSettingsService.GetSettingByName("vfw4x264");
                 _vfw4x264Path = setting.Path;
                 this.SetComboBoxEncodeType();
+                this.ConfigureDgvFilesGridColumns();
             }
+        }
+
+        private void ConfigureDgvFilesGridColumns()
+        {
+            dgvFiles.Columns[3].DefaultCellStyle.WrapMode = DataGridViewTriState.True;
         }
 
         private void SetDirectoryUserControlValues()

@@ -41,7 +41,7 @@
 *PCM audio will default to FLAC
 *User can now set episode name on eac3to screen when extracting for remux
 *TrueHD audio will default to AC3 with -640 argument
-
+*Fixed bug where if you copy/paste encode name on x264 batch file create screen that has line breaks, only the 1st line would be pasted
 
 
 *look into the grid column size of encode name on x264.  when you copy a long text, it should put it all on there, not just the first line when there is a break
