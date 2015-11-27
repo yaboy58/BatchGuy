@@ -44,7 +44,6 @@ namespace BatchGuy.App.Extensions
             {
                 control.Cursor = Cursors.WaitCursor;
             }
-            System.Threading.Thread.Sleep(5000);
         }
 
         public static string RemoveBackspaceCharacters(this string value)
