@@ -116,7 +116,7 @@ namespace BatchGuy.Unit.Tests.Services.Parser
         }
 
         [Test]
-        public void bluraytitleparserservice_can_set_audio_type_truehd_test()
+        public void bluraytitleparserservice_can_set_audio_type_to_ac3_by_default_when_truehd_test()
         {
             List<ProcessOutputLineItem> lineItems = new List<ProcessOutputLineItem> 
             {
@@ -126,7 +126,7 @@ namespace BatchGuy.Unit.Tests.Services.Parser
             IBluRayTitleParserService parserService = new BluRayTitleParserService(lineItemService, lineItems);
             BluRayTitleInfo info = parserService.GetTitleInfo();
 
-            info.AudioList[0].AudioType.ShouldBeEqualTo(EnumAudioType.TrueHD);
+            info.AudioList[0].AudioType.ShouldBeEqualTo(EnumAudioType.AC3);
         }
 
         [Test]
