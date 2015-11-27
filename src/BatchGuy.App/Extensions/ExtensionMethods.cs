@@ -38,12 +38,13 @@ namespace BatchGuy.App.Extensions
             control.Enabled = enabled;
             if (enabled)
             {
-                Cursor.Current = Cursors.Default;
+                control.Cursor = Cursors.Default;
             }
             else
             {
-                Cursor.Current = Cursors.WaitCursor;
+                control.Cursor = Cursors.WaitCursor;
             }
+            System.Threading.Thread.Sleep(5000);
         }
 
         public static string RemoveBackspaceCharacters(this string value)

@@ -75,6 +75,7 @@ namespace BatchGuy.App
             }
             else
             {
+                gbScreen.SetEnabled(true);
                 MessageBox.Show(commandLineProcessService.Errors.GetErrorMessage(), "Errors Occurred.", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }

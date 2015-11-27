@@ -42,24 +42,19 @@
 *User can now set episode name on eac3to screen when extracting for remux
 *TrueHD audio will default to AC3 with -640 argument
 *Fixed bug where if you copy/paste encode name on x264 batch file create screen that has line breaks, only the 1st line would be pasted
-
-
-*look into the grid column size of encode name on x264.  when you copy a long text, it should put it all on there, not just the first line when there is a break
-
-
-*ability to create sample.avs/sample.encode.bat
-*ability to save/load eac3to batch guy data
-[couldn't reproduce]
-*Bug where you can't close title info screen because episode required even though nothing is chosen.  Button works but not the x at the top
+*Fixed bug where the busy icon for the mouse cursor isn't set when the application performs long running tasks
 
 
 
 
 
 --upcoming
+[couldn't reproduce]
+*Bug where you can't close title info screen because episode required even though nothing is chosen.  Button works but not the x at the top
+*ability to create sample.avs/sample.encode.bat
+*ability to save/load eac3to batch guy data
 *Maybe keep track of the Blu-ray folder directory, so you will open up the same directory every time
 *find where you have number of files hardcoded to 99 and put the real value in it
-*look into why the busy mouse indicator doesn't seem to work
 *put the bluray title on the title info page
 
 
