@@ -25,11 +25,15 @@ using BatchGuy.App.ThirdParty.FolderSelectDialog;
 using BatchGuy.App.Settings.Models;
 using System.IO;
 using BatchGuy.App.Eac3To.Models;
+using BatchGuy.App.Shared.Events;
+using BatchGuy.App.Constants;
 
 namespace BatchGuy.App
 {
     public partial class CreateEAC3ToBatchForm : Form
     {
+        public event EventHandler<DialogInitialDirectoryChangedEventArgs> DialogInitialDirectoryChanged;
+
         private BluRayDiscInfo _currentBluRayDiscInfo;
         private CommandLineProcessStartInfo _commandLineProcessStartInfo;
         private BindingList<BluRayDiscInfo> _bindingListBluRayDiscInfo = new BindingList<BluRayDiscInfo>();
@@ -59,7 +63,7 @@ namespace BatchGuy.App
             else
             {
                 Setting setting = Program.ApplicationSettingsService.GetSettingByName("eac3to");
-                _eac3ToPath = setting.Path;
+                _eac3ToPath = setting.Value;
                 this.SetEac3ToConfiguration();
                 cbVideoResolution.SelectedIndex = 2;
             }
@@ -277,16 +281,20 @@ namespace BatchGuy.App
         private void HandleBtnOpenBatchFilePathDialogClick()
         {
             SaveFileDialog sfd = new SaveFileDialog();
+            Setting setting = Program.ApplicationSettingsService.GetSettingByName(Constant.FeatureCreateEac3toBatchFileFormSaveX264BatchFile);
+
+            if (setting != null)
+                sfd.InitialDirectory = setting.Value;
+            else
+                sfd.InitialDirectory = @"C:\";
+
             sfd.Filter = "Batch File|*.bat";
             sfd.Title = "Save eac3to Batch File";
-            sfd.InitialDirectory = @"C:\temp";
-#if DEBUG
-            sfd.InitialDirectory = @"C:\temp\My BatchGuy Tests";
-#endif
             sfd.ShowDialog();
 
             if (!string.IsNullOrEmpty(sfd.FileName))
             {
+                OnDialogInitialDirectoryChanged(this, new DialogInitialDirectoryChangedEventArgs() { FeatureName = Constant.FeatureCreateEac3toBatchFileFormSaveX264BatchFile, DirectoryPath = sfd.FileName });
                 using (FileStream fs = File.Create(sfd.FileName))
                 {
                 }
@@ -511,5 +519,13 @@ namespace BatchGuy.App
             }
         }
 
+        protected virtual void OnDialogInitialDirectoryChanged(object sender, DialogInitialDirectoryChangedEventArgs e)
+        {
+            EventHandler<DialogInitialDirectoryChangedEventArgs> handler = DialogInitialDirectoryChanged;
+            if (handler != null)
+            {
+                handler(this, e);
+            }
+        }
     }
 }

@@ -37,7 +37,7 @@ namespace BatchGuy.App
         {
             Setting setting = Program.ApplicationSettingsService.GetSettingByName(settingName);
             if (setting != null)
-                return setting.Path;
+                return setting.Value;
             else
                 return string.Empty;
         }
@@ -71,8 +71,8 @@ namespace BatchGuy.App
         private void HandleSaveClick()
         {
             Program.ApplicationSettings.Settings.Clear();
-            Program.ApplicationSettings.Settings.Add(new Setting() { Name = "eac3to", Path = txtEac3toPath.Text } );
-            Program.ApplicationSettings.Settings.Add(new Setting() { Name = "vfw4x264", Path = txtVfw4x264.Text });
+            Program.ApplicationSettings.Settings.Add(new Setting() { Name = "eac3to", Value = txtEac3toPath.Text } );
+            Program.ApplicationSettings.Settings.Add(new Setting() { Name = "vfw4x264", Value = txtVfw4x264.Text });
             
             Program.ApplicationSettingsService.Save(Program.ApplicationSettings);
         }

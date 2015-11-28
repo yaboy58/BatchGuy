@@ -21,7 +21,7 @@ namespace BatchGuy.Settings.Serialization.Example.Console.App
             ApplicationSettings applicationSettings = applicationSettingsService.GetApplicationSettings();
 
             //add
-            applicationSettings.Settings.Add(new Setting() { Name = "eac3to", Path = @"c:\exe\eac3to.exe" });
+            applicationSettings.Settings.Add(new Setting() { Name = "eac3to", Value = @"c:\exe\eac3to.exe" });
             //save to disc
             applicationSettingsService.Save(applicationSettings);
 

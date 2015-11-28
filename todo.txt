@@ -34,7 +34,11 @@
 *Added a unit test to support the functionality that removes the eac3to id/feature from the BluRaySummaryInfo Header Text
 *Updated versions in class libraries to 1.8
 *Changed BluRaySummaryInfo.Id to Eac3ToId, for better code readability
+*Changed Setting class property Path to Value to be more of a Name/Value Pair
+*Last directory user selected to create x264 batch file is now being saved in BatchGuy settings and will be the default directory
 
+
+*Let user know settings structure has changed and the old settings will not work
 
 *put link to wiki in the about page somewhere
 *figure out a better solution to inform of the status of long running tasks

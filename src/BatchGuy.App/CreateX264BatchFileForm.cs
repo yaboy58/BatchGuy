@@ -46,7 +46,7 @@ namespace BatchGuy.App
             else
             {
                 Setting setting = Program.ApplicationSettingsService.GetSettingByName("vfw4x264");
-                _vfw4x264Path = setting.Path;
+                _vfw4x264Path = setting.Value;
                 this.SetComboBoxEncodeType();
                 this.ConfigureDgvFilesGridColumns();
             }

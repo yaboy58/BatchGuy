@@ -71,6 +71,7 @@
       <DependentUpon>BluRayTitleInfoForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Bootstrap\Logging.cs" />
+    <Compile Include="Constants\Constant.cs" />
     <Compile Include="CreateAviSynthFilesForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -130,6 +131,7 @@
     <Compile Include="Settings\Models\Setting.cs" />
     <Compile Include="Settings\Services\ApplicationSettingsService.cs" />
     <Compile Include="Settings\Services\BinarySerializationService.cs" />
+    <Compile Include="Shared\Events\DialogInitialDirectoryChangedEventArgs.cs" />
     <Compile Include="Shared\Interfaces\IBindingListSortService.cs" />
     <Compile Include="Shared\Interfaces\ISortService.cs" />
     <Compile Include="Shared\Models\Error.cs" />

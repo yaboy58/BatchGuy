@@ -30,7 +30,9 @@ namespace BatchGuy
             if (Program.ApplicationSettingsService.GetSettingByName("eac3to") != null)
             {
                 CreateEAC3ToBatchForm form = new CreateEAC3ToBatchForm();
-                form.ShowDialog();                
+                form.DialogInitialDirectoryChanged += Program.DialogInitialDirectoryChangedHandler;  
+                form.ShowDialog();
+                form.DialogInitialDirectoryChanged -= Program.DialogInitialDirectoryChangedHandler;
             }
             else
             {
