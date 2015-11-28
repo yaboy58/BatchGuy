@@ -13,5 +13,6 @@ namespace BatchGuy.App.Parser.Interfaces
         ErrorCollection Errors { get; }
         List<BluRaySummaryInfo> GetSummaryList();
         string GetId(ProcessOutputLineItem lineItem);
+        string RemoveEac3ToIdFromHeaderLineItem(ProcessOutputLineItem lineItem);
     }
 }

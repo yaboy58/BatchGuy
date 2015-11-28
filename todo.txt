@@ -30,17 +30,19 @@
 
 
 --1.8 todo
-*update versions in class libraries to 1.8
+*eac3to id/feature "#)" removed from header text on create eac3to batch file screen summary grid, which allows for sorting on playlists
+*Added a unit test to support the functionality that removes the eac3to id/feature from the BluRaySummaryInfo Header Text
+*Updateed versions in class libraries to 1.8
+
+
+*change BluRaySummaryInfo.Id to Eac3ToId, for better readability
 *put link to wiki in the about page somewhere
 *figure out a better solution to inform of the status of long running tasks
 *find where you have number of files hardcoded to 99 and put the real value in it
 *maybe keep track of the Blu-ray folder directory, so you will open up the same directory every time (could cache it in a program.variable)
 *update create eac3to batch file grids whenenver there is an update on the blu-ray title info screen ie auto check
 
-*look at making derived columns for bluray id fields. strip out ")" and make an integer so sorting can work
--add a new derived column with the stripped out ")" 
--do this on the fly or in the summarylineparser when you are getting the id
--add maybe an extension method or list called SubstituteSortColumn and set the sort column equal to the real one you want to search
+
 
 --upcoming
 *ability to create sample.avs/sample.encode.bat

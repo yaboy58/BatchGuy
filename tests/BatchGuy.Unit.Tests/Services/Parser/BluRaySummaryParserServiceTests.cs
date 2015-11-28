@@ -32,5 +32,20 @@ namespace BatchGuy.Unit.Tests.Services.Parser
 
             summaryList[0].Id.ShouldBeEqualTo("1)");
         }
+
+        [Test]
+        public void bluraysummaryparserservice_can_remove_eac3toid_from_headertext_test()
+        {
+            List<ProcessOutputLineItem> lineItems = new List<ProcessOutputLineItem> 
+            {
+                new ProcessOutputLineItem()  { Id = 1, Text = "1) 00010.mpls, 3:04:31" }
+            };
+
+            ILineItemIdentifierService lineItemService = new BluRaySummaryLineItemIdentifierService();
+            IBluRaySummaryParserService parserService = new BluRaySummaryParserService(lineItemService, lineItems);
+            string headerText = parserService.RemoveEac3ToIdFromHeaderLineItem(lineItems[0]);
+
+            headerText.ShouldBeEqualTo("00010.mpls, 3:04:31");
+        }
     }
 }

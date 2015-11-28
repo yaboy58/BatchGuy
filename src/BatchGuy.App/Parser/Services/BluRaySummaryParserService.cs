@@ -55,7 +55,7 @@ namespace BatchGuy.App.Parser.Services
                                 sbDetail = new StringBuilder();
                                 summaryInfo = new BluRaySummaryInfo();
                                 summaryInfo.Id = this.GetId(item);
-                                sbHeader.Append(item.Text);
+                                sbHeader.Append(this.RemoveEac3ToIdFromHeaderLineItem(item));
                             }
                             else
                             {
@@ -101,6 +101,17 @@ namespace BatchGuy.App.Parser.Services
         {
             string[] splitted = lineItem.Text.Split(' ');
             return splitted[0];
+        }
+
+
+        public string RemoveEac3ToIdFromHeaderLineItem(ProcessOutputLineItem lineItem)
+        {
+            if (!this.IsIdHeader(lineItem))
+                return lineItem.Text;
+
+            int closedParenthesis = lineItem.Text.IndexOf(")") + 1;
+            string headerText = lineItem.Text.Substring(closedParenthesis, lineItem.Text.Length - closedParenthesis).Trim();
+            return headerText;
         }
     }
 }
