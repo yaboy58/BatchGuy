@@ -22,7 +22,9 @@ namespace BatchGuy
         private void createAVSFilesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             CreateAviSynthFilesForm form = new CreateAviSynthFilesForm();
+            form.DialogInitialDirectoryChanged += Program.DialogInitialDirectoryChangedHandler;
             form.ShowDialog();
+            form.DialogInitialDirectoryChanged -= Program.DialogInitialDirectoryChangedHandler;
         }
 
         private void createEac3ToBatFileToolStripMenuItem_Click(object sender, EventArgs e)

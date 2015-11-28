@@ -8,6 +8,7 @@ namespace BatchGuy.App.Constants
 {
   public static class Constant
   {
-      public const string FeatureCreateEac3toBatchFileFormSaveX264BatchFile = "create-eac3to-batch-file-Form-save-x264-batch-file";
+      public const string FeatureCreateEac3toBatchFileFormSaveX264BatchFileDirectory = "create-eac3to-batch-file-Form-save-x264-batch-file-directory";
+      public const string FeatureCreateAviSynthFilesFormSaveAviSynthFilesDirectory = "create-avisynth-files-form-save-avisynth-files-directory";
   }
 }

@@ -14,11 +14,16 @@ using BatchGuy.App.Shared.Models;
 using BatchGuy.App.Helpers;
 using BatchGuy.App.Extensions;
 using BatchGuy.App.ThirdParty.FolderSelectDialog;
+using BatchGuy.App.Shared.Events;
+using BatchGuy.App.Constants;
+using BatchGuy.App.Settings.Models;
 
 namespace BatchGuy.App
 {
     public partial class CreateAviSynthFilesForm : Form
     {
+        public event EventHandler<DialogInitialDirectoryChangedEventArgs> DialogInitialDirectoryChanged;
+
         private IAviSynthFileService _fileService; //ioc
         private IAviSynthValidationService _validationService; //ioc
         private IAviSynthWriteService _avsService; //ioc
@@ -35,9 +40,6 @@ namespace BatchGuy.App
 
         private void CreateAVSFilesForm_Load(object sender, EventArgs e)
         {
-#if DEBUG
-            txtOutputDirectory.Text = @"C:\temp\My BatchGuy Tests";   
-#endif
             cbVideoFilter.SelectedIndex = 1;
         }
 
@@ -140,9 +142,16 @@ namespace BatchGuy.App
         {
             var fsd = new FolderSelectDialog();
             fsd.Title = "AviSynth files output directory";
-            fsd.InitialDirectory = @"c:\";
+
+            Setting setting = Program.ApplicationSettingsService.GetSettingByName(Constant.FeatureCreateAviSynthFilesFormSaveAviSynthFilesDirectory);
+            if (setting != null)
+                fsd.InitialDirectory = setting.Value;
+            else
+                fsd.InitialDirectory = @"C:\";
+
             if (fsd.ShowDialog(IntPtr.Zero))
             {
+                OnDialogInitialDirectoryChanged(this, new DialogInitialDirectoryChangedEventArgs() { FeatureName = Constant.FeatureCreateAviSynthFilesFormSaveAviSynthFilesDirectory, DirectoryPath = fsd.FileName });
                 txtOutputDirectory.Text = fsd.FileName;
             }
         }
@@ -169,6 +178,15 @@ namespace BatchGuy.App
                 txtNumberOfFiles.Focus();
             }
             this.Close();
+        }
+
+        protected virtual void OnDialogInitialDirectoryChanged(object sender, DialogInitialDirectoryChangedEventArgs e)
+        {
+            EventHandler<DialogInitialDirectoryChangedEventArgs> handler = DialogInitialDirectoryChanged;
+            if (handler != null)
+            {
+                handler(this, e);
+            }
         }
     }
 }

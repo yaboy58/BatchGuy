@@ -281,7 +281,7 @@ namespace BatchGuy.App
         private void HandleBtnOpenBatchFilePathDialogClick()
         {
             SaveFileDialog sfd = new SaveFileDialog();
-            Setting setting = Program.ApplicationSettingsService.GetSettingByName(Constant.FeatureCreateEac3toBatchFileFormSaveX264BatchFile);
+            Setting setting = Program.ApplicationSettingsService.GetSettingByName(Constant.FeatureCreateEac3toBatchFileFormSaveX264BatchFileDirectory);
 
             if (setting != null)
                 sfd.InitialDirectory = setting.Value;
@@ -294,7 +294,7 @@ namespace BatchGuy.App
 
             if (!string.IsNullOrEmpty(sfd.FileName))
             {
-                OnDialogInitialDirectoryChanged(this, new DialogInitialDirectoryChangedEventArgs() { FeatureName = Constant.FeatureCreateEac3toBatchFileFormSaveX264BatchFile, DirectoryPath = sfd.FileName });
+                OnDialogInitialDirectoryChanged(this, new DialogInitialDirectoryChangedEventArgs() { FeatureName = Constant.FeatureCreateEac3toBatchFileFormSaveX264BatchFileDirectory, DirectoryPath = Path.GetDirectoryName(sfd.FileName) });
                 using (FileStream fs = File.Create(sfd.FileName))
                 {
                 }

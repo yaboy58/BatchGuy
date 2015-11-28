@@ -46,20 +46,19 @@ namespace BatchGuy
 
         public static void DialogInitialDirectoryChangedHandler(object sender, DialogInitialDirectoryChangedEventArgs e)
         {
-            string directoryOnly = System.IO.Path.GetDirectoryName(e.DirectoryPath);
             Setting setting = Program.ApplicationSettingsService.GetSettingByName(e.FeatureName);
 
             if (setting != null)
             {
-                if (setting.Value != directoryOnly)
+                if (setting.Value != e.DirectoryPath)
                 {
-                    setting.Value = directoryOnly;
+                    setting.Value = e.DirectoryPath;
                     Program.ApplicationSettingsService.Save(Program.ApplicationSettings);
                 }
             }
             else
             {
-                Program.ApplicationSettings.Settings.Add(new Setting() { Name = e.FeatureName, Value = directoryOnly });
+                Program.ApplicationSettings.Settings.Add(new Setting() { Name = e.FeatureName, Value = e.DirectoryPath });
                 Program.ApplicationSettingsService.Save(Program.ApplicationSettings);
             }
         }
