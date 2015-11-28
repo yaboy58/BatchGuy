@@ -44,19 +44,16 @@
 
 *Let user know settings structure has changed and the old settings will not work
 
-*put link to wiki in the about page somewhere
-*figure out a better solution to inform of the status of long running tasks
-*find where you have number of files hardcoded to 99 and put the real value in it
-
-*update create eac3to batch file grids whenenver there is an update on the blu-ray title info screen ie auto check
-
-
 
 --upcoming
+*figure out a better solution to inform of the status of long running tasks
+*find where you have number of files hardcoded to 99 and put the real value in it
 *ability to create sample.avs/sample.encode.bat
 *Bug where you can't close title info screen because episode required even though nothing is chosen.  Button works but not the x at the top [couldn't reproduce]
 *ability to save/load eac3to batch guy data
 
+
+EAC3ToWarningService
 
 
 
