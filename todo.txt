@@ -37,7 +37,10 @@
 *maybe keep track of the Blu-ray folder directory, so you will open up the same directory every time (could cache it in a program.variable)
 *update create eac3to batch file grids whenenver there is an update on the blu-ray title info screen ie auto check
 
-
+*look at making derived columns for bluray id fields. strip out ")" and make an integer so sorting can work
+-add a new derived column with the stripped out ")" 
+-do this on the fly or in the summarylineparser when you are getting the id
+-add maybe an extension method or list called SubstituteSortColumn and set the sort column equal to the real one you want to search
 
 --upcoming
 *ability to create sample.avs/sample.encode.bat
