@@ -77,7 +77,7 @@ namespace BatchGuy.Eac3to.Parser.Example.Console.App
                 CommandLineProcessStartInfo commandLineProcessStartInfoTitle = new CommandLineProcessStartInfo()
                 {
                     FileName = eac3ToPath,
-                    Arguments = string.Format("\"{0}\" {1}", bluRayDiscPath, bluRayDisc.BluRaySummaryInfoList[1].Id)
+                    Arguments = string.Format("\"{0}\" {1}", bluRayDiscPath, bluRayDisc.BluRaySummaryInfoList[1].Eac3ToId)
                 };
 
                 //Service will allow you to get each line outputted on the screen

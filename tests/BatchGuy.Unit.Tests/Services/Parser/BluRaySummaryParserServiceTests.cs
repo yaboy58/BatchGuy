@@ -30,7 +30,7 @@ namespace BatchGuy.Unit.Tests.Services.Parser
             IBluRaySummaryParserService parserService = new BluRaySummaryParserService(lineItemService, lineItems);
             List<BluRaySummaryInfo> summaryList = parserService.GetSummaryList();
 
-            summaryList[0].Id.ShouldBeEqualTo("1)");
+            summaryList[0].Eac3ToId.ShouldBeEqualTo("1)");
         }
 
         [Test]

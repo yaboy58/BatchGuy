@@ -65,7 +65,7 @@ namespace BatchGuy.App
             CommandLineProcessStartInfo commandLineProcessStartInfo = new CommandLineProcessStartInfo()
             {
                 FileName = _eac3ToConfiguration.EAC3ToPath,
-                Arguments = string.Format("\"{0}\" {1}",  _bluRayPath, _bluRaySummaryInfo.Id)
+                Arguments = string.Format("\"{0}\" {1}",  _bluRayPath, _bluRaySummaryInfo.Eac3ToId)
             };
             
             ICommandLineProcessService commandLineProcessService = new CommandLineProcessService(commandLineProcessStartInfo);

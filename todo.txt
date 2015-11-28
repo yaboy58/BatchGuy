@@ -32,10 +32,10 @@
 --1.8 todo
 *eac3to id/feature "#)" removed from header text on create eac3to batch file screen summary grid, which allows for sorting on playlists
 *Added a unit test to support the functionality that removes the eac3to id/feature from the BluRaySummaryInfo Header Text
-*Updateed versions in class libraries to 1.8
+*Updated versions in class libraries to 1.8
+*Changed BluRaySummaryInfo.Id to Eac3ToId, for better code readability
 
 
-*change BluRaySummaryInfo.Id to Eac3ToId, for better readability
 *put link to wiki in the about page somewhere
 *figure out a better solution to inform of the status of long running tasks
 *find where you have number of files hardcoded to 99 and put the real value in it

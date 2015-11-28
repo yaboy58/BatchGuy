@@ -8,7 +8,7 @@ namespace BatchGuy.App.Parser.Models
 {
     public class BluRaySummaryInfo
     {
-        public string Id { get; set; }
+        public string Eac3ToId { get; set; }
         public string HeaderText { get; set; }
         public string DetailText { get; set; }
         public bool IsSelected { get; set; }

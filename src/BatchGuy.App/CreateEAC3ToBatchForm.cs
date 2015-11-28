@@ -201,7 +201,7 @@ namespace BatchGuy.App
             if (e.RowIndex == -1)
                 return;
             var id = dgvBluRaySummary.Rows[e.RowIndex].Cells[1].Value;
-            BluRaySummaryInfo summaryInfo = _currentBluRayDiscInfo.BluRaySummaryInfoList.SingleOrDefault(s => s.Id == id.ToString());
+            BluRaySummaryInfo summaryInfo = _currentBluRayDiscInfo.BluRaySummaryInfoList.SingleOrDefault(s => s.Eac3ToId == id.ToString());
 
             BluRayTitleInfoForm form = new BluRayTitleInfoForm();
             form.SetBluRayTitleInfo(_eac3toConfiguration,_currentBluRayDiscInfo.BluRayPath,summaryInfo);

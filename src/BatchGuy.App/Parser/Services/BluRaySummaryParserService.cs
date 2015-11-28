@@ -54,7 +54,7 @@ namespace BatchGuy.App.Parser.Services
                                 sbHeader = new StringBuilder();
                                 sbDetail = new StringBuilder();
                                 summaryInfo = new BluRaySummaryInfo();
-                                summaryInfo.Id = this.GetId(item);
+                                summaryInfo.Eac3ToId = this.GetId(item);
                                 sbHeader.Append(this.RemoveEac3ToIdFromHeaderLineItem(item));
                             }
                             else

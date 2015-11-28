@@ -56,7 +56,7 @@ namespace BatchGuy.App.Eac3to.Services
         {
             StringBuilder sb = new StringBuilder();
             sb.Append(string.Format("\"{0}\"", _bluRayPath));
-            sb.Append(string.Format(" {0}", _bluRaySummaryInfo.Id));
+            sb.Append(string.Format(" {0}", _bluRaySummaryInfo.Eac3ToId));
             return sb.ToString();
         }
 
