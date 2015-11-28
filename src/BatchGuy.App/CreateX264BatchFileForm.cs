@@ -62,7 +62,7 @@ namespace BatchGuy.App
 
         private void SetDirectoryUserControlValues()
         {
-            setDirectoryUserControlX264Output.ComboBoxCaptionText = "--output and (.log) Directory";
+            setDirectoryUserControlX264Output.ComboBoxCaptionText = "--output and (.log) Directory:";
             setDirectoryUserControlX264Output.LabelDirectoryCaptionText = @"Example: --output ""{0}\e01\encode_name.mkv"", ""{0}\e01\encode_name.log""";
         }
 

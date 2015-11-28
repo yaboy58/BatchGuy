@@ -39,13 +39,13 @@
             this.txtNumberOfFiles = new System.Windows.Forms.TextBox();
             this.btnOpenDialog = new System.Windows.Forms.Button();
             this.gbScreen = new System.Windows.Forms.GroupBox();
+            this.cbVideoFilter = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.setDirectoryUserControl = new BatchGuy.App.UserControls.SetDirectoryUserControl();
             this.bgwCreateAviSynthFiles = new System.ComponentModel.BackgroundWorker();
             this.ttNumberOfFiles = new System.Windows.Forms.ToolTip(this.components);
-            this.label6 = new System.Windows.Forms.Label();
-            this.cbVideoFilter = new System.Windows.Forms.ComboBox();
             this.gbScreen.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -54,9 +54,9 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(17, 26);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(137, 13);
+            this.label2.Size = new System.Drawing.Size(140, 13);
             this.label2.TabIndex = 5;
-            this.label2.Text = "(.avs) Files Output Directory";
+            this.label2.Text = "(.avs) Files Output Directory:";
             // 
             // txtOutputDirectory
             // 
@@ -98,9 +98,9 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(17, 128);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(132, 13);
+            this.label3.Size = new System.Drawing.Size(135, 13);
             this.label3.TabIndex = 10;
-            this.label3.Text = "Number of Files (Episodes)";
+            this.label3.Text = "Number of Files (Episodes):";
             // 
             // txtNumberOfFiles
             // 
@@ -140,6 +140,27 @@
             this.gbScreen.TabIndex = 12;
             this.gbScreen.TabStop = false;
             // 
+            // cbVideoFilter
+            // 
+            this.cbVideoFilter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbVideoFilter.FormattingEnabled = true;
+            this.cbVideoFilter.Items.AddRange(new object[] {
+            "dss2",
+            "FFVideoSource"});
+            this.cbVideoFilter.Location = new System.Drawing.Point(709, 163);
+            this.cbVideoFilter.Name = "cbVideoFilter";
+            this.cbVideoFilter.Size = new System.Drawing.Size(121, 21);
+            this.cbVideoFilter.TabIndex = 16;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(629, 171);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(59, 13);
+            this.label6.TabIndex = 15;
+            this.label6.Text = "Video Filter";
+            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -172,27 +193,6 @@
             // 
             this.bgwCreateAviSynthFiles.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgwCreateAviSynthFiles_DoWork);
             this.bgwCreateAviSynthFiles.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgwCreateAviSynthFiles_RunWorkerCompleted);
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(629, 171);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(59, 13);
-            this.label6.TabIndex = 15;
-            this.label6.Text = "Video Filter";
-            // 
-            // cbVideoFilter
-            // 
-            this.cbVideoFilter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbVideoFilter.FormattingEnabled = true;
-            this.cbVideoFilter.Items.AddRange(new object[] {
-            "dss2",
-            "FFVideoSource"});
-            this.cbVideoFilter.Location = new System.Drawing.Point(709, 163);
-            this.cbVideoFilter.Name = "cbVideoFilter";
-            this.cbVideoFilter.Size = new System.Drawing.Size(121, 21);
-            this.cbVideoFilter.TabIndex = 16;
             // 
             // CreateAviSynthFilesForm
             // 

@@ -48,7 +48,7 @@ namespace BatchGuy.App
         {
             InitializeComponent();
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            setDirectoryUserControl.ComboBoxCaptionText = "eac3to output directory";
+            setDirectoryUserControl.ComboBoxCaptionText = "eac3to output directory:";
             setDirectoryUserControl.LabelDirectoryCaptionText = @"eac3to Output Directory (example: e01, e02): {0}\e##";
             this.SetToolTips();
         }
@@ -79,6 +79,7 @@ namespace BatchGuy.App
             new ToolTip().SetToolTip(cbVideoResolution, "Video resolution");
             new ToolTip().SetToolTip(txtAudioType, "Audio type i.e. FLAC 7.1");
             new ToolTip().SetToolTip(txtTag, "Tag to place at the end of each file i.e. BGuy");
+            new ToolTip().SetToolTip(chkExtractForRemux, "Extract for Remux");
         }
 
         private bool IsEac3ToPathSetInSettings()
