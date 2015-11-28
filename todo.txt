@@ -37,7 +37,9 @@
 *Changed Setting class property Path to Value to be more of a Name/Value Pair
 *Last directory user selected to create x264 batch file is now being saved in BatchGuy settings and will be the default directory for the popup dialog
 *Last directory user selected to save avisynth files is now being saved in BatchGuy settings and will be the default directory for the popup dialog
-
+*Last directory user selected to save x264 batch file is now being saved in BatchGuy settings and will be the default directory for the popup dialog
+*Removed setting the default directory for all the other select path/file dialog popups 
+*Create eac3to batch file summary grid header text changed from Header to Playlist / Videofile / Runtime
 
 *Let user know settings structure has changed and the old settings will not work
 

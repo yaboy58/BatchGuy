@@ -18,11 +18,14 @@ using BatchGuy.App.Shared.Services;
 using BatchGuy.App.ThirdParty.FolderSelectDialog;
 using BatchGuy.App.Settings.Models;
 using System.IO;
+using BatchGuy.App.Shared.Events;
+using BatchGuy.App.Constants;
 
 namespace BatchGuy.App
 {
     public partial class CreateX264BatchFileForm : Form
     {
+        public event EventHandler<DialogInitialDirectoryChangedEventArgs> DialogInitialDirectoryChanged;
         private EnumEncodeType EncodeType { get; set; }
         private SortConfiguration _filesGridSortConfiguration = new SortConfiguration();
         private BindingList<X264File> _bindingListFiles = new BindingList<X264File>();
@@ -274,12 +277,14 @@ namespace BatchGuy.App
         private void HandleBtnOpenX264BatchFileOutputDialogClick()
         {
             SaveFileDialog sfd = new SaveFileDialog();
+            Setting setting = Program.ApplicationSettingsService.GetSettingByName(Constant.FeatureCreateX264BatchFileFormSaveX264BatchFileDirectory);
+            if (setting != null)
+                sfd.InitialDirectory = setting.Value;
+            else
+                sfd.InitialDirectory = @"C:\";
+
             sfd.Filter = "Batch File|*.bat";
             sfd.Title = "Save x264 Batch File";
-            sfd.InitialDirectory = @"C:\temp";
-#if DEBUG
-            sfd.InitialDirectory = @"C:\temp\My BatchGuy Tests";
-#endif
             sfd.ShowDialog();
 
             if (!string.IsNullOrEmpty(sfd.FileName))
@@ -287,6 +292,7 @@ namespace BatchGuy.App
                 using (FileStream fs = File.Create(sfd.FileName))
                 {
                 }
+                OnDialogInitialDirectoryChanged(this, new DialogInitialDirectoryChangedEventArgs() { FeatureName = Constant.FeatureCreateX264BatchFileFormSaveX264BatchFileDirectory, DirectoryPath = Path.GetDirectoryName(sfd.FileName) });
                 txtX264BatchFileOutputDirectory.Text = sfd.FileName;
             }
         }
@@ -360,7 +366,6 @@ namespace BatchGuy.App
         {
             var fsd = new FolderSelectDialog();
             fsd.Title = "x264 (.log) files save directory";
-            fsd.InitialDirectory = @"c:\";
             if (fsd.ShowDialog(IntPtr.Zero))
             {
                 txtX264LogFileSaveDirectory.Text = fsd.FileName;
@@ -376,6 +381,15 @@ namespace BatchGuy.App
         {
             txtX264LogFileSaveDirectory.SetEnabled(chkSaveLogFileToDifferentDirectory.Checked);
             btnOpenX264LogFileOutputDialog.SetEnabled(chkSaveLogFileToDifferentDirectory.Checked);
+        }
+
+        protected virtual void OnDialogInitialDirectoryChanged(object sender, DialogInitialDirectoryChangedEventArgs e)
+        {
+            EventHandler<DialogInitialDirectoryChangedEventArgs> handler = DialogInitialDirectoryChanged;
+            if (handler != null)
+            {
+                handler(this, e);
+            }
         }
     }
 }

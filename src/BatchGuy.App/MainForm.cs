@@ -49,7 +49,9 @@ namespace BatchGuy
             if (Program.ApplicationSettingsService.GetSettingByName("vfw4x264") != null)
             {
                 CreateX264BatchFileForm form = new CreateX264BatchFileForm();
-                form.ShowDialog();                
+                form.DialogInitialDirectoryChanged += Program.DialogInitialDirectoryChangedHandler;
+                form.ShowDialog();
+                form.DialogInitialDirectoryChanged -= Program.DialogInitialDirectoryChangedHandler;          
             }
             else
             {

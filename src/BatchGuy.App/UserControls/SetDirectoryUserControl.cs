@@ -47,7 +47,6 @@ namespace BatchGuy.App.UserControls
         {
             var fsd = new FolderSelectDialog();
             fsd.Title = string.Format("{0}", _comboBoxCaptionText);
-            fsd.InitialDirectory = @"c:\";
             if (fsd.ShowDialog(IntPtr.Zero))
             {
                 txtSetOuptDirectoryUserControl.Text = fsd.FileName;
