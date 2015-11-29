@@ -32,7 +32,7 @@
 --1.9 todo
 *Updated versions in class libraries to 1.9
 *remove "form" from the Blu-ray Title Info Screen title
-*setting screen exes shouldn't be mandatory because people may just want to remux
+*Make some of the remux fields optional
 
 
 --upcoming
