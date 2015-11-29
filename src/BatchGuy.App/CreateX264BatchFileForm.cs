@@ -75,7 +75,7 @@ namespace BatchGuy.App
         private bool IsVfw4x264PathSetInSettings()
         {
             Setting setting = Program.ApplicationSettingsService.GetSettingByName("vfw4x264");
-            if (setting == null)
+            if (setting == null || string.IsNullOrEmpty(setting.Value))
                 return false;
             else
                 return true;

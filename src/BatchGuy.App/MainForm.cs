@@ -46,7 +46,7 @@ namespace BatchGuy
 
         private void createX264BatFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (Program.ApplicationSettingsService.GetSettingByName("vfw4x264") != null)
+            if (Program.ApplicationSettingsService.GetSettingByName("vfw4x264") != null && !string.IsNullOrEmpty(Program.ApplicationSettingsService.GetSettingByName("vfw4x264").Value))
             {
                 CreateX264BatchFileForm form = new CreateX264BatchFileForm();
                 form.DialogInitialDirectoryChanged += Program.DialogInitialDirectoryChangedHandler;
