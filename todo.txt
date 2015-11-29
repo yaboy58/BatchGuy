@@ -48,12 +48,15 @@
 *When blu-ray discs selected with no summary selected, user is warned before attempting creating the eac3to batch file
 *When summaries and titles selected with no blu-ray disc selected, user is warned before attempting creating the eac3to batch file
 *When blu-ray discs and summaries not selected but titles selected, user is warned before attempting creating the eac3to batch file
+*Updated some screenshots
+*Warnings the user gets on the create eac3to screen made to be more intuitive to help user better understand the warning
 
 
 *Let user know settings structure has changed and the old settings will not work
 
 
 --upcoming
+*found out why BluRayDiscInfo.DiscName is set to the this.BluRayPath and not new DirectoryInfo(this.BluRayPath).Name
 *figure out a better solution to inform of the status of long running tasks
 *find where you have number of files hardcoded to 99 and put the real value in it
 *ability to create sample.avs/sample.encode.bat

@@ -11,7 +11,7 @@ namespace BatchGuy.App.Shared.Models
         public string GetWarningMessage()
         {
             if (this != null && this.Count() > 0)
-                return string.Format("{0} Warnings found: {1}", this.Count() ,string.Join(Environment.NewLine,this.Select(e => e.Description)));
+                return string.Format("{0} Warnings found:{1}{2}", this.Count(),Environment.NewLine ,string.Join(Environment.NewLine,this.Select(e => e.Description)));
             else
                 return string.Empty;
         }

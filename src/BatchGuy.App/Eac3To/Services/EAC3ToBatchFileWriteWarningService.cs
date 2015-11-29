@@ -3,6 +3,7 @@ using BatchGuy.App.Parser.Models;
 using BatchGuy.App.Shared.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,12 +23,9 @@ namespace BatchGuy.App.Eac3To.Services
 
         public WarningCollection GetWarnings()
         {
-            if (this.DiscSelectedWithNoSummarySelected())
-                _warnings.Add(new Warning() { Description = "Selected discs found with no summary selected" });
-            if (this.SummaryAndTitleSelectedWithNoDiscSelected())
-                _warnings.Add(new Warning() { Description = "Selected summary and titles found with no disc selected" });
-            if (this.TitleSelectedWithNoDiscAndSummarySelected())
-                _warnings.Add(new Warning() { Description = "Selected titles found with no disc or summary selected" });
+            this.DiscSelectedWithNoSummarySelected();
+            this.SummaryAndTitleSelectedWithNoDiscSelected();
+            this.TitleSelectedWithNoDiscAndSummarySelected();
 
             return _warnings;
         }
@@ -40,8 +38,8 @@ namespace BatchGuy.App.Eac3To.Services
             {
                 if (disc.BluRaySummaryInfoList == null || disc.BluRaySummaryInfoList.Where(s => s.IsSelected == true).Count() == 0)
                 {
+                    _warnings.Add(new Warning() { Description = string.Format("Disc {0} selected but no summary selected", new DirectoryInfo(disc.DiscName).Name) });
                     hasWarning = true;
-                    break;
                 }
             }
             return hasWarning;
@@ -50,7 +48,6 @@ namespace BatchGuy.App.Eac3To.Services
         private bool SummaryAndTitleSelectedWithNoDiscSelected()
         {
             bool hasWarning = false;
-
             foreach (BluRayDiscInfo disc in _discs)
             {
                 if (disc.BluRaySummaryInfoList != null)
@@ -59,21 +56,25 @@ namespace BatchGuy.App.Eac3To.Services
                     {
                         if (disc.IsSelected == false && summary.BluRayTitleInfo != null)
                         {
+                            if (summary.BluRayTitleInfo.Video != null && summary.BluRayTitleInfo.Video.IsSelected)
+                            {
+                                _warnings.Add(new Warning() { Description = string.Format("Disc {0} is not selected but has selected summary and video",  new DirectoryInfo(disc.DiscName).Name) });
+                                hasWarning = true;
+                            }
                             if (summary.BluRayTitleInfo.AudioList != null && summary.BluRayTitleInfo.AudioList.Where(a => a.IsSelected).Count() > 0)
                             {
-                                return true;
-                            }
-                            if (summary.BluRayTitleInfo.Chapter != null && summary.BluRayTitleInfo.Chapter.IsSelected)
-                            {
-                                return true;
+                                _warnings.Add(new Warning() { Description = string.Format("Disc {0} is not selected but has selected summary and audio", new DirectoryInfo(disc.DiscName).Name) });
+                                hasWarning = true;
                             }
                             if (summary.BluRayTitleInfo.Subtitles != null && summary.BluRayTitleInfo.Subtitles.Where(s => s.IsSelected).Count() > 0)
                             {
-                                return true;
+                                _warnings.Add(new Warning() { Description = string.Format("Disc {0} is not selected but has selected summary and subtitles", new DirectoryInfo(disc.DiscName).Name) });
+                                hasWarning = true;
                             }
-                            if (summary.BluRayTitleInfo.Video != null && summary.BluRayTitleInfo.Video.IsSelected)
+                            if (summary.BluRayTitleInfo.Chapter != null && summary.BluRayTitleInfo.Chapter.IsSelected)
                             {
-                                return true;
+                                _warnings.Add(new Warning() { Description = string.Format("Disc {0} is not selected but has selected summary and chapters", new DirectoryInfo(disc.DiscName).Name) });
+                                hasWarning = true;
                             }
                         }
                     }
@@ -97,19 +98,23 @@ namespace BatchGuy.App.Eac3To.Services
                         {
                             if (summary.BluRayTitleInfo.AudioList != null && summary.BluRayTitleInfo.AudioList.Where(a => a.IsSelected).Count() > 0)
                             {
-                                return true;
+                                _warnings.Add(new Warning() { Description = string.Format("Disc {0} summary {1} is not selected but has selected audio", new DirectoryInfo(disc.DiscName).Name, summary.Eac3ToId) });
+                                hasWarning = true;
                             }
                             if (summary.BluRayTitleInfo.Chapter != null && summary.BluRayTitleInfo.Chapter.IsSelected)
                             {
-                                return true;
+                                _warnings.Add(new Warning() { Description = string.Format("Disc {0} summary {1} is not selected but has selected chapter", new DirectoryInfo(disc.DiscName).Name, summary.Eac3ToId) });
+                                hasWarning = true;
                             }
                             if (summary.BluRayTitleInfo.Subtitles != null && summary.BluRayTitleInfo.Subtitles.Where(s => s.IsSelected).Count() > 0)
                             {
-                                return true;
+                                _warnings.Add(new Warning() { Description = string.Format("Disc {0} summary {1} is not selected but has selected subtitles", new DirectoryInfo(disc.DiscName).Name, summary.Eac3ToId) });
+                                hasWarning = true;
                             }
                             if (summary.BluRayTitleInfo.Video != null && summary.BluRayTitleInfo.Video.IsSelected)
                             {
-                                return true;
+                                _warnings.Add(new Warning() { Description = string.Format("Disc {0} summary {1} is not selected but has selected video", new DirectoryInfo(disc.DiscName).Name, summary.Eac3ToId) });
+                                hasWarning = true;
                             }
                         }
                     }
