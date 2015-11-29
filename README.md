@@ -49,5 +49,6 @@ Unzip the BatchGuy folder to any location of your choosing.  With the introducti
 <li>Microsoft .Net Framework 4.5+</li>
 <li>eac3to</li>
 <li>vfw4x264</li>
+<li>x264</li>
 <li>AviSynth 2.5+ and all relevant plugins</li>
 </ul>
