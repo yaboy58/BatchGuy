@@ -48,7 +48,7 @@
 *When blu-ray discs selected with no summary selected, user is warned before attempting creating the eac3to batch file
 *When summaries and titles selected with no blu-ray disc selected, user is warned before attempting creating the eac3to batch file
 *When blu-ray discs and summaries not selected but titles selected, user is warned before attempting creating the eac3to batch file
-*Updated some screenshots
+*Updated some application screenshots
 *Warnings the user gets on the create eac3to screen made to be more intuitive to help user better understand the warning
 
 
