@@ -29,30 +29,10 @@
 *unit test extension methods
 
 
---1.8 todo
-*eac3to id/feature "#)" removed from header text on create eac3to batch file screen summary grid, which allows for sorting on playlists
-*Added a unit test to support the functionality that removes the eac3to id/feature from the BluRaySummaryInfo Header Text
-*Updated versions in class libraries to 1.8
-*Changed BluRaySummaryInfo.Id to Eac3ToId, for better code readability
-*Changed Setting class property Path to Value to be more of a Name/Value Pair
-*Last directory user selected to create x264 batch file is now being saved in BatchGuy settings and will be the default directory for the popup dialog
-*Last directory user selected to save avisynth files is now being saved in BatchGuy settings and will be the default directory for the popup dialog
-*Last directory user selected to save x264 batch file is now being saved in BatchGuy settings and will be the default directory for the popup dialog
-*Removed setting the default directory for all the other select path/file dialog popups 
-*Create eac3to batch file summary grid header text changed from "Header" to "Playlist / Videofile / Runtime"
-*Made some small cosmetic changes based on user feedback
-*Re-named IBatchFileWriteService to IEAC3ToBatchFileWriteService
-*Re-named EAC3ToBatchFileWriteService to EAC3ToBatchFileWriteService
-*Created new EAC3ToBatchFileWriteWarningService to notify the user of any warnings before attempting to create eac3to batch file
-*Added unit tests to support the new EAC3ToBatchFileWriteWarningService service
-*When blu-ray discs selected with no summary selected, user is warned before attempting creating the eac3to batch file
-*When summaries and titles selected with no blu-ray disc selected, user is warned before attempting creating the eac3to batch file
-*When blu-ray discs and summaries not selected but titles selected, user is warned before attempting creating the eac3to batch file
-*Updated some application screenshots
-*Warnings the user gets on the create eac3to screen made to be more intuitive to help user better understand the warning
+--1.9 todo
+*Updated versions in class libraries to 1.9
+*remove "form" from the Blu-ray Title Info Screen title
 
-
-*BatchGuy settings structure has changed and the old config.batchGuySettings must be deleted for v1.8 to work
 
 
 --upcoming
