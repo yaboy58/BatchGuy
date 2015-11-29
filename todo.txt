@@ -32,7 +32,8 @@
 --1.9 todo
 *Updated versions in class libraries to 1.9
 *remove "form" from the Blu-ray Title Info Screen title
-*Make some of the remux fields optional
+*Only Series Name and Season# should be required for remuxes
+*The word Remux should be optional and shouldn't be hardcoded in the code
 
 
 --upcoming
