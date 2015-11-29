@@ -29,7 +29,7 @@ namespace BatchGuy
 
         private void createEac3ToBatFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (Program.ApplicationSettingsService.GetSettingByName("eac3to") != null)
+            if (Program.ApplicationSettingsService.GetSettingByName("eac3to") != null && !string.IsNullOrEmpty(Program.ApplicationSettingsService.GetSettingByName("eac3to").Value))
             {
                 CreateEAC3ToBatchForm form = new CreateEAC3ToBatchForm();
                 form.DialogInitialDirectoryChanged += Program.DialogInitialDirectoryChangedHandler;  

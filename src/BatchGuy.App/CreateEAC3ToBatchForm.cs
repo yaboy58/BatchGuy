@@ -86,7 +86,7 @@ namespace BatchGuy.App
         private bool IsEac3ToPathSetInSettings()
         {
             Setting setting = Program.ApplicationSettingsService.GetSettingByName("eac3to");
-            if (setting == null)
+            if (setting == null  || string.IsNullOrEmpty(setting.Value))
                 return false;
             else
                 return true;

@@ -60,9 +60,6 @@ namespace BatchGuy.App
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (!this.IsScreenValid())
-                return;
-
             gbScreen.SetEnabled(false);
             this.HandleSaveClick();
             this.Close();
