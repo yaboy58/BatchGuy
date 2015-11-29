@@ -52,7 +52,7 @@
 *Warnings the user gets on the create eac3to screen made to be more intuitive to help user better understand the warning
 
 
-*Let user know settings structure has changed and the old settings will not work
+*BatchGuy settings structure has changed and the old config.batchGuySettings must be deleted for v1.8 to work
 
 
 --upcoming
