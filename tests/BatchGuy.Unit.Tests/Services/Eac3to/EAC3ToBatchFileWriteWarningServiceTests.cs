@@ -43,7 +43,7 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
         }
 
         [Test]
-        public void eac3tobatchfilewritewarningwervice_has_warning_when_summary_and_title_select_but_no_disc_selected_test()
+        public void eac3tobatchfilewritewarningwervice_has_warning_when_summary_and_title_selected_but_no_disc_selected_test()
         {
             //given a list of discs where summary and titles selected but disc not selected
             List<BluRayDiscInfo> discs = new List<BluRayDiscInfo>() { new BluRayDiscInfo() { IsSelected = true }, new BluRayDiscInfo() { IsSelected = false } };
@@ -55,6 +55,21 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
             WarningCollection warnings = service.GetWarnings();
             //then warnings should tell me i have selected summary and titles found with no disc selected
             warnings.Where(w => w.Description.Contains("Selected summary and titles found with no disc selected")).Count().ShouldBeEqualTo(1);
+        }
+
+        [Test]
+        public void eac3tobatchfilewritewarningwervice_has_warning_when_title_selected_and_no_summary_and_disc_selected_test()
+        {
+            //given a list of discs where title selected and summary and disc not selected 
+            List<BluRayDiscInfo> discs = new List<BluRayDiscInfo>() { new BluRayDiscInfo() { IsSelected = false }, new BluRayDiscInfo() { IsSelected = false } };
+            discs[0].BluRaySummaryInfoList = new List<BluRaySummaryInfo>() { new BluRaySummaryInfo() { IsSelected = true }, new BluRaySummaryInfo() { IsSelected = true } };
+            discs[1].BluRaySummaryInfoList = new List<BluRaySummaryInfo>() { new BluRaySummaryInfo() { IsSelected = false, BluRayTitleInfo = new BluRayTitleInfo() {Video = new BluRayTitleVideo() {IsSelected = true}} }, 
+                new BluRaySummaryInfo() { IsSelected = true, BluRayTitleInfo = new BluRayTitleInfo() { AudioList = new List<BluRayTitleAudio>() {new BluRayTitleAudio() { IsSelected = true} } } } };
+            //when i get warnings
+            IEAC3ToBatchFileWriteWarningService service = new EAC3ToBatchFileWriteWarningService(discs);
+            WarningCollection warnings = service.GetWarnings();
+            //then warnings should tell me i have selected titles found with no disc or summary selected
+            warnings.Where(w => w.Description.Contains("Selected titles found with no disc or summary selected")).Count().ShouldBeEqualTo(1);
         }
     }
 }

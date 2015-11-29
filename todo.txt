@@ -41,11 +41,13 @@
 *Removed setting the default directory for all the other select path/file dialog popups 
 *Create eac3to batch file summary grid header text changed from "Header" to "Playlist / Videofile / Runtime"
 *Made some small cosmetic changes based on user feedback
-
 *Re-named IBatchFileWriteService to IEAC3ToBatchFileWriteService
 *Re-named EAC3ToBatchFileWriteService to EAC3ToBatchFileWriteService
 *Created new EAC3ToBatchFileWriteWarningService to notify the user of any warnings before attempting to create eac3to batch file
 *Added unit tests to support the new EAC3ToBatchFileWriteWarningService service
+*When blu-ray discs selected with no summary selected, user is warned before attempting creating the eac3to batch file
+*When summaries and titles selected with no blu-ray disc selected, user is warned before attempting creating the eac3to batch file
+*When blu-ray discs and summaries not selected but titles selected, user is warned before attempting creating the eac3to batch file
 
 
 *Let user know settings structure has changed and the old settings will not work

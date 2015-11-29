@@ -27,6 +27,7 @@ using System.IO;
 using BatchGuy.App.Eac3To.Models;
 using BatchGuy.App.Shared.Events;
 using BatchGuy.App.Constants;
+using BatchGuy.App.Eac3To.Services;
 
 namespace BatchGuy.App
 {
@@ -93,15 +94,29 @@ namespace BatchGuy.App
 
         private void btnWriteToBatFile_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("Create eac3to batch file?", "Start Process?", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+            DialogResult startProcessResult = MessageBox.Show("Create eac3to batch file?", "Start Process?", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
 
-            if (result == System.Windows.Forms.DialogResult.Yes)
+            if (startProcessResult == System.Windows.Forms.DialogResult.Yes)
             {
                 this.SetEac3ToConfiguration();
                 this.SetEAC3ToRemuxFileNameTemplate();
                 if (this.IsAtLeastOneDiscLoaded() && this.IsScreenValid())
                 {
-                    this.WriteToBatchFile();
+                    List<BluRayDiscInfo> discs = this.GetBluRayDiscInfoList();
+                    WarningCollection warnings = new EAC3ToBatchFileWriteWarningService(discs).GetWarnings();
+                    if (warnings.Count() > 0)
+                    {
+                        string warning = string.Format("{0}{1}{2}Would you still like to continue?", warnings.GetWarningMessage(), Environment.NewLine, Environment.NewLine);
+                        DialogResult warningResult = MessageBox.Show(warning, "Warnings Found", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
+                        if (warningResult == System.Windows.Forms.DialogResult.Yes)
+                        {
+                            this.WriteToBatchFile();                            
+                        }
+                    }
+                    else
+                    {
+                        this.WriteToBatchFile();
+                    }
                 }                
             }
         }
