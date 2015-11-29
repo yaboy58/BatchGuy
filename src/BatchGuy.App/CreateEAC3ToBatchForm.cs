@@ -110,7 +110,7 @@ namespace BatchGuy.App
         {
             gbScreen.SetEnabled(false);
             List<BluRayDiscInfo> discs = this.GetBluRayDiscInfoList();
-            IBatchFileWriteService batchFileWriteService = new BatchFileWriteService(_eac3toConfiguration,discs);
+            IEAC3ToBatchFileWriteService batchFileWriteService = new EAC3ToBatchFileWriteService(_eac3toConfiguration,discs);
             bgwEac3toWriteBatchFile.RunWorkerAsync(batchFileWriteService);
         }
 
@@ -342,14 +342,14 @@ namespace BatchGuy.App
 
         private void bgwEac3toWriteBatchFile_DoWork(object sender, DoWorkEventArgs e)
         {
-            IBatchFileWriteService batchFileWriteService = e.Argument as BatchFileWriteService;
+            IEAC3ToBatchFileWriteService batchFileWriteService = e.Argument as EAC3ToBatchFileWriteService;
             batchFileWriteService.Write();
             e.Result = batchFileWriteService;
         }
 
         private void bgwEac3toWriteBatchFile_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            IBatchFileWriteService batchFileWriteService = e.Result as BatchFileWriteService;
+            IEAC3ToBatchFileWriteService batchFileWriteService = e.Result as EAC3ToBatchFileWriteService;
             if (batchFileWriteService.Errors.Count() == 0)
             {
                 MessageBox.Show("Batch File created!", "Process Complete", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);

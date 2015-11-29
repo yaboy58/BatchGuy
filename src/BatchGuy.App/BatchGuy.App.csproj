@@ -90,13 +90,15 @@
     <Compile Include="CreateX264BatchFileForm.Designer.cs">
       <DependentUpon>CreateX264BatchFileForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Eac3To\Interfaces\IEAC3ToBatchFileWriteWarningService.cs" />
     <Compile Include="Eac3To\Interfaces\IEAC3ToOutputNamingService.cs" />
     <Compile Include="Eac3To\Models\EAC3ToConfiguration.cs" />
     <Compile Include="Eac3To\Models\EAC3ToRemuxFileNameTemplate.cs" />
-    <Compile Include="Eac3To\Services\BatchFileWriteService.cs" />
+    <Compile Include="Eac3To\Services\EAC3ToBatchFileWriteService.cs" />
+    <Compile Include="Eac3To\Services\EAC3ToBatchFileWriteWarningService.cs" />
     <Compile Include="Eac3To\Services\EAC3ToOutputNamingService.cs" />
     <Compile Include="Eac3To\Services\EAC3ToOutputService.cs" />
-    <Compile Include="Eac3To\Interfaces\IBatchFileWriteService.cs" />
+    <Compile Include="Eac3To\Interfaces\IEAC3ToBatchFileWriteService.cs" />
     <Compile Include="Eac3To\Interfaces\IEAC3ToOutputService.cs" />
     <Compile Include="Enums\Enums.cs" />
     <Compile Include="Extensions\ExtensionMethods.cs" />
@@ -154,6 +156,8 @@
     <Compile Include="AviSynth\Services\AviSynthValidationService.cs" />
     <Compile Include="Shared\Models\ErrorCollection.cs" />
     <Compile Include="Shared\Models\SortConfiguration.cs" />
+    <Compile Include="Shared\Models\Warning.cs" />
+    <Compile Include="Shared\Models\WarningCollection.cs" />
     <Compile Include="Shared\Services\BindingListSortService.cs" />
     <Compile Include="Shared\Services\SortService.cs" />
     <Compile Include="ThirdParty\FolderSelectDialog\FolderSelectDialog.cs" />

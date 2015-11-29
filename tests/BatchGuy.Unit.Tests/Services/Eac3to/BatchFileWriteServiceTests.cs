@@ -22,7 +22,7 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
         {
             List<BluRayDiscInfo> discList = new List<BluRayDiscInfo>() {new BluRayDiscInfo() { Id = 1, IsSelected = false }};
             EAC3ToConfiguration config = new EAC3ToConfiguration();
-            IBatchFileWriteService service = new BatchFileWriteService(config, discList);
+            IEAC3ToBatchFileWriteService service = new EAC3ToBatchFileWriteService(config, discList);
             bool isValid = service.IsValid();
             service.Errors[0].Description.ShouldBeEqualTo("No Disc was selected.");
         }
@@ -32,7 +32,7 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
         {
             List<BluRayDiscInfo> discList = new List<BluRayDiscInfo>() { new BluRayDiscInfo() { Id = 1, IsSelected = true, BluRaySummaryInfoList = new List<BluRaySummaryInfo>() { new BluRaySummaryInfo() { IsSelected = false} } } };
             EAC3ToConfiguration config = new EAC3ToConfiguration();
-            IBatchFileWriteService service = new BatchFileWriteService(config,discList);
+            IEAC3ToBatchFileWriteService service = new EAC3ToBatchFileWriteService(config,discList);
             bool isValid = service.IsValid();
             service.Errors[0].Description.ShouldBeEqualTo("No episodes selected.");
         }
@@ -43,7 +43,7 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
             List<BluRayDiscInfo> discList = new List<BluRayDiscInfo>() { new BluRayDiscInfo() { Id = 1, IsSelected = true, BluRaySummaryInfoList = new List<BluRaySummaryInfo>() { new BluRaySummaryInfo() { IsSelected = true,
              BluRayTitleInfo = new BluRayTitleInfo() { Video = new BluRayTitleVideo() { IsSelected = true} }} } } };
             EAC3ToConfiguration config = new EAC3ToConfiguration();
-            IBatchFileWriteService service = new BatchFileWriteService(config, discList);
+            IEAC3ToBatchFileWriteService service = new EAC3ToBatchFileWriteService(config, discList);
             bool isValid = service.IsValid();
             service.Errors[0].Description.ShouldBeEqualTo("Episode not set for all titles.");
         }

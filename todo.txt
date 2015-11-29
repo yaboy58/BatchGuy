@@ -39,8 +39,14 @@
 *Last directory user selected to save avisynth files is now being saved in BatchGuy settings and will be the default directory for the popup dialog
 *Last directory user selected to save x264 batch file is now being saved in BatchGuy settings and will be the default directory for the popup dialog
 *Removed setting the default directory for all the other select path/file dialog popups 
-*Create eac3to batch file summary grid header text changed from Header to Playlist / Videofile / Runtime
+*Create eac3to batch file summary grid header text changed from "Header" to "Playlist / Videofile / Runtime"
 *Made some small cosmetic changes based on user feedback
+
+*Re-named IBatchFileWriteService to IEAC3ToBatchFileWriteService
+*Re-named EAC3ToBatchFileWriteService to EAC3ToBatchFileWriteService
+*Created new EAC3ToBatchFileWriteWarningService to notify the user of any warnings before attempting to create eac3to batch file
+*Added unit tests to support the new EAC3ToBatchFileWriteWarningService service
+
 
 *Let user know settings structure has changed and the old settings will not work
 
@@ -51,10 +57,4 @@
 *ability to create sample.avs/sample.encode.bat
 *Bug where you can't close title info screen because episode required even though nothing is chosen.  Button works but not the x at the top [couldn't reproduce]
 *ability to save/load eac3to batch guy data
-
-
-EAC3ToWarningService
-
-
-
 

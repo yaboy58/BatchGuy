@@ -8,7 +8,7 @@ using BatchGuy.App.Shared.Models;
 
 namespace BatchGuy.App.Eac3To.Interfaces
 {
-    public interface IBatchFileWriteService
+    public interface IEAC3ToBatchFileWriteService
     {
         ErrorCollection Errors { get;}
         ErrorCollection Write();

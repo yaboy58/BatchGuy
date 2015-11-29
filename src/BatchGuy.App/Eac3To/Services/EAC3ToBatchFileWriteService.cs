@@ -17,20 +17,20 @@ using BatchGuy.App.Eac3To.Services;
 
 namespace BatchGuy.App.Eac3to.Services
 {
-    public class BatchFileWriteService : IBatchFileWriteService
+    public class EAC3ToBatchFileWriteService : IEAC3ToBatchFileWriteService
     {
         private ErrorCollection _errors = new ErrorCollection();
         private List<BluRayDiscInfo> _bluRayDiscInfoList;
         private EAC3ToConfiguration _eac3toConfiguration;
 
-        public static readonly ILog _log = LogManager.GetLogger(typeof(BatchFileWriteService));
+        public static readonly ILog _log = LogManager.GetLogger(typeof(EAC3ToBatchFileWriteService));
 
         public ErrorCollection Errors
         {
             get { return _errors; }
         }
 
-        public BatchFileWriteService(EAC3ToConfiguration eac3toConfiguration, List<BluRayDiscInfo> bluRayDiscInfo)
+        public EAC3ToBatchFileWriteService(EAC3ToConfiguration eac3toConfiguration, List<BluRayDiscInfo> bluRayDiscInfo)
         {
             _bluRayDiscInfoList = bluRayDiscInfo;
             _eac3toConfiguration = eac3toConfiguration;

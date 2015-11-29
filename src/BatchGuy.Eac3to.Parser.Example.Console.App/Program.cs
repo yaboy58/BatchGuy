@@ -126,7 +126,7 @@ namespace BatchGuy.Eac3to.Parser.Example.Console.App
                     }
 
                     //now time to write out the batch file
-                    IBatchFileWriteService batchFileWriteService = new BatchFileWriteService(eac3toConfiguation,bluRayDiscList);
+                    IEAC3ToBatchFileWriteService batchFileWriteService = new EAC3ToBatchFileWriteService(eac3toConfiguation,bluRayDiscList);
                     batchFileWriteService.Write();
                     if (batchFileWriteService.Errors.Count() == 0)
                     {
