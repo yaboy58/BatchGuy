@@ -38,7 +38,7 @@
 *Clean up EAC3ToOutputNamingService ie hardcoded 99 and tag/year init is repeated several times
 *found out why BluRayDiscInfo.DiscName is set to the this.BluRayPath and not new DirectoryInfo(this.BluRayPath).Name
 *find where you have number of files hardcoded to 99 and put the real value in it
-
+*Create an extension method for the List<BluRayDiscInfo> to get the # of episodes and add new property on eac3config for the batch count, so you can get rid of hardcoded 99 for the batch count
 
 --upcoming
 *figure out a better solution to inform of the status of long running tasks
