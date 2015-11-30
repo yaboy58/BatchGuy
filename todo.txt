@@ -43,6 +43,7 @@
 *Put "*" next to fields that are mandatory on create eac3to batch file screen
 *Make the year on remux section of the create eac3to batch file a string, so users could format it ie (1965)
 *Video resolution on the remux section of the create eac3to batch file is now not required
+*Audio type on the remux section of the create eac3to batch file is now not required 
 
 *Only Series Name and Season# should be required for remuxes
 *The word Remux and AVC should be optional and shouldn't be hardcoded in the code

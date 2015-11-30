@@ -258,11 +258,6 @@ namespace BatchGuy.App
                     MessageBox.Show("Please enter a Season Number!", "Error occurred", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
                 }
-                if (_eac3toConfiguration.RemuxFileNameTemplate.AudioType == null || _eac3toConfiguration.RemuxFileNameTemplate.AudioType == string.Empty)
-                {
-                    MessageBox.Show("Please enter a Audio Type!", "Error occurred", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return false;
-                }
             }
             return true;
         }
