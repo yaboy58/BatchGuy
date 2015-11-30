@@ -187,6 +187,7 @@
             this.cbVideoResolution.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbVideoResolution.FormattingEnabled = true;
             this.cbVideoResolution.Items.AddRange(new object[] {
+            "",
             "720p",
             "1080i",
             "1080p"});

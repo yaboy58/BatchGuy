@@ -66,7 +66,7 @@ namespace BatchGuy.App
                 Setting setting = Program.ApplicationSettingsService.GetSettingByName("eac3to");
                 _eac3ToPath = setting.Value;
                 this.SetEac3ToConfiguration();
-                cbVideoResolution.SelectedIndex = 2;
+                cbVideoResolution.SelectedIndex = 3;
             }
         }
 
