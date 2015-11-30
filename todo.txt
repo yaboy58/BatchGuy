@@ -33,15 +33,16 @@
 *Updated versions in class libraries to 1.9
 *remove "form" from the Blu-ray Title Info Screen title
 *Only Series Name and Season# should be required for remuxes
-*The word Remux should be optional and shouldn't be hardcoded in the code
+*The word Remux and AVC should be optional and shouldn't be hardcoded in the code
 *Make the year on Remux section a string, so users could format it ie (1965)
 *On Blu-ray Title Info Screen, change Track Id Header Text to maybe eac3to Track Id
+*Clean up EAC3ToOutputNamingService ie hardcoded 99 and tag/year init is repeated several times
+*found out why BluRayDiscInfo.DiscName is set to the this.BluRayPath and not new DirectoryInfo(this.BluRayPath).Name
+*find where you have number of files hardcoded to 99 and put the real value in it
 
 
 --upcoming
-*found out why BluRayDiscInfo.DiscName is set to the this.BluRayPath and not new DirectoryInfo(this.BluRayPath).Name
 *figure out a better solution to inform of the status of long running tasks
-*find where you have number of files hardcoded to 99 and put the real value in it
 *ability to create sample.avs/sample.encode.bat
 *Bug where you can't close title info screen because episode required even though nothing is chosen.  Button works but not the x at the top [couldn't reproduce]
 *ability to save/load eac3to batch guy data
