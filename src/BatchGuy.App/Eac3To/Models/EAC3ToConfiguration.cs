@@ -16,5 +16,6 @@ namespace BatchGuy.App.Eac3to.Models
         public EnumDirectoryType OutputDirectoryType { get; set; }
         public bool IsExtractForRemux { get; set; }
         public EAC3ToRemuxFileNameTemplate RemuxFileNameTemplate { get; set; }
+        public int NumberOfEpisodes { get; set; }
     }
 }

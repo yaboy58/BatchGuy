@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExtensionMethods\ExtensionMethodTests.cs" />
     <Compile Include="HelperFunctions\PadNumberWithZerosTests.cs" />
     <Compile Include="Services\AviSynth\FileServiceTests.cs" />
     <Compile Include="Services\AviSynth\ValidationServiceTests.cs" />

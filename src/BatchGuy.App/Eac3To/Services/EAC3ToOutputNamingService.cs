@@ -26,7 +26,7 @@ namespace BatchGuy.App.Eac3To.Services
                 string year = this.GetYear(eac3toConfiguration);
 
                 sb.Append(string.Format("\"{0}\\{1}{2}S{3}E{4}{5}{6} Remux AVC {7}{8} chapters.txt\"", filesOutputPath, eac3toConfiguration.RemuxFileNameTemplate.SeriesName, year,
-                    this.PadNumberWithZeros(99, eac3toConfiguration.RemuxFileNameTemplate.SeasonNumber),
+                    this.PadNumberWithZeros(eac3toConfiguration.NumberOfEpisodes, eac3toConfiguration.RemuxFileNameTemplate.SeasonNumber),
                     paddedEpisodeNumber,this.GetFormattedEpisodeName(episodeName), eac3toConfiguration.RemuxFileNameTemplate.VideoResolution, eac3toConfiguration.RemuxFileNameTemplate.AudioType, tag));
             }
             return sb.ToString();
@@ -45,7 +45,7 @@ namespace BatchGuy.App.Eac3To.Services
                 string year = this.GetYear(eac3toConfiguration);
 
                 sb.Append(string.Format("\"{0}\\{1}{2}S{3}E{4}{5}{6} Remux AVC {7}{8}.mkv\"", filesOutputPath, eac3toConfiguration.RemuxFileNameTemplate.SeriesName,year,
-                    this.PadNumberWithZeros(99, eac3toConfiguration.RemuxFileNameTemplate.SeasonNumber),
+                    this.PadNumberWithZeros(eac3toConfiguration.NumberOfEpisodes, eac3toConfiguration.RemuxFileNameTemplate.SeasonNumber),
                     paddedEpisodeNumber, this.GetFormattedEpisodeName(episodeName), eac3toConfiguration.RemuxFileNameTemplate.VideoResolution, eac3toConfiguration.RemuxFileNameTemplate.AudioType, tag));
             }
             return sb.ToString();
@@ -65,7 +65,7 @@ namespace BatchGuy.App.Eac3To.Services
                 string year = this.GetYear(eac3toConfiguration);
 
                 sb.Append(string.Format("\"{0}\\{1}{2}S{3}E{4}{5}{6} Remux AVC {7}{8} {9}{10}-{11}.{12}\"", filesOutputPath, eac3toConfiguration.RemuxFileNameTemplate.SeriesName,year,
-                    this.PadNumberWithZeros(99, eac3toConfiguration.RemuxFileNameTemplate.SeasonNumber),
+                    this.PadNumberWithZeros(eac3toConfiguration.NumberOfEpisodes, eac3toConfiguration.RemuxFileNameTemplate.SeasonNumber),
                     paddedEpisodeNumber, this.GetFormattedEpisodeName(episodeName), eac3toConfiguration.RemuxFileNameTemplate.VideoResolution, eac3toConfiguration.RemuxFileNameTemplate.AudioType, tag, audio.Language, paddedEpisodeNumber, itemNumber.ToString(),
                     this.GetAudioExtension(audio.AudioType)));
             }
@@ -85,7 +85,7 @@ namespace BatchGuy.App.Eac3To.Services
                 string year = this.GetYear(eac3toConfiguration);
 
                 sb.Append(string.Format("\"{0}\\{1}{2}S{3}E{4}{5}{6} Remux AVC {7}{8} {9}{10}-{11}.sup\"", filesOutputPath, eac3toConfiguration.RemuxFileNameTemplate.SeriesName,year,
-                    this.PadNumberWithZeros(99, eac3toConfiguration.RemuxFileNameTemplate.SeasonNumber),
+                    this.PadNumberWithZeros(eac3toConfiguration.NumberOfEpisodes, eac3toConfiguration.RemuxFileNameTemplate.SeasonNumber),
                     paddedEpisodeNumber, this.GetFormattedEpisodeName(episodeName), eac3toConfiguration.RemuxFileNameTemplate.VideoResolution, eac3toConfiguration.RemuxFileNameTemplate.AudioType, tag, subtitle.Language, paddedEpisodeNumber, itemNumber.ToString()));
             }
             return sb.ToString();
@@ -103,7 +103,7 @@ namespace BatchGuy.App.Eac3To.Services
                 string year = this.GetYear(eac3toConfiguration);
 
                 sb.Append(string.Format(" -log=\"{0}\\{1}{2}S{3}E{4}{5}{6} Remux AVC {7}{8} log.txt\"", filesOutputPath, eac3toConfiguration.RemuxFileNameTemplate.SeriesName, year,
-                    this.PadNumberWithZeros(99, eac3toConfiguration.RemuxFileNameTemplate.SeasonNumber),
+                    this.PadNumberWithZeros(eac3toConfiguration.NumberOfEpisodes, eac3toConfiguration.RemuxFileNameTemplate.SeasonNumber),
                     paddedEpisodeNumber, this.GetFormattedEpisodeName(episodeName), eac3toConfiguration.RemuxFileNameTemplate.VideoResolution, eac3toConfiguration.RemuxFileNameTemplate.AudioType, tag));
             }
             return sb.ToString();

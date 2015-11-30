@@ -418,6 +418,7 @@ namespace BatchGuy.App
             _eac3toConfiguration.EAC3ToOutputPath = setDirectoryUserControl.CLIDirectory;
             _eac3toConfiguration.OutputDirectoryType = setDirectoryUserControl.OutputDirectoryType;
             _eac3toConfiguration.IsExtractForRemux = chkExtractForRemux.Checked;
+            _eac3toConfiguration.NumberOfEpisodes = this.GetBluRayDiscInfoList().NumberOfEpisodes();
         }
 
         private void dgvBluRayDiscInfo_DragDrop(object sender, DragEventArgs e)

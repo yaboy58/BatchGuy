@@ -30,15 +30,25 @@
 
 
 --1.9 todo
+*Created an extension method for the List<BluRayDiscInfo> to get the # of episodes
+*Created unit test to support this new functionality
+*Created NumberOfEpisodes property on EAC3ToConfiguration Class
+*Major bug fixed where you couldn't set the audio type on the Blu-ray Title Info Screen
+*Hardcoded 99 batch size removed from EAC3OutputService and EAC3ToOutputNamingService
+
+*Cleaned up EAC3ToOutputNamingService ie hardcoded 99 and tag/year init is repeated several times
+
+
 *remove "form" from the Blu-ray Title Info Screen title
 *Only Series Name and Season# should be required for remuxes
 *The word Remux and AVC should be optional and shouldn't be hardcoded in the code
 *Make the year on Remux section a string, so users could format it ie (1965)
 *On Blu-ray Title Info Screen, change Track Id Header Text to maybe eac3to Track Id
-*Clean up EAC3ToOutputNamingService ie hardcoded 99 and tag/year init is repeated several times
+
 *found out why BluRayDiscInfo.DiscName is set to the this.BluRayPath and not new DirectoryInfo(this.BluRayPath).Name
 *find where you have number of files hardcoded to 99 and put the real value in it
-*Create an extension method for the List<BluRayDiscInfo> to get the # of episodes and add new property on eac3config for the batch count, so you can get rid of hardcoded 99 for the batch count
+
+
 
 --upcoming
 *figure out a better solution to inform of the status of long running tasks
