@@ -39,7 +39,7 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
         {
             //given not extract for remux
             EAC3ToConfiguration config = new EAC3ToConfiguration() { IsExtractForRemux = true, RemuxFileNameTemplate = new EAC3ToRemuxFileNameTemplate() { AudioType = "FLAC 5.1", SeriesName = "BatchGuy",
-             SeasonNumber = 2, SeasonYear = 1978, Tag = "Guy", VideoResolution = "1080p"} };
+             SeasonNumber = 2, SeasonYear = "1978", Tag = "Guy", VideoResolution = "1080p"} };
             string filesOutputPath = "c:\\bluray";
             string paddedEpisodeNumber = "01";
             string episodeName = string.Empty;
@@ -77,7 +77,7 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
                     AudioType = "FLAC 5.1",
                     SeriesName = "BatchGuy",
                     SeasonNumber = 2,
-                    SeasonYear = 1978,
+                    SeasonYear = "1978",
                     Tag = "Guy",
                     VideoResolution = "1080p"
                 }
@@ -120,7 +120,7 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
                     AudioType = "FLAC 5.1",
                     SeriesName = "BatchGuy",
                     SeasonNumber = 2,
-                    SeasonYear = 1978,
+                    SeasonYear = "1978",
                     Tag = "Guy",
                     VideoResolution = "1080p"
                 }
@@ -164,7 +164,7 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
                     AudioType = "FLAC 5.1",
                     SeriesName = "BatchGuy",
                     SeasonNumber = 2,
-                    SeasonYear = 1978,
+                    SeasonYear = "1978",
                     Tag = "Guy",
                     VideoResolution = "1080p"
                 }

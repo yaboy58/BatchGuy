@@ -49,7 +49,7 @@ namespace BatchGuy.App
         {
             InitializeComponent();
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            setDirectoryUserControl.ComboBoxCaptionText = "eac3to output directory:";
+            setDirectoryUserControl.ComboBoxCaptionText = "eac3to output directory*:";
             setDirectoryUserControl.LabelDirectoryCaptionText = @"eac3to Output Directory (example: e01, e02): {0}\e##";
             this.SetToolTips();
         }
@@ -509,30 +509,15 @@ namespace BatchGuy.App
             }
         }
 
-        private void txtSeasonYear_TextChanged(object sender, EventArgs e)
-        {
-            this.HandleTxtSeasonYearTextChanged();
-        }
-
-        private void HandleTxtSeasonYearTextChanged()
-        {
-            this.ValidateNumbericTextBox(txtSeasonYear);
-        }
-
         private void SetEAC3ToRemuxFileNameTemplate()
         {
             if (_eac3toConfiguration.IsExtractForRemux)
             {
                 _eac3toConfiguration.RemuxFileNameTemplate = new EAC3ToRemuxFileNameTemplate() { AudioType = txtAudioType.Text.Trim(), Tag = txtTag.Text.Trim(), SeriesName = txtSeriesName.Text.Trim(),
-                 VideoResolution = cbVideoResolution.Text};
+                 VideoResolution = cbVideoResolution.Text, SeasonYear = txtSeasonYear.Text.Trim()};
 
                 if (txtSeasonNumber.Text.IsNumeric())
                     _eac3toConfiguration.RemuxFileNameTemplate.SeasonNumber = txtSeasonNumber.Text.StringToInt();
-
-                if (txtSeasonYear.Text.IsNumeric())
-                    _eac3toConfiguration.RemuxFileNameTemplate.SeasonYear = txtSeasonYear.Text.StringToInt();
-                else
-                    _eac3toConfiguration.RemuxFileNameTemplate.SeasonYear = null;
             }
         }
 

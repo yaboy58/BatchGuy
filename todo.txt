@@ -40,16 +40,16 @@
 *Removed "form" from the Blu-ray Title Info Screen title
 *On the Blu-ray Title Info Screen, changed Track Id column Header Text to eac3to Track Id
 *Cleaned up EAC3ToOutputNamingService ie removed hardcoded 99 batch size and not initializing the tag/year several times
-
-
+*Put "*" next to fields that are mandatory on create eac3to batch file screen
+*Make the year on Remux section of the create eac3to batch file a string, so users could format it ie (1965)
 
 *Only Series Name and Season# should be required for remuxes
 *The word Remux and AVC should be optional and shouldn't be hardcoded in the code
-*Make the year on Remux section a string, so users could format it ie (1965)
 
 
+*Put * next to fields that are mandatory
 
-*find where you have number of files hardcoded to 99 and put the real value in it
+
 
 
 
