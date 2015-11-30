@@ -48,36 +48,37 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txtSeriesName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.setDirectoryUserControl = new BatchGuy.App.UserControls.SetDirectoryUserControl();
             this.btnWriteToBatFile = new System.Windows.Forms.Button();
             this.gbDiscSummary = new System.Windows.Forms.GroupBox();
             this.dgvBluRaySummary = new System.Windows.Forms.DataGridView();
-            this.bsBluRaySummaryInfo = new System.Windows.Forms.BindingSource(this.components);
             this.gbDisc = new System.Windows.Forms.GroupBox();
             this.dgvBluRayDiscInfo = new System.Windows.Forms.DataGridView();
-            this.isSelectedDataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.idDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.discNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bsBluRayDiscInfo = new System.Windows.Forms.BindingSource(this.components);
             this.btnOpenBatchFilePathDialog = new System.Windows.Forms.Button();
             this.txtBatFilePath = new System.Windows.Forms.TextBox();
             this.lblBatchFilePath = new System.Windows.Forms.Label();
             this.bgwEac3toWriteBatchFile = new System.ComponentModel.BackgroundWorker();
             this.ttDirectoryUserControl = new System.Windows.Forms.ToolTip(this.components);
+            this.setDirectoryUserControl = new BatchGuy.App.UserControls.SetDirectoryUserControl();
             this.isSelectedDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.eac3ToIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.episodeNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.headerTextDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.detailTextDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bluRayTitleInfoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bsBluRaySummaryInfo = new System.Windows.Forms.BindingSource(this.components);
+            this.bsBluRayDiscInfo = new System.Windows.Forms.BindingSource(this.components);
+            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.isSelectedDataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.discNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bluRayPathDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gbScreen.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.gbExtractForRemux.SuspendLayout();
             this.gbDiscSummary.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBluRaySummary)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsBluRaySummaryInfo)).BeginInit();
             this.gbDisc.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBluRayDiscInfo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsBluRaySummaryInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsBluRayDiscInfo)).BeginInit();
             this.SuspendLayout();
             // 
@@ -253,15 +254,6 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Series Name:";
             // 
-            // setDirectoryUserControl
-            // 
-            this.setDirectoryUserControl.ComboBoxCaptionText = "";
-            this.setDirectoryUserControl.LabelDirectoryCaptionText = null;
-            this.setDirectoryUserControl.Location = new System.Drawing.Point(18, 129);
-            this.setDirectoryUserControl.Name = "setDirectoryUserControl";
-            this.setDirectoryUserControl.Size = new System.Drawing.Size(824, 71);
-            this.setDirectoryUserControl.TabIndex = 41;
-            // 
             // btnWriteToBatFile
             // 
             this.btnWriteToBatFile.Location = new System.Drawing.Point(1137, 654);
@@ -303,10 +295,6 @@
             this.dgvBluRaySummary.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBluRaySummary_CellClick);
             this.dgvBluRaySummary.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBluRaySummary_CellDoubleClick);
             // 
-            // bsBluRaySummaryInfo
-            // 
-            this.bsBluRaySummaryInfo.DataSource = typeof(BatchGuy.App.Parser.Models.BluRaySummaryInfo);
-            // 
             // gbDisc
             // 
             this.gbDisc.Controls.Add(this.dgvBluRayDiscInfo);
@@ -326,9 +314,10 @@
             this.dgvBluRayDiscInfo.AutoGenerateColumns = false;
             this.dgvBluRayDiscInfo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvBluRayDiscInfo.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.idDataGridViewTextBoxColumn,
             this.isSelectedDataGridViewCheckBoxColumn1,
-            this.idDataGridViewTextBoxColumn1,
-            this.discNameDataGridViewTextBoxColumn});
+            this.discNameDataGridViewTextBoxColumn,
+            this.bluRayPathDataGridViewTextBoxColumn});
             this.dgvBluRayDiscInfo.DataSource = this.bsBluRayDiscInfo;
             this.dgvBluRayDiscInfo.Location = new System.Drawing.Point(6, 19);
             this.dgvBluRayDiscInfo.Name = "dgvBluRayDiscInfo";
@@ -337,34 +326,6 @@
             this.dgvBluRayDiscInfo.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBluRayDiscInfo_CellClick);
             this.dgvBluRayDiscInfo.DragDrop += new System.Windows.Forms.DragEventHandler(this.dgvBluRayDiscInfo_DragDrop);
             this.dgvBluRayDiscInfo.DragEnter += new System.Windows.Forms.DragEventHandler(this.dgvBluRayDiscInfo_DragEnter);
-            // 
-            // isSelectedDataGridViewCheckBoxColumn1
-            // 
-            this.isSelectedDataGridViewCheckBoxColumn1.DataPropertyName = "IsSelected";
-            this.isSelectedDataGridViewCheckBoxColumn1.HeaderText = "Is Selected";
-            this.isSelectedDataGridViewCheckBoxColumn1.MinimumWidth = 100;
-            this.isSelectedDataGridViewCheckBoxColumn1.Name = "isSelectedDataGridViewCheckBoxColumn1";
-            // 
-            // idDataGridViewTextBoxColumn1
-            // 
-            this.idDataGridViewTextBoxColumn1.DataPropertyName = "Id";
-            this.idDataGridViewTextBoxColumn1.HeaderText = "Id";
-            this.idDataGridViewTextBoxColumn1.Name = "idDataGridViewTextBoxColumn1";
-            this.idDataGridViewTextBoxColumn1.ReadOnly = true;
-            this.idDataGridViewTextBoxColumn1.Visible = false;
-            // 
-            // discNameDataGridViewTextBoxColumn
-            // 
-            this.discNameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.discNameDataGridViewTextBoxColumn.DataPropertyName = "DiscName";
-            this.discNameDataGridViewTextBoxColumn.HeaderText = "Disc Name";
-            this.discNameDataGridViewTextBoxColumn.MinimumWidth = 300;
-            this.discNameDataGridViewTextBoxColumn.Name = "discNameDataGridViewTextBoxColumn";
-            this.discNameDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // bsBluRayDiscInfo
-            // 
-            this.bsBluRayDiscInfo.DataSource = typeof(BatchGuy.App.Parser.Models.BluRayDiscInfo);
             // 
             // btnOpenBatchFilePathDialog
             // 
@@ -397,6 +358,15 @@
             // 
             this.bgwEac3toWriteBatchFile.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgwEac3toWriteBatchFile_DoWork);
             this.bgwEac3toWriteBatchFile.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgwEac3toWriteBatchFile_RunWorkerCompleted);
+            // 
+            // setDirectoryUserControl
+            // 
+            this.setDirectoryUserControl.ComboBoxCaptionText = "";
+            this.setDirectoryUserControl.LabelDirectoryCaptionText = null;
+            this.setDirectoryUserControl.Location = new System.Drawing.Point(18, 129);
+            this.setDirectoryUserControl.Name = "setDirectoryUserControl";
+            this.setDirectoryUserControl.Size = new System.Drawing.Size(824, 71);
+            this.setDirectoryUserControl.TabIndex = 41;
             // 
             // isSelectedDataGridViewCheckBoxColumn
             // 
@@ -449,6 +419,47 @@
             this.bluRayTitleInfoDataGridViewTextBoxColumn.Name = "bluRayTitleInfoDataGridViewTextBoxColumn";
             this.bluRayTitleInfoDataGridViewTextBoxColumn.Visible = false;
             // 
+            // bsBluRaySummaryInfo
+            // 
+            this.bsBluRaySummaryInfo.DataSource = typeof(BatchGuy.App.Parser.Models.BluRaySummaryInfo);
+            // 
+            // bsBluRayDiscInfo
+            // 
+            this.bsBluRayDiscInfo.AllowNew = true;
+            this.bsBluRayDiscInfo.DataSource = typeof(BatchGuy.App.Parser.Models.BluRayDiscInfo);
+            // 
+            // idDataGridViewTextBoxColumn
+            // 
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            this.idDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // isSelectedDataGridViewCheckBoxColumn1
+            // 
+            this.isSelectedDataGridViewCheckBoxColumn1.DataPropertyName = "IsSelected";
+            this.isSelectedDataGridViewCheckBoxColumn1.HeaderText = "Is Selected";
+            this.isSelectedDataGridViewCheckBoxColumn1.MinimumWidth = 100;
+            this.isSelectedDataGridViewCheckBoxColumn1.Name = "isSelectedDataGridViewCheckBoxColumn1";
+            // 
+            // discNameDataGridViewTextBoxColumn
+            // 
+            this.discNameDataGridViewTextBoxColumn.DataPropertyName = "DiscName";
+            this.discNameDataGridViewTextBoxColumn.HeaderText = "Disc Name";
+            this.discNameDataGridViewTextBoxColumn.MinimumWidth = 200;
+            this.discNameDataGridViewTextBoxColumn.Name = "discNameDataGridViewTextBoxColumn";
+            this.discNameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.discNameDataGridViewTextBoxColumn.Width = 300;
+            // 
+            // bluRayPathDataGridViewTextBoxColumn
+            // 
+            this.bluRayPathDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.bluRayPathDataGridViewTextBoxColumn.DataPropertyName = "BluRayPath";
+            this.bluRayPathDataGridViewTextBoxColumn.HeaderText = "Disc Directory";
+            this.bluRayPathDataGridViewTextBoxColumn.MinimumWidth = 400;
+            this.bluRayPathDataGridViewTextBoxColumn.Name = "bluRayPathDataGridViewTextBoxColumn";
+            this.bluRayPathDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
             // CreateEAC3ToBatchForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -469,9 +480,9 @@
             this.gbExtractForRemux.PerformLayout();
             this.gbDiscSummary.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvBluRaySummary)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsBluRaySummaryInfo)).EndInit();
             this.gbDisc.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvBluRayDiscInfo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsBluRaySummaryInfo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsBluRayDiscInfo)).EndInit();
             this.ResumeLayout(false);
 
@@ -479,7 +490,6 @@
 
         #endregion
 
-        private System.Windows.Forms.BindingSource bsBluRayDiscInfo;
         private System.Windows.Forms.OpenFileDialog ofdFileDialog;
         private System.ComponentModel.BackgroundWorker bgwEac3toLoadSummary;
         private System.Windows.Forms.GroupBox gbScreen;
@@ -493,10 +503,7 @@
         private System.Windows.Forms.Label lblBatchFilePath;
         private System.ComponentModel.BackgroundWorker bgwEac3toWriteBatchFile;
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn isSelectedDataGridViewCheckBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn eAC3ToConfigurationDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn discNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.ToolTip ttDirectoryUserControl;
         private System.Windows.Forms.GroupBox gbExtractForRemux;
         private System.Windows.Forms.Label label1;
@@ -521,5 +528,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn headerTextDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn detailTextDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn bluRayTitleInfoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.BindingSource bsBluRayDiscInfo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn isSelectedDataGridViewCheckBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn discNameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn bluRayPathDataGridViewTextBoxColumn;
     }
 }

@@ -166,7 +166,7 @@ namespace BatchGuy.App
         {
             if (e.RowIndex == -1)
                 return;
-            var id = dgvBluRayDiscInfo.Rows[e.RowIndex].Cells[1].Value;
+            var id = dgvBluRayDiscInfo.Rows[e.RowIndex].Cells[0].Value;
             _currentBluRayDiscInfo = _bindingListBluRayDiscInfo.SingleOrDefault(d => d.Id == id.ToString().StringToInt());
             _currentBluRayDiscGridRowIndex = e.RowIndex;
         }
