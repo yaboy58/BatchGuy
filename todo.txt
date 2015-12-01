@@ -29,27 +29,9 @@
 *unit test extension methods
 
 
---1.9 todo
-*Created an extension method for the List<BluRayDiscInfo> to get the # of episodes
-*Created unit test to support this new functionality
-*Created NumberOfEpisodes property on EAC3ToConfiguration Class
-*Major bug fixed where you couldn't set the audio type on the Blu-ray Title Info Screen
-*Hardcoded 99 batch size removed from EAC3OutputService and EAC3ToOutputNamingService
-*Disc Name is set to the Disc Name and not the entire directory path on create eac3to batch file screen
-*Disc Path added to the grid on the create eac3to batch file screen
-*Removed "form" from the Blu-ray Title Info Screen title
-*On the Blu-ray Title Info Screen, changed Track Id column Header Text to eac3to Track Id
-*Cleaned up EAC3ToOutputNamingService ie removed hardcoded 99 batch size and not initializing the tag/year several times
-*Put "*" next to fields that are mandatory on create eac3to batch file screen
-*Made the year on remux section of the create eac3to batch file a string, so users could format it ie (1965)
-*Video resolution on the remux section of the create eac3to batch file is now not required
-*Audio type on the remux section of the create eac3to batch file is now not required 
-*Remux naming convention example text added to the remux section on the create eac3to batch file screen to make that section more intuitive
-*Put "*" next to fields that are mandatory on create avisynth files screen
-*Put "*" next to fields that are mandatory on create x264 batch file screen
-*Added medium combox box (Remux) on the remux section on the create eac3to batch file screen and it optional
-*Added video format combox box (H.264, AVC) on the remux section on the create eac3to batch file screen and it optional
-*Updated all create eac3to batch file screen shots
+--2.0 todo
+*Ability to set the video variable for avisynth for advanced scripting
+
 
 
 --upcoming
