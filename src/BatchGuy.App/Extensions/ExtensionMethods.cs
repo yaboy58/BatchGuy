@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -76,6 +77,13 @@ namespace BatchGuy.App.Extensions
             }
 
             return count;
+        }
+
+        public static string RemoveDoubleSpaces(this string value)
+        {
+            string result;
+            result = Regex.Replace(value, @"\s+", " ");
+            return result;
         }
     }
 }
