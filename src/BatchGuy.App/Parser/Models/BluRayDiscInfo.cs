@@ -19,7 +19,7 @@ namespace BatchGuy.App.Parser.Models
             get 
             {
                 if (this.BluRayPath != null)
-                    return this.BluRayPath; 
+                    return new DirectoryInfo(this.BluRayPath).Name; 
                 else
                     return string.Empty;
             } 

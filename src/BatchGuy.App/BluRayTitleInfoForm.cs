@@ -199,6 +199,9 @@ namespace BatchGuy.App
             _currentBluRayTitleAudio = _bluRaySummaryInfo.BluRayTitleInfo.AudioList.SingleOrDefault(a => a.Id == id.ToString());
             cbAudioType.SelectedIndex = cbAudioType.FindString(this.GetAudioTypeName(_currentBluRayTitleAudio.AudioType));
             txtAudioTypeArguments.Text = _currentBluRayTitleAudio.Arguments;
+
+            if (_cbAudioTypeChangeTriggeredByDgvAudioCellClick) //selected index may not have changed because the same audio type can exist on a blu-ray
+                _cbAudioTypeChangeTriggeredByDgvAudioCellClick = false;
         }
 
         private string GetAudioTypeName(EnumAudioType audioType)

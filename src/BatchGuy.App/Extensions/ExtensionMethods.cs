@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BatchGuy.App.Parser.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -62,6 +63,19 @@ namespace BatchGuy.App.Extensions
             result.Append(value.Substring(lastOccurrence,  (value.Length - lastOccurrence)));
 
             return result.ToString().Trim();
+        }
+
+        public static int NumberOfEpisodes(this List<BluRayDiscInfo> value)
+        {
+            int count = 0;
+
+            foreach (BluRayDiscInfo disc in value.Where(d => d.IsSelected))
+            {
+                if (disc.BluRaySummaryInfoList != null)
+                    count += disc.BluRaySummaryInfoList.Where(s => s.IsSelected).Count();
+            }
+
+            return count;
         }
     }
 }

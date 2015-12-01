@@ -49,7 +49,7 @@ namespace BatchGuy.App
         {
             InitializeComponent();
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            setDirectoryUserControl.ComboBoxCaptionText = "eac3to output directory:";
+            setDirectoryUserControl.ComboBoxCaptionText = "eac3to output directory*:";
             setDirectoryUserControl.LabelDirectoryCaptionText = @"eac3to Output Directory (example: e01, e02): {0}\e##";
             this.SetToolTips();
         }
@@ -66,7 +66,9 @@ namespace BatchGuy.App
                 Setting setting = Program.ApplicationSettingsService.GetSettingByName("eac3to");
                 _eac3ToPath = setting.Value;
                 this.SetEac3ToConfiguration();
-                cbVideoResolution.SelectedIndex = 2;
+                cbRemuxVideoResolution.SelectedIndex = 3;
+                cbRemuxMedium.SelectedIndex = 1;
+                cbRemuxVideoFormat.SelectedIndex = 1;
             }
         }
 
@@ -74,12 +76,12 @@ namespace BatchGuy.App
         {
             new ToolTip().SetToolTip(txtBatFilePath, "Directory where eac3to batch file will be saved");
             new ToolTip().SetToolTip(setDirectoryUserControl, "eac3to stream extract directory");
-            new ToolTip().SetToolTip(txtSeriesName,"Series name");
-            new ToolTip().SetToolTip(txtSeasonNumber, "Season number");
-            new ToolTip().SetToolTip(txtSeasonYear, "Season year");
-            new ToolTip().SetToolTip(cbVideoResolution, "Video resolution");
-            new ToolTip().SetToolTip(txtAudioType, "Audio type i.e. FLAC 7.1");
-            new ToolTip().SetToolTip(txtTag, "Tag to place at the end of each file i.e. BGuy");
+            new ToolTip().SetToolTip(txtRemuxSeriesName,"Series name");
+            new ToolTip().SetToolTip(txtRemuxSeasonNumber, "Season number");
+            new ToolTip().SetToolTip(txtRemuxSeasonYear, "Season year");
+            new ToolTip().SetToolTip(cbRemuxVideoResolution, "Video resolution");
+            new ToolTip().SetToolTip(txtRemuxAudioType, "Audio type i.e. FLAC 7.1");
+            new ToolTip().SetToolTip(txtRemuxTag, "Tag to place at the end of each file i.e. BGuy");
             new ToolTip().SetToolTip(chkExtractForRemux, "Extract for Remux");
         }
 
@@ -166,7 +168,7 @@ namespace BatchGuy.App
         {
             if (e.RowIndex == -1)
                 return;
-            var id = dgvBluRayDiscInfo.Rows[e.RowIndex].Cells[1].Value;
+            var id = dgvBluRayDiscInfo.Rows[e.RowIndex].Cells[0].Value;
             _currentBluRayDiscInfo = _bindingListBluRayDiscInfo.SingleOrDefault(d => d.Id == id.ToString().StringToInt());
             _currentBluRayDiscGridRowIndex = e.RowIndex;
         }
@@ -256,11 +258,6 @@ namespace BatchGuy.App
                 if (_eac3toConfiguration.RemuxFileNameTemplate.SeasonNumber == 0)
                 {
                     MessageBox.Show("Please enter a Season Number!", "Error occurred", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return false;
-                }
-                if (_eac3toConfiguration.RemuxFileNameTemplate.AudioType == null || _eac3toConfiguration.RemuxFileNameTemplate.AudioType == string.Empty)
-                {
-                    MessageBox.Show("Please enter a Audio Type!", "Error occurred", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
                 }
             }
@@ -418,6 +415,7 @@ namespace BatchGuy.App
             _eac3toConfiguration.EAC3ToOutputPath = setDirectoryUserControl.CLIDirectory;
             _eac3toConfiguration.OutputDirectoryType = setDirectoryUserControl.OutputDirectoryType;
             _eac3toConfiguration.IsExtractForRemux = chkExtractForRemux.Checked;
+            _eac3toConfiguration.NumberOfEpisodes = this.GetBluRayDiscInfoList().NumberOfEpisodes();
         }
 
         private void dgvBluRayDiscInfo_DragDrop(object sender, DragEventArgs e)
@@ -497,7 +495,7 @@ namespace BatchGuy.App
 
         private void HandleTxtSeasonNumberTextChanged()
         {
-            this.ValidateNumbericTextBox(txtSeasonNumber);
+            this.ValidateNumbericTextBox(txtRemuxSeasonNumber);
         }
 
         private void ValidateNumbericTextBox(TextBox textBox)
@@ -508,30 +506,15 @@ namespace BatchGuy.App
             }
         }
 
-        private void txtSeasonYear_TextChanged(object sender, EventArgs e)
-        {
-            this.HandleTxtSeasonYearTextChanged();
-        }
-
-        private void HandleTxtSeasonYearTextChanged()
-        {
-            this.ValidateNumbericTextBox(txtSeasonYear);
-        }
-
         private void SetEAC3ToRemuxFileNameTemplate()
         {
             if (_eac3toConfiguration.IsExtractForRemux)
             {
-                _eac3toConfiguration.RemuxFileNameTemplate = new EAC3ToRemuxFileNameTemplate() { AudioType = txtAudioType.Text.Trim(), Tag = txtTag.Text.Trim(), SeriesName = txtSeriesName.Text.Trim(),
-                 VideoResolution = cbVideoResolution.Text};
+                _eac3toConfiguration.RemuxFileNameTemplate = new EAC3ToRemuxFileNameTemplate() { AudioType = txtRemuxAudioType.Text.Trim(), Tag = txtRemuxTag.Text.Trim(), SeriesName = txtRemuxSeriesName.Text.Trim(),
+                 VideoResolution = cbRemuxVideoResolution.Text, SeasonYear = txtRemuxSeasonYear.Text.Trim(), Medium = cbRemuxMedium.Text, VideoFormat = cbRemuxVideoFormat.Text};
 
-                if (txtSeasonNumber.Text.IsNumeric())
-                    _eac3toConfiguration.RemuxFileNameTemplate.SeasonNumber = txtSeasonNumber.Text.StringToInt();
-
-                if (txtSeasonYear.Text.IsNumeric())
-                    _eac3toConfiguration.RemuxFileNameTemplate.SeasonYear = txtSeasonYear.Text.StringToInt();
-                else
-                    _eac3toConfiguration.RemuxFileNameTemplate.SeasonYear = null;
+                if (txtRemuxSeasonNumber.Text.IsNumeric())
+                    _eac3toConfiguration.RemuxFileNameTemplate.SeasonNumber = txtRemuxSeasonNumber.Text.StringToInt();
             }
         }
 
