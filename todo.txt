@@ -41,7 +41,7 @@
 *On the Blu-ray Title Info Screen, changed Track Id column Header Text to eac3to Track Id
 *Cleaned up EAC3ToOutputNamingService ie removed hardcoded 99 batch size and not initializing the tag/year several times
 *Put "*" next to fields that are mandatory on create eac3to batch file screen
-*Make the year on remux section of the create eac3to batch file a string, so users could format it ie (1965)
+*Made the year on remux section of the create eac3to batch file a string, so users could format it ie (1965)
 *Video resolution on the remux section of the create eac3to batch file is now not required
 *Audio type on the remux section of the create eac3to batch file is now not required 
 *Remux naming convention example text added to the remux section on the create eac3to batch file screen to make that section more intuitive
