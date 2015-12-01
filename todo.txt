@@ -49,7 +49,7 @@
 *Put "*" next to fields that are mandatory on create x264 batch file screen
 *Added medium combox box (Remux) on the remux section on the create eac3to batch file screen and it optional
 *Added video format combox box (H.264, AVC) on the remux section on the create eac3to batch file screen and it optional
-
+*Updated all create eac3to batch file screen shots
 
 --upcoming
 *figure out a better solution to inform of the status of long running tasks
