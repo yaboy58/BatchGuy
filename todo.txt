@@ -30,7 +30,6 @@
 
 
 --1.9 todo
-
 *Created an extension method for the List<BluRayDiscInfo> to get the # of episodes
 *Created unit test to support this new functionality
 *Created NumberOfEpisodes property on EAC3ToConfiguration Class
@@ -51,7 +50,7 @@
 *Added medium combox box (Remux) on the remux section on the create eac3to batch file screen and it optional
 *Added video format combox box (H.264, AVC) on the remux section on the create eac3to batch file screen and it optional
 *Updated all create eac3to batch file screen shots
-*Create an extension method for the List<BluRayDiscInfo> to get the # of episodes and add new property on eac3config for the batch count, so you can get rid of hardcoded 99 for the batch count
+
 
 --upcoming
 *figure out a better solution to inform of the status of long running tasks
