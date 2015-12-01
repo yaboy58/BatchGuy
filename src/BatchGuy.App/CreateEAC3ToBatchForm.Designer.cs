@@ -189,7 +189,7 @@
             this.cbRemuxMedium.Items.AddRange(new object[] {
             "",
             "Remux"});
-            this.cbRemuxMedium.Location = new System.Drawing.Point(84, 199);
+            this.cbRemuxMedium.Location = new System.Drawing.Point(88, 199);
             this.cbRemuxMedium.Name = "cbRemuxMedium";
             this.cbRemuxMedium.Size = new System.Drawing.Size(113, 21);
             this.cbRemuxMedium.TabIndex = 16;
@@ -223,7 +223,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(231, 165);
+            this.label6.Location = new System.Drawing.Point(231, 164);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(29, 13);
             this.label6.TabIndex = 10;
@@ -254,7 +254,7 @@
             "720p",
             "1080i",
             "1080p"});
-            this.cbRemuxVideoResolution.Location = new System.Drawing.Point(92, 126);
+            this.cbRemuxVideoResolution.Location = new System.Drawing.Point(88, 126);
             this.cbRemuxVideoResolution.Name = "cbRemuxVideoResolution";
             this.cbRemuxVideoResolution.Size = new System.Drawing.Size(170, 21);
             this.cbRemuxVideoResolution.TabIndex = 7;
@@ -286,7 +286,7 @@
             // 
             // txtRemuxSeasonNumber
             // 
-            this.txtRemuxSeasonNumber.Location = new System.Drawing.Point(91, 88);
+            this.txtRemuxSeasonNumber.Location = new System.Drawing.Point(88, 88);
             this.txtRemuxSeasonNumber.Name = "txtRemuxSeasonNumber";
             this.txtRemuxSeasonNumber.Size = new System.Drawing.Size(70, 20);
             this.txtRemuxSeasonNumber.TabIndex = 3;
