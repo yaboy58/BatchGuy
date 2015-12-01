@@ -14,5 +14,7 @@ namespace BatchGuy.App.Eac3To.Models
         public string VideoResolution { get; set; }
         public string AudioType { get; set; }
         public string Tag { get; set; }
+        public string Medium { get; set; }
+        public string VideoFormat { get; set; }
     }
 }

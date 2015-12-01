@@ -53,7 +53,7 @@ namespace BatchGuy.App
 
         private void SetDirectoryUserControlValues()
         {
-            setDirectoryUserControl.ComboBoxCaptionText = "(.mkv) Files Directory:";
+            setDirectoryUserControl.ComboBoxCaptionText = "(.mkv) Files Directory:*";
             setDirectoryUserControl.LabelDirectoryCaptionText = @"Example: FFVideoSource(""{0}\e01\video01.mkv"")";
         }
 

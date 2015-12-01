@@ -54,13 +54,13 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(17, 26);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(140, 13);
+            this.label2.Size = new System.Drawing.Size(144, 13);
             this.label2.TabIndex = 5;
-            this.label2.Text = "(.avs) Files Output Directory:";
+            this.label2.Text = "(.avs) Files Output Directory*:";
             // 
             // txtOutputDirectory
             // 
-            this.txtOutputDirectory.Location = new System.Drawing.Point(157, 23);
+            this.txtOutputDirectory.Location = new System.Drawing.Point(159, 23);
             this.txtOutputDirectory.Name = "txtOutputDirectory";
             this.txtOutputDirectory.ReadOnly = true;
             this.txtOutputDirectory.Size = new System.Drawing.Size(434, 20);
@@ -71,9 +71,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(17, 171);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(99, 13);
+            this.label1.Size = new System.Drawing.Size(103, 13);
             this.label1.TabIndex = 7;
-            this.label1.Text = "AviSynth Template:";
+            this.label1.Text = "AviSynth Template*:";
             // 
             // txtAVSTemplate
             // 
@@ -98,9 +98,9 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(17, 128);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(135, 13);
+            this.label3.Size = new System.Drawing.Size(139, 13);
             this.label3.TabIndex = 10;
-            this.label3.Text = "Number of Files (Episodes):";
+            this.label3.Text = "Number of Files (Episodes)*:";
             // 
             // txtNumberOfFiles
             // 
@@ -112,7 +112,7 @@
             // btnOpenDialog
             // 
             this.btnOpenDialog.Image = global::BatchGuy.App.Properties.Resources.Avosoft_Warm_Toolbar_Folder_open;
-            this.btnOpenDialog.Location = new System.Drawing.Point(597, 10);
+            this.btnOpenDialog.Location = new System.Drawing.Point(599, 10);
             this.btnOpenDialog.Name = "btnOpenDialog";
             this.btnOpenDialog.Size = new System.Drawing.Size(61, 33);
             this.btnOpenDialog.TabIndex = 11;

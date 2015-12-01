@@ -44,15 +44,11 @@
 *Make the year on remux section of the create eac3to batch file a string, so users could format it ie (1965)
 *Video resolution on the remux section of the create eac3to batch file is now not required
 *Audio type on the remux section of the create eac3to batch file is now not required 
-
-*Only Series Name and Season# should be required for remuxes
-*The word Remux and AVC should be optional and shouldn't be hardcoded in the code
-
-
-*Put * next to fields that are mandatory
-
-
-
+*Remux naming convention example text added to the remux section on the create eac3to batch file screen to make that section more intuitive
+*Put "*" next to fields that are mandatory on create avisynth files screen
+*Put "*" next to fields that are mandatory on create x264 batch file screen
+*Added medium combox box (Remux) on the remux section on the create eac3to batch file screen and it optional
+*Added video format combox box (H.264, AVC) on the remux section on the create eac3to batch file screen and it optional
 
 
 --upcoming
