@@ -51,6 +51,3 @@
 *ability to create sample.avs/sample.encode.bat
 *Bug where you can't close title info screen because episode required even though nothing is chosen.  Button works but not the x at the top [couldn't reproduce]
 *ability to save/load eac3to batch guy data
-
-REMOVE //CHANGED 
-
