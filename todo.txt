@@ -42,6 +42,7 @@
 
 --2.0 todo
 *Ability to set the video variable for avisynth for advanced scripting
+*ability to save/load eac3to batch guy data
 
 
 
