@@ -1,0 +1,53 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BatchGuy.App", "BatchGuy.App\BatchGuy.App.csproj", "{E9703E89-AE3A-46E6-BF68-30313A3F5E1A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BatchGuy.Unit.Tests", "tests\BatchGuy.Unit.Tests\BatchGuy.Unit.Tests.csproj", "{55FED224-7E36-44A3-A66B-4E7526633E17}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{BB993579-70BC-4D8F-91F9-50933887303D}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BatchGuy.Eac3to.Parser.Example.Console.App", "BatchGuy.Eac3to.Parser.Example.Console.App\BatchGuy.Eac3to.Parser.Example.Console.App.csproj", "{7C31EBC1-0B88-4722-9C16-8819A551DD5C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BatchGuy.Settings.Serialization.Example.Console.App", "BatchGuy.Settings.Serialization.Example.Console.App\BatchGuy.Settings.Serialization.Example.Console.App.csproj", "{B66B70ED-E06A-4D88-8473-D089C5D6C69F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BatchGuy.X264Log.Parser.Example.Console.App", "BatchGuy.X264Log.Parser.Example.Console.App\BatchGuy.X264Log.Parser.Example.Console.App.csproj", "{432AE3F6-92AF-46AB-A5E5-4D68F68D17B8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E9703E89-AE3A-46E6-BF68-30313A3F5E1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9703E89-AE3A-46E6-BF68-30313A3F5E1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E9703E89-AE3A-46E6-BF68-30313A3F5E1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E9703E89-AE3A-46E6-BF68-30313A3F5E1A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55FED224-7E36-44A3-A66B-4E7526633E17}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55FED224-7E36-44A3-A66B-4E7526633E17}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55FED224-7E36-44A3-A66B-4E7526633E17}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55FED224-7E36-44A3-A66B-4E7526633E17}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C31EBC1-0B88-4722-9C16-8819A551DD5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C31EBC1-0B88-4722-9C16-8819A551DD5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C31EBC1-0B88-4722-9C16-8819A551DD5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C31EBC1-0B88-4722-9C16-8819A551DD5C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B66B70ED-E06A-4D88-8473-D089C5D6C69F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B66B70ED-E06A-4D88-8473-D089C5D6C69F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B66B70ED-E06A-4D88-8473-D089C5D6C69F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B66B70ED-E06A-4D88-8473-D089C5D6C69F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{432AE3F6-92AF-46AB-A5E5-4D68F68D17B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{432AE3F6-92AF-46AB-A5E5-4D68F68D17B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{432AE3F6-92AF-46AB-A5E5-4D68F68D17B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{432AE3F6-92AF-46AB-A5E5-4D68F68D17B8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
