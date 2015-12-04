@@ -31,14 +31,14 @@
 --2.0 todo
 *eac3to audio tracks now have the track# appended to the output file, instead of a number based on how many audio tracks the user chose
 *eac3to subtitle tracks now have the track# appended to the output file, instead of a number based on how many audio tracks the user chose
-*eac3to log file changed from .txt to .log
+*eac3to log file changed from (.txt) to (.log)
+*Fixed major bug where application could not identify MPEG2 blu-ray video tracks
 
-*Ability to set the video variable for avisynth for advanced scripting
+
 *ability to save/load eac3to batch guy data
 *research mkv merge and how the gui would work
-*use the track# for subtitles and audio instead of the collection count
 *maybe add a check all checkbox to grids with is selected
-*change log extension from .txt to .log
+
 
 
 --upcoming
@@ -46,3 +46,4 @@
 *ability to create sample.avs/sample.encode.bat
 *Bug where you can't close title info screen because episode required even though nothing is chosen.  Button works but not the x at the top [couldn't reproduce]
 *ability to save/load eac3to batch guy data
+*Ability to set the video variable for avisynth for advanced scripting

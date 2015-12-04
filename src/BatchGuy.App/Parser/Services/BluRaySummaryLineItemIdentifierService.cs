@@ -46,7 +46,7 @@ namespace BatchGuy.App.Parser.Services
 
         private bool IsDetailLine(ProcessOutputLineItem processOutputLineItem)
         {
-            string[] values = new string[] { "chapters", "h264", "dts", "ac3", "pcm", "stero", "raw","truehd" };
+            string[] values = new string[] { "chapters", "h264", "dts", "ac3", "pcm", "stero", "raw","truehd","avc","mpeg2" };
 
             bool isDetail = values.Any(v => processOutputLineItem.Text.ToLower().Contains(v));
 
