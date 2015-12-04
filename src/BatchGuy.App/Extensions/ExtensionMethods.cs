@@ -48,7 +48,7 @@ namespace BatchGuy.App.Extensions
             }
         }
 
-        public static string RemoveBackspaceCharacters(this string value)
+        public static string RemoveBackspaces(this string value)
         {
             if (string.IsNullOrEmpty(value)) //put -1 for last index of as well
                 return value;
@@ -81,8 +81,14 @@ namespace BatchGuy.App.Extensions
 
         public static string RemoveDoubleSpaces(this string value)
         {
-            string result;
-            result = Regex.Replace(value, @"\s+", " ");
+            string result = Regex.Replace(value, @"\s+", " ");
+            return result;
+        }
+
+        public static string RemoveColons(this string value)
+        {
+            string result = value.Replace(":", string.Empty);
+
             return result;
         }
     }

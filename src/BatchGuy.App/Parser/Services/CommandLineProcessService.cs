@@ -55,7 +55,7 @@ namespace BatchGuy.App.Parser.Services
                     string[] splitted = output.Split('\n');
                     foreach (string item in splitted)
                     {
-                        processOutputLineItems.Add(new ProcessOutputLineItem() { Id = id, Text = item.RemoveBackspaceCharacters() });
+                        processOutputLineItems.Add(new ProcessOutputLineItem() { Id = id, Text = item.RemoveBackspaces() });
                         id++;                        
                     }
                 }

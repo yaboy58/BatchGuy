@@ -21,5 +21,16 @@ namespace BatchGuy.Unit.Tests.ExtensionMethods
 
             discs.NumberOfEpisodes().Should().Be(3);
         }
+
+        [Test]
+        public void extensionmehtods_removecolons_test()
+        {
+            //given a string with a colon in it
+            string stringWithColon = "1:";
+            //when i attempt to remove colons
+            string stringWithNoColon = stringWithColon.RemoveColons();
+            //then colons should be removed
+            stringWithNoColon.Should().Be("1");
+        }
     }
 }
