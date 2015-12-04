@@ -93,7 +93,6 @@ namespace BatchGuy.App.Eac3to.Services
             StringBuilder sb = new StringBuilder();
             if (_bluRaySummaryInfo.BluRayTitleInfo.AudioList != null)
             {
-                int number = 1;
                 foreach (BluRayTitleAudio audio in _bluRaySummaryInfo.BluRayTitleInfo.AudioList)
                 {
                     if (audio.IsSelected)
@@ -102,7 +101,6 @@ namespace BatchGuy.App.Eac3to.Services
                         sb.Append(_eac3ToOutputNamingService.GetAudioName(_eac3ToConfiguration,audio, _filesOutputPath, _paddedEpisodeNumber, _bluRaySummaryInfo.BluRayTitleInfo.EpisodeName));
                         sb.Append(string.Format(" {0}", audio.Arguments));
                         sb.Append(" ");
-                        number++;
                     }
                 }                
             }
@@ -114,14 +112,12 @@ namespace BatchGuy.App.Eac3to.Services
             StringBuilder sb = new StringBuilder();
             if (_bluRaySummaryInfo.BluRayTitleInfo.Subtitles != null)
             {
-                int number = 1;
                 foreach (BluRayTitleSubtitle subtitle in _bluRaySummaryInfo.BluRayTitleInfo.Subtitles)
                 {
                     if (subtitle.IsSelected)
                     {
                         sb.Append(string.Format(" {0} ", subtitle.Id));
-                        sb.Append(_eac3ToOutputNamingService.GetSubtitleName(_eac3ToConfiguration, subtitle,_filesOutputPath, _paddedEpisodeNumber, _bluRaySummaryInfo.BluRayTitleInfo.EpisodeName, number));
-                        number++;
+                        sb.Append(_eac3ToOutputNamingService.GetSubtitleName(_eac3ToConfiguration, subtitle,_filesOutputPath, _paddedEpisodeNumber, _bluRaySummaryInfo.BluRayTitleInfo.EpisodeName));
                     }
                 }                
             }

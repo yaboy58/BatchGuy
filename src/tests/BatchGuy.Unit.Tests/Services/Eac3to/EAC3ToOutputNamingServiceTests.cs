@@ -194,12 +194,12 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
             string filesOutputPath = "c:\\bluray";
             string paddedEpisodeNumber = "01";
             string episodeName = string.Empty;
-            BluRayTitleSubtitle subtitle = new BluRayTitleSubtitle() { Language = "english" };
+            BluRayTitleSubtitle subtitle = new BluRayTitleSubtitle() {Id="3:", Language = "english" };
             //when i get the subtitle name
             IEAC3ToOutputNamingService service = new EAC3ToOutputNamingService();
-            string  subtitleName = service.GetSubtitleName(config, subtitle, filesOutputPath, paddedEpisodeNumber, episodeName,1);
+            string  subtitleName = service.GetSubtitleName(config, subtitle, filesOutputPath, paddedEpisodeNumber, episodeName);
             //then subtitle name should be hard coded for workflow
-            subtitleName.Should().Be("\"c:\\bluray\\english01-1.sup\"");
+            subtitleName.Should().Be("\"c:\\bluray\\english01-3.sup\"");
         }
 
         [Test]
@@ -226,10 +226,10 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
             string episodeName = string.Empty;
             //when i get the subtitle name
             IEAC3ToOutputNamingService service = new EAC3ToOutputNamingService();
-            BluRayTitleSubtitle subtitle = new BluRayTitleSubtitle() { Language = "english" };
-            string subtitleName = service.GetSubtitleName(config, subtitle, filesOutputPath, paddedEpisodeNumber, episodeName,1);
+            BluRayTitleSubtitle subtitle = new BluRayTitleSubtitle() {Id = "11:", Language = "english" };
+            string subtitleName = service.GetSubtitleName(config, subtitle, filesOutputPath, paddedEpisodeNumber, episodeName);
             //then subtitle name should be based on the remux template
-            subtitleName.Should().Be("\"c:\\bluray\\BatchGuy 1978 S02E01 1080p Remux H.264 FLAC 5.1-Guy english01-1.sup\"");
+            subtitleName.Should().Be("\"c:\\bluray\\BatchGuy 1978 S02E01 1080p Remux H.264 FLAC 5.1-Guy english01-11.sup\"");
         }
 
         [Test]
@@ -250,10 +250,10 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
             string episodeName = string.Empty;
             //when i get the subtitle name
             IEAC3ToOutputNamingService service = new EAC3ToOutputNamingService();
-            BluRayTitleSubtitle subtitle = new BluRayTitleSubtitle() { Language = "english" };
-            string subtitleName = service.GetSubtitleName(config, subtitle, filesOutputPath, paddedEpisodeNumber, episodeName,1);
+            BluRayTitleSubtitle subtitle = new BluRayTitleSubtitle() {Id = "3:", Language = "english" };
+            string subtitleName = service.GetSubtitleName(config, subtitle, filesOutputPath, paddedEpisodeNumber, episodeName);
             //then subtitle name should be based on the remux template
-            subtitleName.Should().Be("\"c:\\bluray\\BatchGuy S02E01 english01-1.sup\"");
+            subtitleName.Should().Be("\"c:\\bluray\\BatchGuy S02E01 english01-3.sup\"");
         }
 
         [Test]

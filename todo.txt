@@ -30,6 +30,7 @@
 
 --2.0 todo
 *eac3to audio tracks now have the track# appended to the output file, instead of a number based on how many audio tracks the user chose
+*eac3to subtitle tracks now have the track# appended to the output file, instead of a number based on how many audio tracks the user chose
 
 *Ability to set the video variable for avisynth for advanced scripting
 *ability to save/load eac3to batch guy data
