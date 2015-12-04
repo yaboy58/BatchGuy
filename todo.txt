@@ -44,6 +44,7 @@
 *Ability to set the video variable for avisynth for advanced scripting
 *ability to save/load eac3to batch guy data
 *research mkv merge and how the gui would work
+*use the track# for subtitles and audio instead of the collection count
 
 
 --upcoming
