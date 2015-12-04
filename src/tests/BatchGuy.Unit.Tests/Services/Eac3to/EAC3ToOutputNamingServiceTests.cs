@@ -150,12 +150,12 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
             string filesOutputPath = "c:\\bluray";
             string paddedEpisodeNumber = "01";
             string episodeName = string.Empty;
-            BluRayTitleAudio audio = new BluRayTitleAudio() { AudioType = EnumAudioType.DTS, Language = "english" };
+            BluRayTitleAudio audio = new BluRayTitleAudio() {Id = "13:", AudioType = EnumAudioType.DTS, Language = "english" };
             //when i get the audio name
             IEAC3ToOutputNamingService service = new EAC3ToOutputNamingService();
-            string audioName = service.GetAudioName(config, audio, filesOutputPath, paddedEpisodeNumber,episodeName, 1);
+            string audioName = service.GetAudioName(config, audio, filesOutputPath, paddedEpisodeNumber,episodeName);
             //then audio name should be hard coded for workflow
-            audioName.Should().Be("\"c:\\bluray\\english01-1.dts\"");
+            audioName.Should().Be("\"c:\\bluray\\english01-13.dts\"");
         }
 
         [Test]
@@ -180,10 +180,10 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
             string episodeName = string.Empty;
             //when i get the audio name
             IEAC3ToOutputNamingService service = new EAC3ToOutputNamingService();
-            BluRayTitleAudio audio = new BluRayTitleAudio() { AudioType = EnumAudioType.DTS, Language = "english" };
-            string audioName = service.GetAudioName(config, audio, filesOutputPath, paddedEpisodeNumber,episodeName, 1);
+            BluRayTitleAudio audio = new BluRayTitleAudio() { Id = "5:", AudioType = EnumAudioType.DTS, Language = "english" };
+            string audioName = service.GetAudioName(config, audio, filesOutputPath, paddedEpisodeNumber,episodeName);
             //then audio name should be based on the remux template
-            audioName.Should().Be("\"c:\\bluray\\BatchGuy 1978 S02E01 1080p FLAC 5.1-Guy english01-1.dts\"");
+            audioName.Should().Be("\"c:\\bluray\\BatchGuy 1978 S02E01 1080p FLAC 5.1-Guy english01-5.dts\"");
         }
 
         [Test]

@@ -55,12 +55,12 @@ namespace BatchGuy.App.Eac3To.Services
 
         }
 
-        public string GetAudioName(EAC3ToConfiguration eac3toConfiguration, Parser.Models.BluRayTitleAudio audio, string filesOutputPath, string paddedEpisodeNumber, string episodeName, int itemNumber)
+        public string GetAudioName(EAC3ToConfiguration eac3toConfiguration, BluRayTitleAudio audio, string filesOutputPath, string paddedEpisodeNumber, string episodeName)
         {
             StringBuilder sb = new StringBuilder();
             if (eac3toConfiguration.IsExtractForRemux != true)
             {
-                sb.Append(string.Format("\"{0}\\{1}{2}-{3}.{4}\"", filesOutputPath, audio.Language, paddedEpisodeNumber, itemNumber.ToString(), this.GetAudioExtension(audio.AudioType)));
+                sb.Append(string.Format("\"{0}\\{1}{2}-{3}.{4}\"", filesOutputPath, audio.Language, paddedEpisodeNumber, audio.Id.RemoveColons(), this.GetAudioExtension(audio.AudioType)));
             }
             else
             {
@@ -70,7 +70,7 @@ namespace BatchGuy.App.Eac3To.Services
                     this.GetFormattedPaddedEpisodeNumber(paddedEpisodeNumber), this.GetFormattedEpisodeName(episodeName), this.GetFormattedVideoResolution(eac3toConfiguration), this.GetFormattedMedium(eac3toConfiguration),
                     this.GetFormattedVideoFormat(eac3toConfiguration), this.GetFormattedAuditoType(eac3toConfiguration));
 
-                sb.Append(string.Format("\"{0}{1} {2}{3}-{4}.{5}\"", audioName.Trim(), tag, audio.Language, paddedEpisodeNumber, itemNumber.ToString(),
+                sb.Append(string.Format("\"{0}{1} {2}{3}-{4}.{5}\"", audioName.Trim(), tag, audio.Language, paddedEpisodeNumber, audio.Id.RemoveColons(),
                     this.GetAudioExtension(audio.AudioType)));
             }
             return sb.ToString().RemoveDoubleSpaces();

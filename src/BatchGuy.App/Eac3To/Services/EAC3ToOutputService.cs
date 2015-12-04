@@ -99,7 +99,7 @@ namespace BatchGuy.App.Eac3to.Services
                     if (audio.IsSelected)
                     {
                         sb.Append(string.Format(" {0} ", audio.Id));
-                        sb.Append(_eac3ToOutputNamingService.GetAudioName(_eac3ToConfiguration,audio, _filesOutputPath, _paddedEpisodeNumber, _bluRaySummaryInfo.BluRayTitleInfo.EpisodeName, number));
+                        sb.Append(_eac3ToOutputNamingService.GetAudioName(_eac3ToConfiguration,audio, _filesOutputPath, _paddedEpisodeNumber, _bluRaySummaryInfo.BluRayTitleInfo.EpisodeName));
                         sb.Append(string.Format(" {0}", audio.Arguments));
                         sb.Append(" ");
                         number++;

@@ -56,7 +56,7 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
         {
             //given dts and audio settings
             EAC3ToConfiguration config = new EAC3ToConfiguration() {  BatchFilePath = "c:\\temp" };
-            BluRaySummaryInfo summaryInfo = new BluRaySummaryInfo() { Eac3ToId = "1)", BluRayTitleInfo = new BluRayTitleInfo() { EpisodeNumber = "1", AudioList = new List<BluRayTitleAudio>() { new BluRayTitleAudio() { AudioType = EnumAudioType.DTS, IsSelected = true, Arguments = "-core"}}} };
+            BluRaySummaryInfo summaryInfo = new BluRaySummaryInfo() { Eac3ToId = "1)", BluRayTitleInfo = new BluRayTitleInfo() { EpisodeNumber = "1", AudioList = new List<BluRayTitleAudio>() { new BluRayTitleAudio() {Id="3:", AudioType = EnumAudioType.DTS, IsSelected = true, Arguments = "-core"}}} };
             string bluRayPath = "c:\\disc";
             IEAC3ToOutputNamingService eac3ToOutputNamingService = new EAC3ToOutputNamingService();
             //when I want the output

@@ -28,23 +28,15 @@
 *unit test new helper function methods
 *unit test extension methods
 
---1.9.1 todo
-*Added build number, along with major and minor assembly information to the about screen
-*Added build number, along with major and minor assembly information to the main menu screen
-*GetFormattedTest changed to GetFormattedTag, which it was supposed to be named
-*Fixed major bug where Audio Type on Remux was being ignored
-*Fixed 4 broken unit tests
-*Added string extension method to remove double spaces from string
-*Fixed major remux naming convention bug where there are double spaces in the output files
-*Fixed major remux naming convention bug where there are spaces in the output file when there shouldn't be
-*Added more unit tests for the EAC3ToOutputNamingService to aid in different naming combination testing
-*Fixed tab order on Blu-ray Title Info Screen
-
 --2.0 todo
+*eac3to audio tracks now have the track# appended to the output file, instead of a number based on how many audio tracks the user chose
+
 *Ability to set the video variable for avisynth for advanced scripting
 *ability to save/load eac3to batch guy data
 *research mkv merge and how the gui would work
 *use the track# for subtitles and audio instead of the collection count
+*maybe add a check all checkbox to grids with is selected
+*change log extension from .txt to .log
 
 
 --upcoming
