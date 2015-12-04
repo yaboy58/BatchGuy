@@ -14,7 +14,7 @@ namespace BatchGuy.App.Settings.Services
     public class ApplicationSettingsService : IApplicationSettingsService
     {
         private ErrorCollection _errors;
-        private IBinarySerializationService<ApplicationSettings> _binarySerializationService;
+        private IJsonSerializationService<ApplicationSettings> _jsonSerializationService;
         private ApplicationSettings _applicationSettings;
         private string _applicationDirectory;
 
@@ -26,10 +26,10 @@ namespace BatchGuy.App.Settings.Services
 
         public static readonly ILog _log = LogManager.GetLogger(typeof(ApplicationSettingsService));
 
-        public ApplicationSettingsService(IBinarySerializationService<ApplicationSettings> binarySerializationService)
+        public ApplicationSettingsService(IJsonSerializationService<ApplicationSettings> jsonSerializationService)
         {
             _errors = new ErrorCollection();
-            _binarySerializationService = binarySerializationService;
+            _jsonSerializationService = jsonSerializationService;
             Uri uri = new Uri(System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().CodeBase));
             _applicationDirectory =  uri.LocalPath;
             _applicationSettings = new ApplicationSettings() { ApplicationDirectory = _applicationDirectory };
@@ -49,7 +49,7 @@ namespace BatchGuy.App.Settings.Services
             try
             {
                 _errors.Clear();
-                _binarySerializationService.WriteToBinaryFile(applicationSettings.SettingsFile, applicationSettings, false);
+                _jsonSerializationService.WriteToJsonFile(applicationSettings.SettingsFile, applicationSettings, false);
                 _applicationSettings = applicationSettings;
             }
             catch (Exception ex)
@@ -63,7 +63,7 @@ namespace BatchGuy.App.Settings.Services
             try
             {
                 _errors.Clear();
-                _applicationSettings = _binarySerializationService.ReadFromBinaryFile<ApplicationSettings>(_applicationSettings.SettingsFile);
+                _applicationSettings = _jsonSerializationService.ReadFromJsonFile<ApplicationSettings>(_applicationSettings.SettingsFile);
             }
             catch (Exception ex)
             {

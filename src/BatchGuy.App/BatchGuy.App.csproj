@@ -41,6 +41,10 @@
       <HintPath>..\packages\log4net.2.0.4\lib\net45-full\log4net.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="nunit.framework, Version=3.0.5813.39031, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
       <HintPath>..\packages\NUnit.3.0.1\lib\net45\nunit.framework.dll</HintPath>
       <Private>True</Private>
@@ -134,10 +138,12 @@
     </Compile>
     <Compile Include="Settings\Interface\IApplicationSettingsService.cs" />
     <Compile Include="Settings\Interface\IBinarySerializationService.cs" />
+    <Compile Include="Settings\Interface\IJsonSerializationService.cs" />
     <Compile Include="Settings\Models\ApplicationSettings.cs" />
     <Compile Include="Settings\Models\Setting.cs" />
     <Compile Include="Settings\Services\ApplicationSettingsService.cs" />
     <Compile Include="Settings\Services\BinarySerializationService.cs" />
+    <Compile Include="Settings\Services\JsonSerializationService.cs" />
     <Compile Include="Shared\Events\DialogInitialDirectoryChangedEventArgs.cs" />
     <Compile Include="Shared\Interfaces\IBindingListSortService.cs" />
     <Compile Include="Shared\Interfaces\ISortService.cs" />

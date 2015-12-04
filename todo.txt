@@ -33,6 +33,8 @@
 *eac3to subtitle tracks now have the track# appended to the output file, instead of a number based on how many audio tracks the user chose
 *eac3to log file changed from (.txt) to (.log)
 *Fixed major bug where application could not identify MPEG2 blu-ray video tracks
+*Binary Serializer replaced with Newtonsoft Json.net serializer, so user shouldn't have to re-set settings each time there is a new application version
+*Updated ilmerage.bat to include newtonsoft json.net dll
 
 
 *ability to save/load eac3to batch guy data

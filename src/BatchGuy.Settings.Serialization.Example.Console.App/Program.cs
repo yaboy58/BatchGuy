@@ -14,8 +14,8 @@ namespace BatchGuy.Settings.Serialization.Example.Console.App
         static void Main(string[] args)
         {
             //initialize services
-            IBinarySerializationService<ApplicationSettings> binarySerializationService = new BinarySerializationService<ApplicationSettings>(); //serialization service 
-            IApplicationSettingsService applicationSettingsService = new ApplicationSettingsService(binarySerializationService); //application service
+            IJsonSerializationService<ApplicationSettings> jsonSerializationService = new JsonSerializationService<ApplicationSettings>(); //serialization service 
+            IApplicationSettingsService applicationSettingsService = new ApplicationSettingsService(jsonSerializationService); //application service
 
             //get current application settings
             ApplicationSettings applicationSettings = applicationSettingsService.GetApplicationSettings();
