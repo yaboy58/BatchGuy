@@ -276,7 +276,7 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
             IEAC3ToOutputNamingService service = new EAC3ToOutputNamingService();
             string logName = service.GetLogName(config, filesOutputPath, paddedEpisodeNumber, episodeName);
             //then subtitle name should be based on the remux template
-            logName.Should().Be(" -log=\"c:\\bluray\\BatchGuy S02E01 Episode 3 log.txt\"");
+            logName.Should().Be(" -log=\"c:\\bluray\\BatchGuy S02E01 Episode 3 log.log\"");
         }
     }
 }

@@ -100,7 +100,7 @@ namespace BatchGuy.App.Eac3To.Services
             StringBuilder sb = new StringBuilder();
             if (eac3toConfiguration.IsExtractForRemux != true)
             {
-                sb.Append(string.Format(" -log=\"{0}\\log{1}.txt\"", filesOutputPath, paddedEpisodeNumber));
+                sb.Append(string.Format(" -log=\"{0}\\log{1}.log\"", filesOutputPath, paddedEpisodeNumber));
             }
             else
             {
@@ -110,7 +110,7 @@ namespace BatchGuy.App.Eac3To.Services
                     paddedEpisodeNumber, this.GetFormattedEpisodeName(episodeName), this.GetFormattedVideoResolution(eac3toConfiguration),this.GetFormattedMedium(eac3toConfiguration),
                     this.GetFormattedVideoFormat(eac3toConfiguration), this.GetFormattedAuditoType(eac3toConfiguration));
 
-                sb.Append(string.Format(" -log=\"{0}{1} log.txt\"", logName.Trim(), tag));
+                sb.Append(string.Format(" -log=\"{0}{1} log.log\"", logName.Trim(), tag));
             }
             return sb.ToString().RemoveDoubleSpaces();
         }
