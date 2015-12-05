@@ -28,6 +28,7 @@
 *unit test new helper function methods
 *unit test extension methods
 
+
 --2.0 todo
 *eac3to audio tracks now have the track# appended to the output file, instead of a number based on how many audio tracks the user chose
 *eac3to subtitle tracks now have the track# appended to the output file, instead of a number based on how many audio tracks the user chose
@@ -42,13 +43,10 @@
 *User can now denote that an audio track is commentary
 *User can now denote that a subtitle track is commentary
 
-*ability to save/load eac3to batch guy data
-
-
-
 
 
 --possible nice to haves
+*ability to save/load eac3to batch guy data
 *maybe add a check all checkbox to grids with is selected
 *figure out a better solution to inform of the status of long running tasks
 *ability to create sample.avs/sample.encode.bat
