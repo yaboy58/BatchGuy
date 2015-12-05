@@ -573,3 +573,5 @@
 /src/packages/Moq.4.2.1510.2205/lib/sl5/Moq.Silverlight.xml
 /src/tests/BatchGuy.Unit.Tests/bin/Debug/Moq.dll
 /src/tests/BatchGuy.Unit.Tests/bin/Debug/Moq.xml
+/src/tests/BatchGuy.Unit.Tests/bin/Release/Moq.dll
+/src/tests/BatchGuy.Unit.Tests/bin/Release/Moq.xml
