@@ -322,5 +322,45 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
             //then audio name should be based on the remux template and commentary
             audioName.Should().Be("\"c:\\bluray\\BatchGuy 1978 S02E01 1080p FLAC 5.1-Guy english01-5-commentary.dts\"");
         }
+
+        [Test]
+        public void eac3ToOutputNamingService_can_set_subtitle_name_when_is_commentary_and_not_extract_for_remux_test()
+        {
+            //given not extract for remux
+            EAC3ToConfiguration config = new EAC3ToConfiguration() { IsExtractForRemux = false };
+            string filesOutputPath = "c:\\bluray";
+            string paddedEpisodeNumber = "01";
+            string episodeName = string.Empty;
+            BluRayTitleSubtitle subtitle = new BluRayTitleSubtitle() { Id = "3:", Language = "english", IsCommentary = true };
+            //when i get the subtitle name
+            IEAC3ToOutputNamingService service = new EAC3ToOutputNamingService();
+            string subtitleName = service.GetSubtitleName(config, subtitle, filesOutputPath, paddedEpisodeNumber, episodeName);
+            //then subtitle name should be hard coded for workflow and commentary
+            subtitleName.Should().Be("\"c:\\bluray\\english01-3-commentary.sup\"");
+        }
+
+        [Test]
+        public void eac3ToOutputNamingService_can_set_subtitle_name_when_is_commentary_and_is_extract_for_remux_and_only_required_test()
+        {
+            //given not extract for remux
+            EAC3ToConfiguration config = new EAC3ToConfiguration()
+            {
+                IsExtractForRemux = true,
+                RemuxFileNameTemplate = new EAC3ToRemuxFileNameTemplate()
+                {
+                    SeriesName = "BatchGuy",
+                    SeasonNumber = 2,
+                }
+            };
+            string filesOutputPath = "c:\\bluray";
+            string paddedEpisodeNumber = "01";
+            string episodeName = string.Empty;
+            //when i get the subtitle name
+            IEAC3ToOutputNamingService service = new EAC3ToOutputNamingService();
+            BluRayTitleSubtitle subtitle = new BluRayTitleSubtitle() { Id = "3:", Language = "english", IsCommentary = true };
+            string subtitleName = service.GetSubtitleName(config, subtitle, filesOutputPath, paddedEpisodeNumber, episodeName);
+            //then subtitle name should be based on the remux template and commentary
+            subtitleName.Should().Be("\"c:\\bluray\\BatchGuy S02E01 english01-3-commentary.sup\"");
+        }
     }
 }

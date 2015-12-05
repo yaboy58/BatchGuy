@@ -82,7 +82,7 @@ namespace BatchGuy.App.Eac3To.Services
             StringBuilder sb = new StringBuilder();
             if (eac3toConfiguration.IsExtractForRemux != true)
             {
-                sb.Append(string.Format("\"{0}\\{1}{2}-{3}.sup\"", filesOutputPath, subtitle.Language, paddedEpisodeNumber, subtitle.Id.RemoveColons()));
+                sb.Append(string.Format("\"{0}\\{1}{2}-{3}{4}.sup\"", filesOutputPath, subtitle.Language, paddedEpisodeNumber, subtitle.Id.RemoveColons(), this.GetSubtitleCommentary(subtitle)));
             }
             else
             {
@@ -92,7 +92,7 @@ namespace BatchGuy.App.Eac3To.Services
                     this.GetFormattedPaddedEpisodeNumber(paddedEpisodeNumber), this.GetFormattedEpisodeName(episodeName), this.GetFormattedVideoResolution(eac3toConfiguration), this.GetFormattedMedium(eac3toConfiguration),
                     this.GetFormattedVideoFormat(eac3toConfiguration), this.GetFormattedAuditoType(eac3toConfiguration));
 
-                sb.Append(string.Format("\"{0}{1} {2}{3}-{4}.sup\"", subtitleName.Trim(), tag, subtitle.Language, paddedEpisodeNumber, subtitle.Id.RemoveColons()));
+                sb.Append(string.Format("\"{0}{1} {2}{3}-{4}{5}.sup\"", subtitleName.Trim(), tag, subtitle.Language, paddedEpisodeNumber, subtitle.Id.RemoveColons(), this.GetSubtitleCommentary(subtitle)));
             }
             return sb.ToString().RemoveDoubleSpaces();
         }
@@ -182,6 +182,14 @@ namespace BatchGuy.App.Eac3To.Services
         {
             string commentary = string.Empty;
             if (audio.IsCommentary)
+                commentary = "-commentary";
+            return commentary;
+        }
+
+        private string GetSubtitleCommentary(BluRayTitleSubtitle subtitle)
+        {
+            string commentary = string.Empty;
+            if (subtitle.IsCommentary)
                 commentary = "-commentary";
             return commentary;
         }
