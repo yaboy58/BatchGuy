@@ -44,7 +44,7 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
         }
 
         [Test]
-        public void batchfilewriterservice_has_episodes_not_set_for_all_titles_error_when_some_episodes_numbers_not_set_test()
+        public void batchfilewriterservice_has_episode_number_not_set_for_all_titles_error_when_some_episodes_numbers_not_set_test()
         {
             List<BluRayDiscInfo> discList = new List<BluRayDiscInfo>() { new BluRayDiscInfo() { Id = 1, IsSelected = true,BluRayPath = @"c:\temp\disc1", 
                 BluRaySummaryInfoList = new List<BluRaySummaryInfo>() { new BluRaySummaryInfo() { IsSelected = true,
@@ -54,7 +54,21 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
             directorySystemServiceMock.Setup(m => m.Exists(It.IsAny<string>())).Returns(true);
             IEAC3ToBatchFileWriteService service = new EAC3ToBatchFileWriteService(config,directorySystemServiceMock.Object, discList);
             bool isValid = service.IsValid();
-            service.Errors[0].Description.Should().Be("Episode not set for all titles.");
+            service.Errors[0].Description.Should().Be("Episode number not set for all titles.");
+        }
+
+        [Test]
+        public void batchfilewriterservice_has_invalid_bluray_directory_error_when_some_bluray_disc_directories_dont_exist_test()
+        {
+            List<BluRayDiscInfo> discList = new List<BluRayDiscInfo>() { new BluRayDiscInfo() { Id = 1, IsSelected = true,BluRayPath = @"c:\temp\disc1", 
+                BluRaySummaryInfoList = new List<BluRaySummaryInfo>() { new BluRaySummaryInfo() { IsSelected = true,
+             BluRayTitleInfo = new BluRayTitleInfo() { EpisodeNumber = "1", Video = new BluRayTitleVideo() { IsSelected = true} }} } } };
+            EAC3ToConfiguration config = new EAC3ToConfiguration();
+            var directorySystemServiceMock = new Mock<IDirectorySystemService>();
+            directorySystemServiceMock.Setup(m => m.Exists(It.IsAny<string>())).Returns(false);
+            IEAC3ToBatchFileWriteService service = new EAC3ToBatchFileWriteService(config, directorySystemServiceMock.Object, discList);
+            bool isValid = service.IsValid();
+            service.Errors[0].Description.Should().Be("Invalid Blu-ray disc directories found.");
         }
     }
 }

@@ -88,6 +88,8 @@ namespace BatchGuy.App.Eac3to.Services
                 return false;
             if (!this.IsAllEpisodeNumbersSet())
                 return false;
+            if (!this.IsAllBluRayPathsValid())
+                return false;
 
             return true;
         }
@@ -176,7 +178,34 @@ namespace BatchGuy.App.Eac3to.Services
 
             if (!isValid)
             {
-                this._errors.Add(new Error() { Description = "Episode not set for all titles." });
+                this._errors.Add(new Error() { Description = "Episode number not set for all titles." });
+            }
+            return isValid;
+        }
+
+        private bool IsAllBluRayPathsValid()
+        {
+            bool isValid = true;
+
+            foreach (BluRayDiscInfo disc in _bluRayDiscInfoList.Where(d => d.IsSelected))
+            {
+                foreach (BluRaySummaryInfo info in disc.BluRaySummaryInfoList.Where(s => s.IsSelected))
+                {
+                    if (info.BluRayTitleInfo != null)
+                    {
+                        if ((info.BluRayTitleInfo.AudioList != null && info.BluRayTitleInfo.AudioList.Where(a => a.IsSelected).Count() > 0) || (info.BluRayTitleInfo.Chapter != null && info.BluRayTitleInfo.Chapter.IsSelected) 
+                            || (info.BluRayTitleInfo.Subtitles != null && info.BluRayTitleInfo.Subtitles.Where(s => s.IsSelected).Count() > 0) || (info.BluRayTitleInfo.Video != null && info.BluRayTitleInfo.Video.IsSelected))
+                        {
+                            if (!_directorySystemService.Exists(disc.BluRayPath))
+                                isValid = false;
+                        }
+                    }
+                }
+            }
+
+            if (!isValid)
+            {
+                this._errors.Add(new Error() { Description = "Invalid Blu-ray disc directories found." });
             }
             return isValid;
         }
