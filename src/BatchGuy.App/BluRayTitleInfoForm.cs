@@ -332,8 +332,9 @@ namespace BatchGuy.App
         {
             if (string.IsNullOrEmpty(_bluRaySummaryInfo.BluRayTitleInfo.EpisodeNumber))
             {
-                if (_bluRaySummaryInfo.BluRayTitleInfo.AudioList.Where(a => a.IsSelected).Count() > 0 || _bluRaySummaryInfo.BluRayTitleInfo.Subtitles.Where(s => s.IsSelected).Count() > 0 ||
-                    _bluRaySummaryInfo.BluRayTitleInfo.Chapter.IsSelected || _bluRaySummaryInfo.BluRayTitleInfo.Video.IsSelected)
+                if ((_bluRaySummaryInfo.BluRayTitleInfo.AudioList != null && _bluRaySummaryInfo.BluRayTitleInfo.AudioList.Where(a => a.IsSelected).Count() > 0) 
+                    || (_bluRaySummaryInfo.BluRayTitleInfo.Subtitles != null && _bluRaySummaryInfo.BluRayTitleInfo.Subtitles.Where(s => s.IsSelected).Count() > 0) 
+                    || (_bluRaySummaryInfo.BluRayTitleInfo.Chapter.IsSelected) || (_bluRaySummaryInfo.BluRayTitleInfo.Video.IsSelected))
                 {
                     MessageBox.Show("Please enter an episode number!", "Episode number required", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;

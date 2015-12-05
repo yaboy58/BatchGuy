@@ -34,7 +34,9 @@
 *eac3to log file changed from (.txt) to (.log)
 *Fixed major bug where application could not identify MPEG2 blu-ray video tracks
 *Binary Serializer replaced with Newtonsoft Json.net serializer, so user shouldn't have to re-set settings each time there is a new application version
+-http://blog.danskingdom.com/saving-and-loading-a-c-objects-data-to-an-xml-json-or-binary-file/
 *Updated ilmerage.bat to include newtonsoft json.net dll
+*Fixed major bug where the Blu-ray Title Info Screen would throw exceptions when you update a title with no subtitles
 
 
 *ability to save/load eac3to batch guy data
