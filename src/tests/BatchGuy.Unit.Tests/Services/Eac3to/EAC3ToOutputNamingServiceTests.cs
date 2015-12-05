@@ -278,5 +278,49 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
             //then subtitle name should be based on the remux template
             logName.Should().Be(" -log=\"c:\\bluray\\BatchGuy S02E01 Episode 3 log.log\"");
         }
+
+        [Test]
+        public void eac3ToOutputNamingService_can_set_audio_commentary_when_is_commentary_and_not_extract_for_remux_test()
+        {
+            //given not extract for remux and commentary
+            EAC3ToConfiguration config = new EAC3ToConfiguration() { IsExtractForRemux = false };
+            string filesOutputPath = "c:\\bluray";
+            string paddedEpisodeNumber = "01";
+            string episodeName = string.Empty;
+            BluRayTitleAudio audio = new BluRayTitleAudio() { Id = "13:", AudioType = EnumAudioType.DTS, Language = "english", IsCommentary = true };
+            //when i get the audio name
+            IEAC3ToOutputNamingService service = new EAC3ToOutputNamingService();
+            string audioName = service.GetAudioName(config, audio, filesOutputPath, paddedEpisodeNumber, episodeName);
+            //then audio name should have commentary in the name
+            audioName.Should().Be("\"c:\\bluray\\english01-13-commentary.dts\"");
+        }
+
+        [Test]
+        public void eac3ToOutputNamingService_can_set_audio_commentary_when_is_commentary_and_extract_for_remux_test()
+        {
+            //given not extract for remux
+            EAC3ToConfiguration config = new EAC3ToConfiguration()
+            {
+                IsExtractForRemux = true,
+                RemuxFileNameTemplate = new EAC3ToRemuxFileNameTemplate()
+                {
+                    AudioType = "FLAC 5.1",
+                    SeriesName = "BatchGuy",
+                    SeasonNumber = 2,
+                    SeasonYear = "1978",
+                    Tag = "Guy",
+                    VideoResolution = "1080p"
+                }
+            };
+            string filesOutputPath = "c:\\bluray";
+            string paddedEpisodeNumber = "01";
+            string episodeName = string.Empty;
+            //when i get the audio name
+            IEAC3ToOutputNamingService service = new EAC3ToOutputNamingService();
+            BluRayTitleAudio audio = new BluRayTitleAudio() { Id = "5:", AudioType = EnumAudioType.DTS, Language = "english", IsCommentary = true };
+            string audioName = service.GetAudioName(config, audio, filesOutputPath, paddedEpisodeNumber, episodeName);
+            //then audio name should be based on the remux template and commentary
+            audioName.Should().Be("\"c:\\bluray\\BatchGuy 1978 S02E01 1080p FLAC 5.1-Guy english01-5-commentary.dts\"");
+        }
     }
 }

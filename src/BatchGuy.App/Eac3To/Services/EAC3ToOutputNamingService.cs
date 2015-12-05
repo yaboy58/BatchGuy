@@ -60,7 +60,8 @@ namespace BatchGuy.App.Eac3To.Services
             StringBuilder sb = new StringBuilder();
             if (eac3toConfiguration.IsExtractForRemux != true)
             {
-                sb.Append(string.Format("\"{0}\\{1}{2}-{3}.{4}\"", filesOutputPath, audio.Language, paddedEpisodeNumber, audio.Id.RemoveColons(), this.GetAudioExtension(audio.AudioType)));
+                sb.Append(string.Format("\"{0}\\{1}{2}-{3}{4}.{5}\"", filesOutputPath, audio.Language, paddedEpisodeNumber, audio.Id.RemoveColons(), this.GetAudioCommentary(audio), 
+                    this.GetAudioExtension(audio.AudioType)));
             }
             else
             {
@@ -70,8 +71,8 @@ namespace BatchGuy.App.Eac3To.Services
                     this.GetFormattedPaddedEpisodeNumber(paddedEpisodeNumber), this.GetFormattedEpisodeName(episodeName), this.GetFormattedVideoResolution(eac3toConfiguration), this.GetFormattedMedium(eac3toConfiguration),
                     this.GetFormattedVideoFormat(eac3toConfiguration), this.GetFormattedAuditoType(eac3toConfiguration));
 
-                sb.Append(string.Format("\"{0}{1} {2}{3}-{4}.{5}\"", audioName.Trim(), tag, audio.Language, paddedEpisodeNumber, audio.Id.RemoveColons(),
-                    this.GetAudioExtension(audio.AudioType)));
+                sb.Append(string.Format("\"{0}{1} {2}{3}-{4}{5}.{6}\"", audioName.Trim(), tag, audio.Language, paddedEpisodeNumber, audio.Id.RemoveColons(),
+                    this.GetAudioCommentary(audio),this.GetAudioExtension(audio.AudioType)));
             }
             return sb.ToString().RemoveDoubleSpaces();
         }
@@ -175,6 +176,14 @@ namespace BatchGuy.App.Eac3To.Services
             if (!string.IsNullOrEmpty(eac3toConfiguration.RemuxFileNameTemplate.AudioType))
                 audioType = string.Format(" {0} ", eac3toConfiguration.RemuxFileNameTemplate.AudioType);
             return audioType;
+        }
+
+        private string GetAudioCommentary(BluRayTitleAudio audio)
+        {
+            string commentary = string.Empty;
+            if (audio.IsCommentary)
+                commentary = "-commentary";
+            return commentary;
         }
 
         private string GetFormattedTag(EAC3ToConfiguration eac3toConfiguration, string paddedEpisodeNumber, string episodeName)

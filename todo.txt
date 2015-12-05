@@ -38,7 +38,7 @@
 *Updated ilmerage.bat to include newtonsoft json.net dll
 *Fixed major bug where the Blu-ray Title Info Screen would throw exceptions when you update a title with no subtitles
 *Fixed bug where bluray title parser would set any eac3to ouput line with the word "video" in the tex to the video track and set the wrong eac3to track id
-
+*Validating that the blu-ray disc directory the user entered is valid to prepare for re-loading saved create eac3to batch file daa
 
 *ability to save/load eac3to batch guy data
 
