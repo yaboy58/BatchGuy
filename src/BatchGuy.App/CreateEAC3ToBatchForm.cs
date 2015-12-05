@@ -127,7 +127,8 @@ namespace BatchGuy.App
         {
             gbScreen.SetEnabled(false);
             List<BluRayDiscInfo> discs = this.GetBluRayDiscInfoList();
-            IEAC3ToBatchFileWriteService batchFileWriteService = new EAC3ToBatchFileWriteService(_eac3toConfiguration,discs);
+            IDirectorySystemService directorySystemService = new DirectorySystemService();
+            IEAC3ToBatchFileWriteService batchFileWriteService = new EAC3ToBatchFileWriteService(_eac3toConfiguration, directorySystemService, discs);
             bgwEac3toWriteBatchFile.RunWorkerAsync(batchFileWriteService);
         }
 

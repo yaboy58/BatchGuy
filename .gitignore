@@ -564,3 +564,12 @@
 /src/tests/BatchGuy.Unit.Tests/bin/Debug/Newtonsoft.Json.xml
 /src/tests/BatchGuy.Unit.Tests/bin/Release/Newtonsoft.Json.dll
 /src/tests/BatchGuy.Unit.Tests/bin/Release/Newtonsoft.Json.xml
+/src/packages/Moq.4.2.1510.2205/Moq.4.2.1510.2205.nupkg
+/src/packages/Moq.4.2.1510.2205/lib/net35/Moq.dll
+/src/packages/Moq.4.2.1510.2205/lib/net35/Moq.xml
+/src/packages/Moq.4.2.1510.2205/lib/net40/Moq.dll
+/src/packages/Moq.4.2.1510.2205/lib/net40/Moq.xml
+/src/packages/Moq.4.2.1510.2205/lib/sl5/Moq.Silverlight.dll
+/src/packages/Moq.4.2.1510.2205/lib/sl5/Moq.Silverlight.xml
+/src/tests/BatchGuy.Unit.Tests/bin/Debug/Moq.dll
+/src/tests/BatchGuy.Unit.Tests/bin/Debug/Moq.xml

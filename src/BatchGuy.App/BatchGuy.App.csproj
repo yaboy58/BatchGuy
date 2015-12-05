@@ -101,8 +101,10 @@
     </Compile>
     <Compile Include="Eac3To\Interfaces\IEAC3ToBatchFileWriteWarningService.cs" />
     <Compile Include="Eac3To\Interfaces\IEAC3ToOutputNamingService.cs" />
+    <Compile Include="Eac3To\Interfaces\IDirectorySystemService.cs" />
     <Compile Include="Eac3To\Models\EAC3ToConfiguration.cs" />
     <Compile Include="Eac3To\Models\EAC3ToRemuxFileNameTemplate.cs" />
+    <Compile Include="Eac3To\Services\DirectorySystemService.cs" />
     <Compile Include="Eac3To\Services\EAC3ToBatchFileWriteService.cs" />
     <Compile Include="Eac3To\Services\EAC3ToBatchFileWriteWarningService.cs" />
     <Compile Include="Eac3To\Services\EAC3ToOutputNamingService.cs" />

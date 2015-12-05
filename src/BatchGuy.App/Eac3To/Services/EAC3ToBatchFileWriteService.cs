@@ -22,6 +22,7 @@ namespace BatchGuy.App.Eac3to.Services
         private ErrorCollection _errors = new ErrorCollection();
         private List<BluRayDiscInfo> _bluRayDiscInfoList;
         private EAC3ToConfiguration _eac3toConfiguration;
+        private IDirectorySystemService _directorySystemService;
 
         public static readonly ILog _log = LogManager.GetLogger(typeof(EAC3ToBatchFileWriteService));
 
@@ -30,10 +31,11 @@ namespace BatchGuy.App.Eac3to.Services
             get { return _errors; }
         }
 
-        public EAC3ToBatchFileWriteService(EAC3ToConfiguration eac3toConfiguration, List<BluRayDiscInfo> bluRayDiscInfo)
+        public EAC3ToBatchFileWriteService(EAC3ToConfiguration eac3toConfiguration, IDirectorySystemService directorySystemService, List<BluRayDiscInfo> bluRayDiscInfo)
         {
             _bluRayDiscInfoList = bluRayDiscInfo;
             _eac3toConfiguration = eac3toConfiguration;
+            _directorySystemService = directorySystemService;
             _errors = new ErrorCollection();
         }
 

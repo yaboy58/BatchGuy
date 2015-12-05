@@ -41,14 +41,16 @@
 
 
 *ability to save/load eac3to batch guy data
-*research mkv merge and how the gui would work
+
+
+
+
+
+--possible nice to haves
 *maybe add a check all checkbox to grids with is selected
-
-
-
---upcoming
 *figure out a better solution to inform of the status of long running tasks
 *ability to create sample.avs/sample.encode.bat
 *Bug where you can't close title info screen because episode required even though nothing is chosen.  Button works but not the x at the top [couldn't reproduce]
 *ability to save/load eac3to batch guy data
 *Ability to set the video variable for avisynth for advanced scripting
+*research mkv merge and how the gui would work

@@ -11,6 +11,7 @@ using BatchGuy.App.Shared.Models;
 using BatchGuy.App.Eac3To.Interfaces;
 using BatchGuy.App.Eac3to.Models;
 using FluentAssertions;
+using Moq;
 
 namespace BatchGuy.Unit.Tests.Services.Eac3to
 {
@@ -20,9 +21,11 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
         [Test]
         public void batchfilewriterservice_has_no_disc_selected_error_when_no_disc_selected_test()
         {
-            List<BluRayDiscInfo> discList = new List<BluRayDiscInfo>() {new BluRayDiscInfo() { Id = 1, IsSelected = false }};
+            List<BluRayDiscInfo> discList = new List<BluRayDiscInfo>() {new BluRayDiscInfo() { Id = 1, IsSelected = false, BluRayPath = @"c:\temp\disc1" }};
             EAC3ToConfiguration config = new EAC3ToConfiguration();
-            IEAC3ToBatchFileWriteService service = new EAC3ToBatchFileWriteService(config, discList);
+            var directorySystemServiceMock = new Mock<IDirectorySystemService>();
+            directorySystemServiceMock.Setup(m => m.Exists(It.IsAny<string>())).Returns(true);
+            IEAC3ToBatchFileWriteService service = new EAC3ToBatchFileWriteService(config,directorySystemServiceMock.Object, discList);
             bool isValid = service.IsValid();
             service.Errors[0].Description.Should().Be("No Disc was selected.");
         }
@@ -30,9 +33,12 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
         [Test]
         public void batchfilewriterservice_has_no_episodes_selected_error_when_no_episodes_selected_test()
         {
-            List<BluRayDiscInfo> discList = new List<BluRayDiscInfo>() { new BluRayDiscInfo() { Id = 1, IsSelected = true, BluRaySummaryInfoList = new List<BluRaySummaryInfo>() { new BluRaySummaryInfo() { IsSelected = false} } } };
+            List<BluRayDiscInfo> discList = new List<BluRayDiscInfo>() { new BluRayDiscInfo() { Id = 1, IsSelected = true, BluRayPath = @"c:\temp\disc1", 
+                BluRaySummaryInfoList = new List<BluRaySummaryInfo>() { new BluRaySummaryInfo() { IsSelected = false } } } };
             EAC3ToConfiguration config = new EAC3ToConfiguration();
-            IEAC3ToBatchFileWriteService service = new EAC3ToBatchFileWriteService(config,discList);
+            var directorySystemServiceMock = new Mock<IDirectorySystemService>();
+            directorySystemServiceMock.Setup(m => m.Exists(It.IsAny<string>())).Returns(true);
+            IEAC3ToBatchFileWriteService service = new EAC3ToBatchFileWriteService(config,directorySystemServiceMock.Object,discList);
             bool isValid = service.IsValid();
             service.Errors[0].Description.Should().Be("No episodes selected.");
         }
@@ -40,10 +46,13 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
         [Test]
         public void batchfilewriterservice_has_episodes_not_set_for_all_titles_error_when_some_episodes_numbers_not_set_test()
         {
-            List<BluRayDiscInfo> discList = new List<BluRayDiscInfo>() { new BluRayDiscInfo() { Id = 1, IsSelected = true, BluRaySummaryInfoList = new List<BluRaySummaryInfo>() { new BluRaySummaryInfo() { IsSelected = true,
+            List<BluRayDiscInfo> discList = new List<BluRayDiscInfo>() { new BluRayDiscInfo() { Id = 1, IsSelected = true,BluRayPath = @"c:\temp\disc1", 
+                BluRaySummaryInfoList = new List<BluRaySummaryInfo>() { new BluRaySummaryInfo() { IsSelected = true,
              BluRayTitleInfo = new BluRayTitleInfo() { Video = new BluRayTitleVideo() { IsSelected = true} }} } } };
             EAC3ToConfiguration config = new EAC3ToConfiguration();
-            IEAC3ToBatchFileWriteService service = new EAC3ToBatchFileWriteService(config, discList);
+            var directorySystemServiceMock = new Mock<IDirectorySystemService>();
+            directorySystemServiceMock.Setup(m => m.Exists(It.IsAny<string>())).Returns(true);
+            IEAC3ToBatchFileWriteService service = new EAC3ToBatchFileWriteService(config,directorySystemServiceMock.Object, discList);
             bool isValid = service.IsValid();
             service.Errors[0].Description.Should().Be("Episode not set for all titles.");
         }

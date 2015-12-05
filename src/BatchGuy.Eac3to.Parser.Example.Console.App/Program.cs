@@ -2,6 +2,7 @@
 using BatchGuy.App.Eac3to.Models;
 using BatchGuy.App.Eac3to.Services;
 using BatchGuy.App.Eac3To.Interfaces;
+using BatchGuy.App.Eac3To.Services;
 using BatchGuy.App.Parser.Interfaces;
 using BatchGuy.App.Parser.Models;
 using BatchGuy.App.Parser.Services;
@@ -126,7 +127,8 @@ namespace BatchGuy.Eac3to.Parser.Example.Console.App
                     }
 
                     //now time to write out the batch file
-                    IEAC3ToBatchFileWriteService batchFileWriteService = new EAC3ToBatchFileWriteService(eac3toConfiguation,bluRayDiscList);
+                    IDirectorySystemService directorySystemService = new DirectorySystemService();
+                    IEAC3ToBatchFileWriteService batchFileWriteService = new EAC3ToBatchFileWriteService(eac3toConfiguation, directorySystemService, bluRayDiscList);
                     batchFileWriteService.Write();
                     if (batchFileWriteService.Errors.Count() == 0)
                     {
