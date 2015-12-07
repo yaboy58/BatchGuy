@@ -29,20 +29,9 @@
 *unit test extension methods
 
 
---2.0 todo
-*eac3to audio tracks now have the track# appended to the output file, instead of a number based on how many audio tracks the user chose
-*eac3to subtitle tracks now have the track# appended to the output file, instead of a number based on how many audio tracks the user chose
-*eac3to log file changed from (.txt) to (.log)
-*Fixed major bug where application could not identify MPEG2 blu-ray video tracks
-*Binary Serializer replaced with Newtonsoft Json.net serializer, so user shouldn't have to re-set settings each time there is a new application version
--http://blog.danskingdom.com/saving-and-loading-a-c-objects-data-to-an-xml-json-or-binary-file/
-*Updated ilmerage.bat to include newtonsoft json.net dll
-*Fixed major bug where the Blu-ray Title Info Screen would throw exceptions when you update a title with no subtitles
-*Fixed bug where bluray title parser would set any eac3to ouput line with the word "video" in the tex to the video track and set the wrong eac3to track id
-*Validating that the blu-ray disc directory the user entered is valid to prepare for possibly re-loading saved create eac3to batch file data
-*User can now denote that an audio track is commentary
-*User can now denote that a subtitle track is commentary
-
+--2.1.0 todo
+*Sort audio and subs by english by default
+*TheTVDB.com integration
 
 
 --possible nice to haves
