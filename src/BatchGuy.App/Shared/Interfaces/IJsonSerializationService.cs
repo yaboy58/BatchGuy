@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BatchGuy.App.Settings.Interface
+namespace BatchGuy.App.Shared.Interface
 {
     public interface IJsonSerializationService<T>
     {

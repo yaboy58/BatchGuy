@@ -16,7 +16,7 @@ using BatchGuy.App.Extensions;
 using BatchGuy.App.ThirdParty.FolderSelectDialog;
 using BatchGuy.App.Shared.Events;
 using BatchGuy.App.Constants;
-using BatchGuy.App.Settings.Models;
+using BatchGuy.App.Shared.Models;
 
 namespace BatchGuy.App
 {

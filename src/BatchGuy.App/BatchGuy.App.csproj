@@ -139,13 +139,11 @@
       <DependentUpon>SettingsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Settings\Interface\IApplicationSettingsService.cs" />
-    <Compile Include="Settings\Interface\IBinarySerializationService.cs" />
-    <Compile Include="Settings\Interface\IJsonSerializationService.cs" />
+    <Compile Include="Shared\Interfaces\IJsonSerializationService.cs" />
     <Compile Include="Settings\Models\ApplicationSettings.cs" />
     <Compile Include="Settings\Models\Setting.cs" />
     <Compile Include="Settings\Services\ApplicationSettingsService.cs" />
-    <Compile Include="Settings\Services\BinarySerializationService.cs" />
-    <Compile Include="Settings\Services\JsonSerializationService.cs" />
+    <Compile Include="Shared\Services\JsonSerializationService.cs" />
     <Compile Include="Shared\Events\DialogInitialDirectoryChangedEventArgs.cs" />
     <Compile Include="Shared\Interfaces\IBindingListSortService.cs" />
     <Compile Include="Shared\Interfaces\ISortService.cs" />

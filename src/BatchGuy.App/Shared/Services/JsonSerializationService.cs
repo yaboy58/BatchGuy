@@ -1,4 +1,4 @@
-﻿using BatchGuy.App.Settings.Interface;
+﻿using BatchGuy.App.Shared.Interface;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BatchGuy.App.Settings.Services
+namespace BatchGuy.App.Shared.Services
 {
     /// <summary>
     /// Functions for performing common Json Serialization operations.

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BatchGuy.App.Settings.Models
+namespace BatchGuy.App.Shared.Models
 {
     [Serializable]
     public class ApplicationSettings

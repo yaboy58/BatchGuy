@@ -7,9 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using BatchGuy.App.Settings.Interface;
-using BatchGuy.App.Settings.Models;
-using BatchGuy.App.Settings.Services;
+using BatchGuy.App.Shared.Interface;
+using BatchGuy.App.Shared.Models;
+using BatchGuy.App.Shared.Services;
 using BatchGuy.App.Extensions;
 
 namespace BatchGuy.App

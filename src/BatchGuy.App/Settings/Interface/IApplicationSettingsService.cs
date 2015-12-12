@@ -1,4 +1,4 @@
-﻿using BatchGuy.App.Settings.Models;
+﻿using BatchGuy.App.Shared.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BatchGuy.App.Shared.Models;
 
-namespace BatchGuy.App.Settings.Interface
+namespace BatchGuy.App.Shared.Interface
 {
     public interface IApplicationSettingsService
     {

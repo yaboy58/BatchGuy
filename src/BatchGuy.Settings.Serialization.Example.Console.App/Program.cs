@@ -1,6 +1,6 @@
-﻿using BatchGuy.App.Settings.Interface;
-using BatchGuy.App.Settings.Models;
-using BatchGuy.App.Settings.Services;
+﻿using BatchGuy.App.Shared.Interface;
+using BatchGuy.App.Shared.Models;
+using BatchGuy.App.Shared.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
