@@ -30,8 +30,7 @@
 
 
 --2.1.0 todo
-*Sort audio and subs by english by default
-*TheTVDB.com integration
+*Now sorting the Audio and Subtitle grids on Blu-ray Title Info Screen by Language on 1st Load
 
 
 --possible nice to haves
@@ -43,3 +42,4 @@
 *ability to save/load eac3to batch guy data
 *Ability to set the video variable for avisynth for advanced scripting
 *research mkv merge and how the gui would work
+*TheTVDB.com integration
