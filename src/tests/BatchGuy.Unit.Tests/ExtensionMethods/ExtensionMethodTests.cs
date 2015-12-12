@@ -23,7 +23,7 @@ namespace BatchGuy.Unit.Tests.ExtensionMethods
         }
 
         [Test]
-        public void extensionmehtods_removecolons_test()
+        public void extensionmethods_removecolons_test()
         {
             //given a string with a colon in it
             string stringWithColon = "1:";
