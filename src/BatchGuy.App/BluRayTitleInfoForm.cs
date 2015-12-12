@@ -376,6 +376,8 @@ namespace BatchGuy.App
         {
             this.LoadScreen();
             txtEpisodeNumber.Focus();
+            this.SortAudioGrid(2); //sort language 
+            this.SortSubtitleGrid(2); //sort language
             gbScreen.SetEnabled(true);
         }
 
@@ -383,7 +385,6 @@ namespace BatchGuy.App
         {
             if (_bluRaySummaryInfo.BluRayTitleInfo.AudioList == null || _bluRaySummaryInfo.BluRayTitleInfo.AudioList.Count() == 0)
                 return;
-
 
             string sortColumnName = dgvAudio.Columns[sortColumnNumber].DataPropertyName;
            _audioGridSortConfiguration.SortByColumnName = sortColumnName;
