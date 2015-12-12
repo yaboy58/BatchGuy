@@ -5,12 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using BatchGuy.App.Shared.Interface;
 using BatchGuy.App.Shared.Models;
-using BatchGuy.App.Shared.Models;
 using System.IO;
 using log4net;
-using BatchGuy.App.Shared.Interface;
+using BatchGuy.App.Settings.Interface;
 
-namespace BatchGuy.App.Shared.Services
+
+namespace BatchGuy.App.Settings.Services
 {
     public class ApplicationSettingsService : IApplicationSettingsService
     {

@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BatchGuy.App.Shared.Models;
 
-namespace BatchGuy.App.Shared.Interface
+namespace BatchGuy.App.Settings.Interface
 {
     public interface IApplicationSettingsService
     {

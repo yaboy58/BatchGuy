@@ -11,6 +11,8 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BatchGuy.App.Settings.Interface;
+using BatchGuy.App.Settings.Services;
 
 namespace BatchGuy
 {
