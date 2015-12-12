@@ -33,8 +33,10 @@
 *Now sorting the Audio and Subtitle grids on Blu-ray Title Info Screen by Language on 1st Load
 *Fixed major bug where the application would throw exceptions when the user chose nothing on the Blu-ray Title Info Screen and there were no chapters on the title
 *Fixed major bug where the application would throw an exception when an eac3to title contained no tracks, but just eac3to warning text
+*English audio is now auto-selected on the Blu-ray Title Info Screen
 
-*Auto-check english subs and audio
+
+
 *ability to save/load eac3to batch guy data
 
 --possible nice to haves
