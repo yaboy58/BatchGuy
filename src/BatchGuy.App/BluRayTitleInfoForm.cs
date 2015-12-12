@@ -394,7 +394,8 @@ namespace BatchGuy.App
                 txtEpisodeNumber.Focus();
                 this.SortAudioGrid(2); //sort language 
                 this.SortSubtitleGrid(2); //sort language
-                this.AutoSelectEnglishAudio(); //auto select english
+                this.AutoSelectEnglishAudio();
+                this.AutoSelectEnglishSubtitles();
                 gbScreen.SetEnabled(true);
             }
         }
@@ -462,6 +463,17 @@ namespace BatchGuy.App
                 foreach (BluRayTitleAudio audio in _bluRaySummaryInfo.BluRayTitleInfo.AudioList.Where(a => a.Text.ToLower().Contains("english")))
                 {
                     audio.IsSelected = true;
+                }
+            }
+        }
+
+        private void AutoSelectEnglishSubtitles()
+        {
+            if (_bluRaySummaryInfo.BluRayTitleInfo != null && _bluRaySummaryInfo.BluRayTitleInfo.Subtitles != null)
+            {
+                foreach (BluRayTitleSubtitle subtitle in _bluRaySummaryInfo.BluRayTitleInfo.Subtitles.Where(a => a.Text.ToLower().Contains("english")))
+                {
+                    subtitle.IsSelected = true;
                 }
             }
         }
