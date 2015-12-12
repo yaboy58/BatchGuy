@@ -31,14 +31,17 @@
 
 --2.1.0 todo
 *Now sorting the Audio and Subtitle grids on Blu-ray Title Info Screen by Language on 1st Load
+*Fixed major bug where the application would throw exceptions when the user chose nothing on the Blu-ray Title Info Screen and there were no chapters on the title
+*Fixed major bug where the application would throw an exception when an eac3to title contained no tracks, but just eac3to warning text
 
+*Auto-check english subs and audio
+*ability to save/load eac3to batch guy data
 
 --possible nice to haves
 *ability to save/load eac3to batch guy data
 *maybe add a check all checkbox to grids with is selected
 *figure out a better solution to inform of the status of long running tasks
 *ability to create sample.avs/sample.encode.bat
-*Bug where you can't close title info screen because episode required even though nothing is chosen.  Button works but not the x at the top [couldn't reproduce]
 *ability to save/load eac3to batch guy data
 *Ability to set the video variable for avisynth for advanced scripting
 *research mkv merge and how the gui would work

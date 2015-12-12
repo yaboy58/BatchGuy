@@ -330,11 +330,12 @@ namespace BatchGuy.App
 
         private bool IsScreenValid()
         {
-            if (string.IsNullOrEmpty(_bluRaySummaryInfo.BluRayTitleInfo.EpisodeNumber))
+            if (_bluRaySummaryInfo.BluRayTitleInfo != null && string.IsNullOrEmpty(_bluRaySummaryInfo.BluRayTitleInfo.EpisodeNumber))
             {
                 if ((_bluRaySummaryInfo.BluRayTitleInfo.AudioList != null && _bluRaySummaryInfo.BluRayTitleInfo.AudioList.Where(a => a.IsSelected).Count() > 0) 
-                    || (_bluRaySummaryInfo.BluRayTitleInfo.Subtitles != null && _bluRaySummaryInfo.BluRayTitleInfo.Subtitles.Where(s => s.IsSelected).Count() > 0) 
-                    || (_bluRaySummaryInfo.BluRayTitleInfo.Chapter.IsSelected) || (_bluRaySummaryInfo.BluRayTitleInfo.Video.IsSelected))
+                    || (_bluRaySummaryInfo.BluRayTitleInfo.Subtitles != null && _bluRaySummaryInfo.BluRayTitleInfo.Subtitles.Where(s => s.IsSelected).Count() > 0)
+                    || (_bluRaySummaryInfo.BluRayTitleInfo.Chapter != null && _bluRaySummaryInfo.BluRayTitleInfo.Chapter.IsSelected)
+                    || (_bluRaySummaryInfo.BluRayTitleInfo.Video != null  && _bluRaySummaryInfo.BluRayTitleInfo.Video.IsSelected))
                 {
                     MessageBox.Show("Please enter an episode number!", "Episode number required", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
@@ -374,11 +375,27 @@ namespace BatchGuy.App
 
         private void bgwEac3toLoadTitle_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            this.LoadScreen();
-            txtEpisodeNumber.Focus();
-            this.SortAudioGrid(2); //sort language 
-            this.SortSubtitleGrid(2); //sort language
-            gbScreen.SetEnabled(true);
+            if ((_bluRaySummaryInfo.BluRayTitleInfo == null) || (_bluRaySummaryInfo.BluRayTitleInfo.AudioList == null && _bluRaySummaryInfo.BluRayTitleInfo.Chapter == null && _bluRaySummaryInfo.BluRayTitleInfo.Subtitles == null 
+                && _bluRaySummaryInfo.BluRayTitleInfo.Video == null))
+            {
+                if (_bluRaySummaryInfo.BluRayTitleInfo != null && !string.IsNullOrEmpty(_bluRaySummaryInfo.BluRayTitleInfo.HeaderText))
+                {
+                    MessageBox.Show(string.Format("Blu-ray Title could not be loaded.  eac3to returned the following: {0}{1}",Environment.NewLine,_bluRaySummaryInfo.BluRayTitleInfo.HeaderText), "Invalid Blu-ray Title", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    MessageBox.Show("Blu-ray Title could not be loaded probably because it does not contain any tracks.", "Invalid Blu-ray Title", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                _bluRaySummaryInfo.BluRayTitleInfo = null;
+            }
+            else
+            {
+                this.LoadScreen();
+                txtEpisodeNumber.Focus();
+                this.SortAudioGrid(2); //sort language 
+                this.SortSubtitleGrid(2); //sort language
+                gbScreen.SetEnabled(true);
+            }
         }
 
         private void SortAudioGrid(int sortColumnNumber)
