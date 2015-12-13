@@ -29,23 +29,18 @@
 *unit test extension methods
 
 
---2.1.0 todo
-*Now sorting the Audio and Subtitle grids on Blu-ray Title Info Screen by Language on 1st Load
-*Fixed major bug where the application would throw exceptions when the user chose nothing on the Blu-ray Title Info Screen and there were no chapters on the title
-*Fixed major bug where the application would throw an exception when an eac3to title contained no tracks, but just eac3to warning text
-*English audio is now auto-selected on the Blu-ray Title Info Screen
-*English subtitles are now auto-selected on the Blu-ray Title Info Screen
-*Users can now save Create eac3to Batch File screen data entered to a file
-*Users can now re-load Create eac3to Batch File screen data from a saved file
-*Added images to new menu on Create eac3to Batch File screen
-*Added images to the Main Menu Screen
-
+--2.2.0 todo
+*Rename EnumBluRayLineItemType to have eac3to in the title, to prepare for tsMuxeR OR Make the identifylineitem service generic to pass in any enum or a combo of these
+*Research and start laying down the foundation for tsMuxeR
+-Understand the cli
+-Understand that you have to now introduce mkvmerge cli to mux the .h264 file into an mkv
+-Understand that 2 new exes have be tracked, mkvmerge and tsMuxeR
+*On Blu-ray Title Info Screen, instead of auto-sorting by langage, just always put eng at the top
 
 --possible nice to haves
 *maybe add a check all checkbox to grids with is selected
 *figure out a better solution to inform of the status of long running tasks
 *ability to create sample.avs/sample.encode.bat
-*ability to save/load eac3to batch guy data
 *Ability to set the video variable for avisynth for advanced scripting
 *research mkv merge and how the gui would work
 *TheTVDB.com integration
