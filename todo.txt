@@ -37,6 +37,8 @@
 *English subtitles are now auto-selected on the Blu-ray Title Info Screen
 *Users can now save Create eac3to Batch File screen data entered to a file
 *Users can now re-load Create eac3to Batch File screen data from a saved file
+*Added images to new menu on Create eac3to Batch File screen
+*Added images to the Main Menu Screen
 
 
 --possible nice to haves

@@ -73,6 +73,66 @@ namespace BatchGuy.App.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Custom_Icon_Design_Flatastic_10_New_file {
+            get {
+                object obj = ResourceManager.GetObject("Custom-Icon-Design-Flatastic-10-New-file", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Custom_Icon_Design_Flatastic_10_Open_file {
+            get {
+                object obj = ResourceManager.GetObject("Custom-Icon-Design-Flatastic-10-Open-file", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Custom_Icon_Design_Flatastic_2_Process_accept {
+            get {
+                object obj = ResourceManager.GetObject("Custom-Icon-Design-Flatastic-2-Process-accept", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Custom_Icon_Design_Pretty_Office_7_Extract_object {
+            get {
+                object obj = ResourceManager.GetObject("Custom-Icon-Design-Pretty-Office-7-Extract-object", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Everaldo_Crystal_Clear_App_edit {
+            get {
+                object obj = ResourceManager.GetObject("Everaldo-Crystal-Clear-App-edit", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Fatcow_Farm_Fresh_Script_add {
+            get {
+                object obj = ResourceManager.GetObject("Fatcow-Farm-Fresh-Script-add", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Icontexto_Webdev_Webdev_config {
             get {
                 object obj = ResourceManager.GetObject("Icontexto-Webdev-Webdev-config", resourceCulture);

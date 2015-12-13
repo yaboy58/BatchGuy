@@ -271,6 +271,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Icons\Avosoft-Warm-Toolbar-Folder-open.ico" />
+    <None Include="Icons\Custom-Icon-Design-Flatastic-10-Open-file.ico" />
+    <None Include="Icons\Custom-Icon-Design-Flatastic-10-New-file.ico" />
+    <None Include="Icons\Fatcow-Farm-Fresh-Script-add.ico" />
+    <None Include="Icons\Everaldo-Crystal-Clear-App-edit.ico" />
+    <None Include="Icons\Custom-Icon-Design-Pretty-Office-7-Extract-object.ico" />
+    <None Include="Icons\Custom-Icon-Design-Flatastic-2-Process-accept.ico" />
     <Content Include="Icons\Icontexto-Webdev-Webdev-config.ico" />
     <Content Include="Icons\webdev-config-icon.png" />
   </ItemGroup>

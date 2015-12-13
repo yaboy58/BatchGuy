@@ -568,6 +568,7 @@ namespace BatchGuy.App
         private void loadToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ofdFileDialog.Filter = "BatchGuy File|*.batchGuyEac3toSettings";
+            ofdFileDialog.FileName = "";
             if (ofdFileDialog.ShowDialog() == DialogResult.OK)
             {
                 string settingsFile = ofdFileDialog.FileName;
