@@ -155,11 +155,11 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(629, 171);
+            this.label6.Location = new System.Drawing.Point(635, 171);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(59, 13);
+            this.label6.Size = new System.Drawing.Size(66, 13);
             this.label6.TabIndex = 15;
-            this.label6.Text = "Video Filter";
+            this.label6.Text = "Video Filter*:";
             // 
             // label5
             // 
