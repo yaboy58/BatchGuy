@@ -8,6 +8,7 @@ using BatchGuy.App.Shared.Models;
 using System.IO;
 using log4net;
 using BatchGuy.App.Settings.Interface;
+using System.Reflection;
 
 
 namespace BatchGuy.App.Settings.Services
@@ -55,7 +56,8 @@ namespace BatchGuy.App.Settings.Services
             }
             catch (Exception ex)
             {
-                _errors.Add(new Error() {Description = ex.Message});
+                _log.ErrorFormat(Program.GetLogErrorFormat(), ex.Message, MethodBase.GetCurrentMethod().Name);
+                _errors.Add(new Error() {Description = "There was a problem saving the Application Settings File"});
             }
         }
 
@@ -68,7 +70,8 @@ namespace BatchGuy.App.Settings.Services
             }
             catch (Exception ex)
             {
-                _errors.Add(new Error() { Description = ex.Message });
+                _log.ErrorFormat(Program.GetLogErrorFormat(), ex.Message, MethodBase.GetCurrentMethod().Name);
+                _errors.Add(new Error() { Description = "There was a problem loading the Application Settings File" });
             }
         }
 

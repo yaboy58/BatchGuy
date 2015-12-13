@@ -30,6 +30,32 @@ namespace BatchGuy.App.UserControls
             this.SetDefaults();
         }
 
+       public void SetControlValues(string cliOutputDirectory, EnumDirectoryType directoryType)
+       {
+           _cliOutputDirectory = cliOutputDirectory;
+           _directoryType = directoryType;
+           this.SetTxtSetOuptDirectoryUserControl();
+           this.SetCbSetOutputDirectoryUserControlType();
+           this.HandleCbSetOutputDirectoryUserControlTypeSelectedIndexChanged(cbSetOutputDirectoryUserControlType.Text);
+       }
+
+       private void SetTxtSetOuptDirectoryUserControl()
+       {
+           txtSetOuptDirectoryUserControl.Text = _cliOutputDirectory;
+       }
+
+       private void SetCbSetOutputDirectoryUserControlType()
+       {
+           if (_directoryType == EnumDirectoryType.DirectoryPerEpisode)
+           {
+               cbSetOutputDirectoryUserControlType.SelectedIndex = 0;
+           }
+           else
+           {
+               cbSetOutputDirectoryUserControlType.SelectedIndex = 1;
+           }
+       }
+
         private void SetDefaults()
         {
             _directoryType = EnumDirectoryType.DirectoryPerEpisode;

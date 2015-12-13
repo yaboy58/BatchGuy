@@ -99,11 +99,14 @@
     <Compile Include="CreateX264BatchFileForm.Designer.cs">
       <DependentUpon>CreateX264BatchFileForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Eac3To\Interfaces\IBatchGuyEAC3ToSettingsService.cs" />
     <Compile Include="Eac3To\Interfaces\IEAC3ToBatchFileWriteWarningService.cs" />
     <Compile Include="Eac3To\Interfaces\IEAC3ToOutputNamingService.cs" />
     <Compile Include="Eac3To\Interfaces\IDirectorySystemService.cs" />
+    <Compile Include="Eac3To\Models\BatchGuyEAC3ToSettings.cs" />
     <Compile Include="Eac3To\Models\EAC3ToConfiguration.cs" />
     <Compile Include="Eac3To\Models\EAC3ToRemuxFileNameTemplate.cs" />
+    <Compile Include="Eac3To\Services\BatchGuyEAC3ToSettingsService.cs" />
     <Compile Include="Eac3To\Services\DirectorySystemService.cs" />
     <Compile Include="Eac3To\Services\EAC3ToBatchFileWriteService.cs" />
     <Compile Include="Eac3To\Services\EAC3ToBatchFileWriteWarningService.cs" />

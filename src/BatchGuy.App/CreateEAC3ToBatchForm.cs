@@ -22,12 +22,14 @@ using BatchGuy.App.Shared.Models;
 using BatchGuy.App.Shared.Interfaces;
 using BatchGuy.App.Shared.Services;
 using BatchGuy.App.ThirdParty.FolderSelectDialog;
-using BatchGuy.App.Shared.Models;
 using System.IO;
 using BatchGuy.App.Eac3To.Models;
 using BatchGuy.App.Shared.Events;
 using BatchGuy.App.Constants;
 using BatchGuy.App.Eac3To.Services;
+using BatchGuy.App.Shared.Interface;
+using log4net;
+using System.Reflection;
 
 namespace BatchGuy.App
 {
@@ -44,6 +46,8 @@ namespace BatchGuy.App
         private SortConfiguration _bluRayDiscGridSortConfiguration = new SortConfiguration();
         private string _eac3ToPath = string.Empty;
         private EAC3ToConfiguration _eac3toConfiguration = new EAC3ToConfiguration() { RemuxFileNameTemplate = new EAC3ToRemuxFileNameTemplate() };
+
+        public static readonly ILog _log = LogManager.GetLogger(typeof(CreateEAC3ToBatchForm));
 
         public CreateEAC3ToBatchForm()
         {
@@ -527,5 +531,130 @@ namespace BatchGuy.App
                 handler(this, e);
             }
         }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.HandlesSaveToolStripMenuItemClick();
+        }
+
+        private void HandlesSaveToolStripMenuItemClick()
+        {
+            this.SetEac3ToConfiguration();
+            this.SetEAC3ToRemuxFileNameTemplate();
+            if (this.IsAtLeastOneDiscLoaded() && this.IsScreenValid())
+            {
+                SaveFileDialog sfd = new SaveFileDialog();
+                sfd.Filter = "BatchGuy File|*.batchGuyEac3toSettings";
+                sfd.Title = "Save eac3to Settings File";
+                sfd.ShowDialog();
+
+                if (!string.IsNullOrEmpty(sfd.FileName))
+                {
+                    dgvBluRayDiscInfo.CurrentCell = null; //force the cell change so cell changed event fires
+                    dgvBluRaySummary.CurrentCell = null; //force the cell change so cell changed event fires
+                    List<BluRayDiscInfo> discs = this.GetBluRayDiscInfoList();
+                    BatchGuyEAC3ToSettings settings = new BatchGuyEAC3ToSettings() { BluRayDiscs = discs, Settings = _eac3toConfiguration };
+                    IJsonSerializationService<BatchGuyEAC3ToSettings> jsonSerializationService = new JsonSerializationService<BatchGuyEAC3ToSettings>();
+                    IBatchGuyEAC3ToSettingsService batchGuyEAC3ToSettingsService = new BatchGuyEAC3ToSettingsService(jsonSerializationService);
+                    batchGuyEAC3ToSettingsService.Save(sfd.FileName, settings);
+                    if (batchGuyEAC3ToSettingsService.Errors.Count() > 0)
+                    {
+                        MessageBox.Show(batchGuyEAC3ToSettingsService.Errors.GetErrorMessage(), "Error Occurred.", MessageBoxButtons.OK, MessageBoxIcon.Error);                        
+                    }
+                }                
+            }
+        }
+
+        private void loadToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ofdFileDialog.Filter = "BatchGuy File|*.batchGuyEac3toSettings";
+            if (ofdFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string settingsFile = ofdFileDialog.FileName;
+                this.HandlesLoadToolStripMenuItemClick(settingsFile);
+            }
+        }
+
+        private void HandlesLoadToolStripMenuItemClick(string settingsFile)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(settingsFile))
+                {
+                    IJsonSerializationService<BatchGuyEAC3ToSettings> jsonSerializationService = new JsonSerializationService<BatchGuyEAC3ToSettings>();
+                    IBatchGuyEAC3ToSettingsService batchGuyEAC3ToSettingsService = new BatchGuyEAC3ToSettingsService(jsonSerializationService);
+                    BatchGuyEAC3ToSettings batchGuyEAC3ToSettings = batchGuyEAC3ToSettingsService.GetBatchGuyEAC3ToSettings(settingsFile);
+                    if (batchGuyEAC3ToSettingsService.Errors.Count() > 0)
+                    {
+                        MessageBox.Show(batchGuyEAC3ToSettingsService.Errors.GetErrorMessage(), "Error Occurred.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        this.ReloadEac3ToSettingsAndBluRayDiscs(batchGuyEAC3ToSettings);
+                        this.ReloadRemux();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("There was an error trying to load the eac3to Settings File", "Error Occurred.", MessageBoxButtons.OK, MessageBoxIcon.Error);             
+                _log.ErrorFormat(Program.GetLogErrorFormat(), ex.Message, MethodBase.GetCurrentMethod().Name);
+            }
+        }
+
+        private void ReloadEac3ToSettingsAndBluRayDiscs(BatchGuyEAC3ToSettings batchGuyEAC3ToSettings)
+        {
+            _bindingListBluRayDiscInfo = new BindingList<BluRayDiscInfo>();
+            _bindingListBluRaySummaryInfo = new BindingList<BluRaySummaryInfo>();
+            _bluRaySummaryGridSortConfiguration = new SortConfiguration();
+            _bluRayDiscGridSortConfiguration = new SortConfiguration();
+            _currentBluRayDiscGridRowIndex = 0;
+            _eac3toConfiguration = batchGuyEAC3ToSettings.Settings;
+            txtBatFilePath.Text = _eac3toConfiguration.BatchFilePath;
+            foreach (BluRayDiscInfo disc in batchGuyEAC3ToSettings.BluRayDiscs)
+            {
+                _bindingListBluRayDiscInfo.Add(disc);
+            }
+            _currentBluRayDiscInfo = _bindingListBluRayDiscInfo[0];
+            foreach (BluRaySummaryInfo summary in _currentBluRayDiscInfo.BluRaySummaryInfoList)
+            {
+                _bindingListBluRaySummaryInfo.Add(summary);
+            }
+            setDirectoryUserControl.SetControlValues(_eac3toConfiguration.EAC3ToOutputPath, _eac3toConfiguration.OutputDirectoryType);
+            this.BindDgvBluRayDiscInfoGrid();
+            this.BindDgvBluRaySummaryGrid();
+        }
+
+        private void ReloadRemux()
+        {
+            chkExtractForRemux.Checked = _eac3toConfiguration.IsExtractForRemux;
+            if (_eac3toConfiguration.IsExtractForRemux)
+            {
+                txtRemuxSeriesName.Text = _eac3toConfiguration.RemuxFileNameTemplate.SeriesName;
+                txtRemuxSeasonNumber.Text = _eac3toConfiguration.RemuxFileNameTemplate.SeasonNumber.ToString();
+                txtRemuxAudioType.Text = _eac3toConfiguration.RemuxFileNameTemplate.AudioType;
+                txtRemuxTag.Text = _eac3toConfiguration.RemuxFileNameTemplate.Tag;
+                txtRemuxSeasonYear.Text = _eac3toConfiguration.RemuxFileNameTemplate.SeasonYear;
+                cbRemuxVideoResolution.SelectedIndex = 0;
+                if (!string.IsNullOrEmpty(_eac3toConfiguration.RemuxFileNameTemplate.VideoResolution))
+                {
+                    int index = cbRemuxVideoResolution.FindString(_eac3toConfiguration.RemuxFileNameTemplate.VideoResolution);
+                    cbRemuxVideoResolution.SelectedIndex = index;
+                }
+                cbRemuxMedium.SelectedIndex = 0;
+                if (!string.IsNullOrEmpty(_eac3toConfiguration.RemuxFileNameTemplate.Medium))
+                {
+                    int index = cbRemuxMedium.FindString(_eac3toConfiguration.RemuxFileNameTemplate.Medium);
+                    cbRemuxMedium.SelectedIndex = index;                    
+                }
+                cbRemuxVideoFormat.SelectedIndex = 0;
+                if (!string.IsNullOrEmpty(_eac3toConfiguration.RemuxFileNameTemplate.VideoFormat))
+                {
+                    int index = cbRemuxVideoFormat.FindString(_eac3toConfiguration.RemuxFileNameTemplate.VideoFormat);
+                    cbRemuxVideoFormat.SelectedIndex = index;                                        
+                }
+            }
+        }
+
     }
 }

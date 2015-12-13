@@ -35,12 +35,11 @@
 *Fixed major bug where the application would throw an exception when an eac3to title contained no tracks, but just eac3to warning text
 *English audio is now auto-selected on the Blu-ray Title Info Screen
 *English subtitles are now auto-selected on the Blu-ray Title Info Screen
+*Users can now save Create eac3to Batch File screen data entered to a file
+*Users can now re-load Create eac3to Batch File screen data from a saved file
 
-
-*ability to save/load eac3to batch guy data
 
 --possible nice to haves
-*ability to save/load eac3to batch guy data
 *maybe add a check all checkbox to grids with is selected
 *figure out a better solution to inform of the status of long running tasks
 *ability to create sample.avs/sample.encode.bat
