@@ -30,6 +30,8 @@
 
 
 --2.2.0 todo
+*Changed Menu text on Create eac3to Batch File Screen to "Save / Restore"
+
 *Rename EnumBluRayLineItemType to have eac3to in the title, to prepare for tsMuxeR OR Make the identifylineitem service generic to pass in any enum or a combo of these
 *Research and start laying down the foundation for tsMuxeR
 -Understand the cli

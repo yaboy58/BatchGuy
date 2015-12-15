@@ -546,15 +546,15 @@
             this.toolStripSeparator1,
             this.saveToolStripMenuItem});
             this.saveSettingsFileToolStripMenuItem.Name = "saveSettingsFileToolStripMenuItem";
-            this.saveSettingsFileToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
-            this.saveSettingsFileToolStripMenuItem.Text = "Menu";
+            this.saveSettingsFileToolStripMenuItem.Size = new System.Drawing.Size(93, 20);
+            this.saveSettingsFileToolStripMenuItem.Text = "Save / Restore";
             // 
             // loadToolStripMenuItem
             // 
             this.loadToolStripMenuItem.Image = global::BatchGuy.App.Properties.Resources.Custom_Icon_Design_Flatastic_10_Open_file;
             this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
             this.loadToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.loadToolStripMenuItem.Text = "Open";
+            this.loadToolStripMenuItem.Text = "Restore";
             this.loadToolStripMenuItem.Click += new System.EventHandler(this.loadToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
