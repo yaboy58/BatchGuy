@@ -31,9 +31,12 @@
 
 --2.2.0 todo
 *Changed Menu text on Create eac3to Batch File Screen to "Save / Restore"
+*User can not Drag N Drop (.batchGuyEac3toSettings) file onto the Create eac3to Batch File Screen, instead of using the menu
 
-*Drag N Drop for the .batchGuyEac3toSettings file
 
+
+--possible nice to haves
+*Unselect all on Blu-ray Title Info Screen
 *Rename EnumBluRayLineItemType to have eac3to in the title, to prepare for tsMuxeR OR Make the identifylineitem service generic to pass in any enum or a combo of these
 *Research and start laying down the foundation for tsMuxeR
 -Understand the cli
@@ -41,8 +44,6 @@
 -Understand that 2 new exes have be tracked, mkvmerge and tsMuxeR
 -Understand that you will have to use eac3to for .wav
 *On Blu-ray Title Info Screen, instead of auto-sorting by langage, just always put eng at the top
-
---possible nice to haves
 *maybe add a check all checkbox to grids with is selected
 *figure out a better solution to inform of the status of long running tasks
 *ability to create sample.avs/sample.encode.bat

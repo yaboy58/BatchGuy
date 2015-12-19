@@ -16,7 +16,6 @@ using BatchGuy.App.Extensions;
 using BatchGuy.App.Shared.Interfaces;
 using BatchGuy.App.Shared.Services;
 using BatchGuy.App.ThirdParty.FolderSelectDialog;
-using BatchGuy.App.Shared.Models;
 using System.IO;
 using BatchGuy.App.Shared.Events;
 using BatchGuy.App.Constants;
@@ -30,7 +29,7 @@ namespace BatchGuy.App
         private SortConfiguration _filesGridSortConfiguration = new SortConfiguration();
         private BindingList<X264File> _bindingListFiles = new BindingList<X264File>();
         private string _vfw4x264Path = string.Empty;
-        private string _logExtension = "avs";
+        private string _avsExtension = "avs";
         public CreateX264BatchFileForm()
         {
             InitializeComponent();
@@ -342,7 +341,7 @@ namespace BatchGuy.App
 
         private bool IsAviSynthFile(string file)
         {
-            if (file.EndsWith(_logExtension))
+            if (file.EndsWith(_avsExtension))
                 return true;
             else
                 return false;

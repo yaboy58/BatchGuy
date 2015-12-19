@@ -46,6 +46,7 @@ namespace BatchGuy.App
         private SortConfiguration _bluRayDiscGridSortConfiguration = new SortConfiguration();
         private string _eac3ToPath = string.Empty;
         private EAC3ToConfiguration _eac3toConfiguration = new EAC3ToConfiguration() { RemuxFileNameTemplate = new EAC3ToRemuxFileNameTemplate() };
+        private string _settingsExtension = "batchGuyEac3toSettings";
 
         public static readonly ILog _log = LogManager.GetLogger(typeof(CreateEAC3ToBatchForm));
 
@@ -657,5 +658,41 @@ namespace BatchGuy.App
             }
         }
 
+        private void CreateEAC3ToBatchForm_DragDrop(object sender, DragEventArgs e)
+        {
+            this.HandleCreateEAC3ToBatchFormDragDrop(e);
+        }
+
+        private void HandleCreateEAC3ToBatchFormDragDrop(DragEventArgs e)
+        {
+            foreach (string file in (Array)e.Data.GetData(DataFormats.FileDrop))
+            {
+                if (this.IsBatchGuyEac3toSettingsFile(file))
+                {
+                    this.HandlesLoadToolStripMenuItemClick(file);
+                }
+            }
+        }
+
+        private void CreateEAC3ToBatchForm_DragEnter(object sender, DragEventArgs e)
+        {
+            this.HandleCreateEAC3ToBatchFormDragEnter(e);
+        }
+
+        private void HandleCreateEAC3ToBatchFormDragEnter(DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                e.Effect = DragDropEffects.Copy;
+            }
+        }
+
+        private bool IsBatchGuyEac3toSettingsFile(string file)
+        {
+            if (file.EndsWith(_settingsExtension))
+                return true;
+            else
+                return false;
+        }
     }
 }
