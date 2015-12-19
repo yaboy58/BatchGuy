@@ -32,11 +32,14 @@
 --2.2.0 todo
 *Changed Menu text on Create eac3to Batch File Screen to "Save / Restore"
 
+*Drag N Drop for the .batchGuyEac3toSettings file
+
 *Rename EnumBluRayLineItemType to have eac3to in the title, to prepare for tsMuxeR OR Make the identifylineitem service generic to pass in any enum or a combo of these
 *Research and start laying down the foundation for tsMuxeR
 -Understand the cli
 -Understand that you have to now introduce mkvmerge cli to mux the .h264 file into an mkv
 -Understand that 2 new exes have be tracked, mkvmerge and tsMuxeR
+-Understand that you will have to use eac3to for .wav
 *On Blu-ray Title Info Screen, instead of auto-sorting by langage, just always put eng at the top
 
 --possible nice to haves
