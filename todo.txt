@@ -31,7 +31,7 @@
 
 --2.2.0 todo
 *Changed Menu text on Create eac3to Batch File Screen to "Save / Restore"
-*User can not Drag N Drop (.batchGuyEac3toSettings) file onto the Create eac3to Batch File Screen, instead of using the menu
+*User can now Drag N Drop (.batchGuyEac3toSettings) file onto the Create eac3to Batch File Screen, instead of using the menu
 
 
 
