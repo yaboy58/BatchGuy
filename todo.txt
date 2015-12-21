@@ -29,9 +29,9 @@
 *unit test extension methods
 
 
---2.2.0 todo
-*Changed Menu text on Create eac3to Batch File Screen to "Save / Restore"
-*User can now Drag N Drop (.batchGuyEac3toSettings) file onto the Create eac3to Batch File Screen, instead of using the menu
+--todo
+*Make the Season Number on Create eac3to Batch File optional (so movies can be remuxed)
+
 
 
 
