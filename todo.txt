@@ -30,12 +30,13 @@
 
 
 --todo
-*Make the Season Number on Create eac3to Batch File optional (so movies can be remuxed)
+*ability to create sample.avs/sample.encode.bat
 
 
 
 
 --possible nice to haves
+*Make the Season Number on Create eac3to Batch File optional (so movies can be remuxed)
 *Unselect all on Blu-ray Title Info Screen
 *Rename EnumBluRayLineItemType to have eac3to in the title, to prepare for tsMuxeR OR Make the identifylineitem service generic to pass in any enum or a combo of these
 *Research and start laying down the foundation for tsMuxeR
