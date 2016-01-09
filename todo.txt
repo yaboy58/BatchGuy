@@ -1,14 +1,10 @@
 --in general
 
-
 --eac3To Form
 *validation
 
-
-
 --AviSynth Form
 *validation
-
 
 --x264 Form
 *validation
@@ -16,24 +12,18 @@
 --bluray title info form
 *validation
 
-
 --parsers
 *validation
 *error handling
 *hard coded languages
 *hard coded audio types
 
-
 --unit tests
 *unit test new helper function methods
 *unit test extension methods
 
-
 --todo
 *ability to create sample.avs/sample.encode.bat
-
-
-
 
 --possible nice to haves
 *Make the Season Number on Create eac3to Batch File optional (so movies can be remuxed)

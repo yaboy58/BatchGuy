@@ -575,3 +575,4 @@
 /src/tests/BatchGuy.Unit.Tests/bin/Debug/Moq.xml
 /src/tests/BatchGuy.Unit.Tests/bin/Release/Moq.dll
 /src/tests/BatchGuy.Unit.Tests/bin/Release/Moq.xml
+/src/.vs/BatchGuy/v14/*.suo
