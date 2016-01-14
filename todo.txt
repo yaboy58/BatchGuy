@@ -31,6 +31,7 @@
 
 --todo
 *ability to create sample.avs/sample.encode.bat
+*testing new build config changes
 
 
 
