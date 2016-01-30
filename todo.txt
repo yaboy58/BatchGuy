@@ -30,12 +30,12 @@
 
 
 --todo
-*Create a batchguy log file that indicates how many files were processed and how long it took
-
+*Fixed bug where when there is no audio on the BluRay Title Info Screen, the application would crash
 
 
 
 --possible nice to haves
+*Create a batchguy log file that indicates how many files were processed and how long it took
 *ability to create sample.avs/sample.encode.bat
 *Make the Season Number on Create eac3to Batch File optional (so movies can be remuxed)
 *Unselect all on Blu-ray Title Info Screen

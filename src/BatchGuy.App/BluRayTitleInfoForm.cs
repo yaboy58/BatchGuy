@@ -122,13 +122,20 @@ namespace BatchGuy.App
 
         private void LoadAudio()
         {
-            foreach (BluRayTitleAudio audio in _bluRaySummaryInfo.BluRayTitleInfo.AudioList)
+            if (_bluRaySummaryInfo.BluRayTitleInfo.AudioList != null)
             {
-                _bindingListBluRayTitleAudio.Add(audio);
-            }
+                foreach (BluRayTitleAudio audio in _bluRaySummaryInfo.BluRayTitleInfo.AudioList)
+                {
+                    _bindingListBluRayTitleAudio.Add(audio);
+                }
 
-            bsBluRayTitleAudio.DataSource = _bindingListBluRayTitleAudio;
-            _bindingListBluRayTitleAudio.AllowEdit = true;
+                bsBluRayTitleAudio.DataSource = _bindingListBluRayTitleAudio;
+                _bindingListBluRayTitleAudio.AllowEdit = true;                
+            }
+            else
+            {
+                dgvAudio.Enabled = false;
+            }
         }
 
         private void LoadSubtitles()
