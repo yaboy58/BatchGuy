@@ -30,7 +30,7 @@
 
 
 --todo
-*Find out why DTS to FLAC audio doesn't keep its value after reloading the settings file
+*Trim white spaces from files names on the Create x264 Batch File
 
 
 
