@@ -30,7 +30,7 @@
 
 
 --todo
-*Trim white spaces from files names on the Create x264 Batch File
+*Trimming white spaces from the encode names on the Create x264 Batch File
 
 
 

@@ -334,7 +334,7 @@ namespace BatchGuy.App
             List<X264File> x264Files = new List<X264File>();
             foreach (X264File file in _bindingListFiles)
             {
-                x264Files.Add(new X264File() { AviSynthFileNameOnly = file.AviSynthFileNameOnly, AviSynthFilePath = file.AviSynthFilePath, EncodeName = file.EncodeName, Id = file.Id });
+                x264Files.Add(new X264File() { AviSynthFileNameOnly = file.AviSynthFileNameOnly, AviSynthFilePath = file.AviSynthFilePath, EncodeName = file.EncodeName.Trim(), Id = file.Id });
             }
             return x264Files;
         }
