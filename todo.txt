@@ -30,11 +30,12 @@
 
 
 --todo
-*Trimming white spaces from the encode names on the Create x264 Batch File
+1) Go by the actually episode number entered in the loop
 
-
+2) Validate on the screen
 
 --possible nice to haves
+*Trimming white spaces from the encode names on the Create x264 Batch File
 *Create a batchguy log file that indicates how many files were processed and how long it took
 *ability to create sample.avs/sample.encode.bat
 *Make the Season Number on Create eac3to Batch File optional (so movies can be remuxed)
