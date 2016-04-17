@@ -320,7 +320,7 @@ namespace BatchGuy.App
             {
                 if (this.IsAviSynthFile(file) && this.NotADuplicate(file))
                 {
-                    _bindingListFiles.Add(new X264File() { AviSynthFileNameOnly = Path.GetFileName(file), AviSynthFilePath = file });
+                    _bindingListFiles.Add(new X264File() { AviSynthFileNameOnly = Path.GetFileName(file), AviSynthFilePath = file, EncodeName = string.Empty });
                 }
             }
             if (_bindingListFiles.Count() > 0)
