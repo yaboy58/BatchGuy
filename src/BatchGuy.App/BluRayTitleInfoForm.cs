@@ -36,7 +36,8 @@ namespace BatchGuy.App
         private bool _cbAudioTypeChangeTriggeredByDgvAudioCellClick;
         private BindingList<MKVMergeLanguageItem> _bindingListMKVMergeLanguageItem = new BindingList<MKVMergeLanguageItem>();
         private MKVMergeItem _currentMKVMergeItem;
-        private bool _cbAudioTypeChangeTriggeredByDgvAudioCellClickForMKVMerge;
+        private bool _mkvMergeChangeTriggeredByDataGridCellClick;
+        private BluRayTitleSubtitle _currentBluRayTitleSubtitle;
 
 
         public BluRayTitleInfoForm()
@@ -221,23 +222,20 @@ namespace BatchGuy.App
         private void HandleDGVAudioCellClick(DataGridViewCellEventArgs e)
         {
             _cbAudioTypeChangeTriggeredByDgvAudioCellClick = true;
-            _cbAudioTypeChangeTriggeredByDgvAudioCellClickForMKVMerge = true;
+            _mkvMergeChangeTriggeredByDataGridCellClick = true;
             var id = dgvAudio.Rows[e.RowIndex].Cells[1].Value;
             _currentBluRayTitleAudio = _bluRaySummaryInfo.BluRayTitleInfo.AudioList.SingleOrDefault(a => a.Id == id.ToString());
             cbAudioType.SelectedIndex = cbAudioType.FindString(this.GetAudioTypeName(_currentBluRayTitleAudio.AudioType));
             txtAudioTypeArguments.Text = _currentBluRayTitleAudio.Arguments;
 
             _currentMKVMergeItem = _currentBluRayTitleAudio.MKVMergeItem;
-            txtMKVToolNixGUITrackName.Text = _currentMKVMergeItem.TrackName;
-            cbMKVToolNixGUILanguage.SelectedValue = _currentMKVMergeItem.Language.Value;
-            cbMKVToolNixGUIDefaultTrackFlag.SelectedIndex = cbMKVToolNixGUIDefaultTrackFlag.FindString(_currentMKVMergeItem.DefaultTrackFlag);
-            cbMKVToolNixGUIForcedTrackFlag.SelectedIndex = cbMKVToolNixGUIForcedTrackFlag.FindString(_currentMKVMergeItem.ForcedTrackFlag);
+            this.SetMKVMergeValues();
 
             if (_cbAudioTypeChangeTriggeredByDgvAudioCellClick) //selected index may not have changed because the same audio type can exist on a blu-ray
                 _cbAudioTypeChangeTriggeredByDgvAudioCellClick = false;
 
-            if (_cbAudioTypeChangeTriggeredByDgvAudioCellClickForMKVMerge)
-                _cbAudioTypeChangeTriggeredByDgvAudioCellClickForMKVMerge = false;
+            if (_mkvMergeChangeTriggeredByDataGridCellClick)
+                _mkvMergeChangeTriggeredByDataGridCellClick = false;
         }
 
         private string GetAudioTypeName(EnumAudioType audioType)
@@ -396,8 +394,22 @@ namespace BatchGuy.App
             }
             else
             {
+                this.HandleDGVSubtitlesCellClick(e);
                 dgvSubtitles.Rows[e.RowIndex].Selected = true;
             }
+        }
+
+        private void HandleDGVSubtitlesCellClick(DataGridViewCellEventArgs e)
+        {
+            _mkvMergeChangeTriggeredByDataGridCellClick = true;
+            var id = dgvSubtitles.Rows[e.RowIndex].Cells[1].Value;
+            _currentBluRayTitleSubtitle = _bluRaySummaryInfo.BluRayTitleInfo.Subtitles.SingleOrDefault(a => a.Id == id.ToString());
+
+            _currentMKVMergeItem = _currentBluRayTitleSubtitle.MKVMergeItem;
+            this.SetMKVMergeValues();
+
+            if (_mkvMergeChangeTriggeredByDataGridCellClick)
+                _mkvMergeChangeTriggeredByDataGridCellClick = false;
         }
 
         private void bgwEac3toLoadTitle_DoWork(object sender, DoWorkEventArgs e)
@@ -569,11 +581,22 @@ namespace BatchGuy.App
             this.HandleComboBoxMKVToolNixGUILanguageSelectedIndexChanged();
         }
 
+        private void SetMKVMergeValues()
+        {
+            txtMKVToolNixGUITrackName.Text = _currentMKVMergeItem.TrackName;
+            cbMKVToolNixGUILanguage.SelectedValue = _currentMKVMergeItem.Language.Value;
+            cbMKVToolNixGUIDefaultTrackFlag.SelectedIndex = cbMKVToolNixGUIDefaultTrackFlag.FindString(_currentMKVMergeItem.DefaultTrackFlag);
+            cbMKVToolNixGUIForcedTrackFlag.SelectedIndex = cbMKVToolNixGUIForcedTrackFlag.FindString(_currentMKVMergeItem.ForcedTrackFlag);
+
+            if (_mkvMergeChangeTriggeredByDataGridCellClick)
+                _mkvMergeChangeTriggeredByDataGridCellClick = false;
+        }
+
         private void HandleComboBoxMKVToolNixGUILanguageSelectedIndexChanged()
         {
-            if (_cbAudioTypeChangeTriggeredByDgvAudioCellClickForMKVMerge)
+            if (_mkvMergeChangeTriggeredByDataGridCellClick)
             {
-                _cbAudioTypeChangeTriggeredByDgvAudioCellClickForMKVMerge = false;
+                _mkvMergeChangeTriggeredByDataGridCellClick = false;
                 return;
             }
 
