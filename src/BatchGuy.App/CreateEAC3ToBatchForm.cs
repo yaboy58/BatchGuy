@@ -719,5 +719,28 @@ namespace BatchGuy.App
             else
                 return false;
         }
+
+        private void btnOpenMKVMergeOutputPathDialog_Click(object sender, EventArgs e)
+        {
+            this.HandleBtnSetOutputDirectoryUserControlOpenDialogClick();
+        }
+
+        private void HandleBtnSetOutputDirectoryUserControlOpenDialogClick()
+        {
+            SaveFileDialog sfd = new SaveFileDialog();
+            Setting setting = Program.ApplicationSettingsService.GetSettingByName(Constant.FeatureCreateEac3toBatchFileFormMKVMergeOutputDirectory);
+
+            var fsd = new FolderSelectDialog();
+            fsd.Title = "mkvmerge.exe output directory";
+            if (setting != null)
+                fsd.InitialDirectory = setting.Value;
+
+            if (fsd.ShowDialog(IntPtr.Zero))
+            {
+                txtMKVMergeOutputPath.Text = fsd.FileName;
+
+                OnDialogInitialDirectoryChanged(this, new DialogInitialDirectoryChangedEventArgs() { FeatureName = Constant.FeatureCreateEac3toBatchFileFormMKVMergeOutputDirectory, DirectoryPath = txtMKVMergeOutputPath.Text});
+            }
+        }
     }
 }

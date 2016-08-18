@@ -11,5 +11,6 @@ namespace BatchGuy.App.Constants
       public const string FeatureCreateEac3toBatchFileFormSaveEac3ToBatchFileDirectory = "create-eac3to-batch-file-Form-save-eac3to-batch-file-directory";
       public const string FeatureCreateAviSynthFilesFormSaveAviSynthFilesDirectory = "create-avisynth-files-form-save-avisynth-files-directory";
       public const string FeatureCreateX264BatchFileFormSaveX264BatchFileDirectory = "create-x264-batch-file-form-save-x264-batch-file-directory";
+        public const string FeatureCreateEac3toBatchFileFormMKVMergeOutputDirectory = "create-eac3to-batch-file-form-mkvmerge-output-directory";
   }
 }

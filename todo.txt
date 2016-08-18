@@ -32,12 +32,12 @@
 --todo
 *MKVToolNixGui Section is disabled on BluRay Title Info Screen if Remux Flag is false
 *Null out mkvmergeitems when remux flag is changed
-
+*Added a new BatchGuy Configuration for mkvmerge.exe
 
 
 *Think about going to v3.0 as you have breaking changes, I believe
 *When pushing the Create eac3to Batch File button on the Create EAC3To Batch Form Screen, the screen does not close
-*Added a new BatchGuy Configuration for mkvmerge.exe
+
 *Create EAC3To Batch Form Screen or Create MKV Merge Batch File disabled if mkvmerge.exe location not set
 *Default the MKVToolNixGUI Track Name to "Commentary" if commentary checkbox is checked (nice to have)
 
