@@ -589,11 +589,6 @@ namespace BatchGuy.App
                 return;
             }
 
-            this.SetMKVMergeLanguageValue();
-        }
-
-        private void SetMKVMergeLanguageValue()
-        {
             _currentMKVMergeItem.Language = (MKVMergeLanguageItem)cbMKVToolNixGUILanguage.SelectedItem;
         }
 
@@ -616,6 +611,22 @@ namespace BatchGuy.App
         private void HandleTextBoxMKVToolNixGUITrackNameTextChanged()
         {
             _currentMKVMergeItem.TrackName = txtMKVToolNixGUITrackName.Text.Trim();
+        }
+
+        private void cbMKVToolNixGUIDefaultTrackFlag_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.HandleComboBoxMKVToolNixGUIDefaultTrackFlageSelectedIndexChanged();
+        }
+
+        private void HandleComboBoxMKVToolNixGUIDefaultTrackFlageSelectedIndexChanged()
+        {
+            if (_mkvMergeChangeTriggeredByDataGridCellClick)
+            {
+                _mkvMergeChangeTriggeredByDataGridCellClick = false;
+                return;
+            }
+
+            _currentMKVMergeItem.DefaultTrackFlag = cbMKVToolNixGUIDefaultTrackFlag.Text;
         }
     }
 }

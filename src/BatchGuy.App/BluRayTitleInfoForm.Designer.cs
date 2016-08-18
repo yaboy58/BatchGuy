@@ -481,6 +481,7 @@
             this.cbMKVToolNixGUIDefaultTrackFlag.Name = "cbMKVToolNixGUIDefaultTrackFlag";
             this.cbMKVToolNixGUIDefaultTrackFlag.Size = new System.Drawing.Size(249, 21);
             this.cbMKVToolNixGUIDefaultTrackFlag.TabIndex = 21;
+            this.cbMKVToolNixGUIDefaultTrackFlag.SelectedIndexChanged += new System.EventHandler(this.cbMKVToolNixGUIDefaultTrackFlag_SelectedIndexChanged);
             // 
             // lblMKVToolNixGUIDefaultTrackFlag
             // 
