@@ -459,6 +459,7 @@
             this.cbMKVToolNixGUIForcedTrackFlag.Name = "cbMKVToolNixGUIForcedTrackFlag";
             this.cbMKVToolNixGUIForcedTrackFlag.Size = new System.Drawing.Size(249, 21);
             this.cbMKVToolNixGUIForcedTrackFlag.TabIndex = 23;
+            this.cbMKVToolNixGUIForcedTrackFlag.SelectedIndexChanged += new System.EventHandler(this.cbMKVToolNixGUIForcedTrackFlag_SelectedIndexChanged);
             // 
             // lblMKVToolNixGUIForcedTrackFlag
             // 

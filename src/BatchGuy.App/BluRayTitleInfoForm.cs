@@ -615,10 +615,10 @@ namespace BatchGuy.App
 
         private void cbMKVToolNixGUIDefaultTrackFlag_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.HandleComboBoxMKVToolNixGUIDefaultTrackFlageSelectedIndexChanged();
+            this.HandleComboBoxMKVToolNixGUIDefaultTrackFlagSelectedIndexChanged();
         }
 
-        private void HandleComboBoxMKVToolNixGUIDefaultTrackFlageSelectedIndexChanged()
+        private void HandleComboBoxMKVToolNixGUIDefaultTrackFlagSelectedIndexChanged()
         {
             if (_mkvMergeChangeTriggeredByDataGridCellClick)
             {
@@ -627,6 +627,16 @@ namespace BatchGuy.App
             }
 
             _currentMKVMergeItem.DefaultTrackFlag = cbMKVToolNixGUIDefaultTrackFlag.Text;
+        }
+
+        private void cbMKVToolNixGUIForcedTrackFlag_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.HandleComboBoxMKVToolNixGUIForcedFlagSelectedIndexChanged();
+        }
+
+        private void HandleComboBoxMKVToolNixGUIForcedFlagSelectedIndexChanged()
+        {
+            _currentMKVMergeItem.ForcedTrackFlag = cbMKVToolNixGUIForcedTrackFlag.Text;
         }
     }
 }
