@@ -100,6 +100,15 @@ namespace BatchGuy.App
                 return true;
         }
 
+        private bool IsMkvMergePathSetInSettings()
+        {
+            Setting setting = Program.ApplicationSettingsService.GetSettingByName("mkvmerge");
+            if (setting == null || string.IsNullOrEmpty(setting.Value))
+                return false;
+            else
+                return true;
+        }
+
         private void btnWriteToBatFile_Click(object sender, EventArgs e)
         {
             DialogResult startProcessResult = MessageBox.Show("Create eac3to batch file?", "Start Process?", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
@@ -372,7 +381,6 @@ namespace BatchGuy.App
             if (batchFileWriteService.Errors.Count() == 0)
             {
                 MessageBox.Show("Batch File created!", "Process Complete", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                this.Close();
             }
             else
             {
@@ -423,6 +431,7 @@ namespace BatchGuy.App
             _eac3toConfiguration.OutputDirectoryType = setDirectoryUserControl.OutputDirectoryType;
             _eac3toConfiguration.IsExtractForRemux = chkExtractForRemux.Checked;
             _eac3toConfiguration.NumberOfEpisodes = this.GetBluRayDiscInfoList().NumberOfEpisodes();
+            _eac3toConfiguration.MKVMergeOutputPath = txtMKVMergeOutputPath.Text;
         }
 
         private void dgvBluRayDiscInfo_DragDrop(object sender, DragEventArgs e)
@@ -749,6 +758,54 @@ namespace BatchGuy.App
         {
             btnWriteToMKVMergeBatFile.Enabled = _eac3toConfiguration.IsExtractForRemux;
                 
+        }
+
+        private void btnWriteToMKVMergeBatFile_Click(object sender, EventArgs e)
+        {
+
+
+            DialogResult startProcessResult = MessageBox.Show("Create mkvmerge batch file?", "Start Process?", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+
+            if (startProcessResult == System.Windows.Forms.DialogResult.Yes)
+            {
+                this.SetEac3ToConfiguration();
+                this.SetEAC3ToRemuxFileNameTemplate();
+                if (this.IsScreenValidForRemux() && this.IsAtLeastOneDiscLoaded() && this.IsScreenValid())
+                {
+                    List<BluRayDiscInfo> discs = this.GetBluRayDiscInfoList();
+                    WarningCollection warnings = new EAC3ToBatchFileWriteWarningService(discs).GetWarnings();
+                    if (warnings.Count() > 0)
+                    {
+                        string warning = string.Format("{0}{1}{2}Would you still like to continue?", warnings.GetWarningMessage(), Environment.NewLine, Environment.NewLine);
+                        DialogResult warningResult = MessageBox.Show(warning, "Warnings Found", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
+                        if (warningResult == System.Windows.Forms.DialogResult.Yes)
+                        {
+                            //this.WriteToBatchFile();
+                        }
+                    }
+                    else
+                    {
+                        //this.WriteToBatchFile();
+                    }
+                }
+            }
+        }
+
+        private bool IsScreenValidForRemux()
+        {
+            if (IsMkvMergePathSetInSettings() != true)
+            {
+                MessageBox.Show("Please go to settings and set the mkvmerge.exe path","Error occurred", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            if (_eac3toConfiguration.MKVMergeOutputPath == null || _eac3toConfiguration.MKVMergeOutputPath == string.Empty)
+            {
+                MessageBox.Show("Please choose an mkvmerge output path!", "Error occurred", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            return true;
         }
     }
 }
