@@ -74,6 +74,7 @@ namespace BatchGuy.App
                 cbRemuxVideoResolution.SelectedIndex = 3;
                 cbRemuxMedium.SelectedIndex = 1;
                 cbRemuxVideoFormat.SelectedIndex = 1;
+                this.SetBtnCreateMKVMergeBatFileEnabledStatus();
             }
         }
 
@@ -492,8 +493,9 @@ namespace BatchGuy.App
         {
             gbExtractForRemux.Enabled = chkExtractForRemux.Checked;
             _eac3toConfiguration.IsExtractForRemux = chkExtractForRemux.Checked;
+            this.SetBtnCreateMKVMergeBatFileEnabledStatus();
 
-            
+
             if (_eac3toConfiguration.IsExtractForRemux != true) //clear mkvmerge settings
             {
                 foreach (BluRayDiscInfo disc in _bindingListBluRayDiscInfo)
@@ -741,6 +743,12 @@ namespace BatchGuy.App
 
                 OnDialogInitialDirectoryChanged(this, new DialogInitialDirectoryChangedEventArgs() { FeatureName = Constant.FeatureCreateEac3toBatchFileFormMKVMergeOutputDirectory, DirectoryPath = txtMKVMergeOutputPath.Text});
             }
+        }
+
+        private void SetBtnCreateMKVMergeBatFileEnabledStatus()
+        {
+            btnWriteToMKVMergeBatFile.Enabled = _eac3toConfiguration.IsExtractForRemux;
+                
         }
     }
 }
