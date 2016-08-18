@@ -17,7 +17,7 @@ namespace BatchGuy.App.Eac3to.Models
         public bool IsExtractForRemux { get; set; }
         public EAC3ToRemuxFileNameTemplate RemuxFileNameTemplate { get; set; }
         public int NumberOfEpisodes { get; set; }
-
         public string MKVMergeOutputPath { get; set; }
+        public string MKVMergePath { get; set; }
     }
 }

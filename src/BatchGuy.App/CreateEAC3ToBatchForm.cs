@@ -47,6 +47,7 @@ namespace BatchGuy.App
         private string _eac3ToPath = string.Empty;
         private EAC3ToConfiguration _eac3toConfiguration = new EAC3ToConfiguration() { RemuxFileNameTemplate = new EAC3ToRemuxFileNameTemplate() };
         private string _settingsExtension = "batchGuyEac3toSettings";
+        private string _mkvMergePath = string.Empty;
 
         public static readonly ILog _log = LogManager.GetLogger(typeof(CreateEAC3ToBatchForm));
 
@@ -432,6 +433,8 @@ namespace BatchGuy.App
             _eac3toConfiguration.IsExtractForRemux = chkExtractForRemux.Checked;
             _eac3toConfiguration.NumberOfEpisodes = this.GetBluRayDiscInfoList().NumberOfEpisodes();
             _eac3toConfiguration.MKVMergeOutputPath = txtMKVMergeOutputPath.Text;
+            Setting setting = Program.ApplicationSettingsService.GetSettingByName("mkvmerge");
+            _eac3toConfiguration.MKVMergePath = setting.Value;
         }
 
         private void dgvBluRayDiscInfo_DragDrop(object sender, DragEventArgs e)
