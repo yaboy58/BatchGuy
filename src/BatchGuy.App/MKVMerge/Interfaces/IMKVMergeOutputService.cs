@@ -11,7 +11,7 @@ namespace BatchGuy.App.MKVMerge.Interfaces
         string GetMKVMergePathPart();
         string GetOutputPart();
         string GetChapterStreamPart();
-        string GetVideoStreamPart();
+        string GetVideoPart();
         string GetAudioStreamPart();
         string GetSubtitleStreamPart();
         string GetTrackOrderPart();

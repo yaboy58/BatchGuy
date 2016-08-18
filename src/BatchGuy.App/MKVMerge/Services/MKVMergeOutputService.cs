@@ -54,7 +54,47 @@ namespace BatchGuy.App.MKVMerge.Services
 
         public string GetOutputPart()
         {
-            return string.Format("--ui-language en --output ^\"{0}^\"", _eac3ToOutputNamingService.GetVideoName(_eac3ToConfiguration, _filesOutputPath, _paddedEpisodeNumber, _bluRaySummaryInfo.BluRayTitleInfo.EpisodeName).RemoveDoubleQuotes());
+            return string.Format("--ui-language en --output ^\"{0}^\"", _eac3ToOutputNamingService.GetVideoName(_eac3ToConfiguration, _eac3ToConfiguration.MKVMergeOutputPath, _paddedEpisodeNumber, _bluRaySummaryInfo.BluRayTitleInfo.EpisodeName).RemoveDoubleQuotes());
+        }
+
+        public string GetVideoPart()
+        {
+            StringBuilder sb = new StringBuilder();
+            if (_bluRaySummaryInfo.BluRayTitleInfo.Video != null)
+            {
+                if (_bluRaySummaryInfo.BluRayTitleInfo.Video.IsSelected)
+                {
+                    sb.Append(string.Format("--language 0:und ^\"^(^\" ^\"{0}^\" ^\"^)^\"", _eac3ToOutputNamingService.GetVideoName(_eac3ToConfiguration, _filesOutputPath, _paddedEpisodeNumber, _bluRaySummaryInfo.BluRayTitleInfo.EpisodeName).RemoveDoubleQuotes()));
+                }
+            }
+            return sb.ToString();
+        }
+
+        public string GetTrackOrderPart()
+        {
+            StringBuilder sb = new StringBuilder();
+            int trackCount = 0;
+
+            sb.Append("--track-order ");
+            if (_bluRaySummaryInfo.BluRayTitleInfo.Video != null && _bluRaySummaryInfo.BluRayTitleInfo.Video.IsSelected)
+            { 
+                trackCount++;
+            }
+            if (_bluRaySummaryInfo.BluRayTitleInfo.AudioList != null && _bluRaySummaryInfo.BluRayTitleInfo.AudioList.Where(a => a.IsSelected).Count() > 0)
+            {
+                trackCount += _bluRaySummaryInfo.BluRayTitleInfo.AudioList.Where(a => a.IsSelected).Count();
+            }
+            if (_bluRaySummaryInfo.BluRayTitleInfo.Subtitles != null && _bluRaySummaryInfo.BluRayTitleInfo.Subtitles.Where(a => a.IsSelected).Count() > 0)
+            {
+                trackCount += _bluRaySummaryInfo.BluRayTitleInfo.Subtitles.Where(a => a.IsSelected).Count();
+            }
+
+            for (int i = 0; i < trackCount; i++)
+            {
+                sb.Append(string.Format("{0}:0,", i));
+            }
+
+            return sb.ToString().Substring(0,sb.ToString().Length -1);
         }
 
         public string GetAudioStreamPart()
@@ -68,16 +108,6 @@ namespace BatchGuy.App.MKVMerge.Services
         }
 
         public string GetSubtitleStreamPart()
-        {
-            throw new NotImplementedException();
-        }
-
-        public string GetTrackOrderPart()
-        {
-            throw new NotImplementedException();
-        }
-
-        public string GetVideoStreamPart()
         {
             throw new NotImplementedException();
         }
