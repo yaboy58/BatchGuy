@@ -18,11 +18,11 @@ namespace BatchGuy.App.MKVMerge.Services
         }
         public MKVMergeLanguageItem GetLanguageByName(string name)
         {
-            MKVMergeLanguageItem item = _languages.SingleOrDefault(l => l.Language.ToLower() == name.ToLower());
+            MKVMergeLanguageItem item = _languages.FirstOrDefault(l => l.Language.ToLower() == name.ToLower());
             if (item != null)
                 return item;
             else
-                return _languages.SingleOrDefault(l => l.Language == "Undetermined");
+                return _languages.FirstOrDefault(l => l.Language == "Undetermined");
         }
 
         public List<MKVMergeLanguageItem> GetLanguages()
@@ -32,11 +32,11 @@ namespace BatchGuy.App.MKVMerge.Services
 
         private List<MKVMergeLanguageItem> PopulateLangugeList()
         {
-            return _languages = new List<MKVMergeLanguageItem>() { new MKVMergeLanguageItem() { Name = "Undetermined (und)", Value = "und" },
+            return _languages = new List<MKVMergeLanguageItem>() { new MKVMergeLanguageItem() { Language = "Undetermined", Name = "Undetermined (und)", Value = "und" },
             new MKVMergeLanguageItem() { Language = "Chinese", Name = "Chinese (chi)", Value = "chi" },
             new MKVMergeLanguageItem() { Language = "Dutch", Name = "Dutch: Flemish (dut)", Value = "dut" },
             new MKVMergeLanguageItem() { Language = "English", Name = "English (eng)", Value = "eng" },
-            new MKVMergeLanguageItem() { Language = "English", Name = "Finnish (fin)", Value = "fin" },
+            new MKVMergeLanguageItem() { Language = "Finnish", Name = "Finnish (fin)", Value = "fin" },
             new MKVMergeLanguageItem() { Language = "French", Name = "French (fre)", Value = "fre" },
             new MKVMergeLanguageItem() { Language = "German", Name = "German (ger)", Value = "ger" },
             new MKVMergeLanguageItem() { Language = "Italian", Name = "Italian (ita)", Value = "ita" },

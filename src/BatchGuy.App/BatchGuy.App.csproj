@@ -127,6 +127,7 @@
     <Compile Include="AviSynth\Models\AviSynthFile.cs" />
     <Compile Include="AviSynth\Models\AviSynthTemplateScript.cs" />
     <Compile Include="MKVMerge\Interfaces\IMKVMergeLanguageService.cs" />
+    <Compile Include="MKVMerge\Models\MKVMergeItem.cs" />
     <Compile Include="MKVMerge\Models\MKVMergeLanguageItem.cs" />
     <Compile Include="MKVMerge\Services\MKVMergeLanguageService.cs" />
     <Compile Include="Parser\Interfaces\IBluRayTitleParserService.cs" />

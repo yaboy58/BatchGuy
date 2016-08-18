@@ -73,6 +73,7 @@
     <Compile Include="Services\Eac3to\EAC3ToBatchFileWriteWarningServiceTests.cs" />
     <Compile Include="Services\Eac3to\EAC3ToOutputNamingServiceTests.cs" />
     <Compile Include="Services\Eac3to\EAC3ToOutputServiceTests.cs" />
+    <Compile Include="Services\MKVMerge\MKVMergeLanguageServiceTests.cs" />
     <Compile Include="Services\Parser\BluRaySummaryLineItemIdentifierServiceTests.cs" />
     <Compile Include="Services\Parser\BluRaySummaryParserServiceTests.cs" />
     <Compile Include="Services\Parser\BluRayTitleLineItemIdentifierServiceTests.cs" />

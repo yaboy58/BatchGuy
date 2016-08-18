@@ -4,12 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BatchGuy.App.Enums;
-
+using BatchGuy.App.MKVMerge.Models;
 
 namespace BatchGuy.App.Parser.Models
 {
     public class BluRayTitleAudio
     {
+        public BluRayTitleAudio()
+        {
+            MKVMergeItem = new MKVMergeItem();
+        }
         public string Id { get; set; }
         public EnumAudioType AudioType { get; set; }
         public string Language { get; set; }
@@ -17,5 +21,6 @@ namespace BatchGuy.App.Parser.Models
         public bool IsSelected { get; set; }
         public string Text { get; set; }
         public bool IsCommentary { get; set; }
+        public MKVMergeItem MKVMergeItem { get; set; }
     }
 }

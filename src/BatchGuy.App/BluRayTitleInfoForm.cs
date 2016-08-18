@@ -501,5 +501,17 @@ namespace BatchGuy.App
             bsMKVMergeLanguageItem.DataSource = _bindingListMKVMergeLanguageItem;
             _bindingListMKVMergeLanguageItem.AllowEdit = false;
         }
+
+        private void SetAudioMKVMergetItemDefaults()
+        {
+            IMKVMergeLanguageService languageService = new MKVMergeLanguageService();
+
+            foreach (BluRayTitleAudio audio in bsBluRayTitleAudio)
+            {
+                audio.MKVMergeItem.DefaultTrackFlag = "no";
+                audio.MKVMergeItem.ForcedTrackFlag = "no";
+                audio.MKVMergeItem.Language = languageService.GetLanguageByName(audio.Language);
+            }
+        }
     }
 }
