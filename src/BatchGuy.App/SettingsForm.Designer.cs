@@ -39,6 +39,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
             this.ofdFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.btnOpenMKVMergeFileDialog = new System.Windows.Forms.Button();
+            this.txtMKVMerge = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.gbScreen.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -55,6 +58,9 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnOpenMKVMergeFileDialog);
+            this.groupBox1.Controls.Add(this.txtMKVMerge);
+            this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.btnOpenVfw4x264FileDialog);
             this.groupBox1.Controls.Add(this.txtVfw4x264);
             this.groupBox1.Controls.Add(this.label2);
@@ -63,7 +69,7 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(20, 39);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(669, 134);
+            this.groupBox1.Size = new System.Drawing.Size(669, 158);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Executables";
@@ -136,6 +142,33 @@
             // 
             this.ofdFileDialog.FileName = "openFileDialog1";
             // 
+            // btnOpenMKVMergeFileDialog
+            // 
+            this.btnOpenMKVMergeFileDialog.Image = global::BatchGuy.App.Properties.Resources.Avosoft_Warm_Toolbar_Folder_open;
+            this.btnOpenMKVMergeFileDialog.Location = new System.Drawing.Point(592, 94);
+            this.btnOpenMKVMergeFileDialog.Name = "btnOpenMKVMergeFileDialog";
+            this.btnOpenMKVMergeFileDialog.Size = new System.Drawing.Size(61, 33);
+            this.btnOpenMKVMergeFileDialog.TabIndex = 24;
+            this.btnOpenMKVMergeFileDialog.UseVisualStyleBackColor = true;
+            this.btnOpenMKVMergeFileDialog.Click += new System.EventHandler(this.btnOpenMKVMergeFileDialog_Click);
+            // 
+            // txtMKVMerge
+            // 
+            this.txtMKVMerge.Location = new System.Drawing.Point(98, 107);
+            this.txtMKVMerge.Name = "txtMKVMerge";
+            this.txtMKVMerge.ReadOnly = true;
+            this.txtMKVMerge.Size = new System.Drawing.Size(476, 20);
+            this.txtMKVMerge.TabIndex = 26;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(15, 114);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(76, 13);
+            this.label3.TabIndex = 25;
+            this.label3.Text = "mkvmerge.exe";
+            // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -168,5 +201,8 @@
         private System.Windows.Forms.Button btnOpenVfw4x264FileDialog;
         private System.Windows.Forms.TextBox txtVfw4x264;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnOpenMKVMergeFileDialog;
+        private System.Windows.Forms.TextBox txtMKVMerge;
+        private System.Windows.Forms.Label label3;
     }
 }

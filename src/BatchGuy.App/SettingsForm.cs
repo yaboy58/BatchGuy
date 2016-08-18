@@ -31,6 +31,7 @@ namespace BatchGuy.App
         {
             txtEac3toPath.Text = this.LoadSetting("eac3to");
             txtVfw4x264.Text = this.LoadSetting("vfw4x264");
+            txtMKVMerge.Text = this.LoadSetting("mkvmerge");
         }
 
         private string LoadSetting(string settingName)
@@ -70,7 +71,8 @@ namespace BatchGuy.App
             Program.ApplicationSettings.Settings.Clear();
             Program.ApplicationSettings.Settings.Add(new Setting() { Name = "eac3to", Value = txtEac3toPath.Text } );
             Program.ApplicationSettings.Settings.Add(new Setting() { Name = "vfw4x264", Value = txtVfw4x264.Text });
-            
+            Program.ApplicationSettings.Settings.Add(new Setting() { Name = "mkvmerge", Value = txtMKVMerge.Text });
+
             Program.ApplicationSettingsService.Save(Program.ApplicationSettings);
         }
 
@@ -97,6 +99,22 @@ namespace BatchGuy.App
             if (result == System.Windows.Forms.DialogResult.OK)
             {
                 txtVfw4x264.Text = ofdFileDialog.FileName;
+            }
+        }
+
+        private void btnOpenMKVMergeFileDialog_Click(object sender, EventArgs e)
+        {
+            this.HandleOpenMKVMergeFileDialogClick();
+        }
+
+        private void HandleOpenMKVMergeFileDialogClick()
+        {
+            ofdFileDialog.FileName = "mkvmerge executable";
+            ofdFileDialog.Filter = "Files|*.exe";
+            DialogResult result = ofdFileDialog.ShowDialog();
+            if (result == System.Windows.Forms.DialogResult.OK)
+            {
+              txtMKVMerge.Text = ofdFileDialog.FileName;
             }
         }
     }
