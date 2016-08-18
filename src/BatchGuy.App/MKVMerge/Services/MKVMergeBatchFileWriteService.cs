@@ -52,22 +52,12 @@ namespace BatchGuy.App.MKVMerge.Services
                             IMKVMergeOutputService mkvMergeOutputService = new MKVMergeOutputService(_eac3toConfiguration, eac3ToOutputNamingService, disc.BluRayPath, summary);
                             string mkvMergePathPart = mkvMergeOutputService.GetMKVMergePathPart();
 
-
-                            /*string eac3ToPathPart = mkvMergeOutputService.GetEAC3ToPathPart();
-                            string bluRayStreamPart = mkvMergeOutputService.GetBluRayStreamPart();
-                            string chapterStreamPart = mkvMergeOutputService.GetChapterStreamPart();
-                            string videoStreamPart = mkvMergeOutputService.GetVideoStreamPart();
-                            string audioStreamPart = mkvMergeOutputService.GetAudioStreamPart();
-                            string subtitleStreamPart = mkvMergeOutputService.GetSubtitleStreamPart();
-                            string logPart = mkvMergeOutputService.GetLogPart();
-
                             using (StreamWriter sw = new StreamWriter(_eac3toConfiguration.BatchFilePath, true))
                             {
-                                sw.WriteLine(string.Format("{0} {1} {2} {3} {4} {5} {6} -progressnumbers", eac3ToPathPart, bluRayStreamPart, chapterStreamPart, videoStreamPart, audioStreamPart,
-                                    subtitleStreamPart, logPart));
+                                sw.WriteLine(string.Format("{0}", mkvMergePathPart));
                                 sw.WriteLine();
                                 sw.WriteLine();
-                            }*/
+                            }
                         }
                     }
                 }

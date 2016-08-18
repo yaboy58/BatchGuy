@@ -435,6 +435,7 @@ namespace BatchGuy.App
             _eac3toConfiguration.MKVMergeOutputPath = txtMKVMergeOutputPath.Text;
             Setting setting = Program.ApplicationSettingsService.GetSettingByName("mkvmerge");
             _eac3toConfiguration.MKVMergePath = setting.Value;
+            _eac3toConfiguration.MKVMergeBatchFilePath = txtMKVMergeBatFilePath.Text;
         }
 
         private void dgvBluRayDiscInfo_DragDrop(object sender, DragEventArgs e)
@@ -652,6 +653,8 @@ namespace BatchGuy.App
             _currentBluRayDiscGridRowIndex = 0;
             _eac3toConfiguration = batchGuyEAC3ToSettings.Settings;
             txtBatFilePath.Text = _eac3toConfiguration.BatchFilePath;
+            txtMKVMergeBatFilePath.Text = _eac3toConfiguration.MKVMergeBatchFilePath;
+            txtMKVMergeOutputPath.Text = _eac3toConfiguration.MKVMergeOutputPath;
             foreach (BluRayDiscInfo disc in batchGuyEAC3ToSettings.BluRayDiscs)
             {
                 _bindingListBluRayDiscInfo.Add(disc);
@@ -802,6 +805,12 @@ namespace BatchGuy.App
                 return false;
             }
 
+            if (_eac3toConfiguration.MKVMergeBatchFilePath == null || _eac3toConfiguration.MKVMergeBatchFilePath == string.Empty)
+            {
+                MessageBox.Show("Please choose an mkvmerge batch file!", "Error occurred", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
             if (_eac3toConfiguration.MKVMergeOutputPath == null || _eac3toConfiguration.MKVMergeOutputPath == string.Empty)
             {
                 MessageBox.Show("Please choose an mkvmerge output path!", "Error occurred", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -809,6 +818,35 @@ namespace BatchGuy.App
             }
 
             return true;
+        }
+
+        private void btnOpenMKVMergeFilePathDialog_Click(object sender, EventArgs e)
+        {
+            this.HandleBtnOpenMKVMergeFilePathDialogClick();
+        }
+
+        private void HandleBtnOpenMKVMergeFilePathDialogClick()
+        {
+            SaveFileDialog sfd = new SaveFileDialog();
+            Setting setting = Program.ApplicationSettingsService.GetSettingByName(Constant.FeatureCreateEac3toBatchFileFormSaveMKVMergeBatchFileDirectory);
+
+            if (setting != null)
+                sfd.InitialDirectory = setting.Value;
+            else
+                sfd.InitialDirectory = @"C:\";
+
+            sfd.Filter = "Batch File|*.bat";
+            sfd.Title = "Save mkvmerge Batch File";
+            sfd.ShowDialog();
+
+            if (!string.IsNullOrEmpty(sfd.FileName))
+            {
+                OnDialogInitialDirectoryChanged(this, new DialogInitialDirectoryChangedEventArgs() { FeatureName = Constant.FeatureCreateEac3toBatchFileFormSaveMKVMergeBatchFileDirectory, DirectoryPath = Path.GetDirectoryName(sfd.FileName) });
+                using (FileStream fs = File.Create(sfd.FileName))
+                {
+                }
+                txtMKVMergeBatFilePath.Text = sfd.FileName;
+            }
         }
     }
 }
