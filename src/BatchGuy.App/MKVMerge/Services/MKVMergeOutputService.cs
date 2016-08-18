@@ -47,22 +47,22 @@ namespace BatchGuy.App.MKVMerge.Services
             }
         }
 
-        public string GetAudioStreamPart()
-        {
-            throw new NotImplementedException();
-        }
-
-        public string GetChapterStreamPart()
-        {
-            throw new NotImplementedException();
-        }
-
         public string GetMKVMergePathPart()
         {
             return string.Format("\"{0}\"", _eac3ToConfiguration.MKVMergePath);
         }
 
         public string GetOutputPart()
+        {
+            return string.Format("--ui-language en --output ^\"{0}^\"", _eac3ToOutputNamingService.GetVideoName(_eac3ToConfiguration, _filesOutputPath, _paddedEpisodeNumber, _bluRaySummaryInfo.BluRayTitleInfo.EpisodeName).RemoveDoubleQuotes());
+        }
+
+        public string GetAudioStreamPart()
+        {
+            throw new NotImplementedException();
+        }
+
+        public string GetChapterStreamPart()
         {
             throw new NotImplementedException();
         }

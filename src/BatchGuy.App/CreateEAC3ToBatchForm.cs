@@ -30,6 +30,8 @@ using BatchGuy.App.Eac3To.Services;
 using BatchGuy.App.Shared.Interface;
 using log4net;
 using System.Reflection;
+using BatchGuy.App.MKVMerge.Interfaces;
+using BatchGuy.App.MKVMerge.Services;
 
 namespace BatchGuy.App
 {
@@ -786,12 +788,12 @@ namespace BatchGuy.App
                         DialogResult warningResult = MessageBox.Show(warning, "Warnings Found", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
                         if (warningResult == System.Windows.Forms.DialogResult.Yes)
                         {
-                            //this.WriteToBatchFile();
+                            this.WriteToMkvMergeBatchFile();
                         }
                     }
                     else
                     {
-                        //this.WriteToBatchFile();
+                        this.WriteToMkvMergeBatchFile();
                     }
                 }
             }
@@ -848,5 +850,37 @@ namespace BatchGuy.App
                 txtMKVMergeBatFilePath.Text = sfd.FileName;
             }
         }
+
+        private void WriteToMkvMergeBatchFile()
+        {
+            gbScreen.SetEnabled(false);
+            List<BluRayDiscInfo> discs = this.GetBluRayDiscInfoList();
+            IDirectorySystemService directorySystemService = new DirectorySystemService();
+            IMKVMergeBatchFileWriteService batchFileWriteService = new MKVMergeBatchFileWriteService(_eac3toConfiguration, directorySystemService, discs);
+            bgwMkvMergeWriteBatchFile.RunWorkerAsync(batchFileWriteService);
+        }
+
+        private void bgwMkvMergeWriteBatchFile_DoWork(object sender, DoWorkEventArgs e)
+        {
+            IMKVMergeBatchFileWriteService batchFileWriteService = e.Argument as MKVMergeBatchFileWriteService;
+            batchFileWriteService.Write();
+            e.Result = batchFileWriteService;
+        }
+
+        private void bgwMkvMergeWriteBatchFile_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            IMKVMergeBatchFileWriteService batchFileWriteService = e.Result as MKVMergeBatchFileWriteService;
+            if (batchFileWriteService.Errors.Count() == 0)
+            {
+                MessageBox.Show("Batch File created!", "Process Complete", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                MessageBox.Show(string.Format("Error: {0}", batchFileWriteService.Errors[0].Description), "Error occurred", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            gbScreen.SetEnabled(true);
+        }
+
+
     }
 }

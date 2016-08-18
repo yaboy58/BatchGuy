@@ -91,5 +91,12 @@ namespace BatchGuy.App.Extensions
 
             return result;
         }
+
+        public static string RemoveDoubleQuotes(this string value)
+        {
+            string result = value.Replace("\"", string.Empty);
+
+            return result;
+        }
     }
 }
