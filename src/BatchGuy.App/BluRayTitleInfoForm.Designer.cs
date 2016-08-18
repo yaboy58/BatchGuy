@@ -49,8 +49,23 @@
             this.txtEpisodeNumber = new System.Windows.Forms.TextBox();
             this.gbScreen = new System.Windows.Forms.GroupBox();
             this.txtEpisodeName = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblEpisodeName = new System.Windows.Forms.Label();
             this.bgwEac3toLoadTitle = new System.ComponentModel.BackgroundWorker();
+            this.gbMKVToolNixGUI = new System.Windows.Forms.GroupBox();
+            this.gbMKVToolNixGUIGeneralOptions = new System.Windows.Forms.GroupBox();
+            this.cbMKVToolNixGUIForcedTrackFlag = new System.Windows.Forms.ComboBox();
+            this.lblMKVToolNixGUIForcedTrackFlag = new System.Windows.Forms.Label();
+            this.cbMKVToolNixGUIDefaultTrackFlag = new System.Windows.Forms.ComboBox();
+            this.lblMKVToolNixGUIDefaultTrackFlag = new System.Windows.Forms.Label();
+            this.txtMKVToolNixGUITrackName = new System.Windows.Forms.TextBox();
+            this.lblMKVToolNixGUITrackName = new System.Windows.Forms.Label();
+            this.cbMKVToolNixGUILanguage = new System.Windows.Forms.ComboBox();
+            this.lblMKVToolNixGUILanguage = new System.Windows.Forms.Label();
+            this.isSelectedDataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.idDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.languageDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.isCommentaryDataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.textDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bsBluRayTitleSubtitles = new System.Windows.Forms.BindingSource(this.components);
             this.isSelectedDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -62,11 +77,6 @@
             this.bsBluRayTitleAudio = new System.Windows.Forms.BindingSource(this.components);
             this.bsBluRayTitleVideo = new System.Windows.Forms.BindingSource(this.components);
             this.bsBluRayTitleInfo = new System.Windows.Forms.BindingSource(this.components);
-            this.isSelectedDataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.idDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.languageDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.isCommentaryDataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.textDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gbVideo.SuspendLayout();
             this.gbAudio.SuspendLayout();
             this.panelAudioType.SuspendLayout();
@@ -75,6 +85,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvSubtitles)).BeginInit();
             this.gbChapters.SuspendLayout();
             this.gbScreen.SuspendLayout();
+            this.gbMKVToolNixGUI.SuspendLayout();
+            this.gbMKVToolNixGUIGeneralOptions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsBluRayTitleSubtitles)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsBluRayTitleAudio)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsBluRayTitleVideo)).BeginInit();
@@ -203,9 +215,9 @@
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(848, 656);
+            this.btnUpdate.Location = new System.Drawing.Point(1246, 656);
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(82, 25);
+            this.btnUpdate.Size = new System.Drawing.Size(143, 25);
             this.btnUpdate.TabIndex = 16;
             this.btnUpdate.Text = "Update";
             this.btnUpdate.UseVisualStyleBackColor = true;
@@ -281,8 +293,9 @@
             // 
             // gbScreen
             // 
+            this.gbScreen.Controls.Add(this.gbMKVToolNixGUI);
             this.gbScreen.Controls.Add(this.txtEpisodeName);
-            this.gbScreen.Controls.Add(this.label1);
+            this.gbScreen.Controls.Add(this.lblEpisodeName);
             this.gbScreen.Controls.Add(this.txtEpisodeNumber);
             this.gbScreen.Controls.Add(this.gbChapters);
             this.gbScreen.Controls.Add(this.lblEpisodeNumber);
@@ -293,7 +306,7 @@
             this.gbScreen.Controls.Add(this.gbVideo);
             this.gbScreen.Location = new System.Drawing.Point(12, 12);
             this.gbScreen.Name = "gbScreen";
-            this.gbScreen.Size = new System.Drawing.Size(951, 689);
+            this.gbScreen.Size = new System.Drawing.Size(1395, 689);
             this.gbScreen.TabIndex = 7;
             this.gbScreen.TabStop = false;
             // 
@@ -305,19 +318,181 @@
             this.txtEpisodeName.TabIndex = 2;
             this.txtEpisodeName.TextChanged += new System.EventHandler(this.txtEpisodeName_TextChanged);
             // 
-            // label1
+            // lblEpisodeName
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(557, 19);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(79, 13);
-            this.label1.TabIndex = 8;
-            this.label1.Text = "Episode Name:";
+            this.lblEpisodeName.AutoSize = true;
+            this.lblEpisodeName.Location = new System.Drawing.Point(557, 19);
+            this.lblEpisodeName.Name = "lblEpisodeName";
+            this.lblEpisodeName.Size = new System.Drawing.Size(79, 13);
+            this.lblEpisodeName.TabIndex = 8;
+            this.lblEpisodeName.Text = "Episode Name:";
             // 
             // bgwEac3toLoadTitle
             // 
             this.bgwEac3toLoadTitle.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgwEac3toLoadTitle_DoWork);
             this.bgwEac3toLoadTitle.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgwEac3toLoadTitle_RunWorkerCompleted);
+            // 
+            // gbMKVToolNixGUI
+            // 
+            this.gbMKVToolNixGUI.Controls.Add(this.gbMKVToolNixGUIGeneralOptions);
+            this.gbMKVToolNixGUI.Location = new System.Drawing.Point(938, 12);
+            this.gbMKVToolNixGUI.Name = "gbMKVToolNixGUI";
+            this.gbMKVToolNixGUI.Size = new System.Drawing.Size(451, 638);
+            this.gbMKVToolNixGUI.TabIndex = 17;
+            this.gbMKVToolNixGUI.TabStop = false;
+            this.gbMKVToolNixGUI.Text = "MKVToolNix GUI";
+            // 
+            // gbMKVToolNixGUIGeneralOptions
+            // 
+            this.gbMKVToolNixGUIGeneralOptions.Controls.Add(this.cbMKVToolNixGUIForcedTrackFlag);
+            this.gbMKVToolNixGUIGeneralOptions.Controls.Add(this.lblMKVToolNixGUIForcedTrackFlag);
+            this.gbMKVToolNixGUIGeneralOptions.Controls.Add(this.cbMKVToolNixGUIDefaultTrackFlag);
+            this.gbMKVToolNixGUIGeneralOptions.Controls.Add(this.lblMKVToolNixGUIDefaultTrackFlag);
+            this.gbMKVToolNixGUIGeneralOptions.Controls.Add(this.txtMKVToolNixGUITrackName);
+            this.gbMKVToolNixGUIGeneralOptions.Controls.Add(this.lblMKVToolNixGUITrackName);
+            this.gbMKVToolNixGUIGeneralOptions.Controls.Add(this.cbMKVToolNixGUILanguage);
+            this.gbMKVToolNixGUIGeneralOptions.Controls.Add(this.lblMKVToolNixGUILanguage);
+            this.gbMKVToolNixGUIGeneralOptions.Location = new System.Drawing.Point(6, 31);
+            this.gbMKVToolNixGUIGeneralOptions.Name = "gbMKVToolNixGUIGeneralOptions";
+            this.gbMKVToolNixGUIGeneralOptions.Size = new System.Drawing.Size(439, 184);
+            this.gbMKVToolNixGUIGeneralOptions.TabIndex = 16;
+            this.gbMKVToolNixGUIGeneralOptions.TabStop = false;
+            this.gbMKVToolNixGUIGeneralOptions.Text = "General Options";
+            // 
+            // cbMKVToolNixGUIForcedTrackFlag
+            // 
+            this.cbMKVToolNixGUIForcedTrackFlag.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbMKVToolNixGUIForcedTrackFlag.FormattingEnabled = true;
+            this.cbMKVToolNixGUIForcedTrackFlag.Items.AddRange(new object[] {
+            "AC3",
+            "DTS",
+            "DTSMA",
+            "FLAC",
+            "MPA",
+            "TrueHD",
+            "Wave"});
+            this.cbMKVToolNixGUIForcedTrackFlag.Location = new System.Drawing.Point(116, 144);
+            this.cbMKVToolNixGUIForcedTrackFlag.Name = "cbMKVToolNixGUIForcedTrackFlag";
+            this.cbMKVToolNixGUIForcedTrackFlag.Size = new System.Drawing.Size(249, 21);
+            this.cbMKVToolNixGUIForcedTrackFlag.TabIndex = 23;
+            // 
+            // lblMKVToolNixGUIForcedTrackFlag
+            // 
+            this.lblMKVToolNixGUIForcedTrackFlag.AutoSize = true;
+            this.lblMKVToolNixGUIForcedTrackFlag.Location = new System.Drawing.Point(12, 152);
+            this.lblMKVToolNixGUIForcedTrackFlag.Name = "lblMKVToolNixGUIForcedTrackFlag";
+            this.lblMKVToolNixGUIForcedTrackFlag.Size = new System.Drawing.Size(97, 13);
+            this.lblMKVToolNixGUIForcedTrackFlag.TabIndex = 22;
+            this.lblMKVToolNixGUIForcedTrackFlag.Text = "Forced Track Flag:";
+            // 
+            // cbMKVToolNixGUIDefaultTrackFlag
+            // 
+            this.cbMKVToolNixGUIDefaultTrackFlag.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbMKVToolNixGUIDefaultTrackFlag.FormattingEnabled = true;
+            this.cbMKVToolNixGUIDefaultTrackFlag.Items.AddRange(new object[] {
+            "AC3",
+            "DTS",
+            "DTSMA",
+            "FLAC",
+            "MPA",
+            "TrueHD",
+            "Wave"});
+            this.cbMKVToolNixGUIDefaultTrackFlag.Location = new System.Drawing.Point(116, 107);
+            this.cbMKVToolNixGUIDefaultTrackFlag.Name = "cbMKVToolNixGUIDefaultTrackFlag";
+            this.cbMKVToolNixGUIDefaultTrackFlag.Size = new System.Drawing.Size(249, 21);
+            this.cbMKVToolNixGUIDefaultTrackFlag.TabIndex = 21;
+            // 
+            // lblMKVToolNixGUIDefaultTrackFlag
+            // 
+            this.lblMKVToolNixGUIDefaultTrackFlag.AutoSize = true;
+            this.lblMKVToolNixGUIDefaultTrackFlag.Location = new System.Drawing.Point(12, 115);
+            this.lblMKVToolNixGUIDefaultTrackFlag.Name = "lblMKVToolNixGUIDefaultTrackFlag";
+            this.lblMKVToolNixGUIDefaultTrackFlag.Size = new System.Drawing.Size(98, 13);
+            this.lblMKVToolNixGUIDefaultTrackFlag.TabIndex = 20;
+            this.lblMKVToolNixGUIDefaultTrackFlag.Text = "Default Track Flag:";
+            // 
+            // txtMKVToolNixGUITrackName
+            // 
+            this.txtMKVToolNixGUITrackName.Location = new System.Drawing.Point(116, 30);
+            this.txtMKVToolNixGUITrackName.Name = "txtMKVToolNixGUITrackName";
+            this.txtMKVToolNixGUITrackName.Size = new System.Drawing.Size(298, 20);
+            this.txtMKVToolNixGUITrackName.TabIndex = 18;
+            // 
+            // lblMKVToolNixGUITrackName
+            // 
+            this.lblMKVToolNixGUITrackName.AutoSize = true;
+            this.lblMKVToolNixGUITrackName.Location = new System.Drawing.Point(9, 37);
+            this.lblMKVToolNixGUITrackName.Name = "lblMKVToolNixGUITrackName";
+            this.lblMKVToolNixGUITrackName.Size = new System.Drawing.Size(69, 13);
+            this.lblMKVToolNixGUITrackName.TabIndex = 19;
+            this.lblMKVToolNixGUITrackName.Text = "Track Name:";
+            // 
+            // cbMKVToolNixGUILanguage
+            // 
+            this.cbMKVToolNixGUILanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbMKVToolNixGUILanguage.FormattingEnabled = true;
+            this.cbMKVToolNixGUILanguage.Items.AddRange(new object[] {
+            "AC3",
+            "DTS",
+            "DTSMA",
+            "FLAC",
+            "MPA",
+            "TrueHD",
+            "Wave"});
+            this.cbMKVToolNixGUILanguage.Location = new System.Drawing.Point(116, 68);
+            this.cbMKVToolNixGUILanguage.Name = "cbMKVToolNixGUILanguage";
+            this.cbMKVToolNixGUILanguage.Size = new System.Drawing.Size(249, 21);
+            this.cbMKVToolNixGUILanguage.TabIndex = 17;
+            // 
+            // lblMKVToolNixGUILanguage
+            // 
+            this.lblMKVToolNixGUILanguage.AutoSize = true;
+            this.lblMKVToolNixGUILanguage.Location = new System.Drawing.Point(12, 76);
+            this.lblMKVToolNixGUILanguage.Name = "lblMKVToolNixGUILanguage";
+            this.lblMKVToolNixGUILanguage.Size = new System.Drawing.Size(58, 13);
+            this.lblMKVToolNixGUILanguage.TabIndex = 16;
+            this.lblMKVToolNixGUILanguage.Text = "Language:";
+            // 
+            // isSelectedDataGridViewCheckBoxColumn1
+            // 
+            this.isSelectedDataGridViewCheckBoxColumn1.DataPropertyName = "IsSelected";
+            this.isSelectedDataGridViewCheckBoxColumn1.HeaderText = "Is Selected";
+            this.isSelectedDataGridViewCheckBoxColumn1.MinimumWidth = 100;
+            this.isSelectedDataGridViewCheckBoxColumn1.Name = "isSelectedDataGridViewCheckBoxColumn1";
+            // 
+            // idDataGridViewTextBoxColumn1
+            // 
+            this.idDataGridViewTextBoxColumn1.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn1.HeaderText = "eac3to Track Id";
+            this.idDataGridViewTextBoxColumn1.MinimumWidth = 120;
+            this.idDataGridViewTextBoxColumn1.Name = "idDataGridViewTextBoxColumn1";
+            this.idDataGridViewTextBoxColumn1.ReadOnly = true;
+            this.idDataGridViewTextBoxColumn1.Width = 120;
+            // 
+            // languageDataGridViewTextBoxColumn1
+            // 
+            this.languageDataGridViewTextBoxColumn1.DataPropertyName = "Language";
+            this.languageDataGridViewTextBoxColumn1.HeaderText = "Language";
+            this.languageDataGridViewTextBoxColumn1.MinimumWidth = 100;
+            this.languageDataGridViewTextBoxColumn1.Name = "languageDataGridViewTextBoxColumn1";
+            this.languageDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // isCommentaryDataGridViewCheckBoxColumn1
+            // 
+            this.isCommentaryDataGridViewCheckBoxColumn1.DataPropertyName = "IsCommentary";
+            this.isCommentaryDataGridViewCheckBoxColumn1.HeaderText = "Is Commentary";
+            this.isCommentaryDataGridViewCheckBoxColumn1.MinimumWidth = 120;
+            this.isCommentaryDataGridViewCheckBoxColumn1.Name = "isCommentaryDataGridViewCheckBoxColumn1";
+            this.isCommentaryDataGridViewCheckBoxColumn1.Width = 120;
+            // 
+            // textDataGridViewTextBoxColumn1
+            // 
+            this.textDataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.textDataGridViewTextBoxColumn1.DataPropertyName = "Text";
+            this.textDataGridViewTextBoxColumn1.HeaderText = "Text";
+            this.textDataGridViewTextBoxColumn1.MinimumWidth = 250;
+            this.textDataGridViewTextBoxColumn1.Name = "textDataGridViewTextBoxColumn1";
+            this.textDataGridViewTextBoxColumn1.ReadOnly = true;
             // 
             // bsBluRayTitleSubtitles
             // 
@@ -391,52 +566,11 @@
             // 
             this.bsBluRayTitleInfo.DataSource = typeof(BatchGuy.App.Parser.Models.BluRayTitleInfo);
             // 
-            // isSelectedDataGridViewCheckBoxColumn1
-            // 
-            this.isSelectedDataGridViewCheckBoxColumn1.DataPropertyName = "IsSelected";
-            this.isSelectedDataGridViewCheckBoxColumn1.HeaderText = "Is Selected";
-            this.isSelectedDataGridViewCheckBoxColumn1.MinimumWidth = 100;
-            this.isSelectedDataGridViewCheckBoxColumn1.Name = "isSelectedDataGridViewCheckBoxColumn1";
-            // 
-            // idDataGridViewTextBoxColumn1
-            // 
-            this.idDataGridViewTextBoxColumn1.DataPropertyName = "Id";
-            this.idDataGridViewTextBoxColumn1.HeaderText = "eac3to Track Id";
-            this.idDataGridViewTextBoxColumn1.MinimumWidth = 120;
-            this.idDataGridViewTextBoxColumn1.Name = "idDataGridViewTextBoxColumn1";
-            this.idDataGridViewTextBoxColumn1.ReadOnly = true;
-            this.idDataGridViewTextBoxColumn1.Width = 120;
-            // 
-            // languageDataGridViewTextBoxColumn1
-            // 
-            this.languageDataGridViewTextBoxColumn1.DataPropertyName = "Language";
-            this.languageDataGridViewTextBoxColumn1.HeaderText = "Language";
-            this.languageDataGridViewTextBoxColumn1.MinimumWidth = 100;
-            this.languageDataGridViewTextBoxColumn1.Name = "languageDataGridViewTextBoxColumn1";
-            this.languageDataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // isCommentaryDataGridViewCheckBoxColumn1
-            // 
-            this.isCommentaryDataGridViewCheckBoxColumn1.DataPropertyName = "IsCommentary";
-            this.isCommentaryDataGridViewCheckBoxColumn1.HeaderText = "Is Commentary";
-            this.isCommentaryDataGridViewCheckBoxColumn1.MinimumWidth = 120;
-            this.isCommentaryDataGridViewCheckBoxColumn1.Name = "isCommentaryDataGridViewCheckBoxColumn1";
-            this.isCommentaryDataGridViewCheckBoxColumn1.Width = 120;
-            // 
-            // textDataGridViewTextBoxColumn1
-            // 
-            this.textDataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.textDataGridViewTextBoxColumn1.DataPropertyName = "Text";
-            this.textDataGridViewTextBoxColumn1.HeaderText = "Text";
-            this.textDataGridViewTextBoxColumn1.MinimumWidth = 250;
-            this.textDataGridViewTextBoxColumn1.Name = "textDataGridViewTextBoxColumn1";
-            this.textDataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
             // BluRayTitleInfoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(976, 713);
+            this.ClientSize = new System.Drawing.Size(1419, 713);
             this.Controls.Add(this.gbScreen);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -457,6 +591,9 @@
             this.gbChapters.PerformLayout();
             this.gbScreen.ResumeLayout(false);
             this.gbScreen.PerformLayout();
+            this.gbMKVToolNixGUI.ResumeLayout(false);
+            this.gbMKVToolNixGUIGeneralOptions.ResumeLayout(false);
+            this.gbMKVToolNixGUIGeneralOptions.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsBluRayTitleSubtitles)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsBluRayTitleAudio)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsBluRayTitleVideo)).EndInit();
@@ -489,7 +626,7 @@
         private System.Windows.Forms.GroupBox gbScreen;
         private System.ComponentModel.BackgroundWorker bgwEac3toLoadTitle;
         private System.Windows.Forms.TextBox txtEpisodeName;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblEpisodeName;
         private System.Windows.Forms.DataGridViewCheckBoxColumn isSelectedDataGridViewCheckBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn languageDataGridViewTextBoxColumn;
@@ -504,5 +641,15 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn languageDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewCheckBoxColumn isCommentaryDataGridViewCheckBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn textDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.GroupBox gbMKVToolNixGUI;
+        private System.Windows.Forms.GroupBox gbMKVToolNixGUIGeneralOptions;
+        private System.Windows.Forms.ComboBox cbMKVToolNixGUIForcedTrackFlag;
+        private System.Windows.Forms.Label lblMKVToolNixGUIForcedTrackFlag;
+        private System.Windows.Forms.ComboBox cbMKVToolNixGUIDefaultTrackFlag;
+        private System.Windows.Forms.Label lblMKVToolNixGUIDefaultTrackFlag;
+        private System.Windows.Forms.TextBox txtMKVToolNixGUITrackName;
+        private System.Windows.Forms.Label lblMKVToolNixGUITrackName;
+        private System.Windows.Forms.ComboBox cbMKVToolNixGUILanguage;
+        private System.Windows.Forms.Label lblMKVToolNixGUILanguage;
     }
 }
