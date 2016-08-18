@@ -35,7 +35,7 @@
 *Added a new BatchGuy Configuration for mkvmerge.exe
 *Create EAC3To Batch Form Screen or Create MKV Merge Batch File disabled if mkvmerge.exe location not set
 *Default the MKVToolNixGUI Track Name to "Commentary" if commentary checkbox is checked (nice to have)
-*Write Unit Tests for new services
+
 
 
 --possible nice to haves

@@ -52,7 +52,7 @@ namespace BatchGuy.App
         private void BluRayTitleForm_Load(object sender, EventArgs e)
         {
             gbScreen.SetEnabled(false);
-            LoadMKVMergeLangugeItemsDropDown();
+            SetMKVToolNixGUIControlsDefaults();
             if (_bluRaySummaryInfo.BluRayTitleInfo != null)
             {
                 this.LoadScreen();
@@ -408,6 +408,7 @@ namespace BatchGuy.App
                 this.SortSubtitleGrid(2); //sort language
                 this.AutoSelectEnglishAudio();
                 this.AutoSelectEnglishSubtitles();
+                this.SetMKVMergetItemDefaults();
                 gbScreen.SetEnabled(true);
             }
         }
@@ -502,7 +503,7 @@ namespace BatchGuy.App
             _bindingListMKVMergeLanguageItem.AllowEdit = false;
         }
 
-        private void SetAudioMKVMergetItemDefaults()
+        private void SetMKVMergetItemDefaults()
         {
             IMKVMergeLanguageService languageService = new MKVMergeLanguageService();
 
@@ -512,6 +513,29 @@ namespace BatchGuy.App
                 audio.MKVMergeItem.ForcedTrackFlag = "no";
                 audio.MKVMergeItem.Language = languageService.GetLanguageByName(audio.Language);
             }
+
+            foreach (BluRayTitleSubtitle subtitle in bsBluRayTitleSubtitles)
+            {
+                subtitle.MKVMergeItem.DefaultTrackFlag = "no";
+                subtitle.MKVMergeItem.ForcedTrackFlag = "no";
+                subtitle.MKVMergeItem.Language = languageService.GetLanguageByName(subtitle.Language);
+                if (subtitle.MKVMergeItem.Language.Value == "eng")
+                    subtitle.MKVMergeItem.DefaultTrackFlag = "yes";
+            }
+        }
+
+        private void SetMKVToolNixGUIControlsDefaults()
+        {
+            this.SetMKVToolNixGUIControlsEnabledStatus();
+            if (_eac3ToConfiguration.IsExtractForRemux)
+            {
+                LoadMKVMergeLangugeItemsDropDown();
+            }
+        }
+
+        private void SetMKVToolNixGUIControlsEnabledStatus()
+        {
+            gbMKVToolNixGUI.Enabled = _eac3ToConfiguration.IsExtractForRemux;
         }
     }
 }
