@@ -518,6 +518,7 @@
             this.cbMKVToolNixGUILanguage.Size = new System.Drawing.Size(249, 21);
             this.cbMKVToolNixGUILanguage.TabIndex = 17;
             this.cbMKVToolNixGUILanguage.ValueMember = "Value";
+            this.cbMKVToolNixGUILanguage.SelectedIndexChanged += new System.EventHandler(this.cbMKVToolNixGUILanguage_SelectedIndexChanged);
             // 
             // bsMKVMergeLanguageItem
             // 

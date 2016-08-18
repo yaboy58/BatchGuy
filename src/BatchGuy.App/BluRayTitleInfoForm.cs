@@ -35,7 +35,10 @@ namespace BatchGuy.App
         private string _bluRayPath;
         private bool _cbAudioTypeChangeTriggeredByDgvAudioCellClick;
         private BindingList<MKVMergeLanguageItem> _bindingListMKVMergeLanguageItem = new BindingList<MKVMergeLanguageItem>();
-        
+        private MKVMergeItem _currentMKVMergeItem;
+        private bool _cbAudioTypeChangeTriggeredByDgvAudioCellClickForMKVMerge;
+
+
         public BluRayTitleInfoForm()
         {
             InitializeComponent();
@@ -53,9 +56,20 @@ namespace BatchGuy.App
         {
             gbScreen.SetEnabled(false);
             SetMKVToolNixGUIControlsDefaults();
+
             if (_bluRaySummaryInfo.BluRayTitleInfo != null)
             {
                 this.LoadScreen();
+
+                if (_eac3ToConfiguration.IsExtractForRemux)
+                {
+                    if ((_bluRaySummaryInfo.BluRayTitleInfo.AudioList != null && _bluRaySummaryInfo.BluRayTitleInfo.AudioList.Where(m => m.MKVMergeItem == null).Count() > 0) ||
+                        (_bluRaySummaryInfo.BluRayTitleInfo.Subtitles != null && _bluRaySummaryInfo.BluRayTitleInfo.Subtitles.Where(m => m.MKVMergeItem == null).Count() > 0))
+                    {
+                        SetMKVMergetItemDefaults();
+                    }
+                }
+
                 gbScreen.SetEnabled(true);
             }
             else
@@ -207,13 +221,23 @@ namespace BatchGuy.App
         private void HandleDGVAudioCellClick(DataGridViewCellEventArgs e)
         {
             _cbAudioTypeChangeTriggeredByDgvAudioCellClick = true;
+            _cbAudioTypeChangeTriggeredByDgvAudioCellClickForMKVMerge = true;
             var id = dgvAudio.Rows[e.RowIndex].Cells[1].Value;
             _currentBluRayTitleAudio = _bluRaySummaryInfo.BluRayTitleInfo.AudioList.SingleOrDefault(a => a.Id == id.ToString());
             cbAudioType.SelectedIndex = cbAudioType.FindString(this.GetAudioTypeName(_currentBluRayTitleAudio.AudioType));
             txtAudioTypeArguments.Text = _currentBluRayTitleAudio.Arguments;
 
+            _currentMKVMergeItem = _currentBluRayTitleAudio.MKVMergeItem;
+            txtMKVToolNixGUITrackName.Text = _currentMKVMergeItem.TrackName;
+            cbMKVToolNixGUILanguage.SelectedValue = _currentMKVMergeItem.Language.Value;
+            cbMKVToolNixGUIDefaultTrackFlag.SelectedIndex = cbMKVToolNixGUIDefaultTrackFlag.FindString(_currentMKVMergeItem.DefaultTrackFlag);
+            cbMKVToolNixGUIForcedTrackFlag.SelectedIndex = cbMKVToolNixGUIForcedTrackFlag.FindString(_currentMKVMergeItem.ForcedTrackFlag);
+
             if (_cbAudioTypeChangeTriggeredByDgvAudioCellClick) //selected index may not have changed because the same audio type can exist on a blu-ray
                 _cbAudioTypeChangeTriggeredByDgvAudioCellClick = false;
+
+            if (_cbAudioTypeChangeTriggeredByDgvAudioCellClickForMKVMerge)
+                _cbAudioTypeChangeTriggeredByDgvAudioCellClickForMKVMerge = false;
         }
 
         private string GetAudioTypeName(EnumAudioType audioType)
@@ -507,20 +531,22 @@ namespace BatchGuy.App
         {
             IMKVMergeLanguageService languageService = new MKVMergeLanguageService();
 
-            foreach (BluRayTitleAudio audio in bsBluRayTitleAudio)
+            if (_bluRaySummaryInfo.BluRayTitleInfo.AudioList != null)
             {
-                audio.MKVMergeItem.DefaultTrackFlag = "no";
-                audio.MKVMergeItem.ForcedTrackFlag = "no";
-                audio.MKVMergeItem.Language = languageService.GetLanguageByName(audio.Language);
+                foreach (BluRayTitleAudio audio in _bluRaySummaryInfo.BluRayTitleInfo.AudioList)
+                {
+                    audio.MKVMergeItem = new MKVMergeItem() { DefaultTrackFlag = "no", ForcedTrackFlag = "no", Language = languageService.GetLanguageByName(audio.Language), TrackName = "" };
+                }
             }
 
-            foreach (BluRayTitleSubtitle subtitle in bsBluRayTitleSubtitles)
+            if (_bluRaySummaryInfo.BluRayTitleInfo.Subtitles != null)
             {
-                subtitle.MKVMergeItem.DefaultTrackFlag = "no";
-                subtitle.MKVMergeItem.ForcedTrackFlag = "no";
-                subtitle.MKVMergeItem.Language = languageService.GetLanguageByName(subtitle.Language);
-                if (subtitle.MKVMergeItem.Language.Value == "eng")
-                    subtitle.MKVMergeItem.DefaultTrackFlag = "yes";
+                foreach (BluRayTitleSubtitle subtitle in _bluRaySummaryInfo.BluRayTitleInfo.Subtitles)
+                {
+                    subtitle.MKVMergeItem = new MKVMergeItem() { DefaultTrackFlag = "no", ForcedTrackFlag = "no", Language = languageService.GetLanguageByName(subtitle.Language), TrackName = "" };
+                    if (subtitle.MKVMergeItem.Language.Value == "eng")
+                        subtitle.MKVMergeItem.DefaultTrackFlag = "yes";
+                }
             }
         }
 
@@ -536,6 +562,27 @@ namespace BatchGuy.App
         private void SetMKVToolNixGUIControlsEnabledStatus()
         {
             gbMKVToolNixGUI.Enabled = _eac3ToConfiguration.IsExtractForRemux;
+        }
+
+        private void cbMKVToolNixGUILanguage_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.HandleComboBoxMKVToolNixGUILanguageSelectedIndexChanged();
+        }
+
+        private void HandleComboBoxMKVToolNixGUILanguageSelectedIndexChanged()
+        {
+            if (_cbAudioTypeChangeTriggeredByDgvAudioCellClickForMKVMerge)
+            {
+                _cbAudioTypeChangeTriggeredByDgvAudioCellClickForMKVMerge = false;
+                return;
+            }
+
+            this.SetMKVMergeLanguageTrackFlaValue();
+        }
+
+        private void SetMKVMergeLanguageTrackFlaValue()
+        {
+            _currentMKVMergeItem.Language = (MKVMergeLanguageItem) cbMKVToolNixGUILanguage.SelectedItem;
         }
     }
 }

@@ -9,10 +9,6 @@ namespace BatchGuy.App.Parser.Models
 {
     public class BluRayTitleSubtitle
     {
-        public BluRayTitleSubtitle()
-        {
-            MKVMergeItem = new MKVMergeItem();
-        }
         public string Id { get; set; }
         public string Language { get; set; }
         public bool IsSelected { get; set; }

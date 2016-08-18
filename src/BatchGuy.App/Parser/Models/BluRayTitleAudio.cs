@@ -10,10 +10,6 @@ namespace BatchGuy.App.Parser.Models
 {
     public class BluRayTitleAudio
     {
-        public BluRayTitleAudio()
-        {
-            MKVMergeItem = new MKVMergeItem();
-        }
         public string Id { get; set; }
         public EnumAudioType AudioType { get; set; }
         public string Language { get; set; }
