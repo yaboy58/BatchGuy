@@ -17,6 +17,9 @@ using BatchGuy.App.Shared.Models;
 using BatchGuy.App.Shared.Interfaces;
 using BatchGuy.App.Shared.Services;
 using BatchGuy.App.Eac3to.Models;
+using BatchGuy.App.MKVMerge.Models;
+using BatchGuy.App.MKVMerge.Interfaces;
+using BatchGuy.App.MKVMerge.Services;
 
 namespace BatchGuy.App
 {
@@ -31,6 +34,7 @@ namespace BatchGuy.App
         private EAC3ToConfiguration _eac3ToConfiguration;
         private string _bluRayPath;
         private bool _cbAudioTypeChangeTriggeredByDgvAudioCellClick;
+        private BindingList<MKVMergeLanguageItem> _bindingListMKVMergeLanguageItem = new BindingList<MKVMergeLanguageItem>();
         
         public BluRayTitleInfoForm()
         {
@@ -48,6 +52,7 @@ namespace BatchGuy.App
         private void BluRayTitleForm_Load(object sender, EventArgs e)
         {
             gbScreen.SetEnabled(false);
+            LoadMKVMergeLangugeItemsDropDown();
             if (_bluRaySummaryInfo.BluRayTitleInfo != null)
             {
                 this.LoadScreen();
@@ -483,6 +488,18 @@ namespace BatchGuy.App
                     subtitle.IsSelected = true;
                 }
             }
+        }
+
+        private void LoadMKVMergeLangugeItemsDropDown()
+        {
+            IMKVMergeLanguageService service = new MKVMergeLanguageService();
+            foreach (MKVMergeLanguageItem item in service.GetLanguages())
+            {
+                _bindingListMKVMergeLanguageItem.Add(item);
+            }
+
+            bsMKVMergeLanguageItem.DataSource = _bindingListMKVMergeLanguageItem;
+            _bindingListMKVMergeLanguageItem.AllowEdit = false;
         }
     }
 }

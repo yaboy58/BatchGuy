@@ -126,6 +126,9 @@
     <Compile Include="AviSynth\Models\AviSynthBatchSettings.cs" />
     <Compile Include="AviSynth\Models\AviSynthFile.cs" />
     <Compile Include="AviSynth\Models\AviSynthTemplateScript.cs" />
+    <Compile Include="MKVMerge\Interfaces\IMKVMergeLanguageService.cs" />
+    <Compile Include="MKVMerge\Models\MKVMergeLanguageItem.cs" />
+    <Compile Include="MKVMerge\Services\MKVMergeLanguageService.cs" />
     <Compile Include="Parser\Interfaces\IBluRayTitleParserService.cs" />
     <Compile Include="Parser\Models\BluRayDiscInfo.cs" />
     <Compile Include="Parser\Models\BluRayTitleAudio.cs" />
@@ -247,6 +250,7 @@
       <DependentUpon>X264LogFileForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\BatchGuy.App.MKVMerge.Models.MKVMergeLanguageItem.datasource" />
     <None Include="Properties\DataSources\BatchGuy.App.Parser.Models.BluRayDiscInfo.datasource" />
     <None Include="Properties\DataSources\BatchGuy.App.Parser.Models.BluRaySummaryInfo.datasource" />
     <None Include="Properties\DataSources\BatchGuy.App.Parser.Models.BluRayTitleAudio.datasource" />
