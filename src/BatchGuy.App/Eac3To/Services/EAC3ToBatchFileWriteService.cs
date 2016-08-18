@@ -72,7 +72,7 @@ namespace BatchGuy.App.Eac3to.Services
                 catch (Exception ex)
                 {
                     _log.ErrorFormat(Program.GetLogErrorFormat(), ex.Message, MethodBase.GetCurrentMethod().Name);
-                    _errors.Add(new Error() { Description = "There was an error will creating the eac3to batch file." });
+                    _errors.Add(new Error() { Description = "There was an error while creating the eac3to batch file." });
                 }
             }
             return _errors;

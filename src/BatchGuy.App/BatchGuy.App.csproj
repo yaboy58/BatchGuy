@@ -128,10 +128,12 @@
     <Compile Include="AviSynth\Models\AviSynthTemplateScript.cs" />
     <Compile Include="MKVMerge\Interfaces\IMKVMergeBatchFileWriteService.cs" />
     <Compile Include="MKVMerge\Interfaces\IMKVMergeLanguageService.cs" />
+    <Compile Include="MKVMerge\Interfaces\IMKVMergeOutputService.cs" />
     <Compile Include="MKVMerge\Models\MKVMergeItem.cs" />
     <Compile Include="MKVMerge\Models\MKVMergeLanguageItem.cs" />
     <Compile Include="MKVMerge\Services\MKVMergeBatchFileWriteService.cs" />
     <Compile Include="MKVMerge\Services\MKVMergeLanguageService.cs" />
+    <Compile Include="MKVMerge\Services\MKVMergeOutputService.cs" />
     <Compile Include="Parser\Interfaces\IBluRayTitleParserService.cs" />
     <Compile Include="Parser\Models\BluRayDiscInfo.cs" />
     <Compile Include="Parser\Models\BluRayTitleAudio.cs" />

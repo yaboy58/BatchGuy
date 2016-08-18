@@ -1,11 +1,13 @@
 ﻿using BatchGuy.App.Eac3to.Models;
 using BatchGuy.App.Eac3To.Interfaces;
+using BatchGuy.App.Eac3To.Services;
 using BatchGuy.App.MKVMerge.Interfaces;
 using BatchGuy.App.Parser.Models;
 using BatchGuy.App.Shared.Models;
 using log4net;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -27,18 +29,52 @@ namespace BatchGuy.App.MKVMerge.Services
             get { return _errors; }
         }
 
+        public MKVMergeBatchFileWriteService(EAC3ToConfiguration eac3toConfiguration, IDirectorySystemService directorySystemService, List<BluRayDiscInfo> bluRayDiscInfo)
+        {
+            _bluRayDiscInfoList = bluRayDiscInfo;
+            _eac3toConfiguration = eac3toConfiguration;
+            _directorySystemService = directorySystemService;
+            _errors = new ErrorCollection();
+        }
+
         public ErrorCollection Write()
         {
             if (this.IsValid())
             {
                 try
                 {
+                    
+                    IEAC3ToOutputNamingService eac3ToOutputNamingService = new EAC3ToOutputNamingService();
+                    foreach (BluRayDiscInfo disc in _bluRayDiscInfoList.Where(d => d.IsSelected))
+                    {
+                        foreach (BluRaySummaryInfo summary in disc.BluRaySummaryInfoList.Where(s => s.IsSelected).OrderBy(s => s.EpisodeNumber))
+                        {
+                            IMKVMergeOutputService mkvMergeOutputService = new MKVMergeOutputService(_eac3toConfiguration, eac3ToOutputNamingService, disc.BluRayPath, summary);
+                            string mkvMergePathPart = mkvMergeOutputService.GetMKVMergePathPart();
 
+
+                            /*string eac3ToPathPart = mkvMergeOutputService.GetEAC3ToPathPart();
+                            string bluRayStreamPart = mkvMergeOutputService.GetBluRayStreamPart();
+                            string chapterStreamPart = mkvMergeOutputService.GetChapterStreamPart();
+                            string videoStreamPart = mkvMergeOutputService.GetVideoStreamPart();
+                            string audioStreamPart = mkvMergeOutputService.GetAudioStreamPart();
+                            string subtitleStreamPart = mkvMergeOutputService.GetSubtitleStreamPart();
+                            string logPart = mkvMergeOutputService.GetLogPart();
+
+                            using (StreamWriter sw = new StreamWriter(_eac3toConfiguration.BatchFilePath, true))
+                            {
+                                sw.WriteLine(string.Format("{0} {1} {2} {3} {4} {5} {6} -progressnumbers", eac3ToPathPart, bluRayStreamPart, chapterStreamPart, videoStreamPart, audioStreamPart,
+                                    subtitleStreamPart, logPart));
+                                sw.WriteLine();
+                                sw.WriteLine();
+                            }*/
+                        }
+                    }
                 }
                 catch (Exception ex)
                 {
                     _log.ErrorFormat(Program.GetLogErrorFormat(), ex.Message, MethodBase.GetCurrentMethod().Name);
-                    _errors.Add(new Error() { Description = "There was an error will creating the eac3to batch file." });
+                    _errors.Add(new Error() { Description = "There was an error while creating the mkvmerge batch file." });
                 }
             }
             return _errors;
