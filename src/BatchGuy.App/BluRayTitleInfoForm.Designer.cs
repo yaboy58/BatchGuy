@@ -497,6 +497,7 @@
             this.txtMKVToolNixGUITrackName.Name = "txtMKVToolNixGUITrackName";
             this.txtMKVToolNixGUITrackName.Size = new System.Drawing.Size(298, 20);
             this.txtMKVToolNixGUITrackName.TabIndex = 18;
+            this.txtMKVToolNixGUITrackName.TextChanged += new System.EventHandler(this.txtMKVToolNixGUITrackName_TextChanged);
             // 
             // lblMKVToolNixGUITrackName
             // 
