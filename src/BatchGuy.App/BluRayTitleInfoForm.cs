@@ -20,6 +20,7 @@ using BatchGuy.App.Eac3to.Models;
 using BatchGuy.App.MKVMerge.Models;
 using BatchGuy.App.MKVMerge.Interfaces;
 using BatchGuy.App.MKVMerge.Services;
+using BatchGuy.App.Shared.Interface;
 
 namespace BatchGuy.App
 {
@@ -539,7 +540,8 @@ namespace BatchGuy.App
 
         private void LoadMKVMergeLangugeItemsDropDown()
         {
-            IMKVMergeLanguageService service = new MKVMergeLanguageService();
+            IJsonSerializationService<ISOLanguageCodeCollection> jsonSerializationService = new JsonSerializationService<ISOLanguageCodeCollection>();
+            IMKVMergeLanguageService service = new MKVMergeLanguageService(jsonSerializationService);
             foreach (MKVMergeLanguageItem item in service.GetLanguages())
             {
                 _bindingListMKVMergeLanguageItem.Add(item);
@@ -551,7 +553,8 @@ namespace BatchGuy.App
 
         private void SetMKVMergetItemDefaults()
         {
-            IMKVMergeLanguageService languageService = new MKVMergeLanguageService();
+            IJsonSerializationService<ISOLanguageCodeCollection> jsonSerializationService = new JsonSerializationService<ISOLanguageCodeCollection>();
+            IMKVMergeLanguageService languageService = new MKVMergeLanguageService(jsonSerializationService);
 
             if (_bluRaySummaryInfo.BluRayTitleInfo.AudioList != null)
             {

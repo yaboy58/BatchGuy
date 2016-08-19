@@ -129,6 +129,8 @@
     <Compile Include="MKVMerge\Interfaces\IMKVMergeBatchFileWriteService.cs" />
     <Compile Include="MKVMerge\Interfaces\IMKVMergeLanguageService.cs" />
     <Compile Include="MKVMerge\Interfaces\IMKVMergeOutputService.cs" />
+    <Compile Include="MKVMerge\Models\ISOLanguageCode.cs" />
+    <Compile Include="MKVMerge\Models\ISOLanguageCodeCollection.cs" />
     <Compile Include="MKVMerge\Models\MKVMergeItem.cs" />
     <Compile Include="MKVMerge\Models\MKVMergeLanguageItem.cs" />
     <Compile Include="MKVMerge\Services\MKVMergeBatchFileWriteService.cs" />

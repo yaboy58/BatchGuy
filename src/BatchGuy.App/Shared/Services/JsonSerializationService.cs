@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Reflection;
 
 namespace BatchGuy.App.Shared.Services
 {
@@ -64,6 +65,12 @@ namespace BatchGuy.App.Shared.Services
                 if (reader != null)
                     reader.Close();
             }
+        }
+
+        public T ReadFromJsonString<T>(string json)
+        {
+            var collection = Newtonsoft.Json.JsonConvert.DeserializeObject<T>(json);
+            return collection;
         }
     }
 }
