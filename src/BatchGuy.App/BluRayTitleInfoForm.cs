@@ -58,6 +58,7 @@ namespace BatchGuy.App
         {
             gbScreen.SetEnabled(false);
             SetMKVToolNixGUIControlsDefaults();
+            SetGBMKVToolNixGUIEnabledStatus(false);
 
             if (_bluRaySummaryInfo.BluRayTitleInfo != null)
             {
@@ -215,6 +216,7 @@ namespace BatchGuy.App
             else
             {
                 panelAudioType.SetEnabled(true);
+                this.SetGBMKVToolNixGUIEnabledStatus(true);
                 this.HandleDGVAudioCellClick(e);
                 dgvAudio.Rows[e.RowIndex].Selected = true;
             }
@@ -397,6 +399,7 @@ namespace BatchGuy.App
             {
                 this.HandleDGVSubtitlesCellClick(e);
                 dgvSubtitles.Rows[e.RowIndex].Selected = true;
+                this.SetGBMKVToolNixGUIEnabledStatus(true);
             }
         }
 
@@ -653,6 +656,17 @@ namespace BatchGuy.App
         private void HandleComboBoxMKVToolNixGUIForcedFlagSelectedIndexChanged()
         {
             _currentMKVMergeItem.ForcedTrackFlag = cbMKVToolNixGUIForcedTrackFlag.Text;
+        }
+
+        private void SetGBMKVToolNixGUIEnabledStatus(bool enabled)
+        {
+            if (_eac3ToConfiguration.IsExtractForRemux == false)
+            {
+                gbMKVToolNixGUI.Enabled = false;
+                return;
+            }
+
+            gbMKVToolNixGUI.Enabled = enabled;
         }
     }
 }
