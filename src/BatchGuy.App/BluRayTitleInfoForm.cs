@@ -443,7 +443,7 @@ namespace BatchGuy.App
                 this.SortAudioGrid(2); //sort language 
                 this.SortSubtitleGrid(2); //sort language
                 this.AutoSelectEnglishAudio();
-                this.AutoSelectEnglishSubtitles();
+                this.AutoSelectEnglishOrAllSubtitlesIfRemux();
                 this.SetMKVMergetItemDefaults();
                 gbScreen.SetEnabled(true);
             }
@@ -516,13 +516,23 @@ namespace BatchGuy.App
             }
         }
 
-        private void AutoSelectEnglishSubtitles()
+        private void AutoSelectEnglishOrAllSubtitlesIfRemux()
         {
             if (_bluRaySummaryInfo.BluRayTitleInfo != null && _bluRaySummaryInfo.BluRayTitleInfo.Subtitles != null)
             {
-                foreach (BluRayTitleSubtitle subtitle in _bluRaySummaryInfo.BluRayTitleInfo.Subtitles.Where(a => a.Text.ToLower().Contains("english")))
+                if (_eac3ToConfiguration.IsExtractForRemux)
                 {
-                    subtitle.IsSelected = true;
+                    foreach (BluRayTitleSubtitle subtitle in _bluRaySummaryInfo.BluRayTitleInfo.Subtitles)
+                    {
+                        subtitle.IsSelected = true;
+                    }
+                }
+                else
+                {
+                    foreach (BluRayTitleSubtitle subtitle in _bluRaySummaryInfo.BluRayTitleInfo.Subtitles.Where(a => a.Text.ToLower().Contains("english")))
+                    {
+                        subtitle.IsSelected = true;
+                    }
                 }
             }
         }
@@ -594,10 +604,13 @@ namespace BatchGuy.App
 
         private void SetMKVToolNixControlsWithValues()
         {
-            txtMKVToolNixGUITrackName.Text = _currentMKVMergeItem.TrackName;
-            cbMKVToolNixGUILanguage.SelectedValue = _currentMKVMergeItem.Language.Value;
-            cbMKVToolNixGUIDefaultTrackFlag.SelectedIndex = cbMKVToolNixGUIDefaultTrackFlag.FindString(_currentMKVMergeItem.DefaultTrackFlag);
-            cbMKVToolNixGUIForcedTrackFlag.SelectedIndex = cbMKVToolNixGUIForcedTrackFlag.FindString(_currentMKVMergeItem.ForcedTrackFlag);
+            if (_eac3ToConfiguration.IsExtractForRemux)
+            {
+                txtMKVToolNixGUITrackName.Text = _currentMKVMergeItem.TrackName;
+                cbMKVToolNixGUILanguage.SelectedValue = _currentMKVMergeItem.Language.Value;
+                cbMKVToolNixGUIDefaultTrackFlag.SelectedIndex = cbMKVToolNixGUIDefaultTrackFlag.FindString(_currentMKVMergeItem.DefaultTrackFlag);
+                cbMKVToolNixGUIForcedTrackFlag.SelectedIndex = cbMKVToolNixGUIForcedTrackFlag.FindString(_currentMKVMergeItem.ForcedTrackFlag);
+            }
 
             if (_mkvMergeChangeTriggeredByDataGridCellClick)
                 _mkvMergeChangeTriggeredByDataGridCellClick = false;
