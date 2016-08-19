@@ -764,6 +764,8 @@ namespace BatchGuy.App
 
         private void SetBtnCreateMKVMergeBatFileEnabledStatus()
         {
+            btnOpenMKVMergeFilePathDialog.Enabled = _eac3toConfiguration.IsExtractForRemux;
+            btnOpenMKVMergeOutputPathDialog.Enabled = _eac3toConfiguration.IsExtractForRemux;
             btnWriteToMKVMergeBatFile.Enabled = _eac3toConfiguration.IsExtractForRemux;
                 
         }
