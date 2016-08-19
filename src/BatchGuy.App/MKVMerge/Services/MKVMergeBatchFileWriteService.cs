@@ -53,11 +53,15 @@ namespace BatchGuy.App.MKVMerge.Services
                             string mkvMergePathPart = mkvMergeOutputService.GetMKVMergePathPart();
                             string mkvMergeOutputPart = mkvMergeOutputService.GetOutputPart();
                             string mkvMergeVideoPart = mkvMergeOutputService.GetVideoPart();
+                            string mkvMergeAudioPart = mkvMergeOutputService.GetAudioPart();
+                            string mkvMergeSubtitlePart = mkvMergeOutputService.GetSubtitlePart();
+                            string mkvMergeChaptersPart = mkvMergeOutputService.GetChaptersPart();
                             string mkvMergeTrackOrderPart = mkvMergeOutputService.GetTrackOrderPart();
 
                             using (StreamWriter sw = new StreamWriter(_eac3toConfiguration.MKVMergeBatchFilePath, true))
                             {
-                                sw.WriteLine(string.Format("{0} {1} {2} {3}", mkvMergePathPart, mkvMergeOutputPart, mkvMergeVideoPart, mkvMergeTrackOrderPart));
+                                sw.WriteLine(string.Format("{0} {1} {2} {3} {4} {5} {6}", mkvMergePathPart, mkvMergeOutputPart, mkvMergeVideoPart, mkvMergeAudioPart, mkvMergeSubtitlePart,
+                                    mkvMergeChaptersPart, mkvMergeTrackOrderPart));
                                 sw.WriteLine();
                                 sw.WriteLine();
                             }

@@ -35,11 +35,10 @@
 *Added a new BatchGuy Configuration for mkvmerge.exe
 *When pushing the Create eac3to Batch File button on the Create EAC3To Batch Form Screen, the screen does not close
 *Create MKV Merge Batch File button on Create EAC3To Batch Form Screen provides extra validation for screen
+*Went to v3.0.0 because new functionality broke changes to existing settings file
 
-*Think about going to v3.0 as you have breaking changes, I believe
 
 *Default the MKVToolNixGUI Track Name to "Commentary" if commentary checkbox is checked (nice to have)
-
 
 
 --possible nice to haves

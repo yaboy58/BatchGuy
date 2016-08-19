@@ -69,6 +69,51 @@ namespace BatchGuy.App.MKVMerge.Services
             }
             return sb.ToString();
         }
+        public string GetAudioPart()
+        {
+            StringBuilder sb = new StringBuilder();
+            if (_bluRaySummaryInfo.BluRayTitleInfo.AudioList != null)
+            {
+                foreach (BluRayTitleAudio audio in _bluRaySummaryInfo.BluRayTitleInfo.AudioList)
+                {
+                    if (audio.IsSelected)
+                    {
+                        sb.Append(string.Format("--language 0:{0} {1} {2} {3} ^\"^(^\" ^\"{4}^\" ^\"^)^\"", audio.MKVMergeItem.Language.Value, this.GetTrackName(audio.MKVMergeItem.TrackName), this.GetDefaultTrackFlag(audio.MKVMergeItem.DefaultTrackFlag),
+                            this.GetForcedTrackFlag(audio.MKVMergeItem.ForcedTrackFlag), _eac3ToOutputNamingService.GetAudioName(_eac3ToConfiguration, audio, _filesOutputPath, _paddedEpisodeNumber, _bluRaySummaryInfo.BluRayTitleInfo.EpisodeName).RemoveDoubleQuotes()));
+                        sb.Append(" ");
+                    }
+                }
+            }
+            return sb.ToString();
+        }
+
+        public string GetSubtitlePart()
+        {
+            StringBuilder sb = new StringBuilder();
+            if (_bluRaySummaryInfo.BluRayTitleInfo.Subtitles != null)
+            {
+                foreach (BluRayTitleSubtitle subtitle in _bluRaySummaryInfo.BluRayTitleInfo.Subtitles)
+                {
+                    if (subtitle.IsSelected)
+                    {
+                        sb.Append(string.Format("--language 0:{0} {1} {2} {3} ^\"^(^\" ^\"{4}^\" ^\"^)^\"", subtitle.MKVMergeItem.Language.Value, this.GetTrackName(subtitle.MKVMergeItem.TrackName), this.GetDefaultTrackFlag(subtitle.MKVMergeItem.DefaultTrackFlag),
+                            this.GetForcedTrackFlag(subtitle.MKVMergeItem.ForcedTrackFlag), _eac3ToOutputNamingService.GetSubtitleName(_eac3ToConfiguration, subtitle, _filesOutputPath, _paddedEpisodeNumber, _bluRaySummaryInfo.BluRayTitleInfo.EpisodeName).RemoveDoubleQuotes()));
+                        sb.Append(" ");
+                    }
+                }
+            }
+            return sb.ToString();
+        }
+
+        public string GetChaptersPart()
+        {
+            StringBuilder sb = new StringBuilder();
+            if (_bluRaySummaryInfo.BluRayTitleInfo.Chapter != null && _bluRaySummaryInfo.BluRayTitleInfo.Chapter.IsSelected)
+            {
+                sb.Append(string.Format("--chapter-language eng --chapters ^\"{0}^\"", _eac3ToOutputNamingService.GetChapterName(_eac3ToConfiguration, _filesOutputPath, _paddedEpisodeNumber, _bluRaySummaryInfo.BluRayTitleInfo.EpisodeName).RemoveDoubleQuotes()));
+            }
+            return sb.ToString();
+        }
 
         public string GetTrackOrderPart()
         {
@@ -77,7 +122,7 @@ namespace BatchGuy.App.MKVMerge.Services
 
             sb.Append("--track-order ");
             if (_bluRaySummaryInfo.BluRayTitleInfo.Video != null && _bluRaySummaryInfo.BluRayTitleInfo.Video.IsSelected)
-            { 
+            {
                 trackCount++;
             }
             if (_bluRaySummaryInfo.BluRayTitleInfo.AudioList != null && _bluRaySummaryInfo.BluRayTitleInfo.AudioList.Where(a => a.IsSelected).Count() > 0)
@@ -94,22 +139,31 @@ namespace BatchGuy.App.MKVMerge.Services
                 sb.Append(string.Format("{0}:0,", i));
             }
 
-            return sb.ToString().Substring(0,sb.ToString().Length -1);
+            return sb.ToString().Substring(0, sb.ToString().Length - 1);
         }
 
-        public string GetAudioStreamPart()
+        private string GetTrackName(string trackName)
         {
-            throw new NotImplementedException();
+            if (trackName != null && trackName.Trim() != string.Empty)
+                return string.Format(" --track-name ^\"0:{0}^\"", trackName.Trim());
+            else
+                return string.Empty;
         }
 
-        public string GetChapterStreamPart()
+        private string GetDefaultTrackFlag(string defaultTrackFlag)
         {
-            throw new NotImplementedException();
+            if (defaultTrackFlag != null && defaultTrackFlag.Trim() != string.Empty && defaultTrackFlag != "determine automatically")
+                return string.Format(" --default-track 0:{0}", defaultTrackFlag.Trim());
+            else
+                return string.Empty;
         }
 
-        public string GetSubtitleStreamPart()
+        private string GetForcedTrackFlag(string forcedTrackFlag)
         {
-            throw new NotImplementedException();
+            if (forcedTrackFlag != null && forcedTrackFlag.Trim() != string.Empty)
+                return string.Format(" --forced-track 0:{0}", forcedTrackFlag.Trim());
+            else
+                return string.Empty;
         }
     }
 }
