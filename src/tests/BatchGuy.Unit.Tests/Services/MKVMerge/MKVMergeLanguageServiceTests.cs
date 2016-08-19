@@ -7,6 +7,9 @@ using NUnit.Framework;
 using BatchGuy.App.MKVMerge.Interfaces;
 using BatchGuy.App.MKVMerge.Services;
 using FluentAssertions;
+using BatchGuy.App.MKVMerge.Models;
+using BatchGuy.App.Shared.Services;
+using BatchGuy.App.Shared.Interface;
 
 namespace BatchGuy.Unit.Tests.Services.MKVMerge
 {
@@ -16,7 +19,8 @@ namespace BatchGuy.Unit.Tests.Services.MKVMerge
         public void mkvmergelanguageservice_can_get_languages_test()
         {
             //given
-            IMKVMergeLanguageService service = new MKVMergeLanguageService();
+            IJsonSerializationService<ISOLanguageCodeCollection> jsonSerializationService = new JsonSerializationService<ISOLanguageCodeCollection>();
+            IMKVMergeLanguageService service = new MKVMergeLanguageService(jsonSerializationService);
             //when
             var languages = service.GetLanguages();
             //then
@@ -27,7 +31,8 @@ namespace BatchGuy.Unit.Tests.Services.MKVMerge
         public void mkvmergelanguageservice_returns_undetermined_when_language_not_found_test()
         {
             //given
-            IMKVMergeLanguageService service = new MKVMergeLanguageService();
+            IJsonSerializationService<ISOLanguageCodeCollection> jsonSerializationService = new JsonSerializationService<ISOLanguageCodeCollection>();
+            IMKVMergeLanguageService service = new MKVMergeLanguageService(jsonSerializationService);
             //when
             var language = service.GetLanguageByName("nolanguage");
             //then
@@ -38,7 +43,8 @@ namespace BatchGuy.Unit.Tests.Services.MKVMerge
         public void mkvmergelanguageservice_returns_correct_language_test()
         {
             //given
-            IMKVMergeLanguageService service = new MKVMergeLanguageService();
+            IJsonSerializationService<ISOLanguageCodeCollection> jsonSerializationService = new JsonSerializationService<ISOLanguageCodeCollection>();
+            IMKVMergeLanguageService service = new MKVMergeLanguageService(jsonSerializationService);
             //when
             var language = service.GetLanguageByName("English");
             //then
