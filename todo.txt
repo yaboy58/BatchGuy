@@ -37,13 +37,13 @@
 *Create MKV Merge Batch File button on Create EAC3To Batch Form Screen provides extra validation for screen
 *Went to v3.0.0 because new functionality broke changes to existing settings file
 *Select all subtitles on the BluRayTitleInfo Screen when remux is selected
-
 *Disable mkvmerge section in titleinfo when nothing is selected
 
-*Default the MKVToolNixGUI Track Name to "Commentary" if commentary checkbox is checked (nice to have)
+
 
 
 --possible nice to haves
+*Default the MKVToolNixGUI Track Name to "Commentary" if commentary checkbox is checked
 *When a single file contains multiple episodes :
 	1) Go by the actually episode number entered in the loop
 	2) Validate on the screen

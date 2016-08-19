@@ -227,9 +227,12 @@ namespace BatchGuy.App
             _cbAudioTypeChangeTriggeredByDgvAudioCellClick = true;
             _mkvMergeChangeTriggeredByDataGridCellClick = true;
             var id = dgvAudio.Rows[e.RowIndex].Cells[1].Value;
+
             _currentBluRayTitleAudio = _bluRaySummaryInfo.BluRayTitleInfo.AudioList.SingleOrDefault(a => a.Id == id.ToString());
             cbAudioType.SelectedIndex = cbAudioType.FindString(this.GetAudioTypeName(_currentBluRayTitleAudio.AudioType));
             txtAudioTypeArguments.Text = _currentBluRayTitleAudio.Arguments;
+
+           var test =  _bindingListBluRayTitleAudio.SingleOrDefault(a => a.Id == id.ToString());
 
             _currentMKVMergeItem = _currentBluRayTitleAudio.MKVMergeItem;
             this.SetMKVToolNixControlsWithValues();
@@ -240,6 +243,7 @@ namespace BatchGuy.App
             if (_mkvMergeChangeTriggeredByDataGridCellClick)
                 _mkvMergeChangeTriggeredByDataGridCellClick = false;
         }
+
 
         private string GetAudioTypeName(EnumAudioType audioType)
         {

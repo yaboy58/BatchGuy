@@ -13,6 +13,7 @@ using BatchGuy.App.Shared.Interface;
 
 namespace BatchGuy.Unit.Tests.Services.MKVMerge
 {
+    [TestFixture]
     public class MKVMergeLanguageServiceTests
     {
         [Test]
