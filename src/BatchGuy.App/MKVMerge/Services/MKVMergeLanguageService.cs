@@ -57,8 +57,7 @@ namespace BatchGuy.App.MKVMerge.Services
             new MKVMergeLanguageItem() { Language = "Norwegian", Name = "Norwegian (nor)", Value = "nor" },
             new MKVMergeLanguageItem() { Language = "Portuguese", Name = "Portuguese (por)", Value = "por" },
             new MKVMergeLanguageItem() { Language = "Russian", Name = "Russian (rus)", Value = "rus" },
-            new MKVMergeLanguageItem() { Language = "Spanish", Name = "Spanish (spa)", Value = "spa" },
-            new MKVMergeLanguageItem() { Language = "Castillian", Name = "Castillian (spa)", Value = "spa" },
+            new MKVMergeLanguageItem() { Language = "Spanish; Castillian", Name = "Spanish; Castillian (spa)", Value = "spa" },
             new MKVMergeLanguageItem() { Language = "Swedish", Name = "Swedish (swe)", Value = "swe" },
             new MKVMergeLanguageItem() { Language = "Telugu", Name = "Telugu (tel)", Value = "tel" }
             };
