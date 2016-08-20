@@ -518,7 +518,7 @@
             this.cbMKVToolNixGUILanguage.FormattingEnabled = true;
             this.cbMKVToolNixGUILanguage.Location = new System.Drawing.Point(116, 68);
             this.cbMKVToolNixGUILanguage.Name = "cbMKVToolNixGUILanguage";
-            this.cbMKVToolNixGUILanguage.Size = new System.Drawing.Size(249, 21);
+            this.cbMKVToolNixGUILanguage.Size = new System.Drawing.Size(298, 21);
             this.cbMKVToolNixGUILanguage.TabIndex = 17;
             this.cbMKVToolNixGUILanguage.ValueMember = "Value";
             this.cbMKVToolNixGUILanguage.SelectedIndexChanged += new System.EventHandler(this.cbMKVToolNixGUILanguage_SelectedIndexChanged);
