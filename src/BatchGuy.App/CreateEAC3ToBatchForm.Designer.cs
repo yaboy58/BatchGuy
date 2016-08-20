@@ -33,13 +33,14 @@
             this.ofdFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.bgwEac3toLoadSummary = new System.ComponentModel.BackgroundWorker();
             this.gbScreen = new System.Windows.Forms.GroupBox();
+            this.gbMKVMergeInfo = new System.Windows.Forms.GroupBox();
             this.btnOpenMKVMergeFilePathDialog = new System.Windows.Forms.Button();
-            this.btnWriteToMKVMergeBatFile = new System.Windows.Forms.Button();
             this.txtMKVMergeBatFilePath = new System.Windows.Forms.TextBox();
+            this.lblMKVMergeOutputPath = new System.Windows.Forms.Label();
+            this.txtMKVMergeOutputPath = new System.Windows.Forms.TextBox();
             this.btnOpenMKVMergeOutputPathDialog = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
-            this.txtMKVMergeOutputPath = new System.Windows.Forms.TextBox();
-            this.lblMKVMergeOutputPath = new System.Windows.Forms.Label();
+            this.btnWriteToMKVMergeBatFile = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.chkExtractForRemux = new System.Windows.Forms.CheckBox();
             this.gbExtractForRemux = new System.Windows.Forms.GroupBox();
@@ -76,7 +77,6 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bgwMkvMergeWriteBatchFile = new System.ComponentModel.BackgroundWorker();
-            this.gbMKVMergeInfo = new System.Windows.Forms.GroupBox();
             this.setDirectoryUserControl = new BatchGuy.App.UserControls.SetDirectoryUserControl();
             this.isSelectedDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.eac3ToIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -91,6 +91,7 @@
             this.bluRayPathDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bsBluRayDiscInfo = new System.Windows.Forms.BindingSource(this.components);
             this.gbScreen.SuspendLayout();
+            this.gbMKVMergeInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.gbExtractForRemux.SuspendLayout();
             this.gbDiscSummary.SuspendLayout();
@@ -98,7 +99,6 @@
             this.gbDisc.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBluRayDiscInfo)).BeginInit();
             this.menuStrip1.SuspendLayout();
-            this.gbMKVMergeInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsBluRaySummaryInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsBluRayDiscInfo)).BeginInit();
             this.SuspendLayout();
@@ -132,6 +132,22 @@
             this.gbScreen.TabIndex = 30;
             this.gbScreen.TabStop = false;
             // 
+            // gbMKVMergeInfo
+            // 
+            this.gbMKVMergeInfo.Controls.Add(this.btnOpenMKVMergeFilePathDialog);
+            this.gbMKVMergeInfo.Controls.Add(this.txtMKVMergeBatFilePath);
+            this.gbMKVMergeInfo.Controls.Add(this.lblMKVMergeOutputPath);
+            this.gbMKVMergeInfo.Controls.Add(this.txtMKVMergeOutputPath);
+            this.gbMKVMergeInfo.Controls.Add(this.btnOpenMKVMergeOutputPathDialog);
+            this.gbMKVMergeInfo.Controls.Add(this.label10);
+            this.gbMKVMergeInfo.Enabled = false;
+            this.gbMKVMergeInfo.Location = new System.Drawing.Point(864, 256);
+            this.gbMKVMergeInfo.Name = "gbMKVMergeInfo";
+            this.gbMKVMergeInfo.Size = new System.Drawing.Size(457, 94);
+            this.gbMKVMergeInfo.TabIndex = 51;
+            this.gbMKVMergeInfo.TabStop = false;
+            this.gbMKVMergeInfo.Text = "MKVMerge Info For Remux";
+            // 
             // btnOpenMKVMergeFilePathDialog
             // 
             this.btnOpenMKVMergeFilePathDialog.Image = global::BatchGuy.App.Properties.Resources.Avosoft_Warm_Toolbar_Folder_open;
@@ -142,17 +158,6 @@
             this.btnOpenMKVMergeFilePathDialog.UseVisualStyleBackColor = true;
             this.btnOpenMKVMergeFilePathDialog.Click += new System.EventHandler(this.btnOpenMKVMergeFilePathDialog_Click);
             // 
-            // btnWriteToMKVMergeBatFile
-            // 
-            this.btnWriteToMKVMergeBatFile.Enabled = false;
-            this.btnWriteToMKVMergeBatFile.Location = new System.Drawing.Point(1130, 783);
-            this.btnWriteToMKVMergeBatFile.Name = "btnWriteToMKVMergeBatFile";
-            this.btnWriteToMKVMergeBatFile.Size = new System.Drawing.Size(166, 40);
-            this.btnWriteToMKVMergeBatFile.TabIndex = 15;
-            this.btnWriteToMKVMergeBatFile.Text = "Create mkvmerge Batch File";
-            this.btnWriteToMKVMergeBatFile.UseVisualStyleBackColor = true;
-            this.btnWriteToMKVMergeBatFile.Click += new System.EventHandler(this.btnWriteToMKVMergeBatFile_Click);
-            // 
             // txtMKVMergeBatFilePath
             // 
             this.txtMKVMergeBatFilePath.Location = new System.Drawing.Point(153, 29);
@@ -160,6 +165,23 @@
             this.txtMKVMergeBatFilePath.ReadOnly = true;
             this.txtMKVMergeBatFilePath.Size = new System.Drawing.Size(231, 20);
             this.txtMKVMergeBatFilePath.TabIndex = 49;
+            // 
+            // lblMKVMergeOutputPath
+            // 
+            this.lblMKVMergeOutputPath.AutoSize = true;
+            this.lblMKVMergeOutputPath.Location = new System.Drawing.Point(6, 65);
+            this.lblMKVMergeOutputPath.Name = "lblMKVMergeOutputPath";
+            this.lblMKVMergeOutputPath.Size = new System.Drawing.Size(142, 13);
+            this.lblMKVMergeOutputPath.TabIndex = 47;
+            this.lblMKVMergeOutputPath.Text = "mkvmerge Output Directory :";
+            // 
+            // txtMKVMergeOutputPath
+            // 
+            this.txtMKVMergeOutputPath.Location = new System.Drawing.Point(153, 62);
+            this.txtMKVMergeOutputPath.Name = "txtMKVMergeOutputPath";
+            this.txtMKVMergeOutputPath.ReadOnly = true;
+            this.txtMKVMergeOutputPath.Size = new System.Drawing.Size(231, 20);
+            this.txtMKVMergeOutputPath.TabIndex = 46;
             // 
             // btnOpenMKVMergeOutputPathDialog
             // 
@@ -180,22 +202,16 @@
             this.label10.TabIndex = 50;
             this.label10.Text = "mkvmerge Batch File :";
             // 
-            // txtMKVMergeOutputPath
+            // btnWriteToMKVMergeBatFile
             // 
-            this.txtMKVMergeOutputPath.Location = new System.Drawing.Point(153, 62);
-            this.txtMKVMergeOutputPath.Name = "txtMKVMergeOutputPath";
-            this.txtMKVMergeOutputPath.ReadOnly = true;
-            this.txtMKVMergeOutputPath.Size = new System.Drawing.Size(231, 20);
-            this.txtMKVMergeOutputPath.TabIndex = 46;
-            // 
-            // lblMKVMergeOutputPath
-            // 
-            this.lblMKVMergeOutputPath.AutoSize = true;
-            this.lblMKVMergeOutputPath.Location = new System.Drawing.Point(6, 65);
-            this.lblMKVMergeOutputPath.Name = "lblMKVMergeOutputPath";
-            this.lblMKVMergeOutputPath.Size = new System.Drawing.Size(142, 13);
-            this.lblMKVMergeOutputPath.TabIndex = 47;
-            this.lblMKVMergeOutputPath.Text = "mkvmerge Output Directory :";
+            this.btnWriteToMKVMergeBatFile.Enabled = false;
+            this.btnWriteToMKVMergeBatFile.Location = new System.Drawing.Point(1155, 783);
+            this.btnWriteToMKVMergeBatFile.Name = "btnWriteToMKVMergeBatFile";
+            this.btnWriteToMKVMergeBatFile.Size = new System.Drawing.Size(166, 40);
+            this.btnWriteToMKVMergeBatFile.TabIndex = 15;
+            this.btnWriteToMKVMergeBatFile.Text = "Create mkvmerge Batch File";
+            this.btnWriteToMKVMergeBatFile.UseVisualStyleBackColor = true;
+            this.btnWriteToMKVMergeBatFile.Click += new System.EventHandler(this.btnWriteToMKVMergeBatFile_Click);
             // 
             // pictureBox1
             // 
@@ -404,9 +420,9 @@
             // 
             // btnWriteToBatFile
             // 
-            this.btnWriteToBatFile.Location = new System.Drawing.Point(932, 783);
+            this.btnWriteToBatFile.Location = new System.Drawing.Point(951, 783);
             this.btnWriteToBatFile.Name = "btnWriteToBatFile";
-            this.btnWriteToBatFile.Size = new System.Drawing.Size(133, 40);
+            this.btnWriteToBatFile.Size = new System.Drawing.Size(176, 40);
             this.btnWriteToBatFile.TabIndex = 14;
             this.btnWriteToBatFile.Text = "Create eac3to Batch File";
             this.btnWriteToBatFile.UseVisualStyleBackColor = true;
@@ -417,7 +433,7 @@
             this.gbDiscSummary.Controls.Add(this.dgvBluRaySummary);
             this.gbDiscSummary.Location = new System.Drawing.Point(12, 536);
             this.gbDiscSummary.Name = "gbDiscSummary";
-            this.gbDiscSummary.Size = new System.Drawing.Size(1284, 238);
+            this.gbDiscSummary.Size = new System.Drawing.Size(1309, 238);
             this.gbDiscSummary.TabIndex = 40;
             this.gbDiscSummary.TabStop = false;
             this.gbDiscSummary.Text = "Disc Summary";
@@ -438,7 +454,7 @@
             this.dgvBluRaySummary.DataSource = this.bsBluRaySummaryInfo;
             this.dgvBluRaySummary.Location = new System.Drawing.Point(6, 18);
             this.dgvBluRaySummary.Name = "dgvBluRaySummary";
-            this.dgvBluRaySummary.Size = new System.Drawing.Size(1272, 214);
+            this.dgvBluRaySummary.Size = new System.Drawing.Size(1297, 214);
             this.dgvBluRaySummary.TabIndex = 23;
             this.dgvBluRaySummary.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBluRaySummary_CellClick);
             this.dgvBluRaySummary.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBluRaySummary_CellDoubleClick);
@@ -448,7 +464,7 @@
             this.gbDisc.Controls.Add(this.dgvBluRayDiscInfo);
             this.gbDisc.Location = new System.Drawing.Point(12, 350);
             this.gbDisc.Name = "gbDisc";
-            this.gbDisc.Size = new System.Drawing.Size(1284, 180);
+            this.gbDisc.Size = new System.Drawing.Size(1309, 180);
             this.gbDisc.TabIndex = 39;
             this.gbDisc.TabStop = false;
             this.gbDisc.Text = "Drag N Drop Blu-ray Folders";
@@ -469,7 +485,7 @@
             this.dgvBluRayDiscInfo.DataSource = this.bsBluRayDiscInfo;
             this.dgvBluRayDiscInfo.Location = new System.Drawing.Point(6, 24);
             this.dgvBluRayDiscInfo.Name = "dgvBluRayDiscInfo";
-            this.dgvBluRayDiscInfo.Size = new System.Drawing.Size(1272, 150);
+            this.dgvBluRayDiscInfo.Size = new System.Drawing.Size(1297, 150);
             this.dgvBluRayDiscInfo.TabIndex = 24;
             this.dgvBluRayDiscInfo.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBluRayDiscInfo_CellClick);
             this.dgvBluRayDiscInfo.DragDrop += new System.Windows.Forms.DragEventHandler(this.dgvBluRayDiscInfo_DragDrop);
@@ -553,22 +569,6 @@
             // 
             this.bgwMkvMergeWriteBatchFile.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgwMkvMergeWriteBatchFile_DoWork);
             this.bgwMkvMergeWriteBatchFile.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgwMkvMergeWriteBatchFile_RunWorkerCompleted);
-            // 
-            // gbMKVMergeInfo
-            // 
-            this.gbMKVMergeInfo.Controls.Add(this.btnOpenMKVMergeFilePathDialog);
-            this.gbMKVMergeInfo.Controls.Add(this.txtMKVMergeBatFilePath);
-            this.gbMKVMergeInfo.Controls.Add(this.lblMKVMergeOutputPath);
-            this.gbMKVMergeInfo.Controls.Add(this.txtMKVMergeOutputPath);
-            this.gbMKVMergeInfo.Controls.Add(this.btnOpenMKVMergeOutputPathDialog);
-            this.gbMKVMergeInfo.Controls.Add(this.label10);
-            this.gbMKVMergeInfo.Enabled = false;
-            this.gbMKVMergeInfo.Location = new System.Drawing.Point(864, 256);
-            this.gbMKVMergeInfo.Name = "gbMKVMergeInfo";
-            this.gbMKVMergeInfo.Size = new System.Drawing.Size(457, 94);
-            this.gbMKVMergeInfo.TabIndex = 51;
-            this.gbMKVMergeInfo.TabStop = false;
-            this.gbMKVMergeInfo.Text = "MKVMerge Info For Remux";
             // 
             // setDirectoryUserControl
             // 
@@ -691,6 +691,8 @@
             this.DragEnter += new System.Windows.Forms.DragEventHandler(this.CreateEAC3ToBatchForm_DragEnter);
             this.gbScreen.ResumeLayout(false);
             this.gbScreen.PerformLayout();
+            this.gbMKVMergeInfo.ResumeLayout(false);
+            this.gbMKVMergeInfo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.gbExtractForRemux.ResumeLayout(false);
             this.gbExtractForRemux.PerformLayout();
@@ -700,8 +702,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvBluRayDiscInfo)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.gbMKVMergeInfo.ResumeLayout(false);
-            this.gbMKVMergeInfo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsBluRaySummaryInfo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsBluRayDiscInfo)).EndInit();
             this.ResumeLayout(false);

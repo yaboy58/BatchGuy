@@ -92,6 +92,10 @@ namespace BatchGuy.App
             new ToolTip().SetToolTip(txtRemuxAudioType, "Audio type i.e. FLAC 7.1");
             new ToolTip().SetToolTip(txtRemuxTag, "Tag to place at the end of each file i.e. BGuy");
             new ToolTip().SetToolTip(chkExtractForRemux, "Extract for Remux");
+            new ToolTip().SetToolTip(txtMKVMergeBatFilePath, "Directory where mkvmerge batch file will be saved");
+            new ToolTip().SetToolTip(txtMKVMergeOutputPath, "mkvmerge output directory");
+            new ToolTip().SetToolTip(btnOpenMKVMergeFilePathDialog, "Directory where mkvmerge batch file will be saved");
+            new ToolTip().SetToolTip(btnOpenMKVMergeOutputPathDialog, "mkvmerge output directory");
         }
 
         private bool IsEac3ToPathSetInSettings()

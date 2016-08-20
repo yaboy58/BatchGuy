@@ -40,9 +40,6 @@
 *Disable mkvmerge section in titleinfo when nothing is selected
 
 
-*Make buttons bigger at bottom of create eac3to
-
-
 --possible nice to haves
 *Default the MKVToolNixGUI Track Name to "Commentary" if commentary checkbox is checked
 *When a single file contains multiple episodes :
