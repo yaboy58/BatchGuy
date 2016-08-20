@@ -507,6 +507,7 @@ namespace BatchGuy.App
         private void HandleChkExtractForRemuxCheckedChanged()
         {
             gbExtractForRemux.Enabled = chkExtractForRemux.Checked;
+            gbMKVMergeInfo.Enabled = chkExtractForRemux.Checked;
             _eac3toConfiguration.IsExtractForRemux = chkExtractForRemux.Checked;
             this.SetBtnCreateMKVMergeBatFileEnabledStatus();
 
@@ -764,10 +765,7 @@ namespace BatchGuy.App
 
         private void SetBtnCreateMKVMergeBatFileEnabledStatus()
         {
-            btnOpenMKVMergeFilePathDialog.Enabled = _eac3toConfiguration.IsExtractForRemux;
-            btnOpenMKVMergeOutputPathDialog.Enabled = _eac3toConfiguration.IsExtractForRemux;
             btnWriteToMKVMergeBatFile.Enabled = _eac3toConfiguration.IsExtractForRemux;
-                
         }
 
         private void btnWriteToMKVMergeBatFile_Click(object sender, EventArgs e)
