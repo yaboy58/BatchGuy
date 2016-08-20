@@ -42,6 +42,7 @@ namespace BatchGuy.App.MKVMerge.Services
             var isoLaguangeCodes = this.GetISOLanguageCodes();
 
             _languages = new List<MKVMergeLanguageItem>() { new MKVMergeLanguageItem() { Language = "Undetermined", Name = "Undetermined (und)", Value = "und" },
+            new MKVMergeLanguageItem() { Language = "Arabic", Name = "Arabic (ara)", Value = "ara" },
             new MKVMergeLanguageItem() { Language = "Chinese", Name = "Chinese (chi)", Value = "chi" },
             new MKVMergeLanguageItem() { Language = "Danish", Name = "Danish (dan)", Value = "dan" },
             new MKVMergeLanguageItem() { Language = "Dutch", Name = "Dutch; Flemish (dut)", Value = "dut" },
@@ -49,6 +50,7 @@ namespace BatchGuy.App.MKVMerge.Services
             new MKVMergeLanguageItem() { Language = "Finnish", Name = "Finnish (fin)", Value = "fin" },
             new MKVMergeLanguageItem() { Language = "French", Name = "French (fre)", Value = "fre" },
             new MKVMergeLanguageItem() { Language = "German", Name = "German (ger)", Value = "ger" },
+            new MKVMergeLanguageItem() { Language = "Greek, Modern (1453-)", Name = "Greek, Modern (1453-) (gre)", Value = "gre" },
             new MKVMergeLanguageItem() { Language = "Hindi", Name = "Hindi (hin)", Value = "hin" },
             new MKVMergeLanguageItem() { Language = "Icelandic", Name = "Icelandic (ice)", Value = "ice" },
             new MKVMergeLanguageItem() { Language = "Italian", Name = "Italian (ita)", Value = "ita" },
@@ -56,8 +58,9 @@ namespace BatchGuy.App.MKVMerge.Services
             new MKVMergeLanguageItem() { Language = "Korean", Name = "Korean (kor)", Value = "kor" },
             new MKVMergeLanguageItem() { Language = "Norwegian", Name = "Norwegian (nor)", Value = "nor" },
             new MKVMergeLanguageItem() { Language = "Portuguese", Name = "Portuguese (por)", Value = "por" },
+            new MKVMergeLanguageItem() { Language = "Romanian; Moldavian; Moldovan", Name = "Romanian; Moldavian; Moldovan (rum)", Value = "rum" },
             new MKVMergeLanguageItem() { Language = "Russian", Name = "Russian (rus)", Value = "rus" },
-            new MKVMergeLanguageItem() { Language = "Spanish; Castillian", Name = "Spanish; Castillian (spa)", Value = "spa" },
+            new MKVMergeLanguageItem() { Language = "Spanish; Castilian", Name = "Spanish; Castilian (spa)", Value = "spa" },
             new MKVMergeLanguageItem() { Language = "Swedish", Name = "Swedish (swe)", Value = "swe" },
             new MKVMergeLanguageItem() { Language = "Telugu", Name = "Telugu (tel)", Value = "tel" }
             };
