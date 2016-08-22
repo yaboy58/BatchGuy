@@ -30,12 +30,7 @@
 
 
 --todo
-*Went to BatchGuy v3.0.0 because new functionality broke changes to existing settings file
-*New mkvmerge/mkvtoolnix functionality added to BatchGuy that allows the user to create a batch file that uses mkvmerge.exe to mux extracted blu-ray items for remux
-*Added a new BatchGuy Configuration for mkvmerge.exe on the settings screen
-*When pushing the Create eac3to Batch File button on the Create EAC3To Batch Form Screen, the screen does not close
-*The Create Eac3To Batch File Screen modified to implement new mkvmerge/mkvtoolnix functionality
-*The BluRay Title Info Screen modified to implement new mkvmerge/mkvtoolnix functionality
+*Spanish subtitle language for mkvmerge is not being chosen correctly by default
 
 
 
