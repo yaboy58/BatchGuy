@@ -31,7 +31,7 @@
 
 --todo
 *Spanish subtitle language for mkvmerge is not being chosen correctly by default
-
+*Don't set mkvmerge item defaults if not remuxing on the BluRay Title Info Screen
 
 
 
