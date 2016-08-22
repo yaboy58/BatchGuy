@@ -281,7 +281,7 @@
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(1246, 656);
+            this.btnUpdate.Location = new System.Drawing.Point(1246, 697);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(143, 25);
             this.btnUpdate.TabIndex = 16;
@@ -294,7 +294,7 @@
             this.gbSubtitles.Controls.Add(this.dgvSubtitles);
             this.gbSubtitles.Location = new System.Drawing.Point(26, 404);
             this.gbSubtitles.Name = "gbSubtitles";
-            this.gbSubtitles.Size = new System.Drawing.Size(904, 192);
+            this.gbSubtitles.Size = new System.Drawing.Size(904, 234);
             this.gbSubtitles.TabIndex = 4;
             this.gbSubtitles.TabStop = false;
             this.gbSubtitles.Text = "Subtitles";
@@ -315,7 +315,7 @@
             this.dgvSubtitles.DataSource = this.bsBluRayTitleSubtitles;
             this.dgvSubtitles.Location = new System.Drawing.Point(9, 30);
             this.dgvSubtitles.Name = "dgvSubtitles";
-            this.dgvSubtitles.Size = new System.Drawing.Size(881, 146);
+            this.dgvSubtitles.Size = new System.Drawing.Size(881, 198);
             this.dgvSubtitles.TabIndex = 12;
             this.dgvSubtitles.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSubtitles_CellClick);
             // 
@@ -367,7 +367,7 @@
             // gbChapters
             // 
             this.gbChapters.Controls.Add(this.chkChapters);
-            this.gbChapters.Location = new System.Drawing.Point(29, 602);
+            this.gbChapters.Location = new System.Drawing.Point(29, 644);
             this.gbChapters.Name = "gbChapters";
             this.gbChapters.Size = new System.Drawing.Size(901, 48);
             this.gbChapters.TabIndex = 5;
@@ -417,7 +417,7 @@
             this.gbScreen.Controls.Add(this.gbVideo);
             this.gbScreen.Location = new System.Drawing.Point(12, 12);
             this.gbScreen.Name = "gbScreen";
-            this.gbScreen.Size = new System.Drawing.Size(1395, 689);
+            this.gbScreen.Size = new System.Drawing.Size(1395, 732);
             this.gbScreen.TabIndex = 7;
             this.gbScreen.TabStop = false;
             // 
@@ -426,7 +426,7 @@
             this.gbMKVToolNixGUI.Controls.Add(this.gbMKVToolNixGUIGeneralOptions);
             this.gbMKVToolNixGUI.Location = new System.Drawing.Point(938, 12);
             this.gbMKVToolNixGUI.Name = "gbMKVToolNixGUI";
-            this.gbMKVToolNixGUI.Size = new System.Drawing.Size(451, 638);
+            this.gbMKVToolNixGUI.Size = new System.Drawing.Size(451, 679);
             this.gbMKVToolNixGUI.TabIndex = 17;
             this.gbMKVToolNixGUI.TabStop = false;
             this.gbMKVToolNixGUI.Text = "MKVToolNix GUI";
@@ -567,7 +567,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1419, 713);
+            this.ClientSize = new System.Drawing.Size(1419, 756);
             this.Controls.Add(this.gbScreen);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;

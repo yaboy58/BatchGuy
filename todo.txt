@@ -33,7 +33,7 @@
 *Spanish subtitle language for mkvmerge is not being chosen correctly by default
 *Don't set mkvmerge item defaults if not remuxing on the BluRay Title Info Screen
 *BluRay Title Info Screen Audio/Video Grid Rows higlighted if eac3to language could not be found in mkvmerge language for remuxes
-
+*Subtitle Grid on BluRay Title Info Screen size increased
 
 
 --possible nice to haves
