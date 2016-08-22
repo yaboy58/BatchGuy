@@ -69,10 +69,11 @@ namespace BatchGuy.App
                     if ((_bluRaySummaryInfo.BluRayTitleInfo.AudioList != null && _bluRaySummaryInfo.BluRayTitleInfo.AudioList.Where(m => m.MKVMergeItem == null).Count() > 0) ||
                         (_bluRaySummaryInfo.BluRayTitleInfo.Subtitles != null && _bluRaySummaryInfo.BluRayTitleInfo.Subtitles.Where(m => m.MKVMergeItem == null).Count() > 0))
                     {
-                        SetMKVMergetItemDefaults();
+                        this.SetMKVMergetItemDefaults();
                     }
                 }
 
+                this.SetGridRowBackgroundIfUndetermindLanguage();
                 gbScreen.SetEnabled(true);
             }
             else
@@ -453,6 +454,7 @@ namespace BatchGuy.App
                 this.AutoSelectEnglishAudio();
                 this.AutoSelectEnglishOrAllSubtitlesIfRemux();
                 this.SetMKVMergetItemDefaults();
+                this.SetGridRowBackgroundIfUndetermindLanguage();
                 gbScreen.SetEnabled(true);
             }
         }
@@ -674,6 +676,38 @@ namespace BatchGuy.App
             }
 
             gbMKVToolNixGUI.Enabled = enabled;
+        }
+
+        private void SetGridRowBackgroundIfUndetermindLanguage()
+        {
+            if (_eac3ToConfiguration.IsExtractForRemux)
+            {
+                if (_bluRaySummaryInfo.BluRayTitleInfo.AudioList != null)
+                {
+                    foreach (DataGridViewRow row in dgvAudio.Rows)
+                    {
+                        string id = (string)row.Cells[1].Value;
+                        BluRayTitleAudio audio = _bluRaySummaryInfo.BluRayTitleInfo.AudioList.Where(s => s.Id == id).SingleOrDefault();
+                        if (audio != null && audio.MKVMergeItem.Language.Language == "Undetermined")
+                        {
+                            row.DefaultCellStyle.BackColor = Color.Yellow;
+                        }
+                    }
+                }
+
+                if (_bluRaySummaryInfo.BluRayTitleInfo.Subtitles != null)
+                {
+                    foreach (DataGridViewRow row in dgvSubtitles.Rows)
+                    {
+                        string id = (string)row.Cells[1].Value;
+                        BluRayTitleSubtitle subtitle = _bluRaySummaryInfo.BluRayTitleInfo.Subtitles.Where(s => s.Id == id).SingleOrDefault();
+                        if (subtitle != null && subtitle.MKVMergeItem.Language.Language == "Undetermined")
+                        {
+                            row.DefaultCellStyle.BackColor = Color.Yellow;
+                        }
+                    }
+                }
+            }
         }
     }
 }
