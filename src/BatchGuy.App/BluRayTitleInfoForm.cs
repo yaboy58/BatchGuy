@@ -689,6 +689,10 @@ namespace BatchGuy.App
                         if (audio != null && audio.MKVMergeItem.Language.Language == "Undetermined")
                         {
                             row.DefaultCellStyle.BackColor = Color.Yellow;
+                            foreach (DataGridViewCell cell in row.Cells)
+                            {
+                                cell.ToolTipText = "eac3to language could not be matched with mkvmerge langage";
+                            }
                         }
                     }
                 }
@@ -702,6 +706,10 @@ namespace BatchGuy.App
                         if (subtitle != null && subtitle.MKVMergeItem.Language.Language == "Undetermined")
                         {
                             row.DefaultCellStyle.BackColor = Color.Yellow;
+                            foreach (DataGridViewCell cell in row.Cells)
+                            {
+                                cell.ToolTipText = "eac3to language could not be matched with mkvmerge langage";
+                            }
                         }
                     }
                 }
