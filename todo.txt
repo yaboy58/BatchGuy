@@ -33,21 +33,23 @@
 *Added Tooltip to Subtitle/Audio Grids on the BluRay Title Info Screen for highlighted rows where eac3to and mkvmerge language couldn't not match
 *Playlist / Videofile / Runtime information added to the top of the BluRay Title Info Screen
 *Episode Number is no longer required to be set when leaving the BluRay Title Info Screen but is still mandatory when attempting to create the eac3to and mkvmerge batch files
-
+*Added more languages to eac3to to better sync with mkvmerge languages
 
 --possible nice to haves
+*Unselect all on Blu-ray Title Info Screen
 http://dotnetvisio.blogspot.com/2015/08/create-select-all-checkbox-column.html
+
+*it would be nice if the default settings for track demuxing are changeable. e.g. Id always use the dtsma/trueHD lossless stream, so id prefer not having to change this each time from DTS core or AC3. same for chapters, I never use them but they are ticked by default.
+
 *Default the MKVToolNixGUI Track Name to "Commentary" if commentary checkbox is checked
 *When a single file contains multiple episodes :
 	1) Go by the actually episode number entered in the loop
 	2) Validate on the screen
 *the blu-ray title info window cannot be closed without specifying the episode number. maybe a bit annoying if you havent looked at that yet and just wanted to have an overview of all the stream tracks.
-*it would be nice if the default settings for track demuxing are changeable. e.g. Id always use the dtsma/trueHD lossless stream, so id prefer not having to change this each time from DTS core or AC3. same for chapters, I never use them but they are ticked by default.
 *Trimming white spaces from the encode names on the Create x264 Batch File
 *Create a batchguy log file that indicates how many files were processed and how long it took
 *ability to create sample.avs/sample.encode.bat
 *Make the Season Number on Create eac3to Batch File optional (so movies can be remuxed)
-*Unselect all on Blu-ray Title Info Screen
 *Rename EnumBluRayLineItemType to have eac3to in the title, to prepare for tsMuxeR OR Make the identifylineitem service generic to pass in any enum or a combo of these
 *Research and start laying down the foundation for tsMuxeR
 -Understand the cli

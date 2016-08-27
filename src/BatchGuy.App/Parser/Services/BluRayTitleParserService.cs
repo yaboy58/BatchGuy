@@ -83,7 +83,8 @@ namespace BatchGuy.App.Parser.Services
 
         public string GetLanguage(ProcessOutputLineItem lineItem)
         {
-            string[] languages = new string[] { "chinese", "dutch", "english", "english", "finnish", "french", "german", "italian", "spanish", "japanese", "norwegian", "portuguese", "swedish"};
+            string[] languages = new string[] {"greek", "arabic", "chinese", "dutch", "danish", "english", "finnish", "french", "german", "italian", "spanish", "japanese", "norwegian", "portuguese",
+                "swedish","hindi", "icelandic","korean","romanian", "russian", "telugu" };
             string lineItemLanguage = "undetermined";
 
             foreach (string language in languages)
