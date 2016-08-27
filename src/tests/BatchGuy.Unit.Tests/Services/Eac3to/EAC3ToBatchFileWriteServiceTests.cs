@@ -16,10 +16,10 @@ using Moq;
 namespace BatchGuy.Unit.Tests.Services.Eac3to
 {
     [TestFixture]
-    public class BatchFileWriteServiceTests
+    public class EAC3ToBatchFileWriteServiceTests
     {
         [Test]
-        public void batchfilewriterservice_has_no_disc_selected_error_when_no_disc_selected_test()
+        public void eac3tobatchfilewriteservice_has_no_disc_selected_error_when_no_disc_selected_test()
         {
             List<BluRayDiscInfo> discList = new List<BluRayDiscInfo>() {new BluRayDiscInfo() { Id = 1, IsSelected = false, BluRayPath = @"c:\temp\disc1" }};
             EAC3ToConfiguration config = new EAC3ToConfiguration();
@@ -31,7 +31,7 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
         }
 
         [Test]
-        public void batchfilewriterservice_has_no_episodes_selected_error_when_no_episodes_selected_test()
+        public void eac3tobatchfilewriteservice_has_no_episodes_selected_error_when_no_episodes_selected_test()
         {
             List<BluRayDiscInfo> discList = new List<BluRayDiscInfo>() { new BluRayDiscInfo() { Id = 1, IsSelected = true, BluRayPath = @"c:\temp\disc1", 
                 BluRaySummaryInfoList = new List<BluRaySummaryInfo>() { new BluRaySummaryInfo() { IsSelected = false } } } };
@@ -44,7 +44,7 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
         }
 
         [Test]
-        public void batchfilewriterservice_has_episode_number_not_set_for_all_titles_error_when_some_episodes_numbers_not_set_test()
+        public void eac3tobatchfilewriteservice_has_episode_number_not_set_for_all_titles_error_when_some_episodes_numbers_not_set_test()
         {
             List<BluRayDiscInfo> discList = new List<BluRayDiscInfo>() { new BluRayDiscInfo() { Id = 1, IsSelected = true,BluRayPath = @"c:\temp\disc1", 
                 BluRaySummaryInfoList = new List<BluRaySummaryInfo>() { new BluRaySummaryInfo() { IsSelected = true,
@@ -54,11 +54,11 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
             directorySystemServiceMock.Setup(m => m.Exists(It.IsAny<string>())).Returns(true);
             IEAC3ToBatchFileWriteService service = new EAC3ToBatchFileWriteService(config,directorySystemServiceMock.Object, discList);
             bool isValid = service.IsValid();
-            service.Errors[0].Description.Should().Be("Episode number not set for all titles.");
+            service.Errors[0].Description.Should().Be("Episode number not set for all selected titles.");
         }
 
         [Test]
-        public void batchfilewriterservice_has_invalid_bluray_directory_error_when_some_bluray_disc_directories_dont_exist_test()
+        public void eac3tobatchfilewriteservice_has_invalid_bluray_directory_error_when_some_bluray_disc_directories_dont_exist_test()
         {
             List<BluRayDiscInfo> discList = new List<BluRayDiscInfo>() { new BluRayDiscInfo() { Id = 1, IsSelected = true,BluRayPath = @"c:\temp\disc1", 
                 BluRaySummaryInfoList = new List<BluRaySummaryInfo>() { new BluRaySummaryInfo() { IsSelected = true,

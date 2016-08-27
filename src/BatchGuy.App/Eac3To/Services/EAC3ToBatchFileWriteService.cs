@@ -178,7 +178,7 @@ namespace BatchGuy.App.Eac3to.Services
 
             if (!isValid)
             {
-                this._errors.Add(new Error() { Description = "Episode number not set for all titles." });
+                this._errors.Add(new Error() { Description = "Episode number not set for all selected titles." });
             }
             return isValid;
         }

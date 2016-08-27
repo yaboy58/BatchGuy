@@ -194,14 +194,7 @@ namespace BatchGuy.App
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            if (this.IsScreenValid())
-            {
-                this.HandleUpdateClick();                
-            }
-            else
-            {
-                txtEpisodeNumber.Focus();
-            }
+            this.HandleUpdateClick();
         }
 
         private void HandleUpdateClick()
@@ -366,30 +359,6 @@ namespace BatchGuy.App
             else
             {
                 _bluRaySummaryInfo.BluRayTitleInfo.EpisodeNumber = txtEpisodeNumber.Text;
-            }
-        }
-
-        private bool IsScreenValid()
-        {
-            if (_bluRaySummaryInfo.BluRayTitleInfo != null && string.IsNullOrEmpty(_bluRaySummaryInfo.BluRayTitleInfo.EpisodeNumber))
-            {
-                if ((_bluRaySummaryInfo.BluRayTitleInfo.AudioList != null && _bluRaySummaryInfo.BluRayTitleInfo.AudioList.Where(a => a.IsSelected).Count() > 0) 
-                    || (_bluRaySummaryInfo.BluRayTitleInfo.Subtitles != null && _bluRaySummaryInfo.BluRayTitleInfo.Subtitles.Where(s => s.IsSelected).Count() > 0)
-                    || (_bluRaySummaryInfo.BluRayTitleInfo.Chapter != null && _bluRaySummaryInfo.BluRayTitleInfo.Chapter.IsSelected)
-                    || (_bluRaySummaryInfo.BluRayTitleInfo.Video != null  && _bluRaySummaryInfo.BluRayTitleInfo.Video.IsSelected))
-                {
-                    MessageBox.Show("Please enter an episode number!", "Episode number required", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return false;
-                }
-            }
-            return true;
-        }
-
-        private void BluRayTitleInfoForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (!this.IsScreenValid())
-            {
-                e.Cancel = true; 
             }
         }
 

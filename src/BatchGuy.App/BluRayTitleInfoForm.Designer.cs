@@ -574,7 +574,6 @@
             this.Name = "BluRayTitleInfoForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Blu-ray Title Info";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.BluRayTitleInfoForm_FormClosing);
             this.Load += new System.EventHandler(this.BluRayTitleForm_Load);
             this.gbVideo.ResumeLayout(false);
             this.gbVideo.PerformLayout();

@@ -32,6 +32,7 @@
 --todo
 *Added Tooltip to Subtitle/Audio Grids on the BluRay Title Info Screen for highlighted rows where eac3to and mkvmerge language couldn't not match
 *Playlist / Videofile / Runtime information added to the top of the BluRay Title Info Screen
+*Episode Number is no longer required to be set when leaving the BluRay Title Info Screen but is still mandatory when attempting to create the eac3to and mkvmerge batch files
 
 
 --possible nice to haves
