@@ -31,9 +31,11 @@
 
 --todo
 *Added Tooltip to Subtitle/Audio Grids on the BluRay Title Info Screen for highlighted rows where eac3to and mkvmerge language couldn't not match
-http://dotnetvisio.blogspot.com/2015/08/create-select-all-checkbox-column.html
+*Playlist / Videofile / Runtime information added to the top of the BluRay Title Info Screen
+
 
 --possible nice to haves
+http://dotnetvisio.blogspot.com/2015/08/create-select-all-checkbox-column.html
 *Default the MKVToolNixGUI Track Name to "Commentary" if commentary checkbox is checked
 *When a single file contains multiple episodes :
 	1) Go by the actually episode number entered in the loop

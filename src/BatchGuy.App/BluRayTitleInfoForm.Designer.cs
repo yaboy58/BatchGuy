@@ -98,7 +98,7 @@
             // lblTitle
             // 
             this.lblTitle.AutoSize = true;
-            this.lblTitle.Location = new System.Drawing.Point(26, 19);
+            this.lblTitle.Location = new System.Drawing.Point(26, 25);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(30, 13);
             this.lblTitle.TabIndex = 0;
@@ -388,7 +388,7 @@
             // lblEpisodeNumber
             // 
             this.lblEpisodeNumber.AutoSize = true;
-            this.lblEpisodeNumber.Location = new System.Drawing.Point(418, 19);
+            this.lblEpisodeNumber.Location = new System.Drawing.Point(418, 25);
             this.lblEpisodeNumber.Name = "lblEpisodeNumber";
             this.lblEpisodeNumber.Size = new System.Drawing.Size(58, 13);
             this.lblEpisodeNumber.TabIndex = 6;
@@ -396,7 +396,7 @@
             // 
             // txtEpisodeNumber
             // 
-            this.txtEpisodeNumber.Location = new System.Drawing.Point(482, 16);
+            this.txtEpisodeNumber.Location = new System.Drawing.Point(482, 22);
             this.txtEpisodeNumber.Name = "txtEpisodeNumber";
             this.txtEpisodeNumber.Size = new System.Drawing.Size(65, 20);
             this.txtEpisodeNumber.TabIndex = 0;
@@ -539,7 +539,7 @@
             // 
             // txtEpisodeName
             // 
-            this.txtEpisodeName.Location = new System.Drawing.Point(642, 16);
+            this.txtEpisodeName.Location = new System.Drawing.Point(642, 22);
             this.txtEpisodeName.Name = "txtEpisodeName";
             this.txtEpisodeName.Size = new System.Drawing.Size(288, 20);
             this.txtEpisodeName.TabIndex = 2;
@@ -548,7 +548,7 @@
             // lblEpisodeName
             // 
             this.lblEpisodeName.AutoSize = true;
-            this.lblEpisodeName.Location = new System.Drawing.Point(557, 19);
+            this.lblEpisodeName.Location = new System.Drawing.Point(557, 25);
             this.lblEpisodeName.Name = "lblEpisodeName";
             this.lblEpisodeName.Size = new System.Drawing.Size(79, 13);
             this.lblEpisodeName.TabIndex = 8;

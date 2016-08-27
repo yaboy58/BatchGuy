@@ -56,9 +56,10 @@ namespace BatchGuy.App
 
         private void BluRayTitleForm_Load(object sender, EventArgs e)
         {
-            gbScreen.SetEnabled(false);
-            SetMKVToolNixGUIControlsDefaults();
-            SetGBMKVToolNixGUIEnabledStatus(false);
+            this.SetScreenInfo();
+            this.gbScreen.SetEnabled(false);
+            this.SetMKVToolNixGUIControlsDefaults();
+            this.SetGBMKVToolNixGUIEnabledStatus(false);
 
             if (_bluRaySummaryInfo.BluRayTitleInfo != null)
             {
@@ -714,6 +715,11 @@ namespace BatchGuy.App
                     }
                 }
             }
+        }
+
+        private void SetScreenInfo()
+        {
+            gbScreen.Text = string.Format("Playlist / Videofile / Runtime: {0}", _bluRaySummaryInfo.HeaderText);
         }
     }
 }
