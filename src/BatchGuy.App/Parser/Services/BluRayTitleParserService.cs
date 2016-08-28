@@ -76,7 +76,7 @@ namespace BatchGuy.App.Parser.Services
             }
             else if (this.IsAudioType(lineItem, "pcm"))
             {
-                type = EnumAudioType.FLAC;
+                type = EnumAudioType.LPCM;
             }
             return type;
         }

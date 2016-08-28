@@ -262,8 +262,8 @@ namespace BatchGuy.App
                 case EnumAudioType.DTSMA:
                     name = "DTSMA";
                     break;
-                case EnumAudioType.WAVE:
-                    name = "WAVE";
+                case EnumAudioType.LPCM:
+                    name = "LPCM";
                     break;
                 default:
                     throw new Exception("Invalid Audio Type");
@@ -317,8 +317,8 @@ namespace BatchGuy.App
                     _currentBluRayTitleAudio.AudioType = EnumAudioType.DTSMA;
                     _currentBluRayTitleAudio.Arguments = "";
                     break;
-                case "WAVE":
-                    _currentBluRayTitleAudio.AudioType = EnumAudioType.WAVE;
+                case "LPCM":
+                    _currentBluRayTitleAudio.AudioType = EnumAudioType.LPCM;
                     _currentBluRayTitleAudio.Arguments = "";
                     break;
             }
@@ -734,8 +734,8 @@ namespace BatchGuy.App
                 case "DTSMA":
                     audiotype = EnumAudioType.DTSMA;
                     break;
-                case "WAVE":
-                    audiotype = EnumAudioType.WAVE;
+                case "LPCM":
+                    audiotype = EnumAudioType.LPCM;
                     break;
                 default:
                     throw new Exception("Invalid Audio Type");

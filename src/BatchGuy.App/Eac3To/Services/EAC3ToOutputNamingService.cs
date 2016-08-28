@@ -235,7 +235,7 @@ namespace BatchGuy.App.Eac3To.Services
                 case EnumAudioType.DTSMA:
                     audioExtension = "dtsma";
                     break;
-                case EnumAudioType.WAVE:
+                case EnumAudioType.LPCM:
                     audioExtension = "wav";
                     break;
                 default:

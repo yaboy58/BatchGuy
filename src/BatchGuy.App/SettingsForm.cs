@@ -153,5 +153,10 @@ namespace BatchGuy.App
         {
             Program.ApplicationSettings.BluRayTitleInfoDefaultSettings.SelectChapters = chkBluRayTitleInfoDefaultSettingsSelectChapters.Checked;
         }
+
+        private void dgvBluRayTitleInfoDefaultSettingsAudio_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            dgvBluRayTitleInfoDefaultSettingsAudio.Rows[e.RowIndex].Selected = true; ;
+        }
     }
 }

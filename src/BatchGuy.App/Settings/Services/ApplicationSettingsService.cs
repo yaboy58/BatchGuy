@@ -40,6 +40,10 @@ namespace BatchGuy.App.Settings.Services
             {
                 this.LoadSettingsFromConfigFile();
             }
+            else
+            {
+                this.LoadBluRayTitleInfoDefaultSettings();
+            }
         }
 
         public ApplicationSettings GetApplicationSettings()
@@ -68,15 +72,20 @@ namespace BatchGuy.App.Settings.Services
             {
                 _errors.Clear();
                 _applicationSettings = _jsonSerializationService.ReadFromJsonFile<ApplicationSettings>(_applicationSettings.SettingsFile);
-                if (_applicationSettings.BluRayTitleInfoDefaultSettings == null)
-                {
-                    ResetBluRayTitleInfoDefaultSettings();
-                }
+                this.LoadBluRayTitleInfoDefaultSettings();
             }
             catch (Exception ex)
             {
                 _log.ErrorFormat(Program.GetLogErrorFormat(), ex.Message, MethodBase.GetCurrentMethod().Name);
                 _errors.Add(new Error() { Description = "There was a problem loading the Application Settings File" });
+            }
+        }
+
+        private void LoadBluRayTitleInfoDefaultSettings()
+        {
+            if (_applicationSettings.BluRayTitleInfoDefaultSettings == null)
+            {
+                ResetBluRayTitleInfoDefaultSettings();
             }
         }
 
@@ -96,7 +105,7 @@ namespace BatchGuy.App.Settings.Services
                 {
                     audio.Arguments = "-core";
                 }
-                else if (type == EnumAudioType.WAVE)
+                else if (type == EnumAudioType.LPCM)
                 {
                     audio.DefaultType = EnumAudioType.FLAC.ToString();
                 }

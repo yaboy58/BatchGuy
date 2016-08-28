@@ -38,8 +38,12 @@
 *Users can now choose whether or not Subtitles are selected by default
 *Users can now choose whether or not Chapters are selected by default
 *Users can now configure default BluRay Title Info audio settings on the BatchGuy Settings Screen
-*To make the new BatchGuy Settings file structure backwards compatible, added default logic for the BluRay Title Info Defaults on start up of application
+*Added default logic for the BluRay Title Info Defaults on start up of application, if defaults are null
 *Removed default BluRay Title Info audio logic from the eac3to parsing service.  Default BluRay Title Info audio logic will now come from the Settings Screen
+*Changed Wave to LPCM in the application
+*On BluRay Title Info Audio Grid on the BatchGuy Settings Screen, when the user clicks a cell, the entire row is selected
+*Loading BluRay Title Info Default Settings when the user deletes the BatchGuy Settings file
+*Loading BluRay Title Info Default Settings when the user loads an older version of the BatchGuy Settings file
 
 
 --possible nice to haves
