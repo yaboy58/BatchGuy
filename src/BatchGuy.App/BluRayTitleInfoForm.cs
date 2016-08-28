@@ -263,7 +263,7 @@ namespace BatchGuy.App
                     name = "DTSMA";
                     break;
                 case EnumAudioType.WAVE:
-                    name = "Wave";
+                    name = "WAVE";
                     break;
                 default:
                     throw new Exception("Invalid Audio Type");
@@ -317,7 +317,7 @@ namespace BatchGuy.App
                     _currentBluRayTitleAudio.AudioType = EnumAudioType.DTSMA;
                     _currentBluRayTitleAudio.Arguments = "";
                     break;
-                case "Wave":
+                case "WAVE":
                     _currentBluRayTitleAudio.AudioType = EnumAudioType.WAVE;
                     _currentBluRayTitleAudio.Arguments = "";
                     break;
@@ -415,6 +415,7 @@ namespace BatchGuy.App
             }
             else
             {
+                this.SetBluRayTitleInfoDefaultSettings();
                 this.LoadScreen();
                 txtEpisodeNumber.Focus();
                 this.SortAudioGrid(2); //sort language 
@@ -496,7 +497,7 @@ namespace BatchGuy.App
 
         private void AutoSelectEnglishOrAllSubtitlesIfRemux()
         {
-            if (_bluRaySummaryInfo.BluRayTitleInfo != null && _bluRaySummaryInfo.BluRayTitleInfo.Subtitles != null)
+            if (_bluRaySummaryInfo.BluRayTitleInfo != null && _bluRaySummaryInfo.BluRayTitleInfo.Subtitles != null && Program.ApplicationSettings.BluRayTitleInfoDefaultSettings.SelectSubtitles != false)
             {
                 if (_eac3ToConfiguration.IsExtractForRemux)
                 {
@@ -689,6 +690,57 @@ namespace BatchGuy.App
         private void SetScreenInfo()
         {
             gbScreen.Text = string.Format("Playlist / Videofile / Runtime: {0}", _bluRaySummaryInfo.HeaderText);
+        }
+
+        private void SetBluRayTitleInfoDefaultSettings()
+        {
+            if (_bluRaySummaryInfo.BluRayTitleInfo.Subtitles != null)
+            {
+                _bluRaySummaryInfo.BluRayTitleInfo.Subtitles.ForEach(s => s.IsSelected = Program.ApplicationSettings.BluRayTitleInfoDefaultSettings.SelectSubtitles);
+            }
+            if (_bluRaySummaryInfo.BluRayTitleInfo.Chapter != null)
+            {
+                _bluRaySummaryInfo.BluRayTitleInfo.Chapter.IsSelected = Program.ApplicationSettings.BluRayTitleInfoDefaultSettings.SelectChapters;
+            }
+            if (_bluRaySummaryInfo.BluRayTitleInfo.AudioList != null)
+            {
+                foreach (var audio in _bluRaySummaryInfo.BluRayTitleInfo.AudioList)
+                {
+                    var defaultSetting = Program.ApplicationSettings.BluRayTitleInfoDefaultSettings.Audio.First(a => a.Type == audio.AudioType);
+                    audio.Arguments = defaultSetting.Arguments;
+                    audio.AudioType = this.GetEnumAudioTypeByName(defaultSetting.DefaultType);
+                }
+            }
+        }
+
+        private EnumAudioType GetEnumAudioTypeByName(string value)
+        {
+            EnumAudioType audiotype = EnumAudioType.DTS;
+
+            switch (value)
+            {
+                case "DTS":
+                    audiotype = EnumAudioType.DTS;
+                    break;
+                case "AC3":
+                    audiotype = EnumAudioType.AC3;
+                    break;
+                case "FLAC":
+                    audiotype = EnumAudioType.FLAC;
+                    break;
+                case "TrueHD":
+                    audiotype = EnumAudioType.TrueHD;
+                    break;
+                case "DTSMA":
+                    audiotype = EnumAudioType.DTSMA;
+                    break;
+                case "WAVE":
+                    audiotype = EnumAudioType.WAVE;
+                    break;
+                default:
+                    throw new Exception("Invalid Audio Type");
+            }
+            return audiotype;
         }
     }
 }

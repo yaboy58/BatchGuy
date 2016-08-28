@@ -42,10 +42,6 @@ Users can now configure default BluRay Title Info audio settings on the BatchGuy
 *Removed default BluRay Title Info audio logic from the eac3to parsing service.  Default BluRay Title Info audio logic will now come from the Settings Screen
 
 
-
-*Create new AudioTypeService to encapsulate audio type selection logic
-
-
 --possible nice to haves
 *Unselect all on Blu-ray Title Info Screen
 http://dotnetvisio.blogspot.com/2015/08/create-select-all-checkbox-column.html
