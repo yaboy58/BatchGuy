@@ -142,19 +142,6 @@ namespace BatchGuy.App.Parser.Services
             audio.AudioType = this.GetAudioType(lineItem);
             audio.Language = this.GetLanguage(lineItem);
             audio.Text = lineItem.Text;
-            if (audio.AudioType == EnumAudioType.DTS)
-            {
-                audio.Arguments = "-core";
-            }
-            else if (audio.AudioType == EnumAudioType.WAVE)
-            {
-                audio.AudioType = EnumAudioType.FLAC;
-            }
-            else if (audio.AudioType == EnumAudioType.TrueHD)
-            {
-                audio.AudioType = EnumAudioType.AC3;
-                audio.Arguments = "-640";
-            }
 
             _bluRayTtileInfo.AudioList.Add(audio);
         }

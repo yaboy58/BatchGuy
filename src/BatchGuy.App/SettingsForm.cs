@@ -11,11 +11,14 @@ using BatchGuy.App.Shared.Interface;
 using BatchGuy.App.Shared.Models;
 using BatchGuy.App.Shared.Services;
 using BatchGuy.App.Extensions;
+using BatchGuy.App.Settings.Models;
 
 namespace BatchGuy.App
 {
     public partial class SettingsForm : Form
     {
+        private BindingList<BluRayTitleInfoDefaultSettingsAudio> _bindingBluRayTitleInfoDefaultSettingsAudio = new BindingList<BluRayTitleInfoDefaultSettingsAudio>();
+
         public SettingsForm()
         {
             InitializeComponent();
@@ -25,6 +28,7 @@ namespace BatchGuy.App
         private void SettingsForm_Load(object sender, EventArgs e)
         {
             this.LoadSettings();
+            this.LoadControls();
         }
 
         private void LoadSettings()
@@ -32,6 +36,18 @@ namespace BatchGuy.App
             txtEac3toPath.Text = this.LoadSetting("eac3to");
             txtVfw4x264.Text = this.LoadSetting("vfw4x264");
             txtMKVMerge.Text = this.LoadSetting("mkvmerge");
+
+            foreach (BluRayTitleInfoDefaultSettingsAudio bluRayTitleInfoDefaultSettingsAudio in Program.ApplicationSettings.BluRayTitleInfoDefaultSettings.Audio)
+            {
+                _bindingBluRayTitleInfoDefaultSettingsAudio.Add(bluRayTitleInfoDefaultSettingsAudio);
+            }
+            bsBluRayTitleInfoDefaultSettingsAudio.DataSource = _bindingBluRayTitleInfoDefaultSettingsAudio;
+        }
+
+        private void LoadControls()
+        {
+            chkBluRayTitleInfoDefaultSettingsSelectChapters.Checked = Program.ApplicationSettings.BluRayTitleInfoDefaultSettings.SelectChapters;
+            chkBluRayTitleInfoDefaultSettingsSelectSubtitles.Checked = Program.ApplicationSettings.BluRayTitleInfoDefaultSettings.SelectSubtitles;
         }
 
         private string LoadSetting(string settingName)
@@ -116,6 +132,26 @@ namespace BatchGuy.App
             {
               txtMKVMerge.Text = ofdFileDialog.FileName;
             }
+        }
+
+        private void chkBluRayTitleInfoDefaultSettingsSelectSubtitles_CheckedChanged(object sender, EventArgs e)
+        {
+            this.HandlesChkBluRayTitleInfoDefaultSettingsSelectSubtitlesCheckedChanged();
+        }
+
+        private void HandlesChkBluRayTitleInfoDefaultSettingsSelectSubtitlesCheckedChanged()
+        {
+            Program.ApplicationSettings.BluRayTitleInfoDefaultSettings.SelectSubtitles = chkBluRayTitleInfoDefaultSettingsSelectSubtitles.Checked;
+        }
+
+        private void chkBluRayTitleInfoDefaultSettingsSelectChapters_CheckedChanged(object sender, EventArgs e)
+        {
+            this.HandlesChkBluRayTitleInfoDefaultSettingsSelectChaptersCheckedChanged();
+        }
+
+        private void HandlesChkBluRayTitleInfoDefaultSettingsSelectChaptersCheckedChanged()
+        {
+            Program.ApplicationSettings.BluRayTitleInfoDefaultSettings.SelectChapters = chkBluRayTitleInfoDefaultSettingsSelectChapters.Checked;
         }
     }
 }

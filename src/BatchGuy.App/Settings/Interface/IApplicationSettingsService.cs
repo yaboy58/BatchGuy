@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BatchGuy.App.Shared.Models;
 
 namespace BatchGuy.App.Settings.Interface
 {
@@ -17,5 +16,7 @@ namespace BatchGuy.App.Settings.Interface
         ApplicationSettings GetApplicationSettings();
 
         Setting GetSettingByName(string settingName);
+
+        void ResetBluRayTitleInfoDefaultSettings();
     }
 }

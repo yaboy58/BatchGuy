@@ -9,7 +9,8 @@ using System.IO;
 using log4net;
 using BatchGuy.App.Settings.Interface;
 using System.Reflection;
-
+using BatchGuy.App.Enums;
+using BatchGuy.App.Settings.Models;
 
 namespace BatchGuy.App.Settings.Services
 {
@@ -67,6 +68,10 @@ namespace BatchGuy.App.Settings.Services
             {
                 _errors.Clear();
                 _applicationSettings = _jsonSerializationService.ReadFromJsonFile<ApplicationSettings>(_applicationSettings.SettingsFile);
+                if (_applicationSettings.BluRayTitleInfoDefaultSettings == null)
+                {
+                    ResetBluRayTitleInfoDefaultSettings();
+                }
             }
             catch (Exception ex)
             {
@@ -78,6 +83,30 @@ namespace BatchGuy.App.Settings.Services
         public Setting GetSettingByName(string settingName)
         {
             return _applicationSettings.Settings.SingleOrDefault(s => s.Name == settingName);
+        }
+
+        public void ResetBluRayTitleInfoDefaultSettings()
+        {
+            _applicationSettings.BluRayTitleInfoDefaultSettings = new BluRayTitleInfoDefaultSettings() { Enabled = true, SelectChapters = true, SelectSubtitles = true };
+
+            foreach (EnumAudioType type in Enum.GetValues(typeof(EnumAudioType)))
+            {
+                BluRayTitleInfoDefaultSettingsAudio audio = new BluRayTitleInfoDefaultSettingsAudio() { Arguments = "", DefaultType = type.ToString(), Type = type, Name = type.ToString() };
+                if (type == EnumAudioType.DTS)
+                {
+                    audio.Arguments = "-core";
+                }
+                else if (type == EnumAudioType.WAVE)
+                {
+                    audio.DefaultType = EnumAudioType.FLAC.ToString();
+                }
+                else if (type == EnumAudioType.TrueHD)
+                {
+                    audio.DefaultType = EnumAudioType.AC3.ToString();
+                    audio.Arguments = "-640";
+                }
+                _applicationSettings.BluRayTitleInfoDefaultSettings.Audio.Add(audio);
+            }
         }
     }
 }

@@ -152,6 +152,8 @@
       <DependentUpon>SettingsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Settings\Interface\IApplicationSettingsService.cs" />
+    <Compile Include="Settings\Models\BluRayTitleInfoDefaultSettings.cs" />
+    <Compile Include="Settings\Models\BluRayTitleInfoDefaultSettingsAudio.cs" />
     <Compile Include="Shared\Interfaces\IJsonSerializationService.cs" />
     <Compile Include="Settings\Models\ApplicationSettings.cs" />
     <Compile Include="Settings\Models\Setting.cs" />
@@ -265,6 +267,7 @@
     <None Include="Properties\DataSources\BatchGuy.App.Parser.Models.BluRayTitleInfo.datasource" />
     <None Include="Properties\DataSources\BatchGuy.App.Parser.Models.BluRayTitleSubtitle.datasource" />
     <None Include="Properties\DataSources\BatchGuy.App.Parser.Models.BluRayTitleVideo.datasource" />
+    <None Include="Properties\DataSources\BatchGuy.App.Settings.Models.BluRayTitleInfoDefaultSettingsAudio.datasource" />
     <None Include="Properties\DataSources\BatchGuy.App.X264.Models.X264File.datasource" />
     <None Include="Properties\DataSources\BatchGuy.App.X264Log.Models.X264LogFile.datasource" />
     <None Include="Properties\Settings.settings">
