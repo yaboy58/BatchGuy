@@ -101,33 +101,6 @@ namespace BatchGuy.Unit.Tests.Services.Parser
             info.AudioList[0].AudioType.Should().Be(EnumAudioType.DTS);
         }
 
-        [Test]
-        public void bluraytitleparserservice_can_set_arguments_for_audio_type_dts_test()
-        {
-            List<ProcessOutputLineItem> lineItems = new List<ProcessOutputLineItem> 
-            {
-                new ProcessOutputLineItem()  { Id = 1, Text = "3: DTS Master Audio, French, 5.1 channels, 24 bits, 48kHz" }
-            };
-            ILineItemIdentifierService lineItemService = new BluRayTitleLineItemIdentifierService();
-            IBluRayTitleParserService parserService = new BluRayTitleParserService(lineItemService, lineItems);
-            BluRayTitleInfo info = parserService.GetTitleInfo();
-
-            info.AudioList[0].Arguments.Should().Be("-core");
-        }
-
-        [Test]
-        public void bluraytitleparserservice_can_set_audio_type_to_ac3_by_default_when_truehd_test()
-        {
-            List<ProcessOutputLineItem> lineItems = new List<ProcessOutputLineItem> 
-            {
-                new ProcessOutputLineItem()  { Id = 1, Text = "3: English / Dolby TrueHD Audio / 5.1 / 48 kHz / 3136 kbps / 24-bit (AC3 Embedded: 5.1 / 48 kHz / 448 kbps)" }
-            };
-            ILineItemIdentifierService lineItemService = new BluRayTitleLineItemIdentifierService();
-            IBluRayTitleParserService parserService = new BluRayTitleParserService(lineItemService, lineItems);
-            BluRayTitleInfo info = parserService.GetTitleInfo();
-
-            info.AudioList[0].AudioType.Should().Be(EnumAudioType.AC3);
-        }
 
         [Test]
         public void bluraytitleparserservice_can_set_audio_type_flac_test()
