@@ -299,7 +299,7 @@ namespace BatchGuy.App
             {
                 case "DTS":
                     _currentBluRayTitleAudio.AudioType = EnumAudioType.DTS;
-                    _currentBluRayTitleAudio.Arguments = "-core";
+                    _currentBluRayTitleAudio.Arguments = "";
                     break;
                 case "AC3":
                     _currentBluRayTitleAudio.AudioType = EnumAudioType.AC3;
