@@ -21,10 +21,6 @@ namespace BatchGuy.App.Eac3To.Services
             _audioService = audioService;
         }
 
-        public EAC3ToOutputNamingService()
-        {
-        }
-
         public string GetChapterName(EAC3ToConfiguration eac3toConfiguration, string filesOutputPath, string paddedEpisodeNumber, string episodeName)
         {
             StringBuilder sb = new StringBuilder();
@@ -72,7 +68,7 @@ namespace BatchGuy.App.Eac3To.Services
             if (eac3toConfiguration.IsExtractForRemux != true)
             {
                 sb.Append(string.Format("\"{0}\\{1}{2}-{3}{4}.{5}\"", filesOutputPath, audio.Language, paddedEpisodeNumber, audio.Id.RemoveColons(), this.GetAudioCommentary(audio), 
-                    this.GetAudioExtension(audio.AudioType)));
+                   _audioService.GetAudioExtension(audio.AudioType)));
             }
             else
             {
@@ -83,7 +79,7 @@ namespace BatchGuy.App.Eac3To.Services
                     this.GetFormattedVideoFormat(eac3toConfiguration), this.GetFormattedAuditoType(eac3toConfiguration));
 
                 sb.Append(string.Format("\"{0}{1} {2}{3}-{4}{5}.{6}\"", audioName.Trim(), tag, audio.Language, paddedEpisodeNumber, audio.Id.RemoveColons(),
-                    this.GetAudioCommentary(audio),this.GetAudioExtension(audio.AudioType)));
+                    this.GetAudioCommentary(audio),_audioService.GetAudioExtension(audio.AudioType)));
             }
             return sb.ToString().RemoveDoubleSpaces();
         }
@@ -220,39 +216,6 @@ namespace BatchGuy.App.Eac3To.Services
                 tag = string.Format("-{0}", eac3toConfiguration.RemuxFileNameTemplate.Tag);
             }
             return tag;
-        }
-
-        private string GetAudioExtension(EnumAudioType audioType)
-        {
-            string audioExtension = string.Empty;
-
-            switch (audioType)
-            {
-                case EnumAudioType.DTS:
-                    audioExtension = "dts";
-                    break;
-                case EnumAudioType.AC3:
-                    audioExtension = "ac3";
-                    break;
-                case EnumAudioType.FLAC:
-                    audioExtension = "flac";
-                    break;
-                case EnumAudioType.TrueHD:
-                    audioExtension = "thd";
-                    break;
-                case EnumAudioType.MPA:
-                    audioExtension = "mpa";
-                    break;
-                case EnumAudioType.DTSMA:
-                    audioExtension = "dtsma";
-                    break;
-                case EnumAudioType.LPCM:
-                    audioExtension = "wav";
-                    break;
-                default:
-                    throw new Exception("Invalid Audio Type");
-            }
-            return audioExtension;
         }
     }
 }

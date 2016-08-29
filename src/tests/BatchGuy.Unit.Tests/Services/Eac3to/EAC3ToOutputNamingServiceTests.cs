@@ -47,7 +47,8 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
             string paddedEpisodeNumber = "01";
             string episodeName = string.Empty;
             //when i get the chapter name
-            IEAC3ToOutputNamingService service = new EAC3ToOutputNamingService();
+            IAudioService audioService = new AudioService();
+            IEAC3ToOutputNamingService service = new EAC3ToOutputNamingService(audioService);
             string chapterName = service.GetChapterName(config, filesOutputPath, paddedEpisodeNumber, episodeName);
             //then chapter name should be based on the remux template
             chapterName.Should().Be("\"c:\\bluray\\BatchGuy 1978 S02E01 1080p Remux FLAC 5.1-Guy chapters.txt\"");
@@ -62,7 +63,8 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
             string paddedEpisodeNumber = "01";
             string episodeName = string.Empty;
             //when i get the video name
-            IEAC3ToOutputNamingService service = new EAC3ToOutputNamingService();
+            IAudioService audioService = new AudioService();
+            IEAC3ToOutputNamingService service = new EAC3ToOutputNamingService(audioService);
             string videoName = service.GetVideoName(config, filesOutputPath, paddedEpisodeNumber, episodeName);
             //then video name should be hard coded for workflow
             videoName.Should().Be("\"c:\\bluray\\video01.mkv\"");
@@ -89,7 +91,8 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
             string paddedEpisodeNumber = "01";
             string episodeName = string.Empty;
             //when i get the video name
-            IEAC3ToOutputNamingService service = new EAC3ToOutputNamingService();
+            IAudioService audioService = new AudioService();
+            IEAC3ToOutputNamingService service = new EAC3ToOutputNamingService(audioService);
             string videoName = service.GetVideoName(config, filesOutputPath, paddedEpisodeNumber, episodeName);
             //then video name should be based on the remux template
             videoName.Should().Be("\"c:\\bluray\\BatchGuy 1978 S02E01 1080p FLAC 5.1-Guy.mkv\"");
@@ -115,7 +118,8 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
             string paddedEpisodeNumber = "01";
             string episodeName = string.Empty;
             //when i get the video name
-            IEAC3ToOutputNamingService service = new EAC3ToOutputNamingService();
+            IAudioService audioService = new AudioService();
+            IEAC3ToOutputNamingService service = new EAC3ToOutputNamingService(audioService);
             string videoName = service.GetVideoName(config, filesOutputPath, paddedEpisodeNumber, episodeName);
             //then video name should be based on the remux template
             videoName.Should().Be("\"c:\\bluray\\BatchGuy 1978 S02E01 1080p -Guy.mkv\"");
@@ -139,7 +143,8 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
             string paddedEpisodeNumber = "01";
             string episodeName = "Episode 1";
             //when i get the video name
-            IEAC3ToOutputNamingService service = new EAC3ToOutputNamingService();
+            IAudioService audioService = new AudioService();
+            IEAC3ToOutputNamingService service = new EAC3ToOutputNamingService(audioService);
             string videoName = service.GetVideoName(config, filesOutputPath, paddedEpisodeNumber, episodeName);
             //then video name should be based on the remux template
             videoName.Should().Be("\"c:\\bluray\\BatchGuy 1978 S02E01 Episode 1.mkv\"");
@@ -155,7 +160,8 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
             string episodeName = string.Empty;
             BluRayTitleAudio audio = new BluRayTitleAudio() {Id = "13:", AudioType = EnumAudioType.DTS, Language = "english" };
             //when i get the audio name
-            IEAC3ToOutputNamingService service = new EAC3ToOutputNamingService();
+            IAudioService audioService = new AudioService();
+            IEAC3ToOutputNamingService service = new EAC3ToOutputNamingService(audioService);
             string audioName = service.GetAudioName(config, audio, filesOutputPath, paddedEpisodeNumber,episodeName);
             //then audio name should be hard coded for workflow
             audioName.Should().Be("\"c:\\bluray\\english01-13.dts\"");
@@ -182,7 +188,8 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
             string paddedEpisodeNumber = "01";
             string episodeName = string.Empty;
             //when i get the audio name
-            IEAC3ToOutputNamingService service = new EAC3ToOutputNamingService();
+            IAudioService audioService = new AudioService();
+            IEAC3ToOutputNamingService service = new EAC3ToOutputNamingService(audioService);
             BluRayTitleAudio audio = new BluRayTitleAudio() { Id = "5:", AudioType = EnumAudioType.DTS, Language = "english" };
             string audioName = service.GetAudioName(config, audio, filesOutputPath, paddedEpisodeNumber,episodeName);
             //then audio name should be based on the remux template
@@ -199,7 +206,8 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
             string episodeName = string.Empty;
             BluRayTitleSubtitle subtitle = new BluRayTitleSubtitle() {Id="3:", Language = "english" };
             //when i get the subtitle name
-            IEAC3ToOutputNamingService service = new EAC3ToOutputNamingService();
+            IAudioService audioService = new AudioService();
+            IEAC3ToOutputNamingService service = new EAC3ToOutputNamingService(audioService);
             string  subtitleName = service.GetSubtitleName(config, subtitle, filesOutputPath, paddedEpisodeNumber, episodeName);
             //then subtitle name should be hard coded for workflow
             subtitleName.Should().Be("\"c:\\bluray\\english01-3.sup\"");
@@ -228,7 +236,8 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
             string paddedEpisodeNumber = "01";
             string episodeName = string.Empty;
             //when i get the subtitle name
-            IEAC3ToOutputNamingService service = new EAC3ToOutputNamingService();
+            IAudioService audioService = new AudioService();
+            IEAC3ToOutputNamingService service = new EAC3ToOutputNamingService(audioService);
             BluRayTitleSubtitle subtitle = new BluRayTitleSubtitle() {Id = "11:", Language = "english" };
             string subtitleName = service.GetSubtitleName(config, subtitle, filesOutputPath, paddedEpisodeNumber, episodeName);
             //then subtitle name should be based on the remux template
@@ -252,7 +261,8 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
             string paddedEpisodeNumber = "01";
             string episodeName = string.Empty;
             //when i get the subtitle name
-            IEAC3ToOutputNamingService service = new EAC3ToOutputNamingService();
+            IAudioService audioService = new AudioService();
+            IEAC3ToOutputNamingService service = new EAC3ToOutputNamingService(audioService);
             BluRayTitleSubtitle subtitle = new BluRayTitleSubtitle() {Id = "3:", Language = "english" };
             string subtitleName = service.GetSubtitleName(config, subtitle, filesOutputPath, paddedEpisodeNumber, episodeName);
             //then subtitle name should be based on the remux template
@@ -276,7 +286,8 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
             string paddedEpisodeNumber = "01";
             string episodeName = "Episode 3";
             //when i get the subtitle name
-            IEAC3ToOutputNamingService service = new EAC3ToOutputNamingService();
+            IAudioService audioService = new AudioService();
+            IEAC3ToOutputNamingService service = new EAC3ToOutputNamingService(audioService);
             string logName = service.GetLogName(config, filesOutputPath, paddedEpisodeNumber, episodeName);
             //then subtitle name should be based on the remux template
             logName.Should().Be(" -log=\"c:\\bluray\\BatchGuy S02E01 Episode 3 log.log\"");
@@ -292,7 +303,8 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
             string episodeName = string.Empty;
             BluRayTitleAudio audio = new BluRayTitleAudio() { Id = "13:", AudioType = EnumAudioType.DTS, Language = "english", IsCommentary = true };
             //when i get the audio name
-            IEAC3ToOutputNamingService service = new EAC3ToOutputNamingService();
+            IAudioService audioService = new AudioService();
+            IEAC3ToOutputNamingService service = new EAC3ToOutputNamingService(audioService);
             string audioName = service.GetAudioName(config, audio, filesOutputPath, paddedEpisodeNumber, episodeName);
             //then audio name should have commentary in the name
             audioName.Should().Be("\"c:\\bluray\\english01-13-commentary.dts\"");
@@ -319,7 +331,8 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
             string paddedEpisodeNumber = "01";
             string episodeName = string.Empty;
             //when i get the audio name
-            IEAC3ToOutputNamingService service = new EAC3ToOutputNamingService();
+            IAudioService audioService = new AudioService();
+            IEAC3ToOutputNamingService service = new EAC3ToOutputNamingService(audioService);
             BluRayTitleAudio audio = new BluRayTitleAudio() { Id = "5:", AudioType = EnumAudioType.DTS, Language = "english", IsCommentary = true };
             string audioName = service.GetAudioName(config, audio, filesOutputPath, paddedEpisodeNumber, episodeName);
             //then audio name should be based on the remux template and commentary
@@ -336,7 +349,8 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
             string episodeName = string.Empty;
             BluRayTitleSubtitle subtitle = new BluRayTitleSubtitle() { Id = "3:", Language = "english", IsCommentary = true };
             //when i get the subtitle name
-            IEAC3ToOutputNamingService service = new EAC3ToOutputNamingService();
+            IAudioService audioService = new AudioService();
+            IEAC3ToOutputNamingService service = new EAC3ToOutputNamingService(audioService);
             string subtitleName = service.GetSubtitleName(config, subtitle, filesOutputPath, paddedEpisodeNumber, episodeName);
             //then subtitle name should be hard coded for workflow and commentary
             subtitleName.Should().Be("\"c:\\bluray\\english01-3-commentary.sup\"");
@@ -359,7 +373,8 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
             string paddedEpisodeNumber = "01";
             string episodeName = string.Empty;
             //when i get the subtitle name
-            IEAC3ToOutputNamingService service = new EAC3ToOutputNamingService();
+            IAudioService audioService = new AudioService();
+            IEAC3ToOutputNamingService service = new EAC3ToOutputNamingService(audioService);
             BluRayTitleSubtitle subtitle = new BluRayTitleSubtitle() { Id = "3:", Language = "english", IsCommentary = true };
             string subtitleName = service.GetSubtitleName(config, subtitle, filesOutputPath, paddedEpisodeNumber, episodeName);
             //then subtitle name should be based on the remux template and commentary

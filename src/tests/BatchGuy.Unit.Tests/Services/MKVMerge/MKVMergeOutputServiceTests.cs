@@ -11,6 +11,8 @@ using BatchGuy.App.Eac3To.Interfaces;
 using BatchGuy.App.Eac3To.Services;
 using BatchGuy.App.MKVMerge.Interfaces;
 using BatchGuy.App.MKVMerge.Services;
+using BatchGuy.App.Shared.Interfaces;
+using BatchGuy.App.Shared.Services;
 
 namespace BatchGuy.Unit.Tests.Services.MKVMerge
 {
@@ -23,7 +25,8 @@ namespace BatchGuy.Unit.Tests.Services.MKVMerge
             //given
             EAC3ToConfiguration config = new EAC3ToConfiguration() {  MKVMergePath = "c:\\exe\\mkvmerge.exe" };
             BluRaySummaryInfo bluRaySummaryInfo = new BluRaySummaryInfo() { Eac3ToId = "1)", BluRayTitleInfo = new BluRayTitleInfo() { EpisodeNumber = "1" } };
-            IEAC3ToOutputNamingService eac3ToOutputNamingService = new EAC3ToOutputNamingService();
+            IAudioService audioService = new AudioService();
+            IEAC3ToOutputNamingService eac3ToOutputNamingService = new EAC3ToOutputNamingService(audioService);
             //when
             IMKVMergeOutputService mkvMergeOutputService = new MKVMergeOutputService(config, eac3ToOutputNamingService, @"c:\temp", bluRaySummaryInfo);
             var mkvmergepath = mkvMergeOutputService.GetMKVMergePathPart();

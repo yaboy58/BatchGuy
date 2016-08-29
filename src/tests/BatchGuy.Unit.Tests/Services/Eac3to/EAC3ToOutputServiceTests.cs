@@ -45,7 +45,8 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
             string bluRayPath = "c:\\disc";
             EAC3ToConfiguration config = new EAC3ToConfiguration();
             BluRaySummaryInfo bluRaySummaryInfo = new BluRaySummaryInfo() { Eac3ToId = "1)", BluRayTitleInfo = new BluRayTitleInfo() { EpisodeNumber = "1" }  };
-            IEAC3ToOutputNamingService eac3ToOutputNamingService = new EAC3ToOutputNamingService();
+            IAudioService audioService = new AudioService();
+            IEAC3ToOutputNamingService eac3ToOutputNamingService = new EAC3ToOutputNamingService(audioService);
             //when I want the output
             IEAC3ToOutputService service = new EAC3ToOutputService(config,eac3ToOutputNamingService, bluRayPath, bluRaySummaryInfo);
             //then the bluray path/stream# is set
@@ -61,7 +62,8 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
             EAC3ToConfiguration config = new EAC3ToConfiguration() {  BatchFilePath = "c:\\temp" };
             BluRaySummaryInfo summaryInfo = new BluRaySummaryInfo() { Eac3ToId = "1)", BluRayTitleInfo = new BluRayTitleInfo() { EpisodeNumber = "1", AudioList = new List<BluRayTitleAudio>() { new BluRayTitleAudio() {Id="3:", AudioType = EnumAudioType.DTS, IsSelected = true, Arguments = "-core"}}} };
             string bluRayPath = "c:\\disc";
-            IEAC3ToOutputNamingService eac3ToOutputNamingService = new EAC3ToOutputNamingService();
+            IAudioService audioService = new AudioService();
+            IEAC3ToOutputNamingService eac3ToOutputNamingService = new EAC3ToOutputNamingService(audioService);
             //when I want the output
             IEAC3ToOutputService service = new EAC3ToOutputService(config, eac3ToOutputNamingService, bluRayPath, summaryInfo);
             //then the dts audio is set
