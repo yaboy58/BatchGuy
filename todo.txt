@@ -30,20 +30,9 @@
 
 
 --todo
-*Added Tooltip to Subtitle/Audio Grids on the BluRay Title Info Screen for highlighted rows where eac3to and mkvmerge language couldn't not match
-*Playlist / Videofile / Runtime information added to the top of the BluRay Title Info Screen
-*Episode Number is no longer required to be set when leaving the BluRay Title Info Screen but is still mandatory when attempting to create the eac3to and mkvmerge batch files
-*Added more languages to eac3to to better sync with mkvmerge languages
-*Added new section on Settings Screen to configure defaults for BluRay Title Info Screen
-*Users can now choose whether or not Subtitles are selected by default
-*Users can now choose whether or not Chapters are selected by default
-*Users can now configure default BluRay Title Info audio settings on the BatchGuy Settings Screen
-*Added default logic for the BluRay Title Info Defaults on start up of application, if defaults are null
-*Removed default BluRay Title Info audio logic from the eac3to parsing service.  Default BluRay Title Info audio logic will now come from the Settings Screen
-*Changed Wave to LPCM in the application
-*On BluRay Title Info Audio Grid on the BatchGuy Settings Screen, when the user clicks a cell, the entire row is selected
-*Loading BluRay Title Info Default Settings when the user deletes the BatchGuy Settings file
-*Loading BluRay Title Info Default Settings when the user loads an older version of the BatchGuy Settings file
+*Fix audio in the system.  Some audio is what is on the Blu-Ray others are just what you can convert it too
+*DTS needs to be set to DTSMA during parsing
+*EAC3ToOutputService doesn't have LPCM
 
 
 --possible nice to haves
