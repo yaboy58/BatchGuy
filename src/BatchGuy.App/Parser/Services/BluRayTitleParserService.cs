@@ -68,7 +68,7 @@ namespace BatchGuy.App.Parser.Services
 
             if (this.IsAudioType(lineItem, "dts"))
             {
-                type = EnumAudioType.DTS;
+                type = EnumAudioType.DTSMA;
             }
             else if (this.IsAudioType(lineItem, "truehd"))
             {

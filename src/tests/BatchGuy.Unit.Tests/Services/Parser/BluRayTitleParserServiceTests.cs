@@ -98,7 +98,7 @@ namespace BatchGuy.Unit.Tests.Services.Parser
             IBluRayTitleParserService parserService = new BluRayTitleParserService(lineItemService, lineItems);
             BluRayTitleInfo info = parserService.GetTitleInfo();
 
-            info.AudioList[0].AudioType.Should().Be(EnumAudioType.DTS);
+            info.AudioList[0].AudioType.Should().Be(EnumAudioType.DTSMA);
         }
 
 

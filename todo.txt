@@ -32,11 +32,12 @@
 --todo
 *Application audio logic moved into the new AudioService
 *New Unit Tests created to support new service
-*Fixed a failing Unit Test after changes implemented in Version 3.2
+*Fixed a failing Unit Tests after changes implemented in Version 3.2
+*BluRayTitleParserService sets audio type to DTSMA when DTS text found in eac3to output
 
 *Fix audio in the system.  Some audio is what is on the Blu-Ray others are just what you can convert it too
-*BluRayTitleParserService.GetAudioType DTS needs to be set to DTSMA during parsing
-*EAC3ToOutputService.GetAudioExtension doesn't have LPCM and since nobody references this, delete it
+
+
 *Settings Screen should only have:
 	AC3
 	TrueHD
