@@ -103,7 +103,7 @@ namespace BatchGuy.Unit.Tests.Services.Parser
 
 
         [Test]
-        public void bluraytitleparserservice_can_set_audio_type_flac_test()
+        public void bluraytitleparserservice_can_set_audio_type_lpcm_test()
         {
             List<ProcessOutputLineItem> lineItems = new List<ProcessOutputLineItem> 
             {
@@ -113,7 +113,7 @@ namespace BatchGuy.Unit.Tests.Services.Parser
             IBluRayTitleParserService parserService = new BluRayTitleParserService(lineItemService, lineItems);
             BluRayTitleInfo info = parserService.GetTitleInfo();
 
-            info.AudioList[0].AudioType.Should().Be(EnumAudioType.FLAC);
+            info.AudioList[0].AudioType.Should().Be(EnumAudioType.LPCM);
         }
 
         [Test]
