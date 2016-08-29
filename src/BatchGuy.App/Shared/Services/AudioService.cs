@@ -10,6 +10,11 @@ namespace BatchGuy.App.Shared.Services
 {
     public class AudioService : IAudioService
     {
+        public string GetAudioExtension(EnumAudioType audioType)
+        {
+            return string.Empty;
+        }
+
         public EnumAudioType GetAudioTypeByName(string name)
         {
             EnumAudioType audioType = EnumAudioType.DTS;

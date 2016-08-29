@@ -3,6 +3,7 @@ using BatchGuy.App.Eac3To.Interfaces;
 using BatchGuy.App.Eac3To.Services;
 using BatchGuy.App.MKVMerge.Interfaces;
 using BatchGuy.App.Parser.Models;
+using BatchGuy.App.Shared.Interfaces;
 using BatchGuy.App.Shared.Models;
 using log4net;
 using System;
@@ -21,6 +22,7 @@ namespace BatchGuy.App.MKVMerge.Services
         private List<BluRayDiscInfo> _bluRayDiscInfoList;
         private EAC3ToConfiguration _eac3toConfiguration;
         private IDirectorySystemService _directorySystemService;
+        private IAudioService _audioService;
 
         public static readonly ILog _log = LogManager.GetLogger(typeof(MKVMergeBatchFileWriteService));
 
@@ -29,11 +31,12 @@ namespace BatchGuy.App.MKVMerge.Services
             get { return _errors; }
         }
 
-        public MKVMergeBatchFileWriteService(EAC3ToConfiguration eac3toConfiguration, IDirectorySystemService directorySystemService, List<BluRayDiscInfo> bluRayDiscInfo)
+        public MKVMergeBatchFileWriteService(EAC3ToConfiguration eac3toConfiguration, IDirectorySystemService directorySystemService, List<BluRayDiscInfo> bluRayDiscInfo, IAudioService audioService)
         {
             _bluRayDiscInfoList = bluRayDiscInfo;
             _eac3toConfiguration = eac3toConfiguration;
             _directorySystemService = directorySystemService;
+            _audioService = audioService;
             _errors = new ErrorCollection();
         }
 
@@ -44,7 +47,7 @@ namespace BatchGuy.App.MKVMerge.Services
                 try
                 {
                     
-                    IEAC3ToOutputNamingService eac3ToOutputNamingService = new EAC3ToOutputNamingService();
+                    IEAC3ToOutputNamingService eac3ToOutputNamingService = new EAC3ToOutputNamingService(_audioService);
                     foreach (BluRayDiscInfo disc in _bluRayDiscInfoList.Where(d => d.IsSelected))
                     {
                         foreach (BluRaySummaryInfo summary in disc.BluRaySummaryInfoList.Where(s => s.IsSelected).OrderBy(s => s.EpisodeNumber))

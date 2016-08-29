@@ -12,5 +12,7 @@ namespace BatchGuy.App.Shared.Interfaces
         string GetAudioTypeName(EnumAudioType audioType);
 
         EnumAudioType GetAudioTypeByName(string name);
+
+        string GetAudioExtension(EnumAudioType audioType);
     }
 }

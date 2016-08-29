@@ -14,6 +14,7 @@ using BatchGuy.App.Extensions;
 using log4net;
 using System.Reflection;
 using BatchGuy.App.Eac3To.Services;
+using BatchGuy.App.Shared.Interfaces;
 
 namespace BatchGuy.App.Eac3to.Services
 {
@@ -23,6 +24,7 @@ namespace BatchGuy.App.Eac3to.Services
         private List<BluRayDiscInfo> _bluRayDiscInfoList;
         private EAC3ToConfiguration _eac3toConfiguration;
         private IDirectorySystemService _directorySystemService;
+        private IAudioService _audioService;
 
         public static readonly ILog _log = LogManager.GetLogger(typeof(EAC3ToBatchFileWriteService));
 
@@ -31,11 +33,12 @@ namespace BatchGuy.App.Eac3to.Services
             get { return _errors; }
         }
 
-        public EAC3ToBatchFileWriteService(EAC3ToConfiguration eac3toConfiguration, IDirectorySystemService directorySystemService, List<BluRayDiscInfo> bluRayDiscInfo)
+        public EAC3ToBatchFileWriteService(EAC3ToConfiguration eac3toConfiguration, IDirectorySystemService directorySystemService, List<BluRayDiscInfo> bluRayDiscInfo, IAudioService audioService)
         {
             _bluRayDiscInfoList = bluRayDiscInfo;
             _eac3toConfiguration = eac3toConfiguration;
             _directorySystemService = directorySystemService;
+            _audioService = audioService;
             _errors = new ErrorCollection();
         }
 
@@ -45,7 +48,7 @@ namespace BatchGuy.App.Eac3to.Services
             {
                 try
                 {
-                    IEAC3ToOutputNamingService eac3ToOutputNamingService = new EAC3ToOutputNamingService();
+                    IEAC3ToOutputNamingService eac3ToOutputNamingService = new EAC3ToOutputNamingService(_audioService);
                     foreach (BluRayDiscInfo disc in _bluRayDiscInfoList.Where(d => d.IsSelected))
                     {
                         foreach (BluRaySummaryInfo summary in disc.BluRaySummaryInfoList.Where(s => s.IsSelected).OrderBy(s => s.EpisodeNumber))

@@ -13,6 +13,8 @@ using BatchGuy.App.Enums;
 using BatchGuy.App.Parser.Models;
 using BatchGuy.App.Eac3To.Interfaces;
 using BatchGuy.App.Eac3To.Services;
+using BatchGuy.App.Shared.Services;
+using BatchGuy.App.Shared.Interfaces;
 
 namespace BatchGuy.Unit.Tests.Services.Eac3to
 {
@@ -26,7 +28,8 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
             //given eac3to path
             EAC3ToConfiguration config = new EAC3ToConfiguration() { EAC3ToPath = "c:\\exe\\eac3to" };
             BluRaySummaryInfo bluRaySummaryInfo = new BluRaySummaryInfo() { Eac3ToId = "1)", BluRayTitleInfo = new BluRayTitleInfo() { EpisodeNumber = "1" } };
-            IEAC3ToOutputNamingService eac3ToOutputNamingService = new EAC3ToOutputNamingService();
+            IAudioService audioService = new AudioService();
+            IEAC3ToOutputNamingService eac3ToOutputNamingService = new EAC3ToOutputNamingService(audioService);
             string bluRayPath = "c:\\temp";
             //when I want the output
             IEAC3ToOutputService service = new EAC3ToOutputService(config, eac3ToOutputNamingService, bluRayPath, bluRaySummaryInfo);

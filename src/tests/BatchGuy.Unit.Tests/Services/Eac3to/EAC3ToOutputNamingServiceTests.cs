@@ -13,6 +13,8 @@ using BatchGuy.App.Extensions;
 using BatchGuy.App.Helpers;
 using BatchGuy.App.Parser.Models;
 using BatchGuy.App.Enums;
+using BatchGuy.App.Shared.Services;
+using BatchGuy.App.Shared.Interfaces;
 
 namespace BatchGuy.Unit.Tests.Services.Eac3to
 {
@@ -28,7 +30,8 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
             string paddedEpisodeNumber = "01";
             string episodeName = string.Empty;
             //when i get the chapter name
-            IEAC3ToOutputNamingService service = new EAC3ToOutputNamingService();
+            IAudioService audioService = new AudioService();
+            IEAC3ToOutputNamingService service = new EAC3ToOutputNamingService(audioService);
             string chapterName = service.GetChapterName(config, filesOutputPath, paddedEpisodeNumber, episodeName);
             //then chapter name should be hard coded for workflow
             chapterName.Should().Be("\"c:\\bluray\\chapters01.txt\"");

@@ -9,11 +9,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BatchGuy.App.Extensions;
+using BatchGuy.App.Shared.Interfaces;
 
 namespace BatchGuy.App.Eac3To.Services
 {
     public class EAC3ToOutputNamingService : IEAC3ToOutputNamingService
     {
+        private IAudioService _audioService;
+        public EAC3ToOutputNamingService(IAudioService audioService)
+        {
+            _audioService = audioService;
+        }
+
+        public EAC3ToOutputNamingService()
+        {
+        }
+
         public string GetChapterName(EAC3ToConfiguration eac3toConfiguration, string filesOutputPath, string paddedEpisodeNumber, string episodeName)
         {
             StringBuilder sb = new StringBuilder();

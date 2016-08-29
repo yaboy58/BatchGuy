@@ -150,7 +150,8 @@ namespace BatchGuy.App
             gbScreen.SetEnabled(false);
             List<BluRayDiscInfo> discs = this.GetBluRayDiscInfoList();
             IDirectorySystemService directorySystemService = new DirectorySystemService();
-            IEAC3ToBatchFileWriteService batchFileWriteService = new EAC3ToBatchFileWriteService(_eac3toConfiguration, directorySystemService, discs);
+            IAudioService audioService = new AudioService();
+            IEAC3ToBatchFileWriteService batchFileWriteService = new EAC3ToBatchFileWriteService(_eac3toConfiguration, directorySystemService, discs, audioService);
             bgwEac3toWriteBatchFile.RunWorkerAsync(batchFileWriteService);
         }
 
@@ -860,7 +861,8 @@ namespace BatchGuy.App
             gbScreen.SetEnabled(false);
             List<BluRayDiscInfo> discs = this.GetBluRayDiscInfoList();
             IDirectorySystemService directorySystemService = new DirectorySystemService();
-            IMKVMergeBatchFileWriteService batchFileWriteService = new MKVMergeBatchFileWriteService(_eac3toConfiguration, directorySystemService, discs);
+            IAudioService audioService = new AudioService();
+            IMKVMergeBatchFileWriteService batchFileWriteService = new MKVMergeBatchFileWriteService(_eac3toConfiguration, directorySystemService, discs, audioService);
             bgwMkvMergeWriteBatchFile.RunWorkerAsync(batchFileWriteService);
         }
 

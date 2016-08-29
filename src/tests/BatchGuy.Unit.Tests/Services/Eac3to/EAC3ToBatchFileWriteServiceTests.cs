@@ -12,6 +12,8 @@ using BatchGuy.App.Eac3To.Interfaces;
 using BatchGuy.App.Eac3to.Models;
 using FluentAssertions;
 using Moq;
+using BatchGuy.App.Shared.Interfaces;
+using BatchGuy.App.Shared.Services;
 
 namespace BatchGuy.Unit.Tests.Services.Eac3to
 {
@@ -25,7 +27,8 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
             EAC3ToConfiguration config = new EAC3ToConfiguration();
             var directorySystemServiceMock = new Mock<IDirectorySystemService>();
             directorySystemServiceMock.Setup(m => m.Exists(It.IsAny<string>())).Returns(true);
-            IEAC3ToBatchFileWriteService service = new EAC3ToBatchFileWriteService(config,directorySystemServiceMock.Object, discList);
+            IAudioService audioService = new AudioService();
+            IEAC3ToBatchFileWriteService service = new EAC3ToBatchFileWriteService(config,directorySystemServiceMock.Object, discList, audioService);
             bool isValid = service.IsValid();
             service.Errors[0].Description.Should().Be("No Disc was selected.");
         }
@@ -38,7 +41,8 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
             EAC3ToConfiguration config = new EAC3ToConfiguration();
             var directorySystemServiceMock = new Mock<IDirectorySystemService>();
             directorySystemServiceMock.Setup(m => m.Exists(It.IsAny<string>())).Returns(true);
-            IEAC3ToBatchFileWriteService service = new EAC3ToBatchFileWriteService(config,directorySystemServiceMock.Object,discList);
+            IAudioService audioService = new AudioService();
+            IEAC3ToBatchFileWriteService service = new EAC3ToBatchFileWriteService(config,directorySystemServiceMock.Object,discList, audioService);
             bool isValid = service.IsValid();
             service.Errors[0].Description.Should().Be("No episodes selected.");
         }
@@ -52,7 +56,8 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
             EAC3ToConfiguration config = new EAC3ToConfiguration();
             var directorySystemServiceMock = new Mock<IDirectorySystemService>();
             directorySystemServiceMock.Setup(m => m.Exists(It.IsAny<string>())).Returns(true);
-            IEAC3ToBatchFileWriteService service = new EAC3ToBatchFileWriteService(config,directorySystemServiceMock.Object, discList);
+            IAudioService audioService = new AudioService();
+            IEAC3ToBatchFileWriteService service = new EAC3ToBatchFileWriteService(config,directorySystemServiceMock.Object, discList, audioService);
             bool isValid = service.IsValid();
             service.Errors[0].Description.Should().Be("Episode number not set for all selected titles.");
         }
@@ -66,7 +71,8 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
             EAC3ToConfiguration config = new EAC3ToConfiguration();
             var directorySystemServiceMock = new Mock<IDirectorySystemService>();
             directorySystemServiceMock.Setup(m => m.Exists(It.IsAny<string>())).Returns(false);
-            IEAC3ToBatchFileWriteService service = new EAC3ToBatchFileWriteService(config, directorySystemServiceMock.Object, discList);
+            IAudioService audioService = new AudioService();
+            IEAC3ToBatchFileWriteService service = new EAC3ToBatchFileWriteService(config, directorySystemServiceMock.Object, discList, audioService);
             bool isValid = service.IsValid();
             service.Errors[0].Description.Should().Be("Invalid Blu-ray disc directories found.");
         }
