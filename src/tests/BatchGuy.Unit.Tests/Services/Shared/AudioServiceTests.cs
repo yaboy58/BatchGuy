@@ -181,5 +181,89 @@ namespace BatchGuy.Unit.Tests.Services.Shared
             //then
             audioType.Should().Be(EnumAudioType.LPCM);
         }
+
+        [Test]
+        public void audioservice_can_get_dts_audio_extension()
+        {
+            //given
+            EnumAudioType audioType = EnumAudioType.DTS;
+            IAudioService service = new AudioService();
+            //when
+            string extension = service.GetAudioExtension(audioType);
+            //then
+            extension.Should().Be("dts");
+        }
+
+        [Test]
+        public void audioservice_can_get_ac3_audio_extension()
+        {
+            //given
+            EnumAudioType audioType = EnumAudioType.AC3;
+            IAudioService service = new AudioService();
+            //when
+            string extension = service.GetAudioExtension(audioType);
+            //then
+            extension.Should().Be("ac3");
+        }
+
+        [Test]
+        public void audioservice_can_get_flac_audio_extension()
+        {
+            //given
+            EnumAudioType audioType = EnumAudioType.FLAC;
+            IAudioService service = new AudioService();
+            //when
+            string extension = service.GetAudioExtension(audioType);
+            //then
+            extension.Should().Be("flac");
+        }
+
+        [Test]
+        public void audioservice_can_get_truehd_audio_extension()
+        {
+            //given
+            EnumAudioType audioType = EnumAudioType.TrueHD;
+            IAudioService service = new AudioService();
+            //when
+            string extension = service.GetAudioExtension(audioType);
+            //then
+            extension.Should().Be("thd");
+        }
+
+        [Test]
+        public void audioservice_can_get_mpa_audio_extension()
+        {
+            //given
+            EnumAudioType audioType = EnumAudioType.MPA;
+            IAudioService service = new AudioService();
+            //when
+            string extension = service.GetAudioExtension(audioType);
+            //then
+            extension.Should().Be("mpa");
+        }
+
+        [Test]
+        public void audioservice_can_get_dtsma_audio_extension()
+        {
+            //given
+            EnumAudioType audioType = EnumAudioType.DTSMA;
+            IAudioService service = new AudioService();
+            //when
+            string extension = service.GetAudioExtension(audioType);
+            //then
+            extension.Should().Be("dtsma");
+        }
+
+        [Test]
+        public void audioservice_can_get_lpcm_audio_extension()
+        {
+            //given
+            EnumAudioType audioType = EnumAudioType.LPCM;
+            IAudioService service = new AudioService();
+            //when
+            string extension = service.GetAudioExtension(audioType);
+            //then
+            extension.Should().Be("wav");
+        }
     }
 }

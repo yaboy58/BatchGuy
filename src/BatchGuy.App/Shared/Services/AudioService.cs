@@ -12,7 +12,35 @@ namespace BatchGuy.App.Shared.Services
     {
         public string GetAudioExtension(EnumAudioType audioType)
         {
-            return string.Empty;
+            string audioExtension = string.Empty;
+
+            switch (audioType)
+            {
+                case EnumAudioType.DTS:
+                    audioExtension = "dts";
+                    break;
+                case EnumAudioType.AC3:
+                    audioExtension = "ac3";
+                    break;
+                case EnumAudioType.FLAC:
+                    audioExtension = "flac";
+                    break;
+                case EnumAudioType.TrueHD:
+                    audioExtension = "thd";
+                    break;
+                case EnumAudioType.MPA:
+                    audioExtension = "mpa";
+                    break;
+                case EnumAudioType.DTSMA:
+                    audioExtension = "dtsma";
+                    break;
+                case EnumAudioType.LPCM:
+                    audioExtension = "wav";
+                    break;
+                default:
+                    throw new Exception("Invalid Audio Type");
+            }
+            return audioExtension;
         }
 
         public EnumAudioType GetAudioTypeByName(string name)
