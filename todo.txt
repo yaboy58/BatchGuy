@@ -30,16 +30,22 @@
 
 
 --todo
+
+
 *Fix audio in the system.  Some audio is what is on the Blu-Ray others are just what you can convert it too
-*DTS needs to be set to DTSMA during parsing
-*EAC3ToOutputService doesn't have LPCM
+*BluRayTitleParserService.GetAudioType DTS needs to be set to DTSMA during parsing
+*EAC3ToOutputService.GetAudioExtension doesn't have LPCM and since nobody references this, delete it
+*Settings Screen should only have:
+	AC3
+	TrueHD
+	DTSMA
+	LPCM
+
 
 
 --possible nice to haves
 *Unselect all on Blu-ray Title Info Screen
-http://dotnetvisio.blogspot.com/2015/08/create-select-all-checkbox-column.html
-
-
+	http://dotnetvisio.blogspot.com/2015/08/create-select-all-checkbox-column.html
 
 *Default the MKVToolNixGUI Track Name to "Commentary" if commentary checkbox is checked
 *When a single file contains multiple episodes :
