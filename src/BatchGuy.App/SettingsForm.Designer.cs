@@ -35,10 +35,6 @@
             this.chkBluRayTitleInfoDefaultSettingsSelectChapters = new System.Windows.Forms.CheckBox();
             this.chkBluRayTitleInfoDefaultSettingsSelectSubtitles = new System.Windows.Forms.CheckBox();
             this.dgvBluRayTitleInfoDefaultSettingsAudio = new System.Windows.Forms.DataGridView();
-            this.typeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.defaultTypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.argumentsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bsBluRayTitleInfoDefaultSettingsAudio = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnOpenMKVMergeFileDialog = new System.Windows.Forms.Button();
@@ -52,6 +48,10 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
             this.ofdFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.typeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.defaultTypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.argumentsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gbScreen.SuspendLayout();
             this.gbBluRayTitleInfoDefaultSettings.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBluRayTitleInfoDefaultSettingsAudio)).BeginInit();
@@ -119,48 +119,6 @@
             this.dgvBluRayTitleInfoDefaultSettingsAudio.Size = new System.Drawing.Size(750, 230);
             this.dgvBluRayTitleInfoDefaultSettingsAudio.TabIndex = 0;
             this.dgvBluRayTitleInfoDefaultSettingsAudio.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBluRayTitleInfoDefaultSettingsAudio_CellClick);
-            // 
-            // typeDataGridViewTextBoxColumn
-            // 
-            this.typeDataGridViewTextBoxColumn.DataPropertyName = "Type";
-            this.typeDataGridViewTextBoxColumn.HeaderText = "Type";
-            this.typeDataGridViewTextBoxColumn.Name = "typeDataGridViewTextBoxColumn";
-            this.typeDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Audio Type";
-            this.nameDataGridViewTextBoxColumn.MinimumWidth = 100;
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.nameDataGridViewTextBoxColumn.Width = 150;
-            // 
-            // defaultTypeDataGridViewTextBoxColumn
-            // 
-            this.defaultTypeDataGridViewTextBoxColumn.DataPropertyName = "DefaultType";
-            this.defaultTypeDataGridViewTextBoxColumn.HeaderText = "Default Type";
-            this.defaultTypeDataGridViewTextBoxColumn.Items.AddRange(new object[] {
-            "AC3",
-            "DTS",
-            "DTSMA",
-            "FLAC",
-            "MPA",
-            "TrueHD",
-            "LPCM"});
-            this.defaultTypeDataGridViewTextBoxColumn.MinimumWidth = 100;
-            this.defaultTypeDataGridViewTextBoxColumn.Name = "defaultTypeDataGridViewTextBoxColumn";
-            this.defaultTypeDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.defaultTypeDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.defaultTypeDataGridViewTextBoxColumn.Width = 150;
-            // 
-            // argumentsDataGridViewTextBoxColumn
-            // 
-            this.argumentsDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.argumentsDataGridViewTextBoxColumn.DataPropertyName = "Arguments";
-            this.argumentsDataGridViewTextBoxColumn.HeaderText = "Arguments";
-            this.argumentsDataGridViewTextBoxColumn.MinimumWidth = 150;
-            this.argumentsDataGridViewTextBoxColumn.Name = "argumentsDataGridViewTextBoxColumn";
             // 
             // bsBluRayTitleInfoDefaultSettingsAudio
             // 
@@ -279,6 +237,48 @@
             // ofdFileDialog
             // 
             this.ofdFileDialog.FileName = "openFileDialog1";
+            // 
+            // typeDataGridViewTextBoxColumn
+            // 
+            this.typeDataGridViewTextBoxColumn.DataPropertyName = "Type";
+            this.typeDataGridViewTextBoxColumn.HeaderText = "Type";
+            this.typeDataGridViewTextBoxColumn.Name = "typeDataGridViewTextBoxColumn";
+            this.typeDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Audio Input";
+            this.nameDataGridViewTextBoxColumn.MinimumWidth = 100;
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.nameDataGridViewTextBoxColumn.Width = 150;
+            // 
+            // defaultTypeDataGridViewTextBoxColumn
+            // 
+            this.defaultTypeDataGridViewTextBoxColumn.DataPropertyName = "DefaultType";
+            this.defaultTypeDataGridViewTextBoxColumn.HeaderText = "Audio Output";
+            this.defaultTypeDataGridViewTextBoxColumn.Items.AddRange(new object[] {
+            "AC3",
+            "DTS",
+            "DTSMA",
+            "FLAC",
+            "MPA",
+            "TrueHD",
+            "LPCM"});
+            this.defaultTypeDataGridViewTextBoxColumn.MinimumWidth = 100;
+            this.defaultTypeDataGridViewTextBoxColumn.Name = "defaultTypeDataGridViewTextBoxColumn";
+            this.defaultTypeDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.defaultTypeDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.defaultTypeDataGridViewTextBoxColumn.Width = 150;
+            // 
+            // argumentsDataGridViewTextBoxColumn
+            // 
+            this.argumentsDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.argumentsDataGridViewTextBoxColumn.DataPropertyName = "Arguments";
+            this.argumentsDataGridViewTextBoxColumn.HeaderText = "Arguments";
+            this.argumentsDataGridViewTextBoxColumn.MinimumWidth = 150;
+            this.argumentsDataGridViewTextBoxColumn.Name = "argumentsDataGridViewTextBoxColumn";
             // 
             // SettingsForm
             // 
