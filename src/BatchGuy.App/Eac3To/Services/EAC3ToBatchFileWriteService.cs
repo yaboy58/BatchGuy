@@ -61,7 +61,7 @@ namespace BatchGuy.App.Eac3to.Services
                             string audioStreamPart = eacOutputService.GetAudioStreamPart();
                             string subtitleStreamPart = eacOutputService.GetSubtitleStreamPart();
                             string logPart = eacOutputService.GetLogPart();
-                            string showProgressNumbersPart = eacOutputService.GetShowProgressPart();
+                            string showProgressNumbersPart = eacOutputService.GetShowProgressNumbersPart();
 
                             using (StreamWriter sw = new StreamWriter(_eac3toConfiguration.BatchFilePath, true))
                             {

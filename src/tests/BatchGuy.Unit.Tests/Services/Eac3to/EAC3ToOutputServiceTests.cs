@@ -71,5 +71,37 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
             output.Should().Contain(".dts");
             output.Should().Contain("-core");
         }
+
+        [Test]
+        public void eacoutputservice_can_set_progress_numbers_true_settings_test()
+        {
+            //given
+            EAC3ToConfiguration config = new EAC3ToConfiguration() { BatchFilePath = "c:\\temp", ShowProgressNumbers = true };
+            BluRaySummaryInfo summaryInfo = new BluRaySummaryInfo() { Eac3ToId = "1)", BluRayTitleInfo = new BluRayTitleInfo() { EpisodeNumber = "1", AudioList = new List<BluRayTitleAudio>() { new BluRayTitleAudio() { Id = "3:", AudioType = EnumAudioType.DTS, IsSelected = true, Arguments = "-core" } } } };
+            string bluRayPath = "c:\\disc";
+            IAudioService audioService = new AudioService();
+            IEAC3ToOutputNamingService eac3ToOutputNamingService = new EAC3ToOutputNamingService(audioService);
+            //when
+            IEAC3ToOutputService service = new EAC3ToOutputService(config, eac3ToOutputNamingService, bluRayPath, summaryInfo);
+            //then
+            string output = service.GetShowProgressNumbersPart();
+            output.Should().Contain("-progressnumbers");
+        }
+
+        [Test]
+        public void eacoutputservice_can_set_progress_numbers_false_settings_test()
+        {
+            //given
+            EAC3ToConfiguration config = new EAC3ToConfiguration() { BatchFilePath = "c:\\temp", ShowProgressNumbers = false };
+            BluRaySummaryInfo summaryInfo = new BluRaySummaryInfo() { Eac3ToId = "1)", BluRayTitleInfo = new BluRayTitleInfo() { EpisodeNumber = "1", AudioList = new List<BluRayTitleAudio>() { new BluRayTitleAudio() { Id = "3:", AudioType = EnumAudioType.DTS, IsSelected = true, Arguments = "-core" } } } };
+            string bluRayPath = "c:\\disc";
+            IAudioService audioService = new AudioService();
+            IEAC3ToOutputNamingService eac3ToOutputNamingService = new EAC3ToOutputNamingService(audioService);
+            //when
+            IEAC3ToOutputService service = new EAC3ToOutputService(config, eac3ToOutputNamingService, bluRayPath, summaryInfo);
+            //then
+            string output = service.GetShowProgressNumbersPart();
+            output.Should().Be("");
+        }
     }
 }

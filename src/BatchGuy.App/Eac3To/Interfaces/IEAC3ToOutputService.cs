@@ -15,6 +15,6 @@ namespace BatchGuy.App.Eac3to.Interfaces
         string GetAudioStreamPart();
         string GetSubtitleStreamPart();
         string GetLogPart();
-        string GetShowProgressPart();
+        string GetShowProgressNumbersPart();
     }
 }

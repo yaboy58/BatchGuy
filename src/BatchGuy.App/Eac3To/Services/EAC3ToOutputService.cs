@@ -131,7 +131,7 @@ namespace BatchGuy.App.Eac3to.Services
             return sb.ToString();
         }
 
-        public string GetShowProgressPart()
+        public string GetShowProgressNumbersPart()
         {
             StringBuilder sb = new StringBuilder();
             if (_eac3ToConfiguration.ShowProgressNumbers)
