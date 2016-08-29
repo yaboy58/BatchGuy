@@ -652,39 +652,9 @@ namespace BatchGuy.App
                 {
                     var defaultSetting = Program.ApplicationSettings.BluRayTitleInfoDefaultSettings.Audio.First(a => a.Type == audio.AudioType);
                     audio.Arguments = defaultSetting.Arguments;
-                    audio.AudioType = this.GetEnumAudioTypeByName(defaultSetting.DefaultType);
+                    audio.AudioType = _audioService.GetAudioTypeByName(defaultSetting.DefaultType);
                 }
             }
-        }
-
-        private EnumAudioType GetEnumAudioTypeByName(string value)
-        {
-            EnumAudioType audiotype = EnumAudioType.DTS;
-
-            switch (value)
-            {
-                case "DTS":
-                    audiotype = EnumAudioType.DTS;
-                    break;
-                case "AC3":
-                    audiotype = EnumAudioType.AC3;
-                    break;
-                case "FLAC":
-                    audiotype = EnumAudioType.FLAC;
-                    break;
-                case "TrueHD":
-                    audiotype = EnumAudioType.TrueHD;
-                    break;
-                case "DTSMA":
-                    audiotype = EnumAudioType.DTSMA;
-                    break;
-                case "LPCM":
-                    audiotype = EnumAudioType.LPCM;
-                    break;
-                default:
-                    throw new Exception("Invalid Audio Type");
-            }
-            return audiotype;
         }
     }
 }
