@@ -38,7 +38,7 @@
 *BluRay Title Info Defaults Grid on BatchGuy Settings Screen now only has rows for valid Blu-ray audio types (AC3, TrueHD, DTSMA and LPCM)
 *New eac3to default settings section added to the BatchGuy Screen
 *Users can now choose whether or not they want the eac3to "progressnumbers" parameter to be used
-
+*Users are now prompted with a warning if the eac3to/mkvmerge output paths are the same on the Create eac3to Batch File Screen
 
 
 --possible nice to haves

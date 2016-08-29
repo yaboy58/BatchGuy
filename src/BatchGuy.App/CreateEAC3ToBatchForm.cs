@@ -788,6 +788,7 @@ namespace BatchGuy.App
                 {
                     List<BluRayDiscInfo> discs = this.GetBluRayDiscInfoList();
                     WarningCollection warnings = new EAC3ToBatchFileWriteWarningService(discs).GetWarnings();
+                    this.MKVMergeWarnings(warnings);
                     if (warnings.Count() > 0)
                     {
                         string warning = string.Format("{0}{1}{2}Would you still like to continue?", warnings.GetWarningMessage(), Environment.NewLine, Environment.NewLine);
@@ -802,6 +803,14 @@ namespace BatchGuy.App
                         this.WriteToMkvMergeBatchFile();
                     }
                 }
+            }
+        }
+
+        private void MKVMergeWarnings(WarningCollection warnings)
+        {
+            if (_eac3toConfiguration.EAC3ToOutputPath == _eac3toConfiguration.MKVMergeOutputPath)
+            {
+                warnings.Add(new Warning() { Id = 0, Description = "The eac3to output path is the same as mkvmerge output path and could have output file name conflicts!" });
             }
         }
 
