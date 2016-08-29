@@ -263,33 +263,9 @@ namespace BatchGuy.App
                 return;
             }
 
-            switch (value)
-            {
-                case "DTS":
-                    _currentBluRayTitleAudio.AudioType = EnumAudioType.DTS;
-                    _currentBluRayTitleAudio.Arguments = "";
-                    break;
-                case "AC3":
-                    _currentBluRayTitleAudio.AudioType = EnumAudioType.AC3;
-                    _currentBluRayTitleAudio.Arguments = "";
-                    break;
-                case "FLAC":
-                    _currentBluRayTitleAudio.AudioType = EnumAudioType.FLAC;
-                    _currentBluRayTitleAudio.Arguments = "";
-                    break;
-                case "TrueHD":
-                    _currentBluRayTitleAudio.AudioType = EnumAudioType.TrueHD;
-                    _currentBluRayTitleAudio.Arguments = "";
-                    break;
-                case "DTSMA":
-                    _currentBluRayTitleAudio.AudioType = EnumAudioType.DTSMA;
-                    _currentBluRayTitleAudio.Arguments = "";
-                    break;
-                case "LPCM":
-                    _currentBluRayTitleAudio.AudioType = EnumAudioType.LPCM;
-                    _currentBluRayTitleAudio.Arguments = "";
-                    break;
-            }
+            EnumAudioType audioType = _audioService.GetAudioTypeByName(value);
+            _currentBluRayTitleAudio.AudioType = audioType;
+            _currentBluRayTitleAudio.Arguments = "";
         }
 
         private void chkChapters_CheckedChanged(object sender, EventArgs e)

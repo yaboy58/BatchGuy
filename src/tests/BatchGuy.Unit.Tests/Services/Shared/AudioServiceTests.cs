@@ -97,5 +97,89 @@ namespace BatchGuy.Unit.Tests.Services.Shared
             //then
             name.Should().Be("LPCM");
         }
+
+        [Test]
+        public void audioservice_can_get_dts_audio_type_by_name()
+        {
+            //given
+            string name = "DTS";
+            IAudioService service = new AudioService();
+            //when
+            EnumAudioType audioType = service.GetAudioTypeByName(name);
+            //then
+            audioType.Should().Be(EnumAudioType.DTS);
+        }
+
+        [Test]
+        public void audioservice_can_get_ac3_audio_type_by_name()
+        {
+            //given
+            string name = "AC3";
+            IAudioService service = new AudioService();
+            //when
+            EnumAudioType audioType = service.GetAudioTypeByName(name);
+            //then
+            audioType.Should().Be(EnumAudioType.AC3);
+        }
+
+        [Test]
+        public void audioservice_can_get_flac_audio_type_by_name()
+        {
+            //given
+            string name = "FLAC";
+            IAudioService service = new AudioService();
+            //when
+            EnumAudioType audioType = service.GetAudioTypeByName(name);
+            //then
+            audioType.Should().Be(EnumAudioType.FLAC);
+        }
+
+        [Test]
+        public void audioservice_can_get_truehd_audio_type_by_name()
+        {
+            //given
+            string name = "TrueHD";
+            IAudioService service = new AudioService();
+            //when
+            EnumAudioType audioType = service.GetAudioTypeByName(name);
+            //then
+            audioType.Should().Be(EnumAudioType.TrueHD);
+        }
+
+        [Test]
+        public void audioservice_can_get_mpa_audio_type_by_name()
+        {
+            //given
+            string name = "MPA";
+            IAudioService service = new AudioService();
+            //when
+            EnumAudioType audioType = service.GetAudioTypeByName(name);
+            //then
+            audioType.Should().Be(EnumAudioType.MPA);
+        }
+
+        [Test]
+        public void audioservice_can_get_dtsma_audio_type_by_name()
+        {
+            //given
+            string name = "DTSMA";
+            IAudioService service = new AudioService();
+            //when
+            EnumAudioType audioType = service.GetAudioTypeByName(name);
+            //then
+            audioType.Should().Be(EnumAudioType.DTSMA);
+        }
+
+        [Test]
+        public void audioservice_can_get_lpcm_audio_type_by_name()
+        {
+            //given
+            string name = "LPCM";
+            IAudioService service = new AudioService();
+            //when
+            EnumAudioType audioType = service.GetAudioTypeByName(name);
+            //then
+            audioType.Should().Be(EnumAudioType.LPCM);
+        }
     }
 }
