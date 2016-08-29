@@ -11,6 +11,7 @@ using BatchGuy.App.Settings.Interface;
 using System.Reflection;
 using BatchGuy.App.Enums;
 using BatchGuy.App.Settings.Models;
+using BatchGuy.App.Shared.Interfaces;
 
 namespace BatchGuy.App.Settings.Services
 {
@@ -20,6 +21,7 @@ namespace BatchGuy.App.Settings.Services
         private IJsonSerializationService<ApplicationSettings> _jsonSerializationService;
         private ApplicationSettings _applicationSettings;
         private string _applicationDirectory;
+        private IAudioService _audioService;
 
 
         public ErrorCollection Errors
@@ -29,10 +31,11 @@ namespace BatchGuy.App.Settings.Services
 
         public static readonly ILog _log = LogManager.GetLogger(typeof(ApplicationSettingsService));
 
-        public ApplicationSettingsService(IJsonSerializationService<ApplicationSettings> jsonSerializationService)
+        public ApplicationSettingsService(IJsonSerializationService<ApplicationSettings> jsonSerializationService, IAudioService audioService)
         {
             _errors = new ErrorCollection();
             _jsonSerializationService = jsonSerializationService;
+            _audioService = audioService;
             Uri uri = new Uri(System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().CodeBase));
             _applicationDirectory =  uri.LocalPath;
             _applicationSettings = new ApplicationSettings() { ApplicationDirectory = _applicationDirectory };
@@ -97,6 +100,8 @@ namespace BatchGuy.App.Settings.Services
         public void ResetBluRayTitleInfoDefaultSettings()
         {
             _applicationSettings.BluRayTitleInfoDefaultSettings = new BluRayTitleInfoDefaultSettings() { Enabled = true, SelectChapters = true, SelectSubtitles = true };
+
+            //var bluRayAudioTypes = 
 
             foreach (EnumAudioType type in Enum.GetValues(typeof(EnumAudioType)))
             {

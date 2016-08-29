@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using BatchGuy.App.Settings.Interface;
 using BatchGuy.App.Settings.Services;
+using BatchGuy.App.Shared.Interfaces;
 
 namespace BatchGuy
 {
@@ -20,6 +21,7 @@ namespace BatchGuy
     {
         private static IJsonSerializationService<ApplicationSettings> _jsonSerializationService;
         private static IApplicationSettingsService _applicationSettingsService;
+        private static IAudioService _audioService;
 
         public static IApplicationSettingsService ApplicationSettingsService { get { return Program._applicationSettingsService; } }
         public static ApplicationSettings ApplicationSettings { get { return Program._applicationSettingsService.GetApplicationSettings(); } }
@@ -40,7 +42,8 @@ namespace BatchGuy
         public static void LoadApplicationSettings()
         {
             Program._jsonSerializationService = new JsonSerializationService<ApplicationSettings>();
-            Program._applicationSettingsService = new ApplicationSettingsService(_jsonSerializationService);
+            Program._audioService = new AudioService();
+            Program._applicationSettingsService = new ApplicationSettingsService(_jsonSerializationService, _audioService);
         }
 
         public static string GetLogErrorFormat()

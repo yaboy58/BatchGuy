@@ -14,5 +14,7 @@ namespace BatchGuy.App.Shared.Interfaces
         EnumAudioType GetAudioTypeByName(string name);
 
         string GetAudioExtension(EnumAudioType audioType);
+
+        List<EnumAudioType> GetBluRayAudio();
     }
 }

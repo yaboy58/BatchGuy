@@ -1,6 +1,7 @@
 ﻿using BatchGuy.App.Settings.Interface;
 using BatchGuy.App.Settings.Services;
 using BatchGuy.App.Shared.Interface;
+using BatchGuy.App.Shared.Interfaces;
 using BatchGuy.App.Shared.Models;
 using BatchGuy.App.Shared.Services;
 using System;
@@ -17,7 +18,8 @@ namespace BatchGuy.Settings.Serialization.Example.Console.App
         {
             //initialize services
             IJsonSerializationService<ApplicationSettings> jsonSerializationService = new JsonSerializationService<ApplicationSettings>(); //serialization service 
-            IApplicationSettingsService applicationSettingsService = new ApplicationSettingsService(jsonSerializationService); //application service
+            IAudioService audioService = new AudioService(); //audio service
+            IApplicationSettingsService applicationSettingsService = new ApplicationSettingsService(jsonSerializationService, audioService); //application service
 
             //get current application settings
             ApplicationSettings applicationSettings = applicationSettingsService.GetApplicationSettings();
