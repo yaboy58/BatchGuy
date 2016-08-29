@@ -130,35 +130,5 @@ namespace BatchGuy.App.Eac3to.Services
             sb.Append(_eac3ToOutputNamingService.GetLogName(_eac3ToConfiguration, _filesOutputPath, _paddedEpisodeNumber, _bluRaySummaryInfo.BluRayTitleInfo.EpisodeName));
             return sb.ToString();
         }
-
-        private string GetAudioExtension(EnumAudioType audioType)
-        {
-            string audioExtension = string.Empty;
-
-            switch (audioType)
-            {
-                case EnumAudioType.DTS:
-                    audioExtension = "dts";
-                    break;
-                case EnumAudioType.AC3:
-                    audioExtension = "ac3";
-                    break;
-                case EnumAudioType.FLAC:
-                    audioExtension = "flac";
-                    break;
-                case EnumAudioType.TrueHD:
-                    audioExtension = "thd";
-                    break;
-                case EnumAudioType.MPA:
-                    audioExtension = "mpa";
-                    break;
-                case EnumAudioType.DTSMA:
-                    audioExtension = "dtsma";
-                    break;
-                default:
-                    throw new Exception("Invalid Audio Type");
-            }
-            return audioExtension;
-        }
     }
 }
