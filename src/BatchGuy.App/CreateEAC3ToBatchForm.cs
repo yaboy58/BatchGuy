@@ -443,6 +443,7 @@ namespace BatchGuy.App
             Setting setting = Program.ApplicationSettingsService.GetSettingByName("mkvmerge");
             _eac3toConfiguration.MKVMergePath = setting.Value;
             _eac3toConfiguration.MKVMergeBatchFilePath = txtMKVMergeBatFilePath.Text;
+            _eac3toConfiguration.ShowProgressNumbers = Program.ApplicationSettings.EAC3ToDefaultSettings.ShowProgressNumbers;
         }
 
         private void dgvBluRayDiscInfo_DragDrop(object sender, DragEventArgs e)
