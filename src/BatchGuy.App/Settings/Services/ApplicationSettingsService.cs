@@ -46,6 +46,7 @@ namespace BatchGuy.App.Settings.Services
             else
             {
                 this.LoadBluRayTitleInfoDefaultSettings();
+                this.LoadEAC3ToDefaultSettings();
             }
         }
 
@@ -76,6 +77,7 @@ namespace BatchGuy.App.Settings.Services
                 _errors.Clear();
                 _applicationSettings = _jsonSerializationService.ReadFromJsonFile<ApplicationSettings>(_applicationSettings.SettingsFile);
                 this.LoadBluRayTitleInfoDefaultSettings();
+                this.LoadEAC3ToDefaultSettings();
             }
             catch (Exception ex)
             {
@@ -92,10 +94,24 @@ namespace BatchGuy.App.Settings.Services
             }
         }
 
+        public  void LoadEAC3ToDefaultSettings()
+        {
+            if (_applicationSettings.EAC3ToDefaultSettings == null)
+            {
+                this.ResetEAC3ToDefaultSettings();
+            }
+        }
+
         public Setting GetSettingByName(string settingName)
         {
             return _applicationSettings.Settings.SingleOrDefault(s => s.Name == settingName);
         }
+
+        public void ResetEAC3ToDefaultSettings()
+        {
+            _applicationSettings.EAC3ToDefaultSettings = new EAC3ToDefaultSettings() { ShowProgressNumbers = true };
+        }
+
 
         public void ResetBluRayTitleInfoDefaultSettings()
         {

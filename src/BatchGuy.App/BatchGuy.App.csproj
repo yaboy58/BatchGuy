@@ -154,6 +154,7 @@
     <Compile Include="Settings\Interface\IApplicationSettingsService.cs" />
     <Compile Include="Settings\Models\BluRayTitleInfoDefaultSettings.cs" />
     <Compile Include="Settings\Models\BluRayTitleInfoDefaultSettingsAudio.cs" />
+    <Compile Include="Settings\Models\EAC3ToDefaultSettings.cs" />
     <Compile Include="Shared\Interfaces\IAudioService.cs" />
     <Compile Include="Shared\Interfaces\IJsonSerializationService.cs" />
     <Compile Include="Settings\Models\ApplicationSettings.cs" />

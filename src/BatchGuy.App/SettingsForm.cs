@@ -48,6 +48,7 @@ namespace BatchGuy.App
         {
             chkBluRayTitleInfoDefaultSettingsSelectChapters.Checked = Program.ApplicationSettings.BluRayTitleInfoDefaultSettings.SelectChapters;
             chkBluRayTitleInfoDefaultSettingsSelectSubtitles.Checked = Program.ApplicationSettings.BluRayTitleInfoDefaultSettings.SelectSubtitles;
+            chkShowProgressNumbers.Checked = Program.ApplicationSettings.EAC3ToDefaultSettings.ShowProgressNumbers;
         }
 
         private string LoadSetting(string settingName)
@@ -156,7 +157,17 @@ namespace BatchGuy.App
 
         private void dgvBluRayTitleInfoDefaultSettingsAudio_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            dgvBluRayTitleInfoDefaultSettingsAudio.Rows[e.RowIndex].Selected = true; ;
+            dgvBluRayTitleInfoDefaultSettingsAudio.Rows[e.RowIndex].Selected = true; 
+        }
+
+        private void chkShowProgressNumbers_CheckedChanged(object sender, EventArgs e)
+        {
+            this.HandlesChkShowProgressNumbersCheckedChanged();
+        }
+
+        private void HandlesChkShowProgressNumbersCheckedChanged()
+        {
+            Program.ApplicationSettings.EAC3ToDefaultSettings.ShowProgressNumbers = chkShowProgressNumbers.Checked;
         }
     }
 }

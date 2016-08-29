@@ -19,7 +19,7 @@ namespace BatchGuy.App.Eac3to.Models
         public int NumberOfEpisodes { get; set; }
         public string MKVMergeOutputPath { get; set; }
         public string MKVMergePath { get; set; }
-
         public string MKVMergeBatchFilePath { get; set; }
+        public bool ShowProgressNumbers { get; set; }
     }
 }

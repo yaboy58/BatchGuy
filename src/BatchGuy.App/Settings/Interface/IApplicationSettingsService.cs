@@ -18,5 +18,9 @@ namespace BatchGuy.App.Settings.Interface
         Setting GetSettingByName(string settingName);
 
         void ResetBluRayTitleInfoDefaultSettings();
+
+        void LoadEAC3ToDefaultSettings();
+
+        void ResetEAC3ToDefaultSettings();
     }
 }

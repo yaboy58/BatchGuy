@@ -17,6 +17,8 @@ namespace BatchGuy.App.Shared.Models
 
         public BluRayTitleInfoDefaultSettings BluRayTitleInfoDefaultSettings { get; set; }
 
+        public EAC3ToDefaultSettings EAC3ToDefaultSettings { get; set; }
+
         public ApplicationSettings()
         {
             Settings = new List<Setting>();

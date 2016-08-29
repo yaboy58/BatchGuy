@@ -30,19 +30,12 @@
 
 
 --todo
+*Made major changes to how the application identifies audio to centralize audio logic and therefore making it easier to modify
 *Application audio logic moved into the new AudioService
 *New Unit Tests created to support new service
 *Fixed a failing Unit Tests after changes implemented in Version 3.2
 *BluRayTitleParserService sets audio type to DTSMA when DTS text found in eac3to output
 *BluRay Title Info Defaults Grid on BatchGuy Settings Screen now only has rows for valid Blu-ray audio types (AC3, TrueHD, DTSMA and LPCM)
-
-*Fix audio in the system.  Some audio is what is on the Blu-Ray others are just what you can convert it too
-
-
-*BluRay Title Info Defaults Grid on BatchGuy Settings Screen column captions should be Audio Input and Audio Output
-
-*Make sure MPA is being handled correctly as well
-
 
 
 
