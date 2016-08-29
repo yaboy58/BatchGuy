@@ -36,7 +36,8 @@
 *Fixed a failing Unit Tests after changes implemented in Version 3.2
 *BluRayTitleParserService sets audio type to DTSMA when DTS text found in eac3to output
 *BluRay Title Info Defaults Grid on BatchGuy Settings Screen now only has rows for valid Blu-ray audio types (AC3, TrueHD, DTSMA and LPCM)
-
+*New eac3to default settings section added to the BatchGuy Screen
+*Users can now choose whether or not they want the eac3to "progressnumbers" parameter to be used
 
 
 

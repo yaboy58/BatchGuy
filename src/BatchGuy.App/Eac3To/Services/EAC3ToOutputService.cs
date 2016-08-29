@@ -130,5 +130,15 @@ namespace BatchGuy.App.Eac3to.Services
             sb.Append(_eac3ToOutputNamingService.GetLogName(_eac3ToConfiguration, _filesOutputPath, _paddedEpisodeNumber, _bluRaySummaryInfo.BluRayTitleInfo.EpisodeName));
             return sb.ToString();
         }
+
+        public string GetShowProgressPart()
+        {
+            StringBuilder sb = new StringBuilder();
+            if (_eac3ToConfiguration.ShowProgressNumbers)
+            {
+                sb.Append("-progressnumbers");
+            }
+            return sb.ToString();
+        }
     }
 }
