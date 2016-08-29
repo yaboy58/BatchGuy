@@ -101,13 +101,14 @@ namespace BatchGuy.App.Settings.Services
         {
             _applicationSettings.BluRayTitleInfoDefaultSettings = new BluRayTitleInfoDefaultSettings() { Enabled = true, SelectChapters = true, SelectSubtitles = true };
 
-            //var bluRayAudioTypes = 
+            var bluRayAudioTypes = _audioService.GetBluRayAudioTypes();
 
-            foreach (EnumAudioType type in Enum.GetValues(typeof(EnumAudioType)))
+            foreach (EnumAudioType type in bluRayAudioTypes)
             {
                 BluRayTitleInfoDefaultSettingsAudio audio = new BluRayTitleInfoDefaultSettingsAudio() { Arguments = "", DefaultType = type.ToString(), Type = type, Name = type.ToString() };
-                if (type == EnumAudioType.DTS)
+                if (type == EnumAudioType.DTSMA)
                 {
+                    audio.DefaultType = EnumAudioType.DTS.ToString();
                     audio.Arguments = "-core";
                 }
                 else if (type == EnumAudioType.LPCM)

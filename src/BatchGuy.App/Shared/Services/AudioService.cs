@@ -108,7 +108,7 @@ namespace BatchGuy.App.Shared.Services
             return name;
         }
 
-        public List<EnumAudioType> GetBluRayAudio()
+        public List<EnumAudioType> GetBluRayAudioTypes()
         {
             return new List<EnumAudioType>() { EnumAudioType.AC3, EnumAudioType.DTSMA, EnumAudioType.LPCM, EnumAudioType.TrueHD };
         }
