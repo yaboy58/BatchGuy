@@ -39,6 +39,7 @@ namespace BatchGuy.App
         private MKVMergeItem _currentMKVMergeItem;
         private bool _mkvMergeChangeTriggeredByDataGridCellClick;
         private BluRayTitleSubtitle _currentBluRayTitleSubtitle;
+        private IAudioService _audioService = new AudioService();
 
 
         public BluRayTitleInfoForm()
@@ -224,7 +225,7 @@ namespace BatchGuy.App
             var id = dgvAudio.Rows[e.RowIndex].Cells[1].Value;
 
             _currentBluRayTitleAudio = _bluRaySummaryInfo.BluRayTitleInfo.AudioList.SingleOrDefault(a => a.Id == id.ToString());
-            cbAudioType.SelectedIndex = cbAudioType.FindString(this.GetAudioTypeName(_currentBluRayTitleAudio.AudioType));
+            cbAudioType.SelectedIndex = cbAudioType.FindString(_audioService.GetAudioTypeName(_currentBluRayTitleAudio.AudioType));
             txtAudioTypeArguments.Text = _currentBluRayTitleAudio.Arguments;
 
             _currentMKVMergeItem = _currentBluRayTitleAudio.MKVMergeItem;
@@ -237,39 +238,6 @@ namespace BatchGuy.App
                 _mkvMergeChangeTriggeredByDataGridCellClick = false;
         }
 
-
-        private string GetAudioTypeName(EnumAudioType audioType)
-        {
-            string name = string.Empty;
-
-            switch (audioType)
-            {
-                case EnumAudioType.DTS:
-                    name = "DTS";
-                    break;
-                case EnumAudioType.AC3:
-                    name = "AC3";
-                    break;
-                case EnumAudioType.FLAC:
-                    name = "FLAC";
-                    break;
-                case EnumAudioType.TrueHD:
-                    name = "TrueHD";
-                    break;
-                case EnumAudioType.MPA:
-                    name = "MPA";
-                    break;
-                case EnumAudioType.DTSMA:
-                    name = "DTSMA";
-                    break;
-                case EnumAudioType.LPCM:
-                    name = "LPCM";
-                    break;
-                default:
-                    throw new Exception("Invalid Audio Type");
-            }
-            return name;
-        }
 
         private void txtAudioTypeArguments_TextChanged(object sender, EventArgs e)
         {
