@@ -78,8 +78,8 @@ namespace BatchGuy.App.MKVMerge.Services
                 {
                     if (audio.IsSelected)
                     {
-                        sb.Append(string.Format("--language 0:{0} {1} {2} {3} ^\"^(^\" ^\"{4}^\" ^\"^)^\"", audio.MKVMergeItem.Language.Value, this.GetTrackName(audio.MKVMergeItem.TrackName), this.GetDefaultTrackFlag(audio.MKVMergeItem.DefaultTrackFlag),
-                            this.GetForcedTrackFlag(audio.MKVMergeItem.ForcedTrackFlag), _eac3ToOutputNamingService.GetAudioName(_eac3ToConfiguration, audio, _filesOutputPath, _paddedEpisodeNumber, _bluRaySummaryInfo.BluRayTitleInfo.EpisodeName).RemoveDoubleQuotes()));
+                        sb.Append(string.Format("--language 0:{0} {1} {2} {3} {4} ^\"^(^\" ^\"{5}^\" ^\"^)^\"", audio.MKVMergeItem.Language.Value, this.GetTrackName(audio.MKVMergeItem.TrackName), this.GetDefaultTrackFlag(audio.MKVMergeItem.DefaultTrackFlag),
+                            this.GetForcedTrackFlag(audio.MKVMergeItem.ForcedTrackFlag),this.GetCompression(audio.MKVMergeItem.Compression), _eac3ToOutputNamingService.GetAudioName(_eac3ToConfiguration, audio, _filesOutputPath, _paddedEpisodeNumber, _bluRaySummaryInfo.BluRayTitleInfo.EpisodeName).RemoveDoubleQuotes()));
                         sb.Append(" ");
                     }
                 }
@@ -96,8 +96,8 @@ namespace BatchGuy.App.MKVMerge.Services
                 {
                     if (subtitle.IsSelected)
                     {
-                        sb.Append(string.Format("--language 0:{0} {1} {2} {3} ^\"^(^\" ^\"{4}^\" ^\"^)^\"", subtitle.MKVMergeItem.Language.Value, this.GetTrackName(subtitle.MKVMergeItem.TrackName), this.GetDefaultTrackFlag(subtitle.MKVMergeItem.DefaultTrackFlag),
-                            this.GetForcedTrackFlag(subtitle.MKVMergeItem.ForcedTrackFlag), _eac3ToOutputNamingService.GetSubtitleName(_eac3ToConfiguration, subtitle, _filesOutputPath, _paddedEpisodeNumber, _bluRaySummaryInfo.BluRayTitleInfo.EpisodeName).RemoveDoubleQuotes()));
+                        sb.Append(string.Format("--language 0:{0} {1} {2} {3} {4} ^\"^(^\" ^\"{5}^\" ^\"^)^\"", subtitle.MKVMergeItem.Language.Value, this.GetTrackName(subtitle.MKVMergeItem.TrackName), this.GetDefaultTrackFlag(subtitle.MKVMergeItem.DefaultTrackFlag),
+                            this.GetForcedTrackFlag(subtitle.MKVMergeItem.ForcedTrackFlag), this.GetCompression(subtitle.MKVMergeItem.Compression), _eac3ToOutputNamingService.GetSubtitleName(_eac3ToConfiguration, subtitle, _filesOutputPath, _paddedEpisodeNumber, _bluRaySummaryInfo.BluRayTitleInfo.EpisodeName).RemoveDoubleQuotes()));
                         sb.Append(" ");
                     }
                 }
@@ -164,6 +164,25 @@ namespace BatchGuy.App.MKVMerge.Services
                 return string.Format(" --forced-track 0:{0}", forcedTrackFlag.Trim());
             else
                 return string.Empty;
+        }
+
+        private string GetCompression(string compression)
+        {
+            if (compression != null && compression.Trim() != string.Empty && compression != "determine automatically")
+            {
+                if (compression != null && compression.Trim() != string.Empty && compression == "no extra compression")
+                {
+                    return string.Format(" --compression 0:{0}", "none");
+                }
+                else
+                {
+                    return string.Format(" --compression 0:{0}", compression.Trim());
+                }
+            }
+            else
+            {
+                return string.Empty;
+            }
         }
     }
 }

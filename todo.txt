@@ -1,8 +1,8 @@
 --todo
 *Created BluRayTitleInfoDefaultSettingsService to centralize the blu-ray default settings logic
+*Users can now select a mkvmerge compression muxing mode on the BluRay Title Info Screen
 
 
-*add the compression dropdown for mkvmerge
 *Look into changing subtitle check logic, seems convoluted. Right now it is:
 	-If Don't Select in Settings, None checked
 	-If Select in Settings and Remux, all checked
