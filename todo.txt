@@ -1,6 +1,7 @@
 --todo
+*Created BluRayTitleInfoDefaultSettingsService to centralize the blu-ray default settings logic
 
-*Put logic that sets defaults in its own service
+
 *add the compression dropdown for mkvmerge
 *Look into changing subtitle check logic, seems convoluted. Right now it is:
 	-If Don't Select in Settings, None checked

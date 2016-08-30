@@ -24,7 +24,15 @@ namespace BatchGuy.App.Settings.Services
         }
         public void SetAudioDefaultSettings()
         {
-            throw new NotImplementedException();
+            if (_bluRaySummaryInfo.BluRayTitleInfo.AudioList != null)
+            {
+                foreach (var audio in _bluRaySummaryInfo.BluRayTitleInfo.AudioList)
+                {
+                    var defaultSetting = _bluRayTitleInfoDefaultSettings.Audio.First(a => a.Type == audio.AudioType);
+                    audio.Arguments = defaultSetting.Arguments;
+                    audio.AudioType = _audioService.GetAudioTypeByName(defaultSetting.DefaultType);
+                }
+            }
         }
 
         public void SetChaptersDefaultSettings()

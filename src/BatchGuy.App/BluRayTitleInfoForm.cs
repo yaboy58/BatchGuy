@@ -21,6 +21,8 @@ using BatchGuy.App.MKVMerge.Models;
 using BatchGuy.App.MKVMerge.Interfaces;
 using BatchGuy.App.MKVMerge.Services;
 using BatchGuy.App.Shared.Interface;
+using BatchGuy.App.Settings.Interface;
+using BatchGuy.App.Settings.Services;
 
 namespace BatchGuy.App
 {
@@ -40,7 +42,6 @@ namespace BatchGuy.App
         private bool _mkvMergeChangeTriggeredByDataGridCellClick;
         private BluRayTitleSubtitle _currentBluRayTitleSubtitle;
         private IAudioService _audioService = new AudioService();
-
 
         public BluRayTitleInfoForm()
         {
@@ -638,23 +639,12 @@ namespace BatchGuy.App
 
         private void SetBluRayTitleInfoDefaultSettings()
         {
-            if (_bluRaySummaryInfo.BluRayTitleInfo.Subtitles != null)
-            {
-                _bluRaySummaryInfo.BluRayTitleInfo.Subtitles.ForEach(s => s.IsSelected = Program.ApplicationSettings.BluRayTitleInfoDefaultSettings.SelectSubtitles);
-            }
-            if (_bluRaySummaryInfo.BluRayTitleInfo.Chapter != null)
-            {
-                _bluRaySummaryInfo.BluRayTitleInfo.Chapter.IsSelected = Program.ApplicationSettings.BluRayTitleInfoDefaultSettings.SelectChapters;
-            }
-            if (_bluRaySummaryInfo.BluRayTitleInfo.AudioList != null)
-            {
-                foreach (var audio in _bluRaySummaryInfo.BluRayTitleInfo.AudioList)
-                {
-                    var defaultSetting = Program.ApplicationSettings.BluRayTitleInfoDefaultSettings.Audio.First(a => a.Type == audio.AudioType);
-                    audio.Arguments = defaultSetting.Arguments;
-                    audio.AudioType = _audioService.GetAudioTypeByName(defaultSetting.DefaultType);
-                }
-            }
+            IBluRayTitleInfoDefaultSettingsService service = new BluRayTitleInfoDefaultSettingsService(Program.ApplicationSettings.BluRayTitleInfoDefaultSettings,
+                _bluRaySummaryInfo, _audioService);
+
+            service.SetSubtitleDefaultSettings();
+            service.SetChaptersDefaultSettings();
+            service.SetAudioDefaultSettings();
         }
     }
 }
