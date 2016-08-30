@@ -65,6 +65,8 @@
             this.gbScreen = new System.Windows.Forms.GroupBox();
             this.gbMKVToolNixGUI = new System.Windows.Forms.GroupBox();
             this.gbMKVToolNixGUIGeneralOptions = new System.Windows.Forms.GroupBox();
+            this.cbMKVToolNixGUICompression = new System.Windows.Forms.ComboBox();
+            this.lblMKVToolNixGUICompression = new System.Windows.Forms.Label();
             this.cbMKVToolNixGUIForcedTrackFlag = new System.Windows.Forms.ComboBox();
             this.lblMKVToolNixGUIForcedTrackFlag = new System.Windows.Forms.Label();
             this.cbMKVToolNixGUIDefaultTrackFlag = new System.Windows.Forms.ComboBox();
@@ -433,6 +435,8 @@
             // 
             // gbMKVToolNixGUIGeneralOptions
             // 
+            this.gbMKVToolNixGUIGeneralOptions.Controls.Add(this.cbMKVToolNixGUICompression);
+            this.gbMKVToolNixGUIGeneralOptions.Controls.Add(this.lblMKVToolNixGUICompression);
             this.gbMKVToolNixGUIGeneralOptions.Controls.Add(this.cbMKVToolNixGUIForcedTrackFlag);
             this.gbMKVToolNixGUIGeneralOptions.Controls.Add(this.lblMKVToolNixGUIForcedTrackFlag);
             this.gbMKVToolNixGUIGeneralOptions.Controls.Add(this.cbMKVToolNixGUIDefaultTrackFlag);
@@ -443,10 +447,33 @@
             this.gbMKVToolNixGUIGeneralOptions.Controls.Add(this.lblMKVToolNixGUILanguage);
             this.gbMKVToolNixGUIGeneralOptions.Location = new System.Drawing.Point(6, 31);
             this.gbMKVToolNixGUIGeneralOptions.Name = "gbMKVToolNixGUIGeneralOptions";
-            this.gbMKVToolNixGUIGeneralOptions.Size = new System.Drawing.Size(439, 184);
+            this.gbMKVToolNixGUIGeneralOptions.Size = new System.Drawing.Size(439, 213);
             this.gbMKVToolNixGUIGeneralOptions.TabIndex = 16;
             this.gbMKVToolNixGUIGeneralOptions.TabStop = false;
             this.gbMKVToolNixGUIGeneralOptions.Text = "General Options";
+            // 
+            // cbMKVToolNixGUICompression
+            // 
+            this.cbMKVToolNixGUICompression.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbMKVToolNixGUICompression.FormattingEnabled = true;
+            this.cbMKVToolNixGUICompression.Items.AddRange(new object[] {
+            "determine automatically",
+            "no extra compression",
+            "zlib"});
+            this.cbMKVToolNixGUICompression.Location = new System.Drawing.Point(117, 179);
+            this.cbMKVToolNixGUICompression.Name = "cbMKVToolNixGUICompression";
+            this.cbMKVToolNixGUICompression.Size = new System.Drawing.Size(249, 21);
+            this.cbMKVToolNixGUICompression.TabIndex = 25;
+            this.cbMKVToolNixGUICompression.SelectedIndexChanged += new System.EventHandler(this.cbMKVToolNixGUICompression_SelectedIndexChanged);
+            // 
+            // lblMKVToolNixGUICompression
+            // 
+            this.lblMKVToolNixGUICompression.AutoSize = true;
+            this.lblMKVToolNixGUICompression.Location = new System.Drawing.Point(13, 187);
+            this.lblMKVToolNixGUICompression.Name = "lblMKVToolNixGUICompression";
+            this.lblMKVToolNixGUICompression.Size = new System.Drawing.Size(70, 13);
+            this.lblMKVToolNixGUICompression.TabIndex = 24;
+            this.lblMKVToolNixGUICompression.Text = "Compression:";
             // 
             // cbMKVToolNixGUIForcedTrackFlag
             // 
@@ -649,5 +676,7 @@
         private System.Windows.Forms.ComboBox cbMKVToolNixGUILanguage;
         private System.Windows.Forms.Label lblMKVToolNixGUILanguage;
         private System.Windows.Forms.BindingSource bsMKVMergeLanguageItem;
+        private System.Windows.Forms.ComboBox cbMKVToolNixGUICompression;
+        private System.Windows.Forms.Label lblMKVToolNixGUICompression;
     }
 }

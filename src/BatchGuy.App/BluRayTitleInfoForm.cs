@@ -485,7 +485,7 @@ namespace BatchGuy.App
                 {
                     foreach (BluRayTitleAudio audio in _bluRaySummaryInfo.BluRayTitleInfo.AudioList)
                     {
-                        audio.MKVMergeItem = new MKVMergeItem() { DefaultTrackFlag = "no", ForcedTrackFlag = "no", Language = languageService.GetLanguageByName(audio.Language), TrackName = "" };
+                        audio.MKVMergeItem = new MKVMergeItem() { DefaultTrackFlag = "no", ForcedTrackFlag = "no", Language = languageService.GetLanguageByName(audio.Language), TrackName = "", Compression = "determine automatically" };
                     }
                 }
 
@@ -493,7 +493,7 @@ namespace BatchGuy.App
                 {
                     foreach (BluRayTitleSubtitle subtitle in _bluRaySummaryInfo.BluRayTitleInfo.Subtitles)
                     {
-                        subtitle.MKVMergeItem = new MKVMergeItem() { DefaultTrackFlag = "no", ForcedTrackFlag = "no", Language = languageService.GetLanguageByName(subtitle.Language), TrackName = "" };
+                        subtitle.MKVMergeItem = new MKVMergeItem() { DefaultTrackFlag = "no", ForcedTrackFlag = "no", Language = languageService.GetLanguageByName(subtitle.Language), TrackName = "",  Compression = "determine automatically" };
                         if (subtitle.MKVMergeItem.Language.Value == "eng")
                             subtitle.MKVMergeItem.DefaultTrackFlag = "yes";
                     }
@@ -539,6 +539,7 @@ namespace BatchGuy.App
                 cbMKVToolNixGUILanguage.SelectedValue = _currentMKVMergeItem.Language.Value;
                 cbMKVToolNixGUIDefaultTrackFlag.SelectedIndex = cbMKVToolNixGUIDefaultTrackFlag.FindString(_currentMKVMergeItem.DefaultTrackFlag);
                 cbMKVToolNixGUIForcedTrackFlag.SelectedIndex = cbMKVToolNixGUIForcedTrackFlag.FindString(_currentMKVMergeItem.ForcedTrackFlag);
+                cbMKVToolNixGUICompression.SelectedIndex = cbMKVToolNixGUICompression.FindString(_currentMKVMergeItem.Compression);
             }
 
             if (_mkvMergeChangeTriggeredByDataGridCellClick)
@@ -645,6 +646,16 @@ namespace BatchGuy.App
             service.SetSubtitleDefaultSettings();
             service.SetChaptersDefaultSettings();
             service.SetAudioDefaultSettings();
+        }
+
+        private void cbMKVToolNixGUICompression_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.HandleComboBoxMKVToolNixGUICompressionSelectedIndexChanged();
+        }
+
+        private void HandleComboBoxMKVToolNixGUICompressionSelectedIndexChanged()
+        {
+            _currentMKVMergeItem.Compression = cbMKVToolNixGUICompression.Text;
         }
     }
 }

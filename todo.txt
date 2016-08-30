@@ -18,6 +18,7 @@ would it be possible to add this?
 
 
 --possible nice to haves
+*Move the mkvmerge default settings logic to its own service
 *Unselect all on Blu-ray Title Info Screen
 	http://dotnetvisio.blogspot.com/2015/08/create-select-all-checkbox-column.html
 
