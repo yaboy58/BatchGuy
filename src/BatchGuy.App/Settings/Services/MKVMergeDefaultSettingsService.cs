@@ -1,0 +1,57 @@
+﻿using BatchGuy.App.Eac3to.Models;
+using BatchGuy.App.MKVMerge.Interfaces;
+using BatchGuy.App.MKVMerge.Models;
+using BatchGuy.App.Parser.Models;
+using BatchGuy.App.Settings.Interface;
+using BatchGuy.App.Settings.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace BatchGuy.App.Settings.Services
+{
+    public class MKVMergeDefaultSettingsService : IMKVMergeDefaultSettingsService
+    {
+        private EAC3ToConfiguration _eac3toConfiguration;
+        private BluRaySummaryInfo _bluRaySummaryInfo;
+        IMKVMergeLanguageService _languageService;
+        private BluRayTitleInfoDefaultSettings _bluRayTitleInfoDefaultSettings;
+
+        public MKVMergeDefaultSettingsService(EAC3ToConfiguration eac3toConfiguration, BluRayTitleInfoDefaultSettings bluRayTitleInfoDefaultSettings, BluRaySummaryInfo bluRaySummaryInfo, IMKVMergeLanguageService languageService)
+        {
+            _eac3toConfiguration = eac3toConfiguration;
+            _bluRayTitleInfoDefaultSettings = bluRayTitleInfoDefaultSettings;
+            _bluRaySummaryInfo = bluRaySummaryInfo;
+            _languageService = languageService;
+        }
+
+        public void SetAudioDefaultSettings()
+        {
+            if (_eac3toConfiguration.IsExtractForRemux)
+            {
+                if (_bluRaySummaryInfo.BluRayTitleInfo.AudioList != null)
+                {
+                    foreach (BluRayTitleAudio audio in _bluRaySummaryInfo.BluRayTitleInfo.AudioList)
+                    {
+                        audio.MKVMergeItem = new MKVMergeItem() { DefaultTrackFlag = "no", ForcedTrackFlag = "no", Language = _languageService.GetLanguageByName(audio.Language), TrackName = "", Compression = "determine automatically" };
+                    }
+                }
+            }
+        }
+
+        public void SetSubtitleDefaultSettings()
+        {
+            if (_bluRaySummaryInfo.BluRayTitleInfo.Subtitles != null)
+            {
+                foreach (BluRayTitleSubtitle subtitle in _bluRaySummaryInfo.BluRayTitleInfo.Subtitles)
+                {
+                    subtitle.MKVMergeItem = new MKVMergeItem() { DefaultTrackFlag = "no", ForcedTrackFlag = "no", Language = _languageService.GetLanguageByName(subtitle.Language), TrackName = "", Compression = "determine automatically" };
+                    if (subtitle.MKVMergeItem.Language.Value == "eng")
+                        subtitle.MKVMergeItem.DefaultTrackFlag = "yes";
+                }
+            }
+        }
+    }
+}

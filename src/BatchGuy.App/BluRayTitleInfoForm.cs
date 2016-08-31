@@ -480,24 +480,11 @@ namespace BatchGuy.App
             {
                 IJsonSerializationService<ISOLanguageCodeCollection> jsonSerializationService = new JsonSerializationService<ISOLanguageCodeCollection>();
                 IMKVMergeLanguageService languageService = new MKVMergeLanguageService(jsonSerializationService);
+                IMKVMergeDefaultSettingsService mkvMergeDefaultSettingsService = new MKVMergeDefaultSettingsService(_eac3ToConfiguration, Program.ApplicationSettings.BluRayTitleInfoDefaultSettings,
+                    _bluRaySummaryInfo, languageService);
 
-                if (_bluRaySummaryInfo.BluRayTitleInfo.AudioList != null)
-                {
-                    foreach (BluRayTitleAudio audio in _bluRaySummaryInfo.BluRayTitleInfo.AudioList)
-                    {
-                        audio.MKVMergeItem = new MKVMergeItem() { DefaultTrackFlag = "no", ForcedTrackFlag = "no", Language = languageService.GetLanguageByName(audio.Language), TrackName = "", Compression = "determine automatically" };
-                    }
-                }
-
-                if (_bluRaySummaryInfo.BluRayTitleInfo.Subtitles != null)
-                {
-                    foreach (BluRayTitleSubtitle subtitle in _bluRaySummaryInfo.BluRayTitleInfo.Subtitles)
-                    {
-                        subtitle.MKVMergeItem = new MKVMergeItem() { DefaultTrackFlag = "no", ForcedTrackFlag = "no", Language = languageService.GetLanguageByName(subtitle.Language), TrackName = "",  Compression = "determine automatically" };
-                        if (subtitle.MKVMergeItem.Language.Value == "eng")
-                            subtitle.MKVMergeItem.DefaultTrackFlag = "yes";
-                    }
-                }
+                mkvMergeDefaultSettingsService.SetAudioDefaultSettings();
+                mkvMergeDefaultSettingsService.SetSubtitleDefaultSettings();
             }
         }
 
