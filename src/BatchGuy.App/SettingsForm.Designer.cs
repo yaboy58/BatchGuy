@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingsForm));
             this.gbScreen = new System.Windows.Forms.GroupBox();
-            this.chkSubtitlesMKVMergeDefaults = new System.Windows.Forms.CheckBox();
+            this.chkSubtitleLanguageAlwaysSelectedEnabled = new System.Windows.Forms.CheckBox();
             this.gbSubtitlesMKVMergeDefaultSettings = new System.Windows.Forms.GroupBox();
             this.cbSubtitlesMKVMergeDefaultSettingsDefaultTrackFlag = new System.Windows.Forms.ComboBox();
             this.lblSubtitlesMKVMergeDefaultSettingsDefaultTrackFlag = new System.Windows.Forms.Label();
@@ -73,26 +73,27 @@
             // 
             // gbScreen
             // 
-            this.gbScreen.Controls.Add(this.chkSubtitlesMKVMergeDefaults);
+            this.gbScreen.Controls.Add(this.chkSubtitleLanguageAlwaysSelectedEnabled);
             this.gbScreen.Controls.Add(this.gbSubtitlesMKVMergeDefaultSettings);
             this.gbScreen.Controls.Add(this.gbEAC3ToDefaultSettings);
             this.gbScreen.Controls.Add(this.gbBluRayTitleInfoDefaultSettings);
             this.gbScreen.Controls.Add(this.groupBox1);
             this.gbScreen.Location = new System.Drawing.Point(12, 12);
             this.gbScreen.Name = "gbScreen";
-            this.gbScreen.Size = new System.Drawing.Size(800, 691);
+            this.gbScreen.Size = new System.Drawing.Size(800, 643);
             this.gbScreen.TabIndex = 0;
             this.gbScreen.TabStop = false;
             this.gbScreen.Text = "Settings";
             // 
-            // chkSubtitlesMKVMergeDefaults
+            // chkSubtitleLanguageAlwaysSelectedEnabled
             // 
-            this.chkSubtitlesMKVMergeDefaults.AutoSize = true;
-            this.chkSubtitlesMKVMergeDefaults.Location = new System.Drawing.Point(20, 542);
-            this.chkSubtitlesMKVMergeDefaults.Name = "chkSubtitlesMKVMergeDefaults";
-            this.chkSubtitlesMKVMergeDefaults.Size = new System.Drawing.Size(15, 14);
-            this.chkSubtitlesMKVMergeDefaults.TabIndex = 4;
-            this.chkSubtitlesMKVMergeDefaults.UseVisualStyleBackColor = true;
+            this.chkSubtitleLanguageAlwaysSelectedEnabled.AutoSize = true;
+            this.chkSubtitleLanguageAlwaysSelectedEnabled.Location = new System.Drawing.Point(20, 542);
+            this.chkSubtitleLanguageAlwaysSelectedEnabled.Name = "chkSubtitleLanguageAlwaysSelectedEnabled";
+            this.chkSubtitleLanguageAlwaysSelectedEnabled.Size = new System.Drawing.Size(15, 14);
+            this.chkSubtitleLanguageAlwaysSelectedEnabled.TabIndex = 7;
+            this.chkSubtitleLanguageAlwaysSelectedEnabled.UseVisualStyleBackColor = true;
+            this.chkSubtitleLanguageAlwaysSelectedEnabled.CheckedChanged += new System.EventHandler(this.chkSubtitleLanguageAlwaysSelectedEnabled_CheckedChanged);
             // 
             // gbSubtitlesMKVMergeDefaultSettings
             // 
@@ -118,7 +119,8 @@
             this.cbSubtitlesMKVMergeDefaultSettingsDefaultTrackFlag.Location = new System.Drawing.Point(505, 29);
             this.cbSubtitlesMKVMergeDefaultSettingsDefaultTrackFlag.Name = "cbSubtitlesMKVMergeDefaultSettingsDefaultTrackFlag";
             this.cbSubtitlesMKVMergeDefaultSettingsDefaultTrackFlag.Size = new System.Drawing.Size(249, 21);
-            this.cbSubtitlesMKVMergeDefaultSettingsDefaultTrackFlag.TabIndex = 23;
+            this.cbSubtitlesMKVMergeDefaultSettingsDefaultTrackFlag.TabIndex = 9;
+            this.cbSubtitlesMKVMergeDefaultSettingsDefaultTrackFlag.SelectedIndexChanged += new System.EventHandler(this.cbSubtitlesMKVMergeDefaultSettingsDefaultTrackFlag_SelectedIndexChanged);
             // 
             // lblSubtitlesMKVMergeDefaultSettingsDefaultTrackFlag
             // 
@@ -138,8 +140,9 @@
             this.cbSubtitlesMKVMergeDefaultSettingsLanguage.Location = new System.Drawing.Point(68, 29);
             this.cbSubtitlesMKVMergeDefaultSettingsLanguage.Name = "cbSubtitlesMKVMergeDefaultSettingsLanguage";
             this.cbSubtitlesMKVMergeDefaultSettingsLanguage.Size = new System.Drawing.Size(298, 21);
-            this.cbSubtitlesMKVMergeDefaultSettingsLanguage.TabIndex = 19;
+            this.cbSubtitlesMKVMergeDefaultSettingsLanguage.TabIndex = 8;
             this.cbSubtitlesMKVMergeDefaultSettingsLanguage.ValueMember = "Value";
+            this.cbSubtitlesMKVMergeDefaultSettingsLanguage.SelectedIndexChanged += new System.EventHandler(this.cbSubtitlesMKVMergeDefaultSettingsLanguage_SelectedIndexChanged);
             // 
             // bsSubtitlesAndMKVMergeDefaultSettingsLanguage
             // 
@@ -223,7 +226,7 @@
             this.dgvBluRayTitleInfoDefaultSettingsAudio.Location = new System.Drawing.Point(6, 58);
             this.dgvBluRayTitleInfoDefaultSettingsAudio.Name = "dgvBluRayTitleInfoDefaultSettingsAudio";
             this.dgvBluRayTitleInfoDefaultSettingsAudio.Size = new System.Drawing.Size(750, 166);
-            this.dgvBluRayTitleInfoDefaultSettingsAudio.TabIndex = 0;
+            this.dgvBluRayTitleInfoDefaultSettingsAudio.TabIndex = 6;
             this.dgvBluRayTitleInfoDefaultSettingsAudio.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBluRayTitleInfoDefaultSettingsAudio_CellClick);
             // 
             // typeDataGridViewTextBoxColumn
@@ -374,10 +377,10 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(705, 709);
+            this.btnSave.Location = new System.Drawing.Point(705, 661);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(107, 25);
-            this.btnSave.TabIndex = 2;
+            this.btnSave.TabIndex = 10;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -390,7 +393,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(824, 737);
+            this.ClientSize = new System.Drawing.Size(824, 691);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.gbScreen);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -443,7 +446,7 @@
         private System.Windows.Forms.GroupBox gbEAC3ToDefaultSettings;
         private System.Windows.Forms.CheckBox chkShowProgressNumbers;
         private System.Windows.Forms.GroupBox gbSubtitlesMKVMergeDefaultSettings;
-        private System.Windows.Forms.CheckBox chkSubtitlesMKVMergeDefaults;
+        private System.Windows.Forms.CheckBox chkSubtitleLanguageAlwaysSelectedEnabled;
         private System.Windows.Forms.ComboBox cbSubtitlesMKVMergeDefaultSettingsLanguage;
         private System.Windows.Forms.Label lblSubtitlesMKVMergeDefaultSettingsLanguage;
         private System.Windows.Forms.ComboBox cbSubtitlesMKVMergeDefaultSettingsDefaultTrackFlag;

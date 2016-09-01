@@ -117,7 +117,7 @@ namespace BatchGuy.App.Settings.Services
         {
             _applicationSettings.SubtitlesMKVMergeDefaultSettings = new SubtitlesMKVMergeDefaultSettings()
             {
-                SubtitleLanguageAlwaysSelecedEnabled = true,
+                SubtitleLanguageAlwaysSelectedEnabled = true,
                 DefaultMKVMergeItem = new MKVMerge.Models.MKVMergeItem() { Compression = "determine automatically", DefaultTrackFlag="yes", ForcedTrackFlag = "no",
                  TrackName = string.Empty, Language = new MKVMergeLanguageItem() { Language = "English",  Name = "English (eng)", Value = "eng" } }
             };

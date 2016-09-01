@@ -31,9 +31,9 @@ namespace BatchGuy.App
 
         private void SettingsForm_Load(object sender, EventArgs e)
         {
+            this.LoadMKVLanguageDropDownBoxes();
             this.LoadSettings();
             this.LoadControls();
-            this.LoadMKVLanguageDropDownBoxes();
         }
 
         private void LoadSettings()
@@ -54,6 +54,10 @@ namespace BatchGuy.App
             chkBluRayTitleInfoDefaultSettingsSelectChapters.Checked = Program.ApplicationSettings.BluRayTitleInfoDefaultSettings.SelectChapters;
             chkBluRayTitleInfoDefaultSettingsSelectSubtitles.Checked = Program.ApplicationSettings.BluRayTitleInfoDefaultSettings.SelectAllSubtitles;
             chkShowProgressNumbers.Checked = Program.ApplicationSettings.EAC3ToDefaultSettings.ShowProgressNumbers;
+            chkSubtitleLanguageAlwaysSelectedEnabled.Checked = Program.ApplicationSettings.SubtitlesMKVMergeDefaultSettings.SubtitleLanguageAlwaysSelectedEnabled;
+            cbSubtitlesMKVMergeDefaultSettingsLanguage.SelectedValue = Program.ApplicationSettings.SubtitlesMKVMergeDefaultSettings.DefaultMKVMergeItem.Language.Value;
+            cbSubtitlesMKVMergeDefaultSettingsDefaultTrackFlag.SelectedIndex = cbSubtitlesMKVMergeDefaultSettingsDefaultTrackFlag.FindString(Program.ApplicationSettings.SubtitlesMKVMergeDefaultSettings.DefaultMKVMergeItem.DefaultTrackFlag);
+            gbSubtitlesMKVMergeDefaultSettings.Enabled = Program.ApplicationSettings.SubtitlesMKVMergeDefaultSettings.SubtitleLanguageAlwaysSelectedEnabled;
         }
 
         private void LoadMKVLanguageDropDownBoxes()
@@ -186,6 +190,37 @@ namespace BatchGuy.App
         private void HandlesChkShowProgressNumbersCheckedChanged()
         {
             Program.ApplicationSettings.EAC3ToDefaultSettings.ShowProgressNumbers = chkShowProgressNumbers.Checked;
+        }
+
+        private void chkSubtitleLanguageAlwaysSelectedEnabled_CheckedChanged(object sender, EventArgs e)
+        {
+            this.HandlesChkSubtitleLanguageAlwaysSelecedEnabledCheckedChanged();
+        }
+
+        private void HandlesChkSubtitleLanguageAlwaysSelecedEnabledCheckedChanged()
+        {
+            Program.ApplicationSettings.SubtitlesMKVMergeDefaultSettings.SubtitleLanguageAlwaysSelectedEnabled = chkSubtitleLanguageAlwaysSelectedEnabled.Checked;
+            gbSubtitlesMKVMergeDefaultSettings.Enabled = Program.ApplicationSettings.SubtitlesMKVMergeDefaultSettings.SubtitleLanguageAlwaysSelectedEnabled;
+        }
+
+        private void cbSubtitlesMKVMergeDefaultSettingsLanguage_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.HandlesCBSubtitlesMKVMergeDefaultSettingsLanguageSelectedIndexChanged();
+        }
+
+        private void HandlesCBSubtitlesMKVMergeDefaultSettingsLanguageSelectedIndexChanged()
+        {
+            Program.ApplicationSettings.SubtitlesMKVMergeDefaultSettings.DefaultMKVMergeItem.Language = (MKVMergeLanguageItem)cbSubtitlesMKVMergeDefaultSettingsLanguage.SelectedItem;
+        }
+
+        private void cbSubtitlesMKVMergeDefaultSettingsDefaultTrackFlag_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.HandlesCBSubtitlesMKVMergeDefaultSettingsDefaultTrackFlagSelectedIndexChanged();
+        }
+
+        private void HandlesCBSubtitlesMKVMergeDefaultSettingsDefaultTrackFlagSelectedIndexChanged()
+        {
+            Program.ApplicationSettings.SubtitlesMKVMergeDefaultSettings.DefaultMKVMergeItem.DefaultTrackFlag = cbSubtitlesMKVMergeDefaultSettingsDefaultTrackFlag.Text;
         }
     }
 }
