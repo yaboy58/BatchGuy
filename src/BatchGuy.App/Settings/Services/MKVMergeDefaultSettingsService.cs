@@ -53,7 +53,7 @@ namespace BatchGuy.App.Settings.Services
 
                 if (_applicationSettings.SubtitleLanguageAlwaysSelectedEnabled)
                 {
-                    foreach (BluRayTitleSubtitle subtitle in _bluRaySummaryInfo.BluRayTitleInfo.Subtitles.Where(a => a.Text.ToLower().Contains("english")))
+                    foreach (BluRayTitleSubtitle subtitle in _bluRaySummaryInfo.BluRayTitleInfo.Subtitles.Where(a => a.Text.ToLower().Contains(_applicationSettings.SubtitlesMKVMergeDefaultSettings.DefaultMKVMergeItem.Language.Language.ToLower())))
                     {
                         subtitle.IsSelected = true;
                         subtitle.MKVMergeItem.Compression = _applicationSettings.SubtitlesMKVMergeDefaultSettings.DefaultMKVMergeItem.Compression;

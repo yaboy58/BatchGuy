@@ -1,37 +1,19 @@
 --todo
 *Created BluRayTitleInfoDefaultSettingsService to centralize the blu-ray default settings logic
-*Users can now select a mkvmerge compression muxing mode on the BluRay Title Info Screen
-
 *Created new service to centralize mkvmerge default logic to make it more unit testable and easier to modify
+*Users can now select a mkvmerge compression muxing mode on the BluRay Title Info Screen
+*Users can select a subtitle language that is always selected and what the mkvmerge default track flag should be
 
+
+
+
+--possible nice to haves
 Default audio:
 	This will be on the eac3to screen because it per blu-ray
 
 1) checkbox and a dropdown, maybe a button and maybe a audio type too for main and commentary, go ahead with button so user can explicitly state they want the change and maybe prompt if you are overwritting
 	*all non-null title info audio defaults will be set
 	*when new title info created, set the default
-
-Default subs:
-	This will be on the settings screens as it is universal
-	
-1) If Select Subtitles is checked, this overrides everything and other controls will be disabled
-
-2) decide if you want multiple or just one default language
-	decide if you want to include mkv merge stuff such as forced, default etc etc
-
-3) remove any existing logic not in the defaults service
-
-
-this.SetBluRayTitleInfoDefaultSettings(); //only called with non-parsed
-
-this.AutoSelectEnglishOrAllSubtitlesIfRemux();  //only called with non-parsed
-
-SetMKVMergetItemDefaults() //2 ref calls for non-parsed or when isremux checkbox toggled true/false/true
-
-*Look into changing subtitle check logic, seems convoluted. Right now it is:
-	-If Don't Select in Settings, None checked
-	-If Select in Settings and Remux, all checked
-	-If Select in Settings and Not Remux, English checked
 
 [request]
 refering to the last additions of default tracks, would it also be possible to select which tracks (audio & subtitles) should be ticked by default? refering to audio quality and language.
@@ -41,8 +23,6 @@ e.g. Id always want to have the english lossless audio track ticked by default w
 would it be possible to add this?
 [/request]
 
-
---possible nice to haves
 *Unselect all on Blu-ray Title Info Screen
 	http://dotnetvisio.blogspot.com/2015/08/create-select-all-checkbox-column.html
 

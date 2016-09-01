@@ -49,6 +49,14 @@ namespace BatchGuy.App.Settings.Services
             if (_bluRaySummaryInfo.BluRayTitleInfo.Subtitles != null)
             {
                 _bluRaySummaryInfo.BluRayTitleInfo.Subtitles.ForEach(s => s.IsSelected = _applicationSettings.BluRayTitleInfoDefaultSettings.SelectAllSubtitles);
+
+                if (_applicationSettings.SubtitleLanguageAlwaysSelectedEnabled)
+                {
+                    foreach (BluRayTitleSubtitle subtitle in _bluRaySummaryInfo.BluRayTitleInfo.Subtitles.Where(a => a.Text.ToLower().Contains(_applicationSettings.SubtitlesMKVMergeDefaultSettings.DefaultMKVMergeItem.Language.Language.ToLower())))
+                    {
+                        subtitle.IsSelected = true;
+                    }
+                }
             }
         }
     }
