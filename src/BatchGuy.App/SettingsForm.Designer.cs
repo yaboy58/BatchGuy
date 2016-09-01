@@ -31,10 +31,24 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingsForm));
             this.gbScreen = new System.Windows.Forms.GroupBox();
+            this.chkSubtitlesMKVMergeDefaults = new System.Windows.Forms.CheckBox();
+            this.gbSubtitlesMKVMergeDefaultSettings = new System.Windows.Forms.GroupBox();
+            this.cbSubtitlesMKVMergeDefaultSettingsDefaultTrackFlag = new System.Windows.Forms.ComboBox();
+            this.lblSubtitlesMKVMergeDefaultSettingsDefaultTrackFlag = new System.Windows.Forms.Label();
+            this.cbSubtitlesMKVMergeDefaultSettingsLanguage = new System.Windows.Forms.ComboBox();
+            this.bsSubtitlesAndMKVMergeDefaultSettingsLanguage = new System.Windows.Forms.BindingSource(this.components);
+            this.lblSubtitlesMKVMergeDefaultSettingsLanguage = new System.Windows.Forms.Label();
+            this.gbEAC3ToDefaultSettings = new System.Windows.Forms.GroupBox();
+            this.chkShowProgressNumbers = new System.Windows.Forms.CheckBox();
             this.gbBluRayTitleInfoDefaultSettings = new System.Windows.Forms.GroupBox();
             this.chkBluRayTitleInfoDefaultSettingsSelectChapters = new System.Windows.Forms.CheckBox();
             this.chkBluRayTitleInfoDefaultSettingsSelectSubtitles = new System.Windows.Forms.CheckBox();
             this.dgvBluRayTitleInfoDefaultSettingsAudio = new System.Windows.Forms.DataGridView();
+            this.typeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.defaultTypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.argumentsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bsBluRayTitleInfoDefaultSettingsAudio = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnOpenMKVMergeFileDialog = new System.Windows.Forms.Button();
             this.txtMKVMerge = new System.Windows.Forms.TextBox();
@@ -47,32 +61,120 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
             this.ofdFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.gbEAC3ToDefaultSettings = new System.Windows.Forms.GroupBox();
-            this.chkShowProgressNumbers = new System.Windows.Forms.CheckBox();
-            this.typeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.defaultTypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.argumentsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bsBluRayTitleInfoDefaultSettingsAudio = new System.Windows.Forms.BindingSource(this.components);
             this.gbScreen.SuspendLayout();
+            this.gbSubtitlesMKVMergeDefaultSettings.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bsSubtitlesAndMKVMergeDefaultSettingsLanguage)).BeginInit();
+            this.gbEAC3ToDefaultSettings.SuspendLayout();
             this.gbBluRayTitleInfoDefaultSettings.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBluRayTitleInfoDefaultSettingsAudio)).BeginInit();
-            this.groupBox1.SuspendLayout();
-            this.gbEAC3ToDefaultSettings.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsBluRayTitleInfoDefaultSettingsAudio)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // gbScreen
             // 
+            this.gbScreen.Controls.Add(this.chkSubtitlesMKVMergeDefaults);
+            this.gbScreen.Controls.Add(this.gbSubtitlesMKVMergeDefaultSettings);
             this.gbScreen.Controls.Add(this.gbEAC3ToDefaultSettings);
             this.gbScreen.Controls.Add(this.gbBluRayTitleInfoDefaultSettings);
             this.gbScreen.Controls.Add(this.groupBox1);
             this.gbScreen.Location = new System.Drawing.Point(12, 12);
             this.gbScreen.Name = "gbScreen";
-            this.gbScreen.Size = new System.Drawing.Size(800, 603);
+            this.gbScreen.Size = new System.Drawing.Size(800, 691);
             this.gbScreen.TabIndex = 0;
             this.gbScreen.TabStop = false;
             this.gbScreen.Text = "Settings";
+            // 
+            // chkSubtitlesMKVMergeDefaults
+            // 
+            this.chkSubtitlesMKVMergeDefaults.AutoSize = true;
+            this.chkSubtitlesMKVMergeDefaults.Location = new System.Drawing.Point(20, 542);
+            this.chkSubtitlesMKVMergeDefaults.Name = "chkSubtitlesMKVMergeDefaults";
+            this.chkSubtitlesMKVMergeDefaults.Size = new System.Drawing.Size(15, 14);
+            this.chkSubtitlesMKVMergeDefaults.TabIndex = 4;
+            this.chkSubtitlesMKVMergeDefaults.UseVisualStyleBackColor = true;
+            // 
+            // gbSubtitlesMKVMergeDefaultSettings
+            // 
+            this.gbSubtitlesMKVMergeDefaultSettings.Controls.Add(this.cbSubtitlesMKVMergeDefaultSettingsDefaultTrackFlag);
+            this.gbSubtitlesMKVMergeDefaultSettings.Controls.Add(this.lblSubtitlesMKVMergeDefaultSettingsDefaultTrackFlag);
+            this.gbSubtitlesMKVMergeDefaultSettings.Controls.Add(this.cbSubtitlesMKVMergeDefaultSettingsLanguage);
+            this.gbSubtitlesMKVMergeDefaultSettings.Controls.Add(this.lblSubtitlesMKVMergeDefaultSettingsLanguage);
+            this.gbSubtitlesMKVMergeDefaultSettings.Location = new System.Drawing.Point(20, 558);
+            this.gbSubtitlesMKVMergeDefaultSettings.Name = "gbSubtitlesMKVMergeDefaultSettings";
+            this.gbSubtitlesMKVMergeDefaultSettings.Size = new System.Drawing.Size(760, 69);
+            this.gbSubtitlesMKVMergeDefaultSettings.TabIndex = 3;
+            this.gbSubtitlesMKVMergeDefaultSettings.TabStop = false;
+            this.gbSubtitlesMKVMergeDefaultSettings.Text = "Subtitle Language Always Selected:";
+            // 
+            // cbSubtitlesMKVMergeDefaultSettingsDefaultTrackFlag
+            // 
+            this.cbSubtitlesMKVMergeDefaultSettingsDefaultTrackFlag.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbSubtitlesMKVMergeDefaultSettingsDefaultTrackFlag.FormattingEnabled = true;
+            this.cbSubtitlesMKVMergeDefaultSettingsDefaultTrackFlag.Items.AddRange(new object[] {
+            "determine automatically",
+            "yes",
+            "no"});
+            this.cbSubtitlesMKVMergeDefaultSettingsDefaultTrackFlag.Location = new System.Drawing.Point(505, 29);
+            this.cbSubtitlesMKVMergeDefaultSettingsDefaultTrackFlag.Name = "cbSubtitlesMKVMergeDefaultSettingsDefaultTrackFlag";
+            this.cbSubtitlesMKVMergeDefaultSettingsDefaultTrackFlag.Size = new System.Drawing.Size(249, 21);
+            this.cbSubtitlesMKVMergeDefaultSettingsDefaultTrackFlag.TabIndex = 23;
+            // 
+            // lblSubtitlesMKVMergeDefaultSettingsDefaultTrackFlag
+            // 
+            this.lblSubtitlesMKVMergeDefaultSettingsDefaultTrackFlag.AutoSize = true;
+            this.lblSubtitlesMKVMergeDefaultSettingsDefaultTrackFlag.Location = new System.Drawing.Point(401, 37);
+            this.lblSubtitlesMKVMergeDefaultSettingsDefaultTrackFlag.Name = "lblSubtitlesMKVMergeDefaultSettingsDefaultTrackFlag";
+            this.lblSubtitlesMKVMergeDefaultSettingsDefaultTrackFlag.Size = new System.Drawing.Size(98, 13);
+            this.lblSubtitlesMKVMergeDefaultSettingsDefaultTrackFlag.TabIndex = 22;
+            this.lblSubtitlesMKVMergeDefaultSettingsDefaultTrackFlag.Text = "Default Track Flag:";
+            // 
+            // cbSubtitlesMKVMergeDefaultSettingsLanguage
+            // 
+            this.cbSubtitlesMKVMergeDefaultSettingsLanguage.DataSource = this.bsSubtitlesAndMKVMergeDefaultSettingsLanguage;
+            this.cbSubtitlesMKVMergeDefaultSettingsLanguage.DisplayMember = "Name";
+            this.cbSubtitlesMKVMergeDefaultSettingsLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbSubtitlesMKVMergeDefaultSettingsLanguage.FormattingEnabled = true;
+            this.cbSubtitlesMKVMergeDefaultSettingsLanguage.Location = new System.Drawing.Point(68, 29);
+            this.cbSubtitlesMKVMergeDefaultSettingsLanguage.Name = "cbSubtitlesMKVMergeDefaultSettingsLanguage";
+            this.cbSubtitlesMKVMergeDefaultSettingsLanguage.Size = new System.Drawing.Size(298, 21);
+            this.cbSubtitlesMKVMergeDefaultSettingsLanguage.TabIndex = 19;
+            this.cbSubtitlesMKVMergeDefaultSettingsLanguage.ValueMember = "Value";
+            // 
+            // bsSubtitlesAndMKVMergeDefaultSettingsLanguage
+            // 
+            this.bsSubtitlesAndMKVMergeDefaultSettingsLanguage.AllowNew = false;
+            this.bsSubtitlesAndMKVMergeDefaultSettingsLanguage.DataSource = typeof(BatchGuy.App.MKVMerge.Models.MKVMergeLanguageItem);
+            // 
+            // lblSubtitlesMKVMergeDefaultSettingsLanguage
+            // 
+            this.lblSubtitlesMKVMergeDefaultSettingsLanguage.AutoSize = true;
+            this.lblSubtitlesMKVMergeDefaultSettingsLanguage.Location = new System.Drawing.Point(4, 37);
+            this.lblSubtitlesMKVMergeDefaultSettingsLanguage.Name = "lblSubtitlesMKVMergeDefaultSettingsLanguage";
+            this.lblSubtitlesMKVMergeDefaultSettingsLanguage.Size = new System.Drawing.Size(58, 13);
+            this.lblSubtitlesMKVMergeDefaultSettingsLanguage.TabIndex = 18;
+            this.lblSubtitlesMKVMergeDefaultSettingsLanguage.Text = "Language:";
+            // 
+            // gbEAC3ToDefaultSettings
+            // 
+            this.gbEAC3ToDefaultSettings.Controls.Add(this.chkShowProgressNumbers);
+            this.gbEAC3ToDefaultSettings.Location = new System.Drawing.Point(20, 203);
+            this.gbEAC3ToDefaultSettings.Name = "gbEAC3ToDefaultSettings";
+            this.gbEAC3ToDefaultSettings.Size = new System.Drawing.Size(761, 85);
+            this.gbEAC3ToDefaultSettings.TabIndex = 2;
+            this.gbEAC3ToDefaultSettings.TabStop = false;
+            this.gbEAC3ToDefaultSettings.Text = "eac3to Defaults";
+            // 
+            // chkShowProgressNumbers
+            // 
+            this.chkShowProgressNumbers.AutoSize = true;
+            this.chkShowProgressNumbers.Location = new System.Drawing.Point(8, 28);
+            this.chkShowProgressNumbers.Name = "chkShowProgressNumbers";
+            this.chkShowProgressNumbers.Size = new System.Drawing.Size(142, 17);
+            this.chkShowProgressNumbers.TabIndex = 3;
+            this.chkShowProgressNumbers.Text = "Show Progress Numbers";
+            this.chkShowProgressNumbers.UseVisualStyleBackColor = true;
+            this.chkShowProgressNumbers.CheckedChanged += new System.EventHandler(this.chkShowProgressNumbers_CheckedChanged);
             // 
             // gbBluRayTitleInfoDefaultSettings
             // 
@@ -81,7 +183,7 @@
             this.gbBluRayTitleInfoDefaultSettings.Controls.Add(this.dgvBluRayTitleInfoDefaultSettingsAudio);
             this.gbBluRayTitleInfoDefaultSettings.Location = new System.Drawing.Point(20, 294);
             this.gbBluRayTitleInfoDefaultSettings.Name = "gbBluRayTitleInfoDefaultSettings";
-            this.gbBluRayTitleInfoDefaultSettings.Size = new System.Drawing.Size(762, 294);
+            this.gbBluRayTitleInfoDefaultSettings.Size = new System.Drawing.Size(762, 233);
             this.gbBluRayTitleInfoDefaultSettings.TabIndex = 1;
             this.gbBluRayTitleInfoDefaultSettings.TabStop = false;
             this.gbBluRayTitleInfoDefaultSettings.Text = "BluRay Title Info Defaults";
@@ -102,9 +204,9 @@
             this.chkBluRayTitleInfoDefaultSettingsSelectSubtitles.AutoSize = true;
             this.chkBluRayTitleInfoDefaultSettingsSelectSubtitles.Location = new System.Drawing.Point(11, 32);
             this.chkBluRayTitleInfoDefaultSettingsSelectSubtitles.Name = "chkBluRayTitleInfoDefaultSettingsSelectSubtitles";
-            this.chkBluRayTitleInfoDefaultSettingsSelectSubtitles.Size = new System.Drawing.Size(99, 17);
+            this.chkBluRayTitleInfoDefaultSettingsSelectSubtitles.Size = new System.Drawing.Size(113, 17);
             this.chkBluRayTitleInfoDefaultSettingsSelectSubtitles.TabIndex = 4;
-            this.chkBluRayTitleInfoDefaultSettingsSelectSubtitles.Text = "Select Subtitles";
+            this.chkBluRayTitleInfoDefaultSettingsSelectSubtitles.Text = "Select All Subtitles";
             this.chkBluRayTitleInfoDefaultSettingsSelectSubtitles.UseVisualStyleBackColor = true;
             this.chkBluRayTitleInfoDefaultSettingsSelectSubtitles.CheckedChanged += new System.EventHandler(this.chkBluRayTitleInfoDefaultSettingsSelectSubtitles_CheckedChanged);
             // 
@@ -120,9 +222,56 @@
             this.dgvBluRayTitleInfoDefaultSettingsAudio.DataSource = this.bsBluRayTitleInfoDefaultSettingsAudio;
             this.dgvBluRayTitleInfoDefaultSettingsAudio.Location = new System.Drawing.Point(6, 58);
             this.dgvBluRayTitleInfoDefaultSettingsAudio.Name = "dgvBluRayTitleInfoDefaultSettingsAudio";
-            this.dgvBluRayTitleInfoDefaultSettingsAudio.Size = new System.Drawing.Size(750, 230);
+            this.dgvBluRayTitleInfoDefaultSettingsAudio.Size = new System.Drawing.Size(750, 166);
             this.dgvBluRayTitleInfoDefaultSettingsAudio.TabIndex = 0;
             this.dgvBluRayTitleInfoDefaultSettingsAudio.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBluRayTitleInfoDefaultSettingsAudio_CellClick);
+            // 
+            // typeDataGridViewTextBoxColumn
+            // 
+            this.typeDataGridViewTextBoxColumn.DataPropertyName = "Type";
+            this.typeDataGridViewTextBoxColumn.HeaderText = "Type";
+            this.typeDataGridViewTextBoxColumn.Name = "typeDataGridViewTextBoxColumn";
+            this.typeDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Audio Input";
+            this.nameDataGridViewTextBoxColumn.MinimumWidth = 100;
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.nameDataGridViewTextBoxColumn.Width = 150;
+            // 
+            // defaultTypeDataGridViewTextBoxColumn
+            // 
+            this.defaultTypeDataGridViewTextBoxColumn.DataPropertyName = "DefaultType";
+            this.defaultTypeDataGridViewTextBoxColumn.HeaderText = "Audio Output";
+            this.defaultTypeDataGridViewTextBoxColumn.Items.AddRange(new object[] {
+            "AC3",
+            "DTS",
+            "DTSMA",
+            "FLAC",
+            "MPA",
+            "TrueHD",
+            "LPCM"});
+            this.defaultTypeDataGridViewTextBoxColumn.MinimumWidth = 100;
+            this.defaultTypeDataGridViewTextBoxColumn.Name = "defaultTypeDataGridViewTextBoxColumn";
+            this.defaultTypeDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.defaultTypeDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.defaultTypeDataGridViewTextBoxColumn.Width = 150;
+            // 
+            // argumentsDataGridViewTextBoxColumn
+            // 
+            this.argumentsDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.argumentsDataGridViewTextBoxColumn.DataPropertyName = "Arguments";
+            this.argumentsDataGridViewTextBoxColumn.HeaderText = "Arguments";
+            this.argumentsDataGridViewTextBoxColumn.MinimumWidth = 150;
+            this.argumentsDataGridViewTextBoxColumn.Name = "argumentsDataGridViewTextBoxColumn";
+            // 
+            // bsBluRayTitleInfoDefaultSettingsAudio
+            // 
+            this.bsBluRayTitleInfoDefaultSettingsAudio.AllowNew = false;
+            this.bsBluRayTitleInfoDefaultSettingsAudio.DataSource = typeof(BatchGuy.App.Settings.Models.BluRayTitleInfoDefaultSettingsAudio);
             // 
             // groupBox1
             // 
@@ -225,7 +374,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(705, 621);
+            this.btnSave.Location = new System.Drawing.Point(705, 709);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(107, 25);
             this.btnSave.TabIndex = 2;
@@ -237,79 +386,11 @@
             // 
             this.ofdFileDialog.FileName = "openFileDialog1";
             // 
-            // gbEAC3ToDefaultSettings
-            // 
-            this.gbEAC3ToDefaultSettings.Controls.Add(this.chkShowProgressNumbers);
-            this.gbEAC3ToDefaultSettings.Location = new System.Drawing.Point(20, 203);
-            this.gbEAC3ToDefaultSettings.Name = "gbEAC3ToDefaultSettings";
-            this.gbEAC3ToDefaultSettings.Size = new System.Drawing.Size(761, 85);
-            this.gbEAC3ToDefaultSettings.TabIndex = 2;
-            this.gbEAC3ToDefaultSettings.TabStop = false;
-            this.gbEAC3ToDefaultSettings.Text = "eac3to Defaults";
-            // 
-            // chkShowProgressNumbers
-            // 
-            this.chkShowProgressNumbers.AutoSize = true;
-            this.chkShowProgressNumbers.Location = new System.Drawing.Point(8, 28);
-            this.chkShowProgressNumbers.Name = "chkShowProgressNumbers";
-            this.chkShowProgressNumbers.Size = new System.Drawing.Size(142, 17);
-            this.chkShowProgressNumbers.TabIndex = 3;
-            this.chkShowProgressNumbers.Text = "Show Progress Numbers";
-            this.chkShowProgressNumbers.UseVisualStyleBackColor = true;
-            this.chkShowProgressNumbers.CheckedChanged += new System.EventHandler(this.chkShowProgressNumbers_CheckedChanged);
-            // 
-            // typeDataGridViewTextBoxColumn
-            // 
-            this.typeDataGridViewTextBoxColumn.DataPropertyName = "Type";
-            this.typeDataGridViewTextBoxColumn.HeaderText = "Type";
-            this.typeDataGridViewTextBoxColumn.Name = "typeDataGridViewTextBoxColumn";
-            this.typeDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Audio Input";
-            this.nameDataGridViewTextBoxColumn.MinimumWidth = 100;
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.nameDataGridViewTextBoxColumn.Width = 150;
-            // 
-            // defaultTypeDataGridViewTextBoxColumn
-            // 
-            this.defaultTypeDataGridViewTextBoxColumn.DataPropertyName = "DefaultType";
-            this.defaultTypeDataGridViewTextBoxColumn.HeaderText = "Audio Output";
-            this.defaultTypeDataGridViewTextBoxColumn.Items.AddRange(new object[] {
-            "AC3",
-            "DTS",
-            "DTSMA",
-            "FLAC",
-            "MPA",
-            "TrueHD",
-            "LPCM"});
-            this.defaultTypeDataGridViewTextBoxColumn.MinimumWidth = 100;
-            this.defaultTypeDataGridViewTextBoxColumn.Name = "defaultTypeDataGridViewTextBoxColumn";
-            this.defaultTypeDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.defaultTypeDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.defaultTypeDataGridViewTextBoxColumn.Width = 150;
-            // 
-            // argumentsDataGridViewTextBoxColumn
-            // 
-            this.argumentsDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.argumentsDataGridViewTextBoxColumn.DataPropertyName = "Arguments";
-            this.argumentsDataGridViewTextBoxColumn.HeaderText = "Arguments";
-            this.argumentsDataGridViewTextBoxColumn.MinimumWidth = 150;
-            this.argumentsDataGridViewTextBoxColumn.Name = "argumentsDataGridViewTextBoxColumn";
-            // 
-            // bsBluRayTitleInfoDefaultSettingsAudio
-            // 
-            this.bsBluRayTitleInfoDefaultSettingsAudio.AllowNew = false;
-            this.bsBluRayTitleInfoDefaultSettingsAudio.DataSource = typeof(BatchGuy.App.Settings.Models.BluRayTitleInfoDefaultSettingsAudio);
-            // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(824, 658);
+            this.ClientSize = new System.Drawing.Size(824, 737);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.gbScreen);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -319,14 +400,18 @@
             this.Text = "BatchGuy Settings";
             this.Load += new System.EventHandler(this.SettingsForm_Load);
             this.gbScreen.ResumeLayout(false);
+            this.gbScreen.PerformLayout();
+            this.gbSubtitlesMKVMergeDefaultSettings.ResumeLayout(false);
+            this.gbSubtitlesMKVMergeDefaultSettings.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bsSubtitlesAndMKVMergeDefaultSettingsLanguage)).EndInit();
+            this.gbEAC3ToDefaultSettings.ResumeLayout(false);
+            this.gbEAC3ToDefaultSettings.PerformLayout();
             this.gbBluRayTitleInfoDefaultSettings.ResumeLayout(false);
             this.gbBluRayTitleInfoDefaultSettings.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBluRayTitleInfoDefaultSettingsAudio)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsBluRayTitleInfoDefaultSettingsAudio)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.gbEAC3ToDefaultSettings.ResumeLayout(false);
-            this.gbEAC3ToDefaultSettings.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bsBluRayTitleInfoDefaultSettingsAudio)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -357,5 +442,12 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn argumentsDataGridViewTextBoxColumn;
         private System.Windows.Forms.GroupBox gbEAC3ToDefaultSettings;
         private System.Windows.Forms.CheckBox chkShowProgressNumbers;
+        private System.Windows.Forms.GroupBox gbSubtitlesMKVMergeDefaultSettings;
+        private System.Windows.Forms.CheckBox chkSubtitlesMKVMergeDefaults;
+        private System.Windows.Forms.ComboBox cbSubtitlesMKVMergeDefaultSettingsLanguage;
+        private System.Windows.Forms.Label lblSubtitlesMKVMergeDefaultSettingsLanguage;
+        private System.Windows.Forms.ComboBox cbSubtitlesMKVMergeDefaultSettingsDefaultTrackFlag;
+        private System.Windows.Forms.Label lblSubtitlesMKVMergeDefaultSettingsDefaultTrackFlag;
+        private System.Windows.Forms.BindingSource bsSubtitlesAndMKVMergeDefaultSettingsLanguage;
     }
 }

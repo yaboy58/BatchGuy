@@ -442,7 +442,7 @@ namespace BatchGuy.App
 
         private void AutoSelectEnglishOrAllSubtitlesIfRemux()
         {
-            if (_bluRaySummaryInfo.BluRayTitleInfo != null && _bluRaySummaryInfo.BluRayTitleInfo.Subtitles != null && Program.ApplicationSettings.BluRayTitleInfoDefaultSettings.SelectSubtitles != false)
+            if (_bluRaySummaryInfo.BluRayTitleInfo != null && _bluRaySummaryInfo.BluRayTitleInfo.Subtitles != null && Program.ApplicationSettings.BluRayTitleInfoDefaultSettings.SelectAllSubtitles != false)
             {
                 if (_eac3ToConfiguration.IsExtractForRemux)
                 {

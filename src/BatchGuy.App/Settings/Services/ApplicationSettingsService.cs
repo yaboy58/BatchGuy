@@ -12,6 +12,7 @@ using System.Reflection;
 using BatchGuy.App.Enums;
 using BatchGuy.App.Settings.Models;
 using BatchGuy.App.Shared.Interfaces;
+using BatchGuy.App.MKVMerge.Models;
 
 namespace BatchGuy.App.Settings.Services
 {
@@ -47,6 +48,7 @@ namespace BatchGuy.App.Settings.Services
             {
                 this.LoadBluRayTitleInfoDefaultSettings();
                 this.LoadEAC3ToDefaultSettings();
+                this.LoadSubtitlesMKVMergeDefaultSettings();
             }
         }
 
@@ -78,6 +80,7 @@ namespace BatchGuy.App.Settings.Services
                 _applicationSettings = _jsonSerializationService.ReadFromJsonFile<ApplicationSettings>(_applicationSettings.SettingsFile);
                 this.LoadBluRayTitleInfoDefaultSettings();
                 this.LoadEAC3ToDefaultSettings();
+                this.LoadSubtitlesMKVMergeDefaultSettings();
             }
             catch (Exception ex)
             {
@@ -94,7 +97,7 @@ namespace BatchGuy.App.Settings.Services
             }
         }
 
-        public  void LoadEAC3ToDefaultSettings()
+        private  void LoadEAC3ToDefaultSettings()
         {
             if (_applicationSettings.EAC3ToDefaultSettings == null)
             {
@@ -102,20 +105,38 @@ namespace BatchGuy.App.Settings.Services
             }
         }
 
+        private void LoadSubtitlesMKVMergeDefaultSettings()
+        {
+            if (_applicationSettings.SubtitlesMKVMergeDefaultSettings == null)
+            {
+                this.ResetSubtitlesMKVMergeDefaultSettings();
+            }
+        }
+
+        private void ResetSubtitlesMKVMergeDefaultSettings()
+        {
+            _applicationSettings.SubtitlesMKVMergeDefaultSettings = new SubtitlesMKVMergeDefaultSettings()
+            {
+                SubtitleLanguageAlwaysSelecedEnabled = true,
+                DefaultMKVMergeItem = new MKVMerge.Models.MKVMergeItem() { Compression = "determine automatically", DefaultTrackFlag="yes", ForcedTrackFlag = "no",
+                 TrackName = string.Empty, Language = new MKVMergeLanguageItem() { Language = "English",  Name = "English (eng)", Value = "eng" } }
+            };
+        }
+
         public Setting GetSettingByName(string settingName)
         {
             return _applicationSettings.Settings.SingleOrDefault(s => s.Name == settingName);
         }
 
-        public void ResetEAC3ToDefaultSettings()
+        private void ResetEAC3ToDefaultSettings()
         {
             _applicationSettings.EAC3ToDefaultSettings = new EAC3ToDefaultSettings() { ShowProgressNumbers = true };
         }
 
 
-        public void ResetBluRayTitleInfoDefaultSettings()
+        private void ResetBluRayTitleInfoDefaultSettings()
         {
-            _applicationSettings.BluRayTitleInfoDefaultSettings = new BluRayTitleInfoDefaultSettings() { Enabled = true, SelectChapters = true, SelectSubtitles = true };
+            _applicationSettings.BluRayTitleInfoDefaultSettings = new BluRayTitleInfoDefaultSettings() { Enabled = true, SelectChapters = true, SelectAllSubtitles = true };
 
             var bluRayAudioTypes = _audioService.GetBluRayAudioTypes();
 

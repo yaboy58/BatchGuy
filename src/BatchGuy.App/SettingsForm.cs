@@ -12,12 +12,16 @@ using BatchGuy.App.Shared.Models;
 using BatchGuy.App.Shared.Services;
 using BatchGuy.App.Extensions;
 using BatchGuy.App.Settings.Models;
+using BatchGuy.App.MKVMerge.Models;
+using BatchGuy.App.MKVMerge.Interfaces;
+using BatchGuy.App.MKVMerge.Services;
 
 namespace BatchGuy.App
 {
     public partial class SettingsForm : Form
     {
         private BindingList<BluRayTitleInfoDefaultSettingsAudio> _bindingBluRayTitleInfoDefaultSettingsAudio = new BindingList<BluRayTitleInfoDefaultSettingsAudio>();
+        private BindingList<MKVMergeLanguageItem> _bindingListSubtitlesAndMKVMergeDefaultSettingsLanguage = new BindingList<MKVMergeLanguageItem>();
 
         public SettingsForm()
         {
@@ -29,6 +33,7 @@ namespace BatchGuy.App
         {
             this.LoadSettings();
             this.LoadControls();
+            this.LoadMKVLanguageDropDownBoxes();
         }
 
         private void LoadSettings()
@@ -47,8 +52,21 @@ namespace BatchGuy.App
         private void LoadControls()
         {
             chkBluRayTitleInfoDefaultSettingsSelectChapters.Checked = Program.ApplicationSettings.BluRayTitleInfoDefaultSettings.SelectChapters;
-            chkBluRayTitleInfoDefaultSettingsSelectSubtitles.Checked = Program.ApplicationSettings.BluRayTitleInfoDefaultSettings.SelectSubtitles;
+            chkBluRayTitleInfoDefaultSettingsSelectSubtitles.Checked = Program.ApplicationSettings.BluRayTitleInfoDefaultSettings.SelectAllSubtitles;
             chkShowProgressNumbers.Checked = Program.ApplicationSettings.EAC3ToDefaultSettings.ShowProgressNumbers;
+        }
+
+        private void LoadMKVLanguageDropDownBoxes()
+        {
+            IJsonSerializationService<ISOLanguageCodeCollection> jsonSerializationService = new JsonSerializationService<ISOLanguageCodeCollection>();
+            IMKVMergeLanguageService service = new MKVMergeLanguageService(jsonSerializationService);
+            foreach (MKVMergeLanguageItem item in service.GetLanguages())
+            {
+                _bindingListSubtitlesAndMKVMergeDefaultSettingsLanguage.Add(item);
+            }
+
+            bsSubtitlesAndMKVMergeDefaultSettingsLanguage.DataSource = _bindingListSubtitlesAndMKVMergeDefaultSettingsLanguage;
+            _bindingListSubtitlesAndMKVMergeDefaultSettingsLanguage.AllowEdit = false;
         }
 
         private string LoadSetting(string settingName)
@@ -142,7 +160,7 @@ namespace BatchGuy.App
 
         private void HandlesChkBluRayTitleInfoDefaultSettingsSelectSubtitlesCheckedChanged()
         {
-            Program.ApplicationSettings.BluRayTitleInfoDefaultSettings.SelectSubtitles = chkBluRayTitleInfoDefaultSettingsSelectSubtitles.Checked;
+            Program.ApplicationSettings.BluRayTitleInfoDefaultSettings.SelectAllSubtitles = chkBluRayTitleInfoDefaultSettingsSelectSubtitles.Checked;
         }
 
         private void chkBluRayTitleInfoDefaultSettingsSelectChapters_CheckedChanged(object sender, EventArgs e)

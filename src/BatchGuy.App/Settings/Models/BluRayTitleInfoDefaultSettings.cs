@@ -17,7 +17,7 @@ namespace BatchGuy.App.Settings.Models
 
         public bool SelectChapters { get; set; }
 
-        public bool SelectSubtitles { get; set; }
+        public bool SelectAllSubtitles { get; set; }
 
         public List<BluRayTitleInfoDefaultSettingsAudio>  Audio { get; set; }
     }

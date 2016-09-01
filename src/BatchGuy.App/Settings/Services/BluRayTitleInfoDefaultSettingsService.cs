@@ -47,7 +47,7 @@ namespace BatchGuy.App.Settings.Services
         {
             if (_bluRaySummaryInfo.BluRayTitleInfo.Subtitles != null)
             {
-                _bluRaySummaryInfo.BluRayTitleInfo.Subtitles.ForEach(s => s.IsSelected = _bluRayTitleInfoDefaultSettings.SelectSubtitles);
+                _bluRaySummaryInfo.BluRayTitleInfo.Subtitles.ForEach(s => s.IsSelected = _bluRayTitleInfoDefaultSettings.SelectAllSubtitles);
             }
         }
     }

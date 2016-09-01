@@ -157,6 +157,7 @@
     <Compile Include="Settings\Models\BluRayTitleInfoDefaultSettings.cs" />
     <Compile Include="Settings\Models\BluRayTitleInfoDefaultSettingsAudio.cs" />
     <Compile Include="Settings\Models\EAC3ToDefaultSettings.cs" />
+    <Compile Include="Settings\Models\SubtitlesMKVMergeDefaultSettings.cs" />
     <Compile Include="Settings\Services\BluRayTitleInfoDefaultSettingsService.cs" />
     <Compile Include="Settings\Services\MKVMergeDefaultSettingsService.cs" />
     <Compile Include="Shared\Interfaces\IAudioService.cs" />

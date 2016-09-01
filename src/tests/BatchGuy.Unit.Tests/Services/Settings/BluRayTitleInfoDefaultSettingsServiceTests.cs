@@ -24,7 +24,7 @@ namespace BatchGuy.Unit.Tests.Services.Settings
             BluRaySummaryInfo bluraySummaryInfo = new BluRaySummaryInfo() { BluRayTitleInfo = new BluRayTitleInfo()
             { Subtitles = new List<BluRayTitleSubtitle>() { new BluRayTitleSubtitle() { IsSelected = false },
             new BluRayTitleSubtitle() { IsSelected = false } } } };
-            BluRayTitleInfoDefaultSettings defaultSettings = new BluRayTitleInfoDefaultSettings() { SelectSubtitles = true };
+            BluRayTitleInfoDefaultSettings defaultSettings = new BluRayTitleInfoDefaultSettings() { SelectAllSubtitles = true };
             IAudioService audioService = new AudioService();
             IBluRayTitleInfoDefaultSettingsService service = new BluRayTitleInfoDefaultSettingsService(defaultSettings, bluraySummaryInfo, audioService);
             //when

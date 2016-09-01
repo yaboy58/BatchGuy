@@ -19,6 +19,8 @@ namespace BatchGuy.App.Shared.Models
 
         public EAC3ToDefaultSettings EAC3ToDefaultSettings { get; set; }
 
+        public SubtitlesMKVMergeDefaultSettings SubtitlesMKVMergeDefaultSettings { get; set; }
+
         public ApplicationSettings()
         {
             Settings = new List<Setting>();
