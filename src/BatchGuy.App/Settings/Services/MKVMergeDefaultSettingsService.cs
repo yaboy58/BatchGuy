@@ -49,8 +49,19 @@ namespace BatchGuy.App.Settings.Services
                 foreach (BluRayTitleSubtitle subtitle in _bluRaySummaryInfo.BluRayTitleInfo.Subtitles)
                 {
                     subtitle.MKVMergeItem = new MKVMergeItem() { DefaultTrackFlag = "no", ForcedTrackFlag = "no", Language = _languageService.GetLanguageByName(subtitle.Language), TrackName = "", Compression = "determine automatically" };
-                    if (subtitle.MKVMergeItem.Language.Value == "eng")
-                        subtitle.MKVMergeItem.DefaultTrackFlag = "yes";
+                }
+
+                if (_applicationSettings.SubtitleLanguageAlwaysSelectedEnabled)
+                {
+                    foreach (BluRayTitleSubtitle subtitle in _bluRaySummaryInfo.BluRayTitleInfo.Subtitles.Where(a => a.Text.ToLower().Contains("english")))
+                    {
+                        subtitle.IsSelected = true;
+                        subtitle.MKVMergeItem.Compression = _applicationSettings.SubtitlesMKVMergeDefaultSettings.DefaultMKVMergeItem.Compression;
+                        subtitle.MKVMergeItem.DefaultTrackFlag = _applicationSettings.SubtitlesMKVMergeDefaultSettings.DefaultMKVMergeItem.DefaultTrackFlag;
+                        subtitle.MKVMergeItem.ForcedTrackFlag = _applicationSettings.SubtitlesMKVMergeDefaultSettings.DefaultMKVMergeItem.ForcedTrackFlag;
+                        subtitle.MKVMergeItem.Language = _applicationSettings.SubtitlesMKVMergeDefaultSettings.DefaultMKVMergeItem.Language;
+                        subtitle.MKVMergeItem.TrackName = _applicationSettings.SubtitlesMKVMergeDefaultSettings.DefaultMKVMergeItem.TrackName;
+                    }
                 }
             }
         }

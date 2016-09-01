@@ -9,7 +9,6 @@ namespace BatchGuy.App.Settings.Models
 {
     public class SubtitlesMKVMergeDefaultSettings
     {
-        public bool SubtitleLanguageAlwaysSelectedEnabled { get; set; }
         public MKVMergeItem DefaultMKVMergeItem { get; set; }
     }
 }

@@ -54,10 +54,10 @@ namespace BatchGuy.App
             chkBluRayTitleInfoDefaultSettingsSelectChapters.Checked = Program.ApplicationSettings.BluRayTitleInfoDefaultSettings.SelectChapters;
             chkBluRayTitleInfoDefaultSettingsSelectSubtitles.Checked = Program.ApplicationSettings.BluRayTitleInfoDefaultSettings.SelectAllSubtitles;
             chkShowProgressNumbers.Checked = Program.ApplicationSettings.EAC3ToDefaultSettings.ShowProgressNumbers;
-            chkSubtitleLanguageAlwaysSelectedEnabled.Checked = Program.ApplicationSettings.SubtitlesMKVMergeDefaultSettings.SubtitleLanguageAlwaysSelectedEnabled;
+            chkSubtitleLanguageAlwaysSelectedEnabled.Checked = Program.ApplicationSettings.SubtitleLanguageAlwaysSelectedEnabled;
             cbSubtitlesMKVMergeDefaultSettingsLanguage.SelectedValue = Program.ApplicationSettings.SubtitlesMKVMergeDefaultSettings.DefaultMKVMergeItem.Language.Value;
             cbSubtitlesMKVMergeDefaultSettingsDefaultTrackFlag.SelectedIndex = cbSubtitlesMKVMergeDefaultSettingsDefaultTrackFlag.FindString(Program.ApplicationSettings.SubtitlesMKVMergeDefaultSettings.DefaultMKVMergeItem.DefaultTrackFlag);
-            gbSubtitlesMKVMergeDefaultSettings.Enabled = Program.ApplicationSettings.SubtitlesMKVMergeDefaultSettings.SubtitleLanguageAlwaysSelectedEnabled;
+            gbSubtitlesMKVMergeDefaultSettings.Enabled = Program.ApplicationSettings.SubtitleLanguageAlwaysSelectedEnabled;
         }
 
         private void LoadMKVLanguageDropDownBoxes()
@@ -199,8 +199,8 @@ namespace BatchGuy.App
 
         private void HandlesChkSubtitleLanguageAlwaysSelecedEnabledCheckedChanged()
         {
-            Program.ApplicationSettings.SubtitlesMKVMergeDefaultSettings.SubtitleLanguageAlwaysSelectedEnabled = chkSubtitleLanguageAlwaysSelectedEnabled.Checked;
-            gbSubtitlesMKVMergeDefaultSettings.Enabled = Program.ApplicationSettings.SubtitlesMKVMergeDefaultSettings.SubtitleLanguageAlwaysSelectedEnabled;
+            Program.ApplicationSettings.SubtitleLanguageAlwaysSelectedEnabled = chkSubtitleLanguageAlwaysSelectedEnabled.Checked;
+            gbSubtitlesMKVMergeDefaultSettings.Enabled = Program.ApplicationSettings.SubtitleLanguageAlwaysSelectedEnabled;
         }
 
         private void cbSubtitlesMKVMergeDefaultSettingsLanguage_SelectedIndexChanged(object sender, EventArgs e)

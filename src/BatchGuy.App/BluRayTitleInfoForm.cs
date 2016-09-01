@@ -366,7 +366,6 @@ namespace BatchGuy.App
                 this.SortAudioGrid(2); //sort language 
                 this.SortSubtitleGrid(2); //sort language
                 this.AutoSelectEnglishAudio();
-                this.AutoSelectEnglishOrAllSubtitlesIfRemux();
                 this.SetMKVMergetItemDefaults();
                 this.SetGridRowBackgroundIfUndetermindLanguage();
                 gbScreen.SetEnabled(true);
@@ -436,27 +435,6 @@ namespace BatchGuy.App
                 foreach (BluRayTitleAudio audio in _bluRaySummaryInfo.BluRayTitleInfo.AudioList.Where(a => a.Text.ToLower().Contains("english")))
                 {
                     audio.IsSelected = true;
-                }
-            }
-        }
-
-        private void AutoSelectEnglishOrAllSubtitlesIfRemux()
-        {
-            if (_bluRaySummaryInfo.BluRayTitleInfo != null && _bluRaySummaryInfo.BluRayTitleInfo.Subtitles != null && Program.ApplicationSettings.BluRayTitleInfoDefaultSettings.SelectAllSubtitles != false)
-            {
-                if (_eac3ToConfiguration.IsExtractForRemux)
-                {
-                    foreach (BluRayTitleSubtitle subtitle in _bluRaySummaryInfo.BluRayTitleInfo.Subtitles)
-                    {
-                        subtitle.IsSelected = true;
-                    }
-                }
-                else
-                {
-                    foreach (BluRayTitleSubtitle subtitle in _bluRaySummaryInfo.BluRayTitleInfo.Subtitles.Where(a => a.Text.ToLower().Contains("english")))
-                    {
-                        subtitle.IsSelected = true;
-                    }
                 }
             }
         }

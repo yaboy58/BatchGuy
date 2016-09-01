@@ -21,6 +21,8 @@ namespace BatchGuy.App.Shared.Models
 
         public SubtitlesMKVMergeDefaultSettings SubtitlesMKVMergeDefaultSettings { get; set; }
 
+        public bool SubtitleLanguageAlwaysSelectedEnabled { get; set; }
+
         public ApplicationSettings()
         {
             Settings = new List<Setting>();
