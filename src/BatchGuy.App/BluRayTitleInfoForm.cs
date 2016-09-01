@@ -480,7 +480,7 @@ namespace BatchGuy.App
             {
                 IJsonSerializationService<ISOLanguageCodeCollection> jsonSerializationService = new JsonSerializationService<ISOLanguageCodeCollection>();
                 IMKVMergeLanguageService languageService = new MKVMergeLanguageService(jsonSerializationService);
-                IMKVMergeDefaultSettingsService mkvMergeDefaultSettingsService = new MKVMergeDefaultSettingsService(_eac3ToConfiguration, Program.ApplicationSettings.BluRayTitleInfoDefaultSettings,
+                IMKVMergeDefaultSettingsService mkvMergeDefaultSettingsService = new MKVMergeDefaultSettingsService(_eac3ToConfiguration, Program.ApplicationSettings,
                     _bluRaySummaryInfo, languageService);
 
                 mkvMergeDefaultSettingsService.SetAudioDefaultSettings();
@@ -627,7 +627,7 @@ namespace BatchGuy.App
 
         private void SetBluRayTitleInfoDefaultSettings()
         {
-            IBluRayTitleInfoDefaultSettingsService service = new BluRayTitleInfoDefaultSettingsService(Program.ApplicationSettings.BluRayTitleInfoDefaultSettings,
+            IBluRayTitleInfoDefaultSettingsService service = new BluRayTitleInfoDefaultSettingsService(Program.ApplicationSettings,
                 _bluRaySummaryInfo, _audioService);
 
             service.SetSubtitleDefaultSettings();

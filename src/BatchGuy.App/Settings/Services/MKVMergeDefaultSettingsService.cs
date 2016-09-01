@@ -4,6 +4,7 @@ using BatchGuy.App.MKVMerge.Models;
 using BatchGuy.App.Parser.Models;
 using BatchGuy.App.Settings.Interface;
 using BatchGuy.App.Settings.Models;
+using BatchGuy.App.Shared.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,15 +15,15 @@ namespace BatchGuy.App.Settings.Services
 {
     public class MKVMergeDefaultSettingsService : IMKVMergeDefaultSettingsService
     {
+        private ApplicationSettings _applicationSettings;
         private EAC3ToConfiguration _eac3toConfiguration;
         private BluRaySummaryInfo _bluRaySummaryInfo;
         IMKVMergeLanguageService _languageService;
-        private BluRayTitleInfoDefaultSettings _bluRayTitleInfoDefaultSettings;
 
-        public MKVMergeDefaultSettingsService(EAC3ToConfiguration eac3toConfiguration, BluRayTitleInfoDefaultSettings bluRayTitleInfoDefaultSettings, BluRaySummaryInfo bluRaySummaryInfo, IMKVMergeLanguageService languageService)
+        public MKVMergeDefaultSettingsService(EAC3ToConfiguration eac3toConfiguration, ApplicationSettings applicationSettings, BluRaySummaryInfo bluRaySummaryInfo, IMKVMergeLanguageService languageService)
         {
             _eac3toConfiguration = eac3toConfiguration;
-            _bluRayTitleInfoDefaultSettings = bluRayTitleInfoDefaultSettings;
+            _applicationSettings = applicationSettings;
             _bluRaySummaryInfo = bluRaySummaryInfo;
             _languageService = languageService;
         }

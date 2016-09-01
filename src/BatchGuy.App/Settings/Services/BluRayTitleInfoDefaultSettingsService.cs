@@ -2,6 +2,7 @@
 using BatchGuy.App.Settings.Interface;
 using BatchGuy.App.Settings.Models;
 using BatchGuy.App.Shared.Interfaces;
+using BatchGuy.App.Shared.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,13 +13,13 @@ namespace BatchGuy.App.Settings.Services
 {
     public class BluRayTitleInfoDefaultSettingsService : IBluRayTitleInfoDefaultSettingsService
     {
+        private ApplicationSettings _applicationSettings;
         private BluRaySummaryInfo _bluRaySummaryInfo;
-        private BluRayTitleInfoDefaultSettings _bluRayTitleInfoDefaultSettings;
         private IAudioService _audioService;
 
-        public BluRayTitleInfoDefaultSettingsService(BluRayTitleInfoDefaultSettings bluRayTitleInfoDefaultSettings, BluRaySummaryInfo bluRaySummaryInfo, IAudioService audioService)
+        public BluRayTitleInfoDefaultSettingsService(ApplicationSettings applicationSettings, BluRaySummaryInfo bluRaySummaryInfo, IAudioService audioService)
         {
-            _bluRayTitleInfoDefaultSettings = bluRayTitleInfoDefaultSettings;
+            _applicationSettings = applicationSettings;
             _bluRaySummaryInfo = bluRaySummaryInfo;
             _audioService = audioService;
         }
@@ -28,7 +29,7 @@ namespace BatchGuy.App.Settings.Services
             {
                 foreach (var audio in _bluRaySummaryInfo.BluRayTitleInfo.AudioList)
                 {
-                    var defaultSetting = _bluRayTitleInfoDefaultSettings.Audio.First(a => a.Type == audio.AudioType);
+                    var defaultSetting = _applicationSettings.BluRayTitleInfoDefaultSettings.Audio.First(a => a.Type == audio.AudioType);
                     audio.Arguments = defaultSetting.Arguments;
                     audio.AudioType = _audioService.GetAudioTypeByName(defaultSetting.DefaultType);
                 }
@@ -39,7 +40,7 @@ namespace BatchGuy.App.Settings.Services
         {
             if (_bluRaySummaryInfo.BluRayTitleInfo.Chapter != null)
             {
-                _bluRaySummaryInfo.BluRayTitleInfo.Chapter.IsSelected = _bluRayTitleInfoDefaultSettings.SelectChapters;
+                _bluRaySummaryInfo.BluRayTitleInfo.Chapter.IsSelected = _applicationSettings.BluRayTitleInfoDefaultSettings.SelectChapters;
             }
         }
 
@@ -47,7 +48,7 @@ namespace BatchGuy.App.Settings.Services
         {
             if (_bluRaySummaryInfo.BluRayTitleInfo.Subtitles != null)
             {
-                _bluRaySummaryInfo.BluRayTitleInfo.Subtitles.ForEach(s => s.IsSelected = _bluRayTitleInfoDefaultSettings.SelectAllSubtitles);
+                _bluRaySummaryInfo.BluRayTitleInfo.Subtitles.ForEach(s => s.IsSelected = _applicationSettings.BluRayTitleInfoDefaultSettings.SelectAllSubtitles);
             }
         }
     }

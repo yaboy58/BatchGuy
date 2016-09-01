@@ -11,6 +11,7 @@ using BatchGuy.App.Settings.Interface;
 using BatchGuy.App.Settings.Services;
 using BatchGuy.App.Shared.Interfaces;
 using BatchGuy.App.Shared.Services;
+using BatchGuy.App.Shared.Models;
 
 namespace BatchGuy.Unit.Tests.Services.Settings
 {
@@ -21,12 +22,12 @@ namespace BatchGuy.Unit.Tests.Services.Settings
         public void bluraytitleinfodefaultsettingsservice_can_mark_all_subtitles_as_selected_as_default_Test()
         {
             //given
+            ApplicationSettings applicationSettings = new ApplicationSettings() { BluRayTitleInfoDefaultSettings = new BluRayTitleInfoDefaultSettings() { SelectAllSubtitles = true } };
             BluRaySummaryInfo bluraySummaryInfo = new BluRaySummaryInfo() { BluRayTitleInfo = new BluRayTitleInfo()
             { Subtitles = new List<BluRayTitleSubtitle>() { new BluRayTitleSubtitle() { IsSelected = false },
             new BluRayTitleSubtitle() { IsSelected = false } } } };
-            BluRayTitleInfoDefaultSettings defaultSettings = new BluRayTitleInfoDefaultSettings() { SelectAllSubtitles = true };
             IAudioService audioService = new AudioService();
-            IBluRayTitleInfoDefaultSettingsService service = new BluRayTitleInfoDefaultSettingsService(defaultSettings, bluraySummaryInfo, audioService);
+            IBluRayTitleInfoDefaultSettingsService service = new BluRayTitleInfoDefaultSettingsService(applicationSettings, bluraySummaryInfo, audioService);
             //when
             service.SetSubtitleDefaultSettings();
             //then
@@ -37,10 +38,11 @@ namespace BatchGuy.Unit.Tests.Services.Settings
         public void bluraytitleinfodefaultsettingsservice_can_mark_all_chapter_as_selected_as_default_Test()
         {
             //given
+            ApplicationSettings applicationSettings = new ApplicationSettings() { BluRayTitleInfoDefaultSettings = new BluRayTitleInfoDefaultSettings() { SelectChapters = true} };
             BluRaySummaryInfo bluraySummaryInfo = new BluRaySummaryInfo() { BluRayTitleInfo = new BluRayTitleInfo() { Chapter = new BluRayTitleChapter() { IsSelected = false } } };
             BluRayTitleInfoDefaultSettings defaultSettings = new BluRayTitleInfoDefaultSettings() {  SelectChapters = true };
             IAudioService audioService = new AudioService();
-            IBluRayTitleInfoDefaultSettingsService service = new BluRayTitleInfoDefaultSettingsService(defaultSettings, bluraySummaryInfo, audioService);
+            IBluRayTitleInfoDefaultSettingsService service = new BluRayTitleInfoDefaultSettingsService(applicationSettings, bluraySummaryInfo, audioService);
             //when
             service.SetChaptersDefaultSettings();
             //then
