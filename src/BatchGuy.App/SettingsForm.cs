@@ -21,7 +21,8 @@ namespace BatchGuy.App
     public partial class SettingsForm : Form
     {
         private BindingList<BluRayTitleInfoDefaultSettingsAudio> _bindingBluRayTitleInfoDefaultSettingsAudio = new BindingList<BluRayTitleInfoDefaultSettingsAudio>();
-        private BindingList<MKVMergeLanguageItem> _bindingListSubtitlesAndMKVMergeDefaultSettingsLanguage = new BindingList<MKVMergeLanguageItem>();
+        private BindingList<MKVMergeLanguageItem> _bindingListSubtitlesMKVMergeDefaultSettingsLanguage = new BindingList<MKVMergeLanguageItem>();
+        private BindingList<MKVMergeLanguageItem> _bindingListAudioMKVMergeDefaultSettingsLanguage = new BindingList<MKVMergeLanguageItem>();
 
         public SettingsForm()
         {
@@ -66,11 +67,15 @@ namespace BatchGuy.App
             IMKVMergeLanguageService service = new MKVMergeLanguageService(jsonSerializationService);
             foreach (MKVMergeLanguageItem item in service.GetLanguages())
             {
-                _bindingListSubtitlesAndMKVMergeDefaultSettingsLanguage.Add(item);
+                _bindingListSubtitlesMKVMergeDefaultSettingsLanguage.Add(item);
+                _bindingListAudioMKVMergeDefaultSettingsLanguage.Add(item);
             }
 
-            bsSubtitlesAndMKVMergeDefaultSettingsLanguage.DataSource = _bindingListSubtitlesAndMKVMergeDefaultSettingsLanguage;
-            _bindingListSubtitlesAndMKVMergeDefaultSettingsLanguage.AllowEdit = false;
+            bsAudioMKVMergeDefaultSettingsLanguage.DataSource = _bindingListAudioMKVMergeDefaultSettingsLanguage;
+            _bindingListAudioMKVMergeDefaultSettingsLanguage.AllowEdit = false;
+
+            bsSubtitlesMKVMergeDefaultSettingsLanguage.DataSource = _bindingListSubtitlesMKVMergeDefaultSettingsLanguage;
+            _bindingListSubtitlesMKVMergeDefaultSettingsLanguage.AllowEdit = false;
         }
 
         private string LoadSetting(string settingName)
