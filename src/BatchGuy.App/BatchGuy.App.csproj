@@ -154,6 +154,7 @@
     <Compile Include="Settings\Interface\IApplicationSettingsService.cs" />
     <Compile Include="Settings\Interface\IBluRayTitleInfoDefaultSettingsService.cs" />
     <Compile Include="Settings\Interface\IMKVMergeDefaultSettingsService.cs" />
+    <Compile Include="Settings\Models\AudioMKVMergeDefaultSettings.cs" />
     <Compile Include="Settings\Models\BluRayTitleInfoDefaultSettings.cs" />
     <Compile Include="Settings\Models\BluRayTitleInfoDefaultSettingsAudio.cs" />
     <Compile Include="Settings\Models\EAC3ToDefaultSettings.cs" />
