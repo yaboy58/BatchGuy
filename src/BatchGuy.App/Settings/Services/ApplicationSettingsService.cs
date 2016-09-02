@@ -49,6 +49,7 @@ namespace BatchGuy.App.Settings.Services
                 this.LoadBluRayTitleInfoDefaultSettings();
                 this.LoadEAC3ToDefaultSettings();
                 this.LoadSubtitlesMKVMergeDefaultSettings();
+                this.LoadAudioMKVMergeDefaultSettings();
             }
         }
 
@@ -81,6 +82,7 @@ namespace BatchGuy.App.Settings.Services
                 this.LoadBluRayTitleInfoDefaultSettings();
                 this.LoadEAC3ToDefaultSettings();
                 this.LoadSubtitlesMKVMergeDefaultSettings();
+                this.LoadAudioMKVMergeDefaultSettings();
             }
             catch (Exception ex)
             {
@@ -120,6 +122,31 @@ namespace BatchGuy.App.Settings.Services
             {
                 DefaultMKVMergeItem = new MKVMerge.Models.MKVMergeItem() { Compression = "determine automatically", DefaultTrackFlag="yes", ForcedTrackFlag = "no",
                  TrackName = string.Empty, Language = new MKVMergeLanguageItem() { Language = "English",  Name = "English (eng)", Value = "eng" } }
+            };
+        }
+
+        private void LoadAudioMKVMergeDefaultSettings()
+        {
+            if (_applicationSettings.AudioMKVMergeDefaultSettings == null)
+            {
+                this.ResetAudioMKVMergeDefaultSettings();
+            }
+        }
+
+        private void ResetAudioMKVMergeDefaultSettings()
+        {
+            _applicationSettings.AudioLanguageAlwaysSelectedEnabled = true;
+            _applicationSettings.AudioMKVMergeDefaultSettings = new AudioMKVMergeDefaultSettings()
+            {
+                DefaultMKVMergeItem = new MKVMerge.Models.MKVMergeItem()
+                {
+                    Compression = "determine automatically",
+                    DefaultTrackFlag = "yes",
+                    ForcedTrackFlag = "no",
+                    TrackName = string.Empty,
+                    Language = new MKVMergeLanguageItem() { Language = "English", Name = "English (eng)", Value = "eng" }
+                },
+                 AudioTypeFilterCriteria = "Any Type"
             };
         }
 

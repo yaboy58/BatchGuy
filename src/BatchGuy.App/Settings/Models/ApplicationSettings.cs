@@ -23,7 +23,7 @@ namespace BatchGuy.App.Shared.Models
 
         public bool SubtitleLanguageAlwaysSelectedEnabled { get; set; }
 
-        public bool AudioanguageAlwaysSelectedEnabled { get; set; }
+        public bool AudioLanguageAlwaysSelectedEnabled { get; set; }
 
         public AudioMKVMergeDefaultSettings AudioMKVMergeDefaultSettings { get; set; }
 
