@@ -1,13 +1,4 @@
 --todo
-*Created new service to centralize the blu-ray default settings logic to make it more unit testable and easier to modify
-*Created new service to centralize the mkvmerge default logic to make it more unit testable and easier to modify
-*Users can now select a mkvmerge compression muxing mode on the BluRay Title Info Screen
-*Users can now select a subtitle language that is always selected and what the mkvmerge default track flag should be on the BatchGuy Settings Screen
-
-
-
-
---possible nice to haves
 Default audio:
 	This will be on the eac3to screen because it per blu-ray
 
@@ -23,25 +14,40 @@ e.g. Id always want to have the english lossless audio track ticked by default w
 would it be possible to add this?
 [/request]
 
-*Unselect all on Blu-ray Title Info Screen
-	http://dotnetvisio.blogspot.com/2015/08/create-select-all-checkbox-column.html
+
+
+
+--possible nice to haves
+*On the Create x264 Batch File, add functionality load (.batchGuyEac3toSettings), so you can have the eac3to and mkvmerge info to create an mkvmerge batch file
+-Either use If statement or create a new abstract class and move all current mkvmerge logic (except video) to a base class and have a remux/none-remux sub class
+-Understand that you can re-use 99% of current mkvmerge service functionality, only with ecnoder mux, they supply you the video name, it isn't auto-created
+-Enable mkvmerge section on BluRay Title Info Screen all the time
+-Allow user to load the (.batchGuyEac3toSettings) on the Create x264 Batch File Screen
+-Once (.batchGuyEac3toSettings), add a new drop down column to the grid that has the episode numbers, so they can be matched with the avs/encode name
+
 
 *Default the MKVToolNixGUI Track Name to "Commentary" if commentary checkbox is checked
 *When a single file contains multiple episodes :
 	1) Go by the actually episode number entered in the loop
 	2) Validate on the screen
 
+
 *Trimming white spaces from the encode names on the Create x264 Batch File
 *Create a batchguy log file that indicates how many files were processed and how long it took
 *Make the Season Number on Create eac3to Batch File optional (so movies can be remuxed)
+
+
 *Rename EnumBluRayLineItemType to have eac3to in the title, to prepare for tsMuxeR OR Make the identifylineitem service generic to pass in any enum or a combo of these
 *Research and start laying down the foundation for tsMuxeR
 -Understand the cli
 -Understand that you have to now introduce mkvmerge cli to mux the .h264 file into an mkv
 -Understand that 2 new exes have be tracked, mkvmerge and tsMuxeR
 -Understand that you will have to use eac3to for .wav
-*On Blu-ray Title Info Screen, instead of auto-sorting by langage, just always put eng at the top
+
+
 *maybe add a check all checkbox to grids with is selected
+-http://dotnetvisio.blogspot.com/2015/08/create-select-all-checkbox-column.html
+
 *figure out a better solution to inform of the status of long running tasks
 *ability to create sample.avs/sample.encode.bat
 *Ability to set the video variable for avisynth for advanced scripting
