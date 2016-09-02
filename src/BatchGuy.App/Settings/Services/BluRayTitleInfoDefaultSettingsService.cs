@@ -1,4 +1,5 @@
-﻿using BatchGuy.App.Parser.Models;
+﻿using BatchGuy.App.Enums;
+using BatchGuy.App.Parser.Models;
 using BatchGuy.App.Settings.Interface;
 using BatchGuy.App.Settings.Models;
 using BatchGuy.App.Shared.Interfaces;
@@ -27,11 +28,30 @@ namespace BatchGuy.App.Settings.Services
         {
             if (_bluRaySummaryInfo.BluRayTitleInfo.AudioList != null)
             {
-                foreach (var audio in _bluRaySummaryInfo.BluRayTitleInfo.AudioList)
+                foreach (BluRayTitleAudio audio in _bluRaySummaryInfo.BluRayTitleInfo.AudioList)
                 {
                     var defaultSetting = _applicationSettings.BluRayTitleInfoDefaultSettings.Audio.First(a => a.Type == audio.AudioType);
                     audio.Arguments = defaultSetting.Arguments;
                     audio.AudioType = _audioService.GetAudioTypeByName(defaultSetting.DefaultType);
+                }
+
+                if (_applicationSettings.AudioLanguageAlwaysSelectedEnabled)
+                {
+                    foreach (BluRayTitleAudio audio in _bluRaySummaryInfo.BluRayTitleInfo.AudioList.Where(a => a.Text.ToLower().Contains(_applicationSettings.AudioMKVMergeDefaultSettings.DefaultMKVMergeItem.Language.Language.ToLower())))
+                    {
+                        if (_applicationSettings.AudioMKVMergeDefaultSettings.AudioTypeFilterCriteria == "Any Type")
+                        {
+                            audio.IsSelected = true;
+                        }
+                        else
+                        {
+                            EnumAudioType audioTypeFilter = _audioService.GetAudioTypeByName(_applicationSettings.AudioMKVMergeDefaultSettings.AudioTypeFilterCriteria);
+                            if (audioTypeFilter == audio.AudioType)
+                            {
+                                audio.IsSelected = true;
+                            }
+                        }
+                    }
                 }
             }
         }

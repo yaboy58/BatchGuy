@@ -365,7 +365,6 @@ namespace BatchGuy.App
                 txtEpisodeNumber.Focus();
                 this.SortAudioGrid(2); //sort language 
                 this.SortSubtitleGrid(2); //sort language
-                this.AutoSelectEnglishAudio();
                 this.SetMKVMergetItemDefaults();
                 this.SetGridRowBackgroundIfUndetermindLanguage();
                 gbScreen.SetEnabled(true);
@@ -426,17 +425,6 @@ namespace BatchGuy.App
         private void HandleTxtEpisodeNameTextChanged()
         {
             _bluRaySummaryInfo.BluRayTitleInfo.EpisodeName = txtEpisodeName.Text.Trim();
-        }
-
-        private void AutoSelectEnglishAudio()
-        {
-            if (_bluRaySummaryInfo.BluRayTitleInfo != null && _bluRaySummaryInfo.BluRayTitleInfo.AudioList != null)
-            {
-                foreach (BluRayTitleAudio audio in _bluRaySummaryInfo.BluRayTitleInfo.AudioList.Where(a => a.Text.ToLower().Contains("english")))
-                {
-                    audio.IsSelected = true;
-                }
-            }
         }
 
         private void LoadMKVMergeLangugeItemsDropDown()

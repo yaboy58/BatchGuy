@@ -2,8 +2,12 @@
 *Added Tool Tips to all controls on the BatchGuy Settings Screen to ensure user understand what each settings does
 
 
+this.AutoSelectEnglishAudio(); //remove this
+
+SetMKVMergetItemDefaults()
 
 
+SetBluRayTitleInfoDefaultSettings()
 
 
 --possible nice to haves
