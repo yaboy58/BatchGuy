@@ -106,6 +106,7 @@
             this.chkAudioLanguageAlwaysSelectedEnabled.Size = new System.Drawing.Size(15, 14);
             this.chkAudioLanguageAlwaysSelectedEnabled.TabIndex = 7;
             this.chkAudioLanguageAlwaysSelectedEnabled.UseVisualStyleBackColor = true;
+            this.chkAudioLanguageAlwaysSelectedEnabled.CheckedChanged += new System.EventHandler(this.chkAudioLanguageAlwaysSelectedEnabled_CheckedChanged);
             // 
             // gbAudioMKVMergeDefaultSettings
             // 
@@ -125,11 +126,11 @@
             // lblAudioMKVMergeDefaultSettingsAudioType
             // 
             this.lblAudioMKVMergeDefaultSettingsAudioType.AutoSize = true;
-            this.lblAudioMKVMergeDefaultSettingsAudioType.Location = new System.Drawing.Point(523, 29);
+            this.lblAudioMKVMergeDefaultSettingsAudioType.Location = new System.Drawing.Point(327, 29);
             this.lblAudioMKVMergeDefaultSettingsAudioType.Name = "lblAudioMKVMergeDefaultSettingsAudioType";
-            this.lblAudioMKVMergeDefaultSettingsAudioType.Size = new System.Drawing.Size(64, 13);
-            this.lblAudioMKVMergeDefaultSettingsAudioType.TabIndex = 24;
-            this.lblAudioMKVMergeDefaultSettingsAudioType.Text = "Audio Type:";
+            this.lblAudioMKVMergeDefaultSettingsAudioType.Size = new System.Drawing.Size(97, 13);
+            this.lblAudioMKVMergeDefaultSettingsAudioType.TabIndex = 26;
+            this.lblAudioMKVMergeDefaultSettingsAudioType.Text = "And Audio Type Is:";
             // 
             // cbAudioMKVMergeDefaultSettingsAudioType
             // 
@@ -144,10 +145,11 @@
             "LPCM",
             "MPA",
             "TrueHD"});
-            this.cbAudioMKVMergeDefaultSettingsAudioType.Location = new System.Drawing.Point(526, 45);
+            this.cbAudioMKVMergeDefaultSettingsAudioType.Location = new System.Drawing.Point(330, 45);
             this.cbAudioMKVMergeDefaultSettingsAudioType.Name = "cbAudioMKVMergeDefaultSettingsAudioType";
             this.cbAudioMKVMergeDefaultSettingsAudioType.Size = new System.Drawing.Size(186, 21);
-            this.cbAudioMKVMergeDefaultSettingsAudioType.TabIndex = 10;
+            this.cbAudioMKVMergeDefaultSettingsAudioType.TabIndex = 9;
+            this.cbAudioMKVMergeDefaultSettingsAudioType.SelectedIndexChanged += new System.EventHandler(this.cbAudioMKVMergeDefaultSettingsAudioType_SelectedIndexChanged);
             // 
             // cbAudioMKVMergeDefaultSettingsDefaultTrackFlag
             // 
@@ -157,15 +159,16 @@
             "determine automatically",
             "yes",
             "no"});
-            this.cbAudioMKVMergeDefaultSettingsDefaultTrackFlag.Location = new System.Drawing.Point(330, 45);
+            this.cbAudioMKVMergeDefaultSettingsDefaultTrackFlag.Location = new System.Drawing.Point(541, 45);
             this.cbAudioMKVMergeDefaultSettingsDefaultTrackFlag.Name = "cbAudioMKVMergeDefaultSettingsDefaultTrackFlag";
             this.cbAudioMKVMergeDefaultSettingsDefaultTrackFlag.Size = new System.Drawing.Size(169, 21);
-            this.cbAudioMKVMergeDefaultSettingsDefaultTrackFlag.TabIndex = 9;
+            this.cbAudioMKVMergeDefaultSettingsDefaultTrackFlag.TabIndex = 10;
+            this.cbAudioMKVMergeDefaultSettingsDefaultTrackFlag.SelectedIndexChanged += new System.EventHandler(this.cbAudioMKVMergeDefaultSettingsDefaultTrackFlag_SelectedIndexChanged);
             // 
             // lblAudioMKVMergeDefaultSettingsDefaultTrackFlag
             // 
             this.lblAudioMKVMergeDefaultSettingsDefaultTrackFlag.AutoSize = true;
-            this.lblAudioMKVMergeDefaultSettingsDefaultTrackFlag.Location = new System.Drawing.Point(327, 29);
+            this.lblAudioMKVMergeDefaultSettingsDefaultTrackFlag.Location = new System.Drawing.Point(538, 29);
             this.lblAudioMKVMergeDefaultSettingsDefaultTrackFlag.Name = "lblAudioMKVMergeDefaultSettingsDefaultTrackFlag";
             this.lblAudioMKVMergeDefaultSettingsDefaultTrackFlag.Size = new System.Drawing.Size(98, 13);
             this.lblAudioMKVMergeDefaultSettingsDefaultTrackFlag.TabIndex = 22;
@@ -182,6 +185,7 @@
             this.cbAudioMKVMergeDefaultSettingsLanguage.Size = new System.Drawing.Size(298, 21);
             this.cbAudioMKVMergeDefaultSettingsLanguage.TabIndex = 8;
             this.cbAudioMKVMergeDefaultSettingsLanguage.ValueMember = "Value";
+            this.cbAudioMKVMergeDefaultSettingsLanguage.SelectedIndexChanged += new System.EventHandler(this.cbAudioMKVMergeDefaultSettingsLanguage_SelectedIndexChanged);
             // 
             // bsAudioMKVMergeDefaultSettingsLanguage
             // 
@@ -193,9 +197,9 @@
             this.lblAudioMKVMergeDefaultSettingsLanguage.AutoSize = true;
             this.lblAudioMKVMergeDefaultSettingsLanguage.Location = new System.Drawing.Point(6, 29);
             this.lblAudioMKVMergeDefaultSettingsLanguage.Name = "lblAudioMKVMergeDefaultSettingsLanguage";
-            this.lblAudioMKVMergeDefaultSettingsLanguage.Size = new System.Drawing.Size(58, 13);
+            this.lblAudioMKVMergeDefaultSettingsLanguage.Size = new System.Drawing.Size(101, 13);
             this.lblAudioMKVMergeDefaultSettingsLanguage.TabIndex = 18;
-            this.lblAudioMKVMergeDefaultSettingsLanguage.Text = "Language:";
+            this.lblAudioMKVMergeDefaultSettingsLanguage.Text = "When Language Is:";
             // 
             // chkSubtitleLanguageAlwaysSelectedEnabled
             // 
@@ -266,9 +270,9 @@
             this.lblSubtitlesMKVMergeDefaultSettingsLanguage.AutoSize = true;
             this.lblSubtitlesMKVMergeDefaultSettingsLanguage.Location = new System.Drawing.Point(8, 29);
             this.lblSubtitlesMKVMergeDefaultSettingsLanguage.Name = "lblSubtitlesMKVMergeDefaultSettingsLanguage";
-            this.lblSubtitlesMKVMergeDefaultSettingsLanguage.Size = new System.Drawing.Size(58, 13);
+            this.lblSubtitlesMKVMergeDefaultSettingsLanguage.Size = new System.Drawing.Size(101, 13);
             this.lblSubtitlesMKVMergeDefaultSettingsLanguage.TabIndex = 18;
-            this.lblSubtitlesMKVMergeDefaultSettingsLanguage.Text = "Language:";
+            this.lblSubtitlesMKVMergeDefaultSettingsLanguage.Text = "When Language Is:";
             // 
             // gbEAC3ToDefaultSettings
             // 
@@ -573,8 +577,8 @@
         private System.Windows.Forms.Label lblAudioMKVMergeDefaultSettingsDefaultTrackFlag;
         private System.Windows.Forms.ComboBox cbAudioMKVMergeDefaultSettingsLanguage;
         private System.Windows.Forms.Label lblAudioMKVMergeDefaultSettingsLanguage;
+        private System.Windows.Forms.BindingSource bsAudioMKVMergeDefaultSettingsLanguage;
         private System.Windows.Forms.Label lblAudioMKVMergeDefaultSettingsAudioType;
         private System.Windows.Forms.ComboBox cbAudioMKVMergeDefaultSettingsAudioType;
-        private System.Windows.Forms.BindingSource bsAudioMKVMergeDefaultSettingsLanguage;
     }
 }

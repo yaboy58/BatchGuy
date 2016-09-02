@@ -35,6 +35,27 @@ namespace BatchGuy.App
             this.LoadMKVLanguageDropDownBoxes();
             this.LoadSettings();
             this.LoadControls();
+            this.SetToolTips();
+        }
+
+        private void SetToolTips()
+        {
+            new ToolTip().SetToolTip(btnOpenEac3toFileDialog, "eac3to exe path");
+            new ToolTip().SetToolTip(btnOpenVfw4x264FileDialog, "vfw4x264 exe path");
+            new ToolTip().SetToolTip(btnOpenMKVMergeFileDialog, "mkvmege exe path");
+            new ToolTip().SetToolTip(chkShowProgressNumbers, "Specify if eac3to should use the progressnumbers parameter");
+
+            new ToolTip().SetToolTip(chkBluRayTitleInfoDefaultSettingsSelectSubtitles, "Should all subtitles be selected by default");
+            new ToolTip().SetToolTip(chkBluRayTitleInfoDefaultSettingsSelectChapters, "Should chapters be selected by default");
+
+            new ToolTip().SetToolTip(chkAudioLanguageAlwaysSelectedEnabled, "Always select audio if it is a certain language");
+            new ToolTip().SetToolTip(cbAudioMKVMergeDefaultSettingsLanguage, "Audio language that is always selected");
+            new ToolTip().SetToolTip(cbAudioMKVMergeDefaultSettingsAudioType, "Filter audio language always selected by language and the audio type ie only select if English and DTS");
+            new ToolTip().SetToolTip(cbAudioMKVMergeDefaultSettingsDefaultTrackFlag, "Set the mkvmerge default track flag of the always selected audio");
+
+            new ToolTip().SetToolTip(chkSubtitleLanguageAlwaysSelectedEnabled, "Always select subtitles if it is a certain language");
+            new ToolTip().SetToolTip(cbSubtitlesMKVMergeDefaultSettingsLanguage, "Subtitle language that is always selected");
+            new ToolTip().SetToolTip(cbSubtitlesMKVMergeDefaultSettingsDefaultTrackFlag, "Set the mkvmerge default track flag of the always selected subtitle");
         }
 
         private void LoadSettings()
@@ -55,10 +76,17 @@ namespace BatchGuy.App
             chkBluRayTitleInfoDefaultSettingsSelectChapters.Checked = Program.ApplicationSettings.BluRayTitleInfoDefaultSettings.SelectChapters;
             chkBluRayTitleInfoDefaultSettingsSelectSubtitles.Checked = Program.ApplicationSettings.BluRayTitleInfoDefaultSettings.SelectAllSubtitles;
             chkShowProgressNumbers.Checked = Program.ApplicationSettings.EAC3ToDefaultSettings.ShowProgressNumbers;
+
             chkSubtitleLanguageAlwaysSelectedEnabled.Checked = Program.ApplicationSettings.SubtitleLanguageAlwaysSelectedEnabled;
             cbSubtitlesMKVMergeDefaultSettingsLanguage.SelectedValue = Program.ApplicationSettings.SubtitlesMKVMergeDefaultSettings.DefaultMKVMergeItem.Language.Value;
             cbSubtitlesMKVMergeDefaultSettingsDefaultTrackFlag.SelectedIndex = cbSubtitlesMKVMergeDefaultSettingsDefaultTrackFlag.FindString(Program.ApplicationSettings.SubtitlesMKVMergeDefaultSettings.DefaultMKVMergeItem.DefaultTrackFlag);
             gbSubtitlesMKVMergeDefaultSettings.Enabled = Program.ApplicationSettings.SubtitleLanguageAlwaysSelectedEnabled;
+
+            chkAudioLanguageAlwaysSelectedEnabled.Checked = Program.ApplicationSettings.AudioLanguageAlwaysSelectedEnabled;
+            cbAudioMKVMergeDefaultSettingsLanguage.SelectedValue = Program.ApplicationSettings.AudioMKVMergeDefaultSettings.DefaultMKVMergeItem.Language.Value;
+            cbAudioMKVMergeDefaultSettingsDefaultTrackFlag.SelectedIndex = cbAudioMKVMergeDefaultSettingsDefaultTrackFlag.FindString(Program.ApplicationSettings.AudioMKVMergeDefaultSettings.DefaultMKVMergeItem.DefaultTrackFlag);
+            cbAudioMKVMergeDefaultSettingsAudioType.SelectedIndex = cbAudioMKVMergeDefaultSettingsAudioType.FindString(Program.ApplicationSettings.AudioMKVMergeDefaultSettings.AudioTypeFilterCriteria);
+            gbAudioMKVMergeDefaultSettings.Enabled = Program.ApplicationSettings.AudioLanguageAlwaysSelectedEnabled;
         }
 
         private void LoadMKVLanguageDropDownBoxes()
@@ -226,6 +254,47 @@ namespace BatchGuy.App
         private void HandlesCBSubtitlesMKVMergeDefaultSettingsDefaultTrackFlagSelectedIndexChanged()
         {
             Program.ApplicationSettings.SubtitlesMKVMergeDefaultSettings.DefaultMKVMergeItem.DefaultTrackFlag = cbSubtitlesMKVMergeDefaultSettingsDefaultTrackFlag.Text;
+        }
+
+        private void cbAudioMKVMergeDefaultSettingsLanguage_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.HandlesCBAudioMKVMergeDefaultSettingsLanguageSelectedIndexChanged();
+        }
+
+        private void HandlesCBAudioMKVMergeDefaultSettingsLanguageSelectedIndexChanged()
+        {
+            Program.ApplicationSettings.AudioMKVMergeDefaultSettings.DefaultMKVMergeItem.Language = (MKVMergeLanguageItem) cbAudioMKVMergeDefaultSettingsLanguage.SelectedItem;
+        }
+
+        private void cbAudioMKVMergeDefaultSettingsDefaultTrackFlag_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.HandlesCBAudioMKVMergeDefaultSettingsDefaultTrackFlagSelectedIndexChanged();
+        }
+
+        private void HandlesCBAudioMKVMergeDefaultSettingsDefaultTrackFlagSelectedIndexChanged()
+        {
+            Program.ApplicationSettings.AudioMKVMergeDefaultSettings.DefaultMKVMergeItem.DefaultTrackFlag = cbAudioMKVMergeDefaultSettingsDefaultTrackFlag.Text;
+        }
+
+        private void cbAudioMKVMergeDefaultSettingsAudioType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.HandlesCBAudioMKVMergeDefaultSettingsAudioTypeSelectedIndexChanged();
+        }
+
+        private void HandlesCBAudioMKVMergeDefaultSettingsAudioTypeSelectedIndexChanged()
+        {
+            Program.ApplicationSettings.AudioMKVMergeDefaultSettings.AudioTypeFilterCriteria = cbAudioMKVMergeDefaultSettingsAudioType.Text;
+        }
+
+        private void chkAudioLanguageAlwaysSelectedEnabled_CheckedChanged(object sender, EventArgs e)
+        {
+            this.HandlesChkAudioLanguageAlwaysSelectedEnabledCheckedChanged();
+        }
+
+        private void HandlesChkAudioLanguageAlwaysSelectedEnabledCheckedChanged()
+        {
+            Program.ApplicationSettings.AudioLanguageAlwaysSelectedEnabled = chkAudioLanguageAlwaysSelectedEnabled.Checked;
+            gbAudioMKVMergeDefaultSettings.Enabled = Program.ApplicationSettings.AudioLanguageAlwaysSelectedEnabled;
         }
     }
 }

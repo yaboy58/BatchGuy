@@ -1,18 +1,7 @@
 --todo
-Default audio:
-	This will be on the eac3to screen because it per blu-ray
+*Added Tool Tips to all controls on the BatchGuy Settings Screen to ensure user understand what each settings does
 
-1) checkbox and a dropdown, maybe a button and maybe a audio type too for main and commentary, go ahead with button so user can explicitly state they want the change and maybe prompt if you are overwritting
-	*all non-null title info audio defaults will be set
-	*when new title info created, set the default
 
-[request]
-refering to the last additions of default tracks, would it also be possible to select which tracks (audio & subtitles) should be ticked by default? refering to audio quality and language.
-
-e.g. Id always want to have the english lossless audio track ticked by default when I jump into a playlist (without the -core or ac3 demux option ticked) as well as only the english subtitles (could be further differentiated between forced only or full english if there is a separate track for forced subs). I dont want to have to tick off all other subtitles files for each playlist.
-
-would it be possible to add this?
-[/request]
 
 
 
