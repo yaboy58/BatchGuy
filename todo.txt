@@ -1,8 +1,8 @@
 --todo
-*Created BluRayTitleInfoDefaultSettingsService to centralize the blu-ray default settings logic
-*Created new service to centralize mkvmerge default logic to make it more unit testable and easier to modify
+*Created new service to centralize the blu-ray default settings logic to make it more unit testable and easier to modify
+*Created new service to centralize the mkvmerge default logic to make it more unit testable and easier to modify
 *Users can now select a mkvmerge compression muxing mode on the BluRay Title Info Screen
-*Users can select a subtitle language that is always selected and what the mkvmerge default track flag should be
+*Users can now select a subtitle language that is always selected and what the mkvmerge default track flag should be on the BatchGuy Settings Screen
 
 
 
