@@ -4,6 +4,7 @@ using BatchGuy.App.MKVMerge.Models;
 using BatchGuy.App.Parser.Models;
 using BatchGuy.App.Settings.Interface;
 using BatchGuy.App.Settings.Models;
+using BatchGuy.App.Shared.Interfaces;
 using BatchGuy.App.Shared.Models;
 using System;
 using System.Collections.Generic;
@@ -18,14 +19,17 @@ namespace BatchGuy.App.Settings.Services
         private ApplicationSettings _applicationSettings;
         private EAC3ToConfiguration _eac3toConfiguration;
         private BluRaySummaryInfo _bluRaySummaryInfo;
-        IMKVMergeLanguageService _languageService;
+        private IMKVMergeLanguageService _languageService;
+        private IAudioService _audioService;
 
-        public MKVMergeDefaultSettingsService(EAC3ToConfiguration eac3toConfiguration, ApplicationSettings applicationSettings, BluRaySummaryInfo bluRaySummaryInfo, IMKVMergeLanguageService languageService)
+        public MKVMergeDefaultSettingsService(EAC3ToConfiguration eac3toConfiguration, ApplicationSettings applicationSettings, BluRaySummaryInfo bluRaySummaryInfo, 
+            IMKVMergeLanguageService languageService, IAudioService audioService)
         {
             _eac3toConfiguration = eac3toConfiguration;
             _applicationSettings = applicationSettings;
             _bluRaySummaryInfo = bluRaySummaryInfo;
             _languageService = languageService;
+            _audioService = audioService;
         }
 
         public void SetAudioDefaultSettings()
@@ -56,14 +60,19 @@ namespace BatchGuy.App.Settings.Services
                     foreach (BluRayTitleSubtitle subtitle in _bluRaySummaryInfo.BluRayTitleInfo.Subtitles.Where(a => a.Text.ToLower().Contains(_applicationSettings.SubtitlesMKVMergeDefaultSettings.DefaultMKVMergeItem.Language.Language.ToLower())))
                     {
                         subtitle.IsSelected = true;
-                        subtitle.MKVMergeItem.Compression = _applicationSettings.SubtitlesMKVMergeDefaultSettings.DefaultMKVMergeItem.Compression;
-                        subtitle.MKVMergeItem.DefaultTrackFlag = _applicationSettings.SubtitlesMKVMergeDefaultSettings.DefaultMKVMergeItem.DefaultTrackFlag;
-                        subtitle.MKVMergeItem.ForcedTrackFlag = _applicationSettings.SubtitlesMKVMergeDefaultSettings.DefaultMKVMergeItem.ForcedTrackFlag;
-                        subtitle.MKVMergeItem.Language = _applicationSettings.SubtitlesMKVMergeDefaultSettings.DefaultMKVMergeItem.Language;
-                        subtitle.MKVMergeItem.TrackName = _applicationSettings.SubtitlesMKVMergeDefaultSettings.DefaultMKVMergeItem.TrackName;
+                        this.SetBluRayMKVMergeItemDefaults(subtitle.MKVMergeItem, _applicationSettings.SubtitlesMKVMergeDefaultSettings.DefaultMKVMergeItem);
                     }
                 }
             }
+        }
+
+        private void SetBluRayMKVMergeItemDefaults(MKVMergeItem item, MKVMergeItem defaults)
+        {
+            item.Compression = defaults.Compression;
+            item.DefaultTrackFlag = defaults.DefaultTrackFlag;
+            item.ForcedTrackFlag = defaults.ForcedTrackFlag;
+            item.Language = defaults.Language;
+            item.TrackName = defaults.TrackName;
         }
     }
 }

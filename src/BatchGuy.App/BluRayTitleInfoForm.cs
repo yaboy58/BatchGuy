@@ -447,7 +447,7 @@ namespace BatchGuy.App
                 IJsonSerializationService<ISOLanguageCodeCollection> jsonSerializationService = new JsonSerializationService<ISOLanguageCodeCollection>();
                 IMKVMergeLanguageService languageService = new MKVMergeLanguageService(jsonSerializationService);
                 IMKVMergeDefaultSettingsService mkvMergeDefaultSettingsService = new MKVMergeDefaultSettingsService(_eac3ToConfiguration, Program.ApplicationSettings,
-                    _bluRaySummaryInfo, languageService);
+                    _bluRaySummaryInfo, languageService, _audioService);
 
                 mkvMergeDefaultSettingsService.SetAudioDefaultSettings();
                 mkvMergeDefaultSettingsService.SetSubtitleDefaultSettings();
