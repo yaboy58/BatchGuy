@@ -1,4 +1,5 @@
 ﻿using BatchGuy.App.Eac3to.Models;
+using BatchGuy.App.Enums;
 using BatchGuy.App.MKVMerge.Interfaces;
 using BatchGuy.App.MKVMerge.Models;
 using BatchGuy.App.Parser.Models;
@@ -41,6 +42,27 @@ namespace BatchGuy.App.Settings.Services
                     foreach (BluRayTitleAudio audio in _bluRaySummaryInfo.BluRayTitleInfo.AudioList)
                     {
                         audio.MKVMergeItem = new MKVMergeItem() { DefaultTrackFlag = "no", ForcedTrackFlag = "no", Language = _languageService.GetLanguageByName(audio.Language), TrackName = "", Compression = "determine automatically" };
+                    }
+
+                    if (_applicationSettings.AudioLanguageAlwaysSelectedEnabled)
+                    {
+                        foreach (BluRayTitleAudio audio in _bluRaySummaryInfo.BluRayTitleInfo.AudioList.Where(a => a.Text.ToLower().Contains(_applicationSettings.AudioMKVMergeDefaultSettings.DefaultMKVMergeItem.Language.Language.ToLower())))
+                        {
+                            if (_applicationSettings.AudioMKVMergeDefaultSettings.AudioTypeFilterCriteria == "Any Type")
+                            {
+                                audio.IsSelected = true;
+                                this.SetBluRayMKVMergeItemDefaults(audio.MKVMergeItem, _applicationSettings.AudioMKVMergeDefaultSettings.DefaultMKVMergeItem);
+                            }
+                            else
+                            {
+                                EnumAudioType audioTypeFilter = _audioService.GetAudioTypeByName(_applicationSettings.AudioMKVMergeDefaultSettings.AudioTypeFilterCriteria);
+                                if (audioTypeFilter == audio.AudioType)
+                                {
+                                    audio.IsSelected = true;
+                                    this.SetBluRayMKVMergeItemDefaults(audio.MKVMergeItem, _applicationSettings.AudioMKVMergeDefaultSettings.DefaultMKVMergeItem);
+                                }
+                            }
+                        }
                     }
                 }
             }
