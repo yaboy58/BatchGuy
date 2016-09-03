@@ -42,7 +42,7 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
         {
             //given not extract for remux
             EAC3ToConfiguration config = new EAC3ToConfiguration() { IsExtractForRemux = true, RemuxFileNameTemplate = new EAC3ToRemuxFileNameTemplate() { AudioType = "FLAC 5.1", SeriesName = "BatchGuy",
-             SeasonNumber = 2, SeasonYear = "1978", Tag = "Guy", VideoResolution = "1080p", Medium = "Remux"} };
+             SeasonNumber = "2", SeasonYear = "1978", Tag = "Guy", VideoResolution = "1080p", Medium = "Remux"} };
             string filesOutputPath = "c:\\bluray";
             string paddedEpisodeNumber = "01";
             string episodeName = string.Empty;
@@ -81,7 +81,7 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
                 {
                     AudioType = "FLAC 5.1",
                     SeriesName = "BatchGuy",
-                    SeasonNumber = 2,
+                    SeasonNumber = "2",
                     SeasonYear = "1978",
                     Tag = "Guy",
                     VideoResolution = "1080p"
@@ -99,6 +99,29 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
         }
 
         [Test]
+        public void eac3ToOutputNamingService_can_set_video_name_when_is_extract_for_remux_and_series_name_only_test()
+        {
+            //given not extract for remux
+            EAC3ToConfiguration config = new EAC3ToConfiguration()
+            {
+                IsExtractForRemux = true,
+                RemuxFileNameTemplate = new EAC3ToRemuxFileNameTemplate()
+                {
+                    SeriesName = "BatchGuy"
+                }
+            };
+            string filesOutputPath = "c:\\bluray";
+            string paddedEpisodeNumber = "01";
+            string episodeName = string.Empty;
+            //when i get the video name
+            IAudioService audioService = new AudioService();
+            IEAC3ToOutputNamingService service = new EAC3ToOutputNamingService(audioService);
+            string videoName = service.GetVideoName(config, filesOutputPath, paddedEpisodeNumber, episodeName);
+            //then video name should be based on the remux template
+            videoName.Should().Be("\"c:\\bluray\\BatchGuy E01.mkv\"");
+        }
+
+        [Test]
         public void eac3ToOutputNamingService_can_set_video_name_when_is_extract_for_remux_and_no_audio_type_test()
         {
             //given not extract for remux
@@ -108,7 +131,7 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
                 RemuxFileNameTemplate = new EAC3ToRemuxFileNameTemplate()
                 {
                     SeriesName = "BatchGuy",
-                    SeasonNumber = 2,
+                    SeasonNumber = "2",
                     SeasonYear = "1978",
                     Tag = "Guy",
                     VideoResolution = "1080p"
@@ -135,7 +158,7 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
                 RemuxFileNameTemplate = new EAC3ToRemuxFileNameTemplate()
                 {
                     SeriesName = "BatchGuy",
-                    SeasonNumber = 2,
+                    SeasonNumber = "2",
                     SeasonYear = "1978"
                 }
             };
@@ -148,6 +171,83 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
             string videoName = service.GetVideoName(config, filesOutputPath, paddedEpisodeNumber, episodeName);
             //then video name should be based on the remux template
             videoName.Should().Be("\"c:\\bluray\\BatchGuy 1978 S02E01 Episode 1.mkv\"");
+        }
+
+        [Test]
+        public void eac3ToOutputNamingService_can_set_video_name_when_is_extract_for_remux_and_no_season_year_test()
+        {
+            //given not extract for remux
+            EAC3ToConfiguration config = new EAC3ToConfiguration()
+            {
+                IsExtractForRemux = true,
+                RemuxFileNameTemplate = new EAC3ToRemuxFileNameTemplate()
+                {
+                    SeriesName = "BatchGuy",
+                    SeasonNumber = "2",
+                    Tag = "Guy",
+                    VideoResolution = "1080p"
+                }
+            };
+            string filesOutputPath = "c:\\bluray";
+            string paddedEpisodeNumber = "01";
+            string episodeName = string.Empty;
+            //when i get the video name
+            IAudioService audioService = new AudioService();
+            IEAC3ToOutputNamingService service = new EAC3ToOutputNamingService(audioService);
+            string videoName = service.GetVideoName(config, filesOutputPath, paddedEpisodeNumber, episodeName);
+            //then video name should be based on the remux template
+            videoName.Should().Be("\"c:\\bluray\\BatchGuy S02E01 1080p -Guy.mkv\"");
+        }
+
+        [Test]
+        public void eac3ToOutputNamingService_can_set_video_name_when_is_extract_for_remux_and_no_season_year_and_no_season_number_test()
+        {
+            //given not extract for remux
+            EAC3ToConfiguration config = new EAC3ToConfiguration()
+            {
+                IsExtractForRemux = true,
+                RemuxFileNameTemplate = new EAC3ToRemuxFileNameTemplate()
+                {
+                    SeriesName = "BatchGuy",
+                    Tag = "Guy",
+                    VideoResolution = "1080p"
+                }
+            };
+            string filesOutputPath = "c:\\bluray";
+            string paddedEpisodeNumber = "01";
+            string episodeName = string.Empty;
+            //when i get the video name
+            IAudioService audioService = new AudioService();
+            IEAC3ToOutputNamingService service = new EAC3ToOutputNamingService(audioService);
+            string videoName = service.GetVideoName(config, filesOutputPath, paddedEpisodeNumber, episodeName);
+            //then video name should be based on the remux template
+            videoName.Should().Be("\"c:\\bluray\\BatchGuy E01 1080p -Guy.mkv\"");
+        }
+
+        [Test]
+        public void eac3ToOutputNamingService_can_set_video_name_when_is_extract_for_remux_and_no_season_number_test()
+        {
+            //given not extract for remux
+            EAC3ToConfiguration config = new EAC3ToConfiguration()
+            {
+                IsExtractForRemux = true,
+                RemuxFileNameTemplate = new EAC3ToRemuxFileNameTemplate()
+                {
+                    SeriesName = "BatchGuy",
+                    SeasonYear = "1978",
+                    Tag = "Guy",
+                    VideoResolution = "1080p"
+                }
+            };
+            string filesOutputPath = "c:\\bluray";
+            string paddedEpisodeNumber = "01";
+            string episodeName = string.Empty;
+            //when i get the video name
+            IAudioService audioService = new AudioService();
+            IEAC3ToOutputNamingService service = new EAC3ToOutputNamingService(audioService);
+            string videoName = service.GetVideoName(config, filesOutputPath, paddedEpisodeNumber, episodeName);
+            //then video name should be based on the remux template
+            videoName.Should().Be("\"c:\\bluray\\BatchGuy 1978 E01 1080p -Guy.mkv\"");
         }
 
         [Test]
@@ -178,7 +278,7 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
                 {
                     AudioType = "FLAC 5.1",
                     SeriesName = "BatchGuy",
-                    SeasonNumber = 2,
+                    SeasonNumber = "2",
                     SeasonYear = "1978",
                     Tag = "Guy",
                     VideoResolution = "1080p"
@@ -224,7 +324,7 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
                 {
                     AudioType = "FLAC 5.1",
                     SeriesName = "BatchGuy",
-                    SeasonNumber = 2,
+                    SeasonNumber = "2",
                     SeasonYear = "1978",
                     Tag = "Guy",
                     VideoResolution = "1080p",
@@ -254,7 +354,7 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
                 RemuxFileNameTemplate = new EAC3ToRemuxFileNameTemplate()
                 {
                     SeriesName = "BatchGuy",
-                    SeasonNumber = 2,
+                    SeasonNumber = "2",
                 }
             };
             string filesOutputPath = "c:\\bluray";
@@ -279,7 +379,7 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
                 RemuxFileNameTemplate = new EAC3ToRemuxFileNameTemplate()
                 {
                     SeriesName = "BatchGuy",
-                    SeasonNumber = 2,
+                    SeasonNumber = "2",
                 }
             };
             string filesOutputPath = "c:\\bluray";
@@ -321,7 +421,7 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
                 {
                     AudioType = "FLAC 5.1",
                     SeriesName = "BatchGuy",
-                    SeasonNumber = 2,
+                    SeasonNumber = "2",
                     SeasonYear = "1978",
                     Tag = "Guy",
                     VideoResolution = "1080p"
@@ -366,7 +466,7 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
                 RemuxFileNameTemplate = new EAC3ToRemuxFileNameTemplate()
                 {
                     SeriesName = "BatchGuy",
-                    SeasonNumber = 2,
+                    SeasonNumber = "2",
                 }
             };
             string filesOutputPath = "c:\\bluray";

@@ -279,11 +279,6 @@ namespace BatchGuy.App
                     MessageBox.Show("Please enter a Series Name!", "Error occurred", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;        
                 }
-                if (_eac3toConfiguration.RemuxFileNameTemplate.SeasonNumber == 0)
-                {
-                    MessageBox.Show("Please enter a Season Number!", "Error occurred", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return false;
-                }
             }
             return true;
         }
@@ -566,10 +561,8 @@ namespace BatchGuy.App
             if (_eac3toConfiguration.IsExtractForRemux)
             {
                 _eac3toConfiguration.RemuxFileNameTemplate = new EAC3ToRemuxFileNameTemplate() { AudioType = txtRemuxAudioType.Text.Trim(), Tag = txtRemuxTag.Text.Trim(), SeriesName = txtRemuxSeriesName.Text.Trim(),
-                 VideoResolution = cbRemuxVideoResolution.Text, SeasonYear = txtRemuxSeasonYear.Text.Trim(), Medium = cbRemuxMedium.Text, VideoFormat = cbRemuxVideoFormat.Text};
-
-                if (txtRemuxSeasonNumber.Text.IsNumeric())
-                    _eac3toConfiguration.RemuxFileNameTemplate.SeasonNumber = txtRemuxSeasonNumber.Text.StringToInt();
+                 VideoResolution = cbRemuxVideoResolution.Text, SeasonYear = txtRemuxSeasonYear.Text.Trim(), Medium = cbRemuxMedium.Text, VideoFormat = cbRemuxVideoFormat.Text,
+                 SeasonNumber = txtRemuxSeasonNumber.Text };
             }
         }
 

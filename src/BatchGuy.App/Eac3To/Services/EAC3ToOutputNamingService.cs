@@ -31,9 +31,9 @@ namespace BatchGuy.App.Eac3To.Services
             else
             {
                 string tag = this.GetFormattedTag(eac3toConfiguration, paddedEpisodeNumber, episodeName);
-                string chapterName = string.Format("{0}\\{1}{2}S{3}E{4}{5}{6}{7}{8}{9}", filesOutputPath, eac3toConfiguration.RemuxFileNameTemplate.SeriesName, this.GetFormattedYear(eac3toConfiguration),
-                    this.PadNumberWithZeros(eac3toConfiguration.NumberOfEpisodes, eac3toConfiguration.RemuxFileNameTemplate.SeasonNumber),
-                    this.GetFormattedPaddedEpisodeNumber(paddedEpisodeNumber), this.GetFormattedEpisodeName(episodeName), this.GetFormattedVideoResolution(eac3toConfiguration), this.GetFormattedMedium(eac3toConfiguration), this.GetFormattedVideoFormat(eac3toConfiguration), 
+                string chapterName = string.Format("{0}\\{1}{2}{3}E{4}{5}{6}{7}{8}{9}", filesOutputPath, eac3toConfiguration.RemuxFileNameTemplate.SeriesName, 
+                    this.GetFormattedYear(eac3toConfiguration), this.GetFormattedSeasonNumber(eac3toConfiguration), this.GetFormattedPaddedEpisodeNumber(paddedEpisodeNumber), 
+                this.GetFormattedEpisodeName(episodeName), this.GetFormattedVideoResolution(eac3toConfiguration), this.GetFormattedMedium(eac3toConfiguration), this.GetFormattedVideoFormat(eac3toConfiguration), 
                     this.GetFormattedAuditoType(eac3toConfiguration));
 
                 sb.Append(string.Format("\"{0}{1} chapters.txt\"", chapterName.Trim(), tag));
@@ -51,8 +51,8 @@ namespace BatchGuy.App.Eac3To.Services
             else
             {
                 string tag = this.GetFormattedTag(eac3toConfiguration, paddedEpisodeNumber, episodeName);
-                string videoName = string.Format("{0}\\{1}{2}S{3}E{4}{5}{6}{7}{8}{9}", filesOutputPath, eac3toConfiguration.RemuxFileNameTemplate.SeriesName,this.GetFormattedYear(eac3toConfiguration),
-                    this.PadNumberWithZeros(eac3toConfiguration.NumberOfEpisodes, eac3toConfiguration.RemuxFileNameTemplate.SeasonNumber),
+                string videoName = string.Format("{0}\\{1}{2}{3}E{4}{5}{6}{7}{8}{9}", filesOutputPath, eac3toConfiguration.RemuxFileNameTemplate.SeriesName,this.GetFormattedYear(eac3toConfiguration),
+                    this.GetFormattedSeasonNumber(eac3toConfiguration),
                     this.GetFormattedPaddedEpisodeNumber(paddedEpisodeNumber), this.GetFormattedEpisodeName(episodeName), this.GetFormattedVideoResolution(eac3toConfiguration), this.GetFormattedMedium(eac3toConfiguration),
                     this.GetFormattedVideoFormat(eac3toConfiguration), this.GetFormattedAuditoType(eac3toConfiguration));
 
@@ -73,8 +73,8 @@ namespace BatchGuy.App.Eac3To.Services
             else
             {
                 string tag = this.GetFormattedTag(eac3toConfiguration, paddedEpisodeNumber, episodeName);
-                string audioName = string.Format("{0}\\{1}{2}S{3}E{4}{5}{6}{7}{8}{9}", filesOutputPath, eac3toConfiguration.RemuxFileNameTemplate.SeriesName,this.GetFormattedYear(eac3toConfiguration),
-                    this.PadNumberWithZeros(eac3toConfiguration.NumberOfEpisodes, eac3toConfiguration.RemuxFileNameTemplate.SeasonNumber),
+                string audioName = string.Format("{0}\\{1}{2}{3}E{4}{5}{6}{7}{8}{9}", filesOutputPath, eac3toConfiguration.RemuxFileNameTemplate.SeriesName,this.GetFormattedYear(eac3toConfiguration),
+                    this.GetFormattedSeasonNumber(eac3toConfiguration),
                     this.GetFormattedPaddedEpisodeNumber(paddedEpisodeNumber), this.GetFormattedEpisodeName(episodeName), this.GetFormattedVideoResolution(eac3toConfiguration), this.GetFormattedMedium(eac3toConfiguration),
                     this.GetFormattedVideoFormat(eac3toConfiguration), this.GetFormattedAuditoType(eac3toConfiguration));
 
@@ -94,8 +94,8 @@ namespace BatchGuy.App.Eac3To.Services
             else
             {
                 string tag = this.GetFormattedTag(eac3toConfiguration, paddedEpisodeNumber, episodeName);
-                string subtitleName = string.Format("{0}\\{1}{2}S{3}E{4}{5}{6}{7}{8}{9}", filesOutputPath, eac3toConfiguration.RemuxFileNameTemplate.SeriesName,this.GetFormattedYear(eac3toConfiguration),
-                    this.PadNumberWithZeros(eac3toConfiguration.NumberOfEpisodes, eac3toConfiguration.RemuxFileNameTemplate.SeasonNumber),
+                string subtitleName = string.Format("{0}\\{1}{2}{3}E{4}{5}{6}{7}{8}{9}", filesOutputPath, eac3toConfiguration.RemuxFileNameTemplate.SeriesName,this.GetFormattedYear(eac3toConfiguration),
+                    this.GetFormattedSeasonNumber(eac3toConfiguration),
                     this.GetFormattedPaddedEpisodeNumber(paddedEpisodeNumber), this.GetFormattedEpisodeName(episodeName), this.GetFormattedVideoResolution(eac3toConfiguration), this.GetFormattedMedium(eac3toConfiguration),
                     this.GetFormattedVideoFormat(eac3toConfiguration), this.GetFormattedAuditoType(eac3toConfiguration));
 
@@ -113,8 +113,8 @@ namespace BatchGuy.App.Eac3To.Services
             else
             {
                 string tag = this.GetFormattedTag(eac3toConfiguration, paddedEpisodeNumber, episodeName);
-                string logName = string.Format("{0}\\{1}{2}S{3}E{4}{5}{6}{7}{8}{9}", filesOutputPath, eac3toConfiguration.RemuxFileNameTemplate.SeriesName, this.GetFormattedYear(eac3toConfiguration),
-                    this.PadNumberWithZeros(eac3toConfiguration.NumberOfEpisodes, eac3toConfiguration.RemuxFileNameTemplate.SeasonNumber),
+                string logName = string.Format("{0}\\{1}{2}{3}E{4}{5}{6}{7}{8}{9}", filesOutputPath, eac3toConfiguration.RemuxFileNameTemplate.SeriesName, this.GetFormattedYear(eac3toConfiguration),
+                    this.GetFormattedSeasonNumber(eac3toConfiguration),
                     paddedEpisodeNumber, this.GetFormattedEpisodeName(episodeName), this.GetFormattedVideoResolution(eac3toConfiguration),this.GetFormattedMedium(eac3toConfiguration),
                     this.GetFormattedVideoFormat(eac3toConfiguration), this.GetFormattedAuditoType(eac3toConfiguration));
 
@@ -135,6 +135,15 @@ namespace BatchGuy.App.Eac3To.Services
             if (eac3toConfiguration.RemuxFileNameTemplate.SeasonYear != null)
                 year = string.Format(" {0} ", eac3toConfiguration.RemuxFileNameTemplate.SeasonYear);
             return year;
+        }
+
+        private string GetFormattedSeasonNumber(EAC3ToConfiguration eac3toConfiguration)
+        {
+            string formattedSeasonNumber = string.Empty;
+            if (!string.IsNullOrEmpty(eac3toConfiguration.RemuxFileNameTemplate.SeasonNumber) && eac3toConfiguration.RemuxFileNameTemplate.SeasonNumber.IsNumeric())
+                formattedSeasonNumber = string.Format("S{0}",this.PadNumberWithZeros(eac3toConfiguration.NumberOfEpisodes, eac3toConfiguration.RemuxFileNameTemplate.SeasonNumber.StringToInt()));
+
+            return formattedSeasonNumber;
         }
 
         private string GetFormattedPaddedEpisodeNumber(string paddedEpisodeNumber)
