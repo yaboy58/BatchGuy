@@ -624,7 +624,7 @@
             // RemoveSubtitle
             // 
             this.RemoveSubtitle.HeaderText = "Remove (.srt)";
-            this.RemoveSubtitle.Image = global::BatchGuy.App.Properties.Resources.findicons_green_delete;
+            this.RemoveSubtitle.Image = global::BatchGuy.App.Properties.Resources.Iconfinder_1472897142_DeleteRed;
             this.RemoveSubtitle.MinimumWidth = 60;
             this.RemoveSubtitle.Name = "RemoveSubtitle";
             this.RemoveSubtitle.ReadOnly = true;

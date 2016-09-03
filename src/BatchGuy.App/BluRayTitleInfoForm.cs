@@ -356,7 +356,7 @@ namespace BatchGuy.App
 
         private void RemoveExternalSubtitle(string rowId, int rowIndex, int rowCellNumber)
         {
-            if (_currentBluRayTitleSubtitle.ExternalSubtitlePath != string.Empty)
+            if (_currentBluRayTitleSubtitle.ExternalSubtitlePath != null &&_currentBluRayTitleSubtitle.ExternalSubtitlePath != string.Empty)
             {
                 DialogResult warningResult = MessageBox.Show("Are you sure you want to remove the external subtitle?", "Remove Subtitle", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
                 if (warningResult == System.Windows.Forms.DialogResult.Yes)

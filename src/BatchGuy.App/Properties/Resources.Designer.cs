@@ -133,9 +133,9 @@ namespace BatchGuy.App.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap findicons_green_delete {
+        internal static System.Drawing.Bitmap Iconfinder_1472897142_DeleteRed {
             get {
-                object obj = ResourceManager.GetObject("findicons-green-delete", resourceCulture);
+                object obj = ResourceManager.GetObject("Iconfinder-1472897142_DeleteRed", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
