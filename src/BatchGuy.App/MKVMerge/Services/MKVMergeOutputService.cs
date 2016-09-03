@@ -96,8 +96,18 @@ namespace BatchGuy.App.MKVMerge.Services
                 {
                     if (subtitle.IsSelected)
                     {
+                        string subtitleName = string.Empty;
+                        if (subtitle.ExternalSubtitlePath != null && subtitle.ExternalSubtitlePath != string.Empty)
+                        {
+                            subtitleName = subtitle.ExternalSubtitlePath;
+                        }
+                        else
+                        {
+                            subtitleName = _eac3ToOutputNamingService.GetSubtitleName(_eac3ToConfiguration, subtitle, _filesOutputPath, _paddedEpisodeNumber, _bluRaySummaryInfo.BluRayTitleInfo.EpisodeName).RemoveDoubleQuotes();
+                        }
+                        
                         sb.Append(string.Format("--language 0:{0} {1} {2} {3} {4} ^\"^(^\" ^\"{5}^\" ^\"^)^\"", subtitle.MKVMergeItem.Language.Value, this.GetTrackName(subtitle.MKVMergeItem.TrackName), this.GetDefaultTrackFlag(subtitle.MKVMergeItem.DefaultTrackFlag),
-                            this.GetForcedTrackFlag(subtitle.MKVMergeItem.ForcedTrackFlag), this.GetCompression(subtitle.MKVMergeItem.Compression), _eac3ToOutputNamingService.GetSubtitleName(_eac3ToConfiguration, subtitle, _filesOutputPath, _paddedEpisodeNumber, _bluRaySummaryInfo.BluRayTitleInfo.EpisodeName).RemoveDoubleQuotes()));
+                            this.GetForcedTrackFlag(subtitle.MKVMergeItem.ForcedTrackFlag), this.GetCompression(subtitle.MKVMergeItem.Compression),subtitleName));
                         sb.Append(" ");
                     }
                 }

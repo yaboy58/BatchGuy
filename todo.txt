@@ -2,8 +2,6 @@
 *Added Tool Tips to all controls on the BatchGuy Settings Screen to ensure user understand what each settings does
 *Users can now select a audio language that is always selected and what the mkvmerge default track flag should be on the BatchGuy Settings Screen
 *Users can also select a subtitle language that has a specific audio type that is always selected
-
-
 *Users can now select external subtitles to mux when creating a mkvmerge batch file
 
 

@@ -343,14 +343,14 @@ namespace BatchGuy.App
 
         private void AddExternalSubtitle(string rowId, int rowIndex, int rowCellNumber)
         {
-            ofdFileDialog.FileName = "subrip";
+            ofdFileDialog.FileName = "SubRip";
             ofdFileDialog.Filter = "Files|*.srt";
             DialogResult result = ofdFileDialog.ShowDialog();
             if (result == System.Windows.Forms.DialogResult.OK)
             {
                 var subtitlePath = ofdFileDialog.FileName;
                 dgvSubtitles.Rows[rowIndex].Cells[rowCellNumber].Value = subtitlePath;
-                _currentBluRayTitleSubtitle.ExternalSubtitleNameOnly = subtitlePath;
+                _currentBluRayTitleSubtitle.ExternalSubtitlePath = subtitlePath;
             }
         }
 
@@ -358,11 +358,11 @@ namespace BatchGuy.App
         {
             if (_currentBluRayTitleSubtitle.ExternalSubtitlePath != string.Empty)
             {
-                DialogResult warningResult = MessageBox.Show("Are you sure you want to remove this external subtitle?", "Remove Subtitle", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+                DialogResult warningResult = MessageBox.Show("Are you sure you want to remove the external subtitle?", "Remove Subtitle", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
                 if (warningResult == System.Windows.Forms.DialogResult.Yes)
                 {
                     dgvSubtitles.Rows[rowIndex].Cells[rowCellNumber].Value = string.Empty;
-                    _currentBluRayTitleSubtitle.ExternalSubtitleNameOnly = string.Empty;
+                    _currentBluRayTitleSubtitle.ExternalSubtitlePath = string.Empty;
                 }
             }
         }
