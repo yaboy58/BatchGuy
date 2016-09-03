@@ -326,12 +326,38 @@ namespace BatchGuy.App
             _mkvMergeChangeTriggeredByDataGridCellClick = true;
             var id = dgvSubtitles.Rows[e.RowIndex].Cells[1].Value;
             _currentBluRayTitleSubtitle = _bluRaySummaryInfo.BluRayTitleInfo.Subtitles.SingleOrDefault(a => a.Id == id.ToString());
+            int externalSubtitleCellNumber = 5;
 
             _currentMKVMergeItem = _currentBluRayTitleSubtitle.MKVMergeItem;
             this.SetMKVToolNixControlsWithValues();
 
+            if (e.ColumnIndex == 6)
+                this.AddExternalSubtitle(id.ToString(), e.RowIndex, externalSubtitleCellNumber);
+
+            if (e.ColumnIndex == 7)
+                this.RemoveExternalSubtitle(id.ToString(), e.RowIndex, externalSubtitleCellNumber);
+
             if (_mkvMergeChangeTriggeredByDataGridCellClick)
                 _mkvMergeChangeTriggeredByDataGridCellClick = false;
+        }
+
+        private void AddExternalSubtitle(string rowId, int rowIndex, int rowCellNumber)
+        {
+            ofdFileDialog.FileName = "subrip";
+            ofdFileDialog.Filter = "Files|*.srt";
+            DialogResult result = ofdFileDialog.ShowDialog();
+            if (result == System.Windows.Forms.DialogResult.OK)
+            {
+                var subtitlePath = ofdFileDialog.FileName;
+                dgvSubtitles.Rows[rowIndex].Cells[rowCellNumber].Value = subtitlePath;
+                _currentBluRayTitleSubtitle.ExternalSubtitleNameOnly = subtitlePath;
+            }
+        }
+
+        private void RemoveExternalSubtitle(string rowId, int rowIndex, int rowCellNumber)
+        {
+            dgvSubtitles.Rows[rowIndex].Cells[rowCellNumber].Value = string.Empty;
+            _currentBluRayTitleSubtitle.ExternalSubtitleNameOnly = string.Empty;
         }
 
         private void bgwEac3toLoadTitle_DoWork(object sender, DoWorkEventArgs e)

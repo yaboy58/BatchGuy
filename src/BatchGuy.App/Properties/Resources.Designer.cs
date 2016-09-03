@@ -133,6 +133,16 @@ namespace BatchGuy.App.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap findicons_green_delete {
+            get {
+                object obj = ResourceManager.GetObject("findicons-green-delete", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Icontexto_Webdev_Webdev_config {
             get {
                 object obj = ResourceManager.GetObject("Icontexto-Webdev-Webdev-config", resourceCulture);

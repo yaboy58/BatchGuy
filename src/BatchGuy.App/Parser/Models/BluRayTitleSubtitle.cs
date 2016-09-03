@@ -14,7 +14,8 @@ namespace BatchGuy.App.Parser.Models
         public bool IsSelected { get; set; }
         public string Text { get; set; }
         public bool IsCommentary { get; set; }
-
         public MKVMergeItem MKVMergeItem { get; set; }
+        public string ExternalSubtitlePath { get; set; }
+        public string ExternalSubtitleNameOnly { get; set; }
     }
 }

@@ -4,13 +4,7 @@
 *Users can also select a subtitle language that has a specific audio type that is always selected
 
 
-
-this.AutoSelectEnglishAudio(); //remove this
-
-SetMKVMergetItemDefaults()
-
-
-SetBluRayTitleInfoDefaultSettings()
+*Users can now select external subtitles to mux when creating a mkvmerge batch file
 
 
 --possible nice to haves

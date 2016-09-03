@@ -57,6 +57,9 @@
             this.languageDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.isCommentaryDataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.textDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ExternalSubtitlePath = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AddSubtitle = new System.Windows.Forms.DataGridViewImageColumn();
+            this.RemoveSubtitle = new System.Windows.Forms.DataGridViewImageColumn();
             this.bsBluRayTitleSubtitles = new System.Windows.Forms.BindingSource(this.components);
             this.gbChapters = new System.Windows.Forms.GroupBox();
             this.chkChapters = new System.Windows.Forms.CheckBox();
@@ -80,6 +83,7 @@
             this.lblEpisodeName = new System.Windows.Forms.Label();
             this.bgwEac3toLoadTitle = new System.ComponentModel.BackgroundWorker();
             this.bsBluRayTitleInfo = new System.Windows.Forms.BindingSource(this.components);
+            this.ofdFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.gbVideo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsBluRayTitleVideo)).BeginInit();
             this.gbAudio.SuspendLayout();
@@ -313,7 +317,10 @@
             this.idDataGridViewTextBoxColumn1,
             this.languageDataGridViewTextBoxColumn1,
             this.isCommentaryDataGridViewCheckBoxColumn1,
-            this.textDataGridViewTextBoxColumn1});
+            this.textDataGridViewTextBoxColumn1,
+            this.ExternalSubtitlePath,
+            this.AddSubtitle,
+            this.RemoveSubtitle});
             this.dgvSubtitles.DataSource = this.bsBluRayTitleSubtitles;
             this.dgvSubtitles.Location = new System.Drawing.Point(9, 30);
             this.dgvSubtitles.Name = "dgvSubtitles";
@@ -361,6 +368,35 @@
             this.textDataGridViewTextBoxColumn1.MinimumWidth = 250;
             this.textDataGridViewTextBoxColumn1.Name = "textDataGridViewTextBoxColumn1";
             this.textDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // ExternalSubtitlePath
+            // 
+            this.ExternalSubtitlePath.DataPropertyName = "ExternalSubtitlePath";
+            this.ExternalSubtitlePath.HeaderText = "External (.srt)";
+            this.ExternalSubtitlePath.MinimumWidth = 100;
+            this.ExternalSubtitlePath.Name = "ExternalSubtitlePath";
+            this.ExternalSubtitlePath.ReadOnly = true;
+            this.ExternalSubtitlePath.Width = 148;
+            // 
+            // AddSubtitle
+            // 
+            this.AddSubtitle.HeaderText = "Add (.srt)";
+            this.AddSubtitle.Image = global::BatchGuy.App.Properties.Resources.Avosoft_Warm_Toolbar_Folder_open;
+            this.AddSubtitle.MinimumWidth = 50;
+            this.AddSubtitle.Name = "AddSubtitle";
+            this.AddSubtitle.ReadOnly = true;
+            this.AddSubtitle.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.AddSubtitle.ToolTipText = "Add (.srt)";
+            this.AddSubtitle.Width = 50;
+            // 
+            // RemoveSubtitle
+            // 
+            this.RemoveSubtitle.HeaderText = "Remove (.srt)";
+            this.RemoveSubtitle.Image = global::BatchGuy.App.Properties.Resources.findicons_green_delete;
+            this.RemoveSubtitle.MinimumWidth = 50;
+            this.RemoveSubtitle.Name = "RemoveSubtitle";
+            this.RemoveSubtitle.ReadOnly = true;
+            this.RemoveSubtitle.Width = 50;
             // 
             // bsBluRayTitleSubtitles
             // 
@@ -590,6 +626,10 @@
             // 
             this.bsBluRayTitleInfo.DataSource = typeof(BatchGuy.App.Parser.Models.BluRayTitleInfo);
             // 
+            // ofdFileDialog
+            // 
+            this.ofdFileDialog.FileName = "openFileDialog1";
+            // 
             // BluRayTitleInfoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -660,11 +700,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn argumentsDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource bsBluRayTitleAudio;
         private System.Windows.Forms.BindingSource bsBluRayTitleSubtitles;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn isSelectedDataGridViewCheckBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn languageDataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn isCommentaryDataGridViewCheckBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn textDataGridViewTextBoxColumn1;
         private System.Windows.Forms.GroupBox gbMKVToolNixGUI;
         private System.Windows.Forms.GroupBox gbMKVToolNixGUIGeneralOptions;
         private System.Windows.Forms.ComboBox cbMKVToolNixGUIForcedTrackFlag;
@@ -678,5 +713,14 @@
         private System.Windows.Forms.BindingSource bsMKVMergeLanguageItem;
         private System.Windows.Forms.ComboBox cbMKVToolNixGUICompression;
         private System.Windows.Forms.Label lblMKVToolNixGUICompression;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn isSelectedDataGridViewCheckBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn languageDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn isCommentaryDataGridViewCheckBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn textDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ExternalSubtitlePath;
+        private System.Windows.Forms.DataGridViewImageColumn AddSubtitle;
+        private System.Windows.Forms.DataGridViewImageColumn RemoveSubtitle;
+        private System.Windows.Forms.OpenFileDialog ofdFileDialog;
     }
 }
