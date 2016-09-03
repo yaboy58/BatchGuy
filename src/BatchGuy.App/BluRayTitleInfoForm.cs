@@ -356,8 +356,15 @@ namespace BatchGuy.App
 
         private void RemoveExternalSubtitle(string rowId, int rowIndex, int rowCellNumber)
         {
-            dgvSubtitles.Rows[rowIndex].Cells[rowCellNumber].Value = string.Empty;
-            _currentBluRayTitleSubtitle.ExternalSubtitleNameOnly = string.Empty;
+            if (_currentBluRayTitleSubtitle.ExternalSubtitlePath != string.Empty)
+            {
+                DialogResult warningResult = MessageBox.Show("Are you sure you want to remove this external subtitle?", "Remove Subtitle", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+                if (warningResult == System.Windows.Forms.DialogResult.Yes)
+                {
+                    dgvSubtitles.Rows[rowIndex].Cells[rowCellNumber].Value = string.Empty;
+                    _currentBluRayTitleSubtitle.ExternalSubtitleNameOnly = string.Empty;
+                }
+            }
         }
 
         private void bgwEac3toLoadTitle_DoWork(object sender, DoWorkEventArgs e)
