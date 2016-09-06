@@ -604,7 +604,7 @@
             // ExternalSubtitlePath
             // 
             this.ExternalSubtitlePath.DataPropertyName = "ExternalSubtitlePath";
-            this.ExternalSubtitlePath.HeaderText = "External (.srt)";
+            this.ExternalSubtitlePath.HeaderText = "External Sub";
             this.ExternalSubtitlePath.MinimumWidth = 100;
             this.ExternalSubtitlePath.Name = "ExternalSubtitlePath";
             this.ExternalSubtitlePath.ReadOnly = true;
@@ -612,23 +612,23 @@
             // 
             // AddSubtitle
             // 
-            this.AddSubtitle.HeaderText = "Add (.srt)";
+            this.AddSubtitle.HeaderText = "Add Subtitle";
             this.AddSubtitle.Image = global::BatchGuy.App.Properties.Resources.Avosoft_Warm_Toolbar_Folder_open;
             this.AddSubtitle.MinimumWidth = 50;
             this.AddSubtitle.Name = "AddSubtitle";
             this.AddSubtitle.ReadOnly = true;
             this.AddSubtitle.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.AddSubtitle.ToolTipText = "Add (.srt)";
+            this.AddSubtitle.ToolTipText = "Add Subtitle";
             this.AddSubtitle.Width = 50;
             // 
             // RemoveSubtitle
             // 
-            this.RemoveSubtitle.HeaderText = "Remove (.srt)";
+            this.RemoveSubtitle.HeaderText = "Remove Subtitle";
             this.RemoveSubtitle.Image = global::BatchGuy.App.Properties.Resources.Iconfinder_1472897142_DeleteRed;
             this.RemoveSubtitle.MinimumWidth = 60;
             this.RemoveSubtitle.Name = "RemoveSubtitle";
             this.RemoveSubtitle.ReadOnly = true;
-            this.RemoveSubtitle.ToolTipText = "Remove (.srt)";
+            this.RemoveSubtitle.ToolTipText = "Remove Subtitle";
             this.RemoveSubtitle.Width = 60;
             // 
             // BluRayTitleInfoForm

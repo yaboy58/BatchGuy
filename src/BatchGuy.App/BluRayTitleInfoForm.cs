@@ -343,8 +343,8 @@ namespace BatchGuy.App
 
         private void AddExternalSubtitle(string rowId, int rowIndex, int rowCellNumber)
         {
-            ofdFileDialog.FileName = "SubRip";
-            ofdFileDialog.Filter = "Files|*.srt";
+            ofdFileDialog.FileName = "Subtitle";
+            ofdFileDialog.Filter = "SubRip|*.srt|Advanced SubStation Alpha|*.ass|DVDSubtitle|*.sub|SubStation Alpha|*.ssa";
             DialogResult result = ofdFileDialog.ShowDialog();
             if (result == System.Windows.Forms.DialogResult.OK)
             {
