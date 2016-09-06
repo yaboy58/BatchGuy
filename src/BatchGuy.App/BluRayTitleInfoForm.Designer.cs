@@ -604,7 +604,7 @@
             // ExternalSubtitlePath
             // 
             this.ExternalSubtitlePath.DataPropertyName = "ExternalSubtitlePath";
-            this.ExternalSubtitlePath.HeaderText = "External Sub";
+            this.ExternalSubtitlePath.HeaderText = "External Subtitle";
             this.ExternalSubtitlePath.MinimumWidth = 100;
             this.ExternalSubtitlePath.Name = "ExternalSubtitlePath";
             this.ExternalSubtitlePath.ReadOnly = true;
