@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BatchGuy.App.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,6 +17,6 @@ namespace BatchGuy.App.Eac3To.Models
         public string Tag { get; set; }
         public string Medium { get; set; }
         public string VideoFormat { get; set; }
-        public string WordSeparator{ get; set; }
+        public EnumWordSeparator WordSeparator{ get; set; }
     }
 }

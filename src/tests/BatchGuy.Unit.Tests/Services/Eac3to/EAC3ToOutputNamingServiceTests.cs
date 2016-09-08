@@ -480,5 +480,63 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
             //then subtitle name should be based on the remux template and commentary
             subtitleName.Should().Be("\"c:\\bluray\\BatchGuy S02E01 english01-3-commentary.sup\"");
         }
+
+        [Test]
+        public void eac3ToOutputNamingService_can_set_video_name_when_is_extract_for_remux_and_separate_with_spaces_test()
+        {
+            //given not extract for remux
+            EAC3ToConfiguration config = new EAC3ToConfiguration()
+            {
+                IsExtractForRemux = true,
+                RemuxFileNameTemplate = new EAC3ToRemuxFileNameTemplate()
+                {
+                    AudioType = "FLAC 5.1",
+                    SeriesName = "BatchGuy",
+                    SeasonNumber = "2",
+                    SeasonYear = "1978",
+                    Tag = "Guy",
+                    VideoResolution = "1080p",
+                     WordSeparator = EnumWordSeparator.Spaces
+                }
+            };
+            string filesOutputPath = "c:\\bluray";
+            string paddedEpisodeNumber = "01";
+            string episodeName = string.Empty;
+            //when i get the video name
+            IAudioService audioService = new AudioService();
+            IEAC3ToOutputNamingService service = new EAC3ToOutputNamingService(audioService);
+            string videoName = service.GetVideoName(config, filesOutputPath, paddedEpisodeNumber, episodeName);
+            //then video name should be based on the remux template
+            videoName.Should().Be("\"c:\\bluray\\BatchGuy 1978 S02E01 1080p FLAC 5.1-Guy.mkv\"");
+        }
+
+        [Test]
+        public void eac3ToOutputNamingService_can_set_video_name_when_is_extract_for_remux_and_separate_with_periods_test()
+        {
+            //given not extract for remux
+            EAC3ToConfiguration config = new EAC3ToConfiguration()
+            {
+                IsExtractForRemux = true,
+                RemuxFileNameTemplate = new EAC3ToRemuxFileNameTemplate()
+                {
+                    AudioType = "FLAC 5.1",
+                    SeriesName = "BatchGuy",
+                    SeasonNumber = "2",
+                    SeasonYear = "1978",
+                    Tag = "Guy",
+                    VideoResolution = "1080p",
+                    WordSeparator = EnumWordSeparator.Periods
+                }
+            };
+            string filesOutputPath = "c:\\bluray";
+            string paddedEpisodeNumber = "01";
+            string episodeName = string.Empty;
+            //when i get the video name
+            IAudioService audioService = new AudioService();
+            IEAC3ToOutputNamingService service = new EAC3ToOutputNamingService(audioService);
+            string videoName = service.GetVideoName(config, filesOutputPath, paddedEpisodeNumber, episodeName);
+            //then video name should be based on the remux template
+            videoName.Should().Be("\"c:\\bluray\\BatchGuy.1978.S02E01.1080p.FLAC.5.1-Guy.mkv\"");
+        }
     }
 }

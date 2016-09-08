@@ -36,7 +36,7 @@ namespace BatchGuy.App.Eac3To.Services
                 this.GetFormattedEpisodeName(episodeName), this.GetFormattedVideoResolution(eac3toConfiguration), this.GetFormattedMedium(eac3toConfiguration), this.GetFormattedVideoFormat(eac3toConfiguration), 
                     this.GetFormattedAuditoType(eac3toConfiguration));
 
-                sb.Append(string.Format("\"{0}\\{1}{2} chapters.txt\"", filesOutputPath, chapterName.Trim().RemoveDoubleSpaces(), tag));
+                sb.Append(string.Format("\"{0}\\{1}{2} chapters.txt\"", filesOutputPath, this.AddWordSeparator(eac3toConfiguration, chapterName.Trim().RemoveDoubleSpaces()), tag));
             }
             return sb.ToString();
         }
@@ -56,7 +56,7 @@ namespace BatchGuy.App.Eac3To.Services
                     this.GetFormattedPaddedEpisodeNumber(paddedEpisodeNumber), this.GetFormattedEpisodeName(episodeName), this.GetFormattedVideoResolution(eac3toConfiguration), this.GetFormattedMedium(eac3toConfiguration),
                     this.GetFormattedVideoFormat(eac3toConfiguration), this.GetFormattedAuditoType(eac3toConfiguration));
 
-                sb.Append(string.Format("\"{0}\\{1}{2}.mkv\"", filesOutputPath, videoName.Trim().RemoveDoubleSpaces(), tag));
+                sb.Append(string.Format("\"{0}\\{1}{2}.mkv\"", filesOutputPath, this.AddWordSeparator(eac3toConfiguration,videoName.Trim().RemoveDoubleSpaces()), tag));
             }
             return sb.ToString();
 
@@ -78,7 +78,7 @@ namespace BatchGuy.App.Eac3To.Services
                     this.GetFormattedPaddedEpisodeNumber(paddedEpisodeNumber), this.GetFormattedEpisodeName(episodeName), this.GetFormattedVideoResolution(eac3toConfiguration), this.GetFormattedMedium(eac3toConfiguration),
                     this.GetFormattedVideoFormat(eac3toConfiguration), this.GetFormattedAuditoType(eac3toConfiguration));
 
-                sb.Append(string.Format("\"{0}\\{1}{2} {3}{4}-{5}{6}.{7}\"", filesOutputPath, audioName.Trim().RemoveDoubleSpaces(), tag, audio.Language, paddedEpisodeNumber, audio.Id.RemoveColons(),
+                sb.Append(string.Format("\"{0}\\{1}{2} {3}{4}-{5}{6}.{7}\"", filesOutputPath, this.AddWordSeparator(eac3toConfiguration,audioName.Trim().RemoveDoubleSpaces()), tag, audio.Language, paddedEpisodeNumber, audio.Id.RemoveColons(),
                     this.GetAudioCommentary(audio),_audioService.GetAudioExtension(audio.AudioType)));
             }
             return sb.ToString();
@@ -99,7 +99,7 @@ namespace BatchGuy.App.Eac3To.Services
                     this.GetFormattedPaddedEpisodeNumber(paddedEpisodeNumber), this.GetFormattedEpisodeName(episodeName), this.GetFormattedVideoResolution(eac3toConfiguration), this.GetFormattedMedium(eac3toConfiguration),
                     this.GetFormattedVideoFormat(eac3toConfiguration), this.GetFormattedAuditoType(eac3toConfiguration));
 
-                sb.Append(string.Format("\"{0}\\{1}{2} {3}{4}-{5}{6}.sup\"", filesOutputPath, subtitleName.Trim().RemoveDoubleSpaces(), tag, subtitle.Language, paddedEpisodeNumber, subtitle.Id.RemoveColons(), this.GetSubtitleCommentary(subtitle)));
+                sb.Append(string.Format("\"{0}\\{1}{2} {3}{4}-{5}{6}.sup\"", filesOutputPath, this.AddWordSeparator(eac3toConfiguration,subtitleName.Trim().RemoveDoubleSpaces()), tag, subtitle.Language, paddedEpisodeNumber, subtitle.Id.RemoveColons(), this.GetSubtitleCommentary(subtitle)));
             }
             return sb.ToString();
         }
@@ -118,7 +118,7 @@ namespace BatchGuy.App.Eac3To.Services
                     paddedEpisodeNumber, this.GetFormattedEpisodeName(episodeName), this.GetFormattedVideoResolution(eac3toConfiguration),this.GetFormattedMedium(eac3toConfiguration),
                     this.GetFormattedVideoFormat(eac3toConfiguration), this.GetFormattedAuditoType(eac3toConfiguration));
 
-                sb.Append(string.Format(" -log=\"{0}\\{1}{2} log.log\"", filesOutputPath, logName.Trim().RemoveDoubleSpaces(), tag));
+                sb.Append(string.Format(" -log=\"{0}\\{1}{2} log.log\"", filesOutputPath, this.AddWordSeparator(eac3toConfiguration,logName.Trim().RemoveDoubleSpaces()), tag));
             }
             return sb.ToString();
         }
@@ -229,7 +229,7 @@ namespace BatchGuy.App.Eac3To.Services
 
         private string AddWordSeparator(EAC3ToConfiguration eac3toConfiguration, string episodeName)
         {
-            if (eac3toConfiguration.IsExtractForRemux && eac3toConfiguration.RemuxFileNameTemplate.WordSeparator == "Periods")
+            if (eac3toConfiguration.IsExtractForRemux && eac3toConfiguration.RemuxFileNameTemplate.WordSeparator == EnumWordSeparator.Periods)
                 return episodeName.ReplaceSpacesWithPeriods();
             else
                 return episodeName;
