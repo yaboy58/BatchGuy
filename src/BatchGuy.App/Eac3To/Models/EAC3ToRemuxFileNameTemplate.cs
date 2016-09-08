@@ -16,5 +16,6 @@ namespace BatchGuy.App.Eac3To.Models
         public string Tag { get; set; }
         public string Medium { get; set; }
         public string VideoFormat { get; set; }
+        public string WordSeparator{ get; set; }
     }
 }

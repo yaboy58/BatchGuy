@@ -31,14 +31,14 @@ namespace BatchGuy.App.Eac3To.Services
             else
             {
                 string tag = this.GetFormattedTag(eac3toConfiguration, paddedEpisodeNumber, episodeName);
-                string chapterName = string.Format("{0}\\{1}{2}{3}E{4}{5}{6}{7}{8}{9}", filesOutputPath, eac3toConfiguration.RemuxFileNameTemplate.SeriesName, 
+                string chapterName = string.Format("{0}{1}{2}E{3}{4}{5}{6}{7}{8}", eac3toConfiguration.RemuxFileNameTemplate.SeriesName, 
                     this.GetFormattedYear(eac3toConfiguration), this.GetFormattedSeasonNumber(eac3toConfiguration), this.GetFormattedPaddedEpisodeNumber(paddedEpisodeNumber), 
                 this.GetFormattedEpisodeName(episodeName), this.GetFormattedVideoResolution(eac3toConfiguration), this.GetFormattedMedium(eac3toConfiguration), this.GetFormattedVideoFormat(eac3toConfiguration), 
                     this.GetFormattedAuditoType(eac3toConfiguration));
 
-                sb.Append(string.Format("\"{0}{1} chapters.txt\"", chapterName.Trim(), tag));
+                sb.Append(string.Format("\"{0}\\{1}{2} chapters.txt\"", filesOutputPath, chapterName.Trim().RemoveDoubleSpaces(), tag));
             }
-            return sb.ToString().RemoveDoubleSpaces();
+            return sb.ToString();
         }
 
         public string GetVideoName(EAC3ToConfiguration eac3toConfiguration, string filesOutputPath, string paddedEpisodeNumber, string episodeName)
@@ -51,14 +51,14 @@ namespace BatchGuy.App.Eac3To.Services
             else
             {
                 string tag = this.GetFormattedTag(eac3toConfiguration, paddedEpisodeNumber, episodeName);
-                string videoName = string.Format("{0}\\{1}{2}{3}E{4}{5}{6}{7}{8}{9}", filesOutputPath, eac3toConfiguration.RemuxFileNameTemplate.SeriesName,this.GetFormattedYear(eac3toConfiguration),
+                string videoName = string.Format("{0}{1}{2}E{3}{4}{5}{6}{7}{8}", eac3toConfiguration.RemuxFileNameTemplate.SeriesName,this.GetFormattedYear(eac3toConfiguration),
                     this.GetFormattedSeasonNumber(eac3toConfiguration),
                     this.GetFormattedPaddedEpisodeNumber(paddedEpisodeNumber), this.GetFormattedEpisodeName(episodeName), this.GetFormattedVideoResolution(eac3toConfiguration), this.GetFormattedMedium(eac3toConfiguration),
                     this.GetFormattedVideoFormat(eac3toConfiguration), this.GetFormattedAuditoType(eac3toConfiguration));
 
-                sb.Append(string.Format("\"{0}{1}.mkv\"", videoName.Trim(), tag));
+                sb.Append(string.Format("\"{0}\\{1}{2}.mkv\"", filesOutputPath, videoName.Trim().RemoveDoubleSpaces(), tag));
             }
-            return sb.ToString().RemoveDoubleSpaces();
+            return sb.ToString();
 
         }
 
@@ -73,15 +73,15 @@ namespace BatchGuy.App.Eac3To.Services
             else
             {
                 string tag = this.GetFormattedTag(eac3toConfiguration, paddedEpisodeNumber, episodeName);
-                string audioName = string.Format("{0}\\{1}{2}{3}E{4}{5}{6}{7}{8}{9}", filesOutputPath, eac3toConfiguration.RemuxFileNameTemplate.SeriesName,this.GetFormattedYear(eac3toConfiguration),
+                string audioName = string.Format("{0}{1}{2}E{3}{4}{5}{6}{7}{8}", eac3toConfiguration.RemuxFileNameTemplate.SeriesName,this.GetFormattedYear(eac3toConfiguration),
                     this.GetFormattedSeasonNumber(eac3toConfiguration),
                     this.GetFormattedPaddedEpisodeNumber(paddedEpisodeNumber), this.GetFormattedEpisodeName(episodeName), this.GetFormattedVideoResolution(eac3toConfiguration), this.GetFormattedMedium(eac3toConfiguration),
                     this.GetFormattedVideoFormat(eac3toConfiguration), this.GetFormattedAuditoType(eac3toConfiguration));
 
-                sb.Append(string.Format("\"{0}{1} {2}{3}-{4}{5}.{6}\"", audioName.Trim(), tag, audio.Language, paddedEpisodeNumber, audio.Id.RemoveColons(),
+                sb.Append(string.Format("\"{0}\\{1}{2} {3}{4}-{5}{6}.{7}\"", filesOutputPath, audioName.Trim().RemoveDoubleSpaces(), tag, audio.Language, paddedEpisodeNumber, audio.Id.RemoveColons(),
                     this.GetAudioCommentary(audio),_audioService.GetAudioExtension(audio.AudioType)));
             }
-            return sb.ToString().RemoveDoubleSpaces();
+            return sb.ToString();
         }
 
         public string GetSubtitleName(EAC3ToConfiguration eac3toConfiguration, BluRayTitleSubtitle subtitle, string filesOutputPath, string paddedEpisodeNumber, string episodeName)
@@ -94,14 +94,14 @@ namespace BatchGuy.App.Eac3To.Services
             else
             {
                 string tag = this.GetFormattedTag(eac3toConfiguration, paddedEpisodeNumber, episodeName);
-                string subtitleName = string.Format("{0}\\{1}{2}{3}E{4}{5}{6}{7}{8}{9}", filesOutputPath, eac3toConfiguration.RemuxFileNameTemplate.SeriesName,this.GetFormattedYear(eac3toConfiguration),
+                string subtitleName = string.Format("{0}{1}{2}E{3}{4}{5}{6}{7}{8}", eac3toConfiguration.RemuxFileNameTemplate.SeriesName,this.GetFormattedYear(eac3toConfiguration),
                     this.GetFormattedSeasonNumber(eac3toConfiguration),
                     this.GetFormattedPaddedEpisodeNumber(paddedEpisodeNumber), this.GetFormattedEpisodeName(episodeName), this.GetFormattedVideoResolution(eac3toConfiguration), this.GetFormattedMedium(eac3toConfiguration),
                     this.GetFormattedVideoFormat(eac3toConfiguration), this.GetFormattedAuditoType(eac3toConfiguration));
 
-                sb.Append(string.Format("\"{0}{1} {2}{3}-{4}{5}.sup\"", subtitleName.Trim(), tag, subtitle.Language, paddedEpisodeNumber, subtitle.Id.RemoveColons(), this.GetSubtitleCommentary(subtitle)));
+                sb.Append(string.Format("\"{0}\\{1}{2} {3}{4}-{5}{6}.sup\"", filesOutputPath, subtitleName.Trim().RemoveDoubleSpaces(), tag, subtitle.Language, paddedEpisodeNumber, subtitle.Id.RemoveColons(), this.GetSubtitleCommentary(subtitle)));
             }
-            return sb.ToString().RemoveDoubleSpaces();
+            return sb.ToString();
         }
         public string GetLogName(EAC3ToConfiguration eac3toConfiguration, string filesOutputPath, string paddedEpisodeNumber, string episodeName)
         {
@@ -113,14 +113,14 @@ namespace BatchGuy.App.Eac3To.Services
             else
             {
                 string tag = this.GetFormattedTag(eac3toConfiguration, paddedEpisodeNumber, episodeName);
-                string logName = string.Format("{0}\\{1}{2}{3}E{4}{5}{6}{7}{8}{9}", filesOutputPath, eac3toConfiguration.RemuxFileNameTemplate.SeriesName, this.GetFormattedYear(eac3toConfiguration),
+                string logName = string.Format("{0}{1}{2}E{3}{4}{5}{6}{7}{8}", eac3toConfiguration.RemuxFileNameTemplate.SeriesName, this.GetFormattedYear(eac3toConfiguration),
                     this.GetFormattedSeasonNumber(eac3toConfiguration),
                     paddedEpisodeNumber, this.GetFormattedEpisodeName(episodeName), this.GetFormattedVideoResolution(eac3toConfiguration),this.GetFormattedMedium(eac3toConfiguration),
                     this.GetFormattedVideoFormat(eac3toConfiguration), this.GetFormattedAuditoType(eac3toConfiguration));
 
-                sb.Append(string.Format(" -log=\"{0}{1} log.log\"", logName.Trim(), tag));
+                sb.Append(string.Format(" -log=\"{0}\\{1}{2} log.log\"", filesOutputPath, logName.Trim().RemoveDoubleSpaces(), tag));
             }
-            return sb.ToString().RemoveDoubleSpaces();
+            return sb.ToString();
         }
 
         private string PadNumberWithZeros(int batchCount, int number)
@@ -225,6 +225,14 @@ namespace BatchGuy.App.Eac3To.Services
                 tag = string.Format("-{0}", eac3toConfiguration.RemuxFileNameTemplate.Tag);
             }
             return tag;
+        }
+
+        private string AddWordSeparator(EAC3ToConfiguration eac3toConfiguration, string episodeName)
+        {
+            if (eac3toConfiguration.IsExtractForRemux && eac3toConfiguration.RemuxFileNameTemplate.WordSeparator == "Periods")
+                return episodeName.ReplaceSpacesWithPeriods();
+            else
+                return episodeName;
         }
     }
 }
