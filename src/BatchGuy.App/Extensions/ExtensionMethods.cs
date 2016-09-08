@@ -98,5 +98,10 @@ namespace BatchGuy.App.Extensions
 
             return result;
         }
+
+        public static string ReplaceSpacesWithPeriods(this string value)
+        {
+            return string.Empty;
+        }
     }
 }
