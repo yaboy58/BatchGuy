@@ -17,6 +17,6 @@ namespace BatchGuy.App.Eac3To.Models
         public string Tag { get; set; }
         public string Medium { get; set; }
         public string VideoFormat { get; set; }
-        public EnumWordSeparator WordSeparator{ get; set; }
+        public bool UsePeriodsInFileName { get; set; }
     }
 }

@@ -229,7 +229,7 @@ namespace BatchGuy.App.Eac3To.Services
 
         private string AddWordSeparator(EAC3ToConfiguration eac3toConfiguration, string episodeName)
         {
-            if (eac3toConfiguration.IsExtractForRemux && eac3toConfiguration.RemuxFileNameTemplate.WordSeparator == EnumWordSeparator.Periods)
+            if (eac3toConfiguration.IsExtractForRemux && eac3toConfiguration.RemuxFileNameTemplate.UsePeriodsInFileName)
                 return episodeName.ReplaceSpacesWithPeriods();
             else
                 return episodeName;

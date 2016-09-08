@@ -96,6 +96,7 @@ namespace BatchGuy.App
             new ToolTip().SetToolTip(txtMKVMergeOutputPath, "mkvmerge output directory");
             new ToolTip().SetToolTip(btnOpenMKVMergeFilePathDialog, "Directory where mkvmerge batch file will be saved");
             new ToolTip().SetToolTip(btnOpenMKVMergeOutputPathDialog, "mkvmerge output directory");
+            new ToolTip().SetToolTip(chkRemuxUsePeriodsInFileName, "Use periods instead of spaces in file name");
         }
 
         private bool IsEac3ToPathSetInSettings()
@@ -562,7 +563,7 @@ namespace BatchGuy.App
             {
                 _eac3toConfiguration.RemuxFileNameTemplate = new EAC3ToRemuxFileNameTemplate() { AudioType = txtRemuxAudioType.Text.Trim(), Tag = txtRemuxTag.Text.Trim(), SeriesName = txtRemuxSeriesName.Text.Trim(),
                  VideoResolution = cbRemuxVideoResolution.Text, SeasonYear = txtRemuxSeasonYear.Text.Trim(), Medium = cbRemuxMedium.Text, VideoFormat = cbRemuxVideoFormat.Text,
-                 SeasonNumber = txtRemuxSeasonNumber.Text };
+                 SeasonNumber = txtRemuxSeasonNumber.Text, UsePeriodsInFileName = chkRemuxUsePeriodsInFileName.Checked };
             }
         }
 
@@ -699,6 +700,7 @@ namespace BatchGuy.App
                     int index = cbRemuxVideoFormat.FindString(_eac3toConfiguration.RemuxFileNameTemplate.VideoFormat);
                     cbRemuxVideoFormat.SelectedIndex = index;                                        
                 }
+                chkRemuxUsePeriodsInFileName.Checked = _eac3toConfiguration.RemuxFileNameTemplate.UsePeriodsInFileName;
             }
         }
 
@@ -890,6 +892,14 @@ namespace BatchGuy.App
             gbScreen.SetEnabled(true);
         }
 
+        private void chkRemuxUsePeriodsInFileName_CheckedChanged(object sender, EventArgs e)
+        {
+            this.HandlesChkRemuxUsePeriodsInFileNameCheckedChanged();
+        }
 
+        private void HandlesChkRemuxUsePeriodsInFileNameCheckedChanged()
+        {
+            _eac3toConfiguration.RemuxFileNameTemplate.UsePeriodsInFileName = chkRemuxUsePeriodsInFileName.Checked;
+        }
     }
 }

@@ -58,10 +58,4 @@ namespace BatchGuy.App.Enums
         EncodedFrames = 5,
         None = 6
     }
-
-    public enum EnumWordSeparator
-    {
-        Spaces = 1,
-        Periods = 2
-    }
 }

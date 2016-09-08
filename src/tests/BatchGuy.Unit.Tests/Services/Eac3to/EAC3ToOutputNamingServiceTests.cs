@@ -496,7 +496,7 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
                     SeasonYear = "1978",
                     Tag = "Guy",
                     VideoResolution = "1080p",
-                     WordSeparator = EnumWordSeparator.Spaces
+                    UsePeriodsInFileName = false
                 }
             };
             string filesOutputPath = "c:\\bluray";
@@ -525,7 +525,7 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
                     SeasonYear = "1978",
                     Tag = "Guy",
                     VideoResolution = "1080p",
-                    WordSeparator = EnumWordSeparator.Periods
+                    UsePeriodsInFileName = true
                 }
             };
             string filesOutputPath = "c:\\bluray";
