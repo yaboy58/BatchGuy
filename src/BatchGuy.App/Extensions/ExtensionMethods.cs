@@ -101,7 +101,9 @@ namespace BatchGuy.App.Extensions
 
         public static string ReplaceSpacesWithPeriods(this string value)
         {
-            return string.Empty;
+            string result = value.Replace(" ", ".");
+
+            return result;
         }
     }
 }
