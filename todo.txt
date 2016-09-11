@@ -1,6 +1,19 @@
 --todo
 
-*Users can now choose whether words in the file names are separated by spaces or periods
+*Allow the user to choose different remux naming convention templates
+
+	Template 1 (Encode) - Existing naming convention for Encodes (no change, just give it its own strategy)
+	Template 2 (Remux) -  TV Show S01E01 Episode Name 1080p Remux AVC FLAC5.1-Tag.mkv (no change, just give it its own strategy)
+	Template 3 (Remux) -  TV Show, S01E01 (Year).mkv
+	Template 4 (Remux) -  2x01 Episode Name.mkv
+
+How to implement:
+1) Re-name and use IEAC3ToOutputNamingService as a base Interface (or convert to Abstract Class) for all template naming services to inherit from
+2) Create a Factory Method or Pattern to figure out which Strategy to return, it will need BG Settings Object and EAC3ToConfiguration (use this for batch file creation)
+3) Inject this newly re-named service in EAC3ToBatchFileWriteService, right now, it is created inside of this class
+4) For now, keep the validation and warning the same ie centralized, no matter the template they choose
+5) When creating the eac3to and mkvmerge batch file, use the factory to determine which naming service strategy to return
+6) Obviously Unit Test and update Unit Test where necessary
 
 --possible nice to haves
 *On the Create x264 Batch File, add functionality load (.batchGuyEac3toSettings), so you can have the eac3to and mkvmerge info to create an mkvmerge batch file
