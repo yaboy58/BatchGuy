@@ -2,6 +2,8 @@
 using BatchGuy.App.Eac3To.Abstracts;
 using BatchGuy.App.Eac3To.Models;
 using BatchGuy.App.Eac3To.Services;
+using BatchGuy.App.Enums;
+using BatchGuy.App.Parser.Models;
 using BatchGuy.App.Shared.Interfaces;
 using BatchGuy.App.Shared.Services;
 using FluentAssertions;
@@ -127,6 +129,63 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
             string videoName = service.GetVideoName(config, filesOutputPath, paddedEpisodeNumber, episodeName);
             //then chapter name should be based on the remux template
             videoName.Should().Be("\"c:\\bluray\\BatchGuy, E01.mkv\"");
+        }
+
+        [Test]
+        public void remuxTemplate2EAC3ToOutputNamingService_can_set_audio_name_test()
+        {
+            //given not extract for remux
+            EAC3ToConfiguration config = new EAC3ToConfiguration()
+            {
+                IsExtractForRemux = true,
+                RemuxFileNameTemplate = new EAC3ToRemuxFileNameTemplate()
+                {
+                    AudioType = "FLAC 5.1",
+                    SeriesName = "BatchGuy",
+                    SeasonNumber = "2",
+                    SeasonYear = "1978",
+                    Tag = "Guy",
+                    VideoResolution = "1080p"
+                }
+            };
+            string filesOutputPath = "c:\\bluray";
+            string paddedEpisodeNumber = "01";
+            string episodeName = string.Empty;
+            //when i get the audio name
+            IAudioService audioService = new AudioService();
+            AbstractEAC3ToOutputNamingService service = new RemuxTemplate2EAC3ToOutputNamingService(audioService);
+            BluRayTitleAudio audio = new BluRayTitleAudio() { Id = "5:", AudioType = EnumAudioType.DTS, Language = "english" };
+            string audioName = service.GetAudioName(config, audio, filesOutputPath, paddedEpisodeNumber, episodeName);
+            //then audio name should be based on the remux template
+            audioName.Should().Be("\"c:\\bluray\\BatchGuy, S02E01 (1978) english01-5.dts\"");
+        }
+
+        [Test]
+        public void remuxTemplate2EAC3ToOutputNamingService_can_set_audio_name_no_season_year_test()
+        {
+            //given not extract for remux
+            EAC3ToConfiguration config = new EAC3ToConfiguration()
+            {
+                IsExtractForRemux = true,
+                RemuxFileNameTemplate = new EAC3ToRemuxFileNameTemplate()
+                {
+                    AudioType = "FLAC 5.1",
+                    SeriesName = "BatchGuy",
+                    SeasonNumber = "2",
+                    Tag = "Guy",
+                    VideoResolution = "1080p"
+                }
+            };
+            string filesOutputPath = "c:\\bluray";
+            string paddedEpisodeNumber = "01";
+            string episodeName = string.Empty;
+            //when i get the audio name
+            IAudioService audioService = new AudioService();
+            AbstractEAC3ToOutputNamingService service = new RemuxTemplate2EAC3ToOutputNamingService(audioService);
+            BluRayTitleAudio audio = new BluRayTitleAudio() { Id = "5:", AudioType = EnumAudioType.DTS, Language = "english" };
+            string audioName = service.GetAudioName(config, audio, filesOutputPath, paddedEpisodeNumber, episodeName);
+            //then audio name should be based on the remux template
+            audioName.Should().Be("\"c:\\bluray\\BatchGuy, S02E01 english01-5.dts\"");
         }
     }
 }

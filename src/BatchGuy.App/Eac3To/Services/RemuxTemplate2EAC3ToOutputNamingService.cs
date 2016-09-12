@@ -21,7 +21,16 @@ namespace BatchGuy.App.Eac3To.Services
 
         public override string GetAudioName(EAC3ToConfiguration eac3toConfiguration, BluRayTitleAudio audio, string filesOutputPath, string paddedEpisodeNumber, string episodeName)
         {
-            throw new NotImplementedException();
+            StringBuilder sb = new StringBuilder();
+            if (eac3toConfiguration.IsExtractForRemux == true)
+            {
+                string audioName = string.Format("{0}, {1}E{2}{3}", eac3toConfiguration.RemuxFileNameTemplate.SeriesName, this.GetFormattedSeasonNumber(eac3toConfiguration),
+                    this.GetFormattedPaddedEpisodeNumber(paddedEpisodeNumber), this.GetFormattedYear(eac3toConfiguration));
+
+                sb.Append(string.Format("\"{0}\\{1} {2}{3}-{4}{5}.{6}\"", filesOutputPath, this.AddWordSeparator(eac3toConfiguration, audioName.Trim().RemoveDoubleSpaces()), audio.Language, paddedEpisodeNumber, audio.Id.RemoveColons(),
+                    this.GetAudioCommentary(audio), _audioService.GetAudioExtension(audio.AudioType)));
+            }
+            return sb.ToString();
         }
 
         public override string GetChapterName(EAC3ToConfiguration eac3toConfiguration, string filesOutputPath, string paddedEpisodeNumber, string episodeName)
