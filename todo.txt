@@ -5,6 +5,7 @@
 	Template 1 (Encode) - Existing naming convention for Encodes (no change, just give it its own strategy) -done
 	Template 2 (Remux) -  TV Show S01E01 Episode Name 1080p Remux AVC FLAC5.1-Tag.mkv (no change, just give it its own strategy) -done
 	Template 3 (Remux) -  TV Show, S01E01 (Year).mkv
+
 	Template 4 (Remux) -  2x01 Episode Name.mkv
 
 
@@ -12,7 +13,7 @@
 AbstractEAC3ToOutputNamingService -done
 	EncodeTemplate1EAC3ToOutputNamingService -done
 	RemuxTemplate1EAC3ToOutputNamingService -done
-	RemuxTemplate2EAC3ToOutputNamingService
+	RemuxTemplate2EAC3ToOutputNamingService -done
 	RemuxTemplate3EAC3ToOutputNamingService
 
 *Obsolete when done
