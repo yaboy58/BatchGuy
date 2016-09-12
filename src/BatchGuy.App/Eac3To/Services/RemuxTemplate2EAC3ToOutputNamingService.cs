@@ -35,7 +35,15 @@ namespace BatchGuy.App.Eac3To.Services
 
         public override string GetChapterName(EAC3ToConfiguration eac3toConfiguration, string filesOutputPath, string paddedEpisodeNumber, string episodeName)
         {
-            throw new NotImplementedException();
+            StringBuilder sb = new StringBuilder();
+            if (eac3toConfiguration.IsExtractForRemux == true)
+            {
+                string chapterName = string.Format("{0}, {1}E{2}{3}", eac3toConfiguration.RemuxFileNameTemplate.SeriesName, this.GetFormattedSeasonNumber(eac3toConfiguration),
+                    this.GetFormattedPaddedEpisodeNumber(paddedEpisodeNumber), this.GetFormattedYear(eac3toConfiguration));
+
+                sb.Append(string.Format("\"{0}\\{1} chapters.txt\"", filesOutputPath, this.AddWordSeparator(eac3toConfiguration, chapterName.Trim().RemoveDoubleSpaces())));
+            }
+            return sb.ToString();
         }
 
         public override string GetLogName(EAC3ToConfiguration eac3toConfiguration, string filesOutputPath, string paddedEpisodeNumber, string episodeName)

@@ -187,5 +187,62 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
             //then audio name should be based on the remux template
             audioName.Should().Be("\"c:\\bluray\\BatchGuy, S02E01 english01-5.dts\"");
         }
+
+        [Test]
+        public void remuxTemplate2EAC3ToOutputNamingService_can_set_chapter_name_test()
+        {
+            //given not extract for remux
+            EAC3ToConfiguration config = new EAC3ToConfiguration()
+            {
+                IsExtractForRemux = true,
+                RemuxFileNameTemplate = new EAC3ToRemuxFileNameTemplate()
+                {
+                    AudioType = "FLAC 5.1",
+                    SeriesName = "BatchGuy",
+                    SeasonNumber = "2",
+                    SeasonYear = "1978",
+                    Tag = "Guy",
+                    VideoResolution = "1080p",
+                    Medium = "Remux"
+                }
+            };
+            string filesOutputPath = "c:\\bluray";
+            string paddedEpisodeNumber = "01";
+            string episodeName = string.Empty;
+            //when i get the chapter name
+            IAudioService audioService = new AudioService();
+            AbstractEAC3ToOutputNamingService service = new RemuxTemplate2EAC3ToOutputNamingService(audioService);
+            string chapterName = service.GetChapterName(config, filesOutputPath, paddedEpisodeNumber, episodeName);
+            //then chapter name should be based on the remux template
+            chapterName.Should().Be("\"c:\\bluray\\BatchGuy, S02E01 (1978) chapters.txt\"");
+        }
+
+        [Test]
+        public void remuxTemplate2EAC3ToOutputNamingService_can_set_chapter_name_no_season_year_test()
+        {
+            //given not extract for remux
+            EAC3ToConfiguration config = new EAC3ToConfiguration()
+            {
+                IsExtractForRemux = true,
+                RemuxFileNameTemplate = new EAC3ToRemuxFileNameTemplate()
+                {
+                    AudioType = "FLAC 5.1",
+                    SeriesName = "BatchGuy",
+                    SeasonNumber = "2",
+                    Tag = "Guy",
+                    VideoResolution = "1080p",
+                    Medium = "Remux"
+                }
+            };
+            string filesOutputPath = "c:\\bluray";
+            string paddedEpisodeNumber = "01";
+            string episodeName = string.Empty;
+            //when i get the chapter name
+            IAudioService audioService = new AudioService();
+            AbstractEAC3ToOutputNamingService service = new RemuxTemplate2EAC3ToOutputNamingService(audioService);
+            string chapterName = service.GetChapterName(config, filesOutputPath, paddedEpisodeNumber, episodeName);
+            //then chapter name should be based on the remux template
+            chapterName.Should().Be("\"c:\\bluray\\BatchGuy, S02E01 chapters.txt\"");
+        }
     }
 }
