@@ -1,4 +1,5 @@
-﻿using BatchGuy.App.Settings.Models;
+﻿using BatchGuy.App.Enums;
+using BatchGuy.App.Settings.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,9 +28,12 @@ namespace BatchGuy.App.Shared.Models
 
         public AudioMKVMergeDefaultSettings AudioMKVMergeDefaultSettings { get; set; }
 
+        public EnumEAC3ToNamingConventionType EnumEAC3ToNamingConventionType { get; set; }
+
         public ApplicationSettings()
         {
             Settings = new List<Setting>();
+            EnumEAC3ToNamingConventionType = EnumEAC3ToNamingConventionType.RemuxNamingConventionTemplate1;
         }
     }
 }
