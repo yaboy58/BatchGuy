@@ -31,6 +31,10 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingsForm));
             this.gbScreen = new System.Windows.Forms.GroupBox();
+            this.gbRemuxNamingConventionDefaults = new System.Windows.Forms.GroupBox();
+            this.lblRemuxNamingConventionExampleCaption = new System.Windows.Forms.Label();
+            this.lblRemuxNamingConventionTemplate = new System.Windows.Forms.Label();
+            this.cbRemuxNamingConventionDefaults = new System.Windows.Forms.ComboBox();
             this.chkAudioLanguageAlwaysSelectedEnabled = new System.Windows.Forms.CheckBox();
             this.gbAudioMKVMergeDefaultSettings = new System.Windows.Forms.GroupBox();
             this.lblAudioMKVMergeDefaultSettingsAudioType = new System.Windows.Forms.Label();
@@ -70,7 +74,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
             this.ofdFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.lblRemuxNamingConventionExample = new System.Windows.Forms.Label();
             this.gbScreen.SuspendLayout();
+            this.gbRemuxNamingConventionDefaults.SuspendLayout();
             this.gbAudioMKVMergeDefaultSettings.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsAudioMKVMergeDefaultSettingsLanguage)).BeginInit();
             this.gbSubtitlesMKVMergeDefaultSettings.SuspendLayout();
@@ -84,6 +90,7 @@
             // 
             // gbScreen
             // 
+            this.gbScreen.Controls.Add(this.gbRemuxNamingConventionDefaults);
             this.gbScreen.Controls.Add(this.chkAudioLanguageAlwaysSelectedEnabled);
             this.gbScreen.Controls.Add(this.gbAudioMKVMergeDefaultSettings);
             this.gbScreen.Controls.Add(this.chkSubtitleLanguageAlwaysSelectedEnabled);
@@ -93,10 +100,53 @@
             this.gbScreen.Controls.Add(this.groupBox1);
             this.gbScreen.Location = new System.Drawing.Point(12, 12);
             this.gbScreen.Name = "gbScreen";
-            this.gbScreen.Size = new System.Drawing.Size(800, 712);
+            this.gbScreen.Size = new System.Drawing.Size(800, 728);
             this.gbScreen.TabIndex = 0;
             this.gbScreen.TabStop = false;
             this.gbScreen.Text = "Settings";
+            // 
+            // gbRemuxNamingConventionDefaults
+            // 
+            this.gbRemuxNamingConventionDefaults.Controls.Add(this.lblRemuxNamingConventionExample);
+            this.gbRemuxNamingConventionDefaults.Controls.Add(this.lblRemuxNamingConventionExampleCaption);
+            this.gbRemuxNamingConventionDefaults.Controls.Add(this.lblRemuxNamingConventionTemplate);
+            this.gbRemuxNamingConventionDefaults.Controls.Add(this.cbRemuxNamingConventionDefaults);
+            this.gbRemuxNamingConventionDefaults.Location = new System.Drawing.Point(355, 203);
+            this.gbRemuxNamingConventionDefaults.Name = "gbRemuxNamingConventionDefaults";
+            this.gbRemuxNamingConventionDefaults.Size = new System.Drawing.Size(427, 85);
+            this.gbRemuxNamingConventionDefaults.TabIndex = 12;
+            this.gbRemuxNamingConventionDefaults.TabStop = false;
+            this.gbRemuxNamingConventionDefaults.Text = "Remux Naming Convention Defaults";
+            // 
+            // lblRemuxNamingConventionExampleCaption
+            // 
+            this.lblRemuxNamingConventionExampleCaption.AutoSize = true;
+            this.lblRemuxNamingConventionExampleCaption.Location = new System.Drawing.Point(14, 59);
+            this.lblRemuxNamingConventionExampleCaption.Name = "lblRemuxNamingConventionExampleCaption";
+            this.lblRemuxNamingConventionExampleCaption.Size = new System.Drawing.Size(50, 13);
+            this.lblRemuxNamingConventionExampleCaption.TabIndex = 29;
+            this.lblRemuxNamingConventionExampleCaption.Text = "Example:";
+            // 
+            // lblRemuxNamingConventionTemplate
+            // 
+            this.lblRemuxNamingConventionTemplate.AutoSize = true;
+            this.lblRemuxNamingConventionTemplate.Location = new System.Drawing.Point(12, 25);
+            this.lblRemuxNamingConventionTemplate.Name = "lblRemuxNamingConventionTemplate";
+            this.lblRemuxNamingConventionTemplate.Size = new System.Drawing.Size(54, 13);
+            this.lblRemuxNamingConventionTemplate.TabIndex = 28;
+            this.lblRemuxNamingConventionTemplate.Text = "Template:";
+            // 
+            // cbRemuxNamingConventionDefaults
+            // 
+            this.cbRemuxNamingConventionDefaults.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbRemuxNamingConventionDefaults.FormattingEnabled = true;
+            this.cbRemuxNamingConventionDefaults.Items.AddRange(new object[] {
+            "Template 1"});
+            this.cbRemuxNamingConventionDefaults.Location = new System.Drawing.Point(78, 19);
+            this.cbRemuxNamingConventionDefaults.Name = "cbRemuxNamingConventionDefaults";
+            this.cbRemuxNamingConventionDefaults.Size = new System.Drawing.Size(186, 21);
+            this.cbRemuxNamingConventionDefaults.TabIndex = 27;
+            this.cbRemuxNamingConventionDefaults.SelectedIndexChanged += new System.EventHandler(this.cbRemuxNamingConventionDefaults_SelectedIndexChanged);
             // 
             // chkAudioLanguageAlwaysSelectedEnabled
             // 
@@ -279,10 +329,10 @@
             this.gbEAC3ToDefaultSettings.Controls.Add(this.chkShowProgressNumbers);
             this.gbEAC3ToDefaultSettings.Location = new System.Drawing.Point(20, 203);
             this.gbEAC3ToDefaultSettings.Name = "gbEAC3ToDefaultSettings";
-            this.gbEAC3ToDefaultSettings.Size = new System.Drawing.Size(761, 85);
+            this.gbEAC3ToDefaultSettings.Size = new System.Drawing.Size(329, 85);
             this.gbEAC3ToDefaultSettings.TabIndex = 2;
             this.gbEAC3ToDefaultSettings.TabStop = false;
-            this.gbEAC3ToDefaultSettings.Text = "eac3to Defaults";
+            this.gbEAC3ToDefaultSettings.Text = "eac3to.exe Defaults";
             // 
             // chkShowProgressNumbers
             // 
@@ -493,7 +543,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(705, 730);
+            this.btnSave.Location = new System.Drawing.Point(705, 746);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(107, 25);
             this.btnSave.TabIndex = 14;
@@ -505,11 +555,21 @@
             // 
             this.ofdFileDialog.FileName = "openFileDialog1";
             // 
+            // lblRemuxNamingConventionExample
+            // 
+            this.lblRemuxNamingConventionExample.AutoSize = true;
+            this.lblRemuxNamingConventionExample.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRemuxNamingConventionExample.Location = new System.Drawing.Point(75, 59);
+            this.lblRemuxNamingConventionExample.Name = "lblRemuxNamingConventionExample";
+            this.lblRemuxNamingConventionExample.Size = new System.Drawing.Size(80, 13);
+            this.lblRemuxNamingConventionExample.TabIndex = 30;
+            this.lblRemuxNamingConventionExample.Text = "Show Example:";
+            // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(824, 767);
+            this.ClientSize = new System.Drawing.Size(824, 781);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.gbScreen);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -520,6 +580,8 @@
             this.Load += new System.EventHandler(this.SettingsForm_Load);
             this.gbScreen.ResumeLayout(false);
             this.gbScreen.PerformLayout();
+            this.gbRemuxNamingConventionDefaults.ResumeLayout(false);
+            this.gbRemuxNamingConventionDefaults.PerformLayout();
             this.gbAudioMKVMergeDefaultSettings.ResumeLayout(false);
             this.gbAudioMKVMergeDefaultSettings.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsAudioMKVMergeDefaultSettingsLanguage)).EndInit();
@@ -580,5 +642,10 @@
         private System.Windows.Forms.BindingSource bsAudioMKVMergeDefaultSettingsLanguage;
         private System.Windows.Forms.Label lblAudioMKVMergeDefaultSettingsAudioType;
         private System.Windows.Forms.ComboBox cbAudioMKVMergeDefaultSettingsAudioType;
+        private System.Windows.Forms.GroupBox gbRemuxNamingConventionDefaults;
+        private System.Windows.Forms.Label lblRemuxNamingConventionExampleCaption;
+        private System.Windows.Forms.Label lblRemuxNamingConventionTemplate;
+        private System.Windows.Forms.ComboBox cbRemuxNamingConventionDefaults;
+        private System.Windows.Forms.Label lblRemuxNamingConventionExample;
     }
 }

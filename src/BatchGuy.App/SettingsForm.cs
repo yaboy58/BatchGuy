@@ -15,6 +15,7 @@ using BatchGuy.App.Settings.Models;
 using BatchGuy.App.MKVMerge.Models;
 using BatchGuy.App.MKVMerge.Interfaces;
 using BatchGuy.App.MKVMerge.Services;
+using BatchGuy.App.Enums;
 
 namespace BatchGuy.App
 {
@@ -56,6 +57,8 @@ namespace BatchGuy.App
             new ToolTip().SetToolTip(chkSubtitleLanguageAlwaysSelectedEnabled, "Always select subtitles if it is a certain language");
             new ToolTip().SetToolTip(cbSubtitlesMKVMergeDefaultSettingsLanguage, "Subtitle language that is always selected");
             new ToolTip().SetToolTip(cbSubtitlesMKVMergeDefaultSettingsDefaultTrackFlag, "Set the mkvmerge default track flag of the always selected subtitle");
+
+            new ToolTip().SetToolTip(cbRemuxNamingConventionDefaults, "Set the default remux naming convention template");
         }
 
         private void LoadSettings()
@@ -87,6 +90,8 @@ namespace BatchGuy.App
             cbAudioMKVMergeDefaultSettingsDefaultTrackFlag.SelectedIndex = cbAudioMKVMergeDefaultSettingsDefaultTrackFlag.FindString(Program.ApplicationSettings.AudioMKVMergeDefaultSettings.DefaultMKVMergeItem.DefaultTrackFlag);
             cbAudioMKVMergeDefaultSettingsAudioType.SelectedIndex = cbAudioMKVMergeDefaultSettingsAudioType.FindString(Program.ApplicationSettings.AudioMKVMergeDefaultSettings.AudioTypeFilterCriteria);
             gbAudioMKVMergeDefaultSettings.Enabled = Program.ApplicationSettings.AudioLanguageAlwaysSelectedEnabled;
+
+            cbRemuxNamingConventionDefaults.SelectedIndex = cbRemuxNamingConventionDefaults.FindString(this.GetEnumEAC3ToNamingConventionType(Program.ApplicationSettings.EnumEAC3ToNamingConventionType));
         }
 
         private void LoadMKVLanguageDropDownBoxes()
@@ -188,6 +193,24 @@ namespace BatchGuy.App
             {
               txtMKVMerge.Text = ofdFileDialog.FileName;
             }
+        }
+
+        private string GetEnumEAC3ToNamingConventionType(EnumEAC3ToNamingConventionType eac3ToNamingConventionType)
+        {
+            string type = string.Empty;
+            switch (eac3ToNamingConventionType)
+            {
+                case EnumEAC3ToNamingConventionType.RemuxNamingConventionTemplate1:
+                    type = "Template 1";
+                    break;
+                case EnumEAC3ToNamingConventionType.RemuxNamingConventionTemplate2:
+                    break;
+                case EnumEAC3ToNamingConventionType.RemuxNamingConventionTemplate3:
+                    break;
+                default:
+                    throw new Exception("Invalid EnumEAC3ToNamingConventionType");
+            }
+            return type;
         }
 
         private void chkBluRayTitleInfoDefaultSettingsSelectSubtitles_CheckedChanged(object sender, EventArgs e)
@@ -295,6 +318,34 @@ namespace BatchGuy.App
         {
             Program.ApplicationSettings.AudioLanguageAlwaysSelectedEnabled = chkAudioLanguageAlwaysSelectedEnabled.Checked;
             gbAudioMKVMergeDefaultSettings.Enabled = Program.ApplicationSettings.AudioLanguageAlwaysSelectedEnabled;
+        }
+
+        private void cbRemuxNamingConventionDefaults_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.HanldesCBRemuxNamingConventionDefaultsSelectedIndexChanged(cbRemuxNamingConventionDefaults.Text);
+        }
+
+        private void HanldesCBRemuxNamingConventionDefaultsSelectedIndexChanged(string value)
+        {
+            EnumEAC3ToNamingConventionType type;
+            switch (value)
+            {
+                case "Template 1":
+                    type = EnumEAC3ToNamingConventionType.RemuxNamingConventionTemplate1;
+                    lblRemuxNamingConventionExample.Text = "TV Show S01E01 Episode Name 1080p Remux AVC FLAC5.1-Tag.mkv";
+                    break;
+                case "Template 2":
+                    type = EnumEAC3ToNamingConventionType.RemuxNamingConventionTemplate2;
+                    lblRemuxNamingConventionExample.Text = "TV Show, S01E01 (2016).mkv";
+                    break;
+                case "Template 3":
+                    type = EnumEAC3ToNamingConventionType.RemuxNamingConventionTemplate3;
+                    lblRemuxNamingConventionExample.Text = "2x01 Episode Name.mkv";
+                    break;
+                default:
+                    throw new Exception("Invalid EnumEAC3ToNamingConventionType");
+            }
+            Program.ApplicationSettings.EnumEAC3ToNamingConventionType = type;
         }
     }
 }
