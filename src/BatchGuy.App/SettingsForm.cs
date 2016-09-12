@@ -204,8 +204,10 @@ namespace BatchGuy.App
                     type = "Template 1";
                     break;
                 case EnumEAC3ToNamingConventionType.RemuxNamingConventionTemplate2:
+                    type = "Template 2";
                     break;
                 case EnumEAC3ToNamingConventionType.RemuxNamingConventionTemplate3:
+                    type = "Template 3";
                     break;
                 default:
                     throw new Exception("Invalid EnumEAC3ToNamingConventionType");

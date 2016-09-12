@@ -151,7 +151,9 @@
             this.cbRemuxNamingConventionDefaults.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbRemuxNamingConventionDefaults.FormattingEnabled = true;
             this.cbRemuxNamingConventionDefaults.Items.AddRange(new object[] {
-            "Template 1"});
+            "Template 1",
+            "Template 2",
+            "Template 3"});
             this.cbRemuxNamingConventionDefaults.Location = new System.Drawing.Point(78, 19);
             this.cbRemuxNamingConventionDefaults.Name = "cbRemuxNamingConventionDefaults";
             this.cbRemuxNamingConventionDefaults.Size = new System.Drawing.Size(186, 21);

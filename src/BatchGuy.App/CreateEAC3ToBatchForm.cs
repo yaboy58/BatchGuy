@@ -908,23 +908,25 @@ namespace BatchGuy.App
         private AbstractEAC3ToOutputNamingService GetOutputNamingService()
         {
             AbstractEAC3ToOutputNamingServiceFactory factory = new AbstractEAC3ToOutputNamingServiceFactory(new AudioService());
+            AbstractEAC3ToOutputNamingService service = null;
 
             if (_eac3toConfiguration.IsExtractForRemux == false)
                 return factory.CreateNewEncodeTemplate1EAC3ToOutputNamingService();
 
-            /*
             switch (Program.ApplicationSettings.EnumEAC3ToNamingConventionType)
             {
                 case EnumEAC3ToNamingConventionType.RemuxNamingConventionTemplate1:
+                    service = factory.CreateNewRemuxTemplate1EAC3ToOutputNamingService();
                     break;
                 case EnumEAC3ToNamingConventionType.RemuxNamingConventionTemplate2:
+                    service = factory.CreateNewRemuxTemplate2EAC3ToOutputNamingService();
                     break;
                 case EnumEAC3ToNamingConventionType.RemuxNamingConventionTemplate3:
                     break;
                 default:
                     throw new Exception("Invalid EnumEAC3ToNamingConventionType");
-            }*/
-            return factory.CreateNewRemuxTemplate1EAC3ToOutputNamingService();
+            }
+            return service;
         }
     }
 }
