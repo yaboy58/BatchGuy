@@ -1,6 +1,7 @@
 ﻿using BatchGuy.App.Eac3to.Interfaces;
 using BatchGuy.App.Eac3to.Models;
 using BatchGuy.App.Eac3to.Services;
+using BatchGuy.App.Eac3To.Abstracts;
 using BatchGuy.App.Eac3To.Interfaces;
 using BatchGuy.App.Eac3To.Services;
 using BatchGuy.App.Parser.Interfaces;
@@ -29,7 +30,8 @@ namespace BatchGuy.Eac3to.Parser.Example.Console.App
             EAC3ToConfiguration eac3toConfiguation = new EAC3ToConfiguration()
             {
                 BatchFilePath = batchFilePath,
-                EAC3ToPath = eac3ToPath
+                EAC3ToPath = eac3ToPath,
+                 IsExtractForRemux = false
             };
 
 
@@ -131,7 +133,8 @@ namespace BatchGuy.Eac3to.Parser.Example.Console.App
                     //now time to write out the batch file
                     IDirectorySystemService directorySystemService = new DirectorySystemService();
                     IAudioService audioService = new AudioService();
-                    IEAC3ToBatchFileWriteService batchFileWriteService = new EAC3ToBatchFileWriteService(eac3toConfiguation, directorySystemService, bluRayDiscList, audioService);
+                    AbstractEAC3ToOutputNamingService eac3ToOutputNamingService = new EncodeTemplate1EAC3ToOutputNamingService(audioService);
+                    IEAC3ToBatchFileWriteService batchFileWriteService = new EAC3ToBatchFileWriteService(eac3toConfiguation, directorySystemService, bluRayDiscList, audioService, eac3ToOutputNamingService);
                     batchFileWriteService.Write();
                     if (batchFileWriteService.Errors.Count() == 0)
                     {

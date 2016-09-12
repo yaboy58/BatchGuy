@@ -15,6 +15,7 @@ using log4net;
 using System.Reflection;
 using BatchGuy.App.Eac3To.Services;
 using BatchGuy.App.Shared.Interfaces;
+using BatchGuy.App.Eac3To.Abstracts;
 
 namespace BatchGuy.App.Eac3to.Services
 {
@@ -25,6 +26,7 @@ namespace BatchGuy.App.Eac3to.Services
         private EAC3ToConfiguration _eac3toConfiguration;
         private IDirectorySystemService _directorySystemService;
         private IAudioService _audioService;
+        private AbstractEAC3ToOutputNamingService _eac3ToOutputNamingService;
 
         public static readonly ILog _log = LogManager.GetLogger(typeof(EAC3ToBatchFileWriteService));
 
@@ -33,12 +35,13 @@ namespace BatchGuy.App.Eac3to.Services
             get { return _errors; }
         }
 
-        public EAC3ToBatchFileWriteService(EAC3ToConfiguration eac3toConfiguration, IDirectorySystemService directorySystemService, List<BluRayDiscInfo> bluRayDiscInfo, IAudioService audioService)
+        public EAC3ToBatchFileWriteService(EAC3ToConfiguration eac3toConfiguration, IDirectorySystemService directorySystemService, List<BluRayDiscInfo> bluRayDiscInfo, IAudioService audioService, AbstractEAC3ToOutputNamingService eac3ToOutputNamingService)
         {
             _bluRayDiscInfoList = bluRayDiscInfo;
             _eac3toConfiguration = eac3toConfiguration;
             _directorySystemService = directorySystemService;
             _audioService = audioService;
+            _eac3ToOutputNamingService = eac3ToOutputNamingService;
             _errors = new ErrorCollection();
         }
 
@@ -48,12 +51,11 @@ namespace BatchGuy.App.Eac3to.Services
             {
                 try
                 {
-                    IEAC3ToOutputNamingService eac3ToOutputNamingService = new EAC3ToOutputNamingService(_audioService);
                     foreach (BluRayDiscInfo disc in _bluRayDiscInfoList.Where(d => d.IsSelected))
                     {
                         foreach (BluRaySummaryInfo summary in disc.BluRaySummaryInfoList.Where(s => s.IsSelected).OrderBy(s => s.EpisodeNumber))
                         {
-                            IEAC3ToOutputService eacOutputService = new EAC3ToOutputService(_eac3toConfiguration, eac3ToOutputNamingService, disc.BluRayPath, summary);
+                            IEAC3ToOutputService eacOutputService = new EAC3ToOutputService(_eac3toConfiguration, _eac3ToOutputNamingService, disc.BluRayPath, summary);
                             string eac3ToPathPart = eacOutputService.GetEAC3ToPathPart();
                             string bluRayStreamPart = eacOutputService.GetBluRayStreamPart();
                             string chapterStreamPart = eacOutputService.GetChapterStreamPart();

@@ -32,6 +32,7 @@ using log4net;
 using System.Reflection;
 using BatchGuy.App.MKVMerge.Interfaces;
 using BatchGuy.App.MKVMerge.Services;
+using BatchGuy.App.Eac3To.Abstracts;
 
 namespace BatchGuy.App
 {
@@ -152,7 +153,8 @@ namespace BatchGuy.App
             List<BluRayDiscInfo> discs = this.GetBluRayDiscInfoList();
             IDirectorySystemService directorySystemService = new DirectorySystemService();
             IAudioService audioService = new AudioService();
-            IEAC3ToBatchFileWriteService batchFileWriteService = new EAC3ToBatchFileWriteService(_eac3toConfiguration, directorySystemService, discs, audioService);
+            AbstractEAC3ToOutputNamingService eac3ToOutputNamingService = this.GetOutputNamingService();
+            IEAC3ToBatchFileWriteService batchFileWriteService = new EAC3ToBatchFileWriteService(_eac3toConfiguration, directorySystemService, discs, audioService,eac3ToOutputNamingService);
             bgwEac3toWriteBatchFile.RunWorkerAsync(batchFileWriteService);
         }
 
@@ -867,7 +869,8 @@ namespace BatchGuy.App
             List<BluRayDiscInfo> discs = this.GetBluRayDiscInfoList();
             IDirectorySystemService directorySystemService = new DirectorySystemService();
             IAudioService audioService = new AudioService();
-            IMKVMergeBatchFileWriteService batchFileWriteService = new MKVMergeBatchFileWriteService(_eac3toConfiguration, directorySystemService, discs, audioService);
+            AbstractEAC3ToOutputNamingService eac3ToOutputNamingService = this.GetOutputNamingService();
+            IMKVMergeBatchFileWriteService batchFileWriteService = new MKVMergeBatchFileWriteService(_eac3toConfiguration, directorySystemService, discs, audioService, eac3ToOutputNamingService);
             bgwMkvMergeWriteBatchFile.RunWorkerAsync(batchFileWriteService);
         }
 
@@ -900,6 +903,28 @@ namespace BatchGuy.App
         private void HandlesChkRemuxUsePeriodsInFileNameCheckedChanged()
         {
             _eac3toConfiguration.RemuxFileNameTemplate.UsePeriodsInFileName = chkRemuxUsePeriodsInFileName.Checked;
+        }
+
+        private AbstractEAC3ToOutputNamingService GetOutputNamingService()
+        {
+            AbstractEAC3ToOutputNamingServiceFactory factory = new AbstractEAC3ToOutputNamingServiceFactory(new AudioService());
+
+            if (_eac3toConfiguration.IsExtractForRemux == false)
+                return factory.CreateNewEncodeTemplate1EAC3ToOutputNamingService();
+
+            /*
+            switch (Program.ApplicationSettings.EnumEAC3ToNamingConventionType)
+            {
+                case EnumEAC3ToNamingConventionType.RemuxNamingConventionTemplate1:
+                    break;
+                case EnumEAC3ToNamingConventionType.RemuxNamingConventionTemplate2:
+                    break;
+                case EnumEAC3ToNamingConventionType.RemuxNamingConventionTemplate3:
+                    break;
+                default:
+                    throw new Exception("Invalid EnumEAC3ToNamingConventionType");
+            }*/
+            return factory.CreateNewRemuxTemplate1EAC3ToOutputNamingService();
         }
     }
 }

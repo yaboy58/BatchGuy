@@ -1,4 +1,5 @@
 ﻿using BatchGuy.App.Eac3to.Models;
+using BatchGuy.App.Eac3To.Abstracts;
 using BatchGuy.App.Eac3To.Interfaces;
 using BatchGuy.App.Enums;
 using BatchGuy.App.Extensions;
@@ -22,9 +23,9 @@ namespace BatchGuy.App.MKVMerge.Services
         private string _paddedEpisodeNumber;
         private string _bluRayPath;
         private BluRaySummaryInfo _bluRaySummaryInfo;
-        private IEAC3ToOutputNamingService _eac3ToOutputNamingService;
+        private AbstractEAC3ToOutputNamingService _eac3ToOutputNamingService;
 
-        public MKVMergeOutputService(EAC3ToConfiguration config, IEAC3ToOutputNamingService eac3ToOutputNamingService, string bluRayPath, BluRaySummaryInfo bluRaySummaryInfo)
+        public MKVMergeOutputService(EAC3ToConfiguration config, AbstractEAC3ToOutputNamingService eac3ToOutputNamingService, string bluRayPath, BluRaySummaryInfo bluRaySummaryInfo)
         {
             _eac3ToConfiguration = config;
             _eac3ToOutputNamingService = eac3ToOutputNamingService;

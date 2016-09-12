@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BatchGuy.App.Extensions;
 using BatchGuy.App.Eac3To.Interfaces;
+using BatchGuy.App.Eac3To.Abstracts;
 
 namespace BatchGuy.App.Eac3to.Services
 {
@@ -22,9 +23,9 @@ namespace BatchGuy.App.Eac3to.Services
         private string _paddedEpisodeNumber;
         private string _bluRayPath;
         private BluRaySummaryInfo _bluRaySummaryInfo;
-        private IEAC3ToOutputNamingService _eac3ToOutputNamingService;
+        private AbstractEAC3ToOutputNamingService _eac3ToOutputNamingService;
 
-        public EAC3ToOutputService(EAC3ToConfiguration config, IEAC3ToOutputNamingService eac3ToOutputNamingService, string bluRayPath, BluRaySummaryInfo bluRaySummaryInfo)
+        public EAC3ToOutputService(EAC3ToConfiguration config, AbstractEAC3ToOutputNamingService eac3ToOutputNamingService, string bluRayPath, BluRaySummaryInfo bluRaySummaryInfo)
         {
             _eac3ToConfiguration = config;
             _eac3ToOutputNamingService = eac3ToOutputNamingService;
