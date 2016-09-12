@@ -1,5 +1,6 @@
 ﻿using BatchGuy.App.Eac3to.Models;
 using BatchGuy.App.Extensions;
+using BatchGuy.App.Helpers;
 using BatchGuy.App.Parser.Models;
 using BatchGuy.App.Shared.Interfaces;
 using System;
@@ -15,7 +16,7 @@ namespace BatchGuy.App.Eac3To.Abstracts
         protected IAudioService _audioService;
         public AbstractEAC3ToOutputNamingService(IAudioService audioService)
         {
-            audioService = _audioService;
+            _audioService = audioService;
         }
         protected string GetAudioCommentary(BluRayTitleAudio audio)
         {
@@ -37,6 +38,10 @@ namespace BatchGuy.App.Eac3To.Abstracts
                 return episodeName.ReplaceSpacesWithPeriods();
             else
                 return episodeName;
+        }
+        protected string PadNumberWithZeros(int batchCount, int number)
+        {
+            return HelperFunctions.PadNumberWithZeros(batchCount, number);
         }
 
         public abstract string GetChapterName(EAC3ToConfiguration eac3toConfiguration, string filesOutputPath, string paddedEpisodeNumber, string episodeName);

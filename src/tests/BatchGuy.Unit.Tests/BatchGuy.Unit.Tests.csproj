@@ -71,7 +71,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Eac3to\EAC3ToBatchFileWriteServiceTests.cs" />
     <Compile Include="Services\Eac3to\EAC3ToBatchFileWriteWarningServiceTests.cs" />
-    <Compile Include="Services\Eac3to\EAC3ToOutputNamingServiceTests.cs" />
+    <Compile Include="Services\Eac3to\EncodeTemplate1EAC3ToOutputNamingServiceTests.cs" />
+    <Compile Include="Services\Eac3to\RemuxTemplate1EAC3ToOutputNamingServiceTests.cs" />
     <Compile Include="Services\Eac3to\EAC3ToOutputServiceTests.cs" />
     <Compile Include="Services\MKVMerge\MKVMergeLanguageServiceTests.cs" />
     <Compile Include="Services\MKVMerge\MKVMergeOutputServiceTests.cs" />

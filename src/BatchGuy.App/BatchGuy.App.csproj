@@ -116,6 +116,7 @@
     <Compile Include="Eac3To\Interfaces\IEAC3ToBatchFileWriteService.cs" />
     <Compile Include="Eac3To\Interfaces\IEAC3ToOutputService.cs" />
     <Compile Include="Eac3To\Services\EncodeTemplate1EAC3ToOutputNamingService.cs" />
+    <Compile Include="Eac3To\Services\RemuxTemplate1EAC3ToOutputNamingService.cs" />
     <Compile Include="Enums\Enums.cs" />
     <Compile Include="Extensions\ExtensionMethods.cs" />
     <Compile Include="MainForm.cs">

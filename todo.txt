@@ -11,7 +11,7 @@
 
 AbstractEAC3ToOutputNamingService -done
 	EncodeTemplate1EAC3ToOutputNamingService -done
-	RemuxTemplate1EAC3ToOutputNamingService
+	RemuxTemplate1EAC3ToOutputNamingService -done
 	RemuxTemplate2EAC3ToOutputNamingService
 	RemuxTemplate3EAC3ToOutputNamingService
 
