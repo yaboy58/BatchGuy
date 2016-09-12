@@ -8,8 +8,16 @@
 	Template 4 (Remux) -  2x01 Episode Name.mkv
 
 
+
+AbstractEAC3ToOutputNamingService -done
+	EncodeTemplate1EAC3ToOutputNamingService -done
+	RemuxTemplate1EAC3ToOutputNamingService
+	RemuxTemplate2EAC3ToOutputNamingService
+	RemuxTemplate3EAC3ToOutputNamingService
+
 *Obsolete when done
 	IEAC3ToOutputNamingService
+	EAC3ToOutputNamingService
 
 
 How to implement:

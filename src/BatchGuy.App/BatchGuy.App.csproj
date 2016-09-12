@@ -99,6 +99,7 @@
     <Compile Include="CreateX264BatchFileForm.Designer.cs">
       <DependentUpon>CreateX264BatchFileForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Eac3To\Abstracts\AbstractEAC3ToOutputNamingService.cs" />
     <Compile Include="Eac3To\Interfaces\IBatchGuyEAC3ToSettingsService.cs" />
     <Compile Include="Eac3To\Interfaces\IEAC3ToBatchFileWriteWarningService.cs" />
     <Compile Include="Eac3To\Interfaces\IEAC3ToOutputNamingService.cs" />
@@ -114,6 +115,7 @@
     <Compile Include="Eac3To\Services\EAC3ToOutputService.cs" />
     <Compile Include="Eac3To\Interfaces\IEAC3ToBatchFileWriteService.cs" />
     <Compile Include="Eac3To\Interfaces\IEAC3ToOutputService.cs" />
+    <Compile Include="Eac3To\Services\EncodeTemplate1EAC3ToOutputNamingService.cs" />
     <Compile Include="Enums\Enums.cs" />
     <Compile Include="Extensions\ExtensionMethods.cs" />
     <Compile Include="MainForm.cs">
