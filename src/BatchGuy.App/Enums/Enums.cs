@@ -58,4 +58,12 @@ namespace BatchGuy.App.Enums
         EncodedFrames = 5,
         None = 6
     }
+
+    public enum EnumEAC3ToNamingConventionType
+    {
+        EncodeNamingConventionTemplate1 = 1, //video##
+        RemuxNamingConventionTemplate1 = 2, //TV Show S01E01 Episode Name 1080p Remux AVC FLAC5.1-Tag.mkv
+        RemuxNamingConventionTemplate2 = 3, //TV Show, S01E01 (Year).mkv
+        RemuxNamingConventionTemplate3 = 4  //2x01 Episode Name.mkv
+    }
 }

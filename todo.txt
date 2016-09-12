@@ -7,6 +7,11 @@
 	Template 3 (Remux) -  TV Show, S01E01 (Year).mkv
 	Template 4 (Remux) -  2x01 Episode Name.mkv
 
+
+*Obsolete when done
+	IEAC3ToOutputNamingService
+
+
 How to implement:
 1) Re-name and use IEAC3ToOutputNamingService as a base Interface (or convert to Abstract Class) for all template naming services to inherit from
 2) Create a Factory Method or Pattern to figure out which Strategy to return, it will need BG Settings Object and EAC3ToConfiguration (use this for batch file creation)
