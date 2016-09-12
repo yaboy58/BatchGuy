@@ -36,5 +36,16 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
             //then
             service.EnumEAC3ToNamingConventionType.Should().Be(EnumEAC3ToNamingConventionType.RemuxNamingConventionTemplate1);
         }
+
+        [Test]
+        public void abstractEAC3ToOutputNamingServiceFactory_CreateNewRemuxTemplate2EAC3ToOutputNamingService_test()
+        {
+            //given
+            AbstractEAC3ToOutputNamingServiceFactory factory = new AbstractEAC3ToOutputNamingServiceFactory(new AudioService());
+            //when
+            AbstractEAC3ToOutputNamingService service = factory.CreateNewRemuxTemplate2EAC3ToOutputNamingService();
+            //then
+            service.EnumEAC3ToNamingConventionType.Should().Be(EnumEAC3ToNamingConventionType.RemuxNamingConventionTemplate2);
+        }
     }
 }

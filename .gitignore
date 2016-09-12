@@ -578,3 +578,4 @@
 /src/.vs/BatchGuy/v14/*.suo
 /src/.vs/config/applicationhost.config
 /src/BatchGuy.App/BatchGuy.App.csproj.user
+/src/tests/BatchGuy.Unit.Tests/BatchGuy.Unit.Tests.csproj.user
