@@ -1,4 +1,5 @@
 ﻿using BatchGuy.App.Eac3to.Models;
+using BatchGuy.App.Enums;
 using BatchGuy.App.Extensions;
 using BatchGuy.App.Helpers;
 using BatchGuy.App.Parser.Models;
@@ -14,6 +15,10 @@ namespace BatchGuy.App.Eac3To.Abstracts
     public abstract class AbstractEAC3ToOutputNamingService
     {
         protected IAudioService _audioService;
+        protected EnumEAC3ToNamingConventionType _enumEAC3ToNamingConventionType;
+
+        public EnumEAC3ToNamingConventionType EnumEAC3ToNamingConventionType { get { return _enumEAC3ToNamingConventionType; } }
+
         public AbstractEAC3ToOutputNamingService(IAudioService audioService)
         {
             _audioService = audioService;

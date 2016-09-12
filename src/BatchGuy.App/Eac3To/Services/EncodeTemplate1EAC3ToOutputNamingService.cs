@@ -8,6 +8,7 @@ using BatchGuy.App.Eac3to.Models;
 using BatchGuy.App.Parser.Models;
 using BatchGuy.App.Shared.Interfaces;
 using BatchGuy.App.Extensions;
+using BatchGuy.App.Enums;
 
 namespace BatchGuy.App.Eac3To.Services
 {
@@ -15,6 +16,7 @@ namespace BatchGuy.App.Eac3To.Services
     {
         public EncodeTemplate1EAC3ToOutputNamingService(IAudioService audioService) : base(audioService)
         {
+            _enumEAC3ToNamingConventionType = EnumEAC3ToNamingConventionType.EncodeNamingConventionTemplate1;
         }
 
         public override string GetAudioName(EAC3ToConfiguration eac3toConfiguration, BluRayTitleAudio audio, string filesOutputPath, string paddedEpisodeNumber, string episodeName)

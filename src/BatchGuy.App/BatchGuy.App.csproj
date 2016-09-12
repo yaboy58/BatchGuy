@@ -100,6 +100,7 @@
       <DependentUpon>CreateX264BatchFileForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Eac3To\Abstracts\AbstractEAC3ToOutputNamingService.cs" />
+    <Compile Include="Eac3To\Abstracts\AbstractEAC3ToOutputNamingServiceFactory.cs" />
     <Compile Include="Eac3To\Interfaces\IBatchGuyEAC3ToSettingsService.cs" />
     <Compile Include="Eac3To\Interfaces\IEAC3ToBatchFileWriteWarningService.cs" />
     <Compile Include="Eac3To\Interfaces\IEAC3ToOutputNamingService.cs" />
