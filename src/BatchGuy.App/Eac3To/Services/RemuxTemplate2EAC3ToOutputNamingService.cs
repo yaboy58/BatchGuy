@@ -48,7 +48,15 @@ namespace BatchGuy.App.Eac3To.Services
 
         public override string GetLogName(EAC3ToConfiguration eac3toConfiguration, string filesOutputPath, string paddedEpisodeNumber, string episodeName)
         {
-            throw new NotImplementedException();
+            StringBuilder sb = new StringBuilder();
+            if (eac3toConfiguration.IsExtractForRemux == true)
+            {
+                string logName = string.Format("{0}, {1}E{2}{3}", eac3toConfiguration.RemuxFileNameTemplate.SeriesName, this.GetFormattedSeasonNumber(eac3toConfiguration),
+                    this.GetFormattedPaddedEpisodeNumber(paddedEpisodeNumber), this.GetFormattedYear(eac3toConfiguration));
+
+                sb.Append(string.Format(" -log=\"{0}\\{1} log.log\"", filesOutputPath, this.AddWordSeparator(eac3toConfiguration, logName.Trim().RemoveDoubleSpaces())));
+            }
+            return sb.ToString();
         }
 
         public override string GetSubtitleName(EAC3ToConfiguration eac3toConfiguration, BluRayTitleSubtitle subtitle, string filesOutputPath, string paddedEpisodeNumber, string episodeName)

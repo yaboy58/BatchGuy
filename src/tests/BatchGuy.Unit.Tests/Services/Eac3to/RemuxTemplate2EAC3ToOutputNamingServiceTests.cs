@@ -244,5 +244,29 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
             //then chapter name should be based on the remux template
             chapterName.Should().Be("\"c:\\bluray\\BatchGuy, S02E01 chapters.txt\"");
         }
+
+        [Test]
+        public void remuxTemplate2EAC3ToOutputNamingService_can_set_log_name_test()
+        {
+            //given not extract for remux
+            EAC3ToConfiguration config = new EAC3ToConfiguration()
+            {
+                IsExtractForRemux = true,
+                RemuxFileNameTemplate = new EAC3ToRemuxFileNameTemplate()
+                {
+                    SeriesName = "BatchGuy",
+                    SeasonNumber = "2",
+                }
+            };
+            string filesOutputPath = "c:\\bluray";
+            string paddedEpisodeNumber = "01";
+            string episodeName = "Episode 3";
+            //when i get the subtitle name
+            IAudioService audioService = new AudioService();
+            AbstractEAC3ToOutputNamingService service = new RemuxTemplate2EAC3ToOutputNamingService(audioService);
+            string logName = service.GetLogName(config, filesOutputPath, paddedEpisodeNumber, episodeName);
+            //then subtitle name should be based on the remux template
+            logName.Should().Be(" -log=\"c:\\bluray\\BatchGuy, S02E01 log.log\"");
+        }
     }
 }
