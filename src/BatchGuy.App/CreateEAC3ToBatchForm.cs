@@ -79,6 +79,7 @@ namespace BatchGuy.App
                 cbRemuxMedium.SelectedIndex = 1;
                 cbRemuxVideoFormat.SelectedIndex = 1;
                 this.SetBtnCreateMKVMergeBatFileEnabledStatus();
+                this.SetRemuxNamingConventionCurrentTemplateExampleLabel();
             }
         }
 
@@ -98,6 +99,7 @@ namespace BatchGuy.App
             new ToolTip().SetToolTip(btnOpenMKVMergeFilePathDialog, "Directory where mkvmerge batch file will be saved");
             new ToolTip().SetToolTip(btnOpenMKVMergeOutputPathDialog, "mkvmerge output directory");
             new ToolTip().SetToolTip(chkRemuxUsePeriodsInFileName, "Use periods instead of spaces in file name");
+            new ToolTip().SetToolTip(lblRemuxNamingConventionCurrentTemplateExample, "Shows the active Remux naming convention template and an example");
         }
 
         private bool IsEac3ToPathSetInSettings()
@@ -903,6 +905,24 @@ namespace BatchGuy.App
                     throw new Exception("Invalid EnumEAC3ToNamingConventionType");
             }
             return service;
+        }
+
+        private void SetRemuxNamingConventionCurrentTemplateExampleLabel()
+        {
+            switch (Program.ApplicationSettings.EnumEAC3ToNamingConventionType)
+            {
+                case EnumEAC3ToNamingConventionType.RemuxNamingConventionTemplate1:
+                    lblRemuxNamingConventionCurrentTemplateExample.Text = "Template 1: TV Show 1978 S01E01 Episode 1 1080p Remux AVC FLAC7.1 -Tag.mkv";
+                    break;
+                case EnumEAC3ToNamingConventionType.RemuxNamingConventionTemplate2:
+                    lblRemuxNamingConventionCurrentTemplateExample.Text = "Template 2: TV Show, S01E01 (2016).mkv";
+                    break;
+                case EnumEAC3ToNamingConventionType.RemuxNamingConventionTemplate3:
+                    lblRemuxNamingConventionCurrentTemplateExample.Text = "Template 3: 2x01 Episode 1.mkv";
+                    break;
+                default:
+                    throw new Exception("Invalid EnumEAC3ToNamingConventionType");
+            }
         }
     }
 }
