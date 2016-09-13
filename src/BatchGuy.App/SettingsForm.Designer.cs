@@ -157,7 +157,7 @@
             this.cbRemuxNamingConventionDefaults.Location = new System.Drawing.Point(78, 19);
             this.cbRemuxNamingConventionDefaults.Name = "cbRemuxNamingConventionDefaults";
             this.cbRemuxNamingConventionDefaults.Size = new System.Drawing.Size(186, 21);
-            this.cbRemuxNamingConventionDefaults.TabIndex = 27;
+            this.cbRemuxNamingConventionDefaults.TabIndex = 4;
             this.cbRemuxNamingConventionDefaults.SelectedIndexChanged += new System.EventHandler(this.cbRemuxNamingConventionDefaults_SelectedIndexChanged);
             // 
             // chkAudioLanguageAlwaysSelectedEnabled
@@ -166,7 +166,7 @@
             this.chkAudioLanguageAlwaysSelectedEnabled.Location = new System.Drawing.Point(20, 496);
             this.chkAudioLanguageAlwaysSelectedEnabled.Name = "chkAudioLanguageAlwaysSelectedEnabled";
             this.chkAudioLanguageAlwaysSelectedEnabled.Size = new System.Drawing.Size(15, 14);
-            this.chkAudioLanguageAlwaysSelectedEnabled.TabIndex = 7;
+            this.chkAudioLanguageAlwaysSelectedEnabled.TabIndex = 8;
             this.chkAudioLanguageAlwaysSelectedEnabled.UseVisualStyleBackColor = true;
             this.chkAudioLanguageAlwaysSelectedEnabled.CheckedChanged += new System.EventHandler(this.chkAudioLanguageAlwaysSelectedEnabled_CheckedChanged);
             // 
@@ -198,6 +198,7 @@
             // 
             this.cbAudioMKVMergeDefaultSettingsAudioType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbAudioMKVMergeDefaultSettingsAudioType.FormattingEnabled = true;
+            this.cbAudioMKVMergeDefaultSettingsAudioType.ItemHeight = 13;
             this.cbAudioMKVMergeDefaultSettingsAudioType.Items.AddRange(new object[] {
             "Any Type",
             "AC3",
@@ -217,6 +218,7 @@
             // 
             this.cbAudioMKVMergeDefaultSettingsDefaultTrackFlag.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbAudioMKVMergeDefaultSettingsDefaultTrackFlag.FormattingEnabled = true;
+            this.cbAudioMKVMergeDefaultSettingsDefaultTrackFlag.ItemHeight = 13;
             this.cbAudioMKVMergeDefaultSettingsDefaultTrackFlag.Items.AddRange(new object[] {
             "determine automatically",
             "yes",
@@ -245,7 +247,7 @@
             this.cbAudioMKVMergeDefaultSettingsLanguage.Location = new System.Drawing.Point(8, 45);
             this.cbAudioMKVMergeDefaultSettingsLanguage.Name = "cbAudioMKVMergeDefaultSettingsLanguage";
             this.cbAudioMKVMergeDefaultSettingsLanguage.Size = new System.Drawing.Size(298, 21);
-            this.cbAudioMKVMergeDefaultSettingsLanguage.TabIndex = 8;
+            this.cbAudioMKVMergeDefaultSettingsLanguage.TabIndex = 9;
             this.cbAudioMKVMergeDefaultSettingsLanguage.ValueMember = "Value";
             this.cbAudioMKVMergeDefaultSettingsLanguage.SelectedIndexChanged += new System.EventHandler(this.cbAudioMKVMergeDefaultSettingsLanguage_SelectedIndexChanged);
             // 
@@ -269,7 +271,7 @@
             this.chkSubtitleLanguageAlwaysSelectedEnabled.Location = new System.Drawing.Point(20, 600);
             this.chkSubtitleLanguageAlwaysSelectedEnabled.Name = "chkSubtitleLanguageAlwaysSelectedEnabled";
             this.chkSubtitleLanguageAlwaysSelectedEnabled.Size = new System.Drawing.Size(15, 14);
-            this.chkSubtitleLanguageAlwaysSelectedEnabled.TabIndex = 11;
+            this.chkSubtitleLanguageAlwaysSelectedEnabled.TabIndex = 12;
             this.chkSubtitleLanguageAlwaysSelectedEnabled.UseVisualStyleBackColor = true;
             this.chkSubtitleLanguageAlwaysSelectedEnabled.CheckedChanged += new System.EventHandler(this.chkSubtitleLanguageAlwaysSelectedEnabled_CheckedChanged);
             // 
@@ -297,7 +299,7 @@
             this.cbSubtitlesMKVMergeDefaultSettingsDefaultTrackFlag.Location = new System.Drawing.Point(330, 45);
             this.cbSubtitlesMKVMergeDefaultSettingsDefaultTrackFlag.Name = "cbSubtitlesMKVMergeDefaultSettingsDefaultTrackFlag";
             this.cbSubtitlesMKVMergeDefaultSettingsDefaultTrackFlag.Size = new System.Drawing.Size(169, 21);
-            this.cbSubtitlesMKVMergeDefaultSettingsDefaultTrackFlag.TabIndex = 13;
+            this.cbSubtitlesMKVMergeDefaultSettingsDefaultTrackFlag.TabIndex = 14;
             this.cbSubtitlesMKVMergeDefaultSettingsDefaultTrackFlag.SelectedIndexChanged += new System.EventHandler(this.cbSubtitlesMKVMergeDefaultSettingsDefaultTrackFlag_SelectedIndexChanged);
             // 
             // lblSubtitlesMKVMergeDefaultSettingsDefaultTrackFlag
@@ -318,7 +320,7 @@
             this.cbSubtitlesMKVMergeDefaultSettingsLanguage.Location = new System.Drawing.Point(8, 45);
             this.cbSubtitlesMKVMergeDefaultSettingsLanguage.Name = "cbSubtitlesMKVMergeDefaultSettingsLanguage";
             this.cbSubtitlesMKVMergeDefaultSettingsLanguage.Size = new System.Drawing.Size(298, 21);
-            this.cbSubtitlesMKVMergeDefaultSettingsLanguage.TabIndex = 12;
+            this.cbSubtitlesMKVMergeDefaultSettingsLanguage.TabIndex = 13;
             this.cbSubtitlesMKVMergeDefaultSettingsLanguage.ValueMember = "Value";
             this.cbSubtitlesMKVMergeDefaultSettingsLanguage.SelectedIndexChanged += new System.EventHandler(this.cbSubtitlesMKVMergeDefaultSettingsLanguage_SelectedIndexChanged);
             // 
@@ -375,7 +377,7 @@
             this.chkBluRayTitleInfoDefaultSettingsSelectChapters.Location = new System.Drawing.Point(171, 32);
             this.chkBluRayTitleInfoDefaultSettingsSelectChapters.Name = "chkBluRayTitleInfoDefaultSettingsSelectChapters";
             this.chkBluRayTitleInfoDefaultSettingsSelectChapters.Size = new System.Drawing.Size(101, 17);
-            this.chkBluRayTitleInfoDefaultSettingsSelectChapters.TabIndex = 5;
+            this.chkBluRayTitleInfoDefaultSettingsSelectChapters.TabIndex = 6;
             this.chkBluRayTitleInfoDefaultSettingsSelectChapters.Text = "Select Chapters";
             this.chkBluRayTitleInfoDefaultSettingsSelectChapters.UseVisualStyleBackColor = true;
             this.chkBluRayTitleInfoDefaultSettingsSelectChapters.CheckedChanged += new System.EventHandler(this.chkBluRayTitleInfoDefaultSettingsSelectChapters_CheckedChanged);
@@ -386,7 +388,7 @@
             this.chkBluRayTitleInfoDefaultSettingsSelectSubtitles.Location = new System.Drawing.Point(11, 32);
             this.chkBluRayTitleInfoDefaultSettingsSelectSubtitles.Name = "chkBluRayTitleInfoDefaultSettingsSelectSubtitles";
             this.chkBluRayTitleInfoDefaultSettingsSelectSubtitles.Size = new System.Drawing.Size(113, 17);
-            this.chkBluRayTitleInfoDefaultSettingsSelectSubtitles.TabIndex = 4;
+            this.chkBluRayTitleInfoDefaultSettingsSelectSubtitles.TabIndex = 5;
             this.chkBluRayTitleInfoDefaultSettingsSelectSubtitles.Text = "Select All Subtitles";
             this.chkBluRayTitleInfoDefaultSettingsSelectSubtitles.UseVisualStyleBackColor = true;
             this.chkBluRayTitleInfoDefaultSettingsSelectSubtitles.CheckedChanged += new System.EventHandler(this.chkBluRayTitleInfoDefaultSettingsSelectSubtitles_CheckedChanged);
@@ -404,7 +406,7 @@
             this.dgvBluRayTitleInfoDefaultSettingsAudio.Location = new System.Drawing.Point(6, 58);
             this.dgvBluRayTitleInfoDefaultSettingsAudio.Name = "dgvBluRayTitleInfoDefaultSettingsAudio";
             this.dgvBluRayTitleInfoDefaultSettingsAudio.Size = new System.Drawing.Size(750, 131);
-            this.dgvBluRayTitleInfoDefaultSettingsAudio.TabIndex = 6;
+            this.dgvBluRayTitleInfoDefaultSettingsAudio.TabIndex = 7;
             this.dgvBluRayTitleInfoDefaultSettingsAudio.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBluRayTitleInfoDefaultSettingsAudio_CellClick);
             // 
             // typeDataGridViewTextBoxColumn
@@ -558,7 +560,7 @@
             this.btnSave.Location = new System.Drawing.Point(705, 746);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(107, 25);
-            this.btnSave.TabIndex = 14;
+            this.btnSave.TabIndex = 15;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
