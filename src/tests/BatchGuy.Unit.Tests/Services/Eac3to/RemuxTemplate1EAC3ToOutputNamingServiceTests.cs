@@ -25,7 +25,7 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
 
 
         [Test]
-        public void RemuxTemplate1EAC3ToOutputNamingService_can_set_chapter_name_when_is_extract_for_remux_test()
+        public void remuxTemplate1EAC3ToOutputNamingService_can_set_chapter_name_test()
         {
             //given not extract for remux
             EAC3ToConfiguration config = new EAC3ToConfiguration() { IsExtractForRemux = true, RemuxFileNameTemplate = new EAC3ToRemuxFileNameTemplate() { AudioType = "FLAC 5.1", SeriesName = "BatchGuy",
@@ -44,7 +44,7 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
 
 
         [Test]
-        public void RemuxTemplate1EAC3ToOutputNamingService_can_set_video_name_when_is_extract_for_remux_test()
+        public void remuxTemplate1EAC3ToOutputNamingService_can_set_video_name_test()
         {
             //given not extract for remux
             EAC3ToConfiguration config = new EAC3ToConfiguration()
@@ -72,7 +72,36 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
         }
 
         [Test]
-        public void RemuxTemplate1EAC3ToOutputNamingService_can_set_video_name_when_is_extract_for_remux_and_series_name_only_test()
+        public void remuxTemplate1EAC3ToOutputNamingService_can_set_video_name_when_use_periods_in_file_name_test()
+        {
+            //given not extract for remux
+            EAC3ToConfiguration config = new EAC3ToConfiguration()
+            {
+                IsExtractForRemux = true,
+                RemuxFileNameTemplate = new EAC3ToRemuxFileNameTemplate()
+                {
+                    AudioType = "FLAC 5.1",
+                    SeriesName = "BatchGuy",
+                    SeasonNumber = "2",
+                    SeasonYear = "1978",
+                    Tag = "Guy",
+                    VideoResolution = "1080p",
+                     UsePeriodsInFileName = true
+                }
+            };
+            string filesOutputPath = "c:\\bluray";
+            string paddedEpisodeNumber = "01";
+            string episodeName = string.Empty;
+            //when i get the video name
+            IAudioService audioService = new AudioService();
+            AbstractEAC3ToOutputNamingService service = new RemuxTemplate1EAC3ToOutputNamingService(audioService);
+            string videoName = service.GetVideoName(config, filesOutputPath, paddedEpisodeNumber, episodeName);
+            //then video name should be based on the remux template
+            videoName.Should().Be("\"c:\\bluray\\BatchGuy.1978.S02E01.1080p.FLAC.5.1-Guy.mkv\"");
+        }
+
+        [Test]
+        public void remuxTemplate1EAC3ToOutputNamingService_can_set_video_name_and_series_name_only_test()
         {
             //given not extract for remux
             EAC3ToConfiguration config = new EAC3ToConfiguration()
@@ -95,7 +124,7 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
         }
 
         [Test]
-        public void RemuxTemplate1EAC3ToOutputNamingService_can_set_video_name_when_is_extract_for_remux_and_no_audio_type_test()
+        public void remuxTemplate1EAC3ToOutputNamingService_can_set_video_name_and_no_audio_type_test()
         {
             //given not extract for remux
             EAC3ToConfiguration config = new EAC3ToConfiguration()
@@ -122,7 +151,7 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
         }
 
         [Test]
-        public void RemuxTemplate1EAC3ToOutputNamingService_can_set_video_name_when_is_extract_for_remux_and_no_tag_test()
+        public void remuxTemplate1EAC3ToOutputNamingService_can_set_video_name_and_no_tag_test()
         {
             //given not extract for remux
             EAC3ToConfiguration config = new EAC3ToConfiguration()
@@ -147,7 +176,7 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
         }
 
         [Test]
-        public void RemuxTemplate1EAC3ToOutputNamingService_can_set_video_name_when_is_extract_for_remux_and_no_season_year_test()
+        public void remuxTemplate1EAC3ToOutputNamingService_can_set_video_name_and_no_season_year_test()
         {
             //given not extract for remux
             EAC3ToConfiguration config = new EAC3ToConfiguration()
@@ -173,7 +202,7 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
         }
 
         [Test]
-        public void RemuxTemplate1EAC3ToOutputNamingService_can_set_video_name_when_is_extract_for_remux_and_no_season_year_and_no_season_number_test()
+        public void remuxTemplate1EAC3ToOutputNamingService_can_set_video_name_and_no_season_year_and_no_season_number_test()
         {
             //given not extract for remux
             EAC3ToConfiguration config = new EAC3ToConfiguration()
@@ -198,7 +227,7 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
         }
 
         [Test]
-        public void RemuxTemplate1EAC3ToOutputNamingService_can_set_video_name_when_is_extract_for_remux_and_no_season_number_test()
+        public void remuxTemplate1EAC3ToOutputNamingService_can_set_video_name_and_no_season_number_test()
         {
             //given not extract for remux
             EAC3ToConfiguration config = new EAC3ToConfiguration()
@@ -226,7 +255,7 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
 
 
         [Test]
-        public void RemuxTemplate1EAC3ToOutputNamingService_can_set_audio_name_when_is_extract_for_remux_test()
+        public void remuxTemplate1EAC3ToOutputNamingService_can_set_audio_name_test()
         {
             //given not extract for remux
             EAC3ToConfiguration config = new EAC3ToConfiguration()
@@ -257,7 +286,7 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
 
 
         [Test]
-        public void RemuxTemplate1EAC3ToOutputNamingService_can_set_subtitle_name_when_is_extract_for_remux_test()
+        public void remuxTemplate1EAC3ToOutputNamingService_can_set_subtitle_name_test()
         {
             //given not extract for remux
             EAC3ToConfiguration config = new EAC3ToConfiguration()
@@ -288,7 +317,7 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
         }
 
         [Test]
-        public void RemuxTemplate1EAC3ToOutputNamingService_can_set_subtitle_name_when_is_extract_for_remux_and_only_required_test()
+        public void remuxTemplate1EAC3ToOutputNamingService_can_set_subtitle_name_and_only_required_test()
         {
             //given not extract for remux
             EAC3ToConfiguration config = new EAC3ToConfiguration()
@@ -313,7 +342,7 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
         }
 
         [Test]
-        public void RemuxTemplate1EAC3ToOutputNamingService_can_set_log_name_when_is_extract_for_remux_test()
+        public void remuxTemplate1EAC3ToOutputNamingService_can_set_log_name_test()
         {
             //given not extract for remux
             EAC3ToConfiguration config = new EAC3ToConfiguration()
@@ -339,7 +368,7 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
 
 
         [Test]
-        public void RemuxTemplate1EAC3ToOutputNamingService_can_set_audio_commentary_when_is_commentary_and_extract_for_remux_test()
+        public void remuxTemplate1EAC3ToOutputNamingService_can_set_audio_commentary_when_is_commentary_test()
         {
             //given not extract for remux
             EAC3ToConfiguration config = new EAC3ToConfiguration()
@@ -370,7 +399,7 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
 
 
         [Test]
-        public void RemuxTemplate1EAC3ToOutputNamingService_can_set_subtitle_name_when_is_commentary_and_is_extract_for_remux_and_only_required_test()
+        public void remuxTemplate1EAC3ToOutputNamingService_can_set_subtitle_name_when_is_commentary_and_only_required_test()
         {
             //given not extract for remux
             EAC3ToConfiguration config = new EAC3ToConfiguration()
@@ -395,7 +424,7 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
         }
 
         [Test]
-        public void RemuxTemplate1EAC3ToOutputNamingService_can_set_video_name_when_is_extract_for_remux_and_separate_with_spaces_test()
+        public void remuxTemplate1EAC3ToOutputNamingService_can_set_video_name_and_separate_with_spaces_test()
         {
             //given not extract for remux
             EAC3ToConfiguration config = new EAC3ToConfiguration()
@@ -424,7 +453,7 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
         }
 
         [Test]
-        public void RemuxTemplate1EAC3ToOutputNamingService_can_set_video_name_when_is_extract_for_remux_and_separate_with_periods_test()
+        public void remuxTemplate1EAC3ToOutputNamingService_can_set_video_name_and_separate_with_periods_test()
         {
             //given not extract for remux
             EAC3ToConfiguration config = new EAC3ToConfiguration()
