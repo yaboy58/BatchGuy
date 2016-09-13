@@ -922,6 +922,7 @@ namespace BatchGuy.App
                     service = factory.CreateNewRemuxTemplate2EAC3ToOutputNamingService();
                     break;
                 case EnumEAC3ToNamingConventionType.RemuxNamingConventionTemplate3:
+                    service = factory.CreateNewRemuxTemplate3EAC3ToOutputNamingService();
                     break;
                 default:
                     throw new Exception("Invalid EnumEAC3ToNamingConventionType");
