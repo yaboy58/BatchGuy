@@ -296,5 +296,36 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
             //then subtitle name should be based on the remux template
             logName.Should().Be(" -log=\"c:\\bluray\\2x01 log.log\"");
         }
+
+        [Test]
+        public void remuxTemplate3EAC3ToOutputNamingService_can_set_subtitle_name_test()
+        {
+            //given not extract for remux
+            EAC3ToConfiguration config = new EAC3ToConfiguration()
+            {
+                IsExtractForRemux = true,
+                RemuxFileNameTemplate = new EAC3ToRemuxFileNameTemplate()
+                {
+                    AudioType = "FLAC 5.1",
+                    SeriesName = "BatchGuy",
+                    SeasonNumber = "2",
+                    SeasonYear = "1978",
+                    Tag = "Guy",
+                    VideoResolution = "1080p",
+                    Medium = "Remux",
+                    VideoFormat = "H.264"
+                }
+            };
+            string filesOutputPath = "c:\\bluray";
+            string paddedEpisodeNumber = "01";
+            string episodeName = "The Force Awakens";
+            //when i get the subtitle name
+            IAudioService audioService = new AudioService();
+            AbstractEAC3ToOutputNamingService service = new RemuxTemplate3EAC3ToOutputNamingService(audioService);
+            BluRayTitleSubtitle subtitle = new BluRayTitleSubtitle() { Id = "11:", Language = "english" };
+            string subtitleName = service.GetSubtitleName(config, subtitle, filesOutputPath, paddedEpisodeNumber, episodeName);
+            //then subtitle name should be based on the remux template
+            subtitleName.Should().Be("\"c:\\bluray\\2x01 The Force Awakens english01-11.sup\"");
+        }
     }
 }

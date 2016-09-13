@@ -61,7 +61,15 @@ namespace BatchGuy.App.Eac3To.Services
 
         public override string GetSubtitleName(EAC3ToConfiguration eac3toConfiguration, BluRayTitleSubtitle subtitle, string filesOutputPath, string paddedEpisodeNumber, string episodeName)
         {
-            throw new NotImplementedException();
+            StringBuilder sb = new StringBuilder();
+            if (eac3toConfiguration.IsExtractForRemux == true)
+            {
+                string subtitleName = string.Format("{0}{1}{2}", this.GetFormattedSeasonNumber(eac3toConfiguration),
+                    this.GetFormattedPaddedEpisodeNumber(paddedEpisodeNumber), this.GetFormattedEpisodeName(episodeName));
+
+                sb.Append(string.Format("\"{0}\\{1} {2}{3}-{4}{5}.sup\"", filesOutputPath, this.AddWordSeparator(eac3toConfiguration, subtitleName.Trim().RemoveDoubleSpaces()), subtitle.Language, paddedEpisodeNumber, subtitle.Id.RemoveColons(), this.GetSubtitleCommentary(subtitle)));
+            }
+            return sb.ToString();
         }
 
         public override string GetVideoName(EAC3ToConfiguration eac3toConfiguration, string filesOutputPath, string paddedEpisodeNumber, string episodeName)
