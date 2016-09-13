@@ -77,7 +77,6 @@
     <Compile Include="Services\Eac3to\EAC3ToOutputServiceTests.cs" />
     <Compile Include="Services\Eac3to\RemuxTemplate2EAC3ToOutputNamingServiceTests.cs" />
     <Compile Include="Services\Eac3to\RemuxTemplate3EAC3ToOutputNamingServiceTests.cs" />
-    <Compile Include="Services\Eac3to\TextFixtureAttribute.cs" />
     <Compile Include="Services\MKVMerge\MKVMergeLanguageServiceTests.cs" />
     <Compile Include="Services\MKVMerge\MKVMergeOutputServiceTests.cs" />
     <Compile Include="Services\Parser\BluRaySummaryLineItemIdentifierServiceTests.cs" />

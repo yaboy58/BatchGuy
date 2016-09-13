@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace BatchGuy.Unit.Tests.Services.Eac3to
 {
-    [TextFixture]
+    [TestFixture]
     public class AbstractEAC3ToOutputNamingServiceFactoryTests
     {
         [Test]
@@ -46,6 +46,17 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
             AbstractEAC3ToOutputNamingService service = factory.CreateNewRemuxTemplate2EAC3ToOutputNamingService();
             //then
             service.EnumEAC3ToNamingConventionType.Should().Be(EnumEAC3ToNamingConventionType.RemuxNamingConventionTemplate2);
+        }
+
+        [Test]
+        public void abstractEAC3ToOutputNamingServiceFactory_CreateNewRemuxTemplate3EAC3ToOutputNamingService_test()
+        {
+            //given
+            AbstractEAC3ToOutputNamingServiceFactory factory = new AbstractEAC3ToOutputNamingServiceFactory(new AudioService());
+            //when
+            AbstractEAC3ToOutputNamingService service = factory.CreateNewRemuxTemplate3EAC3ToOutputNamingService();
+            //then
+            service.EnumEAC3ToNamingConventionType.Should().Be(EnumEAC3ToNamingConventionType.RemuxNamingConventionTemplate3);
         }
     }
 }

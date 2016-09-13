@@ -579,3 +579,4 @@
 /src/.vs/config/applicationhost.config
 /src/BatchGuy.App/BatchGuy.App.csproj.user
 /src/tests/BatchGuy.Unit.Tests/BatchGuy.Unit.Tests.csproj.user
+/src/BatchGuy.Eac3to.Parser.Example.Console.App/BatchGuy.Eac3to.Parser.Example.Console.App.csproj.user
