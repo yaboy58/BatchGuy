@@ -514,31 +514,6 @@ namespace BatchGuy.App
             gbMKVMergeInfo.Enabled = chkExtractForRemux.Checked;
             _eac3toConfiguration.IsExtractForRemux = chkExtractForRemux.Checked;
             this.SetBtnCreateMKVMergeBatFileEnabledStatus();
-
-
-            if (_eac3toConfiguration.IsExtractForRemux != true) //clear mkvmerge settings
-            {
-                foreach (BluRayDiscInfo disc in _bindingListBluRayDiscInfo)
-                {
-                    foreach (BluRaySummaryInfo summary in disc.BluRaySummaryInfoList)
-                    {
-                        if (summary.BluRayTitleInfo != null && summary.BluRayTitleInfo.AudioList != null)
-                        {
-                            foreach (BluRayTitleAudio audio in summary.BluRayTitleInfo.AudioList)
-                            {
-                                audio.MKVMergeItem = null;
-                            }
-                        }
-                        if (summary.BluRayTitleInfo != null && summary.BluRayTitleInfo.Subtitles != null)
-                        {
-                            foreach (BluRayTitleSubtitle subtitle in summary.BluRayTitleInfo.Subtitles)
-                            {
-                                subtitle.MKVMergeItem = null;
-                            }
-                        }
-                    }
-                }
-            }
         }
 
         private void txtSeasonNumber_TextChanged(object sender, EventArgs e)

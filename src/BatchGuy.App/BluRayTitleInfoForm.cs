@@ -66,16 +66,6 @@ namespace BatchGuy.App
             if (_bluRaySummaryInfo.BluRayTitleInfo != null)
             {
                 this.LoadScreen();
-
-                if (_eac3ToConfiguration.IsExtractForRemux)
-                {
-                    if ((_bluRaySummaryInfo.BluRayTitleInfo.AudioList != null && _bluRaySummaryInfo.BluRayTitleInfo.AudioList.Where(m => m.MKVMergeItem == null).Count() > 0) ||
-                        (_bluRaySummaryInfo.BluRayTitleInfo.Subtitles != null && _bluRaySummaryInfo.BluRayTitleInfo.Subtitles.Where(m => m.MKVMergeItem == null).Count() > 0))
-                    {
-                        this.SetMKVMergetItemDefaults();
-                    }
-                }
-
                 this.SetGridRowBackgroundIfUndetermindLanguage();
                 gbScreen.SetEnabled(true);
             }
