@@ -73,6 +73,12 @@
     <Compile Include="AboutForm.Designer.cs">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="BluRayTitleInfoExternalSubtitleForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BluRayTitleInfoExternalSubtitleForm.Designer.cs">
+      <DependentUpon>BluRayTitleInfoExternalSubtitleForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="BluRayTitleInfoForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -233,6 +239,9 @@
     <Compile Include="X264\Services\X264ValidationService.cs" />
     <EmbeddedResource Include="AboutForm.resx">
       <DependentUpon>AboutForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BluRayTitleInfoExternalSubtitleForm.resx">
+      <DependentUpon>BluRayTitleInfoExternalSubtitleForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BluRayTitleInfoForm.resx">
       <DependentUpon>BluRayTitleInfoForm.cs</DependentUpon>
