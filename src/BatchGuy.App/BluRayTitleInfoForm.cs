@@ -23,6 +23,7 @@ using BatchGuy.App.MKVMerge.Services;
 using BatchGuy.App.Shared.Interface;
 using BatchGuy.App.Settings.Interface;
 using BatchGuy.App.Settings.Services;
+using System.IO;
 
 namespace BatchGuy.App
 {
@@ -294,6 +295,20 @@ namespace BatchGuy.App
             else
             {
                 _bluRaySummaryInfo.BluRayTitleInfo.EpisodeNumber = txtEpisodeNumber.Text;
+            }
+        }
+
+        private void dgvSubtitles_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex == -1)
+            {
+                this.SortSubtitleGrid(e.ColumnIndex);
+            }
+            else
+            {
+                this.HandleDGVSubtitlesCellClick(e);
+                dgvSubtitles.Rows[e.RowIndex].Selected = true;
+                this.SetGBMKVToolNixGUIEnabledStatus(true);
             }
         }
 
@@ -653,15 +668,36 @@ namespace BatchGuy.App
 
         private void HandlesDGVSubtitlesDragDrop(DragEventArgs e)
         {
+            var files = (Array)e.Data.GetData(DataFormats.FileDrop);
 
+            if (files.Length > 1)
+                return;
+
+            foreach (string file in files)
+            {
+                if (this.IsValidSubtitleFile(file) && this.NotADuplicate(file))
+                {
+                    BluRayTitleInfoExternalSubtitleForm form = new BluRayTitleInfoExternalSubtitleForm();
+                    form.SetBluRayTitleInfoExternalSubtitleForAdd(_bluRaySummaryInfo);
+                    form.ShowDialog();
+                }
+            }
         }
 
-        private bool IsValidSubtitle(string file)
+        private bool IsValidSubtitleFile(string file)
         {
             string extension = file.SubtitleFileExtension().ToLower();
             string[] subtitles = new string[4] { "srt", "ass", "sub","ssa" };
 
             return subtitles.Where(s => s == extension).Count() > 0;
+        }
+
+        private bool NotADuplicate(string file)
+        {
+            if (_bindingListBluRayTitleSubtitle.Where(s => s.ExternalSubtitleNameOnly == Path.GetFileName(file)).Count() > 0)
+                return false;
+            else
+                return true;
         }
     }
 }

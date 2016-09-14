@@ -307,6 +307,7 @@
             // 
             // dgvSubtitles
             // 
+            this.dgvSubtitles.AllowDrop = true;
             this.dgvSubtitles.AllowUserToAddRows = false;
             this.dgvSubtitles.AllowUserToDeleteRows = false;
             this.dgvSubtitles.AllowUserToOrderColumns = true;
@@ -326,7 +327,7 @@
             this.dgvSubtitles.Name = "dgvSubtitles";
             this.dgvSubtitles.Size = new System.Drawing.Size(881, 198);
             this.dgvSubtitles.TabIndex = 12;
-            this.dgvSubtitles.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSubtitles_CellDoubleClick);
+            this.dgvSubtitles.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSubtitles_CellClick);
             this.dgvSubtitles.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSubtitles_CellDoubleClick);
             this.dgvSubtitles.DragDrop += new System.Windows.Forms.DragEventHandler(this.dgvSubtitles_DragDrop);
             this.dgvSubtitles.DragEnter += new System.Windows.Forms.DragEventHandler(this.dgvSubtitles_DragEnter);

@@ -73,7 +73,6 @@ namespace BatchGuy.App
 
         private bool NotADuplicate(string file)
         {
-            var t = Path.GetFileName(file);
             if (_bindingListLogFiles.Where(l => l.FileNameOnly == Path.GetFileName(file)).Count() == 0)
                 return true;
             else
