@@ -297,20 +297,6 @@ namespace BatchGuy.App
             }
         }
 
-        private void dgvSubtitles_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex == -1)
-            {
-                this.SortSubtitleGrid(e.ColumnIndex);
-            }
-            else
-            {
-                this.HandleDGVSubtitlesCellClick(e);
-                dgvSubtitles.Rows[e.RowIndex].Selected = true;
-                this.SetGBMKVToolNixGUIEnabledStatus(true);
-            }
-        }
-
         private void HandleDGVSubtitlesCellClick(DataGridViewCellEventArgs e)
         {
             _mkvMergeChangeTriggeredByDataGridCellClick = true;
@@ -643,8 +629,39 @@ namespace BatchGuy.App
         {
             var id = dgvSubtitles.Rows[e.RowIndex].Cells[1].Value;
             _currentBluRayTitleSubtitle = _bluRaySummaryInfo.BluRayTitleInfo.Subtitles.SingleOrDefault(a => a.Id == id.ToString());
-            if (_currentBluRayTitleSubtitle.CanEdit == false)
+            if (_currentBluRayTitleSubtitle.CanEdit == false || _eac3ToConfiguration.IsExtractForRemux == false)
                 return;
+        }
+
+        private void dgvSubtitles_DragEnter(object sender, DragEventArgs e)
+        {
+            this.HandlesDGVSubtitlesDragEnter(e);
+        }
+
+        private void HandlesDGVSubtitlesDragEnter(DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                e.Effect = DragDropEffects.Copy;
+            }
+        }
+
+        private void dgvSubtitles_DragDrop(object sender, DragEventArgs e)
+        {
+            this.HandlesDGVSubtitlesDragDrop(e);
+        }
+
+        private void HandlesDGVSubtitlesDragDrop(DragEventArgs e)
+        {
+
+        }
+
+        private bool IsValidSubtitle(string file)
+        {
+            string extension = file.SubtitleFileExtension().ToLower();
+            string[] subtitles = new string[4] { "srt", "ass", "sub","ssa" };
+
+            return subtitles.Where(s => s == extension).Count() > 0;
         }
     }
 }

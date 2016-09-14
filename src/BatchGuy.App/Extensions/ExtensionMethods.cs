@@ -105,5 +105,12 @@ namespace BatchGuy.App.Extensions
 
             return result;
         }
+
+        public static string SubtitleFileExtension(this string value)
+        {
+            string result = value.Substring(value.Length - 3);
+
+            return result;
+        }
     }
 }

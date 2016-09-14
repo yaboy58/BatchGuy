@@ -44,5 +44,16 @@ namespace BatchGuy.Unit.Tests.ExtensionMethods
             //then
             episodeWithPeriods.Should().Be("The.First.48.S01E01.First.Episode.1080p.Remux.AVC.FLAC7.1-BatchGuy.mkv");
         }
+
+        [Test]
+        public void extensionmethods_subtitlefileextension__test()
+        {
+            //given
+            string file = @"c:\external subtitles\my tv show episode.ssa";
+            //when
+            string extension = file.SubtitleFileExtension();
+            //then
+            extension.Should().Be("ssa");
+        }
     }
 }
