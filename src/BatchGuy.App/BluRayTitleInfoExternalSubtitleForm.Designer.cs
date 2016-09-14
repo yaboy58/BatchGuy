@@ -29,18 +29,19 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BluRayTitleInfoExternalSubtitleForm));
             this.gbExternalSubtitles = new System.Windows.Forms.GroupBox();
+            this.lblExternalSubtitleEAC3ToTrackId = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.cbExternalSubtitleLanguage = new System.Windows.Forms.ComboBox();
+            this.bsMKVMergeLanguageItem = new System.Windows.Forms.BindingSource(this.components);
             this.btnOpenExternalSubtitleFilePathDialog = new System.Windows.Forms.Button();
             this.txtExternalSubtitlePath = new System.Windows.Forms.TextBox();
             this.lblBatchFilePath = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.ofdFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.cbExternalSubtitleLanguage = new System.Windows.Forms.ComboBox();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
-            this.bsMKVMergeLanguageItem = new System.Windows.Forms.BindingSource(this.components);
-            this.label2 = new System.Windows.Forms.Label();
-            this.lblExternalSubtitleEAC3ToTrackId = new System.Windows.Forms.Label();
             this.gbExternalSubtitles.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsMKVMergeLanguageItem)).BeginInit();
             this.SuspendLayout();
@@ -61,6 +62,42 @@
             this.gbExternalSubtitles.TabStop = false;
             this.gbExternalSubtitles.Text = "External Subtitles";
             // 
+            // lblExternalSubtitleEAC3ToTrackId
+            // 
+            this.lblExternalSubtitleEAC3ToTrackId.AutoSize = true;
+            this.lblExternalSubtitleEAC3ToTrackId.Location = new System.Drawing.Point(115, 27);
+            this.lblExternalSubtitleEAC3ToTrackId.Name = "lblExternalSubtitleEAC3ToTrackId";
+            this.lblExternalSubtitleEAC3ToTrackId.Size = new System.Drawing.Size(16, 13);
+            this.lblExternalSubtitleEAC3ToTrackId.TabIndex = 45;
+            this.lblExternalSubtitleEAC3ToTrackId.Text = "Id";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(15, 27);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(83, 13);
+            this.label2.TabIndex = 44;
+            this.label2.Text = "eac3to Track Id";
+            // 
+            // cbExternalSubtitleLanguage
+            // 
+            this.cbExternalSubtitleLanguage.DataSource = this.bsMKVMergeLanguageItem;
+            this.cbExternalSubtitleLanguage.DisplayMember = "Name";
+            this.cbExternalSubtitleLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbExternalSubtitleLanguage.FormattingEnabled = true;
+            this.cbExternalSubtitleLanguage.Location = new System.Drawing.Point(118, 51);
+            this.cbExternalSubtitleLanguage.Name = "cbExternalSubtitleLanguage";
+            this.cbExternalSubtitleLanguage.Size = new System.Drawing.Size(298, 21);
+            this.cbExternalSubtitleLanguage.TabIndex = 0;
+            this.cbExternalSubtitleLanguage.ValueMember = "Value";
+            this.cbExternalSubtitleLanguage.SelectedIndexChanged += new System.EventHandler(this.cbExternalSubtitleLanguage_SelectedIndexChanged);
+            // 
+            // bsMKVMergeLanguageItem
+            // 
+            this.bsMKVMergeLanguageItem.AllowNew = false;
+            this.bsMKVMergeLanguageItem.DataSource = typeof(BatchGuy.App.MKVMerge.Models.MKVMergeLanguageItem);
+            // 
             // btnOpenExternalSubtitleFilePathDialog
             // 
             this.btnOpenExternalSubtitleFilePathDialog.Image = global::BatchGuy.App.Properties.Resources.Avosoft_Warm_Toolbar_Folder_open;
@@ -69,6 +106,7 @@
             this.btnOpenExternalSubtitleFilePathDialog.Size = new System.Drawing.Size(61, 33);
             this.btnOpenExternalSubtitleFilePathDialog.TabIndex = 1;
             this.btnOpenExternalSubtitleFilePathDialog.UseVisualStyleBackColor = true;
+            this.btnOpenExternalSubtitleFilePathDialog.Click += new System.EventHandler(this.btnOpenExternalSubtitleFilePathDialog_Click);
             // 
             // txtExternalSubtitlePath
             // 
@@ -100,17 +138,6 @@
             // 
             this.ofdFileDialog.FileName = "openFileDialog";
             // 
-            // cbExternalSubtitleLanguage
-            // 
-            this.cbExternalSubtitleLanguage.DisplayMember = "Name";
-            this.cbExternalSubtitleLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbExternalSubtitleLanguage.FormattingEnabled = true;
-            this.cbExternalSubtitleLanguage.Location = new System.Drawing.Point(118, 51);
-            this.cbExternalSubtitleLanguage.Name = "cbExternalSubtitleLanguage";
-            this.cbExternalSubtitleLanguage.Size = new System.Drawing.Size(298, 21);
-            this.cbExternalSubtitleLanguage.TabIndex = 0;
-            this.cbExternalSubtitleLanguage.ValueMember = "Value";
-            // 
             // btnCancel
             // 
             this.btnCancel.Location = new System.Drawing.Point(427, 160);
@@ -128,29 +155,7 @@
             this.btnSave.TabIndex = 3;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
-            // 
-            // bsMKVMergeLanguageItem
-            // 
-            this.bsMKVMergeLanguageItem.AllowNew = false;
-            this.bsMKVMergeLanguageItem.DataSource = typeof(BatchGuy.App.MKVMerge.Models.MKVMergeLanguageItem);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(15, 27);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(83, 13);
-            this.label2.TabIndex = 44;
-            this.label2.Text = "eac3to Track Id";
-            // 
-            // lblExternalSubtitleEAC3ToTrackId
-            // 
-            this.lblExternalSubtitleEAC3ToTrackId.AutoSize = true;
-            this.lblExternalSubtitleEAC3ToTrackId.Location = new System.Drawing.Point(115, 27);
-            this.lblExternalSubtitleEAC3ToTrackId.Name = "lblExternalSubtitleEAC3ToTrackId";
-            this.lblExternalSubtitleEAC3ToTrackId.Size = new System.Drawing.Size(16, 13);
-            this.lblExternalSubtitleEAC3ToTrackId.TabIndex = 45;
-            this.lblExternalSubtitleEAC3ToTrackId.Text = "Id";
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // BluRayTitleInfoExternalSubtitleForm
             // 
@@ -160,6 +165,7 @@
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.gbExternalSubtitles);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "BluRayTitleInfoExternalSubtitleForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Save External Subtitles";

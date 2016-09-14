@@ -159,6 +159,7 @@ namespace BatchGuy.App
         {
             if (_bluRaySummaryInfo.BluRayTitleInfo.Subtitles != null )
             {
+                _bindingListBluRayTitleSubtitle.Clear();
                 foreach (BluRayTitleSubtitle subtitle in _bluRaySummaryInfo.BluRayTitleInfo.Subtitles)
                 {
                     _bindingListBluRayTitleSubtitle.Add(subtitle);
@@ -680,6 +681,10 @@ namespace BatchGuy.App
                     BluRayTitleInfoExternalSubtitleForm form = new BluRayTitleInfoExternalSubtitleForm();
                     form.SetBluRayTitleInfoExternalSubtitleForAdd(_bluRaySummaryInfo);
                     form.ShowDialog();
+                    if (form.WasSaved)
+                    {
+                        this.LoadSubtitles();
+                    }
                 }
             }
         }

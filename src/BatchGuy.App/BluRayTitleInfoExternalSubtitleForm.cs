@@ -1,4 +1,5 @@
-﻿using BatchGuy.App.MKVMerge.Interfaces;
+﻿using BatchGuy.App.Extensions;
+using BatchGuy.App.MKVMerge.Interfaces;
 using BatchGuy.App.MKVMerge.Models;
 using BatchGuy.App.MKVMerge.Services;
 using BatchGuy.App.Parser.Models;
@@ -21,6 +22,10 @@ namespace BatchGuy.App
         private bool _isAdd;
         private BluRaySummaryInfo _currentBluRaySummaryInfo;
         private BindingList<MKVMergeLanguageItem> _bindingListMKVMergeLanguageItem = new BindingList<MKVMergeLanguageItem>();
+        private MKVMergeItem _currentMKVMergeItem;
+
+        public bool WasSaved { get; set; }
+        public bool WasCancelled { get; set; }
 
         public BluRayTitleInfoExternalSubtitleForm()
         {
@@ -32,6 +37,7 @@ namespace BatchGuy.App
             _currentBluRaySummaryInfo = bluRaySummaryInfo;
             _isAdd = true;
             lblExternalSubtitleEAC3ToTrackId.Text = string.Empty;
+            _currentMKVMergeItem = new MKVMergeItem() { Compression = "determine automatically", DefaultTrackFlag = "no", ForcedTrackFlag = "no" };
         }
 
         private void BluRayTitleInfoExternalSubtitleForm_Load(object sender, EventArgs e)
@@ -50,6 +56,85 @@ namespace BatchGuy.App
 
             bsMKVMergeLanguageItem.DataSource = _bindingListMKVMergeLanguageItem;
             _bindingListMKVMergeLanguageItem.AllowEdit = false;
+        }
+
+        private void cbExternalSubtitleLanguage_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.HandlesCBExternalSubtitleLanguageSelectedIndexChanged();
+        }
+
+        private void HandlesCBExternalSubtitleLanguageSelectedIndexChanged()
+        {
+            _currentMKVMergeItem.Language = (MKVMergeLanguageItem)cbExternalSubtitleLanguage.SelectedItem;
+        }
+
+        private void btnOpenExternalSubtitleFilePathDialog_Click(object sender, EventArgs e)
+        {
+            this.HandlesBTNOpenExternalSubtitleFilePathDialogClick();
+        }
+
+        private void HandlesBTNOpenExternalSubtitleFilePathDialogClick()
+        {
+            ofdFileDialog.FileName = "Subtitle";
+            ofdFileDialog.Filter = "SubRip|*.srt|Advanced SubStation Alpha|*.ass|DVDSubtitle|*.sub|SubStation Alpha|*.ssa";
+            DialogResult result = ofdFileDialog.ShowDialog();
+            if (result == System.Windows.Forms.DialogResult.OK)
+            {
+                var subtitlePath = ofdFileDialog.FileName;
+                txtExternalSubtitlePath.Text = subtitlePath;
+            }
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            this.HandlesBtnSaveClick();
+        }
+
+        private void HandlesBtnSaveClick()
+        {
+            if (this.IsScreenValid())
+            {
+                if (_isAdd)
+                    this.AddExternalSubtitle();
+
+                this.WasSaved = true;
+                this.Close();
+            }
+        }
+
+        private void AddExternalSubtitle()
+        {
+            string id = string.Empty;
+            string file = txtExternalSubtitlePath.Text;
+
+            if (_currentBluRaySummaryInfo.BluRayTitleInfo.Subtitles != null)
+                id = string.Format("Ext{0}:", _currentBluRaySummaryInfo.BluRayTitleInfo.Subtitles.Where(s => s.IsExternal == true).Count() + 1);
+            else
+                id = "Ext1:";
+
+            BluRayTitleSubtitle subtitle = new BluRayTitleSubtitle()
+            {
+                CanEdit = true,
+                IsCommentary = false,
+                IsExternal = true,
+                IsSelected = false,
+                Id = id,
+                MKVMergeItem = _currentMKVMergeItem,
+                ExternalSubtitlePath = file,
+                 Language = _currentMKVMergeItem.Language.Language
+            };
+
+            subtitle.Text = string.Format("{0} Subtitle ({1}), {2}", id, file.SubtitleFileExtension(), subtitle.MKVMergeItem.Language.Language);
+
+            if (_currentBluRaySummaryInfo.BluRayTitleInfo.Subtitles == null)
+                _currentBluRaySummaryInfo.BluRayTitleInfo.Subtitles = new List<BluRayTitleSubtitle>();
+
+            _currentBluRaySummaryInfo.BluRayTitleInfo.Subtitles.Add(subtitle);
+        }
+
+        private bool IsScreenValid()
+        {
+            return true;
         }
     }
 }

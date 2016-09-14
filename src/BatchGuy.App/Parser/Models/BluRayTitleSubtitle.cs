@@ -28,5 +28,6 @@ namespace BatchGuy.App.Parser.Models
             }
         }
         public bool CanEdit { get; set; }
+        public bool IsExternal { get; set; }
     }
 }
