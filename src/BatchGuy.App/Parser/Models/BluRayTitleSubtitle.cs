@@ -27,5 +27,6 @@ namespace BatchGuy.App.Parser.Models
                     return string.Empty;
             }
         }
+        public bool CanEdit { get; set; }
     }
 }

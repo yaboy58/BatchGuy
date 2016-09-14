@@ -633,5 +633,18 @@ namespace BatchGuy.App
         {
             _currentMKVMergeItem.Compression = cbMKVToolNixGUICompression.Text;
         }
+
+        private void dgvSubtitles_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            this.HandlesDGVSubtitlesCellDoubleClick(e);
+        }
+
+        private void HandlesDGVSubtitlesCellDoubleClick(DataGridViewCellEventArgs e)
+        {
+            var id = dgvSubtitles.Rows[e.RowIndex].Cells[1].Value;
+            _currentBluRayTitleSubtitle = _bluRaySummaryInfo.BluRayTitleInfo.Subtitles.SingleOrDefault(a => a.Id == id.ToString());
+            if (_currentBluRayTitleSubtitle.CanEdit == false)
+                return;
+        }
     }
 }
