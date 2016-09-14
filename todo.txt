@@ -1,13 +1,10 @@
 --todo
-*Users now have more control over Remux File Names by being able to choose Remux Naming Convention Templates in the BatchGuy Settings Screens
-*BatchGuy codebase re-factor to use the Strategy Pattern to implement and extend Remux Namiing Convention Template logic
-*Encode Template 1 created to encapsulate encode file names
-*Remux Template 1 created.  Example output name for this template is: "TV Show S01E01 Episode Name 1080p Remux AVC FLAC5.1-Tag.mkv"
-*Remux Template 2 created.  Example output name for this template is: "TV Show, S01E01 (2016).mkv"
-*Remux Template 3 created.  Example output name for this template is: "2x01 Episode Name.mkv"
-*Label on the Remux Naming Convention Section informs the user what the active Remux Naming Convention Template is and an example
-*BatchGuy now has over 130 Unit Tests
-*Fixed bug where user checks Is Remux Checkbox, goes to episodes, then unchecks Is Remux Checkbox, Re-checks Is Remux Checkbox and then chooses to make mkvmerge batch file, which resulted in a error because the mkvmerge information was null
+
+*Re-do how external subtitles are added.
+-Row Template or Popup
+-Logic for eac3toTrack Id, probably just find what the highest number is and increment + the colon
+-Handle adding vs editing an external subtitle row and prevent internal subs from being edited
+-Remove the Add/Remove icons from the Subtitle Grid
 
 
 --possible nice to haves
