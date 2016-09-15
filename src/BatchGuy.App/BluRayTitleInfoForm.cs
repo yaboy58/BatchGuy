@@ -62,7 +62,7 @@ namespace BatchGuy.App
             this.SetScreenInfo();
             this.gbScreen.SetEnabled(false);
             this.SetMKVToolNixGUIControlsDefaults();
-            this.SetGBMKVToolNixGUIEnabledStatus(false);
+            this.SetGBMKVToolNixGUIEnabledStatus(true);
 
             if (_bluRaySummaryInfo.BluRayTitleInfo != null)
             {
@@ -461,30 +461,25 @@ namespace BatchGuy.App
 
         private void SetMKVMergetItemDefaults()
         {
-            if (_eac3ToConfiguration.IsExtractForRemux)
-            {
-                IJsonSerializationService<ISOLanguageCodeCollection> jsonSerializationService = new JsonSerializationService<ISOLanguageCodeCollection>();
-                IMKVMergeLanguageService languageService = new MKVMergeLanguageService(jsonSerializationService);
-                IMKVMergeDefaultSettingsService mkvMergeDefaultSettingsService = new MKVMergeDefaultSettingsService(_eac3ToConfiguration, Program.ApplicationSettings,
-                    _bluRaySummaryInfo, languageService, _audioService);
 
-                mkvMergeDefaultSettingsService.SetAudioDefaultSettings();
-                mkvMergeDefaultSettingsService.SetSubtitleDefaultSettings();
-            }
+            IJsonSerializationService<ISOLanguageCodeCollection> jsonSerializationService = new JsonSerializationService<ISOLanguageCodeCollection>();
+            IMKVMergeLanguageService languageService = new MKVMergeLanguageService(jsonSerializationService);
+            IMKVMergeDefaultSettingsService mkvMergeDefaultSettingsService = new MKVMergeDefaultSettingsService(_eac3ToConfiguration, Program.ApplicationSettings,
+                _bluRaySummaryInfo, languageService, _audioService);
+
+            mkvMergeDefaultSettingsService.SetAudioDefaultSettings();
+            mkvMergeDefaultSettingsService.SetSubtitleDefaultSettings();
         }
 
         private void SetMKVToolNixGUIControlsDefaults()
         {
             this.SetMKVToolNixGUIControlsEnabledStatus();
-            if (_eac3ToConfiguration.IsExtractForRemux)
-            {
-                LoadMKVMergeLangugeItemsDropDown();
-            }
+            this.LoadMKVMergeLangugeItemsDropDown();
         }
 
         private void SetMKVToolNixGUIControlsEnabledStatus()
         {
-            gbMKVToolNixGUI.Enabled = _eac3ToConfiguration.IsExtractForRemux;
+            gbMKVToolNixGUI.Enabled = true;
         }
 
         private void cbMKVToolNixGUILanguage_SelectedIndexChanged(object sender, EventArgs e)
@@ -505,14 +500,11 @@ namespace BatchGuy.App
 
         private void SetMKVToolNixControlsWithValues()
         {
-            if (_eac3ToConfiguration.IsExtractForRemux)
-            {
-                txtMKVToolNixGUITrackName.Text = _currentMKVMergeItem.TrackName;
-                cbMKVToolNixGUILanguage.SelectedValue = _currentMKVMergeItem.Language.Value;
-                cbMKVToolNixGUIDefaultTrackFlag.SelectedIndex = cbMKVToolNixGUIDefaultTrackFlag.FindString(_currentMKVMergeItem.DefaultTrackFlag);
-                cbMKVToolNixGUIForcedTrackFlag.SelectedIndex = cbMKVToolNixGUIForcedTrackFlag.FindString(_currentMKVMergeItem.ForcedTrackFlag);
-                cbMKVToolNixGUICompression.SelectedIndex = cbMKVToolNixGUICompression.FindString(_currentMKVMergeItem.Compression);
-            }
+            txtMKVToolNixGUITrackName.Text = _currentMKVMergeItem.TrackName;
+            cbMKVToolNixGUILanguage.SelectedValue = _currentMKVMergeItem.Language.Value;
+            cbMKVToolNixGUIDefaultTrackFlag.SelectedIndex = cbMKVToolNixGUIDefaultTrackFlag.FindString(_currentMKVMergeItem.DefaultTrackFlag);
+            cbMKVToolNixGUIForcedTrackFlag.SelectedIndex = cbMKVToolNixGUIForcedTrackFlag.FindString(_currentMKVMergeItem.ForcedTrackFlag);
+            cbMKVToolNixGUICompression.SelectedIndex = cbMKVToolNixGUICompression.FindString(_currentMKVMergeItem.Compression);
 
             if (_mkvMergeChangeTriggeredByDataGridCellClick)
                 _mkvMergeChangeTriggeredByDataGridCellClick = false;
@@ -556,49 +548,41 @@ namespace BatchGuy.App
 
         private void SetGBMKVToolNixGUIEnabledStatus(bool enabled)
         {
-            if (_eac3ToConfiguration.IsExtractForRemux == false)
-            {
-                gbMKVToolNixGUI.Enabled = false;
-                return;
-            }
-
             gbMKVToolNixGUI.Enabled = enabled;
         }
 
         private void SetGridRowBackgroundIfUndetermindLanguage()
         {
-            if (_eac3ToConfiguration.IsExtractForRemux)
+
+            if (_bluRaySummaryInfo.BluRayTitleInfo.AudioList != null)
             {
-                if (_bluRaySummaryInfo.BluRayTitleInfo.AudioList != null)
+                foreach (DataGridViewRow row in dgvAudio.Rows)
                 {
-                    foreach (DataGridViewRow row in dgvAudio.Rows)
+                    string id = (string)row.Cells[1].Value;
+                    BluRayTitleAudio audio = _bluRaySummaryInfo.BluRayTitleInfo.AudioList.Where(s => s.Id == id).SingleOrDefault();
+                    if (audio != null && audio.MKVMergeItem.Language.Language == "Undetermined")
                     {
-                        string id = (string)row.Cells[1].Value;
-                        BluRayTitleAudio audio = _bluRaySummaryInfo.BluRayTitleInfo.AudioList.Where(s => s.Id == id).SingleOrDefault();
-                        if (audio != null && audio.MKVMergeItem.Language.Language == "Undetermined")
+                        row.DefaultCellStyle.BackColor = Color.Yellow;
+                        foreach (DataGridViewCell cell in row.Cells)
                         {
-                            row.DefaultCellStyle.BackColor = Color.Yellow;
-                            foreach (DataGridViewCell cell in row.Cells)
-                            {
-                                cell.ToolTipText = "eac3to language could not be matched with mkvmerge langage";
-                            }
+                            cell.ToolTipText = "eac3to language could not be matched with mkvmerge langage";
                         }
                     }
                 }
+            }
 
-                if (_bluRaySummaryInfo.BluRayTitleInfo.Subtitles != null)
+            if (_bluRaySummaryInfo.BluRayTitleInfo.Subtitles != null)
+            {
+                foreach (DataGridViewRow row in dgvSubtitles.Rows)
                 {
-                    foreach (DataGridViewRow row in dgvSubtitles.Rows)
+                    string id = (string)row.Cells[1].Value;
+                    BluRayTitleSubtitle subtitle = _bluRaySummaryInfo.BluRayTitleInfo.Subtitles.Where(s => s.Id == id).SingleOrDefault();
+                    if (subtitle != null && subtitle.MKVMergeItem.Language.Language == "Undetermined")
                     {
-                        string id = (string)row.Cells[1].Value;
-                        BluRayTitleSubtitle subtitle = _bluRaySummaryInfo.BluRayTitleInfo.Subtitles.Where(s => s.Id == id).SingleOrDefault();
-                        if (subtitle != null && subtitle.MKVMergeItem.Language.Language == "Undetermined")
+                        row.DefaultCellStyle.BackColor = Color.Yellow;
+                        foreach (DataGridViewCell cell in row.Cells)
                         {
-                            row.DefaultCellStyle.BackColor = Color.Yellow;
-                            foreach (DataGridViewCell cell in row.Cells)
-                            {
-                                cell.ToolTipText = "eac3to language could not be matched with mkvmerge langage";
-                            }
+                            cell.ToolTipText = "eac3to language could not be matched with mkvmerge langage";
                         }
                     }
                 }
@@ -639,9 +623,6 @@ namespace BatchGuy.App
         {
             var id = dgvSubtitles.Rows[e.RowIndex].Cells[1].Value;
             _currentBluRayTitleSubtitle = _bluRaySummaryInfo.BluRayTitleInfo.Subtitles.SingleOrDefault(a => a.Id == id.ToString());
-
-            if (_eac3ToConfiguration.IsExtractForRemux == false)
-                return;
 
             if (_currentBluRayTitleSubtitle.IsExternal == false)
             {

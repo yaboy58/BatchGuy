@@ -35,32 +35,29 @@ namespace BatchGuy.App.Settings.Services
 
         public void SetAudioDefaultSettings()
         {
-            if (_eac3toConfiguration.IsExtractForRemux)
+            if (_bluRaySummaryInfo.BluRayTitleInfo.AudioList != null)
             {
-                if (_bluRaySummaryInfo.BluRayTitleInfo.AudioList != null)
+                foreach (BluRayTitleAudio audio in _bluRaySummaryInfo.BluRayTitleInfo.AudioList)
                 {
-                    foreach (BluRayTitleAudio audio in _bluRaySummaryInfo.BluRayTitleInfo.AudioList)
-                    {
-                        audio.MKVMergeItem = new MKVMergeItem() { DefaultTrackFlag = "no", ForcedTrackFlag = "no", Language = _languageService.GetLanguageByName(audio.Language), TrackName = "", Compression = "determine automatically" };
-                    }
+                    audio.MKVMergeItem = new MKVMergeItem() { DefaultTrackFlag = "no", ForcedTrackFlag = "no", Language = _languageService.GetLanguageByName(audio.Language), TrackName = "", Compression = "determine automatically" };
+                }
 
-                    if (_applicationSettings.AudioLanguageAlwaysSelectedEnabled)
+                if (_applicationSettings.AudioLanguageAlwaysSelectedEnabled)
+                {
+                    foreach (BluRayTitleAudio audio in _bluRaySummaryInfo.BluRayTitleInfo.AudioList.Where(a => a.Text.ToLower().Contains(_applicationSettings.AudioMKVMergeDefaultSettings.DefaultMKVMergeItem.Language.Language.ToLower())))
                     {
-                        foreach (BluRayTitleAudio audio in _bluRaySummaryInfo.BluRayTitleInfo.AudioList.Where(a => a.Text.ToLower().Contains(_applicationSettings.AudioMKVMergeDefaultSettings.DefaultMKVMergeItem.Language.Language.ToLower())))
+                        if (_applicationSettings.AudioMKVMergeDefaultSettings.AudioTypeFilterCriteria == "Any Type")
                         {
-                            if (_applicationSettings.AudioMKVMergeDefaultSettings.AudioTypeFilterCriteria == "Any Type")
+                            audio.IsSelected = true;
+                            this.SetBluRayMKVMergeItemDefaults(audio.MKVMergeItem, _applicationSettings.AudioMKVMergeDefaultSettings.DefaultMKVMergeItem);
+                        }
+                        else
+                        {
+                            EnumAudioType audioTypeFilter = _audioService.GetAudioTypeByName(_applicationSettings.AudioMKVMergeDefaultSettings.AudioTypeFilterCriteria);
+                            if (audioTypeFilter == audio.AudioType)
                             {
                                 audio.IsSelected = true;
                                 this.SetBluRayMKVMergeItemDefaults(audio.MKVMergeItem, _applicationSettings.AudioMKVMergeDefaultSettings.DefaultMKVMergeItem);
-                            }
-                            else
-                            {
-                                EnumAudioType audioTypeFilter = _audioService.GetAudioTypeByName(_applicationSettings.AudioMKVMergeDefaultSettings.AudioTypeFilterCriteria);
-                                if (audioTypeFilter == audio.AudioType)
-                                {
-                                    audio.IsSelected = true;
-                                    this.SetBluRayMKVMergeItemDefaults(audio.MKVMergeItem, _applicationSettings.AudioMKVMergeDefaultSettings.DefaultMKVMergeItem);
-                                }
                             }
                         }
                     }

@@ -3,13 +3,14 @@
 *mkvmerge for encodes
 
 Front End (EAC3ToConfiguration has an Extension Method that tells the number of episodes, you can use this for the drop down box column):
-	1) Besides the logic for Episode Name, remove checks for IsRemux on BluRay Title Info Screen, so encode mode can access mkvmerge controls
+	1) Besides the logic for Episode Name, remove checks for IsRemux on BluRay Title Info Screen, so encode mode can access mkvmerge controls -done
 	2) Load and maybe Save (.batchGuyEac3toSettings) on x264 Screen
 	3) Disable controls until it is loaded
-	4) Add new property called episode number on X264File Model
-	5) Add new drop down for X264File.EpisodeNumber (string) and make it a drop down and figure out hwo to load with the number of episodes
+	4) Add new property called episode number on X264File Model -done
+	5) Add new drop down for X264File.EpisodeNumber (string) and make it a drop down and figure out hwo to load with the number of episodes -done
 	*6) When they try to make the mkvmerge file, validate that all episodes mapped and all unique
 	*7) Before saving, shove the filepath/name of encode into the bluraysummary.titleinfo.episodename based on the episode number drop down
+	
 
 Back End:
 	1) Create new MKVMerge\Services\MKVMergeBatchFileWriteForEncodeService and inherit from IMKVMergeBatchFileWriteService
