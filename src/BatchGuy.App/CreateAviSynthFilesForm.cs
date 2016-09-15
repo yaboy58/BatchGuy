@@ -16,24 +16,33 @@ using BatchGuy.App.Extensions;
 using BatchGuy.App.ThirdParty.FolderSelectDialog;
 using BatchGuy.App.Shared.Events;
 using BatchGuy.App.Constants;
-using BatchGuy.App.Shared.Models;
+using BatchGuy.App.Shared.Services;
+using BatchGuy.App.Eac3To.Models;
+using BatchGuy.App.Shared.Interface;
+using BatchGuy.App.Eac3To.Interfaces;
+using BatchGuy.App.Eac3To.Services;
+using log4net;
+using System.Reflection;
+using BatchGuy.App.Enums;
 
 namespace BatchGuy.App
 {
     public partial class CreateAviSynthFilesForm : Form
     {
         public event EventHandler<DialogInitialDirectoryChangedEventArgs> DialogInitialDirectoryChanged;
+        public static readonly ILog _log = LogManager.GetLogger(typeof(CreateX264BatchFileForm));
 
         private IAviSynthFileService _fileService; //ioc
         private IAviSynthValidationService _validationService; //ioc
         private IAviSynthWriteService _avsService; //ioc
+        private BatchGuyEAC3ToSettings _batchGuyEAC3ToSettings;
+        private string _settingsExtension = "batchGuyEac3toSettings";
 
         public CreateAviSynthFilesForm()
         {
             InitializeComponent();
+            gbScreen.SetEnabled(false);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.SetAviSynthTemplateTextBox();
-            this.SetDirectoryUserControlValues();
             this.SetToolTips();
             txtNumberOfFiles.Focus();
         }
@@ -51,17 +60,10 @@ namespace BatchGuy.App
             txtAVSTemplate.Text = sb.ToString();
         }
 
-        private void SetDirectoryUserControlValues()
-        {
-            setDirectoryUserControl.ComboBoxCaptionText = "(.mkv) Files Directory:*";
-            setDirectoryUserControl.LabelDirectoryCaptionText = @"Example: FFVideoSource(""{0}\e01\video01.mkv"")";
-        }
-
         private void SetToolTips()
         {
            new ToolTip().SetToolTip(txtOutputDirectory, "Directory where AviSynth Files will be saved");
            new ToolTip().SetToolTip(txtNumberOfFiles, "Number of episodes");
-           new ToolTip().SetToolTip(setDirectoryUserControl, "(.mkv) files directory for FFVideoSource");
         }
 
         private void btnCreateAVSFiles_Click(object sender, EventArgs e)
@@ -98,8 +100,8 @@ namespace BatchGuy.App
                   NamingConvention = "video", //hardcoded for now
                    NumberOfFiles = Convert.ToInt32(txtNumberOfFiles.Text),
                     VideoFilter = cbVideoFilter.Text,
-                      VideoToEncodeDirectory = setDirectoryUserControl.CLIDirectory,
-                       VideoToEncodeDirectoryType = setDirectoryUserControl.OutputDirectoryType
+                      VideoToEncodeDirectory = _batchGuyEAC3ToSettings.AVSBatchSettings.VideoToEncodeDirectory,
+                       VideoToEncodeDirectoryType = _batchGuyEAC3ToSettings.AVSBatchSettings.VideoToEncodeDirectoryType
             };
         }
 
@@ -113,11 +115,6 @@ namespace BatchGuy.App
             if (txtOutputDirectory.Text == string.Empty)
             {
                 MessageBox.Show("Please enter a file directory", "Directory Error.", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-            if (string.IsNullOrEmpty(setDirectoryUserControl.CLIDirectory))
-            {
-                MessageBox.Show("Please enter the directory where the videos to encode are located", "Invalid AviSynth Script.", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
             if (txtNumberOfFiles.Text == string.Empty || !txtNumberOfFiles.Text.IsNumeric()  || txtNumberOfFiles.Text.StringToInt() <= 0)
@@ -173,11 +170,8 @@ namespace BatchGuy.App
             else
             {
                 MessageBox.Show("AVS Scripts have been created!", "Success.", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.SetAviSynthTemplateTextBox();
-                txtNumberOfFiles.Text = "";
-                txtNumberOfFiles.Focus();
             }
-            this.Close();
+            gbScreen.SetEnabled(true);
         }
 
         protected virtual void OnDialogInitialDirectoryChanged(object sender, DialogInitialDirectoryChangedEventArgs e)
@@ -186,6 +180,145 @@ namespace BatchGuy.App
             if (handler != null)
             {
                 handler(this, e);
+            }
+        }
+
+        private void loadToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+           openFileDialog.Filter = "BatchGuy File|*.batchGuyEac3toSettings";
+            openFileDialog.FileName = "";
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string settingsFile = openFileDialog.FileName;
+                this.HandlesLoadToolStripMenuItemClick(settingsFile);
+            }
+        }
+
+        private void HandlesLoadToolStripMenuItemClick(string settingsFile)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(settingsFile))
+                {
+                    IJsonSerializationService<BatchGuyEAC3ToSettings> jsonSerializationService = new JsonSerializationService<BatchGuyEAC3ToSettings>();
+                    IBatchGuyEAC3ToSettingsService batchGuyEAC3ToSettingsService = new BatchGuyEAC3ToSettingsService(jsonSerializationService);
+                    _batchGuyEAC3ToSettings = batchGuyEAC3ToSettingsService.GetBatchGuyEAC3ToSettings(settingsFile);
+                    if (batchGuyEAC3ToSettingsService.Errors.Count() > 0)
+                    {
+                        MessageBox.Show(batchGuyEAC3ToSettingsService.Errors.GetErrorMessage(), "Error Occurred.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        this.LoadScreen();
+                        gbScreen.SetEnabled(true);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("There was an error trying to load the eac3to Settings File", "Error Occurred.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                _log.ErrorFormat(Program.GetLogErrorFormat(), ex.Message, MethodBase.GetCurrentMethod().Name);
+            }
+        }
+
+        private void LoadScreen()
+        {
+            this.LoadEAC3ToSettingsControls();
+            this.LoadMKVSettingsControls();
+        }
+
+        private void LoadEAC3ToSettingsControls()
+        {
+            if (_batchGuyEAC3ToSettings.EAC3ToSettings.OutputDirectoryType == EnumDirectoryType.DirectoryPerEpisode)
+                lblDirectoryType.Text = "Directory Per Episode";
+            else
+                lblDirectoryType.Text = "Single Directory";
+        }
+
+        private void LoadMKVSettingsControls()
+        {
+            if (_batchGuyEAC3ToSettings.AVSBatchSettings == null)
+                _batchGuyEAC3ToSettings.AVSBatchSettings = new AviSynthBatchSettings() { VideoFilter = "FFVideoSource" };
+
+            _batchGuyEAC3ToSettings.AVSBatchSettings.VideoToEncodeDirectory = _batchGuyEAC3ToSettings.EAC3ToSettings.EAC3ToOutputPath;
+            _batchGuyEAC3ToSettings.AVSBatchSettings.VideoToEncodeDirectoryType = _batchGuyEAC3ToSettings.EAC3ToSettings.OutputDirectoryType;
+            txtMKVFilesDirectory.Text = _batchGuyEAC3ToSettings.AVSBatchSettings.VideoToEncodeDirectory;
+            txtOutputDirectory.Text = _batchGuyEAC3ToSettings.AVSBatchSettings.AviSynthFilesOutputDirectoryPath;
+            txtNumberOfFiles.Text = _batchGuyEAC3ToSettings.BluRayDiscs.NumberOfEpisodes().ToString();
+            cbVideoFilter.SelectedIndex = cbVideoFilter.FindString(_batchGuyEAC3ToSettings.AVSBatchSettings.VideoFilter);
+
+            if (_batchGuyEAC3ToSettings.AVSScript == null)
+            {
+                this.SetAviSynthTemplateTextBox();
+                _batchGuyEAC3ToSettings.AVSScript = new AviSynthTemplateScript() { Script = txtAVSTemplate.Text };
+            }
+            else
+            {
+                txtAVSTemplate.Text = _batchGuyEAC3ToSettings.AVSScript.Script;
+            }
+
+        }
+
+        private void CreateAviSynthFilesForm_DragEnter(object sender, DragEventArgs e)
+        {
+            this.HandlesCreateAviSynthFilesFormDragEnter(e);
+        }
+
+        private void HandlesCreateAviSynthFilesFormDragEnter(DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                e.Effect = DragDropEffects.Copy;
+            }
+        }
+
+        private void CreateAviSynthFilesForm_DragDrop(object sender, DragEventArgs e)
+        {
+            this.HandlesCreateAviSynthFilesFormDragDrop(e);
+        }
+
+        private void HandlesCreateAviSynthFilesFormDragDrop(DragEventArgs e)
+        {
+            foreach (string file in (Array)e.Data.GetData(DataFormats.FileDrop))
+            {
+                if (this.IsBatchGuyEac3toSettingsFile(file))
+                {
+                    this.HandlesLoadToolStripMenuItemClick(file);
+                }
+            }
+        }
+
+        private bool IsBatchGuyEac3toSettingsFile(string file)
+        {
+            if (file.EndsWith(_settingsExtension))
+                return true;
+            else
+                return false;
+        }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.HandlessaveToolStripMenuItemClick();
+        }
+
+        private void HandlessaveToolStripMenuItemClick()
+        {
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Filter = "BatchGuy File|*.batchGuyEac3toSettings";
+            sfd.Title = "Save eac3to Settings File";
+            sfd.ShowDialog();
+
+            if (!string.IsNullOrEmpty(sfd.FileName))
+            {
+                _batchGuyEAC3ToSettings.AVSBatchSettings = this.GetAVSBatchSettings();
+                _batchGuyEAC3ToSettings.AVSScript = this.GetAVSScript();
+                IJsonSerializationService<BatchGuyEAC3ToSettings> jsonSerializationService = new JsonSerializationService<BatchGuyEAC3ToSettings>();
+                IBatchGuyEAC3ToSettingsService batchGuyEAC3ToSettingsService = new BatchGuyEAC3ToSettingsService(jsonSerializationService);
+                batchGuyEAC3ToSettingsService.Save(sfd.FileName, _batchGuyEAC3ToSettings);
+                if (batchGuyEAC3ToSettingsService.Errors.Count() > 0)
+                {
+                    MessageBox.Show(batchGuyEAC3ToSettingsService.Errors.GetErrorMessage(), "Error Occurred.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
     }

@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BatchGuy.App.Parser.Models;
 using BatchGuy.App.X264.Models;
+using BatchGuy.App.AviSynth.Models;
 
 namespace BatchGuy.App.Eac3To.Models
 {
@@ -15,5 +16,7 @@ namespace BatchGuy.App.Eac3To.Models
         public List<BluRayDiscInfo> BluRayDiscs { get; set; }
         public X264FileSettings X264FileSettings { get; set; }
         public List<X264File> X264Files { get; set; }
+        public AviSynthTemplateScript AVSScript { get; set; }
+        public AviSynthBatchSettings AVSBatchSettings { get; set; }
     }
 }

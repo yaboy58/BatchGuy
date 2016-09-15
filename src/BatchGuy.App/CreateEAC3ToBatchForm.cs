@@ -514,7 +514,6 @@ namespace BatchGuy.App
         private void HandleChkExtractForRemuxCheckedChanged()
         {
             gbExtractForRemux.Enabled = chkExtractForRemux.Checked;
-            gbMKVMergeInfo.Enabled = chkExtractForRemux.Checked;
             _eac3toConfiguration.IsExtractForRemux = chkExtractForRemux.Checked;
             this.SetBtnCreateMKVMergeBatFileEnabledStatus();
         }
