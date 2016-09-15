@@ -1,8 +1,23 @@
 --todo
-New "Add External Subtitles" button added to the BluRay Title Info Screen so users can add (.srt), (.ass), (.sub) and (.ssa) subtitles
-New BluRay Title Info External Subtitle Popup Form created to allow users to choose the external subtitle langugage and file location when pressing the "Add External Subtitles" button
-User can edit the language of external subtitles
-User can delete external subtitles
+
+*mkvmerge for encodes
+
+Front End (EAC3ToConfiguration has an Extension Method that tells the number of episodes, you can use this for the drop down box column):
+	1) Besides the logic for Episode Name, remove checks for IsRemux on BluRay Title Info Screen, so encode mode can access mkvmerge controls
+	2) Load and maybe Save (.batchGuyEac3toSettings) on x264 Screen
+	3) Disable controls until it is loaded
+	4) Add new property called episode number on X264File Model
+	5) Add new drop down for X264File.EpisodeNumber (string) and make it a drop down and figure out hwo to load with the number of episodes
+	*6) When they try to make the mkvmerge file, validate that all episodes mapped and all unique
+	*7) Before saving, shove the filepath/name of encode into the bluraysummary.titleinfo.episodename based on the episode number drop down
+
+Back End:
+	1) Create new MKVMerge\Services\MKVMergeBatchFileWriteForEncodeService and inherit from IMKVMergeBatchFileWriteService
+	2) Looks like the constructor will need the X264File list and X264FileSettings 
+	3) For MKVMergeBatchFileWriteForEncodeService.IsValid, here you can check to see if all X264Files.EpisodeNumber has a value and they are unique or let #6 on Front End do it
+	4) Make a private method to do #7 on Front End or maybe let the Front End do it
+	5) Make EAC3ToConfiguration.IsVideoNameForMkvMerge
+	6) EncodeTemplate1EAC3ToOutputNamingService.GetVideoName, use EAC3ToConfiguration.IsVideoNameForMkvMerge to determine hardcoded name or episode name, which will have bluraysummary.titleinfo.episodename
 
 
 --possible nice to haves
