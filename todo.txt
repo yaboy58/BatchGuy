@@ -4,10 +4,10 @@
 
 Front End (EAC3ToConfiguration has an Extension Method that tells the number of episodes, you can use this for the drop down box column):
 	1) Besides the logic for Episode Name, remove checks for IsRemux on BluRay Title Info Screen, so encode mode can access mkvmerge controls -done
-	2) Load and maybe Save (.batchGuyEac3toSettings) on x264 Screen
-	3) Disable controls until it is loaded
+	2) Load and maybe Save (.batchGuyEac3toSettings) on x264 Screen -done
+	3) Disable controls until it is loaded -done
 	4) Add new property called episode number on X264File Model -done
-	5) Add new drop down for X264File.EpisodeNumber (string) and make it a drop down and figure out hwo to load with the number of episodes -done
+	5) Add new drop down for X264File.EpisodeNumber (string) and make it a drop down and figure out how to load with the number of episodes -done
 	*6) When they try to make the mkvmerge file, validate that all episodes mapped and all unique
 	*7) Before saving, shove the filepath/name of encode into the bluraysummary.titleinfo.episodename based on the episode number drop down
 	8) Enable mkvmerge section on eac3to screen
@@ -20,7 +20,8 @@ Back End:
 	5) Make EAC3ToConfiguration.IsVideoNameForMkvMerge
 	6) EncodeTemplate1EAC3ToOutputNamingService.GetVideoName, use EAC3ToConfiguration.IsVideoNameForMkvMerge to determine hardcoded name or episode name, which will have bluraysummary.titleinfo.episodename
 
-DON'T FORGET TO WRITE CODE IN EAC3TO TO SAVE IFNO ENTERED ON OTHER SCREENS IN CASE THEY GO BACK AND FORTH
+1) DON'T FORGET TO WRITE CODE IN EAC3TO TO SAVE IFNO ENTERED ON OTHER SCREENS IN CASE THEY GO BACK AND FORTH -done
+2) MIGHT WANT TO CLEAR SOME X264 INFO IF THEY GO BACK AND CHANGE STUFF ON EAC3TO
 
 Clean Up:
 X264FileSettings.X264EncodeAndLogFileOutputDirectoryPath and X264EncodeAndLogFileOutputDirectoryPathType not needed anymore, using it but get rid of it as eac3to settings has the info

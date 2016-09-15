@@ -51,6 +51,7 @@ namespace BatchGuy.App
         private EAC3ToConfiguration _eac3toConfiguration = new EAC3ToConfiguration() { RemuxFileNameTemplate = new EAC3ToRemuxFileNameTemplate() };
         private string _settingsExtension = "batchGuyEac3toSettings";
         private string _mkvMergePath = string.Empty;
+        private BatchGuyEAC3ToSettings _batchGuyEAC3ToSettings;
 
         public static readonly ILog _log = LogManager.GetLogger(typeof(CreateEAC3ToBatchForm));
 
@@ -576,10 +577,15 @@ namespace BatchGuy.App
                     dgvBluRayDiscInfo.CurrentCell = null; //force the cell change so cell changed event fires
                     dgvBluRaySummary.CurrentCell = null; //force the cell change so cell changed event fires
                     List<BluRayDiscInfo> discs = this.GetBluRayDiscInfoList();
-                    BatchGuyEAC3ToSettings settings = new BatchGuyEAC3ToSettings() { BluRayDiscs = discs, EAC3ToSettings = _eac3toConfiguration };
+                    if (_batchGuyEAC3ToSettings == null)
+                        _batchGuyEAC3ToSettings = new BatchGuyEAC3ToSettings();
+
+                    _batchGuyEAC3ToSettings.BluRayDiscs = discs;
+                    _batchGuyEAC3ToSettings.EAC3ToSettings = _eac3toConfiguration;
+
                     IJsonSerializationService<BatchGuyEAC3ToSettings> jsonSerializationService = new JsonSerializationService<BatchGuyEAC3ToSettings>();
                     IBatchGuyEAC3ToSettingsService batchGuyEAC3ToSettingsService = new BatchGuyEAC3ToSettingsService(jsonSerializationService);
-                    batchGuyEAC3ToSettingsService.Save(sfd.FileName, settings);
+                    batchGuyEAC3ToSettingsService.Save(sfd.FileName, _batchGuyEAC3ToSettings);
                     if (batchGuyEAC3ToSettingsService.Errors.Count() > 0)
                     {
                         MessageBox.Show(batchGuyEAC3ToSettingsService.Errors.GetErrorMessage(), "Error Occurred.", MessageBoxButtons.OK, MessageBoxIcon.Error);                        
@@ -607,14 +613,14 @@ namespace BatchGuy.App
                 {
                     IJsonSerializationService<BatchGuyEAC3ToSettings> jsonSerializationService = new JsonSerializationService<BatchGuyEAC3ToSettings>();
                     IBatchGuyEAC3ToSettingsService batchGuyEAC3ToSettingsService = new BatchGuyEAC3ToSettingsService(jsonSerializationService);
-                    BatchGuyEAC3ToSettings batchGuyEAC3ToSettings = batchGuyEAC3ToSettingsService.GetBatchGuyEAC3ToSettings(settingsFile);
+                    _batchGuyEAC3ToSettings = batchGuyEAC3ToSettingsService.GetBatchGuyEAC3ToSettings(settingsFile);
                     if (batchGuyEAC3ToSettingsService.Errors.Count() > 0)
                     {
                         MessageBox.Show(batchGuyEAC3ToSettingsService.Errors.GetErrorMessage(), "Error Occurred.", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     else
                     {
-                        this.ReloadEac3ToSettingsAndBluRayDiscs(batchGuyEAC3ToSettings);
+                        this.ReloadEac3ToSettingsAndBluRayDiscs(_batchGuyEAC3ToSettings);
                         this.ReloadRemux();
                     }
                 }
