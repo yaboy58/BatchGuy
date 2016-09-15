@@ -19,6 +19,12 @@ using BatchGuy.App.ThirdParty.FolderSelectDialog;
 using System.IO;
 using BatchGuy.App.Shared.Events;
 using BatchGuy.App.Constants;
+using BatchGuy.App.Eac3To.Models;
+using BatchGuy.App.Shared.Interface;
+using BatchGuy.App.Eac3To.Interfaces;
+using BatchGuy.App.Eac3To.Services;
+using log4net;
+using System.Reflection;
 
 namespace BatchGuy.App
 {
@@ -31,12 +37,16 @@ namespace BatchGuy.App
         private string _vfw4x264Path = string.Empty;
         private string _avsExtension = "avs";
         private BindingList<DropDownListItem> _bindingListEpisodeNumbers = new BindingList<DropDownListItem>();
+        private string _settingsExtension = "batchGuyEac3toSettings";
+        private BatchGuyEAC3ToSettings _batchGuyEAC3ToSettings;
+        private bool _encodeTypeChangedBecauseOfSettingsLoad;
+
+        public static readonly ILog _log = LogManager.GetLogger(typeof(CreateX264BatchFileForm));
 
         public CreateX264BatchFileForm()
         {
             InitializeComponent();
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.SetDirectoryUserControlValues();
             this.SetToolTips();
         }
 
@@ -51,7 +61,6 @@ namespace BatchGuy.App
             {
                 Setting setting = Program.ApplicationSettingsService.GetSettingByName("vfw4x264");
                 _vfw4x264Path = setting.Value;
-                this.SetComboBoxEncodeType();
                 this.ConfigureDgvFilesGridColumns();
             }
         }
@@ -61,16 +70,9 @@ namespace BatchGuy.App
             dgvFiles.Columns[3].DefaultCellStyle.WrapMode = DataGridViewTriState.True;
         }
 
-        private void SetDirectoryUserControlValues()
-        {
-            setDirectoryUserControlX264Output.ComboBoxCaptionText = "--output and (.log) Directory:*";
-            setDirectoryUserControlX264Output.LabelDirectoryCaptionText = @"Example: --output ""{0}\e01\encode_name.mkv"", ""{0}\e01\encode_name.log""";
-        }
-
         private void SetToolTips()
         {
             new ToolTip().SetToolTip(txtX264BatchFileOutputDirectory, "Directory where the x264 batch file will be saved");
-            new ToolTip().SetToolTip(setDirectoryUserControlX264Output, "Determines where the x264 output and log file will be saved");
         }
 
         private bool IsVfw4x264PathSetInSettings()
@@ -82,11 +84,6 @@ namespace BatchGuy.App
                 return true;
         }
 
-        private void SetComboBoxEncodeType()
-        {
-            this.cbEncodeType.SelectedIndex = 0;
-        }
-
         private void cbEncodeType_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.HandleEncodeType(cbEncodeType.Text);
@@ -94,6 +91,12 @@ namespace BatchGuy.App
 
         private void SetX264TemplateTextBox()
         {
+            if (this._encodeTypeChangedBecauseOfSettingsLoad)
+            {
+                this._encodeTypeChangedBecauseOfSettingsLoad = false;
+                return;
+            }
+
             StringBuilder sb = new StringBuilder();
             switch (this.EncodeType)
             {
@@ -112,6 +115,15 @@ namespace BatchGuy.App
             }
 
             txtX264Template.Text = sb.ToString();
+        }
+
+        private string GetDefaultX264CRFSettings()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append(string.Format("--crf 17 --level 4.1 --stats "));
+            sb.Append("\".stats\"");
+            sb.Append(" --preset veryslow --deblock -3:-3 --aq-strength 0.8 --psy-rd 1.00:0.00 --me tesa --merange 32 --subme 10 --no-mbtree --threads 12 --no-dct-decimate --no-fast-pskip");
+            return sb.ToString();
         }
 
         private void HandleEncodeType(string value)
@@ -135,7 +147,8 @@ namespace BatchGuy.App
         {
             X264FileSettings settings = new X264FileSettings() { EncodeType = EncodeType,
              vfw4x264Exe = _vfw4x264Path, X264Template = txtX264Template.Text.Trim(), X264BatchFilePath = txtX264BatchFileOutputDirectory.Text.Trim(),
-             X264EncodeAndLogFileOutputDirectoryPathType = setDirectoryUserControlX264Output.OutputDirectoryType, X264EncodeAndLogFileOutputDirectoryPath = setDirectoryUserControlX264Output.CLIDirectory};
+             X264EncodeAndLogFileOutputDirectoryPathType = _batchGuyEAC3ToSettings.X264FileSettings.X264EncodeAndLogFileOutputDirectoryPathType,
+                X264EncodeAndLogFileOutputDirectoryPath = _batchGuyEAC3ToSettings.X264FileSettings.X264EncodeAndLogFileOutputDirectoryPath};
 
             settings.SaveX264LogFileToDifferentDirectory = chkSaveLogFileToDifferentDirectory.Checked;
             if (settings.SaveX264LogFileToDifferentDirectory)
@@ -232,11 +245,6 @@ namespace BatchGuy.App
             {
                 MessageBox.Show("Please enter x264 settings", "Invalid x264 settings", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return false;
-            }
-            if (string.IsNullOrEmpty(setDirectoryUserControlX264Output.CLIDirectory))
-            {
-                MessageBox.Show("Please choose the x264 output and (.log) file save directory", "Invalid x264 settings", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return false;                
             }
             if (chkSaveLogFileToDifferentDirectory.Checked && string.IsNullOrEmpty(txtX264LogFileSaveDirectory.Text))
             {
@@ -402,6 +410,141 @@ namespace BatchGuy.App
             }
             bsEpisodeNumbersDropDownListItem.DataSource = _bindingListEpisodeNumbers;
             _bindingListEpisodeNumbers.AllowEdit = false;
+        }
+
+        private void loadToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ofdFileDialog.Filter = "BatchGuy File|*.batchGuyEac3toSettings";
+            ofdFileDialog.FileName = "";
+            if (ofdFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string settingsFile = ofdFileDialog.FileName;
+                this.HandlesLoadToolStripMenuItemClick(settingsFile);
+            }
+        }
+
+        private void HandlesLoadToolStripMenuItemClick(string settingsFile)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(settingsFile))
+                {
+                    IJsonSerializationService<BatchGuyEAC3ToSettings> jsonSerializationService = new JsonSerializationService<BatchGuyEAC3ToSettings>();
+                    IBatchGuyEAC3ToSettingsService batchGuyEAC3ToSettingsService = new BatchGuyEAC3ToSettingsService(jsonSerializationService);
+                    _batchGuyEAC3ToSettings = batchGuyEAC3ToSettingsService.GetBatchGuyEAC3ToSettings(settingsFile);
+                    if (batchGuyEAC3ToSettingsService.Errors.Count() > 0)
+                    {
+                        MessageBox.Show(batchGuyEAC3ToSettingsService.Errors.GetErrorMessage(), "Error Occurred.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        this._encodeTypeChangedBecauseOfSettingsLoad = true;
+                        this.LoadScreen();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("There was an error trying to load the eac3to Settings File", "Error Occurred.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                _log.ErrorFormat(Program.GetLogErrorFormat(), ex.Message, MethodBase.GetCurrentMethod().Name);
+            }
+        }
+
+        private void LoadScreen()
+        {
+            this.LoadEAC3ToSettingsControls();
+            this.LoadX264SettingsControls();
+        }
+
+        private void LoadEAC3ToSettingsControls()
+        {
+            if (_batchGuyEAC3ToSettings.EAC3ToSettings.OutputDirectoryType == EnumDirectoryType.DirectoryPerEpisode)
+                lblDirectoryType.Text = "Directory Per Episode";
+            else
+                lblDirectoryType.Text = "Single Directory";
+        }
+
+        private void LoadX264SettingsControls()
+        {
+            if (_batchGuyEAC3ToSettings.X264FileSettings == null)
+                _batchGuyEAC3ToSettings.X264FileSettings = new X264FileSettings() { EncodeType = EnumEncodeType.CRF, X264Template = this.GetDefaultX264CRFSettings() };
+
+            _batchGuyEAC3ToSettings.X264FileSettings.X264EncodeAndLogFileOutputDirectoryPath = _batchGuyEAC3ToSettings.EAC3ToSettings.EAC3ToOutputPath;
+            _batchGuyEAC3ToSettings.X264FileSettings.X264EncodeAndLogFileOutputDirectoryPathType = _batchGuyEAC3ToSettings.EAC3ToSettings.OutputDirectoryType;
+            txtX264EncodeOutputAndLogDirectory.Text = _batchGuyEAC3ToSettings.X264FileSettings.X264EncodeAndLogFileOutputDirectoryPath;
+            txtX264BatchFileOutputDirectory.Text = _batchGuyEAC3ToSettings.X264FileSettings.X264BatchFilePath;
+            chkSaveLogFileToDifferentDirectory.Checked = _batchGuyEAC3ToSettings.X264FileSettings.SaveX264LogFileToDifferentDirectory;
+            txtX264LogFileSaveDirectory.Text = _batchGuyEAC3ToSettings.X264FileSettings.X264LogFileOutputDirectoryPath;
+            txtX264Template.Text = _batchGuyEAC3ToSettings.X264FileSettings.X264Template;
+            _batchGuyEAC3ToSettings.X264Files = this.GetX264Files();
+
+            if (_batchGuyEAC3ToSettings.X264FileSettings.EncodeType == EnumEncodeType.TwoPass)
+                cbEncodeType.SelectedIndex = 1;
+            else
+                cbEncodeType.SelectedIndex = 0;
+        }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.HandlesSaveToolStripMenuItemClick();
+        }
+
+        private void HandlesSaveToolStripMenuItemClick()
+        {
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Filter = "BatchGuy File|*.batchGuyEac3toSettings";
+            sfd.Title = "Save eac3to Settings File";
+            sfd.ShowDialog();
+
+            if (!string.IsNullOrEmpty(sfd.FileName))
+            {
+                dgvFiles.CurrentCell = null; //force the cell change so cell changed event fires
+                _batchGuyEAC3ToSettings.X264Files = this.GetX264Files();
+                _batchGuyEAC3ToSettings.X264FileSettings = this.GetX264FileSettings();
+                IJsonSerializationService<BatchGuyEAC3ToSettings> jsonSerializationService = new JsonSerializationService<BatchGuyEAC3ToSettings>();
+                IBatchGuyEAC3ToSettingsService batchGuyEAC3ToSettingsService = new BatchGuyEAC3ToSettingsService(jsonSerializationService);
+                batchGuyEAC3ToSettingsService.Save(sfd.FileName, _batchGuyEAC3ToSettings);
+                if (batchGuyEAC3ToSettingsService.Errors.Count() > 0)
+                {
+                    MessageBox.Show(batchGuyEAC3ToSettingsService.Errors.GetErrorMessage(), "Error Occurred.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void CreateX264BatchFileForm_DragEnter(object sender, DragEventArgs e)
+        {
+            this.HandlesCreateX264BatchFileFormDragEnter(e);
+        }
+
+        private void HandlesCreateX264BatchFileFormDragEnter(DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                e.Effect = DragDropEffects.Copy;
+            }
+        }
+
+        private void CreateX264BatchFileForm_DragDrop(object sender, DragEventArgs e)
+        {
+            this.HandlesCreateX264BatchFileFormDragDrop(e);
+        }
+
+        private void HandlesCreateX264BatchFileFormDragDrop(DragEventArgs e)
+        {
+            foreach (string file in (Array)e.Data.GetData(DataFormats.FileDrop))
+            {
+                if (this.IsBatchGuyEac3toSettingsFile(file))
+                {
+                    this.HandlesLoadToolStripMenuItemClick(file);
+                }
+            }
+        }
+        private bool IsBatchGuyEac3toSettingsFile(string file)
+        {
+            if (file.EndsWith(_settingsExtension))
+                return true;
+            else
+                return false;
         }
     }
 }

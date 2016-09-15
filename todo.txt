@@ -10,7 +10,7 @@ Front End (EAC3ToConfiguration has an Extension Method that tells the number of 
 	5) Add new drop down for X264File.EpisodeNumber (string) and make it a drop down and figure out hwo to load with the number of episodes -done
 	*6) When they try to make the mkvmerge file, validate that all episodes mapped and all unique
 	*7) Before saving, shove the filepath/name of encode into the bluraysummary.titleinfo.episodename based on the episode number drop down
-	
+	8) Enable mkvmerge section on eac3to screen
 
 Back End:
 	1) Create new MKVMerge\Services\MKVMergeBatchFileWriteForEncodeService and inherit from IMKVMergeBatchFileWriteService
@@ -20,6 +20,10 @@ Back End:
 	5) Make EAC3ToConfiguration.IsVideoNameForMkvMerge
 	6) EncodeTemplate1EAC3ToOutputNamingService.GetVideoName, use EAC3ToConfiguration.IsVideoNameForMkvMerge to determine hardcoded name or episode name, which will have bluraysummary.titleinfo.episodename
 
+DON'T FORGET TO WRITE CODE IN EAC3TO TO SAVE IFNO ENTERED ON OTHER SCREENS IN CASE THEY GO BACK AND FORTH
+
+Clean Up:
+X264FileSettings.X264EncodeAndLogFileOutputDirectoryPath and X264EncodeAndLogFileOutputDirectoryPathType not needed anymore, using it but get rid of it as eac3to settings has the info
 
 --possible nice to haves
 *On the Create x264 Batch File, add functionality load (.batchGuyEac3toSettings), so you can have the eac3to and mkvmerge info to create an mkvmerge batch file

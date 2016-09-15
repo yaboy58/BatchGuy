@@ -576,7 +576,7 @@ namespace BatchGuy.App
                     dgvBluRayDiscInfo.CurrentCell = null; //force the cell change so cell changed event fires
                     dgvBluRaySummary.CurrentCell = null; //force the cell change so cell changed event fires
                     List<BluRayDiscInfo> discs = this.GetBluRayDiscInfoList();
-                    BatchGuyEAC3ToSettings settings = new BatchGuyEAC3ToSettings() { BluRayDiscs = discs, Settings = _eac3toConfiguration };
+                    BatchGuyEAC3ToSettings settings = new BatchGuyEAC3ToSettings() { BluRayDiscs = discs, EAC3ToSettings = _eac3toConfiguration };
                     IJsonSerializationService<BatchGuyEAC3ToSettings> jsonSerializationService = new JsonSerializationService<BatchGuyEAC3ToSettings>();
                     IBatchGuyEAC3ToSettingsService batchGuyEAC3ToSettingsService = new BatchGuyEAC3ToSettingsService(jsonSerializationService);
                     batchGuyEAC3ToSettingsService.Save(sfd.FileName, settings);
@@ -633,7 +633,7 @@ namespace BatchGuy.App
             _bluRaySummaryGridSortConfiguration = new SortConfiguration();
             _bluRayDiscGridSortConfiguration = new SortConfiguration();
             _currentBluRayDiscGridRowIndex = 0;
-            _eac3toConfiguration = batchGuyEAC3ToSettings.Settings;
+            _eac3toConfiguration = batchGuyEAC3ToSettings.EAC3ToSettings;
             txtBatFilePath.Text = _eac3toConfiguration.BatchFilePath;
             txtMKVMergeBatFilePath.Text = _eac3toConfiguration.MKVMergeBatchFilePath;
             txtMKVMergeOutputPath.Text = _eac3toConfiguration.MKVMergeOutputPath;
