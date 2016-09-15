@@ -148,16 +148,16 @@ namespace BatchGuy.App
             string file = txtExternalSubtitlePath.Text;
 
             if (_currentBluRaySummaryInfo.BluRayTitleInfo.Subtitles != null)
-                id = string.Format("Ext{0}:", _currentBluRaySummaryInfo.BluRayTitleInfo.Subtitles.Where(s => s.IsExternal == true).Count() + 1);
+                id = this.GetNewSubtitleId();
             else
-                id = "Ext1:";
+                id = "1:";
 
             BluRayTitleSubtitle subtitle = new BluRayTitleSubtitle()
             {
                 CanEdit = true,
                 IsCommentary = false,
                 IsExternal = true,
-                IsSelected = false,
+                IsSelected = true,
                 Id = id,
                 MKVMergeItem = _currentMKVMergeItem,
                 ExternalSubtitlePath = file,
@@ -200,6 +200,18 @@ namespace BatchGuy.App
         {
             this.WasCancelled = true;
             this.Close();
+        }
+
+        private string GetNewSubtitleId()
+        {
+            int sum = 0;
+
+            foreach (var subtitle in _currentBluRaySummaryInfo.BluRayTitleInfo.Subtitles)
+            {
+                sum += subtitle.Id.RemoveColons().StringToInt();
+            }
+
+            return string.Format("{0}:", sum);
         }
     }
 }

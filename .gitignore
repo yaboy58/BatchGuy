@@ -580,3 +580,7 @@
 /src/BatchGuy.App/BatchGuy.App.csproj.user
 /src/tests/BatchGuy.Unit.Tests/BatchGuy.Unit.Tests.csproj.user
 /src/BatchGuy.Eac3to.Parser.Example.Console.App/BatchGuy.Eac3to.Parser.Example.Console.App.csproj.user
+/src/BatchGuy.Eac3to.Parser.Example.Console.App/obj/Release/build.force
+/src/BatchGuy.Settings.Serialization.Example.Console.App/obj/Release/build.force
+/src/BatchGuy.X264Log.Parser.Example.Console.App/obj/Release/build.force
+/src/tests/BatchGuy.Unit.Tests/obj/Release/build.force
