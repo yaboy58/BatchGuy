@@ -30,6 +30,8 @@ namespace BatchGuy.App
         private BindingList<X264File> _bindingListFiles = new BindingList<X264File>();
         private string _vfw4x264Path = string.Empty;
         private string _avsExtension = "avs";
+        private BindingList<DropDownListItem> _bindingListEpisodeNumbers = new BindingList<DropDownListItem>();
+
         public CreateX264BatchFileForm()
         {
             InitializeComponent();
@@ -389,6 +391,17 @@ namespace BatchGuy.App
             {
                 handler(this, e);
             }
+        }
+
+        private void LoadEpisodeNumbers()
+        {
+            int[] episodes = new int[] { 1, 2};
+            foreach (int episode in episodes)
+            {
+                _bindingListEpisodeNumbers.Add(new DropDownListItem() { DisplayMember = episode.ToString(), ValueMember = episode.ToString() });
+            }
+            bsEpisodeNumbersDropDownListItem.DataSource = _bindingListEpisodeNumbers;
+            _bindingListEpisodeNumbers.AllowEdit = false;
         }
     }
 }

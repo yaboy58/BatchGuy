@@ -176,6 +176,7 @@
     <Compile Include="Settings\Models\ApplicationSettings.cs" />
     <Compile Include="Settings\Models\Setting.cs" />
     <Compile Include="Settings\Services\ApplicationSettingsService.cs" />
+    <Compile Include="Shared\Models\DropDownListItem.cs" />
     <Compile Include="Shared\Services\AudioService.cs" />
     <Compile Include="Shared\Services\JsonSerializationService.cs" />
     <Compile Include="Shared\Events\DialogInitialDirectoryChangedEventArgs.cs" />
@@ -290,6 +291,7 @@
     <None Include="Properties\DataSources\BatchGuy.App.Parser.Models.BluRayTitleSubtitle.datasource" />
     <None Include="Properties\DataSources\BatchGuy.App.Parser.Models.BluRayTitleVideo.datasource" />
     <None Include="Properties\DataSources\BatchGuy.App.Settings.Models.BluRayTitleInfoDefaultSettingsAudio.datasource" />
+    <None Include="Properties\DataSources\BatchGuy.App.Shared.Models.DropDownListItem.datasource" />
     <None Include="Properties\DataSources\BatchGuy.App.X264.Models.X264File.datasource" />
     <None Include="Properties\DataSources\BatchGuy.App.X264Log.Models.X264LogFile.datasource" />
     <None Include="Properties\Settings.settings">
