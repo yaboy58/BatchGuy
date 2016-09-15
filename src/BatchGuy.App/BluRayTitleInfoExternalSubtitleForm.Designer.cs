@@ -40,7 +40,6 @@
             this.lblBatchFilePath = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.ofdFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.btnCancel = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.gbExternalSubtitles.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsMKVMergeLanguageItem)).BeginInit();
@@ -138,22 +137,12 @@
             // 
             this.ofdFileDialog.FileName = "openFileDialog";
             // 
-            // btnCancel
-            // 
-            this.btnCancel.Location = new System.Drawing.Point(427, 160);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(105, 33);
-            this.btnCancel.TabIndex = 2;
-            this.btnCancel.Text = "Cancel";
-            this.btnCancel.UseVisualStyleBackColor = true;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
             // btnSave
             // 
             this.btnSave.Location = new System.Drawing.Point(548, 160);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(105, 33);
-            this.btnSave.TabIndex = 3;
+            this.btnSave.TabIndex = 2;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -164,7 +153,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(665, 203);
             this.Controls.Add(this.btnSave);
-            this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.gbExternalSubtitles);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "BluRayTitleInfoExternalSubtitleForm";
@@ -187,7 +175,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.OpenFileDialog ofdFileDialog;
         private System.Windows.Forms.ComboBox cbExternalSubtitleLanguage;
-        private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.BindingSource bsMKVMergeLanguageItem;
         private System.Windows.Forms.Label label2;

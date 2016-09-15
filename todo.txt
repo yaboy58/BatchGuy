@@ -1,10 +1,8 @@
 --todo
-
-*Re-do how external subtitles are added.
--Row Template or Popup
--Logic for eac3toTrack Id, probably just find what the highest number is and increment + the colon
--Handle adding vs editing an external subtitle row and prevent internal subs from being edited
--Remove the Add/Remove icons from the Subtitle Grid
+New "Add External Subtitles" button added to the BluRay Title Info Screen so users can add (.srt), (.ass), (.sub) and (.ssa) subtitles
+New BluRay Title Info External Subtitle Popup Form created to allow users to choose the external subtitle langugage and file location when pressing the "Add External Subtitles" button
+User can edit the language of external subtitles
+User can delete external subtitles
 
 
 --possible nice to haves

@@ -191,17 +191,6 @@ namespace BatchGuy.App
                 return false;
         }
 
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            this.HandlesBtnCancelClick();
-        }
-
-        private void HandlesBtnCancelClick()
-        {
-            this.WasCancelled = true;
-            this.Close();
-        }
-
         private string GetNewSubtitleId()
         {
             int sum = 0;

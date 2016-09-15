@@ -98,7 +98,7 @@ namespace BatchGuy.App.MKVMerge.Services
                     if (subtitle.IsSelected)
                     {
                         string subtitleName = string.Empty;
-                        if (subtitle.ExternalSubtitlePath != null && subtitle.ExternalSubtitlePath != string.Empty)
+                        if (subtitle.IsExternal)
                         {
                             subtitleName = subtitle.ExternalSubtitlePath;
                         }

@@ -115,7 +115,7 @@ namespace BatchGuy.App.Eac3to.Services
             {
                 foreach (BluRayTitleSubtitle subtitle in _bluRaySummaryInfo.BluRayTitleInfo.Subtitles)
                 {
-                    if (subtitle.IsSelected)
+                    if (subtitle.IsSelected && subtitle.IsExternal == false)
                     {
                         sb.Append(string.Format(" {0} ", subtitle.Id));
                         sb.Append(_eac3ToOutputNamingService.GetSubtitleName(_eac3ToConfiguration, subtitle,_filesOutputPath, _paddedEpisodeNumber, _bluRaySummaryInfo.BluRayTitleInfo.EpisodeName));
