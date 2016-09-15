@@ -164,7 +164,7 @@ namespace BatchGuy.App
                  Language = _currentMKVMergeItem.Language.Language
             };
 
-            subtitle.Text = string.Format("{0} Subtitle ({1}), {2}", id, file.SubtitleFileExtension(), subtitle.MKVMergeItem.Language.Language);
+            subtitle.Text = string.Format("{0} Subtitle ({1}), {2}", id, file.SubtitleFileExtension().ToUpper(), subtitle.MKVMergeItem.Language.Language);
 
             if (_currentBluRaySummaryInfo.BluRayTitleInfo.Subtitles == null)
                 _currentBluRaySummaryInfo.BluRayTitleInfo.Subtitles = new List<BluRayTitleSubtitle>();
@@ -178,7 +178,7 @@ namespace BatchGuy.App
             {
                 string file = txtExternalSubtitlePath.Text;
                 _currentSubtitleForEdit.MKVMergeItem.Language = _currentMKVMergeItem.Language;
-                _currentSubtitleForEdit.Text = string.Format("{0} Subtitle ({1}), {2}", _currentSubtitleForEdit.Id, file.SubtitleFileExtension(), _currentSubtitleForEdit.MKVMergeItem.Language.Language);
+                _currentSubtitleForEdit.Text = string.Format("{0} Subtitle ({1}), {2}", _currentSubtitleForEdit.Id, file.SubtitleFileExtension().ToUpper(), _currentSubtitleForEdit.MKVMergeItem.Language.Language);
                 _currentSubtitleForEdit.Language = _currentMKVMergeItem.Language.Language;
             }
         }
