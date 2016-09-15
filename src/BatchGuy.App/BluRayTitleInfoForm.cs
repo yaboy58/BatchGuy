@@ -308,8 +308,11 @@ namespace BatchGuy.App
             else
             {
                 this.HandleDGVSubtitlesCellClick(e);
-                dgvSubtitles.Rows[e.RowIndex].Selected = true;
-                this.SetGBMKVToolNixGUIEnabledStatus(true);
+                if (_currentBluRayTitleSubtitle != null) //deleted
+                {
+                    dgvSubtitles.Rows[e.RowIndex].Selected = true;
+                    this.SetGBMKVToolNixGUIEnabledStatus(true);
+                }
             }
         }
 
@@ -324,37 +327,28 @@ namespace BatchGuy.App
             this.SetMKVToolNixControlsWithValues();
 
             if (e.ColumnIndex == 6)
-                this.AddExternalSubtitle(id.ToString(), e.RowIndex, externalSubtitleCellNumber);
-
-            if (e.ColumnIndex == 7)
                 this.RemoveExternalSubtitle(id.ToString(), e.RowIndex, externalSubtitleCellNumber);
 
             if (_mkvMergeChangeTriggeredByDataGridCellClick)
                 _mkvMergeChangeTriggeredByDataGridCellClick = false;
         }
 
-        private void AddExternalSubtitle(string rowId, int rowIndex, int rowCellNumber)
-        {
-            ofdFileDialog.FileName = "Subtitle";
-            ofdFileDialog.Filter = "SubRip|*.srt|Advanced SubStation Alpha|*.ass|DVDSubtitle|*.sub|SubStation Alpha|*.ssa";
-            DialogResult result = ofdFileDialog.ShowDialog();
-            if (result == System.Windows.Forms.DialogResult.OK)
-            {
-                var subtitlePath = ofdFileDialog.FileName;
-                dgvSubtitles.Rows[rowIndex].Cells[rowCellNumber].Value = subtitlePath;
-                _currentBluRayTitleSubtitle.ExternalSubtitlePath = subtitlePath;
-            }
-        }
-
         private void RemoveExternalSubtitle(string rowId, int rowIndex, int rowCellNumber)
         {
+            if (_currentBluRayTitleSubtitle.IsExternal == false)
+            {
+                MessageBox.Show("You cannot remove Internal Subtitles", "Internal Subtitle", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
             if (_currentBluRayTitleSubtitle.ExternalSubtitlePath != null &&_currentBluRayTitleSubtitle.ExternalSubtitlePath != string.Empty)
             {
                 DialogResult warningResult = MessageBox.Show("Are you sure you want to remove the external subtitle?", "Remove Subtitle", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
                 if (warningResult == System.Windows.Forms.DialogResult.Yes)
                 {
-                    dgvSubtitles.Rows[rowIndex].Cells[rowCellNumber].Value = string.Empty;
-                    _currentBluRayTitleSubtitle.ExternalSubtitlePath = string.Empty;
+                    _bluRaySummaryInfo.BluRayTitleInfo.Subtitles.Remove(_currentBluRayTitleSubtitle);
+                    _currentBluRayTitleSubtitle = null;
+                    this.LoadSubtitles();
                 }
             }
         }
@@ -645,64 +639,39 @@ namespace BatchGuy.App
         {
             var id = dgvSubtitles.Rows[e.RowIndex].Cells[1].Value;
             _currentBluRayTitleSubtitle = _bluRaySummaryInfo.BluRayTitleInfo.Subtitles.SingleOrDefault(a => a.Id == id.ToString());
-            if (_currentBluRayTitleSubtitle.CanEdit == false || _eac3ToConfiguration.IsExtractForRemux == false)
+
+            if (_eac3ToConfiguration.IsExtractForRemux == false)
                 return;
-        }
 
-        private void dgvSubtitles_DragEnter(object sender, DragEventArgs e)
-        {
-            this.HandlesDGVSubtitlesDragEnter(e);
-        }
-
-        private void HandlesDGVSubtitlesDragEnter(DragEventArgs e)
-        {
-            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            if (_currentBluRayTitleSubtitle.IsExternal == false)
             {
-                e.Effect = DragDropEffects.Copy;
+                MessageBox.Show("You cannot edit an Internal Subtitles", "Internal Subtitle", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            BluRayTitleInfoExternalSubtitleForm form = new BluRayTitleInfoExternalSubtitleForm();
+            form.SetBluRayTitleInfoExternalSubtitleForEdit(_currentBluRayTitleSubtitle);
+            form.ShowDialog();
+            if (form.WasSaved)
+            {
+                this.LoadSubtitles();
             }
         }
 
-        private void dgvSubtitles_DragDrop(object sender, DragEventArgs e)
+        private void btnAddSubtitle_Click(object sender, EventArgs e)
         {
-            this.HandlesDGVSubtitlesDragDrop(e);
+            this.HandlesBtnAddSubtitleClick();
         }
 
-        private void HandlesDGVSubtitlesDragDrop(DragEventArgs e)
+        private void HandlesBtnAddSubtitleClick()
         {
-            var files = (Array)e.Data.GetData(DataFormats.FileDrop);
-
-            if (files.Length > 1)
-                return;
-
-            foreach (string file in files)
+            BluRayTitleInfoExternalSubtitleForm form = new BluRayTitleInfoExternalSubtitleForm();
+            form.SetBluRayTitleInfoExternalSubtitleForAdd(_bluRaySummaryInfo);
+            form.ShowDialog();
+            if (form.WasSaved)
             {
-                if (this.IsValidSubtitleFile(file) && this.NotADuplicate(file))
-                {
-                    BluRayTitleInfoExternalSubtitleForm form = new BluRayTitleInfoExternalSubtitleForm();
-                    form.SetBluRayTitleInfoExternalSubtitleForAdd(_bluRaySummaryInfo);
-                    form.ShowDialog();
-                    if (form.WasSaved)
-                    {
-                        this.LoadSubtitles();
-                    }
-                }
+                this.LoadSubtitles();
             }
-        }
-
-        private bool IsValidSubtitleFile(string file)
-        {
-            string extension = file.SubtitleFileExtension().ToLower();
-            string[] subtitles = new string[4] { "srt", "ass", "sub","ssa" };
-
-            return subtitles.Where(s => s == extension).Count() > 0;
-        }
-
-        private bool NotADuplicate(string file)
-        {
-            if (_bindingListBluRayTitleSubtitle.Where(s => s.ExternalSubtitleNameOnly == Path.GetFileName(file)).Count() > 0)
-                return false;
-            else
-                return true;
         }
     }
 }

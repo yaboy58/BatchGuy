@@ -23,6 +23,7 @@ namespace BatchGuy.App
         private BluRaySummaryInfo _currentBluRaySummaryInfo;
         private BindingList<MKVMergeLanguageItem> _bindingListMKVMergeLanguageItem = new BindingList<MKVMergeLanguageItem>();
         private MKVMergeItem _currentMKVMergeItem;
+        private BluRayTitleSubtitle _currentSubtitleForEdit;
 
         public bool WasSaved { get; set; }
         public bool WasCancelled { get; set; }
@@ -40,9 +41,36 @@ namespace BatchGuy.App
             _currentMKVMergeItem = new MKVMergeItem() { Compression = "determine automatically", DefaultTrackFlag = "no", ForcedTrackFlag = "no" };
         }
 
+        public void SetBluRayTitleInfoExternalSubtitleForEdit(BluRayTitleSubtitle subtitle)
+        {
+            _isAdd = false;
+            _currentSubtitleForEdit = subtitle;
+            _currentMKVMergeItem = new MKVMergeItem()
+            {
+                Compression = _currentSubtitleForEdit.MKVMergeItem.Compression,
+                DefaultTrackFlag = _currentSubtitleForEdit.MKVMergeItem.DefaultTrackFlag,
+                ForcedTrackFlag = _currentSubtitleForEdit.MKVMergeItem.ForcedTrackFlag,
+                TrackName = _currentSubtitleForEdit.MKVMergeItem.TrackName,
+                Language = new MKVMergeLanguageItem() { Name = _currentSubtitleForEdit.MKVMergeItem.Language.Name, Value = _currentSubtitleForEdit.MKVMergeItem.Language.Value,
+                 Language = _currentSubtitleForEdit.MKVMergeItem.Language.Language}
+            };
+            lblExternalSubtitleEAC3ToTrackId.Text = _currentSubtitleForEdit.Id;
+            txtExternalSubtitlePath.Text = _currentSubtitleForEdit.ExternalSubtitlePath;
+        }
+
+        private void SetMKVMergeLanguageDropDownValue()
+        {
+            cbExternalSubtitleLanguage.SelectedValue = _currentSubtitleForEdit.MKVMergeItem.Language.Value;
+        }
+
         private void BluRayTitleInfoExternalSubtitleForm_Load(object sender, EventArgs e)
         {
             this.LoadMKVMergeLangugeItemsDropDown();
+
+            if (_isAdd == false)
+            {
+                this.SetMKVMergeLanguageDropDownValue();
+            }
         }
 
         private void LoadMKVMergeLangugeItemsDropDown()
@@ -56,6 +84,11 @@ namespace BatchGuy.App
 
             bsMKVMergeLanguageItem.DataSource = _bindingListMKVMergeLanguageItem;
             _bindingListMKVMergeLanguageItem.AllowEdit = false;
+
+            if (_isAdd)
+            {
+                _currentMKVMergeItem.Language = service.GetLanguageByName("undetermined");
+            }
         }
 
         private void cbExternalSubtitleLanguage_SelectedIndexChanged(object sender, EventArgs e)
@@ -70,10 +103,11 @@ namespace BatchGuy.App
 
         private void btnOpenExternalSubtitleFilePathDialog_Click(object sender, EventArgs e)
         {
-            this.HandlesBTNOpenExternalSubtitleFilePathDialogClick();
+            this.HandlesBtnOpenExternalSubtitleFilePathDialogClick();
         }
 
-        private void HandlesBTNOpenExternalSubtitleFilePathDialogClick()
+
+        private void HandlesBtnOpenExternalSubtitleFilePathDialogClick()
         {
             ofdFileDialog.FileName = "Subtitle";
             ofdFileDialog.Filter = "SubRip|*.srt|Advanced SubStation Alpha|*.ass|DVDSubtitle|*.sub|SubStation Alpha|*.ssa";
@@ -96,9 +130,15 @@ namespace BatchGuy.App
             {
                 if (_isAdd)
                     this.AddExternalSubtitle();
+                else
+                    this.EditExternalSubtitle();
 
                 this.WasSaved = true;
                 this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Please select external subtitles", "External Subtitles", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
@@ -132,9 +172,34 @@ namespace BatchGuy.App
             _currentBluRaySummaryInfo.BluRayTitleInfo.Subtitles.Add(subtitle);
         }
 
+        private void EditExternalSubtitle()
+        {
+            if (_currentMKVMergeItem != null)
+            {
+                string file = txtExternalSubtitlePath.Text;
+                _currentSubtitleForEdit.MKVMergeItem.Language = _currentMKVMergeItem.Language;
+                _currentSubtitleForEdit.Text = string.Format("{0} Subtitle ({1}), {2}", _currentSubtitleForEdit.Id, file.SubtitleFileExtension(), _currentSubtitleForEdit.MKVMergeItem.Language.Language);
+                _currentSubtitleForEdit.Language = _currentMKVMergeItem.Language.Language;
+            }
+        }
+
         private bool IsScreenValid()
         {
-            return true;
+            if (txtExternalSubtitlePath.Text != null && txtExternalSubtitlePath.Text != string.Empty)
+                return true;
+            else
+                return false;
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.HandlesBtnCancelClick();
+        }
+
+        private void HandlesBtnCancelClick()
+        {
+            this.WasCancelled = true;
+            this.Close();
         }
     }
 }

@@ -51,15 +51,8 @@
             this.bsBluRayTitleAudio = new System.Windows.Forms.BindingSource(this.components);
             this.btnUpdate = new System.Windows.Forms.Button();
             this.gbSubtitles = new System.Windows.Forms.GroupBox();
+            this.btnAddSubtitle = new System.Windows.Forms.Button();
             this.dgvSubtitles = new System.Windows.Forms.DataGridView();
-            this.isSelectedDataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.idDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.languageDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.isCommentaryDataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.textDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ExternalSubtitlePath = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AddSubtitle = new System.Windows.Forms.DataGridViewImageColumn();
-            this.RemoveSubtitle = new System.Windows.Forms.DataGridViewImageColumn();
             this.bsBluRayTitleSubtitles = new System.Windows.Forms.BindingSource(this.components);
             this.gbChapters = new System.Windows.Forms.GroupBox();
             this.chkChapters = new System.Windows.Forms.CheckBox();
@@ -84,6 +77,13 @@
             this.bgwEac3toLoadTitle = new System.ComponentModel.BackgroundWorker();
             this.bsBluRayTitleInfo = new System.Windows.Forms.BindingSource(this.components);
             this.ofdFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.isSelectedDataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.idDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.languageDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.isCommentaryDataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.textDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ExternalSubtitlePath = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RemoveSubtitle = new System.Windows.Forms.DataGridViewImageColumn();
             this.gbVideo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsBluRayTitleVideo)).BeginInit();
             this.gbAudio.SuspendLayout();
@@ -287,23 +287,34 @@
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(1246, 697);
+            this.btnUpdate.Location = new System.Drawing.Point(1246, 738);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(143, 25);
-            this.btnUpdate.TabIndex = 16;
+            this.btnUpdate.TabIndex = 15;
             this.btnUpdate.Text = "Update";
             this.btnUpdate.UseVisualStyleBackColor = true;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // gbSubtitles
             // 
+            this.gbSubtitles.Controls.Add(this.btnAddSubtitle);
             this.gbSubtitles.Controls.Add(this.dgvSubtitles);
             this.gbSubtitles.Location = new System.Drawing.Point(26, 404);
             this.gbSubtitles.Name = "gbSubtitles";
-            this.gbSubtitles.Size = new System.Drawing.Size(904, 234);
+            this.gbSubtitles.Size = new System.Drawing.Size(904, 274);
             this.gbSubtitles.TabIndex = 4;
             this.gbSubtitles.TabStop = false;
             this.gbSubtitles.Text = "Subtitles";
+            // 
+            // btnAddSubtitle
+            // 
+            this.btnAddSubtitle.Location = new System.Drawing.Point(747, 234);
+            this.btnAddSubtitle.Name = "btnAddSubtitle";
+            this.btnAddSubtitle.Size = new System.Drawing.Size(143, 25);
+            this.btnAddSubtitle.TabIndex = 13;
+            this.btnAddSubtitle.Text = "Add Subtitle";
+            this.btnAddSubtitle.UseVisualStyleBackColor = true;
+            this.btnAddSubtitle.Click += new System.EventHandler(this.btnAddSubtitle_Click);
             // 
             // dgvSubtitles
             // 
@@ -320,7 +331,6 @@
             this.isCommentaryDataGridViewCheckBoxColumn1,
             this.textDataGridViewTextBoxColumn1,
             this.ExternalSubtitlePath,
-            this.AddSubtitle,
             this.RemoveSubtitle});
             this.dgvSubtitles.DataSource = this.bsBluRayTitleSubtitles;
             this.dgvSubtitles.Location = new System.Drawing.Point(9, 30);
@@ -329,79 +339,6 @@
             this.dgvSubtitles.TabIndex = 12;
             this.dgvSubtitles.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSubtitles_CellClick);
             this.dgvSubtitles.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSubtitles_CellDoubleClick);
-            this.dgvSubtitles.DragDrop += new System.Windows.Forms.DragEventHandler(this.dgvSubtitles_DragDrop);
-            this.dgvSubtitles.DragEnter += new System.Windows.Forms.DragEventHandler(this.dgvSubtitles_DragEnter);
-            // 
-            // isSelectedDataGridViewCheckBoxColumn1
-            // 
-            this.isSelectedDataGridViewCheckBoxColumn1.DataPropertyName = "IsSelected";
-            this.isSelectedDataGridViewCheckBoxColumn1.HeaderText = "Is Selected";
-            this.isSelectedDataGridViewCheckBoxColumn1.MinimumWidth = 100;
-            this.isSelectedDataGridViewCheckBoxColumn1.Name = "isSelectedDataGridViewCheckBoxColumn1";
-            // 
-            // idDataGridViewTextBoxColumn1
-            // 
-            this.idDataGridViewTextBoxColumn1.DataPropertyName = "Id";
-            this.idDataGridViewTextBoxColumn1.HeaderText = "eac3to Track Id";
-            this.idDataGridViewTextBoxColumn1.MinimumWidth = 120;
-            this.idDataGridViewTextBoxColumn1.Name = "idDataGridViewTextBoxColumn1";
-            this.idDataGridViewTextBoxColumn1.ReadOnly = true;
-            this.idDataGridViewTextBoxColumn1.Width = 120;
-            // 
-            // languageDataGridViewTextBoxColumn1
-            // 
-            this.languageDataGridViewTextBoxColumn1.DataPropertyName = "Language";
-            this.languageDataGridViewTextBoxColumn1.HeaderText = "Language";
-            this.languageDataGridViewTextBoxColumn1.MinimumWidth = 100;
-            this.languageDataGridViewTextBoxColumn1.Name = "languageDataGridViewTextBoxColumn1";
-            this.languageDataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // isCommentaryDataGridViewCheckBoxColumn1
-            // 
-            this.isCommentaryDataGridViewCheckBoxColumn1.DataPropertyName = "IsCommentary";
-            this.isCommentaryDataGridViewCheckBoxColumn1.HeaderText = "Is Commentary";
-            this.isCommentaryDataGridViewCheckBoxColumn1.MinimumWidth = 120;
-            this.isCommentaryDataGridViewCheckBoxColumn1.Name = "isCommentaryDataGridViewCheckBoxColumn1";
-            this.isCommentaryDataGridViewCheckBoxColumn1.Width = 120;
-            // 
-            // textDataGridViewTextBoxColumn1
-            // 
-            this.textDataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.textDataGridViewTextBoxColumn1.DataPropertyName = "Text";
-            this.textDataGridViewTextBoxColumn1.HeaderText = "Text";
-            this.textDataGridViewTextBoxColumn1.MinimumWidth = 200;
-            this.textDataGridViewTextBoxColumn1.Name = "textDataGridViewTextBoxColumn1";
-            this.textDataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // ExternalSubtitlePath
-            // 
-            this.ExternalSubtitlePath.DataPropertyName = "ExternalSubtitlePath";
-            this.ExternalSubtitlePath.HeaderText = "External Subtitle";
-            this.ExternalSubtitlePath.MinimumWidth = 100;
-            this.ExternalSubtitlePath.Name = "ExternalSubtitlePath";
-            this.ExternalSubtitlePath.ReadOnly = true;
-            this.ExternalSubtitlePath.Width = 148;
-            // 
-            // AddSubtitle
-            // 
-            this.AddSubtitle.HeaderText = "Add Subtitle";
-            this.AddSubtitle.Image = global::BatchGuy.App.Properties.Resources.Avosoft_Warm_Toolbar_Folder_open;
-            this.AddSubtitle.MinimumWidth = 50;
-            this.AddSubtitle.Name = "AddSubtitle";
-            this.AddSubtitle.ReadOnly = true;
-            this.AddSubtitle.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.AddSubtitle.ToolTipText = "Add Subtitle";
-            this.AddSubtitle.Width = 50;
-            // 
-            // RemoveSubtitle
-            // 
-            this.RemoveSubtitle.HeaderText = "Remove Subtitle";
-            this.RemoveSubtitle.Image = global::BatchGuy.App.Properties.Resources.Iconfinder_1472897142_DeleteRed;
-            this.RemoveSubtitle.MinimumWidth = 60;
-            this.RemoveSubtitle.Name = "RemoveSubtitle";
-            this.RemoveSubtitle.ReadOnly = true;
-            this.RemoveSubtitle.ToolTipText = "Remove Subtitle";
-            this.RemoveSubtitle.Width = 60;
             // 
             // bsBluRayTitleSubtitles
             // 
@@ -410,7 +347,7 @@
             // gbChapters
             // 
             this.gbChapters.Controls.Add(this.chkChapters);
-            this.gbChapters.Location = new System.Drawing.Point(29, 644);
+            this.gbChapters.Location = new System.Drawing.Point(29, 684);
             this.gbChapters.Name = "gbChapters";
             this.gbChapters.Size = new System.Drawing.Size(901, 48);
             this.gbChapters.TabIndex = 5;
@@ -460,7 +397,7 @@
             this.gbScreen.Controls.Add(this.gbVideo);
             this.gbScreen.Location = new System.Drawing.Point(12, 12);
             this.gbScreen.Name = "gbScreen";
-            this.gbScreen.Size = new System.Drawing.Size(1395, 732);
+            this.gbScreen.Size = new System.Drawing.Size(1395, 772);
             this.gbScreen.TabIndex = 7;
             this.gbScreen.TabStop = false;
             // 
@@ -469,7 +406,7 @@
             this.gbMKVToolNixGUI.Controls.Add(this.gbMKVToolNixGUIGeneralOptions);
             this.gbMKVToolNixGUI.Location = new System.Drawing.Point(938, 12);
             this.gbMKVToolNixGUI.Name = "gbMKVToolNixGUI";
-            this.gbMKVToolNixGUI.Size = new System.Drawing.Size(451, 679);
+            this.gbMKVToolNixGUI.Size = new System.Drawing.Size(451, 720);
             this.gbMKVToolNixGUI.TabIndex = 17;
             this.gbMKVToolNixGUI.TabStop = false;
             this.gbMKVToolNixGUI.Text = "MKVToolNix GUI";
@@ -635,11 +572,71 @@
             // 
             this.ofdFileDialog.FileName = "openFileDialog1";
             // 
+            // isSelectedDataGridViewCheckBoxColumn1
+            // 
+            this.isSelectedDataGridViewCheckBoxColumn1.DataPropertyName = "IsSelected";
+            this.isSelectedDataGridViewCheckBoxColumn1.HeaderText = "Is Selected";
+            this.isSelectedDataGridViewCheckBoxColumn1.MinimumWidth = 100;
+            this.isSelectedDataGridViewCheckBoxColumn1.Name = "isSelectedDataGridViewCheckBoxColumn1";
+            // 
+            // idDataGridViewTextBoxColumn1
+            // 
+            this.idDataGridViewTextBoxColumn1.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn1.HeaderText = "eac3to Track Id";
+            this.idDataGridViewTextBoxColumn1.MinimumWidth = 120;
+            this.idDataGridViewTextBoxColumn1.Name = "idDataGridViewTextBoxColumn1";
+            this.idDataGridViewTextBoxColumn1.ReadOnly = true;
+            this.idDataGridViewTextBoxColumn1.Width = 120;
+            // 
+            // languageDataGridViewTextBoxColumn1
+            // 
+            this.languageDataGridViewTextBoxColumn1.DataPropertyName = "Language";
+            this.languageDataGridViewTextBoxColumn1.HeaderText = "Language";
+            this.languageDataGridViewTextBoxColumn1.MinimumWidth = 100;
+            this.languageDataGridViewTextBoxColumn1.Name = "languageDataGridViewTextBoxColumn1";
+            this.languageDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // isCommentaryDataGridViewCheckBoxColumn1
+            // 
+            this.isCommentaryDataGridViewCheckBoxColumn1.DataPropertyName = "IsCommentary";
+            this.isCommentaryDataGridViewCheckBoxColumn1.HeaderText = "Is Commentary";
+            this.isCommentaryDataGridViewCheckBoxColumn1.MinimumWidth = 120;
+            this.isCommentaryDataGridViewCheckBoxColumn1.Name = "isCommentaryDataGridViewCheckBoxColumn1";
+            this.isCommentaryDataGridViewCheckBoxColumn1.Width = 120;
+            // 
+            // textDataGridViewTextBoxColumn1
+            // 
+            this.textDataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.textDataGridViewTextBoxColumn1.DataPropertyName = "Text";
+            this.textDataGridViewTextBoxColumn1.HeaderText = "Text";
+            this.textDataGridViewTextBoxColumn1.MinimumWidth = 200;
+            this.textDataGridViewTextBoxColumn1.Name = "textDataGridViewTextBoxColumn1";
+            this.textDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // ExternalSubtitlePath
+            // 
+            this.ExternalSubtitlePath.DataPropertyName = "ExternalSubtitlePath";
+            this.ExternalSubtitlePath.HeaderText = "External Subtitle";
+            this.ExternalSubtitlePath.MinimumWidth = 100;
+            this.ExternalSubtitlePath.Name = "ExternalSubtitlePath";
+            this.ExternalSubtitlePath.ReadOnly = true;
+            this.ExternalSubtitlePath.Width = 148;
+            // 
+            // RemoveSubtitle
+            // 
+            this.RemoveSubtitle.HeaderText = "Remove Subtitle";
+            this.RemoveSubtitle.Image = global::BatchGuy.App.Properties.Resources.Iconfinder_1472897142_DeleteRed;
+            this.RemoveSubtitle.MinimumWidth = 60;
+            this.RemoveSubtitle.Name = "RemoveSubtitle";
+            this.RemoveSubtitle.ReadOnly = true;
+            this.RemoveSubtitle.ToolTipText = "Remove Subtitle";
+            this.RemoveSubtitle.Width = 60;
+            // 
             // BluRayTitleInfoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1419, 756);
+            this.ClientSize = new System.Drawing.Size(1419, 788);
             this.Controls.Add(this.gbScreen);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -719,13 +716,13 @@
         private System.Windows.Forms.ComboBox cbMKVToolNixGUICompression;
         private System.Windows.Forms.Label lblMKVToolNixGUICompression;
         private System.Windows.Forms.OpenFileDialog ofdFileDialog;
+        private System.Windows.Forms.Button btnAddSubtitle;
         private System.Windows.Forms.DataGridViewCheckBoxColumn isSelectedDataGridViewCheckBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn languageDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewCheckBoxColumn isCommentaryDataGridViewCheckBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn textDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn ExternalSubtitlePath;
-        private System.Windows.Forms.DataGridViewImageColumn AddSubtitle;
         private System.Windows.Forms.DataGridViewImageColumn RemoveSubtitle;
     }
 }
