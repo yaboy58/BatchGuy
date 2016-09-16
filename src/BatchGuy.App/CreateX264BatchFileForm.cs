@@ -647,6 +647,37 @@ namespace BatchGuy.App
             }
         }
 
+        private void ClearEpisodeNames()
+        {
+            if (_bindingListFiles.Count() > 0)
+            {
+                foreach (X264File file in _batchGuyEAC3ToSettings.X264Files.Where(f => f.EpisodeNumber != null && f.EpisodeNumber != string.Empty).OrderBy(f => f.AviSynthFileNameOnly))
+                {
+                    if (_batchGuyEAC3ToSettings.BluRayDiscs != null)
+                    {
+                        foreach (BluRayDiscInfo disc in _batchGuyEAC3ToSettings.BluRayDiscs.Where(d => d.IsSelected))
+                        {
+                            if (disc.BluRaySummaryInfoList != null)
+                            {
+                                foreach (BluRaySummaryInfo summary in disc.BluRaySummaryInfoList)
+                                {
+                                    if (summary.IsSelected && summary.BluRayTitleInfo != null)
+                                    {
+                                        if (summary.BluRayTitleInfo.EpisodeNumber != null && summary.BluRayTitleInfo.EpisodeNumber != string.Empty
+                                            && summary.BluRayTitleInfo.Video != null && summary.BluRayTitleInfo.Video.IsSelected
+                                            && file.EpisodeNumber == summary.BluRayTitleInfo.EpisodeNumber)
+                                        {
+                                            summary.BluRayTitleInfo.EpisodeName = string.Empty;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
         private void WriteToMkvMergeBatchFile()
         {
             _batchGuyEAC3ToSettings.EAC3ToSettings.IsVideoNameForEncodeMkvMerge = true;
@@ -676,6 +707,7 @@ namespace BatchGuy.App
             {
                 MessageBox.Show(string.Format("Error: {0}", batchFileWriteService.Errors[0].Description), "Error occurred", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            this.ClearEpisodeNames();
             gbScreen.SetEnabled(true);
         }
 
