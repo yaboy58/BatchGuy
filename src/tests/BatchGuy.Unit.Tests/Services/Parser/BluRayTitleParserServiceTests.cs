@@ -9,6 +9,11 @@ using BatchGuy.App.Parser.Interfaces;
 using BatchGuy.App.Parser.Services;
 using BatchGuy.App.Enums;
 using FluentAssertions;
+using BatchGuy.App.Shared.Interface;
+using BatchGuy.App.MKVMerge.Models;
+using BatchGuy.App.Shared.Services;
+using BatchGuy.App.MKVMerge.Interfaces;
+using BatchGuy.App.MKVMerge.Services;
 
 namespace BatchGuy.Unit.Tests.Services.Parser
 {
@@ -22,8 +27,10 @@ namespace BatchGuy.Unit.Tests.Services.Parser
             {
                 new ProcessOutputLineItem()  { Id = 1, Text = "M2TS, 1 video track, 1 audio track, 1 subtitle track, 0:58:28, 50i" }
             };
+            IJsonSerializationService<ISOLanguageCodeCollection> jsonSerializationService = new JsonSerializationService<ISOLanguageCodeCollection>();
+            IMKVMergeLanguageService languageService = new MKVMergeLanguageService(jsonSerializationService);
             ILineItemIdentifierService lineItemService = new BluRayTitleLineItemIdentifierService();
-            IBluRayTitleParserService parserService = new BluRayTitleParserService(lineItemService, lineItems);
+            IBluRayTitleParserService parserService = new BluRayTitleParserService(lineItemService, lineItems, languageService);
             BluRayTitleInfo info = parserService.GetTitleInfo();
 
             info.HeaderText.Should().Be(lineItems[0].Text);
@@ -36,8 +43,10 @@ namespace BatchGuy.Unit.Tests.Services.Parser
             {
                 new ProcessOutputLineItem()  { Id = 1, Text = "1: Chapters, 6 chapters" }
             };
+            IJsonSerializationService<ISOLanguageCodeCollection> jsonSerializationService = new JsonSerializationService<ISOLanguageCodeCollection>();
+            IMKVMergeLanguageService languageService = new MKVMergeLanguageService(jsonSerializationService);
             ILineItemIdentifierService lineItemService = new BluRayTitleLineItemIdentifierService();
-            IBluRayTitleParserService parserService = new BluRayTitleParserService(lineItemService, lineItems);
+            IBluRayTitleParserService parserService = new BluRayTitleParserService(lineItemService, lineItems, languageService);
             BluRayTitleInfo info = parserService.GetTitleInfo();
 
             info.Chapter.Should().NotBeNull();
@@ -51,8 +60,10 @@ namespace BatchGuy.Unit.Tests.Services.Parser
             {
                 new ProcessOutputLineItem()  { Id = 1, Text = "2: h264/AVC, 1080i50 (16:9)" }
             };
+            IJsonSerializationService<ISOLanguageCodeCollection> jsonSerializationService = new JsonSerializationService<ISOLanguageCodeCollection>();
+            IMKVMergeLanguageService languageService = new MKVMergeLanguageService(jsonSerializationService);
             ILineItemIdentifierService lineItemService = new BluRayTitleLineItemIdentifierService();
-            IBluRayTitleParserService parserService = new BluRayTitleParserService(lineItemService, lineItems);
+            IBluRayTitleParserService parserService = new BluRayTitleParserService(lineItemService, lineItems,languageService);
             BluRayTitleInfo info = parserService.GetTitleInfo();
 
             info.Video.Should().NotBeNull();
@@ -66,8 +77,10 @@ namespace BatchGuy.Unit.Tests.Services.Parser
             {
                 new ProcessOutputLineItem()  { Id = 1, Text = "3: DTS Master Audio, French, 5.1 channels, 24 bits, 48kHz" }
             };
+            IJsonSerializationService<ISOLanguageCodeCollection> jsonSerializationService = new JsonSerializationService<ISOLanguageCodeCollection>();
+            IMKVMergeLanguageService languageService = new MKVMergeLanguageService(jsonSerializationService);
             ILineItemIdentifierService lineItemService = new BluRayTitleLineItemIdentifierService();
-            IBluRayTitleParserService parserService = new BluRayTitleParserService(lineItemService, lineItems);
+            IBluRayTitleParserService parserService = new BluRayTitleParserService(lineItemService, lineItems,languageService);
             BluRayTitleInfo info = parserService.GetTitleInfo();
 
             info.AudioList.Should().NotBeNull();
@@ -80,8 +93,10 @@ namespace BatchGuy.Unit.Tests.Services.Parser
             {
                 new ProcessOutputLineItem()  { Id = 1, Text = "3: DTS Master Audio, French, 5.1 channels, 24 bits, 48kHz" }
             };
+            IJsonSerializationService<ISOLanguageCodeCollection> jsonSerializationService = new JsonSerializationService<ISOLanguageCodeCollection>();
+            IMKVMergeLanguageService languageService = new MKVMergeLanguageService(jsonSerializationService);
             ILineItemIdentifierService lineItemService = new BluRayTitleLineItemIdentifierService();
-            IBluRayTitleParserService parserService = new BluRayTitleParserService(lineItemService, lineItems);
+            IBluRayTitleParserService parserService = new BluRayTitleParserService(lineItemService, lineItems, languageService);
             BluRayTitleInfo info = parserService.GetTitleInfo();
 
             info.AudioList[0].Id.Should().Be("3:");
@@ -94,8 +109,10 @@ namespace BatchGuy.Unit.Tests.Services.Parser
             {
                 new ProcessOutputLineItem()  { Id = 1, Text = "3: DTS Master Audio, French, 5.1 channels, 24 bits, 48kHz" }
             };
+            IJsonSerializationService<ISOLanguageCodeCollection> jsonSerializationService = new JsonSerializationService<ISOLanguageCodeCollection>();
+            IMKVMergeLanguageService languageService = new MKVMergeLanguageService(jsonSerializationService);
             ILineItemIdentifierService lineItemService = new BluRayTitleLineItemIdentifierService();
-            IBluRayTitleParserService parserService = new BluRayTitleParserService(lineItemService, lineItems);
+            IBluRayTitleParserService parserService = new BluRayTitleParserService(lineItemService, lineItems,languageService);
             BluRayTitleInfo info = parserService.GetTitleInfo();
 
             info.AudioList[0].AudioType.Should().Be(EnumAudioType.DTSMA);
@@ -109,8 +126,10 @@ namespace BatchGuy.Unit.Tests.Services.Parser
             {
                 new ProcessOutputLineItem()  { Id = 1, Text = "3: English / LPCM Audio / 1.0 / 48 kHz / 1152 kbps / 24-bit" }
             };
+            IJsonSerializationService<ISOLanguageCodeCollection> jsonSerializationService = new JsonSerializationService<ISOLanguageCodeCollection>();
+            IMKVMergeLanguageService languageService = new MKVMergeLanguageService(jsonSerializationService);
             ILineItemIdentifierService lineItemService = new BluRayTitleLineItemIdentifierService();
-            IBluRayTitleParserService parserService = new BluRayTitleParserService(lineItemService, lineItems);
+            IBluRayTitleParserService parserService = new BluRayTitleParserService(lineItemService, lineItems,languageService);
             BluRayTitleInfo info = parserService.GetTitleInfo();
 
             info.AudioList[0].AudioType.Should().Be(EnumAudioType.LPCM);
@@ -123,8 +142,10 @@ namespace BatchGuy.Unit.Tests.Services.Parser
             {
                 new ProcessOutputLineItem()  { Id = 1, Text = "3: Dolby Digital Audio English 448 kbps 5.1 / 48 kHz / 448 kbps" }
             };
+            IJsonSerializationService<ISOLanguageCodeCollection> jsonSerializationService = new JsonSerializationService<ISOLanguageCodeCollection>();
+            IMKVMergeLanguageService languageService = new MKVMergeLanguageService(jsonSerializationService);
             ILineItemIdentifierService lineItemService = new BluRayTitleLineItemIdentifierService();
-            IBluRayTitleParserService parserService = new BluRayTitleParserService(lineItemService, lineItems);
+            IBluRayTitleParserService parserService = new BluRayTitleParserService(lineItemService, lineItems,languageService);
             BluRayTitleInfo info = parserService.GetTitleInfo();
 
             info.AudioList[0].AudioType.Should().Be(EnumAudioType.AC3);
@@ -137,11 +158,13 @@ namespace BatchGuy.Unit.Tests.Services.Parser
             {
                 new ProcessOutputLineItem()  { Id = 1, Text = "3: Dolby Digital Audio English 448 kbps 5.1 / 48 kHz / 448 kbps" }
             };
+            IJsonSerializationService<ISOLanguageCodeCollection> jsonSerializationService = new JsonSerializationService<ISOLanguageCodeCollection>();
+            IMKVMergeLanguageService languageService = new MKVMergeLanguageService(jsonSerializationService);
             ILineItemIdentifierService lineItemService = new BluRayTitleLineItemIdentifierService();
-            IBluRayTitleParserService parserService = new BluRayTitleParserService(lineItemService, lineItems);
+            IBluRayTitleParserService parserService = new BluRayTitleParserService(lineItemService, lineItems,languageService);
             BluRayTitleInfo info = parserService.GetTitleInfo();
 
-            info.AudioList[0].Language.Should().Be("english");
+            info.AudioList[0].Language.Should().Be("English");
         }
 
         [Test]
@@ -151,8 +174,10 @@ namespace BatchGuy.Unit.Tests.Services.Parser
             {
                 new ProcessOutputLineItem()  { Id = 1, Text = "4: Subtitle (pgs), French" }
             };
+            IJsonSerializationService<ISOLanguageCodeCollection> jsonSerializationService = new JsonSerializationService<ISOLanguageCodeCollection>();
+            IMKVMergeLanguageService languageService = new MKVMergeLanguageService(jsonSerializationService);
             ILineItemIdentifierService lineItemService = new BluRayTitleLineItemIdentifierService();
-            IBluRayTitleParserService parserService = new BluRayTitleParserService(lineItemService, lineItems);
+            IBluRayTitleParserService parserService = new BluRayTitleParserService(lineItemService, lineItems,languageService);
             BluRayTitleInfo info = parserService.GetTitleInfo();
 
             info.Subtitles.Should().NotBeNull();
@@ -166,11 +191,13 @@ namespace BatchGuy.Unit.Tests.Services.Parser
             {
                 new ProcessOutputLineItem()  { Id = 1, Text = "4: Subtitle (pgs), French" }
             };
+            IJsonSerializationService<ISOLanguageCodeCollection> jsonSerializationService = new JsonSerializationService<ISOLanguageCodeCollection>();
+            IMKVMergeLanguageService languageService = new MKVMergeLanguageService(jsonSerializationService);
             ILineItemIdentifierService lineItemService = new BluRayTitleLineItemIdentifierService();
-            IBluRayTitleParserService parserService = new BluRayTitleParserService(lineItemService, lineItems);
+            IBluRayTitleParserService parserService = new BluRayTitleParserService(lineItemService, lineItems,languageService);
             BluRayTitleInfo info = parserService.GetTitleInfo();
 
-            info.Subtitles[0].Language.Should().Be("french");
+            info.Subtitles[0].Language.Should().Be("French");
         }
 
         [Test]
@@ -180,8 +207,10 @@ namespace BatchGuy.Unit.Tests.Services.Parser
             {
                 new ProcessOutputLineItem()  { Id = 1, Text = "(core: DTS, 5.1 channels, 1509kpps, 48kHz)" }
             };
+            IJsonSerializationService<ISOLanguageCodeCollection> jsonSerializationService = new JsonSerializationService<ISOLanguageCodeCollection>();
+            IMKVMergeLanguageService languageService = new MKVMergeLanguageService(jsonSerializationService);
             ILineItemIdentifierService lineItemService = new BluRayTitleLineItemIdentifierService();
-            IBluRayTitleParserService parserService = new BluRayTitleParserService(lineItemService, lineItems);
+            IBluRayTitleParserService parserService = new BluRayTitleParserService(lineItemService, lineItems, languageService);
 
             bool isValid = parserService.IsIdValid("core:");
 
@@ -195,8 +224,10 @@ namespace BatchGuy.Unit.Tests.Services.Parser
             {
                 new ProcessOutputLineItem()  { Id = 1, Text = "4: Subtitle (pgs), French" }
             };
+            IJsonSerializationService<ISOLanguageCodeCollection> jsonSerializationService = new JsonSerializationService<ISOLanguageCodeCollection>();
+            IMKVMergeLanguageService languageService = new MKVMergeLanguageService(jsonSerializationService);
             ILineItemIdentifierService lineItemService = new BluRayTitleLineItemIdentifierService();
-            IBluRayTitleParserService parserService = new BluRayTitleParserService(lineItemService, lineItems);
+            IBluRayTitleParserService parserService = new BluRayTitleParserService(lineItemService, lineItems,languageService);
 
             bool isValid = parserService.IsIdValid("4:");
 

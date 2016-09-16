@@ -367,10 +367,12 @@ namespace BatchGuy.App
 
         private void bgwEac3toLoadTitle_DoWork(object sender, DoWorkEventArgs e)
         {
+            IJsonSerializationService<ISOLanguageCodeCollection> jsonSerializationService = new JsonSerializationService<ISOLanguageCodeCollection>();
+            IMKVMergeLanguageService languageService = new MKVMergeLanguageService(jsonSerializationService);
             ICommandLineProcessService commandLineProcessService = e.Argument as CommandLineProcessService;
             List<ProcessOutputLineItem> processOutputLineItems = commandLineProcessService.GetProcessOutputLineItems();
             ILineItemIdentifierService lineItemService = new BluRayTitleLineItemIdentifierService();
-            IBluRayTitleParserService parserService = new BluRayTitleParserService(lineItemService, processOutputLineItems);
+            IBluRayTitleParserService parserService = new BluRayTitleParserService(lineItemService, processOutputLineItems, languageService);
             _bluRaySummaryInfo.BluRayTitleInfo = parserService.GetTitleInfo();
         }
 

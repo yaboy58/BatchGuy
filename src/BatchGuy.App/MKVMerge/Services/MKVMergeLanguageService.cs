@@ -52,6 +52,7 @@ namespace BatchGuy.App.MKVMerge.Services
             new MKVMergeLanguageItem() { Language = "German", Name = "German (ger)", Value = "ger" },
             new MKVMergeLanguageItem() { Language = "Greek", Name = "Greek, Modern (1453-) (gre)", Value = "gre" },
             new MKVMergeLanguageItem() { Language = "Hindi", Name = "Hindi (hin)", Value = "hin" },
+            new MKVMergeLanguageItem() { Language = "Hungarian", Name = "Hungarian (hun)", Value = "hun" },
             new MKVMergeLanguageItem() { Language = "Icelandic", Name = "Icelandic (ice)", Value = "ice" },
             new MKVMergeLanguageItem() { Language = "Italian", Name = "Italian (ita)", Value = "ita" },
             new MKVMergeLanguageItem() { Language = "Japanese", Name = "Japanese (jpn)", Value = "jpn" },

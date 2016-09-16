@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 using BatchGuy.App.Enums;
 using System.Text.RegularExpressions;
 using log4net;
+using BatchGuy.App.MKVMerge.Interfaces;
+using BatchGuy.App.MKVMerge.Models;
 
 namespace BatchGuy.App.Parser.Services
 {
@@ -16,13 +18,14 @@ namespace BatchGuy.App.Parser.Services
         private ILineItemIdentifierService _lineItemIdentifierService;
         private List<ProcessOutputLineItem> _processOutputLineItems;
         private readonly BluRayTitleInfo _bluRayTtileInfo;
+        private IMKVMergeLanguageService _languageService;
 
-
-        public BluRayTitleParserService(ILineItemIdentifierService lineItemIdentifierService, List<ProcessOutputLineItem> processOutputLineItems)
+        public BluRayTitleParserService(ILineItemIdentifierService lineItemIdentifierService, List<ProcessOutputLineItem> processOutputLineItems, IMKVMergeLanguageService languageService)
         {
             _lineItemIdentifierService = lineItemIdentifierService;
             _processOutputLineItems = processOutputLineItems;
             _bluRayTtileInfo = new BluRayTitleInfo();
+            _languageService = languageService;
         }
 
         public BluRayTitleInfo GetTitleInfo()
@@ -83,15 +86,14 @@ namespace BatchGuy.App.Parser.Services
 
         public string GetLanguage(ProcessOutputLineItem lineItem)
         {
-            string[] languages = new string[] {"greek", "arabic", "chinese", "dutch", "danish", "english", "finnish", "french", "german", "italian", "spanish", "japanese", "norwegian", "portuguese",
-                "swedish","hindi", "icelandic","korean","romanian", "russian", "telugu" };
+            var languages = _languageService.GetLanguages();
             string lineItemLanguage = "undetermined";
 
-            foreach (string language in languages)
+            foreach (MKVMergeLanguageItem language in languages)
             {
-                if (lineItem.Text.ToLower().Contains(language))
+                if (lineItem.Text.ToLower().Contains(language.Language.ToLower()))
                 {
-                    return lineItemLanguage = language;
+                    return lineItemLanguage = language.Language;
                 }
             }
             return lineItemLanguage;

@@ -4,9 +4,13 @@ using BatchGuy.App.Eac3to.Services;
 using BatchGuy.App.Eac3To.Abstracts;
 using BatchGuy.App.Eac3To.Interfaces;
 using BatchGuy.App.Eac3To.Services;
+using BatchGuy.App.MKVMerge.Interfaces;
+using BatchGuy.App.MKVMerge.Models;
+using BatchGuy.App.MKVMerge.Services;
 using BatchGuy.App.Parser.Interfaces;
 using BatchGuy.App.Parser.Models;
 using BatchGuy.App.Parser.Services;
+using BatchGuy.App.Shared.Interface;
 using BatchGuy.App.Shared.Interfaces;
 using BatchGuy.App.Shared.Services;
 using System;
@@ -99,10 +103,13 @@ namespace BatchGuy.Eac3to.Parser.Example.Console.App
                         //System.Console.WriteLine(line.Text); //write out if we choose too
                     }
 
+                    //language service
+                    IJsonSerializationService<ISOLanguageCodeCollection> jsonSerializationService = new JsonSerializationService<ISOLanguageCodeCollection>();
+                    IMKVMergeLanguageService languageService = new MKVMergeLanguageService(jsonSerializationService);
                     //This service is used to identify the title line type ie audio, video, subtitle etc etc
                     ILineItemIdentifierService lineItemServiceTitle = new BluRayTitleLineItemIdentifierService();
                     //This service will parse the line items and return an info object that tells about the specific title
-                    IBluRayTitleParserService parserServiceTitle = new BluRayTitleParserService(lineItemServiceTitle, processOutputLineItemsTitle);
+                    IBluRayTitleParserService parserServiceTitle = new BluRayTitleParserService(lineItemServiceTitle, processOutputLineItemsTitle, languageService);
                     //Get the title info object
                     bluRayDisc.BluRaySummaryInfoList[1].BluRayTitleInfo = parserServiceTitle.GetTitleInfo();
                     if (bluRayDisc.BluRaySummaryInfoList[1].BluRayTitleInfo != null)
