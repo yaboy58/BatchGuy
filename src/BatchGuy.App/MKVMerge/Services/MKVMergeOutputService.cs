@@ -9,6 +9,7 @@ using BatchGuy.App.Parser.Models;
 using BatchGuy.App.Shared.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -55,7 +56,10 @@ namespace BatchGuy.App.MKVMerge.Services
 
         public string GetOutputPart()
         {
-            return string.Format("--ui-language en --output ^\"{0}^\"", _eac3ToOutputNamingService.GetVideoName(_eac3ToConfiguration, _eac3ToConfiguration.MKVMergeOutputPath, _paddedEpisodeNumber, _bluRaySummaryInfo.BluRayTitleInfo.EpisodeName).RemoveDoubleQuotes());
+            if (_eac3ToConfiguration.IsVideoNameForEncodeMkvMerge == false)
+                return string.Format("--ui-language en --output ^\"{0}^\"", _eac3ToOutputNamingService.GetVideoName(_eac3ToConfiguration, _eac3ToConfiguration.MKVMergeOutputPath, _paddedEpisodeNumber, _bluRaySummaryInfo.BluRayTitleInfo.EpisodeName).RemoveDoubleQuotes());
+            else
+               return string.Format("--ui-language en --output ^\"{0}\\{1}^\"", _eac3ToConfiguration.MKVMergeOutputPath, Path.GetFileName(_bluRaySummaryInfo.BluRayTitleInfo.EpisodeName));
         }
 
         public string GetVideoPart()

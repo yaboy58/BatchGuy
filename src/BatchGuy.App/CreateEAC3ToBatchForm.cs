@@ -445,6 +445,7 @@ namespace BatchGuy.App
             _eac3toConfiguration.MKVMergePath = setting.Value;
             _eac3toConfiguration.MKVMergeBatchFilePath = txtMKVMergeBatFilePath.Text;
             _eac3toConfiguration.ShowProgressNumbers = Program.ApplicationSettings.EAC3ToDefaultSettings.ShowProgressNumbers;
+            _eac3toConfiguration.IsVideoNameForEncodeMkvMerge = false;
         }
 
         private void dgvBluRayDiscInfo_DragDrop(object sender, DragEventArgs e)
@@ -642,6 +643,7 @@ namespace BatchGuy.App
             txtBatFilePath.Text = _eac3toConfiguration.BatchFilePath;
             txtMKVMergeBatFilePath.Text = _eac3toConfiguration.MKVMergeBatchFilePath;
             txtMKVMergeOutputPath.Text = _eac3toConfiguration.MKVMergeOutputPath;
+            _eac3toConfiguration.IsVideoNameForEncodeMkvMerge = false;
             foreach (BluRayDiscInfo disc in batchGuyEAC3ToSettings.BluRayDiscs)
             {
                 _bindingListBluRayDiscInfo.Add(disc);

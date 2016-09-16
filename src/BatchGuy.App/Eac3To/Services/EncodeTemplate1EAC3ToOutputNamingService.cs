@@ -65,9 +65,14 @@ namespace BatchGuy.App.Eac3To.Services
             StringBuilder sb = new StringBuilder();
             if (eac3toConfiguration.IsExtractForRemux != true)
             {
-                sb.Append(string.Format("\"{0}\\video{1}.mkv\"", filesOutputPath, paddedEpisodeNumber));
+                if (eac3toConfiguration.IsVideoNameForEncodeMkvMerge == false)
+                    sb.Append(string.Format("\"{0}\\video{1}.mkv\"", filesOutputPath, paddedEpisodeNumber));
+                else
+                    sb.Append(string.Format("\"{0}\"", episodeName));
             }
             return sb.ToString();
         }
+
+
     }
 }

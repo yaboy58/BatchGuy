@@ -21,5 +21,6 @@ namespace BatchGuy.App.Eac3to.Models
         public string MKVMergePath { get; set; }
         public string MKVMergeBatchFilePath { get; set; }
         public bool ShowProgressNumbers { get; set; }
+        public bool IsVideoNameForEncodeMkvMerge { get; set; }
     }
 }

@@ -42,6 +42,7 @@
             this.lblNumberOfFiles = new System.Windows.Forms.Label();
             this.ofdFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.gbScreen = new System.Windows.Forms.GroupBox();
+            this.btnWriteToMKVMergeBatFile = new System.Windows.Forms.Button();
             this.lblOutputAndLogFileCaption = new System.Windows.Forms.Label();
             this.txtX264EncodeOutputAndLogDirectory = new System.Windows.Forms.TextBox();
             this.lblDirectoryType = new System.Windows.Forms.Label();
@@ -63,6 +64,7 @@
             this.loadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.bgwMkvMergeWriteBatchFile = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFiles)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsEpisodeNumbersDropDownListItem)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsFiles)).BeginInit();
@@ -74,7 +76,7 @@
             // 
             // btnCreateX264BatchFile
             // 
-            this.btnCreateX264BatchFile.Location = new System.Drawing.Point(688, 680);
+            this.btnCreateX264BatchFile.Location = new System.Drawing.Point(491, 675);
             this.btnCreateX264BatchFile.Name = "btnCreateX264BatchFile";
             this.btnCreateX264BatchFile.Size = new System.Drawing.Size(168, 33);
             this.btnCreateX264BatchFile.TabIndex = 6;
@@ -175,6 +177,7 @@
             // 
             // gbScreen
             // 
+            this.gbScreen.Controls.Add(this.btnWriteToMKVMergeBatFile);
             this.gbScreen.Controls.Add(this.lblOutputAndLogFileCaption);
             this.gbScreen.Controls.Add(this.txtX264EncodeOutputAndLogDirectory);
             this.gbScreen.Controls.Add(this.lblDirectoryType);
@@ -193,6 +196,16 @@
             this.gbScreen.Size = new System.Drawing.Size(868, 726);
             this.gbScreen.TabIndex = 31;
             this.gbScreen.TabStop = false;
+            // 
+            // btnWriteToMKVMergeBatFile
+            // 
+            this.btnWriteToMKVMergeBatFile.Location = new System.Drawing.Point(690, 675);
+            this.btnWriteToMKVMergeBatFile.Name = "btnWriteToMKVMergeBatFile";
+            this.btnWriteToMKVMergeBatFile.Size = new System.Drawing.Size(166, 33);
+            this.btnWriteToMKVMergeBatFile.TabIndex = 7;
+            this.btnWriteToMKVMergeBatFile.Text = "Create mkvmerge Batch File";
+            this.btnWriteToMKVMergeBatFile.UseVisualStyleBackColor = true;
+            this.btnWriteToMKVMergeBatFile.Click += new System.EventHandler(this.btnWriteToMKVMergeBatFile_Click);
             // 
             // lblOutputAndLogFileCaption
             // 
@@ -369,23 +382,28 @@
             // 
             this.loadToolStripMenuItem.Image = global::BatchGuy.App.Properties.Resources.Custom_Icon_Design_Flatastic_10_Open_file;
             this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
-            this.loadToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.loadToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
             this.loadToolStripMenuItem.Text = "Restore";
             this.loadToolStripMenuItem.Click += new System.EventHandler(this.loadToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(110, 6);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Image = global::BatchGuy.App.Properties.Resources.Custom_Icon_Design_Flatastic_10_New_file;
             this.saveToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
+            // 
+            // bgwMkvMergeWriteBatchFile
+            // 
+            this.bgwMkvMergeWriteBatchFile.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgwMkvMergeWriteBatchFile_DoWork);
+            this.bgwMkvMergeWriteBatchFile.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgwMkvMergeWriteBatchFile_RunWorkerCompleted);
             // 
             // CreateX264BatchFileForm
             // 
@@ -455,5 +473,7 @@
         private System.Windows.Forms.TextBox txtX264EncodeOutputAndLogDirectory;
         private System.Windows.Forms.Label lblDirectoryType;
         private System.Windows.Forms.Label lblDirectoryTypeCaption;
+        private System.Windows.Forms.Button btnWriteToMKVMergeBatFile;
+        private System.ComponentModel.BackgroundWorker bgwMkvMergeWriteBatchFile;
     }
 }

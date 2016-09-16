@@ -25,6 +25,11 @@ using BatchGuy.App.Eac3To.Interfaces;
 using BatchGuy.App.Eac3To.Services;
 using log4net;
 using System.Reflection;
+using BatchGuy.App.Eac3To.Abstracts;
+using BatchGuy.App.MKVMerge.Interfaces;
+using BatchGuy.App.MKVMerge.Services;
+using BatchGuy.App.Parser.Models;
+using BatchGuy.App.Helpers;
 
 namespace BatchGuy.App
 {
@@ -173,11 +178,11 @@ namespace BatchGuy.App
         private void CreateX264BatFile()
         {
             gbScreen.SetEnabled(false);
-            X264FileSettings x264Settings = this.GetX264FileSettings();
+            _batchGuyEAC3ToSettings.X264Files = this.GetX264Files();
+            _batchGuyEAC3ToSettings.X264FileSettings = this.GetX264FileSettings();
 
-            List<X264File> x264Files = this.GetX264Files();
-            IX264ValidationService validationService = new X264ValidationService(x264Settings, x264Files);
-            IX264EncodeService encodeService = new X264EncodeService(validationService, x264Settings, x264Files);
+            IX264ValidationService validationService = new X264ValidationService(_batchGuyEAC3ToSettings.X264FileSettings, _batchGuyEAC3ToSettings.X264Files);
+            IX264EncodeService encodeService = new X264EncodeService(validationService, _batchGuyEAC3ToSettings.X264FileSettings, _batchGuyEAC3ToSettings.X264Files);
             bgwCreateX264BatchFile.RunWorkerAsync(encodeService);
         }
 
@@ -220,7 +225,6 @@ namespace BatchGuy.App
             if (errors.Count() == 0)
             {
                 MessageBox.Show("The x264 batch file has been created!", "Success.", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.Close();
             }
             else
             {
@@ -562,6 +566,153 @@ namespace BatchGuy.App
                 return true;
             else
                 return false;
+        }
+
+        private void btnWriteToMKVMergeBatFile_Click(object sender, EventArgs e)
+        {
+            this.HandlesBtnWriteToMKVMergeBatFileClick();
+        }
+
+        private void HandlesBtnWriteToMKVMergeBatFileClick()
+        {
+            DialogResult startProcessResult = MessageBox.Show("Create mkvmerge batch file?", "Start Process?", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+
+            _batchGuyEAC3ToSettings.X264Files = this.GetX264Files();
+            _batchGuyEAC3ToSettings.X264FileSettings = this.GetX264FileSettings();
+            this.SetEpisodeNames();
+
+            if (startProcessResult == System.Windows.Forms.DialogResult.Yes)
+            {
+                if (this.IsScreenValidForWriteX264BatchFile() && this.IsScreenValidForMkvMerge())
+                {
+                    WarningCollection warnings = new EAC3ToBatchFileWriteWarningService(_batchGuyEAC3ToSettings.BluRayDiscs).GetWarnings();
+                    this.MKVMergeWarnings(warnings);
+                    if (warnings.Count() > 0)
+                    {
+                        string warning = string.Format("{0}{1}{2}Would you still like to continue?", warnings.GetWarningMessage(), Environment.NewLine, Environment.NewLine);
+                        DialogResult warningResult = MessageBox.Show(warning, "Warnings Found", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
+                        if (warningResult == System.Windows.Forms.DialogResult.Yes)
+                        {
+                            this.WriteToMkvMergeBatchFile();
+                        }
+                    }
+                    else
+                    {
+                        this.WriteToMkvMergeBatchFile();
+                    }
+                }
+            }
+        }
+
+        private void SetEpisodeNames()
+        {
+            if (_bindingListFiles.Count() > 0)
+            {
+                foreach (X264File file in _batchGuyEAC3ToSettings.X264Files.Where(f => f.EpisodeNumber != null && f.EpisodeNumber != string.Empty).OrderBy(f => f.AviSynthFileNameOnly))
+                {
+                    if (_batchGuyEAC3ToSettings.BluRayDiscs != null)
+                    {
+                        foreach (BluRayDiscInfo disc in _batchGuyEAC3ToSettings.BluRayDiscs.Where(d => d.IsSelected))
+                        {
+                            if (disc.BluRaySummaryInfoList != null)
+                            {
+                                foreach (BluRaySummaryInfo summary in disc.BluRaySummaryInfoList)
+                                {
+                                    if (summary.IsSelected && summary.BluRayTitleInfo != null)
+                                    {
+                                        if (summary.BluRayTitleInfo.EpisodeNumber != null && summary.BluRayTitleInfo.EpisodeNumber != string.Empty 
+                                            && summary.BluRayTitleInfo.Video != null &&  summary.BluRayTitleInfo.Video.IsSelected
+                                            && file.EpisodeNumber == summary.BluRayTitleInfo.EpisodeNumber)
+                                        {
+                                            if (_batchGuyEAC3ToSettings.EAC3ToSettings.OutputDirectoryType == EnumDirectoryType.DirectoryPerEpisode)
+                                            {
+                                                string episodeFolderName = HelperFunctions.PadNumberWithZeros(_batchGuyEAC3ToSettings.X264Files.Count(), file.EpisodeNumber.StringToInt());
+                                                summary.BluRayTitleInfo.EpisodeName = string.Format("{0}\\e{1}\\{2}",_batchGuyEAC3ToSettings.EAC3ToSettings.EAC3ToOutputPath, episodeFolderName, file.EncodeName);
+                                            }
+                                            else
+                                            {
+                                                summary.BluRayTitleInfo.EpisodeName = string.Format("{0}\\{1}", _batchGuyEAC3ToSettings.EAC3ToSettings.EAC3ToOutputPath, file.EncodeName);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        private void WriteToMkvMergeBatchFile()
+        {
+            _batchGuyEAC3ToSettings.EAC3ToSettings.IsVideoNameForEncodeMkvMerge = true;
+            gbScreen.SetEnabled(false);
+            IDirectorySystemService directorySystemService = new DirectorySystemService();
+            IAudioService audioService = new AudioService();
+            AbstractEAC3ToOutputNamingService eac3ToOutputNamingService = new EncodeTemplate1EAC3ToOutputNamingService(audioService);
+            IMKVMergeBatchFileWriteService batchFileWriteService = new MKVMergeBatchFileWriteForEncodeService(_batchGuyEAC3ToSettings, directorySystemService, audioService, eac3ToOutputNamingService);
+            bgwMkvMergeWriteBatchFile.RunWorkerAsync(batchFileWriteService);
+        }
+
+        private void bgwMkvMergeWriteBatchFile_DoWork(object sender, DoWorkEventArgs e)
+        {
+            IMKVMergeBatchFileWriteService batchFileWriteService = e.Argument as MKVMergeBatchFileWriteForEncodeService;
+            batchFileWriteService.Write();
+            e.Result = batchFileWriteService;
+        }
+
+        private void bgwMkvMergeWriteBatchFile_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            IMKVMergeBatchFileWriteService batchFileWriteService = e.Result as MKVMergeBatchFileWriteForEncodeService;
+            if (batchFileWriteService.Errors.Count() == 0)
+            {
+                MessageBox.Show("Batch File created!", "Process Complete", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                MessageBox.Show(string.Format("Error: {0}", batchFileWriteService.Errors[0].Description), "Error occurred", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            gbScreen.SetEnabled(true);
+        }
+
+        private void MKVMergeWarnings(WarningCollection warnings)
+        {
+            if (_batchGuyEAC3ToSettings.EAC3ToSettings.EAC3ToOutputPath == _batchGuyEAC3ToSettings.EAC3ToSettings.MKVMergeOutputPath)
+            {
+                warnings.Add(new Warning() { Id = 0, Description = "The eac3to output path is the same as mkvmerge output path and could have output file name conflicts!" });
+            }
+        }
+
+        private bool IsScreenValidForMkvMerge()
+        {
+            if (IsMkvMergePathSetInSettings() != true)
+            {
+                MessageBox.Show("Please go to settings and set the mkvmerge.exe path", "Error occurred", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            if (_batchGuyEAC3ToSettings.EAC3ToSettings.MKVMergeBatchFilePath == null || _batchGuyEAC3ToSettings.EAC3ToSettings.MKVMergeBatchFilePath == string.Empty)
+            {
+                MessageBox.Show("Please go to the Create eac3to Batch File Screen and choose an mkvmerge batch file!", "Error occurred", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            if (_batchGuyEAC3ToSettings.EAC3ToSettings.MKVMergeOutputPath == null || _batchGuyEAC3ToSettings.EAC3ToSettings.MKVMergeOutputPath == string.Empty)
+            {
+                MessageBox.Show("Please Please go to the Create eac3to Batch File Screen and choose an mkvmerge output path!", "Error occurred", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            return true;
+        }
+
+        private bool IsMkvMergePathSetInSettings()
+        {
+            Setting setting = Program.ApplicationSettingsService.GetSettingByName("mkvmerge");
+            if (setting == null || string.IsNullOrEmpty(setting.Value))
+                return false;
+            else
+                return true;
         }
     }
 }
