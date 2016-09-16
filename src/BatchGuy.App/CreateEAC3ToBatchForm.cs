@@ -365,7 +365,10 @@ namespace BatchGuy.App
                 {
                     _bindingListBluRaySummaryInfo.Add(info);
                 }
-                this.UpdateUIForBluRaySummary();         
+                this.UpdateUIForBluRaySummary();
+
+                _bluRaySummaryGridSortConfiguration.SortDirection = 0; //reset so new disc added will set properly
+                this.SortBluRaySummaryGrid(3);
             }
             else
             {
@@ -467,6 +470,9 @@ namespace BatchGuy.App
             if (_bindingListBluRayDiscInfo.Count() > 0)
             {
                 this.BindDgvBluRayDiscInfoGrid();
+
+                _bluRayDiscGridSortConfiguration.SortDirection = 0; //reset for new discs
+                this.SortBluRayDiscGrid(2);
             }
         }
 

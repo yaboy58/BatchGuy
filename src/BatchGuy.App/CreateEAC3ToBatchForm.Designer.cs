@@ -463,6 +463,7 @@
             // dgvBluRaySummary
             // 
             this.dgvBluRaySummary.AllowUserToAddRows = false;
+            this.dgvBluRaySummary.AllowUserToDeleteRows = false;
             this.dgvBluRaySummary.AllowUserToOrderColumns = true;
             this.dgvBluRaySummary.AutoGenerateColumns = false;
             this.dgvBluRaySummary.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;

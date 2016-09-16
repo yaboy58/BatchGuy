@@ -3,9 +3,12 @@
 *External Subtitle Popup Screen browse button now shows all valid subtitle formats instead of the user having to filter the dialog on each valid subtitle type
 *External Subtitle Popup Screen cannot maximized
 *Users can now double-click on each row on the AviSynth Grid on the Create x264 Batch File Screen to navigate to the the BluRay Title Info Screen from x264 Screen and make changes such as adding new subtitles
+*Users were mistakenly able to delete rows in the Disc Summary Grid on the Create eac3to Batch File Screen, this has been disabled
+*On the Create eac3to Batch File screen, when the user adds a new Blu-ray Disc, the Blu-ray Disc Grid is automatically sorted by Disc Name in ascending order
+*On the Create eac3to Batch File screen, when the user adds a new Blu-ray Summary, the Blu-ray Disc Summary Grid is automatically sorted by Playlist in ascending order
 
-Auto sort some grids
-Call the BluRay Title Info Screen from x264 Screen
+
+
 
 
 --possible nice to haves
