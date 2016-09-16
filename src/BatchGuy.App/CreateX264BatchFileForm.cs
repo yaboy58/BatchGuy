@@ -805,6 +805,7 @@ namespace BatchGuy.App
 
             BluRayTitleInfoForm form = new BluRayTitleInfoForm();
             form.SetBluRayTitleInfo(_batchGuyEAC3ToSettings.EAC3ToSettings, discInfo.BluRayPath, summaryInfo);
+            form.IsCallingScreenCreateX264BatchFile = true;
             form.ShowDialog();
         }
     }

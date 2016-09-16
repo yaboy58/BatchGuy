@@ -44,6 +44,8 @@ namespace BatchGuy.App
         private BluRayTitleSubtitle _currentBluRayTitleSubtitle;
         private IAudioService _audioService = new AudioService();
 
+        public bool IsCallingScreenCreateX264BatchFile { get; set; }
+
         public BluRayTitleInfoForm()
         {
             InitializeComponent();
@@ -65,6 +67,7 @@ namespace BatchGuy.App
             this.gbScreen.SetEnabled(false);
             this.SetMKVToolNixGUIControlsDefaults();
             this.SetGBMKVToolNixGUIEnabledStatus(true);
+            this.DisabletxtEpisodeNumberIfCallingScreenIsCreateX264BatchFile();
 
             if (_bluRaySummaryInfo.BluRayTitleInfo != null)
             {
@@ -77,6 +80,13 @@ namespace BatchGuy.App
                 this.LoadBluRayTitleInfo();
             }
             txtEpisodeName.SetEnabled(_eac3ToConfiguration.IsExtractForRemux);
+        }
+
+        private void DisabletxtEpisodeNumberIfCallingScreenIsCreateX264BatchFile()
+        {
+            if (this.IsCallingScreenCreateX264BatchFile)
+                txtEpisodeNumber.ReadOnly = true;
+
         }
 
         private void LoadBluRayTitleInfo()
