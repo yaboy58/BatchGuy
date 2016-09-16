@@ -33,6 +33,7 @@ namespace BatchGuy.App
 
         private void SettingsForm_Load(object sender, EventArgs e)
         {
+            lblVersion.Text = Program.GetApplicationVersion();
             this.LoadMKVLanguageDropDownBoxes();
             this.LoadSettings();
             this.LoadControls();

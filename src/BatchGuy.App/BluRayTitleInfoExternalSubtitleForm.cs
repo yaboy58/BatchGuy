@@ -65,6 +65,7 @@ namespace BatchGuy.App
 
         private void BluRayTitleInfoExternalSubtitleForm_Load(object sender, EventArgs e)
         {
+            lblVersion.Text = Program.GetApplicationVersion();
             this.LoadMKVMergeLangugeItemsDropDown();
 
             if (_isAdd == false)

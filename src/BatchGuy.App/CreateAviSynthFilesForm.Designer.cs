@@ -39,6 +39,10 @@
             this.txtNumberOfFiles = new System.Windows.Forms.TextBox();
             this.btnOpenDialog = new System.Windows.Forms.Button();
             this.gbScreen = new System.Windows.Forms.GroupBox();
+            this.lblMKVFilesDirectoryCaption = new System.Windows.Forms.Label();
+            this.txtMKVFilesDirectory = new System.Windows.Forms.TextBox();
+            this.lblDirectoryType = new System.Windows.Forms.Label();
+            this.lblDirectoryTypeCaption = new System.Windows.Forms.Label();
             this.cbVideoFilter = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -51,10 +55,7 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.lblMKVFilesDirectoryCaption = new System.Windows.Forms.Label();
-            this.txtMKVFilesDirectory = new System.Windows.Forms.TextBox();
-            this.lblDirectoryType = new System.Windows.Forms.Label();
-            this.lblDirectoryTypeCaption = new System.Windows.Forms.Label();
+            this.lblVersion = new System.Windows.Forms.Label();
             this.gbScreen.SuspendLayout();
             this.menuStrip.SuspendLayout();
             this.SuspendLayout();
@@ -154,6 +155,41 @@
             this.gbScreen.TabIndex = 12;
             this.gbScreen.TabStop = false;
             // 
+            // lblMKVFilesDirectoryCaption
+            // 
+            this.lblMKVFilesDirectoryCaption.AutoSize = true;
+            this.lblMKVFilesDirectoryCaption.Location = new System.Drawing.Point(20, 49);
+            this.lblMKVFilesDirectoryCaption.Name = "lblMKVFilesDirectoryCaption";
+            this.lblMKVFilesDirectoryCaption.Size = new System.Drawing.Size(108, 13);
+            this.lblMKVFilesDirectoryCaption.TabIndex = 44;
+            this.lblMKVFilesDirectoryCaption.Text = "(.mkv) Files Directory:";
+            // 
+            // txtMKVFilesDirectory
+            // 
+            this.txtMKVFilesDirectory.Location = new System.Drawing.Point(157, 46);
+            this.txtMKVFilesDirectory.Name = "txtMKVFilesDirectory";
+            this.txtMKVFilesDirectory.ReadOnly = true;
+            this.txtMKVFilesDirectory.Size = new System.Drawing.Size(673, 20);
+            this.txtMKVFilesDirectory.TabIndex = 43;
+            // 
+            // lblDirectoryType
+            // 
+            this.lblDirectoryType.AutoSize = true;
+            this.lblDirectoryType.Location = new System.Drawing.Point(159, 16);
+            this.lblDirectoryType.Name = "lblDirectoryType";
+            this.lblDirectoryType.Size = new System.Drawing.Size(79, 13);
+            this.lblDirectoryType.TabIndex = 42;
+            this.lblDirectoryType.Text = "Directory Type:";
+            // 
+            // lblDirectoryTypeCaption
+            // 
+            this.lblDirectoryTypeCaption.AutoSize = true;
+            this.lblDirectoryTypeCaption.Location = new System.Drawing.Point(20, 16);
+            this.lblDirectoryTypeCaption.Name = "lblDirectoryTypeCaption";
+            this.lblDirectoryTypeCaption.Size = new System.Drawing.Size(118, 13);
+            this.lblDirectoryTypeCaption.TabIndex = 41;
+            this.lblDirectoryTypeCaption.Text = "Directory Type Chosen:";
+            // 
             // cbVideoFilter
             // 
             this.cbVideoFilter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -245,40 +281,14 @@
             // 
             this.openFileDialog.FileName = "openFileDialog1";
             // 
-            // lblMKVFilesDirectoryCaption
+            // lblVersion
             // 
-            this.lblMKVFilesDirectoryCaption.AutoSize = true;
-            this.lblMKVFilesDirectoryCaption.Location = new System.Drawing.Point(20, 49);
-            this.lblMKVFilesDirectoryCaption.Name = "lblMKVFilesDirectoryCaption";
-            this.lblMKVFilesDirectoryCaption.Size = new System.Drawing.Size(108, 13);
-            this.lblMKVFilesDirectoryCaption.TabIndex = 44;
-            this.lblMKVFilesDirectoryCaption.Text = "(.mkv) Files Directory:";
-            // 
-            // txtMKVFilesDirectory
-            // 
-            this.txtMKVFilesDirectory.Location = new System.Drawing.Point(157, 46);
-            this.txtMKVFilesDirectory.Name = "txtMKVFilesDirectory";
-            this.txtMKVFilesDirectory.ReadOnly = true;
-            this.txtMKVFilesDirectory.Size = new System.Drawing.Size(673, 20);
-            this.txtMKVFilesDirectory.TabIndex = 43;
-            // 
-            // lblDirectoryType
-            // 
-            this.lblDirectoryType.AutoSize = true;
-            this.lblDirectoryType.Location = new System.Drawing.Point(159, 16);
-            this.lblDirectoryType.Name = "lblDirectoryType";
-            this.lblDirectoryType.Size = new System.Drawing.Size(79, 13);
-            this.lblDirectoryType.TabIndex = 42;
-            this.lblDirectoryType.Text = "Directory Type:";
-            // 
-            // lblDirectoryTypeCaption
-            // 
-            this.lblDirectoryTypeCaption.AutoSize = true;
-            this.lblDirectoryTypeCaption.Location = new System.Drawing.Point(20, 16);
-            this.lblDirectoryTypeCaption.Name = "lblDirectoryTypeCaption";
-            this.lblDirectoryTypeCaption.Size = new System.Drawing.Size(118, 13);
-            this.lblDirectoryTypeCaption.TabIndex = 41;
-            this.lblDirectoryTypeCaption.Text = "Directory Type Chosen:";
+            this.lblVersion.AutoSize = true;
+            this.lblVersion.Location = new System.Drawing.Point(9, 442);
+            this.lblVersion.Name = "lblVersion";
+            this.lblVersion.Size = new System.Drawing.Size(42, 13);
+            this.lblVersion.TabIndex = 45;
+            this.lblVersion.Text = "Version";
             // 
             // CreateAviSynthFilesForm
             // 
@@ -286,6 +296,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(870, 462);
+            this.Controls.Add(this.lblVersion);
             this.Controls.Add(this.menuStrip);
             this.Controls.Add(this.gbScreen);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -332,5 +343,6 @@
         private System.Windows.Forms.TextBox txtMKVFilesDirectory;
         private System.Windows.Forms.Label lblDirectoryType;
         private System.Windows.Forms.Label lblDirectoryTypeCaption;
+        private System.Windows.Forms.Label lblVersion;
     }
 }

@@ -75,6 +75,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
             this.ofdFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.lblVersion = new System.Windows.Forms.Label();
             this.gbScreen.SuspendLayout();
             this.gbRemuxNamingConventionDefaults.SuspendLayout();
             this.gbAudioMKVMergeDefaultSettings.SuspendLayout();
@@ -569,11 +570,21 @@
             // 
             this.ofdFileDialog.FileName = "openFileDialog1";
             // 
+            // lblVersion
+            // 
+            this.lblVersion.AutoSize = true;
+            this.lblVersion.Location = new System.Drawing.Point(9, 752);
+            this.lblVersion.Name = "lblVersion";
+            this.lblVersion.Size = new System.Drawing.Size(42, 13);
+            this.lblVersion.TabIndex = 33;
+            this.lblVersion.Text = "Version";
+            // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(824, 781);
+            this.Controls.Add(this.lblVersion);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.gbScreen);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -601,6 +612,7 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -651,5 +663,6 @@
         private System.Windows.Forms.Label lblRemuxNamingConventionTemplate;
         private System.Windows.Forms.ComboBox cbRemuxNamingConventionDefaults;
         private System.Windows.Forms.Label lblRemuxNamingConventionExample;
+        private System.Windows.Forms.Label lblVersion;
     }
 }

@@ -198,5 +198,10 @@ namespace BatchGuy.App
                 MessageBox.Show(parserService.Errors[0].Description, "Errors occurred", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void X264LogFileForm_Load(object sender, EventArgs e)
+        {
+            lblVersion.Text = Program.GetApplicationVersion();
+        }
     }
 }

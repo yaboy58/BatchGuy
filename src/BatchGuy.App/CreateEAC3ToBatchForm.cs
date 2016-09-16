@@ -66,6 +66,8 @@ namespace BatchGuy.App
 
         private void CreateEAC3ToBatchForm_Load(object sender, EventArgs e)
         {
+            lblVersion.Text = Program.GetApplicationVersion();
+
             if (!this.IsEac3ToPathSetInSettings())
             {
                 MessageBox.Show("Please go to the settings screen and set the eac3to.exe path", "eac3to path not set", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);

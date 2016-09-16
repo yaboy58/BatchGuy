@@ -57,6 +57,8 @@ namespace BatchGuy.App
 
         private void CreateX264BatFileForm_Load(object sender, EventArgs e)
         {
+            lblVersion.Text = Program.GetApplicationVersion();
+
             gbScreen.SetEnabled(false);
             if (!this.IsVfw4x264PathSetInSettings())
             {

@@ -59,6 +59,8 @@ namespace BatchGuy.App
 
         private void BluRayTitleForm_Load(object sender, EventArgs e)
         {
+            lblVersion.Text = Program.GetApplicationVersion();
+
             this.SetScreenInfo();
             this.gbScreen.SetEnabled(false);
             this.SetMKVToolNixGUIControlsDefaults();

@@ -41,6 +41,7 @@
             this.lblLogFileCount = new System.Windows.Forms.Label();
             this.btnViewLogs = new System.Windows.Forms.Button();
             this.bgwLogFiles = new System.ComponentModel.BackgroundWorker();
+            this.lblVersion = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLogFiles)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsLogFiles)).BeginInit();
             this.gbScreen.SuspendLayout();
@@ -157,22 +158,34 @@
             this.bgwLogFiles.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgwLogFiles_DoWork);
             this.bgwLogFiles.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgwLogFiles_RunWorkerCompleted);
             // 
+            // lblVersion
+            // 
+            this.lblVersion.AutoSize = true;
+            this.lblVersion.Location = new System.Drawing.Point(14, 568);
+            this.lblVersion.Name = "lblVersion";
+            this.lblVersion.Size = new System.Drawing.Size(42, 13);
+            this.lblVersion.TabIndex = 33;
+            this.lblVersion.Text = "Version";
+            // 
             // X264LogFileForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1066, 572);
+            this.ClientSize = new System.Drawing.Size(1066, 590);
+            this.Controls.Add(this.lblVersion);
             this.Controls.Add(this.gbScreen);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "X264LogFileForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "x264 Log File Selection";
+            this.Load += new System.EventHandler(this.X264LogFileForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvLogFiles)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsLogFiles)).EndInit();
             this.gbScreen.ResumeLayout(false);
             this.gbScreen.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -190,5 +203,6 @@
         private System.ComponentModel.BackgroundWorker bgwLogFiles;
         private System.Windows.Forms.CheckBox chkBBCodeBoldLogFileName;
         private System.Windows.Forms.CheckBox chkBBCodeHidden;
+        private System.Windows.Forms.Label lblVersion;
     }
 }

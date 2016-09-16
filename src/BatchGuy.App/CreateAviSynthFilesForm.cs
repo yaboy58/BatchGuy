@@ -49,6 +49,8 @@ namespace BatchGuy.App
 
         private void CreateAVSFilesForm_Load(object sender, EventArgs e)
         {
+            lblVersion.Text = Program.GetApplicationVersion();
+
             cbVideoFilter.SelectedIndex = 1;
         }
 

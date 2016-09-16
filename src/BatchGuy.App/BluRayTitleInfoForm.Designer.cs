@@ -84,6 +84,7 @@
             this.bgwEac3toLoadTitle = new System.ComponentModel.BackgroundWorker();
             this.bsBluRayTitleInfo = new System.Windows.Forms.BindingSource(this.components);
             this.ofdFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.lblVersion = new System.Windows.Forms.Label();
             this.gbVideo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsBluRayTitleVideo)).BeginInit();
             this.gbAudio.SuspendLayout();
@@ -444,6 +445,7 @@
             // 
             // gbScreen
             // 
+            this.gbScreen.Controls.Add(this.lblVersion);
             this.gbScreen.Controls.Add(this.gbMKVToolNixGUI);
             this.gbScreen.Controls.Add(this.txtEpisodeName);
             this.gbScreen.Controls.Add(this.lblEpisodeName);
@@ -632,6 +634,15 @@
             // 
             this.ofdFileDialog.FileName = "openFileDialog1";
             // 
+            // lblVersion
+            // 
+            this.lblVersion.AutoSize = true;
+            this.lblVersion.Location = new System.Drawing.Point(29, 750);
+            this.lblVersion.Name = "lblVersion";
+            this.lblVersion.Size = new System.Drawing.Size(42, 13);
+            this.lblVersion.TabIndex = 33;
+            this.lblVersion.Text = "Version";
+            // 
             // BluRayTitleInfoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -724,5 +735,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn textDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn ExternalSubtitlePath;
         private System.Windows.Forms.DataGridViewImageColumn RemoveSubtitle;
+        private System.Windows.Forms.Label lblVersion;
     }
 }

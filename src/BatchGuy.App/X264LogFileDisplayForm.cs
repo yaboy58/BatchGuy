@@ -26,6 +26,7 @@ namespace BatchGuy.App
 
         private void X264LogFileDisplayForm_Load(object sender, EventArgs e)
         {
+            lblVersion.Text = Program.GetApplicationVersion();
             txtLogs.Text = _logs;
         }
 

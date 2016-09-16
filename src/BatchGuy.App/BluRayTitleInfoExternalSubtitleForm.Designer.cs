@@ -41,6 +41,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.ofdFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.btnSave = new System.Windows.Forms.Button();
+            this.lblVersion = new System.Windows.Forms.Label();
             this.gbExternalSubtitles.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsMKVMergeLanguageItem)).BeginInit();
             this.SuspendLayout();
@@ -147,11 +148,21 @@
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
+            // lblVersion
+            // 
+            this.lblVersion.AutoSize = true;
+            this.lblVersion.Location = new System.Drawing.Point(12, 181);
+            this.lblVersion.Name = "lblVersion";
+            this.lblVersion.Size = new System.Drawing.Size(42, 13);
+            this.lblVersion.TabIndex = 33;
+            this.lblVersion.Text = "Version";
+            // 
             // BluRayTitleInfoExternalSubtitleForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(665, 203);
+            this.Controls.Add(this.lblVersion);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.gbExternalSubtitles);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -163,6 +174,7 @@
             this.gbExternalSubtitles.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsMKVMergeLanguageItem)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -179,5 +191,6 @@
         private System.Windows.Forms.BindingSource bsMKVMergeLanguageItem;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblExternalSubtitleEAC3ToTrackId;
+        private System.Windows.Forms.Label lblVersion;
     }
 }
