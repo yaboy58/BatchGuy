@@ -112,5 +112,33 @@ namespace BatchGuy.App.Extensions
 
             return result;
         }
+
+        public static BluRaySummaryInfo GetEpisodeByEpisodeNumber(this List<BluRayDiscInfo> value, string episodeNumber)
+        {
+            BluRaySummaryInfo summary = null;
+
+            if (value != null && episodeNumber != null && episodeNumber != string.Empty  && episodeNumber.IsNumeric())
+            {
+                foreach (BluRayDiscInfo disc in value.Where(d => d.IsSelected))
+                {
+                    if (disc.BluRaySummaryInfoList != null)
+                    {
+                        foreach (BluRaySummaryInfo info in disc.BluRaySummaryInfoList.Where(s => s.IsSelected))
+                        {
+                            if (info.BluRayTitleInfo != null && info.BluRayTitleInfo.Video != null)
+                            {
+                                if (info.BluRayTitleInfo.EpisodeNumber != null && info.BluRayTitleInfo.EpisodeNumber != string.Empty && 
+                                    info.BluRayTitleInfo.EpisodeNumber.StringToInt() == episodeNumber.StringToInt())
+                                {
+                                    summary = info;
+                                    return summary;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            return summary;
+        }
     }
 }

@@ -110,8 +110,10 @@ namespace BatchGuy.App
 
         private void HandlesBtnOpenExternalSubtitleFilePathDialogClick()
         {
-            ofdFileDialog.FileName = "Subtitle";
-            ofdFileDialog.Filter = "SubRip|*.srt|Advanced SubStation Alpha|*.ass|DVDSubtitle|*.sub|SubStation Alpha|*.ssa";
+            ofdFileDialog.Multiselect = false;
+            ofdFileDialog.FilterIndex = -1;
+            ofdFileDialog.FileName = "";
+            ofdFileDialog.Filter = "Subtitle Files (*.sup, *.srt, *.ass, *.sub, *.ssa)|*.sup;*.srt;*.ass;*.sub;*.ssa";
             DialogResult result = ofdFileDialog.ShowDialog();
             if (result == System.Windows.Forms.DialogResult.OK)
             {

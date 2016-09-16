@@ -166,6 +166,7 @@
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.gbExternalSubtitles);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "BluRayTitleInfoExternalSubtitleForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Save External Subtitles";

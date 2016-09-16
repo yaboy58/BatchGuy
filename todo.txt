@@ -1,4 +1,8 @@
 --todo
+*(.sup) subtitles added to the External Subtitle Popup Screen filter list.  It was left off by mistake
+*External Subtitle Popup Screen browse button now shows all valid subtitle formats instead of the user having to filter the dialog on each valid subtitle type
+*External Subtitle Popup Screen cannot maximized
+*Users can now double-click on each row on the AviSynth Grid on the Create x264 Batch File Screen to navigate to the the BluRay Title Info Screen from x264 Screen and make changes such as adding new subtitles
 
 Auto sort some grids
 Call the BluRay Title Info Screen from x264 Screen

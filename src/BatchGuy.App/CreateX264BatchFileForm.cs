@@ -769,5 +769,43 @@ namespace BatchGuy.App
             else
                 return true;
         }
+
+        private void dgvFiles_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex == -1)
+                return;
+            this.HandlesdgvFilesCellDoubleClick(e);
+        }
+
+        private void HandlesdgvFilesCellDoubleClick(DataGridViewCellEventArgs e)
+        {
+            var id = dgvFiles.Rows[e.RowIndex].Cells[4].Value;
+            if (_batchGuyEAC3ToSettings.BluRayDiscs == null)
+                return;
+            if (id == null)
+                return;
+
+            BluRaySummaryInfo summaryInfo = _batchGuyEAC3ToSettings.BluRayDiscs.GetEpisodeByEpisodeNumber(id.ToString());
+            if (summaryInfo == null)
+                return;
+
+            BluRayDiscInfo discInfo = null;
+            foreach (BluRayDiscInfo disc in _batchGuyEAC3ToSettings.BluRayDiscs.Where(d => d.IsSelected))
+            {
+                if (disc.BluRaySummaryInfoList != null)
+                {
+                    if (disc.BluRaySummaryInfoList.Where(s => s == summaryInfo).Count() == 1)
+                    {
+                        discInfo = disc;
+                    }
+                }
+            }
+            if (discInfo == null)
+                return;
+
+            BluRayTitleInfoForm form = new BluRayTitleInfoForm();
+            form.SetBluRayTitleInfo(_batchGuyEAC3ToSettings.EAC3ToSettings, discInfo.BluRayPath, summaryInfo);
+            form.ShowDialog();
+        }
     }
 }
