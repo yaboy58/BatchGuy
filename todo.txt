@@ -1,59 +1,10 @@
 --todo
 
-enchancements:
-*Users who use BatchGuy for encoding can now create a batch file that will mux all selected Blu-ray artifacts, external subs and the rendered x264 encoded files into a (.mkv) file using mkvmerge
-*The Create AviSynth Screen no longer closes after create (.avs) files
-*The Create x264 Batch File Screen no longer closes after creating the x264 batch file
-*The mkvmerge controls on the Create eac3to Batch File and BluRay Title Info Screen are now always enabled, regardless if you are using BatchGuy for encoding or remuxing
-*Users cannot load a (.batchGuyEac3toSettings) settings file on the Create AviSynth Files and Create x264 Batch Screens if they have chosen to remux on the Create eac3to Batch File Screen
+Auto sort some grids
+Call the BluRay Title Info Screen from x264 Screen
 
-bugs:
-*Fixed bug on Create x264 Batch File Screen where user would remove all the (.avs) files on the AviSynth Grid, the Create x264 Batch File button would become disabled but ifthe user added a valid (.avs) back on the grid, the Create x264 Batch File button would remain disabled
-
-notes:
-*(.batchGuyEac3toSettings) files created in BatchGuy 3.9 and below cannot be loaded on any BatchGuy Screen when running BatchGuy 4.0.0+
-
-
-Front End (EAC3ToConfiguration has an Extension Method that tells the number of episodes, you can use this for the drop down box column):
-	1) Besides the logic for Episode Name, remove checks for IsRemux on BluRay Title Info Screen, so encode mode can access mkvmerge controls -done
-	2) Load and maybe Save (.batchGuyEac3toSettings) on x264 Screen -done
-	3) Disable controls until it is loaded -done
-	4) Add new property called episode number on X264File Model -done
-	5) Add new drop down for X264File.EpisodeNumber (string) and make it a drop down and figure out how to load with the number of episodes -done
-	*6) When they try to make the mkvmerge file, validate that all episodes mapped and all unique -done
-	*7) Before saving, shove the filepath/name of encode into the bluraysummary.titleinfo.episodename based on the episode number drop down -done
-	8) Enable mkvmerge section on eac3to screen -done
-
-Back End:
-	1) Create new MKVMerge\Services\MKVMergeBatchFileWriteForEncodeService and inherit from IMKVMergeBatchFileWriteService -done
-	2) Looks like the constructor will need the X264File list and X264FileSettings -done
-	3) For MKVMergeBatchFileWriteForEncodeService.IsValid, here you can check to see if all X264Files.EpisodeNumber has a value and they are unique or let #6 on Front End do it -done
-	4) Make a private method to do #7 on Front End or maybe let the Front End do it -done
-	5) Make EAC3ToConfiguration.IsVideoNameForMkvMerge -done
-	6) EncodeTemplate1EAC3ToOutputNamingService.GetVideoName, use EAC3ToConfiguration.IsVideoNameForMkvMerge to determine hardcoded name or episode name, which will have bluraysummary.titleinfo.episodename -done
-
-
-2) MIGHT WANT TO CLEAR SOME X264 INFO IF THEY GO BACK AND CHANGE STUFF ON EAC3TO (kind of took care of this when testing avs count = episodes selected count)
-5) MAKE SURE SELECTED ON EAC3TO MATCHES THE GRID ON X264 COUNT -done
-3) SEE IF THE EPISODE NAME SHOWS WHEN YOU SHOVE ENCODE NAME IN IT ON BLURAY TITLE INFO -it did, -done
-1) DON'T FORGET TO WRITE CODE IN EAC3TO TO SAVE IFNO ENTERED ON OTHER SCREENS IN CASE THEY GO BACK AND FORTH -done
-4) MAKE SURE THEY CANNOT LOAD A REMUX FILE -done
-6) HAVE TO BE ABLE TO DELETE AVS FROM GRID -done
-
-Clean Up:
-X264FileSettings.X264EncodeAndLogFileOutputDirectoryPath and X264EncodeAndLogFileOutputDirectoryPathType not needed anymore, using it but get rid of it as eac3to settings has the info
-
-AVSBatchSettings.VideoToEncodeDirectoryType,VideoToEncodeDirectory
 
 --possible nice to haves
-*On the Create x264 Batch File, add functionality load (.batchGuyEac3toSettings), so you can have the eac3to and mkvmerge info to create an mkvmerge batch file
--Either use If statement or create a new abstract class and move all current mkvmerge logic (except video) to a base class and have a remux/none-remux sub class
--Understand that you can re-use 99% of current mkvmerge service functionality, only with ecnoder mux, they supply you the video name, it isn't auto-created
--Enable mkvmerge section on BluRay Title Info Screen all the time
--Allow user to load the (.batchGuyEac3toSettings) on the Create x264 Batch File Screen
--Once (.batchGuyEac3toSettings), add a new drop down column to the grid that has the episode numbers, so they can be matched with the avs/encode name
-
-
 *Default the MKVToolNixGUI Track Name to "Commentary" if commentary checkbox is checked
 *When a single file contains multiple episodes :
 	1) Go by the actually episode number entered in the loop
