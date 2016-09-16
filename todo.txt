@@ -1,17 +1,18 @@
 --todo
 
 enchancements:
-*mkvmerge for encodes
-*avisynth doesn't close after done
-*mkvmerge info always enabled on both screens
-*x264 doesn't close after done
-*cannot load a settings file created for remuxing
+*Users who use BatchGuy for encoding can now create a batch file that will mux all selected Blu-ray artifacts, external subs and the rendered x264 encoded files into a (.mkv) file using mkvmerge
+*The Create AviSynth Screen no longer closes after create (.avs) files
+*The Create x264 Batch File Screen no longer closes after creating the x264 batch file
+*The mkvmerge controls on the Create eac3to Batch File and BluRay Title Info Screen are now always enabled, regardless if you are using BatchGuy for encoding or remuxing
+*Users cannot load a (.batchGuyEac3toSettings) settings file on the Create AviSynth Files and Create x264 Batch Screens if they have chosen to remux on the Create eac3to Batch File Screen
 
 bugs:
-*Fixed bug on Create x264 Batch File Screen where user would remove all the (.avs) files on the AviSynth Grid, the Create x264 Batch File button would become disabled but if the user added a valid (.avs) back on the grid, the Create x264 Batch File button would remain disabled
+*Fixed bug on Create x264 Batch File Screen where user would remove all the (.avs) files on the AviSynth Grid, the Create x264 Batch File button would become disabled but ifthe user added a valid (.avs) back on the grid, the Create x264 Batch File button would remain disabled
 
 notes:
-*Old eac3to files will not work
+*(.batchGuyEac3toSettings) files created in BatchGuy 3.9 and below cannot be loaded on any BatchGuy Screen when running BatchGuy 4.0.0+
+
 
 Front End (EAC3ToConfiguration has an Extension Method that tells the number of episodes, you can use this for the drop down box column):
 	1) Besides the logic for Episode Name, remove checks for IsRemux on BluRay Title Info Screen, so encode mode can access mkvmerge controls -done
@@ -32,8 +33,8 @@ Back End:
 	6) EncodeTemplate1EAC3ToOutputNamingService.GetVideoName, use EAC3ToConfiguration.IsVideoNameForMkvMerge to determine hardcoded name or episode name, which will have bluraysummary.titleinfo.episodename -done
 
 
-5) MAKE SURE SELECTED ON EAC3TO MATCHES THE GRID ON X264 COUNT
-2) MIGHT WANT TO CLEAR SOME X264 INFO IF THEY GO BACK AND CHANGE STUFF ON EAC3TO
+2) MIGHT WANT TO CLEAR SOME X264 INFO IF THEY GO BACK AND CHANGE STUFF ON EAC3TO (kind of took care of this when testing avs count = episodes selected count)
+5) MAKE SURE SELECTED ON EAC3TO MATCHES THE GRID ON X264 COUNT -done
 3) SEE IF THE EPISODE NAME SHOWS WHEN YOU SHOVE ENCODE NAME IN IT ON BLURAY TITLE INFO -it did, -done
 1) DON'T FORGET TO WRITE CODE IN EAC3TO TO SAVE IFNO ENTERED ON OTHER SCREENS IN CASE THEY GO BACK AND FORTH -done
 4) MAKE SURE THEY CANNOT LOAD A REMUX FILE -done
