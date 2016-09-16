@@ -125,7 +125,8 @@ namespace BatchGuy.App.Parser.Services
 
         private void SetVideo(ProcessOutputLineItem lineItem)
         {
-            _bluRayTtileInfo.Video = new BluRayTitleVideo() { Id = this.GetId(lineItem), IsSelected = true, Text = lineItem.Text };
+            if (_bluRayTtileInfo.Video == null)
+                _bluRayTtileInfo.Video = new BluRayTitleVideo() { Id = this.GetId(lineItem), IsSelected = true, Text = lineItem.Text };
         }
 
         private void SetAudio(ProcessOutputLineItem lineItem)
