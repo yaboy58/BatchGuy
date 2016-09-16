@@ -1,11 +1,16 @@
 --todo
 
+enchancements:
 *mkvmerge for encodes
 *avisynth doesn't close after done
 *mkvmerge info always enabled on both screens
 *x264 doesn't close after done
 *cannot load a settings file created for remuxing
 
+bugs:
+*Fixed bug on Create x264 Batch File Screen where user would remove all the (.avs) files on the AviSynth Grid, the Create x264 Batch File button would become disabled but if the user added a valid (.avs) back on the grid, the Create x264 Batch File button would remain disabled
+
+notes:
 *Old eac3to files will not work
 
 Front End (EAC3ToConfiguration has an Extension Method that tells the number of episodes, you can use this for the drop down box column):

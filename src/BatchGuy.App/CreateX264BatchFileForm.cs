@@ -168,6 +168,9 @@ namespace BatchGuy.App
 
             if (result == System.Windows.Forms.DialogResult.Yes)
             {
+                _batchGuyEAC3ToSettings.X264Files = this.GetX264Files();
+                _batchGuyEAC3ToSettings.X264FileSettings = this.GetX264FileSettings();
+
                 if (this.IsScreenValidForWriteX264BatchFile())
                 {
                     this.CreateX264BatFile();
@@ -196,7 +199,10 @@ namespace BatchGuy.App
 
             lblNumberOfFiles.Text = string.Format("Number of Files: {0}", _bindingListFiles.Count());
             if (_bindingListFiles.Count() == 0)
+            {
                 btnCreateX264BatchFile.SetEnabled(false);
+                btnWriteToMKVMergeBatFile.SetEnabled(false);
+            }
         }
 
 
@@ -254,6 +260,11 @@ namespace BatchGuy.App
             {
                 MessageBox.Show("Please choose the x264 (.log) file save directory", "Invalid x264 settings", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return false;                     
+            }
+            if (_batchGuyEAC3ToSettings.BluRayDiscs.NumberOfEpisodes() != _batchGuyEAC3ToSettings.X264Files.Count())
+            {
+                MessageBox.Show("The number of selected episodes on the Create eac3to Batch File does not match the number of AviSynth files.", "Invalid number of AviSynth files", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return false;
             }
             return true;
         }
@@ -340,6 +351,8 @@ namespace BatchGuy.App
             if (_bindingListFiles.Count() > 0)
             {
                 this.BindFilesGrid();
+                btnCreateX264BatchFile.SetEnabled(true);
+                btnWriteToMKVMergeBatFile.SetEnabled(true);
             }
         }
 
