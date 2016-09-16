@@ -496,6 +496,10 @@ namespace BatchGuy.App
             if (_batchGuyEAC3ToSettings.X264FileSettings == null)
                 _batchGuyEAC3ToSettings.X264FileSettings = new X264FileSettings() { EncodeType = EnumEncodeType.CRF, X264Template = this.GetDefaultX264CRFSettings() };
 
+            if (_batchGuyEAC3ToSettings.X264Files == null)
+                _batchGuyEAC3ToSettings.X264Files = new List<X264File>();
+
+
             _batchGuyEAC3ToSettings.X264FileSettings.X264EncodeAndLogFileOutputDirectoryPath = _batchGuyEAC3ToSettings.EAC3ToSettings.EAC3ToOutputPath;
             _batchGuyEAC3ToSettings.X264FileSettings.X264EncodeAndLogFileOutputDirectoryPathType = _batchGuyEAC3ToSettings.EAC3ToSettings.OutputDirectoryType;
             txtX264EncodeOutputAndLogDirectory.Text = _batchGuyEAC3ToSettings.X264FileSettings.X264EncodeAndLogFileOutputDirectoryPath;
