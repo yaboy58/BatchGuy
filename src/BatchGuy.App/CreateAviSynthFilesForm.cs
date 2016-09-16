@@ -207,6 +207,10 @@ namespace BatchGuy.App
                     {
                         MessageBox.Show(batchGuyEAC3ToSettingsService.Errors.GetErrorMessage(), "Error Occurred.", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
+                    else if (_batchGuyEAC3ToSettings.EAC3ToSettings.IsExtractForRemux)
+                    {
+                        MessageBox.Show("You cannot load a (.batchGuyEac3toSettings) file that is for Remuxing!", "Error Occurred.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                     else
                     {
                         this.LoadScreen();
