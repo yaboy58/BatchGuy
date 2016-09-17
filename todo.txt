@@ -1,7 +1,7 @@
 --todo
 *BluRayTitleParserService service now uses the MKVMergeLanguageService to determine the blu-ray item language
 *To temporarily handle Playlists with multiple videos, the application chooses the first video it finds
-*Correct a mispelling of a word in an error message
+*Correct a misspelling of a word in an error message
 
 add checkbox to ignore internal subs when muxing for encode
 -create new flag EAC3ToConfiguration.IgnoreInternalSubtitles
