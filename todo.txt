@@ -1,11 +1,15 @@
 --todo
+Enhancements
 *BluRayTitleParserService service now uses the MKVMergeLanguageService to determine the blu-ray item language
 *To temporarily handle Playlists with multiple videos, the application chooses the first video it finds
-*Correct a misspelling of a word in an error message
+
+Bugs:
+*Corrected a misspelling of a word in an error message
+*Fixed bug where the Create x264 Batch File mkvmerge logic was evaluating Disc.BluRayTitleInf.EpisodeNumber and not Disc.EpisodeNumber.  The bug only occurs when users pad the Episode Number on the BluRay Title Info Screen with zeroes
 
 *look at summary.episodenumber and not summary.bluraytitleinfo.episodenumber
 -test when selected but no episode number entered
--for number of episodes, go by selected and episode number not null
+
 
 *maybe start overwritting files
 

@@ -649,11 +649,9 @@ namespace BatchGuy.App
                             {
                                 foreach (BluRaySummaryInfo summary in disc.BluRaySummaryInfoList)
                                 {
-                                    if (summary.IsSelected && summary.BluRayTitleInfo != null)
+                                    if (summary.IsSelected && summary.EpisodeNumber != null && summary.BluRayTitleInfo != null)
                                     {
-                                        if (summary.BluRayTitleInfo.EpisodeNumber != null && summary.BluRayTitleInfo.EpisodeNumber != string.Empty 
-                                            && summary.BluRayTitleInfo.Video != null &&  summary.BluRayTitleInfo.Video.IsSelected
-                                            && file.EpisodeNumber.StringToInt() == summary.BluRayTitleInfo.EpisodeNumber.StringToInt())
+                                        if (file.EpisodeNumber.StringToInt() == summary.EpisodeNumber)
                                         {
                                             if (_batchGuyEAC3ToSettings.EAC3ToSettings.OutputDirectoryType == EnumDirectoryType.DirectoryPerEpisode)
                                             {
@@ -688,11 +686,9 @@ namespace BatchGuy.App
                             {
                                 foreach (BluRaySummaryInfo summary in disc.BluRaySummaryInfoList)
                                 {
-                                    if (summary.IsSelected && summary.BluRayTitleInfo != null)
+                                    if (summary.IsSelected && summary.EpisodeNumber != null && summary.BluRayTitleInfo != null)
                                     {
-                                        if (summary.BluRayTitleInfo.EpisodeNumber != null && summary.BluRayTitleInfo.EpisodeNumber != string.Empty
-                                            && summary.BluRayTitleInfo.Video != null && summary.BluRayTitleInfo.Video.IsSelected
-                                            && file.EpisodeNumber == summary.BluRayTitleInfo.EpisodeNumber)
+                                        if (file.EpisodeNumber.StringToInt() == summary.EpisodeNumber)
                                         {
                                             summary.BluRayTitleInfo.EpisodeName = string.Empty;
                                         }
