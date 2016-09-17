@@ -3,6 +3,12 @@
 *To temporarily handle Playlists with multiple videos, the application chooses the first video it finds
 *Correct a misspelling of a word in an error message
 
+*look at summary.episodenumber and not summary.bluraytitleinfo.episodenumber
+-test when selected but no episode number entered
+-for number of episodes, go by selected and episode number not null
+
+*maybe start overwritting files
+
 add checkbox to ignore internal subs when muxing for encode
 -create new flag EAC3ToConfiguration.IgnoreInternalSubtitles
 -MKVMergeOutputService.GetSubtitlePart(), add logic here to check this flag and act accordingly
@@ -14,6 +20,8 @@ add checkbox to ignore internal subs when muxing for encode
 
 
 --possible nice to haves
+ExtensionMethods.NumberOfEpisodes needs to filter on summary.episodenumber != null as well for cases where isselected by no episode number.  Not changing it now due to not knowing what the effects are
+
 *Default the MKVToolNixGUI Track Name to "Commentary" if commentary checkbox is checked
 *When a single file contains multiple episodes :
 	1) Go by the actually episode number entered in the loop

@@ -423,11 +423,19 @@ namespace BatchGuy.App
 
         private void LoadEpisodeNumbers()
         {
-            for (int i = 1; i <= _batchGuyEAC3ToSettings.BluRayDiscs.NumberOfEpisodes(); i++)
-            {
-                _bindingListEpisodeNumbers.Add(new DropDownListItem() { DisplayMember = i.ToString(), ValueMember = i.ToString() });
-            }
+            if (_batchGuyEAC3ToSettings.BluRayDiscs == null || _batchGuyEAC3ToSettings.BluRayDiscs.NumberOfEpisodes() == 0)
+                return;
 
+            foreach (BluRayDiscInfo disc in _batchGuyEAC3ToSettings.BluRayDiscs.Where(d => d.IsSelected))
+            {
+                if (disc.BluRaySummaryInfoList != null)
+                {
+                    foreach (BluRaySummaryInfo summary in disc.BluRaySummaryInfoList.Where(s => s.IsSelected && s.EpisodeNumber != null).OrderBy(s => s.EpisodeNumber))
+                    {
+                        _bindingListEpisodeNumbers.Add(new DropDownListItem() { DisplayMember = summary.EpisodeNumber.ToString(), ValueMember = summary.EpisodeNumber.ToString()});
+                    }
+                }
+            }
             bsEpisodeNumbersDropDownListItem.DataSource = _bindingListEpisodeNumbers;
             _bindingListEpisodeNumbers.AllowEdit = false;
         }
@@ -645,7 +653,7 @@ namespace BatchGuy.App
                                     {
                                         if (summary.BluRayTitleInfo.EpisodeNumber != null && summary.BluRayTitleInfo.EpisodeNumber != string.Empty 
                                             && summary.BluRayTitleInfo.Video != null &&  summary.BluRayTitleInfo.Video.IsSelected
-                                            && file.EpisodeNumber == summary.BluRayTitleInfo.EpisodeNumber)
+                                            && file.EpisodeNumber.StringToInt() == summary.BluRayTitleInfo.EpisodeNumber.StringToInt())
                                         {
                                             if (_batchGuyEAC3ToSettings.EAC3ToSettings.OutputDirectoryType == EnumDirectoryType.DirectoryPerEpisode)
                                             {
