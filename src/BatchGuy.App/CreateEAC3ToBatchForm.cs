@@ -295,7 +295,7 @@ namespace BatchGuy.App
         {
             if (_bindingListBluRayDiscInfo == null || _bindingListBluRayDiscInfo.Count() == 0)
             {
-                MessageBox.Show("Please load at least 1 blu-ray disck!", "Error occurred", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Please load at least 1 blu-ray disc!", "Error occurred", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
             return true;
