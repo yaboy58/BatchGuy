@@ -9,16 +9,14 @@ Bugs:
 *Fixed bug where the Create x264 Batch File mkvmerge logic was evaluating Disc.BluRayTitleInf.EpisodeNumber and not Disc.EpisodeNumber.  The bug only occurs when users pad the Episode Number on the BluRay Title Info Screen with zeroes
 
 
-*maybe start overwritting files
-
 add checkbox to ignore internal subs when muxing for encode
--create new flag EAC3ToConfiguration.IgnoreInternalSubtitles
+-create new flag EAC3ToConfiguration.IgnoreInternalSubtitles -done
 -MKVMergeOutputService.GetSubtitlePart(), add logic here to check this flag and act accordingly
 -MKVMergeOutputService.GetTrackOrderPart(), add logic here to check this flag to get the correct count
--On eac3to screen, always set this flag to false
--On x264 screen, checkbox defaulted to checked and tied to this new flag
+-On eac3to screen, always set this flag to false -done
+-On x264 screen, checkbox defaulted to checked and tied to this new flag ****
 
-
+*maybe start overwritting files
 
 
 --possible nice to haves

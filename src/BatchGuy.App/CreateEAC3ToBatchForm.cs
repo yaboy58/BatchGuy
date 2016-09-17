@@ -451,6 +451,7 @@ namespace BatchGuy.App
             _eac3toConfiguration.MKVMergeBatchFilePath = txtMKVMergeBatFilePath.Text;
             _eac3toConfiguration.ShowProgressNumbers = Program.ApplicationSettings.EAC3ToDefaultSettings.ShowProgressNumbers;
             _eac3toConfiguration.IsVideoNameForEncodeMkvMerge = false;
+            _eac3toConfiguration.IgnoreInternalSubtitles = false;
         }
 
         private void dgvBluRayDiscInfo_DragDrop(object sender, DragEventArgs e)
@@ -765,8 +766,6 @@ namespace BatchGuy.App
 
         private void btnWriteToMKVMergeBatFile_Click(object sender, EventArgs e)
         {
-
-
             DialogResult startProcessResult = MessageBox.Show("Create mkvmerge batch file?", "Start Process?", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
 
             if (startProcessResult == System.Windows.Forms.DialogResult.Yes)
