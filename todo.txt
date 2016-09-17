@@ -1,25 +1,26 @@
 --todo
 Enhancements
-*BluRayTitleParserService service now uses the MKVMergeLanguageService to determine the blu-ray item language
-*To temporarily handle Playlists with multiple videos, the application chooses the first video it finds
+*BluRayTitleParserService service now uses the shared MKVMergeLanguageService to determine the blu-ray audio and subtitle language.  This will make determining the correct audio and video language more accurate and not return "undetermined"
+*To temporarily handle Playlists with multiple videos, the application chooses the first video it finds (multiple videos in a Playlist logic may never be implemented)
+*Ignore Internal Subtitles Checkbox added to the Create x264 Batch File Screen.  When Encoders check this flag, only External Subtitles will be used when creating the mkvmerge batch file even if Internal Subtitles are selcted on the BluRay Title Info Screen.  With this feature, Encoders don't have to navigate to the BluRay Title Info Screen from the x264 Screen and uncheck every Internal Subtitle for each episode so they will be ignored when making the mkvmerge batch file.
 
 Bugs:
-*Corrected a misspelling of a word in an error message
+*Corrected a misspelling of a word in an error message displayed to the user
 *Corrected a misspelling of a word on the Create x264 Batch File Screen
-*Fixed bug where the Create x264 Batch File mkvmerge logic was evaluating Disc.BluRayTitleInf.EpisodeNumber and not Disc.EpisodeNumber.  The bug only occurs when users pad the Episode Number on the BluRay Title Info Screen with zeroes
+*Fixed bug where the Create x264 Batch File mkvmerge logic was evaluating Disc.BluRayTitleInfo.EpisodeNumber and not Disc.EpisodeNumber.  The bug only occurs when users pad the Episode Number on the BluRay Title Info Screen with zeroes
 
 
-add checkbox to ignore internal subs when muxing for encode
+add checkbox to ignore internal subs when muxing for encode -done
 -create new flag EAC3ToConfiguration.IgnoreInternalSubtitles -done
--MKVMergeOutputService.GetSubtitlePart(), add logic here to check this flag and act accordingly
--MKVMergeOutputService.GetTrackOrderPart(), add logic here to check this flag to get the correct count
+-MKVMergeOutputService.GetSubtitlePart(), add logic here to check this flag and act accordingly -done
+-MKVMergeOutputService.GetTrackOrderPart(), add logic here to check this flag to get the correct count -done
 -On eac3to screen, always set this flag to false -done
--On x264 screen, checkbox defaulted to checked and tied to this new flag ****
 
-*maybe start overwritting files
 
 
 --possible nice to haves
+*Maybe start checking to see if batch files exist first, if so delete them before writing to them
+
 ExtensionMethods.NumberOfEpisodes needs to filter on summary.episodenumber != null as well for cases where isselected by no episode number.  Not changing it now due to not knowing what the effects are
 
 *Default the MKVToolNixGUI Track Name to "Commentary" if commentary checkbox is checked

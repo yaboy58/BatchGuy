@@ -97,23 +97,41 @@ namespace BatchGuy.App.MKVMerge.Services
             StringBuilder sb = new StringBuilder();
             if (_bluRaySummaryInfo.BluRayTitleInfo.Subtitles != null)
             {
-                foreach (BluRayTitleSubtitle subtitle in _bluRaySummaryInfo.BluRayTitleInfo.Subtitles)
+                if (_eac3ToConfiguration.IgnoreInternalSubtitles == false)
                 {
-                    if (subtitle.IsSelected)
+                    foreach (BluRayTitleSubtitle subtitle in _bluRaySummaryInfo.BluRayTitleInfo.Subtitles)
                     {
-                        string subtitleName = string.Empty;
-                        if (subtitle.IsExternal)
+                        if (subtitle.IsSelected)
                         {
+                            string subtitleName = string.Empty;
+                            if (subtitle.IsExternal)
+                            {
+                                subtitleName = subtitle.ExternalSubtitlePath;
+                            }
+                            else
+                            {
+                                subtitleName = _eac3ToOutputNamingService.GetSubtitleName(_eac3ToConfiguration, subtitle, _filesOutputPath, _paddedEpisodeNumber, _bluRaySummaryInfo.BluRayTitleInfo.EpisodeName).RemoveDoubleQuotes();
+                            }
+
+                            sb.Append(string.Format("--language 0:{0} {1} {2} {3} {4} ^\"^(^\" ^\"{5}^\" ^\"^)^\"", subtitle.MKVMergeItem.Language.Value, this.GetTrackName(subtitle.MKVMergeItem.TrackName), this.GetDefaultTrackFlag(subtitle.MKVMergeItem.DefaultTrackFlag),
+                                this.GetForcedTrackFlag(subtitle.MKVMergeItem.ForcedTrackFlag), this.GetCompression(subtitle.MKVMergeItem.Compression), subtitleName));
+                            sb.Append(" ");
+                        }
+                    }
+                }
+                else
+                {
+                    foreach (BluRayTitleSubtitle subtitle in _bluRaySummaryInfo.BluRayTitleInfo.Subtitles.Where(s => s.IsExternal))
+                    {
+                        if (subtitle.IsSelected)
+                        {
+                            string subtitleName = string.Empty;
                             subtitleName = subtitle.ExternalSubtitlePath;
+
+                            sb.Append(string.Format("--language 0:{0} {1} {2} {3} {4} ^\"^(^\" ^\"{5}^\" ^\"^)^\"", subtitle.MKVMergeItem.Language.Value, this.GetTrackName(subtitle.MKVMergeItem.TrackName), this.GetDefaultTrackFlag(subtitle.MKVMergeItem.DefaultTrackFlag),
+                                this.GetForcedTrackFlag(subtitle.MKVMergeItem.ForcedTrackFlag), this.GetCompression(subtitle.MKVMergeItem.Compression), subtitleName));
+                            sb.Append(" ");
                         }
-                        else
-                        {
-                            subtitleName = _eac3ToOutputNamingService.GetSubtitleName(_eac3ToConfiguration, subtitle, _filesOutputPath, _paddedEpisodeNumber, _bluRaySummaryInfo.BluRayTitleInfo.EpisodeName).RemoveDoubleQuotes();
-                        }
-                        
-                        sb.Append(string.Format("--language 0:{0} {1} {2} {3} {4} ^\"^(^\" ^\"{5}^\" ^\"^)^\"", subtitle.MKVMergeItem.Language.Value, this.GetTrackName(subtitle.MKVMergeItem.TrackName), this.GetDefaultTrackFlag(subtitle.MKVMergeItem.DefaultTrackFlag),
-                            this.GetForcedTrackFlag(subtitle.MKVMergeItem.ForcedTrackFlag), this.GetCompression(subtitle.MKVMergeItem.Compression),subtitleName));
-                        sb.Append(" ");
                     }
                 }
             }
@@ -140,14 +158,27 @@ namespace BatchGuy.App.MKVMerge.Services
             {
                 trackCount++;
             }
+
             if (_bluRaySummaryInfo.BluRayTitleInfo.AudioList != null && _bluRaySummaryInfo.BluRayTitleInfo.AudioList.Where(a => a.IsSelected).Count() > 0)
             {
                 trackCount += _bluRaySummaryInfo.BluRayTitleInfo.AudioList.Where(a => a.IsSelected).Count();
             }
-            if (_bluRaySummaryInfo.BluRayTitleInfo.Subtitles != null && _bluRaySummaryInfo.BluRayTitleInfo.Subtitles.Where(a => a.IsSelected).Count() > 0)
+
+            if (_eac3ToConfiguration.IgnoreInternalSubtitles == false)
             {
-                trackCount += _bluRaySummaryInfo.BluRayTitleInfo.Subtitles.Where(a => a.IsSelected).Count();
+                if (_bluRaySummaryInfo.BluRayTitleInfo.Subtitles != null && _bluRaySummaryInfo.BluRayTitleInfo.Subtitles.Where(a => a.IsSelected).Count() > 0)
+                {
+                    trackCount += _bluRaySummaryInfo.BluRayTitleInfo.Subtitles.Where(a => a.IsSelected).Count();
+                }
             }
+            else
+            {
+                if (_bluRaySummaryInfo.BluRayTitleInfo.Subtitles != null && _bluRaySummaryInfo.BluRayTitleInfo.Subtitles.Where(a => a.IsSelected && a.IsExternal).Count() > 0)
+                {
+                    trackCount += _bluRaySummaryInfo.BluRayTitleInfo.Subtitles.Where(a => a.IsSelected && a.IsExternal).Count();
+                }
+            }
+
 
             for (int i = 0; i < trackCount; i++)
             {
