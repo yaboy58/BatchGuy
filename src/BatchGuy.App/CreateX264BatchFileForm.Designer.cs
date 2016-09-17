@@ -32,13 +32,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CreateX264BatchFileForm));
             this.btnCreateX264BatchFile = new System.Windows.Forms.Button();
             this.dgvFiles = new System.Windows.Forms.DataGridView();
-            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.aviSynthFileNameOnlyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.aviSynthFilePathDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.encodeNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.episodeNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.bsEpisodeNumbersDropDownListItem = new System.Windows.Forms.BindingSource(this.components);
-            this.bsFiles = new System.Windows.Forms.BindingSource(this.components);
             this.lblNumberOfFiles = new System.Windows.Forms.Label();
             this.ofdFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.gbScreen = new System.Windows.Forms.GroupBox();
@@ -66,21 +59,29 @@
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bgwMkvMergeWriteBatchFile = new System.ComponentModel.BackgroundWorker();
             this.lblVersion = new System.Windows.Forms.Label();
+            this.chkIgnoreInternalSubtitles = new System.Windows.Forms.CheckBox();
+            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.aviSynthFileNameOnlyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.aviSynthFilePathDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.encodeNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.episodeNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.bsEpisodeNumbersDropDownListItem = new System.Windows.Forms.BindingSource(this.components);
+            this.bsFiles = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dgvFiles)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsEpisodeNumbersDropDownListItem)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsFiles)).BeginInit();
             this.gbScreen.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.gbAviSynthFiles.SuspendLayout();
             this.menuStrip.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bsEpisodeNumbersDropDownListItem)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsFiles)).BeginInit();
             this.SuspendLayout();
             // 
             // btnCreateX264BatchFile
             // 
-            this.btnCreateX264BatchFile.Location = new System.Drawing.Point(491, 675);
+            this.btnCreateX264BatchFile.Location = new System.Drawing.Point(491, 701);
             this.btnCreateX264BatchFile.Name = "btnCreateX264BatchFile";
             this.btnCreateX264BatchFile.Size = new System.Drawing.Size(168, 33);
-            this.btnCreateX264BatchFile.TabIndex = 6;
+            this.btnCreateX264BatchFile.TabIndex = 7;
             this.btnCreateX264BatchFile.Text = "Create x264 Batch File";
             this.btnCreateX264BatchFile.UseVisualStyleBackColor = true;
             this.btnCreateX264BatchFile.Click += new System.EventHandler(this.btnCreateX264BatFile_Click);
@@ -104,65 +105,12 @@
             this.dgvFiles.Name = "dgvFiles";
             this.dgvFiles.RowTemplate.Height = 24;
             this.dgvFiles.Size = new System.Drawing.Size(824, 222);
-            this.dgvFiles.TabIndex = 3;
+            this.dgvFiles.TabIndex = 4;
             this.dgvFiles.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvFiles_CellClick);
             this.dgvFiles.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvFiles_CellDoubleClick);
             this.dgvFiles.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.dgvFiles_RowsRemoved);
             this.dgvFiles.DragDrop += new System.Windows.Forms.DragEventHandler(this.dgvFiles_DragDrop);
             this.dgvFiles.DragEnter += new System.Windows.Forms.DragEventHandler(this.dgvFiles_DragEnter);
-            // 
-            // idDataGridViewTextBoxColumn
-            // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            this.idDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // aviSynthFileNameOnlyDataGridViewTextBoxColumn
-            // 
-            this.aviSynthFileNameOnlyDataGridViewTextBoxColumn.DataPropertyName = "AviSynthFileNameOnly";
-            this.aviSynthFileNameOnlyDataGridViewTextBoxColumn.HeaderText = "File Name";
-            this.aviSynthFileNameOnlyDataGridViewTextBoxColumn.MinimumWidth = 150;
-            this.aviSynthFileNameOnlyDataGridViewTextBoxColumn.Name = "aviSynthFileNameOnlyDataGridViewTextBoxColumn";
-            this.aviSynthFileNameOnlyDataGridViewTextBoxColumn.ReadOnly = true;
-            this.aviSynthFileNameOnlyDataGridViewTextBoxColumn.Width = 150;
-            // 
-            // aviSynthFilePathDataGridViewTextBoxColumn
-            // 
-            this.aviSynthFilePathDataGridViewTextBoxColumn.DataPropertyName = "AviSynthFilePath";
-            this.aviSynthFilePathDataGridViewTextBoxColumn.HeaderText = "AviSynthFilePath";
-            this.aviSynthFilePathDataGridViewTextBoxColumn.Name = "aviSynthFilePathDataGridViewTextBoxColumn";
-            this.aviSynthFilePathDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // encodeNameDataGridViewTextBoxColumn
-            // 
-            this.encodeNameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.encodeNameDataGridViewTextBoxColumn.DataPropertyName = "EncodeName";
-            this.encodeNameDataGridViewTextBoxColumn.HeaderText = "Encode Name (EX: E01.mkv)";
-            this.encodeNameDataGridViewTextBoxColumn.MinimumWidth = 200;
-            this.encodeNameDataGridViewTextBoxColumn.Name = "encodeNameDataGridViewTextBoxColumn";
-            // 
-            // episodeNumberDataGridViewTextBoxColumn
-            // 
-            this.episodeNumberDataGridViewTextBoxColumn.DataPropertyName = "EpisodeNumber";
-            this.episodeNumberDataGridViewTextBoxColumn.DataSource = this.bsEpisodeNumbersDropDownListItem;
-            this.episodeNumberDataGridViewTextBoxColumn.DisplayMember = "DisplayMember";
-            this.episodeNumberDataGridViewTextBoxColumn.HeaderText = "Blu-ray Episode Number";
-            this.episodeNumberDataGridViewTextBoxColumn.MinimumWidth = 150;
-            this.episodeNumberDataGridViewTextBoxColumn.Name = "episodeNumberDataGridViewTextBoxColumn";
-            this.episodeNumberDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.episodeNumberDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.episodeNumberDataGridViewTextBoxColumn.ValueMember = "ValueMember";
-            this.episodeNumberDataGridViewTextBoxColumn.Width = 150;
-            // 
-            // bsEpisodeNumbersDropDownListItem
-            // 
-            this.bsEpisodeNumbersDropDownListItem.AllowNew = false;
-            this.bsEpisodeNumbersDropDownListItem.DataSource = typeof(BatchGuy.App.Shared.Models.DropDownListItem);
-            // 
-            // bsFiles
-            // 
-            this.bsFiles.DataSource = typeof(BatchGuy.App.X264.Models.X264File);
             // 
             // lblNumberOfFiles
             // 
@@ -179,6 +127,7 @@
             // 
             // gbScreen
             // 
+            this.gbScreen.Controls.Add(this.chkIgnoreInternalSubtitles);
             this.gbScreen.Controls.Add(this.btnWriteToMKVMergeBatFile);
             this.gbScreen.Controls.Add(this.lblOutputAndLogFileCaption);
             this.gbScreen.Controls.Add(this.txtX264EncodeOutputAndLogDirectory);
@@ -195,16 +144,16 @@
             this.gbScreen.Controls.Add(this.btnCreateX264BatchFile);
             this.gbScreen.Location = new System.Drawing.Point(12, 28);
             this.gbScreen.Name = "gbScreen";
-            this.gbScreen.Size = new System.Drawing.Size(868, 720);
+            this.gbScreen.Size = new System.Drawing.Size(868, 743);
             this.gbScreen.TabIndex = 31;
             this.gbScreen.TabStop = false;
             // 
             // btnWriteToMKVMergeBatFile
             // 
-            this.btnWriteToMKVMergeBatFile.Location = new System.Drawing.Point(690, 675);
+            this.btnWriteToMKVMergeBatFile.Location = new System.Drawing.Point(690, 701);
             this.btnWriteToMKVMergeBatFile.Name = "btnWriteToMKVMergeBatFile";
             this.btnWriteToMKVMergeBatFile.Size = new System.Drawing.Size(166, 33);
-            this.btnWriteToMKVMergeBatFile.TabIndex = 7;
+            this.btnWriteToMKVMergeBatFile.TabIndex = 8;
             this.btnWriteToMKVMergeBatFile.Text = "Create mkvmerge Batch File";
             this.btnWriteToMKVMergeBatFile.UseVisualStyleBackColor = true;
             this.btnWriteToMKVMergeBatFile.Click += new System.EventHandler(this.btnWriteToMKVMergeBatFile_Click);
@@ -269,9 +218,9 @@
             this.chkSaveLogFileToDifferentDirectory.AutoSize = true;
             this.chkSaveLogFileToDifferentDirectory.Location = new System.Drawing.Point(21, 140);
             this.chkSaveLogFileToDifferentDirectory.Name = "chkSaveLogFileToDifferentDirectory";
-            this.chkSaveLogFileToDifferentDirectory.Size = new System.Drawing.Size(192, 17);
+            this.chkSaveLogFileToDifferentDirectory.Size = new System.Drawing.Size(195, 17);
             this.chkSaveLogFileToDifferentDirectory.TabIndex = 1;
-            this.chkSaveLogFileToDifferentDirectory.Text = "Save (.log) file to differen directory?";
+            this.chkSaveLogFileToDifferentDirectory.Text = "Save (.log) file to different directory?";
             this.chkSaveLogFileToDifferentDirectory.UseVisualStyleBackColor = true;
             this.chkSaveLogFileToDifferentDirectory.CheckedChanged += new System.EventHandler(this.chkSaveLogFileToDifferentDirectory_CheckedChanged);
             // 
@@ -280,7 +229,7 @@
             this.groupBox2.Controls.Add(this.txtX264Template);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.cbEncodeType);
-            this.groupBox2.Location = new System.Drawing.Point(8, 475);
+            this.groupBox2.Location = new System.Drawing.Point(8, 504);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(848, 188);
             this.groupBox2.TabIndex = 30;
@@ -293,7 +242,7 @@
             this.txtX264Template.Multiline = true;
             this.txtX264Template.Name = "txtX264Template";
             this.txtX264Template.Size = new System.Drawing.Size(818, 126);
-            this.txtX264Template.TabIndex = 5;
+            this.txtX264Template.TabIndex = 6;
             // 
             // label4
             // 
@@ -314,14 +263,14 @@
             this.cbEncodeType.Location = new System.Drawing.Point(681, 19);
             this.cbEncodeType.Name = "cbEncodeType";
             this.cbEncodeType.Size = new System.Drawing.Size(148, 21);
-            this.cbEncodeType.TabIndex = 4;
+            this.cbEncodeType.TabIndex = 5;
             this.cbEncodeType.SelectedIndexChanged += new System.EventHandler(this.cbEncodeType_SelectedIndexChanged);
             // 
             // gbAviSynthFiles
             // 
             this.gbAviSynthFiles.Controls.Add(this.dgvFiles);
             this.gbAviSynthFiles.Controls.Add(this.lblNumberOfFiles);
-            this.gbAviSynthFiles.Location = new System.Drawing.Point(8, 181);
+            this.gbAviSynthFiles.Location = new System.Drawing.Point(8, 209);
             this.gbAviSynthFiles.Name = "gbAviSynthFiles";
             this.gbAviSynthFiles.Size = new System.Drawing.Size(848, 273);
             this.gbAviSynthFiles.TabIndex = 28;
@@ -410,18 +359,82 @@
             // lblVersion
             // 
             this.lblVersion.AutoSize = true;
-            this.lblVersion.Location = new System.Drawing.Point(12, 751);
+            this.lblVersion.Location = new System.Drawing.Point(12, 774);
             this.lblVersion.Name = "lblVersion";
             this.lblVersion.Size = new System.Drawing.Size(42, 13);
             this.lblVersion.TabIndex = 41;
             this.lblVersion.Text = "Version";
+            // 
+            // chkIgnoreInternalSubtitles
+            // 
+            this.chkIgnoreInternalSubtitles.AutoSize = true;
+            this.chkIgnoreInternalSubtitles.Location = new System.Drawing.Point(21, 176);
+            this.chkIgnoreInternalSubtitles.Name = "chkIgnoreInternalSubtitles";
+            this.chkIgnoreInternalSubtitles.Size = new System.Drawing.Size(311, 17);
+            this.chkIgnoreInternalSubtitles.TabIndex = 3;
+            this.chkIgnoreInternalSubtitles.Text = "Ignore internal subtitles when creating mkvmerge batch file? ";
+            this.chkIgnoreInternalSubtitles.UseVisualStyleBackColor = true;
+            this.chkIgnoreInternalSubtitles.CheckedChanged += new System.EventHandler(this.chkIgnoreInternalSubtitles_CheckedChanged);
+            // 
+            // idDataGridViewTextBoxColumn
+            // 
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            this.idDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // aviSynthFileNameOnlyDataGridViewTextBoxColumn
+            // 
+            this.aviSynthFileNameOnlyDataGridViewTextBoxColumn.DataPropertyName = "AviSynthFileNameOnly";
+            this.aviSynthFileNameOnlyDataGridViewTextBoxColumn.HeaderText = "File Name";
+            this.aviSynthFileNameOnlyDataGridViewTextBoxColumn.MinimumWidth = 150;
+            this.aviSynthFileNameOnlyDataGridViewTextBoxColumn.Name = "aviSynthFileNameOnlyDataGridViewTextBoxColumn";
+            this.aviSynthFileNameOnlyDataGridViewTextBoxColumn.ReadOnly = true;
+            this.aviSynthFileNameOnlyDataGridViewTextBoxColumn.Width = 150;
+            // 
+            // aviSynthFilePathDataGridViewTextBoxColumn
+            // 
+            this.aviSynthFilePathDataGridViewTextBoxColumn.DataPropertyName = "AviSynthFilePath";
+            this.aviSynthFilePathDataGridViewTextBoxColumn.HeaderText = "AviSynthFilePath";
+            this.aviSynthFilePathDataGridViewTextBoxColumn.Name = "aviSynthFilePathDataGridViewTextBoxColumn";
+            this.aviSynthFilePathDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // encodeNameDataGridViewTextBoxColumn
+            // 
+            this.encodeNameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.encodeNameDataGridViewTextBoxColumn.DataPropertyName = "EncodeName";
+            this.encodeNameDataGridViewTextBoxColumn.HeaderText = "Encode Name (EX: E01.mkv)";
+            this.encodeNameDataGridViewTextBoxColumn.MinimumWidth = 200;
+            this.encodeNameDataGridViewTextBoxColumn.Name = "encodeNameDataGridViewTextBoxColumn";
+            // 
+            // episodeNumberDataGridViewTextBoxColumn
+            // 
+            this.episodeNumberDataGridViewTextBoxColumn.DataPropertyName = "EpisodeNumber";
+            this.episodeNumberDataGridViewTextBoxColumn.DataSource = this.bsEpisodeNumbersDropDownListItem;
+            this.episodeNumberDataGridViewTextBoxColumn.DisplayMember = "DisplayMember";
+            this.episodeNumberDataGridViewTextBoxColumn.HeaderText = "Blu-ray Episode Number";
+            this.episodeNumberDataGridViewTextBoxColumn.MinimumWidth = 150;
+            this.episodeNumberDataGridViewTextBoxColumn.Name = "episodeNumberDataGridViewTextBoxColumn";
+            this.episodeNumberDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.episodeNumberDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.episodeNumberDataGridViewTextBoxColumn.ValueMember = "ValueMember";
+            this.episodeNumberDataGridViewTextBoxColumn.Width = 150;
+            // 
+            // bsEpisodeNumbersDropDownListItem
+            // 
+            this.bsEpisodeNumbersDropDownListItem.AllowNew = false;
+            this.bsEpisodeNumbersDropDownListItem.DataSource = typeof(BatchGuy.App.Shared.Models.DropDownListItem);
+            // 
+            // bsFiles
+            // 
+            this.bsFiles.DataSource = typeof(BatchGuy.App.X264.Models.X264File);
             // 
             // CreateX264BatchFileForm
             // 
             this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(892, 773);
+            this.ClientSize = new System.Drawing.Size(892, 795);
             this.Controls.Add(this.lblVersion);
             this.Controls.Add(this.menuStrip);
             this.Controls.Add(this.gbScreen);
@@ -434,8 +447,6 @@
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.CreateX264BatchFileForm_DragDrop);
             this.DragEnter += new System.Windows.Forms.DragEventHandler(this.CreateX264BatchFileForm_DragEnter);
             ((System.ComponentModel.ISupportInitialize)(this.dgvFiles)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsEpisodeNumbersDropDownListItem)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsFiles)).EndInit();
             this.gbScreen.ResumeLayout(false);
             this.gbScreen.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -444,6 +455,8 @@
             this.gbAviSynthFiles.PerformLayout();
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bsEpisodeNumbersDropDownListItem)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsFiles)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -488,5 +501,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn encodeNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewComboBoxColumn episodeNumberDataGridViewTextBoxColumn;
         private System.Windows.Forms.Label lblVersion;
+        private System.Windows.Forms.CheckBox chkIgnoreInternalSubtitles;
     }
 }

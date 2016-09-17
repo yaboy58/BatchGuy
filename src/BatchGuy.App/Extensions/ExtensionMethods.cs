@@ -125,10 +125,9 @@ namespace BatchGuy.App.Extensions
                     {
                         foreach (BluRaySummaryInfo info in disc.BluRaySummaryInfoList.Where(s => s.IsSelected))
                         {
-                            if (info.BluRayTitleInfo != null && info.BluRayTitleInfo.Video != null)
+                            if (info.BluRayTitleInfo != null && info.EpisodeNumber != null && info.BluRayTitleInfo.Video != null)
                             {
-                                if (info.BluRayTitleInfo.EpisodeNumber != null && info.BluRayTitleInfo.EpisodeNumber != string.Empty && 
-                                    info.BluRayTitleInfo.EpisodeNumber.StringToInt() == episodeNumber.StringToInt())
+                                if (info.EpisodeNumber == episodeNumber.StringToNullInt())
                                 {
                                     summary = info;
                                     return summary;

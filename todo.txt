@@ -5,10 +5,8 @@ Enhancements
 
 Bugs:
 *Corrected a misspelling of a word in an error message
+*Corrected a misspelling of a word on the Create x264 Batch File Screen
 *Fixed bug where the Create x264 Batch File mkvmerge logic was evaluating Disc.BluRayTitleInf.EpisodeNumber and not Disc.EpisodeNumber.  The bug only occurs when users pad the Episode Number on the BluRay Title Info Screen with zeroes
-
-*look at summary.episodenumber and not summary.bluraytitleinfo.episodenumber
--test when selected but no episode number entered
 
 
 *maybe start overwritting files

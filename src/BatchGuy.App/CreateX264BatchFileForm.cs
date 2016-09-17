@@ -515,6 +515,7 @@ namespace BatchGuy.App
             chkSaveLogFileToDifferentDirectory.Checked = _batchGuyEAC3ToSettings.X264FileSettings.SaveX264LogFileToDifferentDirectory;
             txtX264LogFileSaveDirectory.Text = _batchGuyEAC3ToSettings.X264FileSettings.X264LogFileOutputDirectoryPath;
             txtX264Template.Text = _batchGuyEAC3ToSettings.X264FileSettings.X264Template;
+            chkIgnoreInternalSubtitles.Checked = _batchGuyEAC3ToSettings.EAC3ToSettings.IgnoreInternalSubtitles;
 
             if (_batchGuyEAC3ToSettings.X264FileSettings.EncodeType == EnumEncodeType.TwoPass)
                 cbEncodeType.SelectedIndex = 1;
@@ -651,7 +652,7 @@ namespace BatchGuy.App
                                 {
                                     if (summary.IsSelected && summary.EpisodeNumber != null && summary.BluRayTitleInfo != null)
                                     {
-                                        if (file.EpisodeNumber.StringToInt() == summary.EpisodeNumber)
+                                        if (file.EpisodeNumber.StringToNullInt() == summary.EpisodeNumber)
                                         {
                                             if (_batchGuyEAC3ToSettings.EAC3ToSettings.OutputDirectoryType == EnumDirectoryType.DirectoryPerEpisode)
                                             {
@@ -688,7 +689,7 @@ namespace BatchGuy.App
                                 {
                                     if (summary.IsSelected && summary.EpisodeNumber != null && summary.BluRayTitleInfo != null)
                                     {
-                                        if (file.EpisodeNumber.StringToInt() == summary.EpisodeNumber)
+                                        if (file.EpisodeNumber.StringToNullInt() == summary.EpisodeNumber)
                                         {
                                             summary.BluRayTitleInfo.EpisodeName = string.Empty;
                                         }
@@ -811,6 +812,16 @@ namespace BatchGuy.App
             form.SetBluRayTitleInfo(_batchGuyEAC3ToSettings.EAC3ToSettings, discInfo.BluRayPath, summaryInfo);
             form.IsCallingScreenCreateX264BatchFile = true;
             form.ShowDialog();
+        }
+
+        private void chkIgnoreInternalSubtitles_CheckedChanged(object sender, EventArgs e)
+        {
+            this.HandleschkIgnoreInternalSubtitlesCheckedChanged();
+        }
+
+        private void HandleschkIgnoreInternalSubtitlesCheckedChanged()
+        {
+            _batchGuyEAC3ToSettings.EAC3ToSettings.IgnoreInternalSubtitles = chkIgnoreInternalSubtitles.Checked;
         }
     }
 }
