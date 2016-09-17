@@ -29,6 +29,9 @@ BatchGuy is not an x264 encoder.  BatchGuy will create a (.bat) file that you ca
 ![alt text](assets/Blu-rayTitleInfoScreen.png "BatchGuy Blu-ray Title Information Screen")
 
 <br><br>
+![alt text](assets/ExternalSubtitlesScreen.png "BatchGuy External Subtitles Screen")
+
+<br><br>
 ![alt text](assets/CreateAviSynthFilesScreen.png "BatchGuy Create AviSynth Files Screen")
 
 <br><br>
