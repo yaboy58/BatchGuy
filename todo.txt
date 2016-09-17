@@ -1,8 +1,13 @@
 --todo
 *BluRayTitleParserService service now uses the MKVMergeLanguageService to determine the blu-ray item language
-*To temporarily handle Playlists with multiple video, the application chooses the first video it finds
+*To temporarily handle Playlists with multiple videos, the application chooses the first video it finds
 
 add checkbox to ignore internal subs when muxing for encode
+-create new flag EAC3ToConfiguration.IgnoreInternalSubtitles
+-MKVMergeOutputService.GetSubtitlePart(), add logic here to check this flag and act accordingly
+-MKVMergeOutputService.GetTrackOrderPart(), add logic here to check this flag to get the correct count
+-On eac3to screen, always set this flag to false
+-On x264 screen, checkbox defaulted to checked and tied to this new flag
 
 
 
