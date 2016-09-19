@@ -13,5 +13,7 @@ namespace BatchGuy.App.Eac3To.Interfaces
         ErrorCollection Errors { get;}
         ErrorCollection Write();
         bool IsValid();
+
+        void Delete();
     }
 }
