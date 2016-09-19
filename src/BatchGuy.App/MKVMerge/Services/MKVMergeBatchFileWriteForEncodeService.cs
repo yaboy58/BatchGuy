@@ -52,6 +52,8 @@ namespace BatchGuy.App.MKVMerge.Services
             {
                 try
                 {
+                    this.Delete();
+
                     foreach (BluRayDiscInfo disc in _bluRayDiscInfoList.Where(d => d.IsSelected))
                     {
                         foreach (BluRaySummaryInfo summary in disc.BluRaySummaryInfoList.Where(s => s.IsSelected).OrderBy(s => s.EpisodeNumber))
@@ -255,6 +257,12 @@ namespace BatchGuy.App.MKVMerge.Services
                 this._errors.Add(new Error() { Description = "Episode number not unique for all AviSynth Files on the Create x264 Batch File Screen." });
             }
             return isValid;
+        }
+
+        public void Delete()
+        {
+            if (File.Exists(_eac3toConfiguration.MKVMergeBatchFilePath))
+                File.Exists(_eac3toConfiguration.MKVMergeBatchFilePath);
         }
     }
 }

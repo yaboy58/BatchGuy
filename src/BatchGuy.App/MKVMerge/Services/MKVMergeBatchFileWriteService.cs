@@ -49,6 +49,8 @@ namespace BatchGuy.App.MKVMerge.Services
             {
                 try
                 {
+                    this.Delete();
+
                     foreach (BluRayDiscInfo disc in _bluRayDiscInfoList.Where(d => d.IsSelected))
                     {
                         foreach (BluRaySummaryInfo summary in disc.BluRaySummaryInfoList.Where(s => s.IsSelected).OrderBy(s => s.EpisodeNumber))
@@ -211,6 +213,12 @@ namespace BatchGuy.App.MKVMerge.Services
                 this._errors.Add(new Error() { Description = "Invalid Blu-ray disc directories found." });
             }
             return isValid;
+        }
+
+        public void Delete()
+        {
+            if (File.Exists(_eac3toConfiguration.MKVMergeBatchFilePath))
+                File.Delete(_eac3toConfiguration.MKVMergeBatchFilePath);
         }
     }
 }

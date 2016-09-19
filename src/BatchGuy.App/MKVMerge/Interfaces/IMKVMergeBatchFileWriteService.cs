@@ -12,5 +12,6 @@ namespace BatchGuy.App.MKVMerge.Interfaces
         ErrorCollection Errors { get; }
         ErrorCollection Write();
         bool IsValid();
+        void Delete();
     }
 }
