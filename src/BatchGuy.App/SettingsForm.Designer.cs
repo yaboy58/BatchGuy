@@ -33,9 +33,6 @@
             this.gbScreen = new System.Windows.Forms.GroupBox();
             this.gbExecutables = new System.Windows.Forms.GroupBox();
             this.dgvExecutables = new System.Windows.Forms.DataGridView();
-            this.nameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.valueDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Browse = new System.Windows.Forms.DataGridViewImageColumn();
             this.bsExecutables = new System.Windows.Forms.BindingSource(this.components);
             this.gbRemuxNamingConventionDefaults = new System.Windows.Forms.GroupBox();
             this.lblRemuxNamingConventionExample = new System.Windows.Forms.Label();
@@ -72,6 +69,9 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.ofdFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.lblVersion = new System.Windows.Forms.Label();
+            this.nameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.valueDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Browse = new System.Windows.Forms.DataGridViewImageColumn();
             this.gbScreen.SuspendLayout();
             this.gbExecutables.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvExecutables)).BeginInit();
@@ -130,31 +130,6 @@
             this.dgvExecutables.Size = new System.Drawing.Size(744, 149);
             this.dgvExecutables.TabIndex = 0;
             this.dgvExecutables.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvExecutables_CellClick);
-            // 
-            // nameDataGridViewTextBoxColumn1
-            // 
-            this.nameDataGridViewTextBoxColumn1.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn1.HeaderText = "Name";
-            this.nameDataGridViewTextBoxColumn1.MinimumWidth = 100;
-            this.nameDataGridViewTextBoxColumn1.Name = "nameDataGridViewTextBoxColumn1";
-            this.nameDataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // valueDataGridViewTextBoxColumn
-            // 
-            this.valueDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.valueDataGridViewTextBoxColumn.DataPropertyName = "Value";
-            this.valueDataGridViewTextBoxColumn.HeaderText = "Value";
-            this.valueDataGridViewTextBoxColumn.MinimumWidth = 200;
-            this.valueDataGridViewTextBoxColumn.Name = "valueDataGridViewTextBoxColumn";
-            this.valueDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // Browse
-            // 
-            this.Browse.HeaderText = "Browse";
-            this.Browse.Image = global::BatchGuy.App.Properties.Resources.Avosoft_Warm_Toolbar_Folder_open;
-            this.Browse.MinimumWidth = 60;
-            this.Browse.Name = "Browse";
-            this.Browse.Width = 60;
             // 
             // bsExecutables
             // 
@@ -534,6 +509,32 @@
             this.lblVersion.Size = new System.Drawing.Size(42, 13);
             this.lblVersion.TabIndex = 33;
             this.lblVersion.Text = "Version";
+            // 
+            // nameDataGridViewTextBoxColumn1
+            // 
+            this.nameDataGridViewTextBoxColumn1.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn1.HeaderText = "Executable Name";
+            this.nameDataGridViewTextBoxColumn1.MinimumWidth = 120;
+            this.nameDataGridViewTextBoxColumn1.Name = "nameDataGridViewTextBoxColumn1";
+            this.nameDataGridViewTextBoxColumn1.ReadOnly = true;
+            this.nameDataGridViewTextBoxColumn1.Width = 120;
+            // 
+            // valueDataGridViewTextBoxColumn
+            // 
+            this.valueDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.valueDataGridViewTextBoxColumn.DataPropertyName = "Value";
+            this.valueDataGridViewTextBoxColumn.HeaderText = "Executable Location";
+            this.valueDataGridViewTextBoxColumn.MinimumWidth = 200;
+            this.valueDataGridViewTextBoxColumn.Name = "valueDataGridViewTextBoxColumn";
+            this.valueDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // Browse
+            // 
+            this.Browse.HeaderText = "Browse";
+            this.Browse.Image = global::BatchGuy.App.Properties.Resources.Avosoft_Warm_Toolbar_Folder_open;
+            this.Browse.MinimumWidth = 60;
+            this.Browse.Name = "Browse";
+            this.Browse.Width = 60;
             // 
             // SettingsForm
             // 

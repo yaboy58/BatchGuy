@@ -91,6 +91,11 @@ namespace BatchGuy.App.Settings.Services
             }
         }
 
+        public Setting GetSettingByName(string settingName)
+        {
+            return _applicationSettings.Settings.SingleOrDefault(s => s.Name == settingName);
+        }
+
         private void LoadBluRayTitleInfoDefaultSettings()
         {
             if (_applicationSettings.BluRayTitleInfoDefaultSettings == null)
@@ -148,11 +153,6 @@ namespace BatchGuy.App.Settings.Services
                 },
                  AudioTypeFilterCriteria = "Any Type"
             };
-        }
-
-        public Setting GetSettingByName(string settingName)
-        {
-            return _applicationSettings.Settings.SingleOrDefault(s => s.Name == settingName);
         }
 
         private void ResetEAC3ToDefaultSettings()
