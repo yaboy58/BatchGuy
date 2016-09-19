@@ -34,7 +34,8 @@ namespace BatchGuy.App.AviSynth.Services
             if (_errors.Count == 0)
             {
                 _avsFiles = _fileService.CreateAVSFileList();
-                WriteAVSStreams();
+                this.Delete();
+                this.WriteAVSStreams();
             }
 
             return _errors;
@@ -47,6 +48,18 @@ namespace BatchGuy.App.AviSynth.Services
                 using (StreamWriter sw = new StreamWriter(file.FullPath))
                 {
                     sw.WriteLine(file.AviSynthScript);
+                }
+            }
+        }
+
+        public void Delete()
+        {
+            if (_avsFiles != null)
+            {
+                foreach (var file in _avsFiles)
+                {
+                    if (File.Exists(file.FullPath))
+                        File.Delete(file.FullPath);
                 }
             }
         }
