@@ -24,6 +24,7 @@ namespace BatchGuy.App
         private BindingList<BluRayTitleInfoDefaultSettingsAudio> _bindingBluRayTitleInfoDefaultSettingsAudio = new BindingList<BluRayTitleInfoDefaultSettingsAudio>();
         private BindingList<MKVMergeLanguageItem> _bindingListSubtitlesMKVMergeDefaultSettingsLanguage = new BindingList<MKVMergeLanguageItem>();
         private BindingList<MKVMergeLanguageItem> _bindingListAudioMKVMergeDefaultSettingsLanguage = new BindingList<MKVMergeLanguageItem>();
+        private BindingList<Setting> _bindingListExecutables;
 
         public SettingsForm()
         {
@@ -35,6 +36,7 @@ namespace BatchGuy.App
         {
             lblVersion.Text = Program.GetApplicationVersion();
             this.LoadMKVLanguageDropDownBoxes();
+            this.LoadExecutables();
             this.LoadSettings();
             this.LoadControls();
             this.SetToolTips();
@@ -42,9 +44,6 @@ namespace BatchGuy.App
 
         private void SetToolTips()
         {
-            new ToolTip().SetToolTip(btnOpenEac3toFileDialog, "eac3to exe path");
-            new ToolTip().SetToolTip(btnOpenVfw4x264FileDialog, "vfw4x264 exe path");
-            new ToolTip().SetToolTip(btnOpenMKVMergeFileDialog, "mkvmege exe path");
             new ToolTip().SetToolTip(chkShowProgressNumbers, "Specify if eac3to should use the progressnumbers parameter");
 
             new ToolTip().SetToolTip(chkBluRayTitleInfoDefaultSettingsSelectSubtitles, "Should all subtitles be selected by default");
@@ -62,12 +61,15 @@ namespace BatchGuy.App
             new ToolTip().SetToolTip(cbRemuxNamingConventionDefaults, "Set the default remux naming convention template");
         }
 
+        private void LoadExecutables()
+        {
+            _bindingListExecutables = new BindingList<Setting>() { Program.ApplicationSettingsService.GetSettingByName("eac3to"),
+            Program.ApplicationSettingsService.GetSettingByName("vfw4x264"), Program.ApplicationSettingsService.GetSettingByName("mkvmerge")};
+            bsExecutables.DataSource = _bindingListExecutables;
+        }
+
         private void LoadSettings()
         {
-            txtEac3toPath.Text = this.LoadSetting("eac3to");
-            txtVfw4x264.Text = this.LoadSetting("vfw4x264");
-            txtMKVMerge.Text = this.LoadSetting("mkvmerge");
-
             foreach (BluRayTitleInfoDefaultSettingsAudio bluRayTitleInfoDefaultSettingsAudio in Program.ApplicationSettings.BluRayTitleInfoDefaultSettings.Audio)
             {
                 _bindingBluRayTitleInfoDefaultSettingsAudio.Add(bluRayTitleInfoDefaultSettingsAudio);
@@ -121,22 +123,6 @@ namespace BatchGuy.App
                 return string.Empty;
         }
 
-        private void btnOpenEac3toFileDialog_Click(object sender, EventArgs e)
-        {
-            this.HandleOpenEac3ToFileDialogClick();
-        }
-
-        private void HandleOpenEac3ToFileDialogClick()
-        {
-            ofdFileDialog.FileName = "eac3to executable";
-            ofdFileDialog.Filter = "Files|*.exe";
-            DialogResult result = ofdFileDialog.ShowDialog();
-            if (result == System.Windows.Forms.DialogResult.OK)
-            {
-               txtEac3toPath.Text = ofdFileDialog.FileName;
-            }
-        }
-
         private void btnSave_Click(object sender, EventArgs e)
         {
             gbScreen.SetEnabled(false);
@@ -146,54 +132,12 @@ namespace BatchGuy.App
 
         private void HandleSaveClick()
         {
-            Program.ApplicationSettings.Settings.Clear();
-            Program.ApplicationSettings.Settings.Add(new Setting() { Name = "eac3to", Value = txtEac3toPath.Text } );
-            Program.ApplicationSettings.Settings.Add(new Setting() { Name = "vfw4x264", Value = txtVfw4x264.Text });
-            Program.ApplicationSettings.Settings.Add(new Setting() { Name = "mkvmerge", Value = txtMKVMerge.Text });
-
             Program.ApplicationSettingsService.Save(Program.ApplicationSettings);
         }
 
         private bool IsScreenValid()
         {
-            if (string.IsNullOrEmpty(txtEac3toPath.Text) || string.IsNullOrEmpty(txtVfw4x264.Text))
-            {
-                MessageBox.Show("All settings must be entered to save!", "Settings Information Not Provided", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
             return true;
-        }
-
-        private void btnOpenVfw4x264FileDialog_Click(object sender, EventArgs e)
-        {
-            this.HandleOpenVfw4x264FileDialogClick();
-        }
-
-        private void HandleOpenVfw4x264FileDialogClick()
-        {
-            ofdFileDialog.FileName = "Vfw4x264 executable";
-            ofdFileDialog.Filter = "Files|*.exe";
-            DialogResult result = ofdFileDialog.ShowDialog();
-            if (result == System.Windows.Forms.DialogResult.OK)
-            {
-                txtVfw4x264.Text = ofdFileDialog.FileName;
-            }
-        }
-
-        private void btnOpenMKVMergeFileDialog_Click(object sender, EventArgs e)
-        {
-            this.HandleOpenMKVMergeFileDialogClick();
-        }
-
-        private void HandleOpenMKVMergeFileDialogClick()
-        {
-            ofdFileDialog.FileName = "mkvmerge executable";
-            ofdFileDialog.Filter = "Files|*.exe";
-            DialogResult result = ofdFileDialog.ShowDialog();
-            if (result == System.Windows.Forms.DialogResult.OK)
-            {
-              txtMKVMerge.Text = ofdFileDialog.FileName;
-            }
         }
 
         private string GetEnumEAC3ToNamingConventionType(EnumEAC3ToNamingConventionType eac3ToNamingConventionType)
@@ -238,6 +182,8 @@ namespace BatchGuy.App
 
         private void dgvBluRayTitleInfoDefaultSettingsAudio_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex == -1)
+                return;
             dgvBluRayTitleInfoDefaultSettingsAudio.Rows[e.RowIndex].Selected = true; 
         }
 
@@ -349,6 +295,33 @@ namespace BatchGuy.App
                     throw new Exception("Invalid EnumEAC3ToNamingConventionType");
             }
             Program.ApplicationSettings.EnumEAC3ToNamingConventionType = type;
+        }
+
+
+        private void dgvExecutables_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex == -1)
+                return;
+            this.HandlesdgvExecutablesCellClick(e);
+        }
+
+        private void HandlesdgvExecutablesCellClick(DataGridViewCellEventArgs e)
+        {
+            dgvExecutables.Rows[e.RowIndex].Selected = true;
+
+            if (e.ColumnIndex == 2)
+            {
+                string name = dgvExecutables.Rows[e.RowIndex].Cells[0].Value.ToString();
+                ofdFileDialog.FileName = string.Format("{0} executable", name);
+                ofdFileDialog.Filter = "Files|*.exe";
+                DialogResult result = ofdFileDialog.ShowDialog();
+                if (result == System.Windows.Forms.DialogResult.OK)
+                {
+                    Setting setting = _bindingListExecutables.Single(s => s.Name == name);
+                    setting.Value = ofdFileDialog.FileName;
+                    dgvExecutables.CurrentCell = null;
+                }
+            }
         }
     }
 }

@@ -293,6 +293,7 @@
     <None Include="Properties\DataSources\BatchGuy.App.Parser.Models.BluRayTitleVideo.datasource" />
     <None Include="Properties\DataSources\BatchGuy.App.Settings.Models.BluRayTitleInfoDefaultSettingsAudio.datasource" />
     <None Include="Properties\DataSources\BatchGuy.App.Shared.Models.DropDownListItem.datasource" />
+    <None Include="Properties\DataSources\BatchGuy.App.Shared.Models.Setting.datasource" />
     <None Include="Properties\DataSources\BatchGuy.App.X264.Models.X264File.datasource" />
     <None Include="Properties\DataSources\BatchGuy.App.X264Log.Models.X264LogFile.datasource" />
     <None Include="Properties\Settings.settings">

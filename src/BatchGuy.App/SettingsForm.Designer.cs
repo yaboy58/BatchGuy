@@ -31,6 +31,12 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingsForm));
             this.gbScreen = new System.Windows.Forms.GroupBox();
+            this.gbExecutables = new System.Windows.Forms.GroupBox();
+            this.dgvExecutables = new System.Windows.Forms.DataGridView();
+            this.nameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.valueDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Browse = new System.Windows.Forms.DataGridViewImageColumn();
+            this.bsExecutables = new System.Windows.Forms.BindingSource(this.components);
             this.gbRemuxNamingConventionDefaults = new System.Windows.Forms.GroupBox();
             this.lblRemuxNamingConventionExample = new System.Windows.Forms.Label();
             this.lblRemuxNamingConventionExampleCaption = new System.Windows.Forms.Label();
@@ -63,20 +69,13 @@
             this.defaultTypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.argumentsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bsBluRayTitleInfoDefaultSettingsAudio = new System.Windows.Forms.BindingSource(this.components);
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnOpenMKVMergeFileDialog = new System.Windows.Forms.Button();
-            this.txtMKVMerge = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.btnOpenVfw4x264FileDialog = new System.Windows.Forms.Button();
-            this.txtVfw4x264 = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.btnOpenEac3toFileDialog = new System.Windows.Forms.Button();
-            this.txtEac3toPath = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
             this.ofdFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.lblVersion = new System.Windows.Forms.Label();
             this.gbScreen.SuspendLayout();
+            this.gbExecutables.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvExecutables)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsExecutables)).BeginInit();
             this.gbRemuxNamingConventionDefaults.SuspendLayout();
             this.gbAudioMKVMergeDefaultSettings.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsAudioMKVMergeDefaultSettingsLanguage)).BeginInit();
@@ -86,11 +85,11 @@
             this.gbBluRayTitleInfoDefaultSettings.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBluRayTitleInfoDefaultSettingsAudio)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsBluRayTitleInfoDefaultSettingsAudio)).BeginInit();
-            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // gbScreen
             // 
+            this.gbScreen.Controls.Add(this.gbExecutables);
             this.gbScreen.Controls.Add(this.gbRemuxNamingConventionDefaults);
             this.gbScreen.Controls.Add(this.chkAudioLanguageAlwaysSelectedEnabled);
             this.gbScreen.Controls.Add(this.gbAudioMKVMergeDefaultSettings);
@@ -98,13 +97,69 @@
             this.gbScreen.Controls.Add(this.gbSubtitlesMKVMergeDefaultSettings);
             this.gbScreen.Controls.Add(this.gbEAC3ToDefaultSettings);
             this.gbScreen.Controls.Add(this.gbBluRayTitleInfoDefaultSettings);
-            this.gbScreen.Controls.Add(this.groupBox1);
             this.gbScreen.Location = new System.Drawing.Point(12, 12);
             this.gbScreen.Name = "gbScreen";
             this.gbScreen.Size = new System.Drawing.Size(800, 728);
             this.gbScreen.TabIndex = 0;
             this.gbScreen.TabStop = false;
             this.gbScreen.Text = "Settings";
+            // 
+            // gbExecutables
+            // 
+            this.gbExecutables.Controls.Add(this.dgvExecutables);
+            this.gbExecutables.Location = new System.Drawing.Point(20, 19);
+            this.gbExecutables.Name = "gbExecutables";
+            this.gbExecutables.Size = new System.Drawing.Size(762, 178);
+            this.gbExecutables.TabIndex = 13;
+            this.gbExecutables.TabStop = false;
+            this.gbExecutables.Text = "Executables";
+            // 
+            // dgvExecutables
+            // 
+            this.dgvExecutables.AllowUserToAddRows = false;
+            this.dgvExecutables.AllowUserToDeleteRows = false;
+            this.dgvExecutables.AutoGenerateColumns = false;
+            this.dgvExecutables.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvExecutables.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.nameDataGridViewTextBoxColumn1,
+            this.valueDataGridViewTextBoxColumn,
+            this.Browse});
+            this.dgvExecutables.DataSource = this.bsExecutables;
+            this.dgvExecutables.Location = new System.Drawing.Point(11, 19);
+            this.dgvExecutables.Name = "dgvExecutables";
+            this.dgvExecutables.Size = new System.Drawing.Size(744, 149);
+            this.dgvExecutables.TabIndex = 0;
+            this.dgvExecutables.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvExecutables_CellClick);
+            // 
+            // nameDataGridViewTextBoxColumn1
+            // 
+            this.nameDataGridViewTextBoxColumn1.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn1.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn1.MinimumWidth = 100;
+            this.nameDataGridViewTextBoxColumn1.Name = "nameDataGridViewTextBoxColumn1";
+            this.nameDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // valueDataGridViewTextBoxColumn
+            // 
+            this.valueDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.valueDataGridViewTextBoxColumn.DataPropertyName = "Value";
+            this.valueDataGridViewTextBoxColumn.HeaderText = "Value";
+            this.valueDataGridViewTextBoxColumn.MinimumWidth = 200;
+            this.valueDataGridViewTextBoxColumn.Name = "valueDataGridViewTextBoxColumn";
+            this.valueDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // Browse
+            // 
+            this.Browse.HeaderText = "Browse";
+            this.Browse.Image = global::BatchGuy.App.Properties.Resources.Avosoft_Warm_Toolbar_Folder_open;
+            this.Browse.MinimumWidth = 60;
+            this.Browse.Name = "Browse";
+            this.Browse.Width = 60;
+            // 
+            // bsExecutables
+            // 
+            this.bsExecutables.AllowNew = false;
+            this.bsExecutables.DataSource = typeof(BatchGuy.App.Shared.Models.Setting);
             // 
             // gbRemuxNamingConventionDefaults
             // 
@@ -158,7 +213,7 @@
             this.cbRemuxNamingConventionDefaults.Location = new System.Drawing.Point(78, 19);
             this.cbRemuxNamingConventionDefaults.Name = "cbRemuxNamingConventionDefaults";
             this.cbRemuxNamingConventionDefaults.Size = new System.Drawing.Size(186, 21);
-            this.cbRemuxNamingConventionDefaults.TabIndex = 4;
+            this.cbRemuxNamingConventionDefaults.TabIndex = 2;
             this.cbRemuxNamingConventionDefaults.SelectedIndexChanged += new System.EventHandler(this.cbRemuxNamingConventionDefaults_SelectedIndexChanged);
             // 
             // chkAudioLanguageAlwaysSelectedEnabled
@@ -167,7 +222,7 @@
             this.chkAudioLanguageAlwaysSelectedEnabled.Location = new System.Drawing.Point(20, 496);
             this.chkAudioLanguageAlwaysSelectedEnabled.Name = "chkAudioLanguageAlwaysSelectedEnabled";
             this.chkAudioLanguageAlwaysSelectedEnabled.Size = new System.Drawing.Size(15, 14);
-            this.chkAudioLanguageAlwaysSelectedEnabled.TabIndex = 8;
+            this.chkAudioLanguageAlwaysSelectedEnabled.TabIndex = 6;
             this.chkAudioLanguageAlwaysSelectedEnabled.UseVisualStyleBackColor = true;
             this.chkAudioLanguageAlwaysSelectedEnabled.CheckedChanged += new System.EventHandler(this.chkAudioLanguageAlwaysSelectedEnabled_CheckedChanged);
             // 
@@ -212,7 +267,7 @@
             this.cbAudioMKVMergeDefaultSettingsAudioType.Location = new System.Drawing.Point(330, 45);
             this.cbAudioMKVMergeDefaultSettingsAudioType.Name = "cbAudioMKVMergeDefaultSettingsAudioType";
             this.cbAudioMKVMergeDefaultSettingsAudioType.Size = new System.Drawing.Size(186, 21);
-            this.cbAudioMKVMergeDefaultSettingsAudioType.TabIndex = 9;
+            this.cbAudioMKVMergeDefaultSettingsAudioType.TabIndex = 8;
             this.cbAudioMKVMergeDefaultSettingsAudioType.SelectedIndexChanged += new System.EventHandler(this.cbAudioMKVMergeDefaultSettingsAudioType_SelectedIndexChanged);
             // 
             // cbAudioMKVMergeDefaultSettingsDefaultTrackFlag
@@ -227,7 +282,7 @@
             this.cbAudioMKVMergeDefaultSettingsDefaultTrackFlag.Location = new System.Drawing.Point(541, 45);
             this.cbAudioMKVMergeDefaultSettingsDefaultTrackFlag.Name = "cbAudioMKVMergeDefaultSettingsDefaultTrackFlag";
             this.cbAudioMKVMergeDefaultSettingsDefaultTrackFlag.Size = new System.Drawing.Size(169, 21);
-            this.cbAudioMKVMergeDefaultSettingsDefaultTrackFlag.TabIndex = 10;
+            this.cbAudioMKVMergeDefaultSettingsDefaultTrackFlag.TabIndex = 9;
             this.cbAudioMKVMergeDefaultSettingsDefaultTrackFlag.SelectedIndexChanged += new System.EventHandler(this.cbAudioMKVMergeDefaultSettingsDefaultTrackFlag_SelectedIndexChanged);
             // 
             // lblAudioMKVMergeDefaultSettingsDefaultTrackFlag
@@ -248,7 +303,7 @@
             this.cbAudioMKVMergeDefaultSettingsLanguage.Location = new System.Drawing.Point(8, 45);
             this.cbAudioMKVMergeDefaultSettingsLanguage.Name = "cbAudioMKVMergeDefaultSettingsLanguage";
             this.cbAudioMKVMergeDefaultSettingsLanguage.Size = new System.Drawing.Size(298, 21);
-            this.cbAudioMKVMergeDefaultSettingsLanguage.TabIndex = 9;
+            this.cbAudioMKVMergeDefaultSettingsLanguage.TabIndex = 7;
             this.cbAudioMKVMergeDefaultSettingsLanguage.ValueMember = "Value";
             this.cbAudioMKVMergeDefaultSettingsLanguage.SelectedIndexChanged += new System.EventHandler(this.cbAudioMKVMergeDefaultSettingsLanguage_SelectedIndexChanged);
             // 
@@ -272,7 +327,7 @@
             this.chkSubtitleLanguageAlwaysSelectedEnabled.Location = new System.Drawing.Point(20, 600);
             this.chkSubtitleLanguageAlwaysSelectedEnabled.Name = "chkSubtitleLanguageAlwaysSelectedEnabled";
             this.chkSubtitleLanguageAlwaysSelectedEnabled.Size = new System.Drawing.Size(15, 14);
-            this.chkSubtitleLanguageAlwaysSelectedEnabled.TabIndex = 12;
+            this.chkSubtitleLanguageAlwaysSelectedEnabled.TabIndex = 10;
             this.chkSubtitleLanguageAlwaysSelectedEnabled.UseVisualStyleBackColor = true;
             this.chkSubtitleLanguageAlwaysSelectedEnabled.CheckedChanged += new System.EventHandler(this.chkSubtitleLanguageAlwaysSelectedEnabled_CheckedChanged);
             // 
@@ -300,7 +355,7 @@
             this.cbSubtitlesMKVMergeDefaultSettingsDefaultTrackFlag.Location = new System.Drawing.Point(330, 45);
             this.cbSubtitlesMKVMergeDefaultSettingsDefaultTrackFlag.Name = "cbSubtitlesMKVMergeDefaultSettingsDefaultTrackFlag";
             this.cbSubtitlesMKVMergeDefaultSettingsDefaultTrackFlag.Size = new System.Drawing.Size(169, 21);
-            this.cbSubtitlesMKVMergeDefaultSettingsDefaultTrackFlag.TabIndex = 14;
+            this.cbSubtitlesMKVMergeDefaultSettingsDefaultTrackFlag.TabIndex = 12;
             this.cbSubtitlesMKVMergeDefaultSettingsDefaultTrackFlag.SelectedIndexChanged += new System.EventHandler(this.cbSubtitlesMKVMergeDefaultSettingsDefaultTrackFlag_SelectedIndexChanged);
             // 
             // lblSubtitlesMKVMergeDefaultSettingsDefaultTrackFlag
@@ -321,7 +376,7 @@
             this.cbSubtitlesMKVMergeDefaultSettingsLanguage.Location = new System.Drawing.Point(8, 45);
             this.cbSubtitlesMKVMergeDefaultSettingsLanguage.Name = "cbSubtitlesMKVMergeDefaultSettingsLanguage";
             this.cbSubtitlesMKVMergeDefaultSettingsLanguage.Size = new System.Drawing.Size(298, 21);
-            this.cbSubtitlesMKVMergeDefaultSettingsLanguage.TabIndex = 13;
+            this.cbSubtitlesMKVMergeDefaultSettingsLanguage.TabIndex = 11;
             this.cbSubtitlesMKVMergeDefaultSettingsLanguage.ValueMember = "Value";
             this.cbSubtitlesMKVMergeDefaultSettingsLanguage.SelectedIndexChanged += new System.EventHandler(this.cbSubtitlesMKVMergeDefaultSettingsLanguage_SelectedIndexChanged);
             // 
@@ -355,7 +410,7 @@
             this.chkShowProgressNumbers.Location = new System.Drawing.Point(8, 28);
             this.chkShowProgressNumbers.Name = "chkShowProgressNumbers";
             this.chkShowProgressNumbers.Size = new System.Drawing.Size(142, 17);
-            this.chkShowProgressNumbers.TabIndex = 3;
+            this.chkShowProgressNumbers.TabIndex = 1;
             this.chkShowProgressNumbers.Text = "Show Progress Numbers";
             this.chkShowProgressNumbers.UseVisualStyleBackColor = true;
             this.chkShowProgressNumbers.CheckedChanged += new System.EventHandler(this.chkShowProgressNumbers_CheckedChanged);
@@ -378,7 +433,7 @@
             this.chkBluRayTitleInfoDefaultSettingsSelectChapters.Location = new System.Drawing.Point(171, 32);
             this.chkBluRayTitleInfoDefaultSettingsSelectChapters.Name = "chkBluRayTitleInfoDefaultSettingsSelectChapters";
             this.chkBluRayTitleInfoDefaultSettingsSelectChapters.Size = new System.Drawing.Size(101, 17);
-            this.chkBluRayTitleInfoDefaultSettingsSelectChapters.TabIndex = 6;
+            this.chkBluRayTitleInfoDefaultSettingsSelectChapters.TabIndex = 4;
             this.chkBluRayTitleInfoDefaultSettingsSelectChapters.Text = "Select Chapters";
             this.chkBluRayTitleInfoDefaultSettingsSelectChapters.UseVisualStyleBackColor = true;
             this.chkBluRayTitleInfoDefaultSettingsSelectChapters.CheckedChanged += new System.EventHandler(this.chkBluRayTitleInfoDefaultSettingsSelectChapters_CheckedChanged);
@@ -389,7 +444,7 @@
             this.chkBluRayTitleInfoDefaultSettingsSelectSubtitles.Location = new System.Drawing.Point(11, 32);
             this.chkBluRayTitleInfoDefaultSettingsSelectSubtitles.Name = "chkBluRayTitleInfoDefaultSettingsSelectSubtitles";
             this.chkBluRayTitleInfoDefaultSettingsSelectSubtitles.Size = new System.Drawing.Size(113, 17);
-            this.chkBluRayTitleInfoDefaultSettingsSelectSubtitles.TabIndex = 5;
+            this.chkBluRayTitleInfoDefaultSettingsSelectSubtitles.TabIndex = 3;
             this.chkBluRayTitleInfoDefaultSettingsSelectSubtitles.Text = "Select All Subtitles";
             this.chkBluRayTitleInfoDefaultSettingsSelectSubtitles.UseVisualStyleBackColor = true;
             this.chkBluRayTitleInfoDefaultSettingsSelectSubtitles.CheckedChanged += new System.EventHandler(this.chkBluRayTitleInfoDefaultSettingsSelectSubtitles_CheckedChanged);
@@ -407,7 +462,7 @@
             this.dgvBluRayTitleInfoDefaultSettingsAudio.Location = new System.Drawing.Point(6, 58);
             this.dgvBluRayTitleInfoDefaultSettingsAudio.Name = "dgvBluRayTitleInfoDefaultSettingsAudio";
             this.dgvBluRayTitleInfoDefaultSettingsAudio.Size = new System.Drawing.Size(750, 131);
-            this.dgvBluRayTitleInfoDefaultSettingsAudio.TabIndex = 7;
+            this.dgvBluRayTitleInfoDefaultSettingsAudio.TabIndex = 5;
             this.dgvBluRayTitleInfoDefaultSettingsAudio.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBluRayTitleInfoDefaultSettingsAudio_CellClick);
             // 
             // typeDataGridViewTextBoxColumn
@@ -457,111 +512,12 @@
             this.bsBluRayTitleInfoDefaultSettingsAudio.AllowNew = false;
             this.bsBluRayTitleInfoDefaultSettingsAudio.DataSource = typeof(BatchGuy.App.Settings.Models.BluRayTitleInfoDefaultSettingsAudio);
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.btnOpenMKVMergeFileDialog);
-            this.groupBox1.Controls.Add(this.txtMKVMerge);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.btnOpenVfw4x264FileDialog);
-            this.groupBox1.Controls.Add(this.txtVfw4x264);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.btnOpenEac3toFileDialog);
-            this.groupBox1.Controls.Add(this.txtEac3toPath);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(20, 39);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(762, 158);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Executables";
-            // 
-            // btnOpenMKVMergeFileDialog
-            // 
-            this.btnOpenMKVMergeFileDialog.Image = global::BatchGuy.App.Properties.Resources.Avosoft_Warm_Toolbar_Folder_open;
-            this.btnOpenMKVMergeFileDialog.Location = new System.Drawing.Point(683, 94);
-            this.btnOpenMKVMergeFileDialog.Name = "btnOpenMKVMergeFileDialog";
-            this.btnOpenMKVMergeFileDialog.Size = new System.Drawing.Size(61, 33);
-            this.btnOpenMKVMergeFileDialog.TabIndex = 2;
-            this.btnOpenMKVMergeFileDialog.UseVisualStyleBackColor = true;
-            this.btnOpenMKVMergeFileDialog.Click += new System.EventHandler(this.btnOpenMKVMergeFileDialog_Click);
-            // 
-            // txtMKVMerge
-            // 
-            this.txtMKVMerge.Location = new System.Drawing.Point(98, 107);
-            this.txtMKVMerge.Name = "txtMKVMerge";
-            this.txtMKVMerge.ReadOnly = true;
-            this.txtMKVMerge.Size = new System.Drawing.Size(564, 20);
-            this.txtMKVMerge.TabIndex = 26;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(15, 114);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(76, 13);
-            this.label3.TabIndex = 25;
-            this.label3.Text = "mkvmerge.exe";
-            // 
-            // btnOpenVfw4x264FileDialog
-            // 
-            this.btnOpenVfw4x264FileDialog.Image = global::BatchGuy.App.Properties.Resources.Avosoft_Warm_Toolbar_Folder_open;
-            this.btnOpenVfw4x264FileDialog.Location = new System.Drawing.Point(683, 50);
-            this.btnOpenVfw4x264FileDialog.Name = "btnOpenVfw4x264FileDialog";
-            this.btnOpenVfw4x264FileDialog.Size = new System.Drawing.Size(61, 33);
-            this.btnOpenVfw4x264FileDialog.TabIndex = 1;
-            this.btnOpenVfw4x264FileDialog.UseVisualStyleBackColor = true;
-            this.btnOpenVfw4x264FileDialog.Click += new System.EventHandler(this.btnOpenVfw4x264FileDialog_Click);
-            // 
-            // txtVfw4x264
-            // 
-            this.txtVfw4x264.Location = new System.Drawing.Point(98, 63);
-            this.txtVfw4x264.Name = "txtVfw4x264";
-            this.txtVfw4x264.ReadOnly = true;
-            this.txtVfw4x264.Size = new System.Drawing.Size(564, 20);
-            this.txtVfw4x264.TabIndex = 23;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(15, 70);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(73, 13);
-            this.label2.TabIndex = 13;
-            this.label2.Text = "vfw4x264.exe";
-            // 
-            // btnOpenEac3toFileDialog
-            // 
-            this.btnOpenEac3toFileDialog.Image = global::BatchGuy.App.Properties.Resources.Avosoft_Warm_Toolbar_Folder_open;
-            this.btnOpenEac3toFileDialog.Location = new System.Drawing.Point(683, 10);
-            this.btnOpenEac3toFileDialog.Name = "btnOpenEac3toFileDialog";
-            this.btnOpenEac3toFileDialog.Size = new System.Drawing.Size(61, 33);
-            this.btnOpenEac3toFileDialog.TabIndex = 0;
-            this.btnOpenEac3toFileDialog.UseVisualStyleBackColor = true;
-            this.btnOpenEac3toFileDialog.Click += new System.EventHandler(this.btnOpenEac3toFileDialog_Click);
-            // 
-            // txtEac3toPath
-            // 
-            this.txtEac3toPath.Location = new System.Drawing.Point(98, 23);
-            this.txtEac3toPath.Name = "txtEac3toPath";
-            this.txtEac3toPath.ReadOnly = true;
-            this.txtEac3toPath.Size = new System.Drawing.Size(564, 20);
-            this.txtEac3toPath.TabIndex = 22;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(15, 30);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(60, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "eac3to.exe";
-            // 
             // btnSave
             // 
             this.btnSave.Location = new System.Drawing.Point(705, 746);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(107, 25);
-            this.btnSave.TabIndex = 15;
+            this.btnSave.TabIndex = 13;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -583,7 +539,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(824, 781);
+            this.ClientSize = new System.Drawing.Size(828, 781);
             this.Controls.Add(this.lblVersion);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.gbScreen);
@@ -595,6 +551,9 @@
             this.Load += new System.EventHandler(this.SettingsForm_Load);
             this.gbScreen.ResumeLayout(false);
             this.gbScreen.PerformLayout();
+            this.gbExecutables.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvExecutables)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsExecutables)).EndInit();
             this.gbRemuxNamingConventionDefaults.ResumeLayout(false);
             this.gbRemuxNamingConventionDefaults.PerformLayout();
             this.gbAudioMKVMergeDefaultSettings.ResumeLayout(false);
@@ -609,8 +568,6 @@
             this.gbBluRayTitleInfoDefaultSettings.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBluRayTitleInfoDefaultSettingsAudio)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsBluRayTitleInfoDefaultSettingsAudio)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -620,17 +577,7 @@
 
         private System.Windows.Forms.GroupBox gbScreen;
         private System.Windows.Forms.Button btnSave;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox txtEac3toPath;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnOpenEac3toFileDialog;
         private System.Windows.Forms.OpenFileDialog ofdFileDialog;
-        private System.Windows.Forms.Button btnOpenVfw4x264FileDialog;
-        private System.Windows.Forms.TextBox txtVfw4x264;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button btnOpenMKVMergeFileDialog;
-        private System.Windows.Forms.TextBox txtMKVMerge;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.GroupBox gbBluRayTitleInfoDefaultSettings;
         private System.Windows.Forms.DataGridView dgvBluRayTitleInfoDefaultSettingsAudio;
         private System.Windows.Forms.BindingSource bsBluRayTitleInfoDefaultSettingsAudio;
@@ -664,5 +611,11 @@
         private System.Windows.Forms.ComboBox cbRemuxNamingConventionDefaults;
         private System.Windows.Forms.Label lblRemuxNamingConventionExample;
         private System.Windows.Forms.Label lblVersion;
+        private System.Windows.Forms.GroupBox gbExecutables;
+        private System.Windows.Forms.DataGridView dgvExecutables;
+        private System.Windows.Forms.BindingSource bsExecutables;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn valueDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewImageColumn Browse;
     }
 }
