@@ -1,6 +1,6 @@
 --todo
 
-
+*Ctrl+s or other shortkeys
 *Automatically sort the AviSynth Grid by AviSynth File Name when users add (.avs) files to the grid
 *Every time a user chooses to create a batch file, check to see if it exists, if so, delete it.  Right now, the application will just append lines to an existing batch file, which is kind of annoying
 *Look into the user request below:
