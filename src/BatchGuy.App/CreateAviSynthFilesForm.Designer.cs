@@ -56,6 +56,9 @@
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.lblVersion = new System.Windows.Forms.Label();
+            this.txtFFMSIndexOutputDirectory = new System.Windows.Forms.TextBox();
+            this.btnFFMSIndexOpenDialog = new System.Windows.Forms.Button();
+            this.chkFFMSIndex = new System.Windows.Forms.CheckBox();
             this.gbScreen.SuspendLayout();
             this.menuStrip.SuspendLayout();
             this.SuspendLayout();
@@ -80,7 +83,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(17, 171);
+            this.label1.Location = new System.Drawing.Point(17, 199);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(103, 13);
             this.label1.TabIndex = 7;
@@ -88,18 +91,18 @@
             // 
             // txtAVSTemplate
             // 
-            this.txtAVSTemplate.Location = new System.Drawing.Point(16, 187);
+            this.txtAVSTemplate.Location = new System.Drawing.Point(16, 215);
             this.txtAVSTemplate.Multiline = true;
             this.txtAVSTemplate.Name = "txtAVSTemplate";
             this.txtAVSTemplate.Size = new System.Drawing.Size(814, 161);
-            this.txtAVSTemplate.TabIndex = 2;
+            this.txtAVSTemplate.TabIndex = 4;
             // 
             // btnCreateAVSFiles
             // 
-            this.btnCreateAVSFiles.Location = new System.Drawing.Point(680, 354);
+            this.btnCreateAVSFiles.Location = new System.Drawing.Point(680, 392);
             this.btnCreateAVSFiles.Name = "btnCreateAVSFiles";
             this.btnCreateAVSFiles.Size = new System.Drawing.Size(150, 35);
-            this.btnCreateAVSFiles.TabIndex = 3;
+            this.btnCreateAVSFiles.TabIndex = 5;
             this.btnCreateAVSFiles.Text = "Create AviSynth (.avs) Files";
             this.btnCreateAVSFiles.UseVisualStyleBackColor = true;
             this.btnCreateAVSFiles.Click += new System.EventHandler(this.btnCreateAVSFiles_Click);
@@ -107,7 +110,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(17, 128);
+            this.label3.Location = new System.Drawing.Point(17, 166);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(139, 13);
             this.label3.TabIndex = 10;
@@ -115,7 +118,7 @@
             // 
             // txtNumberOfFiles
             // 
-            this.txtNumberOfFiles.Location = new System.Drawing.Point(157, 125);
+            this.txtNumberOfFiles.Location = new System.Drawing.Point(157, 163);
             this.txtNumberOfFiles.Name = "txtNumberOfFiles";
             this.txtNumberOfFiles.ReadOnly = true;
             this.txtNumberOfFiles.Size = new System.Drawing.Size(54, 20);
@@ -133,6 +136,9 @@
             // 
             // gbScreen
             // 
+            this.gbScreen.Controls.Add(this.chkFFMSIndex);
+            this.gbScreen.Controls.Add(this.txtFFMSIndexOutputDirectory);
+            this.gbScreen.Controls.Add(this.btnFFMSIndexOpenDialog);
             this.gbScreen.Controls.Add(this.lblMKVFilesDirectoryCaption);
             this.gbScreen.Controls.Add(this.txtMKVFilesDirectory);
             this.gbScreen.Controls.Add(this.lblDirectoryType);
@@ -151,7 +157,7 @@
             this.gbScreen.Controls.Add(this.label1);
             this.gbScreen.Location = new System.Drawing.Point(12, 39);
             this.gbScreen.Name = "gbScreen";
-            this.gbScreen.Size = new System.Drawing.Size(846, 400);
+            this.gbScreen.Size = new System.Drawing.Size(846, 437);
             this.gbScreen.TabIndex = 12;
             this.gbScreen.TabStop = false;
             // 
@@ -166,10 +172,10 @@
             // 
             // txtMKVFilesDirectory
             // 
-            this.txtMKVFilesDirectory.Location = new System.Drawing.Point(157, 46);
+            this.txtMKVFilesDirectory.Location = new System.Drawing.Point(162, 46);
             this.txtMKVFilesDirectory.Name = "txtMKVFilesDirectory";
             this.txtMKVFilesDirectory.ReadOnly = true;
-            this.txtMKVFilesDirectory.Size = new System.Drawing.Size(673, 20);
+            this.txtMKVFilesDirectory.Size = new System.Drawing.Size(668, 20);
             this.txtMKVFilesDirectory.TabIndex = 43;
             // 
             // lblDirectoryType
@@ -197,15 +203,15 @@
             this.cbVideoFilter.Items.AddRange(new object[] {
             "dss2",
             "FFVideoSource"});
-            this.cbVideoFilter.Location = new System.Drawing.Point(709, 163);
+            this.cbVideoFilter.Location = new System.Drawing.Point(709, 191);
             this.cbVideoFilter.Name = "cbVideoFilter";
             this.cbVideoFilter.Size = new System.Drawing.Size(121, 21);
-            this.cbVideoFilter.TabIndex = 1;
+            this.cbVideoFilter.TabIndex = 3;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(635, 171);
+            this.label6.Location = new System.Drawing.Point(635, 199);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(66, 13);
             this.label6.TabIndex = 15;
@@ -214,7 +220,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(17, 370);
+            this.label5.Location = new System.Drawing.Point(17, 408);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(537, 13);
             this.label5.TabIndex = 14;
@@ -224,7 +230,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(17, 351);
+            this.label4.Location = new System.Drawing.Point(17, 389);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(211, 13);
             this.label4.TabIndex = 13;
@@ -284,18 +290,45 @@
             // lblVersion
             // 
             this.lblVersion.AutoSize = true;
-            this.lblVersion.Location = new System.Drawing.Point(9, 442);
+            this.lblVersion.Location = new System.Drawing.Point(9, 479);
             this.lblVersion.Name = "lblVersion";
             this.lblVersion.Size = new System.Drawing.Size(42, 13);
             this.lblVersion.TabIndex = 45;
             this.lblVersion.Text = "Version";
+            // 
+            // txtFFMSIndexOutputDirectory
+            // 
+            this.txtFFMSIndexOutputDirectory.Location = new System.Drawing.Point(209, 127);
+            this.txtFFMSIndexOutputDirectory.Name = "txtFFMSIndexOutputDirectory";
+            this.txtFFMSIndexOutputDirectory.ReadOnly = true;
+            this.txtFFMSIndexOutputDirectory.Size = new System.Drawing.Size(554, 20);
+            this.txtFFMSIndexOutputDirectory.TabIndex = 46;
+            // 
+            // btnFFMSIndexOpenDialog
+            // 
+            this.btnFFMSIndexOpenDialog.Image = global::BatchGuy.App.Properties.Resources.Avosoft_Warm_Toolbar_Folder_open;
+            this.btnFFMSIndexOpenDialog.Location = new System.Drawing.Point(769, 114);
+            this.btnFFMSIndexOpenDialog.Name = "btnFFMSIndexOpenDialog";
+            this.btnFFMSIndexOpenDialog.Size = new System.Drawing.Size(61, 33);
+            this.btnFFMSIndexOpenDialog.TabIndex = 2;
+            this.btnFFMSIndexOpenDialog.UseVisualStyleBackColor = true;
+            // 
+            // chkFFMSIndex
+            // 
+            this.chkFFMSIndex.AutoSize = true;
+            this.chkFFMSIndex.Location = new System.Drawing.Point(23, 129);
+            this.chkFFMSIndex.Name = "chkFFMSIndex";
+            this.chkFFMSIndex.Size = new System.Drawing.Size(160, 17);
+            this.chkFFMSIndex.TabIndex = 1;
+            this.chkFFMSIndex.Text = "Create ffmsindex Batch File?";
+            this.chkFFMSIndex.UseVisualStyleBackColor = true;
             // 
             // CreateAviSynthFilesForm
             // 
             this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(870, 462);
+            this.ClientSize = new System.Drawing.Size(870, 503);
             this.Controls.Add(this.lblVersion);
             this.Controls.Add(this.menuStrip);
             this.Controls.Add(this.gbScreen);
@@ -344,5 +377,8 @@
         private System.Windows.Forms.Label lblDirectoryType;
         private System.Windows.Forms.Label lblDirectoryTypeCaption;
         private System.Windows.Forms.Label lblVersion;
+        private System.Windows.Forms.CheckBox chkFFMSIndex;
+        private System.Windows.Forms.TextBox txtFFMSIndexOutputDirectory;
+        private System.Windows.Forms.Button btnFFMSIndexOpenDialog;
     }
 }
