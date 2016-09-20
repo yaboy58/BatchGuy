@@ -126,6 +126,8 @@
     <Compile Include="Eac3To\Services\RemuxTemplate3EAC3ToOutputNamingService.cs" />
     <Compile Include="Enums\Enums.cs" />
     <Compile Include="Extensions\ExtensionMethods.cs" />
+    <Compile Include="FFMSIndex\Interfaces\IFFMSIndexBatchFileWriteService.cs" />
+    <Compile Include="FFMSIndex\Services\FFMSIndexBatchFileWriteService.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
