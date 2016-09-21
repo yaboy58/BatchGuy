@@ -127,7 +127,9 @@
     <Compile Include="Enums\Enums.cs" />
     <Compile Include="Extensions\ExtensionMethods.cs" />
     <Compile Include="FFMSIndex\Interfaces\IFFMSIndexBatchFileWriteService.cs" />
+    <Compile Include="FFMSIndex\Interfaces\IFFMSIndexOutputService.cs" />
     <Compile Include="FFMSIndex\Services\FFMSIndexBatchFileWriteService.cs" />
+    <Compile Include="FFMSIndex\Services\FFMSIndexOutputService.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>

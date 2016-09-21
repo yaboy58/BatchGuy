@@ -39,6 +39,10 @@
             this.txtNumberOfFiles = new System.Windows.Forms.TextBox();
             this.btnOpenDialog = new System.Windows.Forms.Button();
             this.gbScreen = new System.Windows.Forms.GroupBox();
+            this.btnCreateFFMSIndexBatchFile = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtFFMSIndexOutputDirectory = new System.Windows.Forms.TextBox();
+            this.btnFFMSIndexOpenDialog = new System.Windows.Forms.Button();
             this.lblMKVFilesDirectoryCaption = new System.Windows.Forms.Label();
             this.txtMKVFilesDirectory = new System.Windows.Forms.TextBox();
             this.lblDirectoryType = new System.Windows.Forms.Label();
@@ -56,9 +60,7 @@
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.lblVersion = new System.Windows.Forms.Label();
-            this.txtFFMSIndexOutputDirectory = new System.Windows.Forms.TextBox();
-            this.btnFFMSIndexOpenDialog = new System.Windows.Forms.Button();
-            this.chkFFMSIndex = new System.Windows.Forms.CheckBox();
+            this.bgwCreateFFMSIndexBatchFile = new System.ComponentModel.BackgroundWorker();
             this.gbScreen.SuspendLayout();
             this.menuStrip.SuspendLayout();
             this.SuspendLayout();
@@ -77,7 +79,7 @@
             this.txtOutputDirectory.Location = new System.Drawing.Point(162, 84);
             this.txtOutputDirectory.Name = "txtOutputDirectory";
             this.txtOutputDirectory.ReadOnly = true;
-            this.txtOutputDirectory.Size = new System.Drawing.Size(601, 20);
+            this.txtOutputDirectory.Size = new System.Drawing.Size(768, 20);
             this.txtOutputDirectory.TabIndex = 10;
             // 
             // label1
@@ -94,15 +96,15 @@
             this.txtAVSTemplate.Location = new System.Drawing.Point(16, 215);
             this.txtAVSTemplate.Multiline = true;
             this.txtAVSTemplate.Name = "txtAVSTemplate";
-            this.txtAVSTemplate.Size = new System.Drawing.Size(814, 161);
-            this.txtAVSTemplate.TabIndex = 4;
+            this.txtAVSTemplate.Size = new System.Drawing.Size(981, 161);
+            this.txtAVSTemplate.TabIndex = 3;
             // 
             // btnCreateAVSFiles
             // 
             this.btnCreateAVSFiles.Location = new System.Drawing.Point(680, 392);
             this.btnCreateAVSFiles.Name = "btnCreateAVSFiles";
             this.btnCreateAVSFiles.Size = new System.Drawing.Size(150, 35);
-            this.btnCreateAVSFiles.TabIndex = 5;
+            this.btnCreateAVSFiles.TabIndex = 4;
             this.btnCreateAVSFiles.Text = "Create AviSynth (.avs) Files";
             this.btnCreateAVSFiles.UseVisualStyleBackColor = true;
             this.btnCreateAVSFiles.Click += new System.EventHandler(this.btnCreateAVSFiles_Click);
@@ -110,7 +112,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(17, 166);
+            this.label3.Location = new System.Drawing.Point(17, 164);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(139, 13);
             this.label3.TabIndex = 10;
@@ -118,7 +120,7 @@
             // 
             // txtNumberOfFiles
             // 
-            this.txtNumberOfFiles.Location = new System.Drawing.Point(157, 163);
+            this.txtNumberOfFiles.Location = new System.Drawing.Point(157, 161);
             this.txtNumberOfFiles.Name = "txtNumberOfFiles";
             this.txtNumberOfFiles.ReadOnly = true;
             this.txtNumberOfFiles.Size = new System.Drawing.Size(54, 20);
@@ -127,7 +129,7 @@
             // btnOpenDialog
             // 
             this.btnOpenDialog.Image = global::BatchGuy.App.Properties.Resources.Avosoft_Warm_Toolbar_Folder_open;
-            this.btnOpenDialog.Location = new System.Drawing.Point(769, 71);
+            this.btnOpenDialog.Location = new System.Drawing.Point(936, 71);
             this.btnOpenDialog.Name = "btnOpenDialog";
             this.btnOpenDialog.Size = new System.Drawing.Size(61, 33);
             this.btnOpenDialog.TabIndex = 0;
@@ -136,7 +138,8 @@
             // 
             // gbScreen
             // 
-            this.gbScreen.Controls.Add(this.chkFFMSIndex);
+            this.gbScreen.Controls.Add(this.btnCreateFFMSIndexBatchFile);
+            this.gbScreen.Controls.Add(this.label7);
             this.gbScreen.Controls.Add(this.txtFFMSIndexOutputDirectory);
             this.gbScreen.Controls.Add(this.btnFFMSIndexOpenDialog);
             this.gbScreen.Controls.Add(this.lblMKVFilesDirectoryCaption);
@@ -157,9 +160,46 @@
             this.gbScreen.Controls.Add(this.label1);
             this.gbScreen.Location = new System.Drawing.Point(12, 39);
             this.gbScreen.Name = "gbScreen";
-            this.gbScreen.Size = new System.Drawing.Size(846, 437);
+            this.gbScreen.Size = new System.Drawing.Size(1013, 437);
             this.gbScreen.TabIndex = 12;
             this.gbScreen.TabStop = false;
+            // 
+            // btnCreateFFMSIndexBatchFile
+            // 
+            this.btnCreateFFMSIndexBatchFile.Location = new System.Drawing.Point(847, 392);
+            this.btnCreateFFMSIndexBatchFile.Name = "btnCreateFFMSIndexBatchFile";
+            this.btnCreateFFMSIndexBatchFile.Size = new System.Drawing.Size(150, 35);
+            this.btnCreateFFMSIndexBatchFile.TabIndex = 5;
+            this.btnCreateFFMSIndexBatchFile.Text = "Create ffmsindex Batch File";
+            this.btnCreateFFMSIndexBatchFile.UseVisualStyleBackColor = true;
+            this.btnCreateFFMSIndexBatchFile.Click += new System.EventHandler(this.btnCreateFFMSIndexBatchFile_Click);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(20, 128);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(184, 13);
+            this.label7.TabIndex = 47;
+            this.label7.Text = "ffmsindex Batch File Output Directory:";
+            // 
+            // txtFFMSIndexOutputDirectory
+            // 
+            this.txtFFMSIndexOutputDirectory.Location = new System.Drawing.Point(209, 124);
+            this.txtFFMSIndexOutputDirectory.Name = "txtFFMSIndexOutputDirectory";
+            this.txtFFMSIndexOutputDirectory.ReadOnly = true;
+            this.txtFFMSIndexOutputDirectory.Size = new System.Drawing.Size(721, 20);
+            this.txtFFMSIndexOutputDirectory.TabIndex = 46;
+            // 
+            // btnFFMSIndexOpenDialog
+            // 
+            this.btnFFMSIndexOpenDialog.Image = global::BatchGuy.App.Properties.Resources.Avosoft_Warm_Toolbar_Folder_open;
+            this.btnFFMSIndexOpenDialog.Location = new System.Drawing.Point(936, 112);
+            this.btnFFMSIndexOpenDialog.Name = "btnFFMSIndexOpenDialog";
+            this.btnFFMSIndexOpenDialog.Size = new System.Drawing.Size(61, 33);
+            this.btnFFMSIndexOpenDialog.TabIndex = 1;
+            this.btnFFMSIndexOpenDialog.UseVisualStyleBackColor = true;
+            this.btnFFMSIndexOpenDialog.Click += new System.EventHandler(this.btnFFMSIndexOpenDialog_Click);
             // 
             // lblMKVFilesDirectoryCaption
             // 
@@ -175,7 +215,7 @@
             this.txtMKVFilesDirectory.Location = new System.Drawing.Point(162, 46);
             this.txtMKVFilesDirectory.Name = "txtMKVFilesDirectory";
             this.txtMKVFilesDirectory.ReadOnly = true;
-            this.txtMKVFilesDirectory.Size = new System.Drawing.Size(668, 20);
+            this.txtMKVFilesDirectory.Size = new System.Drawing.Size(835, 20);
             this.txtMKVFilesDirectory.TabIndex = 43;
             // 
             // lblDirectoryType
@@ -203,15 +243,16 @@
             this.cbVideoFilter.Items.AddRange(new object[] {
             "dss2",
             "FFVideoSource"});
-            this.cbVideoFilter.Location = new System.Drawing.Point(709, 191);
+            this.cbVideoFilter.Location = new System.Drawing.Point(876, 191);
             this.cbVideoFilter.Name = "cbVideoFilter";
             this.cbVideoFilter.Size = new System.Drawing.Size(121, 21);
-            this.cbVideoFilter.TabIndex = 3;
+            this.cbVideoFilter.TabIndex = 2;
+            this.cbVideoFilter.SelectedIndexChanged += new System.EventHandler(this.cbVideoFilter_SelectedIndexChanged);
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(635, 199);
+            this.label6.Location = new System.Drawing.Point(802, 199);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(66, 13);
             this.label6.TabIndex = 15;
@@ -247,7 +288,7 @@
             this.saveSettingsFileToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(870, 24);
+            this.menuStrip.Size = new System.Drawing.Size(1037, 24);
             this.menuStrip.TabIndex = 33;
             this.menuStrip.Text = "menuStrip1";
             // 
@@ -296,39 +337,17 @@
             this.lblVersion.TabIndex = 45;
             this.lblVersion.Text = "Version";
             // 
-            // txtFFMSIndexOutputDirectory
+            // bgwCreateFFMSIndexBatchFile
             // 
-            this.txtFFMSIndexOutputDirectory.Location = new System.Drawing.Point(209, 127);
-            this.txtFFMSIndexOutputDirectory.Name = "txtFFMSIndexOutputDirectory";
-            this.txtFFMSIndexOutputDirectory.ReadOnly = true;
-            this.txtFFMSIndexOutputDirectory.Size = new System.Drawing.Size(554, 20);
-            this.txtFFMSIndexOutputDirectory.TabIndex = 46;
-            // 
-            // btnFFMSIndexOpenDialog
-            // 
-            this.btnFFMSIndexOpenDialog.Image = global::BatchGuy.App.Properties.Resources.Avosoft_Warm_Toolbar_Folder_open;
-            this.btnFFMSIndexOpenDialog.Location = new System.Drawing.Point(769, 114);
-            this.btnFFMSIndexOpenDialog.Name = "btnFFMSIndexOpenDialog";
-            this.btnFFMSIndexOpenDialog.Size = new System.Drawing.Size(61, 33);
-            this.btnFFMSIndexOpenDialog.TabIndex = 2;
-            this.btnFFMSIndexOpenDialog.UseVisualStyleBackColor = true;
-            // 
-            // chkFFMSIndex
-            // 
-            this.chkFFMSIndex.AutoSize = true;
-            this.chkFFMSIndex.Location = new System.Drawing.Point(23, 129);
-            this.chkFFMSIndex.Name = "chkFFMSIndex";
-            this.chkFFMSIndex.Size = new System.Drawing.Size(160, 17);
-            this.chkFFMSIndex.TabIndex = 1;
-            this.chkFFMSIndex.Text = "Create ffmsindex Batch File?";
-            this.chkFFMSIndex.UseVisualStyleBackColor = true;
+            this.bgwCreateFFMSIndexBatchFile.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgwCreateFFMSIndexBatchFile_DoWork);
+            this.bgwCreateFFMSIndexBatchFile.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgwCreateFFMSIndexBatchFile_RunWorkerCompleted);
             // 
             // CreateAviSynthFilesForm
             // 
             this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(870, 503);
+            this.ClientSize = new System.Drawing.Size(1037, 503);
             this.Controls.Add(this.lblVersion);
             this.Controls.Add(this.menuStrip);
             this.Controls.Add(this.gbScreen);
@@ -377,8 +396,10 @@
         private System.Windows.Forms.Label lblDirectoryType;
         private System.Windows.Forms.Label lblDirectoryTypeCaption;
         private System.Windows.Forms.Label lblVersion;
-        private System.Windows.Forms.CheckBox chkFFMSIndex;
         private System.Windows.Forms.TextBox txtFFMSIndexOutputDirectory;
         private System.Windows.Forms.Button btnFFMSIndexOpenDialog;
+        private System.Windows.Forms.Button btnCreateFFMSIndexBatchFile;
+        private System.Windows.Forms.Label label7;
+        private System.ComponentModel.BackgroundWorker bgwCreateFFMSIndexBatchFile;
     }
 }

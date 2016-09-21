@@ -2,6 +2,7 @@
 Enhancements:
 *Before writing to any Batch File, the application now checks to see if the Batch File exists and will delete it, to prevent appending to an existing Batch File
 *List of executables on the Settings Screen is now being displayed in a grid
+*On the Create AviSynth Files Screen, users can now press a button to create a ffmsindex Batch File that uses ffmsindex.exe to index all of the extracted videos that will be encoded using FFVideoSource
 
 Bugs:
 *Fixed bug where all BatchGuy last directories settings were being cleared when saving information on the Settings Screen
@@ -10,10 +11,7 @@ Bugs:
 
 *Ctrl+s or other shortkeys
 *Automatically sort the AviSynth Grid by AviSynth File Name when users add (.avs) files to the grid
-*Look into the user request below:
--I just thought of a new feature that shouldn't be too hard to implement if you get a chance. It'd be nice to be able to output a batch for creating ffvideosource indexes, maybe at the same time as avisynth creation. Probably not something everyone does but it makes loading avs files quicker once I start working on them. Syntax is very simple, it's just X:\Path\to\ffmsindex.exe "X:\Path\to\input.mkv". The standard path is "C:\Program Files (x86)\AviSynth\plugins\ffmsindex.exe" but I guess you could add it to the settings dialogue to tell BatchGuy where it is along with eac3to.exe, vfw2x264.exe, etc.
 
-ffmsindex.exe -f -v "video01.mkv"
 
 
 --possible nice to haves

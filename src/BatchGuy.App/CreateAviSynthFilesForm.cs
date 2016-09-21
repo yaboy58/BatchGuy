@@ -24,6 +24,12 @@ using BatchGuy.App.Eac3To.Services;
 using log4net;
 using System.Reflection;
 using BatchGuy.App.Enums;
+using BatchGuy.App.Parser.Models;
+using BatchGuy.App.Shared.Interfaces;
+using BatchGuy.App.Eac3To.Abstracts;
+using BatchGuy.App.FFMSIndex.Interfaces;
+using BatchGuy.App.FFMSIndex.Services;
+using System.IO;
 
 namespace BatchGuy.App
 {
@@ -52,6 +58,19 @@ namespace BatchGuy.App
             lblVersion.Text = Program.GetApplicationVersion();
 
             cbVideoFilter.SelectedIndex = 1;
+        }
+
+        private void SetFFMSIndexControlsEnabledStatus()
+        {
+            bool enabled = true;
+            Setting setting = Program.ApplicationSettingsService.GetSettingByName("ffmsindex");
+            if (_batchGuyEAC3ToSettings.AVSBatchSettings.VideoFilter != "FFVideoSource" || setting == null || setting.Value == null || setting.Value == string.Empty)
+                enabled = false;
+            else
+                enabled = true;
+
+            btnFFMSIndexOpenDialog.SetEnabled(enabled);
+            btnCreateFFMSIndexBatchFile.SetEnabled(enabled);
         }
 
         private void SetAviSynthTemplateTextBox()
@@ -86,6 +105,7 @@ namespace BatchGuy.App
         {
             AviSynthBatchSettings avsBatchSettings = this.GetAVSBatchSettings();
             AviSynthTemplateScript avsTemplateScript = this.GetAVSScript();
+            this.SetFFMSIndexSettings();
 
             _fileService = new AviSynthFileService(avsBatchSettings, avsTemplateScript);
             _validationService = new AviSynthValidationService(avsBatchSettings);
@@ -105,6 +125,14 @@ namespace BatchGuy.App
                       VideoToEncodeDirectory = _batchGuyEAC3ToSettings.AVSBatchSettings.VideoToEncodeDirectory,
                        VideoToEncodeDirectoryType = _batchGuyEAC3ToSettings.AVSBatchSettings.VideoToEncodeDirectoryType
             };
+        }
+
+        private void SetFFMSIndexSettings()
+        {
+            _batchGuyEAC3ToSettings.EAC3ToSettings.FFMSIndextBatchFilePath = txtFFMSIndexOutputDirectory.Text;
+            Setting setting = Program.ApplicationSettingsService.GetSettingByName("ffmsindex");
+            if (setting != null && setting.Value != null && setting.Value != string.Empty)
+                _batchGuyEAC3ToSettings.EAC3ToSettings.FFMSIndexPath = setting.Value;
         }
 
         private AviSynthTemplateScript GetAVSScript()
@@ -231,6 +259,8 @@ namespace BatchGuy.App
         {
             this.LoadEAC3ToSettingsControls();
             this.LoadMKVSettingsControls();
+            this.LoadFFMSIndexSettingsControls();
+            this.SetFFMSIndexControlsEnabledStatus();
         }
 
         private void LoadEAC3ToSettingsControls()
@@ -252,6 +282,7 @@ namespace BatchGuy.App
             txtOutputDirectory.Text = _batchGuyEAC3ToSettings.AVSBatchSettings.AviSynthFilesOutputDirectoryPath;
             txtNumberOfFiles.Text = _batchGuyEAC3ToSettings.BluRayDiscs.NumberOfEpisodes().ToString();
             cbVideoFilter.SelectedIndex = cbVideoFilter.FindString(_batchGuyEAC3ToSettings.AVSBatchSettings.VideoFilter);
+            txtFFMSIndexOutputDirectory.Text = _batchGuyEAC3ToSettings.EAC3ToSettings.FFMSIndextBatchFilePath;
 
             if (_batchGuyEAC3ToSettings.AVSScript == null)
             {
@@ -262,7 +293,15 @@ namespace BatchGuy.App
             {
                 txtAVSTemplate.Text = _batchGuyEAC3ToSettings.AVSScript.Script;
             }
+        }
 
+        private void LoadFFMSIndexSettingsControls()
+        {
+            Setting setting = Program.ApplicationSettingsService.GetSettingByName("ffmsindex");
+            if (setting != null && setting.Value != null && setting.Value != string.Empty)
+                _batchGuyEAC3ToSettings.EAC3ToSettings.FFMSIndexPath = setting.Value;
+
+            txtFFMSIndexOutputDirectory.Text = _batchGuyEAC3ToSettings.EAC3ToSettings.FFMSIndextBatchFilePath;
         }
 
         private void CreateAviSynthFilesForm_DragEnter(object sender, DragEventArgs e)
@@ -318,6 +357,7 @@ namespace BatchGuy.App
             {
                 _batchGuyEAC3ToSettings.AVSBatchSettings = this.GetAVSBatchSettings();
                 _batchGuyEAC3ToSettings.AVSScript = this.GetAVSScript();
+                this.SetFFMSIndexSettings();
                 IJsonSerializationService<BatchGuyEAC3ToSettings> jsonSerializationService = new JsonSerializationService<BatchGuyEAC3ToSettings>();
                 IBatchGuyEAC3ToSettingsService batchGuyEAC3ToSettingsService = new BatchGuyEAC3ToSettingsService(jsonSerializationService);
                 batchGuyEAC3ToSettingsService.Save(sfd.FileName, _batchGuyEAC3ToSettings);
@@ -326,6 +366,109 @@ namespace BatchGuy.App
                     MessageBox.Show(batchGuyEAC3ToSettingsService.Errors.GetErrorMessage(), "Error Occurred.", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+        }
+
+        private void btnFFMSIndexOpenDialog_Click(object sender, EventArgs e)
+        {
+            this.HandlesbtnFFMSIndexOpenDialogClick();
+        }
+
+        private void HandlesbtnFFMSIndexOpenDialogClick()
+        {
+            SaveFileDialog sfd = new SaveFileDialog();
+            Setting setting = Program.ApplicationSettingsService.GetSettingByName(Constant.FeatureCreateAviSynthFilesFormSaveAviSynthFilesDirectory);
+
+            if (setting != null)
+                sfd.InitialDirectory = setting.Value;
+            else
+                sfd.InitialDirectory = @"C:\";
+
+            sfd.Filter = "Batch File|*.bat";
+            sfd.Title = "Save ffmsindex Batch File";
+            sfd.ShowDialog();
+
+            if (!string.IsNullOrEmpty(sfd.FileName))
+            {
+                using (FileStream fs = File.Create(sfd.FileName))
+                {
+                }
+                txtFFMSIndexOutputDirectory.Text = sfd.FileName;
+            }
+        }
+
+        private void btnCreateFFMSIndexBatchFile_Click(object sender, EventArgs e)
+        {
+            this.HandlesbtnCreateFFMSIndexBatchFileClick();
+        }
+
+        private void HandlesbtnCreateFFMSIndexBatchFileClick()
+        {
+            DialogResult result = MessageBox.Show("Create ffmsindex Batch File?", "Start Process?", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+
+            if (result == System.Windows.Forms.DialogResult.Yes)
+            {
+                if (this.IsScreenValid() && IsScreenValidForFFMSIndex())
+                {
+                    gbScreen.SetEnabled(false);
+                    this.WriteFFMSIndexBatchFile();
+                }
+            }
+        }
+
+        private bool IsScreenValidForFFMSIndex()
+        {
+            if ( txtFFMSIndexOutputDirectory.Text == string.Empty)
+            {
+                MessageBox.Show("Please enter a directory where the ffmsindex batch file should be created", "Directory Error.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            return true;
+        }
+
+        private void WriteFFMSIndexBatchFile()
+        {
+            gbScreen.SetEnabled(false);
+            IDirectorySystemService directorySystemService = new DirectorySystemService();
+            IAudioService audioService = new AudioService();
+            AbstractEAC3ToOutputNamingService eac3ToOutputNamingService = new EncodeTemplate1EAC3ToOutputNamingService(audioService);
+            IFFMSIndexBatchFileWriteService batchFileWriteService = new FFMSIndexBatchFileWriteService(_batchGuyEAC3ToSettings.EAC3ToSettings, directorySystemService, _batchGuyEAC3ToSettings.BluRayDiscs, eac3ToOutputNamingService);
+            bgwCreateFFMSIndexBatchFile.RunWorkerAsync(batchFileWriteService);
+        }
+
+        private void bgwCreateFFMSIndexBatchFile_DoWork(object sender, DoWorkEventArgs e)
+        {
+            IFFMSIndexBatchFileWriteService batchFileWriteService = e.Argument as FFMSIndexBatchFileWriteService;
+            batchFileWriteService.Write();
+            e.Result = batchFileWriteService;
+        }
+
+        private void bgwCreateFFMSIndexBatchFile_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            IFFMSIndexBatchFileWriteService batchFileWriteService = e.Result as FFMSIndexBatchFileWriteService;
+            if (batchFileWriteService.Errors.Count() == 0)
+            {
+                MessageBox.Show("ffmsindex Batch File created!", "Process Complete", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                MessageBox.Show(string.Format("Error: {0}", batchFileWriteService.Errors[0].Description), "Error occurred", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            gbScreen.SetEnabled(true);
+        }
+
+        private void cbVideoFilter_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.HandlescbVideoFilterSelectedIndexChanged();
+        }
+
+        private void HandlescbVideoFilterSelectedIndexChanged()
+        {
+            _batchGuyEAC3ToSettings.AVSBatchSettings.VideoFilter = cbVideoFilter.Text;
+            if (cbVideoFilter.Text != "FFVideoSource")
+            {
+                txtFFMSIndexOutputDirectory.Text = string.Empty;
+            }
+            this.SetFFMSIndexControlsEnabledStatus();
         }
     }
 }

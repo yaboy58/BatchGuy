@@ -23,7 +23,6 @@ namespace BatchGuy.App.Eac3to.Models
         public bool ShowProgressNumbers { get; set; }
         public bool IsVideoNameForEncodeMkvMerge { get; set; }
         public bool IgnoreInternalSubtitles { get; set; }
-        public bool ShouldCreateFFMSIndexBatchFile { get; set; }
         public string FFMSIndextBatchFilePath { get; set; }
         public string FFMSIndexPath { get; set; }
     }

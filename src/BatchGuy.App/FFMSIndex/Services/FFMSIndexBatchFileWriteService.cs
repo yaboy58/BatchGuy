@@ -43,7 +43,7 @@ namespace BatchGuy.App.FFMSIndex.Services
 
         public ErrorCollection Write()
         {
-            if (_eac3toConfiguration.ShouldCreateFFMSIndexBatchFile && this.IsValid())
+            if (this.IsValid())
             {
                 try
                 {
@@ -53,12 +53,13 @@ namespace BatchGuy.App.FFMSIndex.Services
                     {
                         foreach (BluRaySummaryInfo summary in disc.BluRaySummaryInfoList.Where(s => s.IsSelected).OrderBy(s => s.EpisodeNumber))
                         {
-                            IEAC3ToOutputService eacOutputService = new EAC3ToOutputService(_eac3toConfiguration, _eac3ToOutputNamingService, disc.BluRayPath, summary);
-                            string videoStreamPart = eacOutputService.GetVideoStreamPart();
+                            IFFMSIndexOutputService ffmsIndexOutputService = new FFMSIndexOutputService(_eac3toConfiguration, _eac3ToOutputNamingService, disc.BluRayPath, summary);
+                            string ffmsIndexPart = ffmsIndexOutputService.GetFFMSIndexPathPart();
+                            string videoStreamPart = ffmsIndexOutputService.GetVideoStreamPart();
 
                             using (StreamWriter sw = new StreamWriter(_eac3toConfiguration.FFMSIndextBatchFilePath, true))
                             {
-                                sw.WriteLine(string.Format("\"{0}\" -f -v {1}",_eac3toConfiguration.FFMSIndexPath, videoStreamPart));
+                                sw.WriteLine(string.Format("{0} {1}",ffmsIndexPart, videoStreamPart));
                                 sw.WriteLine();
                                 sw.WriteLine();
                             }
@@ -95,7 +96,7 @@ namespace BatchGuy.App.FFMSIndex.Services
         private bool IsFFMSIndexExePathValid()
         {
             bool isValid = true;
-            if (!File.Exists(_eac3toConfiguration.FFMSIndextBatchFilePath))
+            if (!File.Exists(_eac3toConfiguration.FFMSIndexPath))
                 isValid = false;
 
             if (!isValid)
