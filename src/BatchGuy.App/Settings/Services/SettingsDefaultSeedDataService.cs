@@ -65,8 +65,16 @@ namespace BatchGuy.App.Settings.Services
 
         private void LoadNameValuePairDefaultSettings()
         {
+            if (_applicationSettings.Settings.Where(s => s.Name == "eac3to").Count() == 0)
+                _applicationSettings.Settings.Add(new Setting() { Name = "eac3to", Value = string.Empty });
+            if (_applicationSettings.Settings.Where(s => s.Name == "mkvmerge").Count() == 0)
+                _applicationSettings.Settings.Add(new Setting() { Name = "mkvmerge", Value = string.Empty });
+            if (_applicationSettings.Settings.Where(s => s.Name == "vfw4x264").Count() == 0)
+                _applicationSettings.Settings.Add(new Setting() { Name = "vfw4x264", Value = string.Empty });
             if (_applicationSettings.Settings.Where(s => s.Name == "ffmsindex").Count() == 0)
                 _applicationSettings.Settings.Add(new Setting() { Name = "ffmsindex", Value = string.Empty });
+
+
         }
 
         private void ResetSubtitlesMKVMergeDefaultSettings()
