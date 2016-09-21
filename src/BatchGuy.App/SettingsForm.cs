@@ -63,10 +63,7 @@ namespace BatchGuy.App
 
         private void LoadExecutables()
         {
-            if (Program.ApplicationSettingsService.GetSettingByName("ffmsindex") == null)
-                Program.ApplicationSettings.Settings.Add(new Setting() { Name = "ffmsindex", Value = string.Empty }); 
-
-                _bindingListExecutables = new BindingList<Setting>() { Program.ApplicationSettingsService.GetSettingByName("eac3to"),
+            _bindingListExecutables = new BindingList<Setting>() { Program.ApplicationSettingsService.GetSettingByName("eac3to"),
             Program.ApplicationSettingsService.GetSettingByName("vfw4x264"), Program.ApplicationSettingsService.GetSettingByName("mkvmerge"),
                 Program.ApplicationSettingsService.GetSettingByName("ffmsindex")};
             bsExecutables.DataSource = _bindingListExecutables;

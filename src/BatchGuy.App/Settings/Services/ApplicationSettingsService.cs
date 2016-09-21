@@ -40,17 +40,13 @@ namespace BatchGuy.App.Settings.Services
             Uri uri = new Uri(System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().CodeBase));
             _applicationDirectory =  uri.LocalPath;
             _applicationSettings = new ApplicationSettings() { ApplicationDirectory = _applicationDirectory };
+
             if (File.Exists(_applicationSettings.SettingsFile))
             {
                 this.LoadSettingsFromConfigFile();
             }
-            else
-            {
-                this.LoadBluRayTitleInfoDefaultSettings();
-                this.LoadEAC3ToDefaultSettings();
-                this.LoadSubtitlesMKVMergeDefaultSettings();
-                this.LoadAudioMKVMergeDefaultSettings();
-            }
+
+            new SettingsDefaultSeedDataService(_applicationSettings, _audioService).Create();
         }
 
         public ApplicationSettings GetApplicationSettings()
@@ -79,10 +75,6 @@ namespace BatchGuy.App.Settings.Services
             {
                 _errors.Clear();
                 _applicationSettings = _jsonSerializationService.ReadFromJsonFile<ApplicationSettings>(_applicationSettings.SettingsFile);
-                this.LoadBluRayTitleInfoDefaultSettings();
-                this.LoadEAC3ToDefaultSettings();
-                this.LoadSubtitlesMKVMergeDefaultSettings();
-                this.LoadAudioMKVMergeDefaultSettings();
             }
             catch (Exception ex)
             {
@@ -94,98 +86,6 @@ namespace BatchGuy.App.Settings.Services
         public Setting GetSettingByName(string settingName)
         {
             return _applicationSettings.Settings.SingleOrDefault(s => s.Name == settingName);
-        }
-
-        private void LoadBluRayTitleInfoDefaultSettings()
-        {
-            if (_applicationSettings.BluRayTitleInfoDefaultSettings == null)
-            {
-                ResetBluRayTitleInfoDefaultSettings();
-            }
-        }
-
-        private  void LoadEAC3ToDefaultSettings()
-        {
-            if (_applicationSettings.EAC3ToDefaultSettings == null)
-            {
-                this.ResetEAC3ToDefaultSettings();
-            }
-        }
-
-        private void LoadSubtitlesMKVMergeDefaultSettings()
-        {
-            if (_applicationSettings.SubtitlesMKVMergeDefaultSettings == null)
-            {
-                this.ResetSubtitlesMKVMergeDefaultSettings();
-            }
-        }
-
-        private void ResetSubtitlesMKVMergeDefaultSettings()
-        {
-            _applicationSettings.SubtitleLanguageAlwaysSelectedEnabled = true;
-            _applicationSettings.SubtitlesMKVMergeDefaultSettings = new SubtitlesMKVMergeDefaultSettings()
-            {
-                DefaultMKVMergeItem = new MKVMerge.Models.MKVMergeItem() { Compression = "determine automatically", DefaultTrackFlag="yes", ForcedTrackFlag = "no",
-                 TrackName = string.Empty, Language = new MKVMergeLanguageItem() { Language = "English",  Name = "English (eng)", Value = "eng" } }
-            };
-        }
-
-        private void LoadAudioMKVMergeDefaultSettings()
-        {
-            if (_applicationSettings.AudioMKVMergeDefaultSettings == null)
-            {
-                this.ResetAudioMKVMergeDefaultSettings();
-            }
-        }
-
-        private void ResetAudioMKVMergeDefaultSettings()
-        {
-            _applicationSettings.AudioLanguageAlwaysSelectedEnabled = true;
-            _applicationSettings.AudioMKVMergeDefaultSettings = new AudioMKVMergeDefaultSettings()
-            {
-                DefaultMKVMergeItem = new MKVMerge.Models.MKVMergeItem()
-                {
-                    Compression = "determine automatically",
-                    DefaultTrackFlag = "yes",
-                    ForcedTrackFlag = "no",
-                    TrackName = string.Empty,
-                    Language = new MKVMergeLanguageItem() { Language = "English", Name = "English (eng)", Value = "eng" }
-                },
-                 AudioTypeFilterCriteria = "Any Type"
-            };
-        }
-
-        private void ResetEAC3ToDefaultSettings()
-        {
-            _applicationSettings.EAC3ToDefaultSettings = new EAC3ToDefaultSettings() { ShowProgressNumbers = true };
-        }
-
-
-        private void ResetBluRayTitleInfoDefaultSettings()
-        {
-            _applicationSettings.BluRayTitleInfoDefaultSettings = new BluRayTitleInfoDefaultSettings() { Enabled = true, SelectChapters = true, SelectAllSubtitles = true };
-
-            var bluRayAudioTypes = _audioService.GetBluRayAudioTypes();
-
-            foreach (EnumAudioType type in bluRayAudioTypes)
-            {
-                BluRayTitleInfoDefaultSettingsAudio audio = new BluRayTitleInfoDefaultSettingsAudio() { Arguments = "", DefaultType = type.ToString(), Type = type, Name = type.ToString() };
-                if (type == EnumAudioType.DTSMA)
-                {
-                    audio.DefaultType = EnumAudioType.DTS.ToString();
-                    audio.Arguments = "-core";
-                }
-                else if (type == EnumAudioType.LPCM)
-                {
-                    audio.DefaultType = EnumAudioType.FLAC.ToString();
-                }
-                else if (type == EnumAudioType.TrueHD)
-                {
-                    audio.DefaultType = EnumAudioType.AC3.ToString();
-                    audio.Arguments = "-640";
-                }
-                _applicationSettings.BluRayTitleInfoDefaultSettings.Audio.Add(audio);
-            }
         }
     }
 }
