@@ -476,6 +476,7 @@ namespace BatchGuy.App
                         this.LoadEpisodeNumbers();
                         this.LoadScreen();
                         gbScreen.SetEnabled(true);
+                        saveToolStripMenuItem.Enabled = true;
                     }
                 }
             }

@@ -245,6 +245,7 @@ namespace BatchGuy.App
                     {
                         this.LoadScreen();
                         gbScreen.SetEnabled(true);
+                        saveToolStripMenuItem.Enabled = true;
                     }
                 }
             }
