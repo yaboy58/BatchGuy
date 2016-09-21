@@ -464,6 +464,9 @@ namespace BatchGuy.App
 
         private void HandlescbVideoFilterSelectedIndexChanged()
         {
+            if (_batchGuyEAC3ToSettings == null)
+                return;
+
             _batchGuyEAC3ToSettings.AVSBatchSettings.VideoFilter = cbVideoFilter.Text;
             if (cbVideoFilter.Text != "FFVideoSource")
             {
