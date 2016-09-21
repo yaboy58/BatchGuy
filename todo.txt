@@ -4,6 +4,7 @@ Enhancements:
 *List of executables on the Settings Screen is now being displayed in a grid
 *On the Create AviSynth Files Screen, users can now press a button to create a ffmsindex Batch File that uses ffmsindex.exe to index all of the extracted videos that will be encoded using FFVideoSource
 *Created a settings default seed data service that handles creating default settings data for new settings created for the latest version of BatchGuy
+*Automatically sorting the AviSynth Grid on the Create AviSynth Files Screen by AviSynth File Name when the user adds (.avs) files to the grid
 
 Bugs:
 *Fixed bug where all BatchGuy last directories settings were being cleared when saving information on the Settings Screen
@@ -11,7 +12,7 @@ Bugs:
 
 
 *Ctrl+s or other shortkeys
-*Automatically sort the AviSynth Grid by AviSynth File Name when users add (.avs) files to the grid
+
 *Trimming white spaces from the encode names on the Create x264 Batch File
 
 

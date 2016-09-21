@@ -353,6 +353,8 @@ namespace BatchGuy.App
             if (_bindingListFiles.Count() > 0)
             {
                 this.BindFilesGrid();
+                _filesGridSortConfiguration.SortDirection = 0;
+                this.SortFilesGrid(1);
                 btnCreateX264BatchFile.SetEnabled(true);
                 btnWriteToMKVMergeBatFile.SetEnabled(true);
             }
