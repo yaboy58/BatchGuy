@@ -11,7 +11,8 @@ Bugs:
 
 *Ctrl+s or other shortkeys
 *Automatically sort the AviSynth Grid by AviSynth File Name when users add (.avs) files to the grid
-
+*Create a Settings Seed Class that handles creating default data, move the ffmsindex and the last 2 new settings into this class to keep it all in one place
+*Trimming white spaces from the encode names on the Create x264 Batch File
 
 
 --possible nice to haves
@@ -25,7 +26,7 @@ ExtensionMethods.NumberOfEpisodes needs to filter on summary.episodenumber != nu
 	2) Validate on the screen
 
 
-*Trimming white spaces from the encode names on the Create x264 Batch File
+
 *Create a batchguy log file that indicates how many files were processed and how long it took
 *Make the Season Number on Create eac3to Batch File optional (so movies can be remuxed)
 
