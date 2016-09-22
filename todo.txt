@@ -1,18 +1,16 @@
 --todo
-Enhancements:
-*Before writing to any Batch File, the application now checks to see if the Batch File exists and will delete it, to prevent appending to an existing Batch File
-*List of executables on the Settings Screen is now being displayed in a grid
-*On the Create AviSynth Files Screen, users can now press a button to create a ffmsindex Batch File that uses ffmsindex.exe to index all of the extracted videos that will be encoded using FFVideoSource
-*Created a settings default seed data service that handles creating default settings data for new settings created for the latest version of BatchGuy
-*Automatically sorting the AviSynth Grid on the Create AviSynth Files Screen by AviSynth File Name when the user adds (.avs) files to the grid
-*Added Crtl+R shortkey to the main screens to quickly restore the (.batchGuyEac3toSettings) file
-*Added Crtl+S shortkey to the main screens to quickly save the (.batchGuyEac3toSettings) file
-*Save menu item is now disabled on the Create AviSynth Files and Create x264 Batch File Screens until a valid (.batchGuyEac3toSettings) file is load
 
+*Bug on BluRay Title Info Screen
+-Click on a Playlist
+-Immediately choose a language from the mkvmerge options
+-See the error
 
-Bugs:
-*Fixed bug where all BatchGuy last directories settings were being cleared when saving information on the Settings Screen
-*Fixed bug where if the user clicked on the header row of the BluRay Title Info Defaults Grid on the Settings Screen, the application would throw an exception
+*Logging in the screens
+*Movie Mode
+-Add a new checkbox under the Remux Template called "Is this remux for a movie" or something like that
+-You can only have 1 Disc selected 
+-You can only have 1 Playlist selected
+-Episode Name and Number will be disabled
 
 
 
