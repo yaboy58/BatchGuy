@@ -182,8 +182,12 @@
     <Compile Include="Settings\Models\ApplicationSettings.cs" />
     <Compile Include="Settings\Models\Setting.cs" />
     <Compile Include="Settings\Services\ApplicationSettingsService.cs" />
+    <Compile Include="Shared\Interfaces\ILoggingService.cs" />
+    <Compile Include="Shared\Interfaces\IDisplayErrorMessageService.cs" />
     <Compile Include="Shared\Models\DropDownListItem.cs" />
+    <Compile Include="Shared\Models\ErrorMessage.cs" />
     <Compile Include="Shared\Services\AudioService.cs" />
+    <Compile Include="Shared\Services\DisplayErrorMessageService.cs" />
     <Compile Include="Shared\Services\JsonSerializationService.cs" />
     <Compile Include="Shared\Events\DialogInitialDirectoryChangedEventArgs.cs" />
     <Compile Include="Shared\Interfaces\IBindingListSortService.cs" />
@@ -211,6 +215,7 @@
     <Compile Include="Shared\Models\Warning.cs" />
     <Compile Include="Shared\Models\WarningCollection.cs" />
     <Compile Include="Shared\Services\BindingListSortService.cs" />
+    <Compile Include="Shared\Services\LoggingService.cs" />
     <Compile Include="Shared\Services\SortService.cs" />
     <Compile Include="ThirdParty\FolderSelectDialog\FolderSelectDialog.cs" />
     <Compile Include="ThirdParty\FolderSelectDialog\Reflector.cs" />

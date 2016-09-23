@@ -24,6 +24,7 @@ using BatchGuy.App.Shared.Interface;
 using BatchGuy.App.Settings.Interface;
 using BatchGuy.App.Settings.Services;
 using System.IO;
+using System.Reflection;
 
 namespace BatchGuy.App
 {
@@ -43,6 +44,7 @@ namespace BatchGuy.App
         private bool _mkvMergeChangeTriggeredByDataGridCellClick;
         private BluRayTitleSubtitle _currentBluRayTitleSubtitle;
         private IAudioService _audioService = new AudioService();
+        private IDisplayErrorMessageService _displayErrorMessageService = new DisplayErrorMessageService();
 
         public bool IsCallingScreenCreateX264BatchFile { get; set; }
 
@@ -498,7 +500,14 @@ namespace BatchGuy.App
 
         private void cbMKVToolNixGUILanguage_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.HandleComboBoxMKVToolNixGUILanguageSelectedIndexChanged();
+            try
+            {
+                this.HandleComboBoxMKVToolNixGUILanguageSelectedIndexChanged();
+            }
+            catch (Exception ex)
+            {
+                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "Problem selecting mkvmerge language!", DisplayTitle = "Error.", ExceptionMessage = ex.Message, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
+            }
         }
 
         private void HandleComboBoxMKVToolNixGUILanguageSelectedIndexChanged()

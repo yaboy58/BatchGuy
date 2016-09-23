@@ -53,7 +53,7 @@ namespace BatchGuy.App
         private string _mkvMergePath = string.Empty;
         private BatchGuyEAC3ToSettings _batchGuyEAC3ToSettings;
 
-        public static readonly ILog _log = LogManager.GetLogger(typeof(CreateEAC3ToBatchForm));
+        private static readonly ILog _log = LogManager.GetLogger(typeof(CreateEAC3ToBatchForm));
 
         public CreateEAC3ToBatchForm()
         {

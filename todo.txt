@@ -4,13 +4,17 @@
 -Click on a Playlist
 -Immediately choose a language from the mkvmerge options
 -See the error
+-To fix, make mkvmerge options read only if currmkvmergeitem null
 
 *Logging in the screens
+
+
 *Movie Mode
 -Add a new checkbox under the Remux Template called "Is this remux for a movie" or something like that
 -You can only have 1 Disc selected 
 -You can only have 1 Playlist selected
 -Episode Name and Number will be disabled
+-Single Directory only
 
 
 
