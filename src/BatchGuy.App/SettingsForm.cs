@@ -125,9 +125,7 @@ namespace BatchGuy.App
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            gbScreen.SetEnabled(false);
-            this.HandleSaveClick();
-            this.Close();
+
         }
 
         private void HandleSaveClick()
@@ -322,6 +320,13 @@ namespace BatchGuy.App
                     dgvExecutables.CurrentCell = null;
                 }
             }
+        }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            gbScreen.SetEnabled(false);
+            this.HandleSaveClick();
+            this.Close();
         }
     }
 }
