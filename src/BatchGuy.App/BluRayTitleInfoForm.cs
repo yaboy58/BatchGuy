@@ -63,25 +63,32 @@ namespace BatchGuy.App
 
         private void BluRayTitleForm_Load(object sender, EventArgs e)
         {
-            lblVersion.Text = Program.GetApplicationVersion();
-
-            this.SetScreenInfo();
-            this.gbScreen.SetEnabled(false);
-            this.SetMKVToolNixGUIControlsDefaults();
-            this.SetGBMKVToolNixGUIEnabledStatus(true);
-            this.DisabletxtEpisodeNumberIfCallingScreenIsCreateX264BatchFile();
-
-            if (_bluRaySummaryInfo.BluRayTitleInfo != null)
+            try
             {
-                this.LoadScreen();
-                this.SetGridRowBackgroundIfUndetermindLanguage();
-                gbScreen.SetEnabled(true);
+                lblVersion.Text = Program.GetApplicationVersion();
+
+                this.SetScreenInfo();
+                this.gbScreen.SetEnabled(false);
+                this.SetMKVToolNixGUIControlsDefaults();
+                this.SetGBMKVToolNixGUIEnabledStatus(true);
+                this.DisabletxtEpisodeNumberIfCallingScreenIsCreateX264BatchFile();
+
+                if (_bluRaySummaryInfo.BluRayTitleInfo != null)
+                {
+                    this.LoadScreen();
+                    this.SetGridRowBackgroundIfUndetermindLanguage();
+                    gbScreen.SetEnabled(true);
+                }
+                else
+                {
+                    this.LoadBluRayTitleInfo();
+                }
+                txtEpisodeName.SetEnabled(_eac3ToConfiguration.IsExtractForRemux);
             }
-            else
+            catch (Exception ex)
             {
-                this.LoadBluRayTitleInfo();
+                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was a problem loading the form!", DisplayTitle = "Error.", ExceptionMessage = ex.Message, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
             }
-            txtEpisodeName.SetEnabled(_eac3ToConfiguration.IsExtractForRemux);
         }
 
         private void DisabletxtEpisodeNumberIfCallingScreenIsCreateX264BatchFile()
@@ -212,16 +219,23 @@ namespace BatchGuy.App
 
         private void dgvAudio_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex == -1)
+            try
             {
-                this.SortAudioGrid(e.ColumnIndex);
+                if (e.RowIndex == -1)
+                {
+                    this.SortAudioGrid(e.ColumnIndex);
+                }
+                else
+                {
+                    panelAudioType.SetEnabled(true);
+                    this.SetGBMKVToolNixGUIEnabledStatus(true);
+                    this.HandleDGVAudioCellClick(e);
+                    dgvAudio.Rows[e.RowIndex].Selected = true;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                panelAudioType.SetEnabled(true);
-                this.SetGBMKVToolNixGUIEnabledStatus(true);
-                this.HandleDGVAudioCellClick(e);
-                dgvAudio.Rows[e.RowIndex].Selected = true;
+                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was a problem selecting the audio!", DisplayTitle = "Error.", ExceptionMessage = ex.Message, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
             }
         }
 
@@ -248,7 +262,14 @@ namespace BatchGuy.App
 
         private void txtAudioTypeArguments_TextChanged(object sender, EventArgs e)
         {
-            this.HandleAudioTypeArgumentsTextChanged();
+            try
+            {
+                this.HandleAudioTypeArgumentsTextChanged();
+            }
+            catch (Exception ex)
+            {
+                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was a problem setting the audio type arguments!", DisplayTitle = "Error.", ExceptionMessage = ex.Message, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
+            }
         }
 
         private void HandleAudioTypeArgumentsTextChanged()
@@ -258,8 +279,15 @@ namespace BatchGuy.App
 
         private void cbAudioType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.HandleComboBoxAudioTypeSelectedIndexChanged(cbAudioType.Text);
-            txtAudioTypeArguments.Text = _currentBluRayTitleAudio.Arguments;
+            try
+            {
+                this.HandleComboBoxAudioTypeSelectedIndexChanged(cbAudioType.Text);
+                txtAudioTypeArguments.Text = _currentBluRayTitleAudio.Arguments;
+            }
+            catch (Exception ex)
+            {
+                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was a problem selecting the audio type!", DisplayTitle = "Error.", ExceptionMessage = ex.Message, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
+            }
         }
 
         private void HandleComboBoxAudioTypeSelectedIndexChanged(string value)
@@ -277,7 +305,14 @@ namespace BatchGuy.App
 
         private void chkChapters_CheckedChanged(object sender, EventArgs e)
         {
-            this.HandleCheckBoxChaptersCheckedChanged();
+            try
+            {
+                this.HandleCheckBoxChaptersCheckedChanged();
+            }
+            catch (Exception ex)
+            {
+                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was a problem selecting the chapters!", DisplayTitle = "Error.", ExceptionMessage = ex.Message, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
+            }
         }
 
         private void HandleCheckBoxChaptersCheckedChanged()
@@ -287,7 +322,14 @@ namespace BatchGuy.App
 
         private void chkVideo_CheckedChanged(object sender, EventArgs e)
         {
-            this.HandleCheckBoxVideoCheckedChanged();
+            try
+            {
+                this.HandleCheckBoxVideoCheckedChanged();
+            }
+            catch (Exception ex)
+            {
+                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was a problem selecting the video!", DisplayTitle = "Error.", ExceptionMessage = ex.Message, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
+            }
         }
 
         private void HandleCheckBoxVideoCheckedChanged()
@@ -297,7 +339,14 @@ namespace BatchGuy.App
 
         private void txtEpisodeNumber_TextChanged(object sender, EventArgs e)
         {
-            this.HandleTextBoxEpisodeNumberTextChanged();
+            try
+            {
+                this.HandleTextBoxEpisodeNumberTextChanged();
+            }
+            catch (Exception ex)
+            {
+                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was a problem setting the episode number!", DisplayTitle = "Error.", ExceptionMessage = ex.Message, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
+            }
         }
 
         private void HandleTextBoxEpisodeNumberTextChanged()
@@ -315,18 +364,25 @@ namespace BatchGuy.App
 
         private void dgvSubtitles_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex == -1)
+            try
             {
-                this.SortSubtitleGrid(e.ColumnIndex);
-            }
-            else
-            {
-                this.HandleDGVSubtitlesCellClick(e);
-                if (_currentBluRayTitleSubtitle != null) //deleted
+                if (e.RowIndex == -1)
                 {
-                    dgvSubtitles.Rows[e.RowIndex].Selected = true;
-                    this.SetGBMKVToolNixGUIEnabledStatus(true);
+                    this.SortSubtitleGrid(e.ColumnIndex);
                 }
+                else
+                {
+                    this.HandleDGVSubtitlesCellClick(e);
+                    if (_currentBluRayTitleSubtitle != null) //deleted
+                    {
+                        dgvSubtitles.Rows[e.RowIndex].Selected = true;
+                        this.SetGBMKVToolNixGUIEnabledStatus(true);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was a problem loading the subtitle!", DisplayTitle = "Error.", ExceptionMessage = ex.Message, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
             }
         }
 
@@ -369,57 +425,78 @@ namespace BatchGuy.App
 
         private void bgwEac3toLoadTitle_DoWork(object sender, DoWorkEventArgs e)
         {
-            IJsonSerializationService<ISOLanguageCodeCollection> jsonSerializationService = new JsonSerializationService<ISOLanguageCodeCollection>();
-            IMKVMergeLanguageService languageService = new MKVMergeLanguageService(jsonSerializationService);
-            ICommandLineProcessService commandLineProcessService = e.Argument as CommandLineProcessService;
-            List<ProcessOutputLineItem> processOutputLineItems = commandLineProcessService.GetProcessOutputLineItems();
-            ILineItemIdentifierService lineItemService = new BluRayTitleLineItemIdentifierService();
-            IBluRayTitleParserService parserService = new BluRayTitleParserService(lineItemService, processOutputLineItems, languageService);
-            _bluRaySummaryInfo.BluRayTitleInfo = parserService.GetTitleInfo();
+            try
+            {
+                IJsonSerializationService<ISOLanguageCodeCollection> jsonSerializationService = new JsonSerializationService<ISOLanguageCodeCollection>();
+                IMKVMergeLanguageService languageService = new MKVMergeLanguageService(jsonSerializationService);
+                ICommandLineProcessService commandLineProcessService = e.Argument as CommandLineProcessService;
+                List<ProcessOutputLineItem> processOutputLineItems = commandLineProcessService.GetProcessOutputLineItems();
+                ILineItemIdentifierService lineItemService = new BluRayTitleLineItemIdentifierService();
+                IBluRayTitleParserService parserService = new BluRayTitleParserService(lineItemService, processOutputLineItems, languageService);
+                _bluRaySummaryInfo.BluRayTitleInfo = parserService.GetTitleInfo();
+            }
+            catch (Exception ex)
+            {
+                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was a problem loading the title!", DisplayTitle = "Error.", ExceptionMessage = ex.Message, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
+            }
         }
 
         private void bgwEac3toLoadTitle_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            if ((_bluRaySummaryInfo.BluRayTitleInfo == null) || (_bluRaySummaryInfo.BluRayTitleInfo.AudioList == null && _bluRaySummaryInfo.BluRayTitleInfo.Chapter == null && _bluRaySummaryInfo.BluRayTitleInfo.Subtitles == null 
-                && _bluRaySummaryInfo.BluRayTitleInfo.Video == null))
+            try
             {
-                if (_bluRaySummaryInfo.BluRayTitleInfo != null && !string.IsNullOrEmpty(_bluRaySummaryInfo.BluRayTitleInfo.HeaderText))
+                if ((_bluRaySummaryInfo.BluRayTitleInfo == null) || (_bluRaySummaryInfo.BluRayTitleInfo.AudioList == null && _bluRaySummaryInfo.BluRayTitleInfo.Chapter == null && _bluRaySummaryInfo.BluRayTitleInfo.Subtitles == null
+                    && _bluRaySummaryInfo.BluRayTitleInfo.Video == null))
                 {
-                    MessageBox.Show(string.Format("Blu-ray Title could not be loaded.  eac3to returned the following: {0}{1}",Environment.NewLine,_bluRaySummaryInfo.BluRayTitleInfo.HeaderText), "Invalid Blu-ray Title", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    if (_bluRaySummaryInfo.BluRayTitleInfo != null && !string.IsNullOrEmpty(_bluRaySummaryInfo.BluRayTitleInfo.HeaderText))
+                    {
+                        MessageBox.Show(string.Format("Blu-ray Title could not be loaded.  eac3to returned the following: {0}{1}", Environment.NewLine, _bluRaySummaryInfo.BluRayTitleInfo.HeaderText), "Invalid Blu-ray Title", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Blu-ray Title could not be loaded probably because it does not contain any tracks.", "Invalid Blu-ray Title", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    _bluRaySummaryInfo.BluRayTitleInfo = null;
                 }
                 else
                 {
-                    MessageBox.Show("Blu-ray Title could not be loaded probably because it does not contain any tracks.", "Invalid Blu-ray Title", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    this.SetBluRayTitleInfoDefaultSettings();
+                    this.LoadScreen();
+                    txtEpisodeNumber.Focus();
+                    this.SortAudioGrid(2); //sort language 
+                    this.SortSubtitleGrid(2); //sort language
+                    this.SetMKVMergetItemDefaults();
+                    this.SetGridRowBackgroundIfUndetermindLanguage();
+                    gbScreen.SetEnabled(true);
                 }
-                _bluRaySummaryInfo.BluRayTitleInfo = null;
             }
-            else
+            catch (Exception ex)
             {
-                this.SetBluRayTitleInfoDefaultSettings();
-                this.LoadScreen();
-                txtEpisodeNumber.Focus();
-                this.SortAudioGrid(2); //sort language 
-                this.SortSubtitleGrid(2); //sort language
-                this.SetMKVMergetItemDefaults();
-                this.SetGridRowBackgroundIfUndetermindLanguage();
-                gbScreen.SetEnabled(true);
+                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was a problem loading the title!", DisplayTitle = "Error.", ExceptionMessage = ex.Message, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
             }
         }
 
         private void SortAudioGrid(int sortColumnNumber)
         {
-            if (_bluRaySummaryInfo.BluRayTitleInfo.AudioList == null || _bluRaySummaryInfo.BluRayTitleInfo.AudioList.Count() == 0)
-                return;
+            try
+            {
+                if (_bluRaySummaryInfo.BluRayTitleInfo.AudioList == null || _bluRaySummaryInfo.BluRayTitleInfo.AudioList.Count() == 0)
+                    return;
 
-            string sortColumnName = dgvAudio.Columns[sortColumnNumber].DataPropertyName;
-           _audioGridSortConfiguration.SortByColumnName = sortColumnName;
-           ISortService<BluRayTitleAudio> sortService = new SortService<BluRayTitleAudio>(_audioGridSortConfiguration, _bluRaySummaryInfo.BluRayTitleInfo.AudioList);
+                string sortColumnName = dgvAudio.Columns[sortColumnNumber].DataPropertyName;
+                _audioGridSortConfiguration.SortByColumnName = sortColumnName;
+                ISortService<BluRayTitleAudio> sortService = new SortService<BluRayTitleAudio>(_audioGridSortConfiguration, _bluRaySummaryInfo.BluRayTitleInfo.AudioList);
 
-           IBindingListSortService<BluRayTitleAudio> bindingListSortService = new BindingListSortService<BluRayTitleAudio>(_bluRaySummaryInfo.BluRayTitleInfo.AudioList, dgvAudio,
-               _audioGridSortConfiguration, sortService);
-           _bindingListBluRayTitleAudio = bindingListSortService.Sort();
+                IBindingListSortService<BluRayTitleAudio> bindingListSortService = new BindingListSortService<BluRayTitleAudio>(_bluRaySummaryInfo.BluRayTitleInfo.AudioList, dgvAudio,
+                    _audioGridSortConfiguration, sortService);
+                _bindingListBluRayTitleAudio = bindingListSortService.Sort();
 
-           this.BindAudioGrid();
+                this.BindAudioGrid();
+            }
+            catch (Exception ex)
+            {
+                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was a problem sorting the audio grid!", DisplayTitle = "Error.", ExceptionMessage = ex.Message, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
+            }
         }
 
         private void BindAudioGrid()
@@ -431,18 +508,25 @@ namespace BatchGuy.App
 
         private void SortSubtitleGrid(int sortColumnNumber)
         {
-            if (_bluRaySummaryInfo.BluRayTitleInfo.Subtitles == null || _bluRaySummaryInfo.BluRayTitleInfo.Subtitles.Count() == 0)
-                return;
+            try
+            {
+                if (_bluRaySummaryInfo.BluRayTitleInfo.Subtitles == null || _bluRaySummaryInfo.BluRayTitleInfo.Subtitles.Count() == 0)
+                    return;
 
-            string sortColumnName = dgvSubtitles.Columns[sortColumnNumber].DataPropertyName;
-            _subtitleGridSortConfiguration.SortByColumnName = sortColumnName;
-            ISortService<BluRayTitleSubtitle> sortService = new SortService<BluRayTitleSubtitle>(_subtitleGridSortConfiguration, _bluRaySummaryInfo.BluRayTitleInfo.Subtitles);
+                string sortColumnName = dgvSubtitles.Columns[sortColumnNumber].DataPropertyName;
+                _subtitleGridSortConfiguration.SortByColumnName = sortColumnName;
+                ISortService<BluRayTitleSubtitle> sortService = new SortService<BluRayTitleSubtitle>(_subtitleGridSortConfiguration, _bluRaySummaryInfo.BluRayTitleInfo.Subtitles);
 
-            IBindingListSortService<BluRayTitleSubtitle> bindingListSortService = new BindingListSortService<BluRayTitleSubtitle>(_bluRaySummaryInfo.BluRayTitleInfo.Subtitles, dgvSubtitles,
-                _subtitleGridSortConfiguration, sortService);
-            _bindingListBluRayTitleSubtitle = bindingListSortService.Sort();
+                IBindingListSortService<BluRayTitleSubtitle> bindingListSortService = new BindingListSortService<BluRayTitleSubtitle>(_bluRaySummaryInfo.BluRayTitleInfo.Subtitles, dgvSubtitles,
+                    _subtitleGridSortConfiguration, sortService);
+                _bindingListBluRayTitleSubtitle = bindingListSortService.Sort();
 
-            this.BindSubtitleGrid();
+                this.BindSubtitleGrid();
+            }
+            catch (Exception ex)
+            {
+                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was a problem sorting the subtitle grid!", DisplayTitle = "Error.", ExceptionMessage = ex.Message, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
+            }
         }
 
         private void BindSubtitleGrid()
@@ -454,7 +538,14 @@ namespace BatchGuy.App
 
         private void txtEpisodeName_TextChanged(object sender, EventArgs e)
         {
-            this.HandleTxtEpisodeNameTextChanged();
+            try
+            {
+                this.HandleTxtEpisodeNameTextChanged();
+            }
+            catch (Exception ex)
+            {
+                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was a problem setting the episode name!", DisplayTitle = "Error.", ExceptionMessage = ex.Message, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
+            }
         }
 
         private void HandleTxtEpisodeNameTextChanged()
@@ -464,33 +555,53 @@ namespace BatchGuy.App
 
         private void LoadMKVMergeLangugeItemsDropDown()
         {
-            IJsonSerializationService<ISOLanguageCodeCollection> jsonSerializationService = new JsonSerializationService<ISOLanguageCodeCollection>();
-            IMKVMergeLanguageService service = new MKVMergeLanguageService(jsonSerializationService);
-            foreach (MKVMergeLanguageItem item in service.GetLanguages())
+            try
             {
-                _bindingListMKVMergeLanguageItem.Add(item);
-            }
+                IJsonSerializationService<ISOLanguageCodeCollection> jsonSerializationService = new JsonSerializationService<ISOLanguageCodeCollection>();
+                IMKVMergeLanguageService service = new MKVMergeLanguageService(jsonSerializationService);
+                foreach (MKVMergeLanguageItem item in service.GetLanguages())
+                {
+                    _bindingListMKVMergeLanguageItem.Add(item);
+                }
 
-            bsMKVMergeLanguageItem.DataSource = _bindingListMKVMergeLanguageItem;
-            _bindingListMKVMergeLanguageItem.AllowEdit = false;
+                bsMKVMergeLanguageItem.DataSource = _bindingListMKVMergeLanguageItem;
+                _bindingListMKVMergeLanguageItem.AllowEdit = false;
+            }
+            catch (Exception ex)
+            {
+                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was a problem loading the mkvmerge languages!", DisplayTitle = "Error.", ExceptionMessage = ex.Message, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
+            }
         }
 
         private void SetMKVMergetItemDefaults()
         {
+            try
+            {
+                IJsonSerializationService<ISOLanguageCodeCollection> jsonSerializationService = new JsonSerializationService<ISOLanguageCodeCollection>();
+                IMKVMergeLanguageService languageService = new MKVMergeLanguageService(jsonSerializationService);
+                IMKVMergeDefaultSettingsService mkvMergeDefaultSettingsService = new MKVMergeDefaultSettingsService(_eac3ToConfiguration, Program.ApplicationSettings,
+                    _bluRaySummaryInfo, languageService, _audioService);
 
-            IJsonSerializationService<ISOLanguageCodeCollection> jsonSerializationService = new JsonSerializationService<ISOLanguageCodeCollection>();
-            IMKVMergeLanguageService languageService = new MKVMergeLanguageService(jsonSerializationService);
-            IMKVMergeDefaultSettingsService mkvMergeDefaultSettingsService = new MKVMergeDefaultSettingsService(_eac3ToConfiguration, Program.ApplicationSettings,
-                _bluRaySummaryInfo, languageService, _audioService);
-
-            mkvMergeDefaultSettingsService.SetAudioDefaultSettings();
-            mkvMergeDefaultSettingsService.SetSubtitleDefaultSettings();
+                mkvMergeDefaultSettingsService.SetAudioDefaultSettings();
+                mkvMergeDefaultSettingsService.SetSubtitleDefaultSettings();
+            }
+            catch (Exception ex)
+            {
+                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was a problem setting the mkvmerge defaults!", DisplayTitle = "Error.", ExceptionMessage = ex.Message, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
+            }
         }
 
         private void SetMKVToolNixGUIControlsDefaults()
         {
-            this.SetMKVToolNixGUIControlsEnabledStatus();
-            this.LoadMKVMergeLangugeItemsDropDown();
+            try
+            {
+                this.SetMKVToolNixGUIControlsEnabledStatus();
+                this.LoadMKVMergeLangugeItemsDropDown();
+            }
+            catch (Exception ex)
+            {
+                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was a problem setting the mkvmerge controls!", DisplayTitle = "Error.", ExceptionMessage = ex.Message, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
+            }
         }
 
         private void SetMKVToolNixGUIControlsEnabledStatus()
@@ -678,7 +789,14 @@ namespace BatchGuy.App
 
         private void dgvSubtitles_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            this.HandlesDGVSubtitlesCellDoubleClick(e);
+            try
+            {
+                this.HandlesDGVSubtitlesCellDoubleClick(e);
+            }
+            catch (Exception ex)
+            {
+                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was a problem loading the subtitle!", DisplayTitle = "Error.", ExceptionMessage = ex.Message, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
+            }
         }
 
         private void HandlesDGVSubtitlesCellDoubleClick(DataGridViewCellEventArgs e)
@@ -703,7 +821,14 @@ namespace BatchGuy.App
 
         private void btnAddSubtitle_Click(object sender, EventArgs e)
         {
-            this.HandlesBtnAddSubtitleClick();
+            try
+            {
+                this.HandlesBtnAddSubtitleClick();
+            }
+            catch (Exception ex)
+            {
+                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was a problem opening the external subtitle screen!", DisplayTitle = "Error.", ExceptionMessage = ex.Message, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
+            }
         }
 
         private void HandlesBtnAddSubtitleClick()

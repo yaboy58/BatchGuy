@@ -16,7 +16,7 @@ namespace BatchGuy.App.Shared.Services
         public void DisplayError(ErrorMessage errorMessage)
         {
             _loggingService.LogErrorFormat(errorMessage.ExceptionMessage, errorMessage.MethodNameWhereExceptionOccurred);
-            MessageBox.Show(errorMessage.DisplayMessage, errorMessage.DisplayTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show(string.Format("{0}.  Please view the error log for more details.",errorMessage.DisplayMessage), errorMessage.DisplayTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 }
