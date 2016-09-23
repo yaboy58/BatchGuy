@@ -2,7 +2,8 @@
 Enhancements
 *Created new service for logging errors
 *Created new service for displaying error messages to the user
-*Settings screen can now be resized and has a fluid layout
+*Settings Screen can now be resized and has a fluid layout
+*External Subtitles Screen cannot be resized
 
 Bugs
 Fixed bug where if the users tries to set mkvmerge options on the BluRay Title Info Screen before selecting audio or a subtitle, the screen would crash
