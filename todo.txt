@@ -1,10 +1,11 @@
 --todo
+Enhancements
+*Created new service for logging errors
+*Created new service for displaying error messages to the user
 
-*Bug on BluRay Title Info Screen
--Click on a Playlist
--Immediately choose a language from the mkvmerge options
--See the error
--To fix, make mkvmerge options read only if currmkvmergeitem null
+Bugs
+Fixed bug where if the users tries to set mkvmerge options on the BluRay Title Info Screen before selecting audio or a subtitle, the screen would crash
+
 
 *Logging in the screens
 

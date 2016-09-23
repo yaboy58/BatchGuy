@@ -512,6 +512,9 @@ namespace BatchGuy.App
 
         private void HandleComboBoxMKVToolNixGUILanguageSelectedIndexChanged()
         {
+            if (_currentMKVMergeItem == null)
+                return;
+
             if (_mkvMergeChangeTriggeredByDataGridCellClick)
             {
                 _mkvMergeChangeTriggeredByDataGridCellClick = false;
@@ -535,21 +538,39 @@ namespace BatchGuy.App
 
         private void txtMKVToolNixGUITrackName_TextChanged(object sender, EventArgs e)
         {
-            this.HandleTextBoxMKVToolNixGUITrackNameTextChanged();
+            try
+            {
+                this.HandleTextBoxMKVToolNixGUITrackNameTextChanged();
+            }
+            catch (Exception ex)
+            {
+                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "Problem setting mkvmerge track!", DisplayTitle = "Error.", ExceptionMessage = ex.Message, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
+            }
         }
 
         private void HandleTextBoxMKVToolNixGUITrackNameTextChanged()
         {
+            if (_currentMKVMergeItem == null)
+                return;
             _currentMKVMergeItem.TrackName = txtMKVToolNixGUITrackName.Text.Trim();
         }
 
         private void cbMKVToolNixGUIDefaultTrackFlag_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.HandleComboBoxMKVToolNixGUIDefaultTrackFlagSelectedIndexChanged();
+            try
+            {
+                this.HandleComboBoxMKVToolNixGUIDefaultTrackFlagSelectedIndexChanged();
+            }
+            catch (Exception ex)
+            {
+                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "Problem selecting default track flag!", DisplayTitle = "Error.", ExceptionMessage = ex.Message, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
+            }
         }
 
         private void HandleComboBoxMKVToolNixGUIDefaultTrackFlagSelectedIndexChanged()
         {
+            if (_currentMKVMergeItem == null)
+                return;
             if (_mkvMergeChangeTriggeredByDataGridCellClick)
             {
                 _mkvMergeChangeTriggeredByDataGridCellClick = false;
@@ -561,11 +582,20 @@ namespace BatchGuy.App
 
         private void cbMKVToolNixGUIForcedTrackFlag_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.HandleComboBoxMKVToolNixGUIForcedFlagSelectedIndexChanged();
+            try
+            {
+                this.HandleComboBoxMKVToolNixGUIForcedFlagSelectedIndexChanged();
+            }
+            catch (Exception ex)
+            {
+                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "Problem selecting forced track flag!", DisplayTitle = "Error.", ExceptionMessage = ex.Message, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
+            }
         }
 
         private void HandleComboBoxMKVToolNixGUIForcedFlagSelectedIndexChanged()
         {
+            if (_currentMKVMergeItem == null)
+                return;
             _currentMKVMergeItem.ForcedTrackFlag = cbMKVToolNixGUIForcedTrackFlag.Text;
         }
 
@@ -629,11 +659,20 @@ namespace BatchGuy.App
 
         private void cbMKVToolNixGUICompression_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.HandleComboBoxMKVToolNixGUICompressionSelectedIndexChanged();
+            try
+            {
+                this.HandleComboBoxMKVToolNixGUICompressionSelectedIndexChanged();
+            }
+            catch (Exception ex)
+            {
+                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "Problem selecting the compression flag!", DisplayTitle = "Error.", ExceptionMessage = ex.Message, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
+            }
         }
 
         private void HandleComboBoxMKVToolNixGUICompressionSelectedIndexChanged()
         {
+            if (_currentMKVMergeItem == null)
+                return;
             _currentMKVMergeItem.Compression = cbMKVToolNixGUICompression.Text;
         }
 
