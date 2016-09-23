@@ -30,16 +30,16 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.projectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.createEac3ToBatFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.createAVSFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.createX264BatFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewX264LogsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.createEac3ToBatFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.createAVSFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.createX264BatFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.viewX264LogsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -56,6 +56,38 @@
             this.projectToolStripMenuItem.Name = "projectToolStripMenuItem";
             this.projectToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
             this.projectToolStripMenuItem.Text = "Menu";
+            // 
+            // createEac3ToBatFileToolStripMenuItem
+            // 
+            this.createEac3ToBatFileToolStripMenuItem.Image = global::BatchGuy.App.Properties.Resources.Custom_Icon_Design_Pretty_Office_7_Extract_object;
+            this.createEac3ToBatFileToolStripMenuItem.Name = "createEac3ToBatFileToolStripMenuItem";
+            this.createEac3ToBatFileToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
+            this.createEac3ToBatFileToolStripMenuItem.Text = "Create eac3To Batch File";
+            this.createEac3ToBatFileToolStripMenuItem.Click += new System.EventHandler(this.createEac3ToBatFileToolStripMenuItem_Click);
+            // 
+            // createAVSFilesToolStripMenuItem
+            // 
+            this.createAVSFilesToolStripMenuItem.Image = global::BatchGuy.App.Properties.Resources.Fatcow_Farm_Fresh_Script_add;
+            this.createAVSFilesToolStripMenuItem.Name = "createAVSFilesToolStripMenuItem";
+            this.createAVSFilesToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
+            this.createAVSFilesToolStripMenuItem.Text = "Create AviSynth Files";
+            this.createAVSFilesToolStripMenuItem.Click += new System.EventHandler(this.createAVSFilesToolStripMenuItem_Click);
+            // 
+            // createX264BatFileToolStripMenuItem
+            // 
+            this.createX264BatFileToolStripMenuItem.Image = global::BatchGuy.App.Properties.Resources.Custom_Icon_Design_Flatastic_2_Process_accept;
+            this.createX264BatFileToolStripMenuItem.Name = "createX264BatFileToolStripMenuItem";
+            this.createX264BatFileToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
+            this.createX264BatFileToolStripMenuItem.Text = "Create x264 Batch File";
+            this.createX264BatFileToolStripMenuItem.Click += new System.EventHandler(this.createX264BatFileToolStripMenuItem_Click);
+            // 
+            // viewX264LogsToolStripMenuItem
+            // 
+            this.viewX264LogsToolStripMenuItem.Image = global::BatchGuy.App.Properties.Resources.Everaldo_Crystal_Clear_App_edit;
+            this.viewX264LogsToolStripMenuItem.Name = "viewX264LogsToolStripMenuItem";
+            this.viewX264LogsToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
+            this.viewX264LogsToolStripMenuItem.Text = "View Summarized x264 Logs";
+            this.viewX264LogsToolStripMenuItem.Click += new System.EventHandler(this.viewX264LogsToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
@@ -104,38 +136,6 @@
             this.toolStripStatusLabel.Size = new System.Drawing.Size(118, 17);
             this.toolStripStatusLabel.Text = "toolStripStatusLabel1";
             // 
-            // createEac3ToBatFileToolStripMenuItem
-            // 
-            this.createEac3ToBatFileToolStripMenuItem.Image = global::BatchGuy.App.Properties.Resources.Custom_Icon_Design_Pretty_Office_7_Extract_object;
-            this.createEac3ToBatFileToolStripMenuItem.Name = "createEac3ToBatFileToolStripMenuItem";
-            this.createEac3ToBatFileToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
-            this.createEac3ToBatFileToolStripMenuItem.Text = "Create eac3To Batch File";
-            this.createEac3ToBatFileToolStripMenuItem.Click += new System.EventHandler(this.createEac3ToBatFileToolStripMenuItem_Click);
-            // 
-            // createAVSFilesToolStripMenuItem
-            // 
-            this.createAVSFilesToolStripMenuItem.Image = global::BatchGuy.App.Properties.Resources.Fatcow_Farm_Fresh_Script_add;
-            this.createAVSFilesToolStripMenuItem.Name = "createAVSFilesToolStripMenuItem";
-            this.createAVSFilesToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
-            this.createAVSFilesToolStripMenuItem.Text = "Create AviSynth Files";
-            this.createAVSFilesToolStripMenuItem.Click += new System.EventHandler(this.createAVSFilesToolStripMenuItem_Click);
-            // 
-            // createX264BatFileToolStripMenuItem
-            // 
-            this.createX264BatFileToolStripMenuItem.Image = global::BatchGuy.App.Properties.Resources.Custom_Icon_Design_Flatastic_2_Process_accept;
-            this.createX264BatFileToolStripMenuItem.Name = "createX264BatFileToolStripMenuItem";
-            this.createX264BatFileToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
-            this.createX264BatFileToolStripMenuItem.Text = "Create x264 Batch File";
-            this.createX264BatFileToolStripMenuItem.Click += new System.EventHandler(this.createX264BatFileToolStripMenuItem_Click);
-            // 
-            // viewX264LogsToolStripMenuItem
-            // 
-            this.viewX264LogsToolStripMenuItem.Image = global::BatchGuy.App.Properties.Resources.Everaldo_Crystal_Clear_App_edit;
-            this.viewX264LogsToolStripMenuItem.Name = "viewX264LogsToolStripMenuItem";
-            this.viewX264LogsToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
-            this.viewX264LogsToolStripMenuItem.Text = "View Summarized x264 Logs";
-            this.viewX264LogsToolStripMenuItem.Click += new System.EventHandler(this.viewX264LogsToolStripMenuItem_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -172,7 +172,6 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.StatusStrip statusStrip;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel;
-
     }
 }
 

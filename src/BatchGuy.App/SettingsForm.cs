@@ -29,7 +29,6 @@ namespace BatchGuy.App
         public SettingsForm()
         {
             InitializeComponent();
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
         }
 
         private void SettingsForm_Load(object sender, EventArgs e)

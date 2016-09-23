@@ -2,12 +2,15 @@
 Enhancements
 *Created new service for logging errors
 *Created new service for displaying error messages to the user
+*Settings screen can now be resized and has a fluid layout
 
 Bugs
 Fixed bug where if the users tries to set mkvmerge options on the BluRay Title Info Screen before selecting audio or a subtitle, the screen would crash
 
 *Put menu on settings screen and add all button functions to menus to help people with small screens
 *Logging in the screens
+*Pass entire exception to logging service
+*Move buttons to menus
 
 
 *Movie Mode
