@@ -51,7 +51,6 @@ namespace BatchGuy.App
         public BluRayTitleInfoForm()
         {
             InitializeComponent();
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
         }
 
         public void SetBluRayTitleInfo(EAC3ToConfiguration eac3ToConfiguration, string bluRayPath, BluRaySummaryInfo bluRaySummaryInfo)
@@ -190,7 +189,7 @@ namespace BatchGuy.App
             }
             else
             {
-                dgvSubtitles.Enabled = false;
+                tlpGroupBox.Enabled = false;
             }
         }
 

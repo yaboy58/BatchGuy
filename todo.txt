@@ -3,6 +3,7 @@ Enhancements
 *Created new service for logging errors
 *Created new service for displaying error messages to the user
 *Settings Screen can now be resized and has a fluid layout
+*BluRay Title Info Screen can now be resized and has a fluid layout
 *External Subtitles Screen cannot be resized
 
 Bugs
