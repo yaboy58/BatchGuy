@@ -4,6 +4,8 @@ using BatchGuy.App.MKVMerge.Models;
 using BatchGuy.App.MKVMerge.Services;
 using BatchGuy.App.Parser.Models;
 using BatchGuy.App.Shared.Interface;
+using BatchGuy.App.Shared.Interfaces;
+using BatchGuy.App.Shared.Models;
 using BatchGuy.App.Shared.Services;
 using System;
 using System.Collections.Generic;
@@ -11,6 +13,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -24,6 +27,7 @@ namespace BatchGuy.App
         private BindingList<MKVMergeLanguageItem> _bindingListMKVMergeLanguageItem = new BindingList<MKVMergeLanguageItem>();
         private MKVMergeItem _currentMKVMergeItem;
         private BluRayTitleSubtitle _currentSubtitleForEdit;
+        private IDisplayErrorMessageService _displayErrorMessageService = new DisplayErrorMessageService();
 
         public bool WasSaved { get; set; }
         public bool WasCancelled { get; set; }
@@ -65,12 +69,19 @@ namespace BatchGuy.App
 
         private void BluRayTitleInfoExternalSubtitleForm_Load(object sender, EventArgs e)
         {
-            lblVersion.Text = Program.GetApplicationVersion();
-            this.LoadMKVMergeLangugeItemsDropDown();
-
-            if (_isAdd == false)
+            try
             {
-                this.SetMKVMergeLanguageDropDownValue();
+                lblVersion.Text = Program.GetApplicationVersion();
+                this.LoadMKVMergeLangugeItemsDropDown();
+
+                if (_isAdd == false)
+                {
+                    this.SetMKVMergeLanguageDropDownValue();
+                }
+            }
+            catch (Exception ex)
+            {
+                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was a problem loading the screen!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
             }
         }
 
@@ -94,7 +105,14 @@ namespace BatchGuy.App
 
         private void cbExternalSubtitleLanguage_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.HandlesCBExternalSubtitleLanguageSelectedIndexChanged();
+            try
+            {
+                this.HandlesCBExternalSubtitleLanguageSelectedIndexChanged();
+            }
+            catch (Exception ex)
+            {
+                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was a problem selecting the subtitle language!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
+            }
         }
 
         private void HandlesCBExternalSubtitleLanguageSelectedIndexChanged()
@@ -104,7 +122,14 @@ namespace BatchGuy.App
 
         private void btnOpenExternalSubtitleFilePathDialog_Click(object sender, EventArgs e)
         {
-            this.HandlesBtnOpenExternalSubtitleFilePathDialogClick();
+            try
+            {
+                this.HandlesBtnOpenExternalSubtitleFilePathDialogClick();
+            }
+            catch (Exception ex)
+            {
+                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was a problem opening the file path!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
+            }
         }
 
 
@@ -124,7 +149,14 @@ namespace BatchGuy.App
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            this.HandlesBtnSaveClick();
+            try
+            {
+                this.HandlesBtnSaveClick();
+            }
+            catch (Exception ex)
+            {
+                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was a problem saving the external subtitle information!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
+            }
         }
 
         private void HandlesBtnSaveClick()
