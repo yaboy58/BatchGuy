@@ -123,6 +123,16 @@ namespace BatchGuy.App.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Fasticon_Green_Ville_2_File {
+            get {
+                object obj = ResourceManager.GetObject("Fasticon-Green-Ville-2-File", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Fatcow_Farm_Fresh_Script_add {
             get {
                 object obj = ResourceManager.GetObject("Fatcow-Farm-Fresh-Script-add", resourceCulture);

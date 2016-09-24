@@ -65,7 +65,6 @@ namespace BatchGuy.App
             try
             {
                 lblVersion.Text = Program.GetApplicationVersion();
-
                 this.SetScreenInfo();
                 this.gbScreen.SetEnabled(false);
                 this.SetMKVToolNixGUIControlsDefaults();
@@ -77,6 +76,7 @@ namespace BatchGuy.App
                     this.LoadScreen();
                     this.SetGridRowBackgroundIfUndetermindLanguage();
                     gbScreen.SetEnabled(true);
+                    txtEpisodeNumber.Select();
                 }
                 else
                 {
@@ -461,7 +461,7 @@ namespace BatchGuy.App
                 {
                     this.SetBluRayTitleInfoDefaultSettings();
                     this.LoadScreen();
-                    txtEpisodeNumber.Focus();
+                    txtEpisodeNumber.Select();
                     this.SortAudioGrid(2); //sort language 
                     this.SortSubtitleGrid(2); //sort language
                     this.SetMKVMergetItemDefaults();
