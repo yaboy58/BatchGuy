@@ -7,6 +7,7 @@ Enhancements
 *External Subtitles Screen cannot be resized
 *Create eac3to and mkvmerge Batch File buttons removed from Create eac3to Batch File Screen.  The items have been placed on the menu.
 *Made small UI changes to the Create eac3to Batch File Screen to make the screen more efficient
+*Create eac3to Batch File Screen can now be resized and has a fluid layout
 
 Bugs
 Fixed bug where if the users tries to set mkvmerge options on the BluRay Title Info Screen before selecting audio or a subtitle, the screen would crash
