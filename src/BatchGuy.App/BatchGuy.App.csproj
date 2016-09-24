@@ -327,6 +327,7 @@
     <None Include="Icons\Everaldo-Crystal-Clear-App-edit.ico" />
     <None Include="Icons\Custom-Icon-Design-Pretty-Office-7-Extract-object.ico" />
     <None Include="Icons\Custom-Icon-Design-Flatastic-2-Process-accept.ico" />
+    <Content Include="Icons\close_red.ico" />
     <Content Include="Icons\Fasticon-Green-Ville-2-File.ico" />
     <Content Include="Icons\Iconfinder-1472897142_DeleteRed.ico" />
     <Content Include="Icons\Icontexto-Webdev-Webdev-config.ico" />
