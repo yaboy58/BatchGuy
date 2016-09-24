@@ -51,7 +51,6 @@ namespace BatchGuy.App
         public CreateX264BatchFileForm()
         {
             InitializeComponent();
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.SetToolTips();
         }
 

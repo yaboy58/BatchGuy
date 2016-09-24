@@ -42,7 +42,7 @@
             this.txtX264LogFileSaveDirectory = new System.Windows.Forms.TextBox();
             this.btnOpenX264LogFileOutputDialog = new System.Windows.Forms.Button();
             this.chkSaveLogFileToDifferentDirectory = new System.Windows.Forms.CheckBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.gbX264Template = new System.Windows.Forms.GroupBox();
             this.txtX264Template = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.cbEncodeType = new System.Windows.Forms.ComboBox();
@@ -61,6 +61,10 @@
             this.createX264BatchFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createMkvmergeBatchFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.tlpForm = new System.Windows.Forms.TableLayoutPanel();
+            this.tlpScreen = new System.Windows.Forms.TableLayoutPanel();
+            this.tlpAVSFiles = new System.Windows.Forms.TableLayoutPanel();
+            this.tlpX264Template = new System.Windows.Forms.TableLayoutPanel();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.aviSynthFileNameOnlyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.aviSynthFilePathDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -70,9 +74,13 @@
             this.bsFiles = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dgvFiles)).BeginInit();
             this.gbScreen.SuspendLayout();
-            this.groupBox2.SuspendLayout();
+            this.gbX264Template.SuspendLayout();
             this.gbAviSynthFiles.SuspendLayout();
             this.menuStrip.SuspendLayout();
+            this.tlpForm.SuspendLayout();
+            this.tlpScreen.SuspendLayout();
+            this.tlpAVSFiles.SuspendLayout();
+            this.tlpX264Template.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsEpisodeNumbersDropDownListItem)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsFiles)).BeginInit();
             this.SuspendLayout();
@@ -82,6 +90,9 @@
             this.dgvFiles.AllowDrop = true;
             this.dgvFiles.AllowUserToAddRows = false;
             this.dgvFiles.AllowUserToOrderColumns = true;
+            this.dgvFiles.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvFiles.AutoGenerateColumns = false;
             this.dgvFiles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvFiles.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -91,11 +102,11 @@
             this.encodeNameDataGridViewTextBoxColumn,
             this.episodeNumberDataGridViewTextBoxColumn});
             this.dgvFiles.DataSource = this.bsFiles;
-            this.dgvFiles.Location = new System.Drawing.Point(13, 27);
+            this.dgvFiles.Location = new System.Drawing.Point(2, 2);
             this.dgvFiles.Margin = new System.Windows.Forms.Padding(2);
             this.dgvFiles.Name = "dgvFiles";
             this.dgvFiles.RowTemplate.Height = 24;
-            this.dgvFiles.Size = new System.Drawing.Size(824, 222);
+            this.dgvFiles.Size = new System.Drawing.Size(916, 240);
             this.dgvFiles.TabIndex = 4;
             this.dgvFiles.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvFiles_CellClick);
             this.dgvFiles.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvFiles_CellDoubleClick);
@@ -105,8 +116,9 @@
             // 
             // lblNumberOfFiles
             // 
+            this.lblNumberOfFiles.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblNumberOfFiles.AutoSize = true;
-            this.lblNumberOfFiles.Location = new System.Drawing.Point(10, 251);
+            this.lblNumberOfFiles.Location = new System.Drawing.Point(3, 249);
             this.lblNumberOfFiles.Name = "lblNumberOfFiles";
             this.lblNumberOfFiles.Size = new System.Drawing.Size(83, 13);
             this.lblNumberOfFiles.TabIndex = 23;
@@ -118,29 +130,23 @@
             // 
             // gbScreen
             // 
-            this.gbScreen.Controls.Add(this.chkIgnoreInternalSubtitles);
-            this.gbScreen.Controls.Add(this.lblOutputAndLogFileCaption);
-            this.gbScreen.Controls.Add(this.txtX264EncodeOutputAndLogDirectory);
-            this.gbScreen.Controls.Add(this.lblDirectoryType);
-            this.gbScreen.Controls.Add(this.lblDirectoryTypeCaption);
-            this.gbScreen.Controls.Add(this.txtX264LogFileSaveDirectory);
-            this.gbScreen.Controls.Add(this.btnOpenX264LogFileOutputDialog);
-            this.gbScreen.Controls.Add(this.chkSaveLogFileToDifferentDirectory);
-            this.gbScreen.Controls.Add(this.groupBox2);
-            this.gbScreen.Controls.Add(this.gbAviSynthFiles);
-            this.gbScreen.Controls.Add(this.label2);
-            this.gbScreen.Controls.Add(this.txtX264BatchFileOutputDirectory);
-            this.gbScreen.Controls.Add(this.btnOpenX264BatchFileOutputDialog);
-            this.gbScreen.Location = new System.Drawing.Point(12, 28);
+            this.gbScreen.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gbScreen.Controls.Add(this.tlpScreen);
+            this.gbScreen.Location = new System.Drawing.Point(3, 3);
             this.gbScreen.Name = "gbScreen";
-            this.gbScreen.Size = new System.Drawing.Size(868, 743);
+            this.gbScreen.Size = new System.Drawing.Size(938, 727);
             this.gbScreen.TabIndex = 31;
             this.gbScreen.TabStop = false;
             // 
             // chkIgnoreInternalSubtitles
             // 
+            this.chkIgnoreInternalSubtitles.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.chkIgnoreInternalSubtitles.AutoSize = true;
-            this.chkIgnoreInternalSubtitles.Location = new System.Drawing.Point(21, 176);
+            this.tlpScreen.SetColumnSpan(this.chkIgnoreInternalSubtitles, 3);
+            this.chkIgnoreInternalSubtitles.Location = new System.Drawing.Point(3, 165);
+            this.chkIgnoreInternalSubtitles.Margin = new System.Windows.Forms.Padding(3, 0, 3, 3);
             this.chkIgnoreInternalSubtitles.Name = "chkIgnoreInternalSubtitles";
             this.chkIgnoreInternalSubtitles.Size = new System.Drawing.Size(311, 17);
             this.chkIgnoreInternalSubtitles.TabIndex = 3;
@@ -150,8 +156,9 @@
             // 
             // lblOutputAndLogFileCaption
             // 
+            this.lblOutputAndLogFileCaption.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblOutputAndLogFileCaption.AutoSize = true;
-            this.lblOutputAndLogFileCaption.Location = new System.Drawing.Point(24, 58);
+            this.lblOutputAndLogFileCaption.Location = new System.Drawing.Point(3, 47);
             this.lblOutputAndLogFileCaption.Name = "lblOutputAndLogFileCaption";
             this.lblOutputAndLogFileCaption.Size = new System.Drawing.Size(135, 13);
             this.lblOutputAndLogFileCaption.TabIndex = 40;
@@ -159,7 +166,9 @@
             // 
             // txtX264EncodeOutputAndLogDirectory
             // 
-            this.txtX264EncodeOutputAndLogDirectory.Location = new System.Drawing.Point(211, 55);
+            this.txtX264EncodeOutputAndLogDirectory.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.txtX264EncodeOutputAndLogDirectory.Location = new System.Drawing.Point(230, 45);
+            this.txtX264EncodeOutputAndLogDirectory.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
             this.txtX264EncodeOutputAndLogDirectory.Name = "txtX264EncodeOutputAndLogDirectory";
             this.txtX264EncodeOutputAndLogDirectory.ReadOnly = true;
             this.txtX264EncodeOutputAndLogDirectory.Size = new System.Drawing.Size(576, 20);
@@ -167,8 +176,9 @@
             // 
             // lblDirectoryType
             // 
+            this.lblDirectoryType.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblDirectoryType.AutoSize = true;
-            this.lblDirectoryType.Location = new System.Drawing.Point(208, 24);
+            this.lblDirectoryType.Location = new System.Drawing.Point(230, 11);
             this.lblDirectoryType.Name = "lblDirectoryType";
             this.lblDirectoryType.Size = new System.Drawing.Size(79, 13);
             this.lblDirectoryType.TabIndex = 38;
@@ -176,8 +186,9 @@
             // 
             // lblDirectoryTypeCaption
             // 
+            this.lblDirectoryTypeCaption.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblDirectoryTypeCaption.AutoSize = true;
-            this.lblDirectoryTypeCaption.Location = new System.Drawing.Point(24, 25);
+            this.lblDirectoryTypeCaption.Location = new System.Drawing.Point(3, 11);
             this.lblDirectoryTypeCaption.Name = "lblDirectoryTypeCaption";
             this.lblDirectoryTypeCaption.Size = new System.Drawing.Size(118, 13);
             this.lblDirectoryTypeCaption.TabIndex = 37;
@@ -185,8 +196,10 @@
             // 
             // txtX264LogFileSaveDirectory
             // 
+            this.txtX264LogFileSaveDirectory.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.txtX264LogFileSaveDirectory.Enabled = false;
-            this.txtX264LogFileSaveDirectory.Location = new System.Drawing.Point(211, 137);
+            this.txtX264LogFileSaveDirectory.Location = new System.Drawing.Point(230, 125);
+            this.txtX264LogFileSaveDirectory.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
             this.txtX264LogFileSaveDirectory.Name = "txtX264LogFileSaveDirectory";
             this.txtX264LogFileSaveDirectory.ReadOnly = true;
             this.txtX264LogFileSaveDirectory.Size = new System.Drawing.Size(576, 20);
@@ -196,7 +209,7 @@
             // 
             this.btnOpenX264LogFileOutputDialog.Enabled = false;
             this.btnOpenX264LogFileOutputDialog.Image = global::BatchGuy.App.Properties.Resources.Avosoft_Warm_Toolbar_Folder_open;
-            this.btnOpenX264LogFileOutputDialog.Location = new System.Drawing.Point(793, 124);
+            this.btnOpenX264LogFileOutputDialog.Location = new System.Drawing.Point(815, 117);
             this.btnOpenX264LogFileOutputDialog.Name = "btnOpenX264LogFileOutputDialog";
             this.btnOpenX264LogFileOutputDialog.Size = new System.Drawing.Size(61, 33);
             this.btnOpenX264LogFileOutputDialog.TabIndex = 2;
@@ -205,8 +218,10 @@
             // 
             // chkSaveLogFileToDifferentDirectory
             // 
+            this.chkSaveLogFileToDifferentDirectory.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.chkSaveLogFileToDifferentDirectory.AutoSize = true;
-            this.chkSaveLogFileToDifferentDirectory.Location = new System.Drawing.Point(21, 140);
+            this.chkSaveLogFileToDifferentDirectory.Location = new System.Drawing.Point(3, 124);
+            this.chkSaveLogFileToDifferentDirectory.Margin = new System.Windows.Forms.Padding(3, 0, 3, 3);
             this.chkSaveLogFileToDifferentDirectory.Name = "chkSaveLogFileToDifferentDirectory";
             this.chkSaveLogFileToDifferentDirectory.Size = new System.Drawing.Size(195, 17);
             this.chkSaveLogFileToDifferentDirectory.TabIndex = 1;
@@ -214,30 +229,37 @@
             this.chkSaveLogFileToDifferentDirectory.UseVisualStyleBackColor = true;
             this.chkSaveLogFileToDifferentDirectory.CheckedChanged += new System.EventHandler(this.chkSaveLogFileToDifferentDirectory_CheckedChanged);
             // 
-            // groupBox2
+            // gbX264Template
             // 
-            this.groupBox2.Controls.Add(this.txtX264Template);
-            this.groupBox2.Controls.Add(this.label4);
-            this.groupBox2.Controls.Add(this.cbEncodeType);
-            this.groupBox2.Location = new System.Drawing.Point(8, 504);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(848, 188);
-            this.groupBox2.TabIndex = 30;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "x264 Template";
+            this.gbX264Template.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tlpScreen.SetColumnSpan(this.gbX264Template, 3);
+            this.gbX264Template.Controls.Add(this.tlpX264Template);
+            this.gbX264Template.Location = new System.Drawing.Point(3, 492);
+            this.gbX264Template.Name = "gbX264Template";
+            this.gbX264Template.Size = new System.Drawing.Size(926, 213);
+            this.gbX264Template.TabIndex = 30;
+            this.gbX264Template.TabStop = false;
+            this.gbX264Template.Text = "x264 Template";
             // 
             // txtX264Template
             // 
-            this.txtX264Template.Location = new System.Drawing.Point(13, 46);
+            this.txtX264Template.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tlpX264Template.SetColumnSpan(this.txtX264Template, 2);
+            this.txtX264Template.Location = new System.Drawing.Point(3, 39);
             this.txtX264Template.Multiline = true;
             this.txtX264Template.Name = "txtX264Template";
-            this.txtX264Template.Size = new System.Drawing.Size(818, 126);
+            this.txtX264Template.Size = new System.Drawing.Size(914, 152);
             this.txtX264Template.TabIndex = 6;
             // 
             // label4
             // 
+            this.label4.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(591, 26);
+            this.label4.Location = new System.Drawing.Point(657, 11);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(74, 13);
             this.label4.TabIndex = 16;
@@ -245,12 +267,13 @@
             // 
             // cbEncodeType
             // 
+            this.cbEncodeType.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.cbEncodeType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbEncodeType.FormattingEnabled = true;
             this.cbEncodeType.Items.AddRange(new object[] {
             "CRF",
             "2Pass"});
-            this.cbEncodeType.Location = new System.Drawing.Point(681, 19);
+            this.cbEncodeType.Location = new System.Drawing.Point(769, 7);
             this.cbEncodeType.Name = "cbEncodeType";
             this.cbEncodeType.Size = new System.Drawing.Size(148, 21);
             this.cbEncodeType.TabIndex = 5;
@@ -258,19 +281,23 @@
             // 
             // gbAviSynthFiles
             // 
-            this.gbAviSynthFiles.Controls.Add(this.dgvFiles);
-            this.gbAviSynthFiles.Controls.Add(this.lblNumberOfFiles);
-            this.gbAviSynthFiles.Location = new System.Drawing.Point(8, 209);
+            this.gbAviSynthFiles.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tlpScreen.SetColumnSpan(this.gbAviSynthFiles, 3);
+            this.gbAviSynthFiles.Controls.Add(this.tlpAVSFiles);
+            this.gbAviSynthFiles.Location = new System.Drawing.Point(3, 200);
             this.gbAviSynthFiles.Name = "gbAviSynthFiles";
-            this.gbAviSynthFiles.Size = new System.Drawing.Size(848, 273);
+            this.gbAviSynthFiles.Size = new System.Drawing.Size(926, 286);
             this.gbAviSynthFiles.TabIndex = 28;
             this.gbAviSynthFiles.TabStop = false;
             this.gbAviSynthFiles.Text = "Drag N Drop (.avs) files";
             // 
             // label2
             // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(24, 100);
+            this.label2.Location = new System.Drawing.Point(3, 87);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(160, 13);
             this.label2.TabIndex = 26;
@@ -278,7 +305,9 @@
             // 
             // txtX264BatchFileOutputDirectory
             // 
-            this.txtX264BatchFileOutputDirectory.Location = new System.Drawing.Point(211, 93);
+            this.txtX264BatchFileOutputDirectory.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.txtX264BatchFileOutputDirectory.Location = new System.Drawing.Point(230, 85);
+            this.txtX264BatchFileOutputDirectory.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
             this.txtX264BatchFileOutputDirectory.Name = "txtX264BatchFileOutputDirectory";
             this.txtX264BatchFileOutputDirectory.ReadOnly = true;
             this.txtX264BatchFileOutputDirectory.Size = new System.Drawing.Size(576, 20);
@@ -287,7 +316,7 @@
             // btnOpenX264BatchFileOutputDialog
             // 
             this.btnOpenX264BatchFileOutputDialog.Image = global::BatchGuy.App.Properties.Resources.Avosoft_Warm_Toolbar_Folder_open;
-            this.btnOpenX264BatchFileOutputDialog.Location = new System.Drawing.Point(793, 80);
+            this.btnOpenX264BatchFileOutputDialog.Location = new System.Drawing.Point(815, 76);
             this.btnOpenX264BatchFileOutputDialog.Name = "btnOpenX264BatchFileOutputDialog";
             this.btnOpenX264BatchFileOutputDialog.Size = new System.Drawing.Size(61, 33);
             this.btnOpenX264BatchFileOutputDialog.TabIndex = 0;
@@ -305,7 +334,7 @@
             this.saveSettingsFileToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(892, 24);
+            this.menuStrip.Size = new System.Drawing.Size(944, 24);
             this.menuStrip.TabIndex = 32;
             this.menuStrip.Text = "menuStrip1";
             // 
@@ -354,8 +383,9 @@
             // 
             // lblVersion
             // 
+            this.lblVersion.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblVersion.AutoSize = true;
-            this.lblVersion.Location = new System.Drawing.Point(12, 774);
+            this.lblVersion.Location = new System.Drawing.Point(3, 737);
             this.lblVersion.Name = "lblVersion";
             this.lblVersion.Size = new System.Drawing.Size(42, 13);
             this.lblVersion.TabIndex = 41;
@@ -385,6 +415,86 @@
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(264, 6);
+            // 
+            // tlpForm
+            // 
+            this.tlpForm.ColumnCount = 1;
+            this.tlpForm.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tlpForm.Controls.Add(this.lblVersion, 0, 1);
+            this.tlpForm.Controls.Add(this.gbScreen, 0, 0);
+            this.tlpForm.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tlpForm.Location = new System.Drawing.Point(0, 24);
+            this.tlpForm.Name = "tlpForm";
+            this.tlpForm.RowCount = 2;
+            this.tlpForm.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tlpForm.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tlpForm.Size = new System.Drawing.Size(944, 755);
+            this.tlpForm.TabIndex = 42;
+            // 
+            // tlpScreen
+            // 
+            this.tlpScreen.ColumnCount = 3;
+            this.tlpScreen.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 28.02938F));
+            this.tlpScreen.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 71.97063F));
+            this.tlpScreen.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 119F));
+            this.tlpScreen.Controls.Add(this.lblDirectoryTypeCaption, 0, 0);
+            this.tlpScreen.Controls.Add(this.chkIgnoreInternalSubtitles, 0, 4);
+            this.tlpScreen.Controls.Add(this.gbX264Template, 0, 6);
+            this.tlpScreen.Controls.Add(this.lblDirectoryType, 1, 0);
+            this.tlpScreen.Controls.Add(this.gbAviSynthFiles, 0, 5);
+            this.tlpScreen.Controls.Add(this.lblOutputAndLogFileCaption, 0, 1);
+            this.tlpScreen.Controls.Add(this.txtX264EncodeOutputAndLogDirectory, 1, 1);
+            this.tlpScreen.Controls.Add(this.label2, 0, 2);
+            this.tlpScreen.Controls.Add(this.btnOpenX264LogFileOutputDialog, 2, 3);
+            this.tlpScreen.Controls.Add(this.txtX264LogFileSaveDirectory, 1, 3);
+            this.tlpScreen.Controls.Add(this.btnOpenX264BatchFileOutputDialog, 2, 2);
+            this.tlpScreen.Controls.Add(this.txtX264BatchFileOutputDirectory, 1, 2);
+            this.tlpScreen.Controls.Add(this.chkSaveLogFileToDifferentDirectory, 0, 3);
+            this.tlpScreen.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tlpScreen.Location = new System.Drawing.Point(3, 16);
+            this.tlpScreen.Name = "tlpScreen";
+            this.tlpScreen.RowCount = 7;
+            this.tlpScreen.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 47.94521F));
+            this.tlpScreen.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 52.05479F));
+            this.tlpScreen.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 41F));
+            this.tlpScreen.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tlpScreen.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 43F));
+            this.tlpScreen.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 292F));
+            this.tlpScreen.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 218F));
+            this.tlpScreen.Size = new System.Drawing.Size(932, 708);
+            this.tlpScreen.TabIndex = 0;
+            // 
+            // tlpAVSFiles
+            // 
+            this.tlpAVSFiles.ColumnCount = 1;
+            this.tlpAVSFiles.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tlpAVSFiles.Controls.Add(this.dgvFiles, 0, 0);
+            this.tlpAVSFiles.Controls.Add(this.lblNumberOfFiles, 0, 1);
+            this.tlpAVSFiles.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tlpAVSFiles.Location = new System.Drawing.Point(3, 16);
+            this.tlpAVSFiles.Name = "tlpAVSFiles";
+            this.tlpAVSFiles.RowCount = 2;
+            this.tlpAVSFiles.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 91.50579F));
+            this.tlpAVSFiles.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.494208F));
+            this.tlpAVSFiles.Size = new System.Drawing.Size(920, 267);
+            this.tlpAVSFiles.TabIndex = 0;
+            // 
+            // tlpX264Template
+            // 
+            this.tlpX264Template.ColumnCount = 2;
+            this.tlpX264Template.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 79.80349F));
+            this.tlpX264Template.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.19651F));
+            this.tlpX264Template.Controls.Add(this.cbEncodeType, 1, 0);
+            this.tlpX264Template.Controls.Add(this.label4, 0, 0);
+            this.tlpX264Template.Controls.Add(this.txtX264Template, 0, 1);
+            this.tlpX264Template.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tlpX264Template.Location = new System.Drawing.Point(3, 16);
+            this.tlpX264Template.Name = "tlpX264Template";
+            this.tlpX264Template.RowCount = 2;
+            this.tlpX264Template.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 19.07216F));
+            this.tlpX264Template.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 80.92783F));
+            this.tlpX264Template.Size = new System.Drawing.Size(920, 194);
+            this.tlpX264Template.TabIndex = 0;
             // 
             // idDataGridViewTextBoxColumn
             // 
@@ -444,10 +554,9 @@
             this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(892, 795);
-            this.Controls.Add(this.lblVersion);
+            this.ClientSize = new System.Drawing.Size(944, 779);
+            this.Controls.Add(this.tlpForm);
             this.Controls.Add(this.menuStrip);
-            this.Controls.Add(this.gbScreen);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "CreateX264BatchFileForm";
@@ -458,13 +567,18 @@
             this.DragEnter += new System.Windows.Forms.DragEventHandler(this.CreateX264BatchFileForm_DragEnter);
             ((System.ComponentModel.ISupportInitialize)(this.dgvFiles)).EndInit();
             this.gbScreen.ResumeLayout(false);
-            this.gbScreen.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
+            this.gbX264Template.ResumeLayout(false);
             this.gbAviSynthFiles.ResumeLayout(false);
-            this.gbAviSynthFiles.PerformLayout();
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
+            this.tlpForm.ResumeLayout(false);
+            this.tlpForm.PerformLayout();
+            this.tlpScreen.ResumeLayout(false);
+            this.tlpScreen.PerformLayout();
+            this.tlpAVSFiles.ResumeLayout(false);
+            this.tlpAVSFiles.PerformLayout();
+            this.tlpX264Template.ResumeLayout(false);
+            this.tlpX264Template.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsEpisodeNumbersDropDownListItem)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsFiles)).EndInit();
             this.ResumeLayout(false);
@@ -484,7 +598,7 @@
         private System.Windows.Forms.Button btnOpenX264BatchFileOutputDialog;
         private System.Windows.Forms.BindingSource bsFiles;
         private System.Windows.Forms.GroupBox gbAviSynthFiles;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox gbX264Template;
         private System.Windows.Forms.TextBox txtX264Template;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox cbEncodeType;
@@ -512,5 +626,9 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem createX264BatchFileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem createMkvmergeBatchFileToolStripMenuItem;
+        private System.Windows.Forms.TableLayoutPanel tlpForm;
+        private System.Windows.Forms.TableLayoutPanel tlpScreen;
+        private System.Windows.Forms.TableLayoutPanel tlpX264Template;
+        private System.Windows.Forms.TableLayoutPanel tlpAVSFiles;
     }
 }
