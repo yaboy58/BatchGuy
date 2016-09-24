@@ -40,7 +40,6 @@
             this.txtMKVMergeOutputPath = new System.Windows.Forms.TextBox();
             this.btnOpenMKVMergeOutputPathDialog = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
-            this.btnWriteToMKVMergeBatFile = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.chkExtractForRemux = new System.Windows.Forms.CheckBox();
             this.gbExtractForRemux = new System.Windows.Forms.GroupBox();
@@ -63,7 +62,6 @@
             this.txtRemuxSeriesName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.setDirectoryUserControl = new BatchGuy.App.UserControls.SetDirectoryUserControl();
-            this.btnWriteToBatFile = new System.Windows.Forms.Button();
             this.gbDiscSummary = new System.Windows.Forms.GroupBox();
             this.dgvBluRaySummary = new System.Windows.Forms.DataGridView();
             this.isSelectedDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
@@ -92,6 +90,9 @@
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bgwMkvMergeWriteBatchFile = new System.ComponentModel.BackgroundWorker();
             this.lblVersion = new System.Windows.Forms.Label();
+            this.createEac3toBatchFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.createMkvmergeBatchFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.gbScreen.SuspendLayout();
             this.gbMKVMergeInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -117,20 +118,18 @@
             // gbScreen
             // 
             this.gbScreen.Controls.Add(this.gbMKVMergeInfo);
-            this.gbScreen.Controls.Add(this.btnWriteToMKVMergeBatFile);
             this.gbScreen.Controls.Add(this.pictureBox1);
             this.gbScreen.Controls.Add(this.chkExtractForRemux);
             this.gbScreen.Controls.Add(this.gbExtractForRemux);
             this.gbScreen.Controls.Add(this.setDirectoryUserControl);
-            this.gbScreen.Controls.Add(this.btnWriteToBatFile);
             this.gbScreen.Controls.Add(this.gbDiscSummary);
             this.gbScreen.Controls.Add(this.gbDisc);
             this.gbScreen.Controls.Add(this.btnOpenBatchFilePathDialog);
             this.gbScreen.Controls.Add(this.txtBatFilePath);
             this.gbScreen.Controls.Add(this.lblBatchFilePath);
-            this.gbScreen.Location = new System.Drawing.Point(12, 28);
+            this.gbScreen.Location = new System.Drawing.Point(9, 28);
             this.gbScreen.Name = "gbScreen";
-            this.gbScreen.Size = new System.Drawing.Size(1327, 910);
+            this.gbScreen.Size = new System.Drawing.Size(1339, 769);
             this.gbScreen.TabIndex = 30;
             this.gbScreen.TabStop = false;
             // 
@@ -142,9 +141,9 @@
             this.gbMKVMergeInfo.Controls.Add(this.txtMKVMergeOutputPath);
             this.gbMKVMergeInfo.Controls.Add(this.btnOpenMKVMergeOutputPathDialog);
             this.gbMKVMergeInfo.Controls.Add(this.label10);
-            this.gbMKVMergeInfo.Location = new System.Drawing.Point(864, 309);
+            this.gbMKVMergeInfo.Location = new System.Drawing.Point(18, 199);
             this.gbMKVMergeInfo.Name = "gbMKVMergeInfo";
-            this.gbMKVMergeInfo.Size = new System.Drawing.Size(457, 94);
+            this.gbMKVMergeInfo.Size = new System.Drawing.Size(824, 94);
             this.gbMKVMergeInfo.TabIndex = 51;
             this.gbMKVMergeInfo.TabStop = false;
             this.gbMKVMergeInfo.Text = "MKVMerge Info";
@@ -152,10 +151,10 @@
             // btnOpenMKVMergeFilePathDialog
             // 
             this.btnOpenMKVMergeFilePathDialog.Image = global::BatchGuy.App.Properties.Resources.Avosoft_Warm_Toolbar_Folder_open;
-            this.btnOpenMKVMergeFilePathDialog.Location = new System.Drawing.Point(390, 16);
+            this.btnOpenMKVMergeFilePathDialog.Location = new System.Drawing.Point(757, 16);
             this.btnOpenMKVMergeFilePathDialog.Name = "btnOpenMKVMergeFilePathDialog";
             this.btnOpenMKVMergeFilePathDialog.Size = new System.Drawing.Size(61, 33);
-            this.btnOpenMKVMergeFilePathDialog.TabIndex = 13;
+            this.btnOpenMKVMergeFilePathDialog.TabIndex = 2;
             this.btnOpenMKVMergeFilePathDialog.UseVisualStyleBackColor = true;
             this.btnOpenMKVMergeFilePathDialog.Click += new System.EventHandler(this.btnOpenMKVMergeFilePathDialog_Click);
             // 
@@ -164,7 +163,7 @@
             this.txtMKVMergeBatFilePath.Location = new System.Drawing.Point(153, 29);
             this.txtMKVMergeBatFilePath.Name = "txtMKVMergeBatFilePath";
             this.txtMKVMergeBatFilePath.ReadOnly = true;
-            this.txtMKVMergeBatFilePath.Size = new System.Drawing.Size(231, 20);
+            this.txtMKVMergeBatFilePath.Size = new System.Drawing.Size(597, 20);
             this.txtMKVMergeBatFilePath.TabIndex = 49;
             // 
             // lblMKVMergeOutputPath
@@ -181,16 +180,16 @@
             this.txtMKVMergeOutputPath.Location = new System.Drawing.Point(153, 62);
             this.txtMKVMergeOutputPath.Name = "txtMKVMergeOutputPath";
             this.txtMKVMergeOutputPath.ReadOnly = true;
-            this.txtMKVMergeOutputPath.Size = new System.Drawing.Size(231, 20);
+            this.txtMKVMergeOutputPath.Size = new System.Drawing.Size(597, 20);
             this.txtMKVMergeOutputPath.TabIndex = 46;
             // 
             // btnOpenMKVMergeOutputPathDialog
             // 
             this.btnOpenMKVMergeOutputPathDialog.Image = global::BatchGuy.App.Properties.Resources.Avosoft_Warm_Toolbar_Folder_open;
-            this.btnOpenMKVMergeOutputPathDialog.Location = new System.Drawing.Point(390, 55);
+            this.btnOpenMKVMergeOutputPathDialog.Location = new System.Drawing.Point(757, 55);
             this.btnOpenMKVMergeOutputPathDialog.Name = "btnOpenMKVMergeOutputPathDialog";
             this.btnOpenMKVMergeOutputPathDialog.Size = new System.Drawing.Size(61, 33);
-            this.btnOpenMKVMergeOutputPathDialog.TabIndex = 14;
+            this.btnOpenMKVMergeOutputPathDialog.TabIndex = 3;
             this.btnOpenMKVMergeOutputPathDialog.UseVisualStyleBackColor = true;
             this.btnOpenMKVMergeOutputPathDialog.Click += new System.EventHandler(this.btnOpenMKVMergeOutputPathDialog_Click);
             // 
@@ -202,17 +201,6 @@
             this.label10.Size = new System.Drawing.Size(112, 13);
             this.label10.TabIndex = 50;
             this.label10.Text = "mkvmerge Batch File :";
-            // 
-            // btnWriteToMKVMergeBatFile
-            // 
-            this.btnWriteToMKVMergeBatFile.Enabled = false;
-            this.btnWriteToMKVMergeBatFile.Location = new System.Drawing.Point(1155, 858);
-            this.btnWriteToMKVMergeBatFile.Name = "btnWriteToMKVMergeBatFile";
-            this.btnWriteToMKVMergeBatFile.Size = new System.Drawing.Size(166, 40);
-            this.btnWriteToMKVMergeBatFile.TabIndex = 16;
-            this.btnWriteToMKVMergeBatFile.Text = "Create mkvmerge Batch File";
-            this.btnWriteToMKVMergeBatFile.UseVisualStyleBackColor = true;
-            this.btnWriteToMKVMergeBatFile.Click += new System.EventHandler(this.btnWriteToMKVMergeBatFile_Click);
             // 
             // pictureBox1
             // 
@@ -229,7 +217,7 @@
             this.chkExtractForRemux.Location = new System.Drawing.Point(843, 19);
             this.chkExtractForRemux.Name = "chkExtractForRemux";
             this.chkExtractForRemux.Size = new System.Drawing.Size(15, 14);
-            this.chkExtractForRemux.TabIndex = 3;
+            this.chkExtractForRemux.TabIndex = 4;
             this.chkExtractForRemux.UseVisualStyleBackColor = true;
             this.chkExtractForRemux.CheckedChanged += new System.EventHandler(this.chkExtractForRemux_CheckedChanged);
             // 
@@ -267,7 +255,7 @@
             this.chkRemuxUsePeriodsInFileName.Location = new System.Drawing.Point(10, 240);
             this.chkRemuxUsePeriodsInFileName.Name = "chkRemuxUsePeriodsInFileName";
             this.chkRemuxUsePeriodsInFileName.Size = new System.Drawing.Size(147, 17);
-            this.chkRemuxUsePeriodsInFileName.TabIndex = 12;
+            this.chkRemuxUsePeriodsInFileName.TabIndex = 13;
             this.chkRemuxUsePeriodsInFileName.Text = "User Periods in File Name";
             this.chkRemuxUsePeriodsInFileName.UseVisualStyleBackColor = true;
             this.chkRemuxUsePeriodsInFileName.CheckedChanged += new System.EventHandler(this.chkRemuxUsePeriodsInFileName_CheckedChanged);
@@ -332,7 +320,7 @@
             this.txtRemuxTag.Location = new System.Drawing.Point(266, 160);
             this.txtRemuxTag.Name = "txtRemuxTag";
             this.txtRemuxTag.Size = new System.Drawing.Size(85, 20);
-            this.txtRemuxTag.TabIndex = 9;
+            this.txtRemuxTag.TabIndex = 10;
             // 
             // label6
             // 
@@ -348,7 +336,7 @@
             this.txtRemuxAudioType.Location = new System.Drawing.Point(88, 161);
             this.txtRemuxAudioType.Name = "txtRemuxAudioType";
             this.txtRemuxAudioType.Size = new System.Drawing.Size(137, 20);
-            this.txtRemuxAudioType.TabIndex = 8;
+            this.txtRemuxAudioType.TabIndex = 9;
             // 
             // label5
             // 
@@ -363,6 +351,7 @@
             // 
             this.cbRemuxVideoResolution.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbRemuxVideoResolution.FormattingEnabled = true;
+            this.cbRemuxVideoResolution.ItemHeight = 13;
             this.cbRemuxVideoResolution.Items.AddRange(new object[] {
             "",
             "720p",
@@ -387,7 +376,7 @@
             this.txtRemuxSeasonYear.Location = new System.Drawing.Point(269, 86);
             this.txtRemuxSeasonYear.Name = "txtRemuxSeasonYear";
             this.txtRemuxSeasonYear.Size = new System.Drawing.Size(82, 20);
-            this.txtRemuxSeasonYear.TabIndex = 6;
+            this.txtRemuxSeasonYear.TabIndex = 7;
             // 
             // label3
             // 
@@ -403,7 +392,7 @@
             this.txtRemuxSeasonNumber.Location = new System.Drawing.Point(88, 87);
             this.txtRemuxSeasonNumber.Name = "txtRemuxSeasonNumber";
             this.txtRemuxSeasonNumber.Size = new System.Drawing.Size(70, 20);
-            this.txtRemuxSeasonNumber.TabIndex = 5;
+            this.txtRemuxSeasonNumber.TabIndex = 6;
             this.txtRemuxSeasonNumber.TextChanged += new System.EventHandler(this.txtSeasonNumber_TextChanged);
             // 
             // label2
@@ -420,7 +409,7 @@
             this.txtRemuxSeriesName.Location = new System.Drawing.Point(88, 52);
             this.txtRemuxSeriesName.Name = "txtRemuxSeriesName";
             this.txtRemuxSeriesName.Size = new System.Drawing.Size(301, 20);
-            this.txtRemuxSeriesName.TabIndex = 4;
+            this.txtRemuxSeriesName.TabIndex = 5;
             // 
             // label1
             // 
@@ -438,22 +427,12 @@
             this.setDirectoryUserControl.Location = new System.Drawing.Point(18, 129);
             this.setDirectoryUserControl.Name = "setDirectoryUserControl";
             this.setDirectoryUserControl.Size = new System.Drawing.Size(824, 71);
-            this.setDirectoryUserControl.TabIndex = 2;
-            // 
-            // btnWriteToBatFile
-            // 
-            this.btnWriteToBatFile.Location = new System.Drawing.Point(951, 858);
-            this.btnWriteToBatFile.Name = "btnWriteToBatFile";
-            this.btnWriteToBatFile.Size = new System.Drawing.Size(176, 40);
-            this.btnWriteToBatFile.TabIndex = 15;
-            this.btnWriteToBatFile.Text = "Create eac3to Batch File";
-            this.btnWriteToBatFile.UseVisualStyleBackColor = true;
-            this.btnWriteToBatFile.Click += new System.EventHandler(this.btnWriteToBatFile_Click);
+            this.setDirectoryUserControl.TabIndex = 1;
             // 
             // gbDiscSummary
             // 
             this.gbDiscSummary.Controls.Add(this.dgvBluRaySummary);
-            this.gbDiscSummary.Location = new System.Drawing.Point(12, 609);
+            this.gbDiscSummary.Location = new System.Drawing.Point(18, 485);
             this.gbDiscSummary.Name = "gbDiscSummary";
             this.gbDiscSummary.Size = new System.Drawing.Size(1309, 238);
             this.gbDiscSummary.TabIndex = 40;
@@ -478,7 +457,7 @@
             this.dgvBluRaySummary.Location = new System.Drawing.Point(6, 18);
             this.dgvBluRaySummary.Name = "dgvBluRaySummary";
             this.dgvBluRaySummary.Size = new System.Drawing.Size(1297, 214);
-            this.dgvBluRaySummary.TabIndex = 23;
+            this.dgvBluRaySummary.TabIndex = 15;
             this.dgvBluRaySummary.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBluRaySummary_CellClick);
             this.dgvBluRaySummary.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBluRaySummary_CellDoubleClick);
             // 
@@ -540,7 +519,7 @@
             // gbDisc
             // 
             this.gbDisc.Controls.Add(this.dgvBluRayDiscInfo);
-            this.gbDisc.Location = new System.Drawing.Point(12, 415);
+            this.gbDisc.Location = new System.Drawing.Point(18, 299);
             this.gbDisc.Name = "gbDisc";
             this.gbDisc.Size = new System.Drawing.Size(1309, 180);
             this.gbDisc.TabIndex = 39;
@@ -564,7 +543,7 @@
             this.dgvBluRayDiscInfo.Location = new System.Drawing.Point(6, 24);
             this.dgvBluRayDiscInfo.Name = "dgvBluRayDiscInfo";
             this.dgvBluRayDiscInfo.Size = new System.Drawing.Size(1297, 150);
-            this.dgvBluRayDiscInfo.TabIndex = 24;
+            this.dgvBluRayDiscInfo.TabIndex = 14;
             this.dgvBluRayDiscInfo.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBluRayDiscInfo_CellClick);
             this.dgvBluRayDiscInfo.DragDrop += new System.Windows.Forms.DragEventHandler(this.dgvBluRayDiscInfo_DragDrop);
             this.dgvBluRayDiscInfo.DragEnter += new System.Windows.Forms.DragEventHandler(this.dgvBluRayDiscInfo_DragEnter);
@@ -612,7 +591,7 @@
             this.btnOpenBatchFilePathDialog.Location = new System.Drawing.Point(781, 55);
             this.btnOpenBatchFilePathDialog.Name = "btnOpenBatchFilePathDialog";
             this.btnOpenBatchFilePathDialog.Size = new System.Drawing.Size(61, 33);
-            this.btnOpenBatchFilePathDialog.TabIndex = 1;
+            this.btnOpenBatchFilePathDialog.TabIndex = 0;
             this.btnOpenBatchFilePathDialog.UseVisualStyleBackColor = true;
             this.btnOpenBatchFilePathDialog.Click += new System.EventHandler(this.btnOpenBatchFilePathDialog_Click);
             // 
@@ -644,7 +623,7 @@
             this.saveSettingsFileToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1351, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1356, 24);
             this.menuStrip1.TabIndex = 31;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -653,24 +632,27 @@
             this.saveSettingsFileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.loadToolStripMenuItem,
             this.toolStripSeparator1,
-            this.saveToolStripMenuItem});
+            this.saveToolStripMenuItem,
+            this.toolStripSeparator2,
+            this.createEac3toBatchFileToolStripMenuItem,
+            this.createMkvmergeBatchFileToolStripMenuItem});
             this.saveSettingsFileToolStripMenuItem.Name = "saveSettingsFileToolStripMenuItem";
-            this.saveSettingsFileToolStripMenuItem.Size = new System.Drawing.Size(93, 20);
-            this.saveSettingsFileToolStripMenuItem.Text = "Save / Restore";
+            this.saveSettingsFileToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
+            this.saveSettingsFileToolStripMenuItem.Text = "Menu";
             // 
             // loadToolStripMenuItem
             // 
             this.loadToolStripMenuItem.Image = global::BatchGuy.App.Properties.Resources.Custom_Icon_Design_Flatastic_10_Open_file;
             this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
             this.loadToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.R)));
-            this.loadToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.loadToolStripMenuItem.Size = new System.Drawing.Size(267, 22);
             this.loadToolStripMenuItem.Text = "Restore";
             this.loadToolStripMenuItem.Click += new System.EventHandler(this.loadToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(151, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(264, 6);
             // 
             // saveToolStripMenuItem
             // 
@@ -678,7 +660,7 @@
             this.saveToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(267, 22);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
@@ -690,18 +672,39 @@
             // lblVersion
             // 
             this.lblVersion.AutoSize = true;
-            this.lblVersion.Location = new System.Drawing.Point(9, 945);
+            this.lblVersion.Location = new System.Drawing.Point(6, 800);
             this.lblVersion.Name = "lblVersion";
             this.lblVersion.Size = new System.Drawing.Size(42, 13);
             this.lblVersion.TabIndex = 32;
             this.lblVersion.Text = "Version";
+            // 
+            // createEac3toBatchFileToolStripMenuItem
+            // 
+            this.createEac3toBatchFileToolStripMenuItem.Name = "createEac3toBatchFileToolStripMenuItem";
+            this.createEac3toBatchFileToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.E)));
+            this.createEac3toBatchFileToolStripMenuItem.Size = new System.Drawing.Size(267, 22);
+            this.createEac3toBatchFileToolStripMenuItem.Text = "Create eac3to Batch File";
+            this.createEac3toBatchFileToolStripMenuItem.Click += new System.EventHandler(this.createEac3toBatchFileToolStripMenuItem_Click);
+            // 
+            // createMkvmergeBatchFileToolStripMenuItem
+            // 
+            this.createMkvmergeBatchFileToolStripMenuItem.Name = "createMkvmergeBatchFileToolStripMenuItem";
+            this.createMkvmergeBatchFileToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.M)));
+            this.createMkvmergeBatchFileToolStripMenuItem.Size = new System.Drawing.Size(267, 22);
+            this.createMkvmergeBatchFileToolStripMenuItem.Text = "Create mkvmerge Batch File";
+            this.createMkvmergeBatchFileToolStripMenuItem.Click += new System.EventHandler(this.createMkvmergeBatchFileToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(264, 6);
             // 
             // CreateEAC3ToBatchForm
             // 
             this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1351, 967);
+            this.ClientSize = new System.Drawing.Size(1356, 819);
             this.Controls.Add(this.lblVersion);
             this.Controls.Add(this.gbScreen);
             this.Controls.Add(this.menuStrip1);
@@ -740,7 +743,6 @@
         private System.Windows.Forms.OpenFileDialog ofdFileDialog;
         private System.ComponentModel.BackgroundWorker bgwEac3toLoadSummary;
         private System.Windows.Forms.GroupBox gbScreen;
-        private System.Windows.Forms.Button btnWriteToBatFile;
         private System.Windows.Forms.GroupBox gbDiscSummary;
         private System.Windows.Forms.DataGridView dgvBluRaySummary;
         private System.Windows.Forms.GroupBox gbDisc;
@@ -793,7 +795,6 @@
         private System.Windows.Forms.Button btnOpenMKVMergeOutputPathDialog;
         private System.Windows.Forms.TextBox txtMKVMergeOutputPath;
         private System.Windows.Forms.Label lblMKVMergeOutputPath;
-        private System.Windows.Forms.Button btnWriteToMKVMergeBatFile;
         private System.Windows.Forms.Button btnOpenMKVMergeFilePathDialog;
         private System.Windows.Forms.TextBox txtMKVMergeBatFilePath;
         private System.Windows.Forms.Label label10;
@@ -801,5 +802,8 @@
         private System.Windows.Forms.GroupBox gbMKVMergeInfo;
         private System.Windows.Forms.CheckBox chkRemuxUsePeriodsInFileName;
         private System.Windows.Forms.Label lblVersion;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem createEac3toBatchFileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem createMkvmergeBatchFileToolStripMenuItem;
     }
 }
