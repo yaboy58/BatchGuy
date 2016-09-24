@@ -46,7 +46,7 @@ namespace BatchGuy.App
         private BatchGuyEAC3ToSettings _batchGuyEAC3ToSettings;
         private bool _encodeTypeChangedBecauseOfSettingsLoad;
 
-        public static readonly ILog _log = LogManager.GetLogger(typeof(CreateX264BatchFileForm));
+        private IDisplayErrorMessageService _displayErrorMessageService = new DisplayErrorMessageService();
 
         public CreateX264BatchFileForm()
         {
@@ -56,18 +56,25 @@ namespace BatchGuy.App
 
         private void CreateX264BatFileForm_Load(object sender, EventArgs e)
         {
-            lblVersion.Text = Program.GetApplicationVersion();
+            try
+            {
+                lblVersion.Text = Program.GetApplicationVersion();
 
-            gbScreen.SetEnabled(false);
-            if (!this.IsVfw4x264PathSetInSettings())
-            {
-                MessageBox.Show("Please go to the settings screen and set the vfw4x264.exe path", "vfw4x264 path not set", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                gbScreen.SetEnabled(false);
+                if (!this.IsVfw4x264PathSetInSettings())
+                {
+                    MessageBox.Show("Please go to the settings screen and set the vfw4x264.exe path", "vfw4x264 path not set", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                else
+                {
+                    Setting setting = Program.ApplicationSettingsService.GetSettingByName("vfw4x264");
+                    _vfw4x264Path = setting.Value;
+                    this.ConfigureDgvFilesGridColumns();
+                }
             }
-            else
+            catch (Exception ex)
             {
-                Setting setting = Program.ApplicationSettingsService.GetSettingByName("vfw4x264");
-                _vfw4x264Path = setting.Value;
-                this.ConfigureDgvFilesGridColumns();
+                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was a problem trying to load the screen!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
             }
         }
 
@@ -92,7 +99,14 @@ namespace BatchGuy.App
 
         private void cbEncodeType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.HandleEncodeType(cbEncodeType.Text);
+            try
+            {
+                this.HandleEncodeType(cbEncodeType.Text);
+            }
+            catch (Exception ex)
+            {
+                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was a problem trying to select an encode type!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
+            }
         }
 
         private void SetX264TemplateTextBox()
@@ -198,13 +212,20 @@ namespace BatchGuy.App
 
         private void dgvFiles_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex == -1)
+            try
             {
-                this.SortFilesGrid(e.ColumnIndex);
+                if (e.RowIndex == -1)
+                {
+                    this.SortFilesGrid(e.ColumnIndex);
+                }
+                else
+                {
+                    dgvFiles.Rows[e.RowIndex].Selected = true;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                dgvFiles.Rows[e.RowIndex].Selected = true;
+                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was an error trying to select the item on the grid!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
             }
         }
 
@@ -285,7 +306,14 @@ namespace BatchGuy.App
 
         private void btnOpenX264BatchFileOutputDialog_Click(object sender, EventArgs e)
         {
-            this.HandleBtnOpenX264BatchFileOutputDialogClick();
+            try
+            {
+                this.HandleBtnOpenX264BatchFileOutputDialogClick();
+            }
+            catch (Exception ex)
+            {
+                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was a problem opening up the file path!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
+            }
         }
 
         private void HandleBtnOpenX264BatchFileOutputDialogClick()
@@ -385,7 +413,14 @@ namespace BatchGuy.App
 
         private void btnOpenX264LogFileOutputDialog_Click(object sender, EventArgs e)
         {
-            this.HandleBtnOpenX264LogFileOutputDialog();
+            try
+            {
+                this.HandleBtnOpenX264LogFileOutputDialog();
+            }
+            catch (Exception ex)
+            {
+                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was a problem opening up the file path!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
+            }
         }
 
         private void HandleBtnOpenX264LogFileOutputDialog()
@@ -439,12 +474,19 @@ namespace BatchGuy.App
 
         private void loadToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ofdFileDialog.Filter = "BatchGuy File|*.batchGuyEac3toSettings";
-            ofdFileDialog.FileName = "";
-            if (ofdFileDialog.ShowDialog() == DialogResult.OK)
+            try
             {
-                string settingsFile = ofdFileDialog.FileName;
-                this.HandlesLoadToolStripMenuItemClick(settingsFile);
+                ofdFileDialog.Filter = "BatchGuy File|*.batchGuyEac3toSettings";
+                ofdFileDialog.FileName = "";
+                if (ofdFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    string settingsFile = ofdFileDialog.FileName;
+                    this.HandlesLoadToolStripMenuItemClick(settingsFile);
+                }
+            }
+            catch (Exception ex)
+            {
+                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was a problem trying to load the file!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
             }
         }
 
@@ -479,8 +521,7 @@ namespace BatchGuy.App
             }
             catch (Exception ex)
             {
-                MessageBox.Show("There was an error trying to load the eac3to Settings File", "Error Occurred.", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                _log.ErrorFormat(Program.GetLogErrorFormat(), ex.Message, MethodBase.GetCurrentMethod().Name);
+                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was an error trying to load the eac3to Settings File!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
             }
         }
 
@@ -545,7 +586,14 @@ namespace BatchGuy.App
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.HandlesSaveToolStripMenuItemClick();
+            try
+            {
+                this.HandlesSaveToolStripMenuItemClick();
+            }
+            catch (Exception ex)
+            {
+                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was a problem trying to save the file!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
+            }
         }
 
         private void HandlesSaveToolStripMenuItemClick()
@@ -778,9 +826,16 @@ namespace BatchGuy.App
 
         private void dgvFiles_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex == -1 || e.ColumnIndex == 4) //header row or episode number drop down
-                return;
-            this.HandlesdgvFilesCellDoubleClick(e);
+            try
+            {
+                if (e.RowIndex == -1 || e.ColumnIndex == 4) //header row or episode number drop down
+                    return;
+                this.HandlesdgvFilesCellDoubleClick(e);
+            }
+            catch (Exception ex)
+            {
+                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was an error trying to open the external subtitle screen!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
+            }
         }
 
         private void HandlesdgvFilesCellDoubleClick(DataGridViewCellEventArgs e)
@@ -817,7 +872,14 @@ namespace BatchGuy.App
 
         private void chkIgnoreInternalSubtitles_CheckedChanged(object sender, EventArgs e)
         {
-            this.HandleschkIgnoreInternalSubtitlesCheckedChanged();
+            try
+            {
+                this.HandleschkIgnoreInternalSubtitlesCheckedChanged();
+            }
+            catch (Exception ex)
+            {
+                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was an error trying to set the ignore internal subtitles flag!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
+            }
         }
 
         private void HandleschkIgnoreInternalSubtitlesCheckedChanged()
@@ -827,23 +889,37 @@ namespace BatchGuy.App
 
         private void createX264BatchFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("Create x264 batch file?", "Start Process?", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
-
-            if (result == System.Windows.Forms.DialogResult.Yes)
+            try
             {
-                _batchGuyEAC3ToSettings.X264Files = this.GetX264Files();
-                _batchGuyEAC3ToSettings.X264FileSettings = this.GetX264FileSettings();
+                DialogResult result = MessageBox.Show("Create x264 batch file?", "Start Process?", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
 
-                if (this.IsScreenValidForWriteX264BatchFile())
+                if (result == System.Windows.Forms.DialogResult.Yes)
                 {
-                    this.CreateX264BatFile();
+                    _batchGuyEAC3ToSettings.X264Files = this.GetX264Files();
+                    _batchGuyEAC3ToSettings.X264FileSettings = this.GetX264FileSettings();
+
+                    if (this.IsScreenValidForWriteX264BatchFile())
+                    {
+                        this.CreateX264BatFile();
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was a problem trying to create the x264 batch file!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
             }
         }
 
         private void createMkvmergeBatchFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.HandlesMenuItemWriteToMKVMergeBatFileClick();
+            try
+            {
+                this.HandlesMenuItemWriteToMKVMergeBatFileClick();
+            }
+            catch (Exception ex)
+            {
+                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was a problem trying to create the mkvmerge batch file!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
+            }
         }
 
         private void closeToolStripMenuItem_Click(object sender, EventArgs e)

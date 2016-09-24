@@ -16,6 +16,8 @@ using BatchGuy.App.MKVMerge.Models;
 using BatchGuy.App.MKVMerge.Interfaces;
 using BatchGuy.App.MKVMerge.Services;
 using BatchGuy.App.Enums;
+using BatchGuy.App.Shared.Interfaces;
+using System.Reflection;
 
 namespace BatchGuy.App
 {
@@ -25,6 +27,7 @@ namespace BatchGuy.App
         private BindingList<MKVMergeLanguageItem> _bindingListSubtitlesMKVMergeDefaultSettingsLanguage = new BindingList<MKVMergeLanguageItem>();
         private BindingList<MKVMergeLanguageItem> _bindingListAudioMKVMergeDefaultSettingsLanguage = new BindingList<MKVMergeLanguageItem>();
         private BindingList<Setting> _bindingListExecutables;
+        private IDisplayErrorMessageService _displayErrorMessageService = new DisplayErrorMessageService();
 
         public SettingsForm()
         {
@@ -33,12 +36,19 @@ namespace BatchGuy.App
 
         private void SettingsForm_Load(object sender, EventArgs e)
         {
-            lblVersion.Text = Program.GetApplicationVersion();
-            this.LoadMKVLanguageDropDownBoxes();
-            this.LoadExecutables();
-            this.LoadSettings();
-            this.LoadControls();
-            this.SetToolTips();
+            try
+            {
+                lblVersion.Text = Program.GetApplicationVersion();
+                this.LoadMKVLanguageDropDownBoxes();
+                this.LoadExecutables();
+                this.LoadSettings();
+                this.LoadControls();
+                this.SetToolTips();
+            }
+            catch (Exception ex)
+            {
+                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was a problem trying to load the screen!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
+            }
         }
 
         private void SetToolTips()
@@ -160,7 +170,14 @@ namespace BatchGuy.App
 
         private void chkBluRayTitleInfoDefaultSettingsSelectSubtitles_CheckedChanged(object sender, EventArgs e)
         {
-            this.HandlesChkBluRayTitleInfoDefaultSettingsSelectSubtitlesCheckedChanged();
+            try
+            {
+                this.HandlesChkBluRayTitleInfoDefaultSettingsSelectSubtitlesCheckedChanged();
+            }
+            catch (Exception ex)
+            {
+                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was a problem trying to set the default subtitle settings!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
+            }
         }
 
         private void HandlesChkBluRayTitleInfoDefaultSettingsSelectSubtitlesCheckedChanged()
@@ -170,7 +187,14 @@ namespace BatchGuy.App
 
         private void chkBluRayTitleInfoDefaultSettingsSelectChapters_CheckedChanged(object sender, EventArgs e)
         {
-            this.HandlesChkBluRayTitleInfoDefaultSettingsSelectChaptersCheckedChanged();
+            try
+            {
+                this.HandlesChkBluRayTitleInfoDefaultSettingsSelectChaptersCheckedChanged();
+            }
+            catch (Exception ex)
+            {
+                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was a problem trying to set the default chapter settings!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
+            }
         }
 
         private void HandlesChkBluRayTitleInfoDefaultSettingsSelectChaptersCheckedChanged()
@@ -182,7 +206,7 @@ namespace BatchGuy.App
         {
             if (e.RowIndex == -1)
                 return;
-            dgvBluRayTitleInfoDefaultSettingsAudio.Rows[e.RowIndex].Selected = true; 
+            dgvBluRayTitleInfoDefaultSettingsAudio.Rows[e.RowIndex].Selected = true;
         }
 
         private void chkShowProgressNumbers_CheckedChanged(object sender, EventArgs e)
@@ -197,7 +221,14 @@ namespace BatchGuy.App
 
         private void chkSubtitleLanguageAlwaysSelectedEnabled_CheckedChanged(object sender, EventArgs e)
         {
-            this.HandlesChkSubtitleLanguageAlwaysSelecedEnabledCheckedChanged();
+            try
+            {
+                this.HandlesChkSubtitleLanguageAlwaysSelecedEnabledCheckedChanged();
+            }
+            catch (Exception ex)
+            {
+                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was a problem trying to set the subtitle always settings!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
+            }
         }
 
         private void HandlesChkSubtitleLanguageAlwaysSelecedEnabledCheckedChanged()
@@ -208,7 +239,14 @@ namespace BatchGuy.App
 
         private void cbSubtitlesMKVMergeDefaultSettingsLanguage_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.HandlesCBSubtitlesMKVMergeDefaultSettingsLanguageSelectedIndexChanged();
+            try
+            {
+                this.HandlesCBSubtitlesMKVMergeDefaultSettingsLanguageSelectedIndexChanged();
+            }
+            catch (Exception ex)
+            {
+                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was a problem trying to set the default mkvmerge settings for subtitles!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
+            }
         }
 
         private void HandlesCBSubtitlesMKVMergeDefaultSettingsLanguageSelectedIndexChanged()
@@ -218,7 +256,14 @@ namespace BatchGuy.App
 
         private void cbSubtitlesMKVMergeDefaultSettingsDefaultTrackFlag_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.HandlesCBSubtitlesMKVMergeDefaultSettingsDefaultTrackFlagSelectedIndexChanged();
+            try
+            {
+                this.HandlesCBSubtitlesMKVMergeDefaultSettingsDefaultTrackFlagSelectedIndexChanged();
+            }
+            catch (Exception ex)
+            {
+                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was a problem trying to set the default mkvmerge default track flag for subtitles!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
+            }
         }
 
         private void HandlesCBSubtitlesMKVMergeDefaultSettingsDefaultTrackFlagSelectedIndexChanged()
@@ -228,17 +273,31 @@ namespace BatchGuy.App
 
         private void cbAudioMKVMergeDefaultSettingsLanguage_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.HandlesCBAudioMKVMergeDefaultSettingsLanguageSelectedIndexChanged();
+            try
+            {
+                this.HandlesCBAudioMKVMergeDefaultSettingsLanguageSelectedIndexChanged();
+            }
+            catch (Exception ex)
+            {
+                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was a problem trying to set the default mkvmerge audio settings!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
+            }
         }
 
         private void HandlesCBAudioMKVMergeDefaultSettingsLanguageSelectedIndexChanged()
         {
-            Program.ApplicationSettings.AudioMKVMergeDefaultSettings.DefaultMKVMergeItem.Language = (MKVMergeLanguageItem) cbAudioMKVMergeDefaultSettingsLanguage.SelectedItem;
+            Program.ApplicationSettings.AudioMKVMergeDefaultSettings.DefaultMKVMergeItem.Language = (MKVMergeLanguageItem)cbAudioMKVMergeDefaultSettingsLanguage.SelectedItem;
         }
 
         private void cbAudioMKVMergeDefaultSettingsDefaultTrackFlag_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.HandlesCBAudioMKVMergeDefaultSettingsDefaultTrackFlagSelectedIndexChanged();
+            try
+            {
+                this.HandlesCBAudioMKVMergeDefaultSettingsDefaultTrackFlagSelectedIndexChanged();
+            }
+            catch (Exception ex)
+            {
+                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was a problem trying to set the default mkvmerge default track flag for audio!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
+            }
         }
 
         private void HandlesCBAudioMKVMergeDefaultSettingsDefaultTrackFlagSelectedIndexChanged()
@@ -248,7 +307,14 @@ namespace BatchGuy.App
 
         private void cbAudioMKVMergeDefaultSettingsAudioType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.HandlesCBAudioMKVMergeDefaultSettingsAudioTypeSelectedIndexChanged();
+            try
+            {
+                this.HandlesCBAudioMKVMergeDefaultSettingsAudioTypeSelectedIndexChanged();
+            }
+            catch (Exception ex)
+            {
+                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was a problem trying to set the default mkvmerge audio type settings!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
+            }
         }
 
         private void HandlesCBAudioMKVMergeDefaultSettingsAudioTypeSelectedIndexChanged()
@@ -258,7 +324,14 @@ namespace BatchGuy.App
 
         private void chkAudioLanguageAlwaysSelectedEnabled_CheckedChanged(object sender, EventArgs e)
         {
-            this.HandlesChkAudioLanguageAlwaysSelectedEnabledCheckedChanged();
+            try
+            {
+                this.HandlesChkAudioLanguageAlwaysSelectedEnabledCheckedChanged();
+            }
+            catch (Exception ex)
+            {
+                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was a problem trying to set the audio always settings!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
+            }
         }
 
         private void HandlesChkAudioLanguageAlwaysSelectedEnabledCheckedChanged()
@@ -269,7 +342,14 @@ namespace BatchGuy.App
 
         private void cbRemuxNamingConventionDefaults_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.HanldesCBRemuxNamingConventionDefaultsSelectedIndexChanged(cbRemuxNamingConventionDefaults.Text);
+            try
+            {
+                this.HanldesCBRemuxNamingConventionDefaultsSelectedIndexChanged(cbRemuxNamingConventionDefaults.Text);
+            }
+            catch (Exception ex)
+            {
+                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was a problem trying to set the default naming conventions!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
+            }
         }
 
         private void HanldesCBRemuxNamingConventionDefaultsSelectedIndexChanged(string value)
@@ -298,9 +378,16 @@ namespace BatchGuy.App
 
         private void dgvExecutables_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex == -1)
-                return;
-            this.HandlesdgvExecutablesCellClick(e);
+            try
+            {
+                if (e.RowIndex == -1)
+                    return;
+                this.HandlesdgvExecutablesCellClick(e);
+            }
+            catch (Exception ex)
+            {
+                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was a problem trying to set the executable path!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
+            }
         }
 
         private void HandlesdgvExecutablesCellClick(DataGridViewCellEventArgs e)
@@ -324,9 +411,16 @@ namespace BatchGuy.App
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            gbScreen.SetEnabled(false);
-            this.HandleSaveClick();
-            this.Close();
+            try
+            {
+                gbScreen.SetEnabled(false);
+                this.HandleSaveClick();
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was a problem trying to save settings!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
+            }
         }
 
         private void closeToolStripMenuItem_Click(object sender, EventArgs e)
