@@ -43,6 +43,7 @@ namespace BatchGuy.App
         private IAviSynthWriteService _avsService; //ioc
         private BatchGuyEAC3ToSettings _batchGuyEAC3ToSettings;
         private string _settingsExtension = "batchGuyEac3toSettings";
+        private IDisplayErrorMessageService _displayErrorMessageService = new DisplayErrorMessageService();
 
         public CreateAviSynthFilesForm()
         {
@@ -70,7 +71,7 @@ namespace BatchGuy.App
                 enabled = true;
 
             btnFFMSIndexOpenDialog.SetEnabled(enabled);
-            createFfindexBatchFilesToolStripMenuItem.Enabled = Enabled;
+            createFfindexBatchFilesToolStripMenuItem.Enabled = enabled;
         }
 
         private void SetAviSynthTemplateTextBox()
@@ -85,11 +86,6 @@ namespace BatchGuy.App
         {
            new ToolTip().SetToolTip(txtOutputDirectory, "Directory where AviSynth Files will be saved");
            new ToolTip().SetToolTip(txtNumberOfFiles, "Number of episodes");
-        }
-
-        private void btnCreateAVSFiles_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void Process()
@@ -153,7 +149,14 @@ namespace BatchGuy.App
 
         private void btnOpenDialog_Click(object sender, EventArgs e)
         {
-            this.HandleBtnOpenDialogClick();
+            try
+            {
+                this.HandleBtnOpenDialogClick();
+            }
+            catch (Exception ex)
+            {
+                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was a problem opening the file dialog!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
+            }
         }
 
         private void HandleBtnOpenDialogClick()
@@ -206,45 +209,44 @@ namespace BatchGuy.App
 
         private void loadToolStripMenuItem_Click(object sender, EventArgs e)
         {
-           openFileDialog.Filter = "BatchGuy File|*.batchGuyEac3toSettings";
-            openFileDialog.FileName = "";
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            try
             {
-                string settingsFile = openFileDialog.FileName;
-                this.HandlesLoadToolStripMenuItemClick(settingsFile);
+                openFileDialog.Filter = "BatchGuy File|*.batchGuyEac3toSettings";
+                openFileDialog.FileName = "";
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    string settingsFile = openFileDialog.FileName;
+                    this.HandlesLoadToolStripMenuItemClick(settingsFile);
+                }
+            }
+            catch (Exception ex)
+            {
+                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was a problem loading the file!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
             }
         }
 
         private void HandlesLoadToolStripMenuItemClick(string settingsFile)
         {
-            try
+            if (!string.IsNullOrEmpty(settingsFile))
             {
-                if (!string.IsNullOrEmpty(settingsFile))
+                IJsonSerializationService<BatchGuyEAC3ToSettings> jsonSerializationService = new JsonSerializationService<BatchGuyEAC3ToSettings>();
+                IBatchGuyEAC3ToSettingsService batchGuyEAC3ToSettingsService = new BatchGuyEAC3ToSettingsService(jsonSerializationService);
+                _batchGuyEAC3ToSettings = batchGuyEAC3ToSettingsService.GetBatchGuyEAC3ToSettings(settingsFile);
+                if (batchGuyEAC3ToSettingsService.Errors.Count() > 0)
                 {
-                    IJsonSerializationService<BatchGuyEAC3ToSettings> jsonSerializationService = new JsonSerializationService<BatchGuyEAC3ToSettings>();
-                    IBatchGuyEAC3ToSettingsService batchGuyEAC3ToSettingsService = new BatchGuyEAC3ToSettingsService(jsonSerializationService);
-                    _batchGuyEAC3ToSettings = batchGuyEAC3ToSettingsService.GetBatchGuyEAC3ToSettings(settingsFile);
-                    if (batchGuyEAC3ToSettingsService.Errors.Count() > 0)
-                    {
-                        MessageBox.Show(batchGuyEAC3ToSettingsService.Errors.GetErrorMessage(), "Error Occurred.", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    else if (_batchGuyEAC3ToSettings.EAC3ToSettings.IsExtractForRemux)
-                    {
-                        MessageBox.Show("You cannot load a (.batchGuyEac3toSettings) file that is for Remuxing!", "Error Occurred.", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    else
-                    {
-                        this.LoadScreen();
-                        gbScreen.SetEnabled(true);
-                        saveToolStripMenuItem.Enabled = true;
-                        createAviSynthavsFilesToolStripMenuItem.Enabled = true;
-                    }
+                    MessageBox.Show(batchGuyEAC3ToSettingsService.Errors.GetErrorMessage(), "Error Occurred.", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("There was an error trying to load the eac3to Settings File", "Error Occurred.", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                _log.ErrorFormat(Program.GetLogErrorFormat(), ex.Message, MethodBase.GetCurrentMethod().Name);
+                else if (_batchGuyEAC3ToSettings.EAC3ToSettings.IsExtractForRemux)
+                {
+                    MessageBox.Show("You cannot load a (.batchGuyEac3toSettings) file that is for Remuxing!", "Error Occurred.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    this.LoadScreen();
+                    gbScreen.SetEnabled(true);
+                    saveToolStripMenuItem.Enabled = true;
+                    createAviSynthavsFilesToolStripMenuItem.Enabled = true;
+                }
             }
         }
 
@@ -317,12 +319,19 @@ namespace BatchGuy.App
 
         private void HandlesCreateAviSynthFilesFormDragDrop(DragEventArgs e)
         {
-            foreach (string file in (Array)e.Data.GetData(DataFormats.FileDrop))
+            try
             {
-                if (this.IsBatchGuyEac3toSettingsFile(file))
+                foreach (string file in (Array)e.Data.GetData(DataFormats.FileDrop))
                 {
-                    this.HandlesLoadToolStripMenuItemClick(file);
+                    if (this.IsBatchGuyEac3toSettingsFile(file))
+                    {
+                        this.HandlesLoadToolStripMenuItemClick(file);
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was an error loading the avisynth files!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
             }
         }
 
@@ -336,7 +345,14 @@ namespace BatchGuy.App
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.HandlessaveToolStripMenuItemClick();
+            try
+            {
+                this.HandlessaveToolStripMenuItemClick();
+            }
+            catch (Exception ex)
+            {
+                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was a problem saving the file!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
+            }
         }
 
         private void HandlessaveToolStripMenuItemClick()
@@ -363,7 +379,14 @@ namespace BatchGuy.App
 
         private void btnFFMSIndexOpenDialog_Click(object sender, EventArgs e)
         {
-            this.HandlesbtnFFMSIndexOpenDialogClick();
+            try
+            {
+                this.HandlesbtnFFMSIndexOpenDialogClick();
+            }
+            catch (Exception ex)
+            {
+                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was a problem opening the file dialog!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
+            }
         }
 
         private void HandlesbtnFFMSIndexOpenDialogClick()
@@ -387,11 +410,6 @@ namespace BatchGuy.App
                 }
                 txtFFMSIndexOutputDirectory.Text = sfd.FileName;
             }
-        }
-
-        private void btnCreateFFMSIndexBatchFile_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void HandlesMenuItemCreateFFMSIndexBatchFileClick()
@@ -451,7 +469,14 @@ namespace BatchGuy.App
 
         private void cbVideoFilter_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.HandlescbVideoFilterSelectedIndexChanged();
+            try
+            {
+                this.HandlescbVideoFilterSelectedIndexChanged();
+            }
+            catch (Exception ex)
+            {
+                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was a problem selecting a video filter!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
+            }
         }
 
         private void HandlescbVideoFilterSelectedIndexChanged()
@@ -469,21 +494,35 @@ namespace BatchGuy.App
 
         private void createAviSynthavsFilesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("Create AviSynth files?", "Start Process?", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
-
-            if (result == System.Windows.Forms.DialogResult.Yes)
+            try
             {
-                if (this.IsScreenValid())
+                DialogResult result = MessageBox.Show("Create AviSynth files?", "Start Process?", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+
+                if (result == System.Windows.Forms.DialogResult.Yes)
                 {
-                    gbScreen.SetEnabled(false);
-                    Process();
+                    if (this.IsScreenValid())
+                    {
+                        gbScreen.SetEnabled(false);
+                        Process();
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was a problem creating the avisynth files!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
             }
         }
 
         private void createFfindexBatchFilesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.HandlesMenuItemCreateFFMSIndexBatchFileClick();
+            try
+            {
+                this.HandlesMenuItemCreateFFMSIndexBatchFileClick();
+            }
+            catch (Exception ex)
+            {
+                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was a problem creating the ffindex batch file!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
+            }
         }
 
         private void closeToolStripMenuItem_Click(object sender, EventArgs e)

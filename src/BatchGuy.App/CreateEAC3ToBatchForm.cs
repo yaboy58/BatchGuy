@@ -52,8 +52,7 @@ namespace BatchGuy.App
         private string _settingsExtension = "batchGuyEac3toSettings";
         private string _mkvMergePath = string.Empty;
         private BatchGuyEAC3ToSettings _batchGuyEAC3ToSettings;
-
-        private static readonly ILog _log = LogManager.GetLogger(typeof(CreateEAC3ToBatchForm));
+        private IDisplayErrorMessageService _displayErrorMessageService = new DisplayErrorMessageService();
 
         public CreateEAC3ToBatchForm()
         {
@@ -65,23 +64,30 @@ namespace BatchGuy.App
 
         private void CreateEAC3ToBatchForm_Load(object sender, EventArgs e)
         {
-            lblVersion.Text = Program.GetApplicationVersion();
+            try
+            {
+                lblVersion.Text = Program.GetApplicationVersion();
 
-            if (!this.IsEac3ToPathSetInSettings())
-            {
-                MessageBox.Show("Please go to the settings screen and set the eac3to.exe path", "eac3to path not set", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                gbScreen.SetEnabled(false);
+                if (!this.IsEac3ToPathSetInSettings())
+                {
+                    MessageBox.Show("Please go to the settings screen and set the eac3to.exe path", "eac3to path not set", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    gbScreen.SetEnabled(false);
+                }
+                else
+                {
+                    Setting setting = Program.ApplicationSettingsService.GetSettingByName("eac3to");
+                    _eac3ToPath = setting.Value;
+                    this.SetEac3ToConfiguration();
+                    cbRemuxVideoResolution.SelectedIndex = 3;
+                    cbRemuxMedium.SelectedIndex = 1;
+                    cbRemuxVideoFormat.SelectedIndex = 1;
+                    this.SetMenuItemCreateMKVMergeBatFileEnabledStatus();
+                    this.SetRemuxNamingConventionCurrentTemplateExampleLabel();
+                }
             }
-            else
+            catch (Exception ex)
             {
-                Setting setting = Program.ApplicationSettingsService.GetSettingByName("eac3to");
-                _eac3ToPath = setting.Value;
-                this.SetEac3ToConfiguration();
-                cbRemuxVideoResolution.SelectedIndex = 3;
-                cbRemuxMedium.SelectedIndex = 1;
-                cbRemuxVideoFormat.SelectedIndex = 1;
-                this.SetMenuItemCreateMKVMergeBatFileEnabledStatus();
-                this.SetRemuxNamingConventionCurrentTemplateExampleLabel();
+                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was a problem trying to load the screen!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
             }
         }
 
@@ -146,27 +152,34 @@ namespace BatchGuy.App
 
         private void dgvBluRayDiscInfo_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex == -1)
+            try
             {
-                this.SortBluRayDiscGrid(e.ColumnIndex);
-            }
-            else
-            {
-                this.HandleDgvBluRayDiscInfoCellClick(e);
-                if (_currentBluRayDiscInfo.BluRaySummaryInfoList == null)
+                if (e.RowIndex == -1)
                 {
-                    gbScreen.SetEnabled(false);
-                    this.HandleLoadBluRay();
+                    this.SortBluRayDiscGrid(e.ColumnIndex);
                 }
                 else
                 {
-                    _bindingListBluRaySummaryInfo = new BindingList<BluRaySummaryInfo>();
-                    foreach (BluRaySummaryInfo info in _currentBluRayDiscInfo.BluRaySummaryInfoList)
+                    this.HandleDgvBluRayDiscInfoCellClick(e);
+                    if (_currentBluRayDiscInfo.BluRaySummaryInfoList == null)
                     {
-                        _bindingListBluRaySummaryInfo.Add(info);
+                        gbScreen.SetEnabled(false);
+                        this.HandleLoadBluRay();
                     }
-                    this.UpdateUIForBluRaySummary();
+                    else
+                    {
+                        _bindingListBluRaySummaryInfo = new BindingList<BluRaySummaryInfo>();
+                        foreach (BluRaySummaryInfo info in _currentBluRayDiscInfo.BluRaySummaryInfoList)
+                        {
+                            _bindingListBluRaySummaryInfo.Add(info);
+                        }
+                        this.UpdateUIForBluRaySummary();
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was a problem trying to load the disc summary!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
             }
         }
 
@@ -289,7 +302,14 @@ namespace BatchGuy.App
 
         private void btnOpenBatchFilePathDialog_Click(object sender, EventArgs e)
         {
-            this.HandleBtnOpenBatchFilePathDialogClick();
+            try
+            {
+                this.HandleBtnOpenBatchFilePathDialogClick();
+            }
+            catch (Exception ex)
+            {
+                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was a problem opening the file path!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
+            }
         }
 
         private void HandleBtnOpenBatchFilePathDialogClick()
@@ -492,7 +512,14 @@ namespace BatchGuy.App
 
         private void chkExtractForRemux_CheckedChanged(object sender, EventArgs e)
         {
-            this.HandleChkExtractForRemuxCheckedChanged();
+            try
+            {
+                this.HandleChkExtractForRemuxCheckedChanged();
+            }
+            catch (Exception ex)
+            {
+                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was a problem loading the remux template!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
+            }
         }
 
         private void HandleChkExtractForRemuxCheckedChanged()
@@ -541,7 +568,14 @@ namespace BatchGuy.App
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.HandlesSaveToolStripMenuItemClick();
+            try
+            {
+                this.HandlesSaveToolStripMenuItemClick();
+            }
+            catch (Exception ex)
+            {
+                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was a problem saving the file!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
+            }
         }
 
         private void HandlesSaveToolStripMenuItemClick()
@@ -579,12 +613,19 @@ namespace BatchGuy.App
 
         private void loadToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ofdFileDialog.Filter = "BatchGuy File|*.batchGuyEac3toSettings";
-            ofdFileDialog.FileName = "";
-            if (ofdFileDialog.ShowDialog() == DialogResult.OK)
+            try
             {
-                string settingsFile = ofdFileDialog.FileName;
-                this.HandlesLoadToolStripMenuItemClick(settingsFile);
+                ofdFileDialog.Filter = "BatchGuy File|*.batchGuyEac3toSettings";
+                ofdFileDialog.FileName = "";
+                if (ofdFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    string settingsFile = ofdFileDialog.FileName;
+                    this.HandlesLoadToolStripMenuItemClick(settingsFile);
+                }
+            }
+            catch (Exception ex)
+            {
+                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was a problem loading the file!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
             }
         }
 
@@ -610,8 +651,7 @@ namespace BatchGuy.App
             }
             catch (Exception ex)
             {
-                MessageBox.Show("There was an error trying to load the eac3to Settings File", "Error Occurred.", MessageBoxButtons.OK, MessageBoxIcon.Error);             
-                _log.ErrorFormat(Program.GetLogErrorFormat(), ex.Message, MethodBase.GetCurrentMethod().Name);
+                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was an error trying to load the eac3to Settings File!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
             }
         }
 
@@ -712,7 +752,14 @@ namespace BatchGuy.App
 
         private void btnOpenMKVMergeOutputPathDialog_Click(object sender, EventArgs e)
         {
-            this.HandleBtnSetOutputDirectoryUserControlOpenDialogClick();
+            try
+            {
+                this.HandleBtnSetOutputDirectoryUserControlOpenDialogClick();
+            }
+            catch (Exception ex)
+            {
+                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was a problem opening the file path!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
+            }
         }
 
         private void HandleBtnSetOutputDirectoryUserControlOpenDialogClick()
@@ -771,7 +818,14 @@ namespace BatchGuy.App
 
         private void btnOpenMKVMergeFilePathDialog_Click(object sender, EventArgs e)
         {
-            this.HandleBtnOpenMKVMergeFilePathDialogClick();
+            try
+            {
+                this.HandleBtnOpenMKVMergeFilePathDialogClick();
+            }
+            catch (Exception ex)
+            {
+                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was a problem opening the file path!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
+            }
         }
 
         private void HandleBtnOpenMKVMergeFilePathDialogClick()
@@ -885,60 +939,74 @@ namespace BatchGuy.App
 
         private void createEac3toBatchFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DialogResult startProcessResult = MessageBox.Show("Create eac3to batch file?", "Start Process?", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
-
-            if (startProcessResult == System.Windows.Forms.DialogResult.Yes)
+            try
             {
-                this.SetEac3ToConfiguration();
-                this.SetEAC3ToRemuxFileNameTemplate();
-                if (this.IsAtLeastOneDiscLoaded() && this.IsScreenValid())
+                DialogResult startProcessResult = MessageBox.Show("Create eac3to batch file?", "Start Process?", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+
+                if (startProcessResult == System.Windows.Forms.DialogResult.Yes)
                 {
-                    List<BluRayDiscInfo> discs = this.GetBluRayDiscInfoList();
-                    WarningCollection warnings = new EAC3ToBatchFileWriteWarningService(discs).GetWarnings();
-                    if (warnings.Count() > 0)
+                    this.SetEac3ToConfiguration();
+                    this.SetEAC3ToRemuxFileNameTemplate();
+                    if (this.IsAtLeastOneDiscLoaded() && this.IsScreenValid())
                     {
-                        string warning = string.Format("{0}{1}{2}Would you still like to continue?", warnings.GetWarningMessage(), Environment.NewLine, Environment.NewLine);
-                        DialogResult warningResult = MessageBox.Show(warning, "Warnings Found", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
-                        if (warningResult == System.Windows.Forms.DialogResult.Yes)
+                        List<BluRayDiscInfo> discs = this.GetBluRayDiscInfoList();
+                        WarningCollection warnings = new EAC3ToBatchFileWriteWarningService(discs).GetWarnings();
+                        if (warnings.Count() > 0)
+                        {
+                            string warning = string.Format("{0}{1}{2}Would you still like to continue?", warnings.GetWarningMessage(), Environment.NewLine, Environment.NewLine);
+                            DialogResult warningResult = MessageBox.Show(warning, "Warnings Found", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
+                            if (warningResult == System.Windows.Forms.DialogResult.Yes)
+                            {
+                                this.WriteToBatchFile();
+                            }
+                        }
+                        else
                         {
                             this.WriteToBatchFile();
                         }
                     }
-                    else
-                    {
-                        this.WriteToBatchFile();
-                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was a problem creating the eac3to batch file!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
             }
         }
 
         private void createMkvmergeBatchFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DialogResult startProcessResult = MessageBox.Show("Create mkvmerge batch file?", "Start Process?", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
-
-            if (startProcessResult == System.Windows.Forms.DialogResult.Yes)
+            try
             {
-                this.SetEac3ToConfiguration();
-                this.SetEAC3ToRemuxFileNameTemplate();
-                if (this.IsScreenValidForRemux() && this.IsAtLeastOneDiscLoaded() && this.IsScreenValid())
+                DialogResult startProcessResult = MessageBox.Show("Create mkvmerge batch file?", "Start Process?", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+
+                if (startProcessResult == System.Windows.Forms.DialogResult.Yes)
                 {
-                    List<BluRayDiscInfo> discs = this.GetBluRayDiscInfoList();
-                    WarningCollection warnings = new EAC3ToBatchFileWriteWarningService(discs).GetWarnings();
-                    this.MKVMergeWarnings(warnings);
-                    if (warnings.Count() > 0)
+                    this.SetEac3ToConfiguration();
+                    this.SetEAC3ToRemuxFileNameTemplate();
+                    if (this.IsScreenValidForRemux() && this.IsAtLeastOneDiscLoaded() && this.IsScreenValid())
                     {
-                        string warning = string.Format("{0}{1}{2}Would you still like to continue?", warnings.GetWarningMessage(), Environment.NewLine, Environment.NewLine);
-                        DialogResult warningResult = MessageBox.Show(warning, "Warnings Found", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
-                        if (warningResult == System.Windows.Forms.DialogResult.Yes)
+                        List<BluRayDiscInfo> discs = this.GetBluRayDiscInfoList();
+                        WarningCollection warnings = new EAC3ToBatchFileWriteWarningService(discs).GetWarnings();
+                        this.MKVMergeWarnings(warnings);
+                        if (warnings.Count() > 0)
+                        {
+                            string warning = string.Format("{0}{1}{2}Would you still like to continue?", warnings.GetWarningMessage(), Environment.NewLine, Environment.NewLine);
+                            DialogResult warningResult = MessageBox.Show(warning, "Warnings Found", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
+                            if (warningResult == System.Windows.Forms.DialogResult.Yes)
+                            {
+                                this.WriteToMkvMergeBatchFile();
+                            }
+                        }
+                        else
                         {
                             this.WriteToMkvMergeBatchFile();
                         }
                     }
-                    else
-                    {
-                        this.WriteToMkvMergeBatchFile();
-                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was a problem creating the mkvmerge batch file!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
             }
         }
 
