@@ -202,7 +202,7 @@
             this.tlpAudioType.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29.29293F));
             this.tlpAudioType.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70.70707F));
             this.tlpAudioType.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 81F));
-            this.tlpAudioType.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 314F));
+            this.tlpAudioType.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 316F));
             this.tlpAudioType.Controls.Add(this.lblAudioTypeArguments, 2, 0);
             this.tlpAudioType.Controls.Add(this.txtAudioTypeArguments, 3, 0);
             this.tlpAudioType.Controls.Add(this.lblAudioType, 0, 0);
@@ -218,7 +218,7 @@
             // lblAudioTypeArguments
             // 
             this.lblAudioTypeArguments.AutoSize = true;
-            this.lblAudioTypeArguments.Location = new System.Drawing.Point(314, 6);
+            this.lblAudioTypeArguments.Location = new System.Drawing.Point(312, 6);
             this.lblAudioTypeArguments.Margin = new System.Windows.Forms.Padding(3, 6, 3, 0);
             this.lblAudioTypeArguments.Name = "lblAudioTypeArguments";
             this.lblAudioTypeArguments.Size = new System.Drawing.Size(60, 13);
@@ -227,7 +227,7 @@
             // 
             // txtAudioTypeArguments
             // 
-            this.txtAudioTypeArguments.Location = new System.Drawing.Point(395, 3);
+            this.txtAudioTypeArguments.Location = new System.Drawing.Point(393, 3);
             this.txtAudioTypeArguments.Name = "txtAudioTypeArguments";
             this.txtAudioTypeArguments.Size = new System.Drawing.Size(288, 20);
             this.txtAudioTypeArguments.TabIndex = 10;
@@ -255,7 +255,7 @@
             "LPCM",
             "MPA",
             "TrueHD"});
-            this.cbAudioType.Location = new System.Drawing.Point(94, 3);
+            this.cbAudioType.Location = new System.Drawing.Point(93, 3);
             this.cbAudioType.Name = "cbAudioType";
             this.cbAudioType.Size = new System.Drawing.Size(186, 21);
             this.cbAudioType.TabIndex = 8;
@@ -514,18 +514,18 @@
             // lblEpisodeNumber
             // 
             this.lblEpisodeNumber.AutoSize = true;
-            this.lblEpisodeNumber.Location = new System.Drawing.Point(415, 6);
+            this.lblEpisodeNumber.Location = new System.Drawing.Point(423, 6);
             this.lblEpisodeNumber.Margin = new System.Windows.Forms.Padding(3, 6, 3, 0);
             this.lblEpisodeNumber.Name = "lblEpisodeNumber";
-            this.lblEpisodeNumber.Size = new System.Drawing.Size(48, 26);
+            this.lblEpisodeNumber.Size = new System.Drawing.Size(58, 13);
             this.lblEpisodeNumber.TabIndex = 101;
             this.lblEpisodeNumber.Text = "Episode #:";
             // 
             // txtEpisodeNumber
             // 
-            this.txtEpisodeNumber.Location = new System.Drawing.Point(478, 3);
+            this.txtEpisodeNumber.Location = new System.Drawing.Point(487, 3);
             this.txtEpisodeNumber.Name = "txtEpisodeNumber";
-            this.txtEpisodeNumber.Size = new System.Drawing.Size(65, 20);
+            this.txtEpisodeNumber.Size = new System.Drawing.Size(63, 20);
             this.txtEpisodeNumber.TabIndex = 0;
             this.txtEpisodeNumber.TextChanged += new System.EventHandler(this.txtEpisodeNumber_TextChanged);
             // 
@@ -602,7 +602,7 @@
             this.gbMKVToolNixGUIGeneralOptions.Location = new System.Drawing.Point(3, 6);
             this.gbMKVToolNixGUIGeneralOptions.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
             this.gbMKVToolNixGUIGeneralOptions.Name = "gbMKVToolNixGUIGeneralOptions";
-            this.gbMKVToolNixGUIGeneralOptions.Size = new System.Drawing.Size(364, 163);
+            this.gbMKVToolNixGUIGeneralOptions.Size = new System.Drawing.Size(364, 157);
             this.gbMKVToolNixGUIGeneralOptions.TabIndex = 16;
             this.gbMKVToolNixGUIGeneralOptions.TabStop = false;
             this.gbMKVToolNixGUIGeneralOptions.Text = "General Options";
@@ -631,18 +631,19 @@
             this.tlpGeneralOptions2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tlpGeneralOptions2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tlpGeneralOptions2.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tlpGeneralOptions2.Size = new System.Drawing.Size(358, 144);
+            this.tlpGeneralOptions2.Size = new System.Drawing.Size(358, 138);
             this.tlpGeneralOptions2.TabIndex = 0;
             // 
             // cbMKVToolNixGUICompression
             // 
+            this.cbMKVToolNixGUICompression.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.cbMKVToolNixGUICompression.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbMKVToolNixGUICompression.FormattingEnabled = true;
             this.cbMKVToolNixGUICompression.Items.AddRange(new object[] {
             "determine automatically",
             "no extra compression",
             "zlib"});
-            this.cbMKVToolNixGUICompression.Location = new System.Drawing.Point(107, 110);
+            this.cbMKVToolNixGUICompression.Location = new System.Drawing.Point(107, 112);
             this.cbMKVToolNixGUICompression.Name = "cbMKVToolNixGUICompression";
             this.cbMKVToolNixGUICompression.Size = new System.Drawing.Size(246, 21);
             this.cbMKVToolNixGUICompression.TabIndex = 25;
@@ -650,9 +651,9 @@
             // 
             // lblMKVToolNixGUITrackName
             // 
+            this.lblMKVToolNixGUITrackName.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblMKVToolNixGUITrackName.AutoSize = true;
-            this.lblMKVToolNixGUITrackName.Location = new System.Drawing.Point(3, 3);
-            this.lblMKVToolNixGUITrackName.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
+            this.lblMKVToolNixGUITrackName.Location = new System.Drawing.Point(3, 6);
             this.lblMKVToolNixGUITrackName.Name = "lblMKVToolNixGUITrackName";
             this.lblMKVToolNixGUITrackName.Size = new System.Drawing.Size(69, 13);
             this.lblMKVToolNixGUITrackName.TabIndex = 19;
@@ -660,9 +661,9 @@
             // 
             // lblMKVToolNixGUICompression
             // 
+            this.lblMKVToolNixGUICompression.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblMKVToolNixGUICompression.AutoSize = true;
-            this.lblMKVToolNixGUICompression.Location = new System.Drawing.Point(3, 110);
-            this.lblMKVToolNixGUICompression.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
+            this.lblMKVToolNixGUICompression.Location = new System.Drawing.Point(3, 116);
             this.lblMKVToolNixGUICompression.Name = "lblMKVToolNixGUICompression";
             this.lblMKVToolNixGUICompression.Size = new System.Drawing.Size(70, 13);
             this.lblMKVToolNixGUICompression.TabIndex = 24;
@@ -670,6 +671,7 @@
             // 
             // txtMKVToolNixGUITrackName
             // 
+            this.txtMKVToolNixGUITrackName.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.txtMKVToolNixGUITrackName.Location = new System.Drawing.Point(107, 3);
             this.txtMKVToolNixGUITrackName.Name = "txtMKVToolNixGUITrackName";
             this.txtMKVToolNixGUITrackName.Size = new System.Drawing.Size(246, 20);
@@ -678,9 +680,9 @@
             // 
             // lblMKVToolNixGUILanguage
             // 
+            this.lblMKVToolNixGUILanguage.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblMKVToolNixGUILanguage.AutoSize = true;
-            this.lblMKVToolNixGUILanguage.Location = new System.Drawing.Point(3, 29);
-            this.lblMKVToolNixGUILanguage.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
+            this.lblMKVToolNixGUILanguage.Location = new System.Drawing.Point(3, 33);
             this.lblMKVToolNixGUILanguage.Name = "lblMKVToolNixGUILanguage";
             this.lblMKVToolNixGUILanguage.Size = new System.Drawing.Size(58, 13);
             this.lblMKVToolNixGUILanguage.TabIndex = 16;
@@ -688,6 +690,7 @@
             // 
             // cbMKVToolNixGUIForcedTrackFlag
             // 
+            this.cbMKVToolNixGUIForcedTrackFlag.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.cbMKVToolNixGUIForcedTrackFlag.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbMKVToolNixGUIForcedTrackFlag.FormattingEnabled = true;
             this.cbMKVToolNixGUIForcedTrackFlag.Items.AddRange(new object[] {
@@ -701,6 +704,7 @@
             // 
             // cbMKVToolNixGUILanguage
             // 
+            this.cbMKVToolNixGUILanguage.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.cbMKVToolNixGUILanguage.DataSource = this.bsMKVMergeLanguageItem;
             this.cbMKVToolNixGUILanguage.DisplayMember = "Name";
             this.cbMKVToolNixGUILanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -719,9 +723,9 @@
             // 
             // lblMKVToolNixGUIForcedTrackFlag
             // 
+            this.lblMKVToolNixGUIForcedTrackFlag.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblMKVToolNixGUIForcedTrackFlag.AutoSize = true;
-            this.lblMKVToolNixGUIForcedTrackFlag.Location = new System.Drawing.Point(3, 83);
-            this.lblMKVToolNixGUIForcedTrackFlag.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
+            this.lblMKVToolNixGUIForcedTrackFlag.Location = new System.Drawing.Point(3, 87);
             this.lblMKVToolNixGUIForcedTrackFlag.Name = "lblMKVToolNixGUIForcedTrackFlag";
             this.lblMKVToolNixGUIForcedTrackFlag.Size = new System.Drawing.Size(97, 13);
             this.lblMKVToolNixGUIForcedTrackFlag.TabIndex = 22;
@@ -729,9 +733,9 @@
             // 
             // lblMKVToolNixGUIDefaultTrackFlag
             // 
+            this.lblMKVToolNixGUIDefaultTrackFlag.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblMKVToolNixGUIDefaultTrackFlag.AutoSize = true;
-            this.lblMKVToolNixGUIDefaultTrackFlag.Location = new System.Drawing.Point(3, 56);
-            this.lblMKVToolNixGUIDefaultTrackFlag.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
+            this.lblMKVToolNixGUIDefaultTrackFlag.Location = new System.Drawing.Point(3, 60);
             this.lblMKVToolNixGUIDefaultTrackFlag.Name = "lblMKVToolNixGUIDefaultTrackFlag";
             this.lblMKVToolNixGUIDefaultTrackFlag.Size = new System.Drawing.Size(98, 13);
             this.lblMKVToolNixGUIDefaultTrackFlag.TabIndex = 20;
@@ -739,6 +743,7 @@
             // 
             // cbMKVToolNixGUIDefaultTrackFlag
             // 
+            this.cbMKVToolNixGUIDefaultTrackFlag.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.cbMKVToolNixGUIDefaultTrackFlag.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbMKVToolNixGUIDefaultTrackFlag.FormattingEnabled = true;
             this.cbMKVToolNixGUIDefaultTrackFlag.Items.AddRange(new object[] {
@@ -777,9 +782,9 @@
             this.tlpTitle.ColumnCount = 5;
             this.tlpTitle.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 86.59794F));
             this.tlpTitle.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 13.40206F));
-            this.tlpTitle.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 74F));
-            this.tlpTitle.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 88F));
-            this.tlpTitle.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 240F));
+            this.tlpTitle.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 69F));
+            this.tlpTitle.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 92F));
+            this.tlpTitle.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 232F));
             this.tlpTitle.Controls.Add(this.lblTitle, 0, 0);
             this.tlpTitle.Controls.Add(this.lblEpisodeNumber, 1, 0);
             this.tlpTitle.Controls.Add(this.txtEpisodeNumber, 2, 0);
@@ -795,7 +800,7 @@
             // 
             // txtEpisodeName
             // 
-            this.txtEpisodeName.Location = new System.Drawing.Point(640, 3);
+            this.txtEpisodeName.Location = new System.Drawing.Point(648, 3);
             this.txtEpisodeName.Name = "txtEpisodeName";
             this.txtEpisodeName.Size = new System.Drawing.Size(217, 20);
             this.txtEpisodeName.TabIndex = 2;
@@ -804,7 +809,7 @@
             // lblEpisodeName
             // 
             this.lblEpisodeName.AutoSize = true;
-            this.lblEpisodeName.Location = new System.Drawing.Point(552, 6);
+            this.lblEpisodeName.Location = new System.Drawing.Point(556, 6);
             this.lblEpisodeName.Margin = new System.Windows.Forms.Padding(3, 6, 3, 0);
             this.lblEpisodeName.Name = "lblEpisodeName";
             this.lblEpisodeName.Size = new System.Drawing.Size(79, 13);

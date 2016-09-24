@@ -70,7 +70,7 @@ namespace BatchGuy.App
                 enabled = true;
 
             btnFFMSIndexOpenDialog.SetEnabled(enabled);
-            btnCreateFFMSIndexBatchFile.SetEnabled(enabled);
+            createFfindexBatchFilesToolStripMenuItem.Enabled = Enabled;
         }
 
         private void SetAviSynthTemplateTextBox()
@@ -89,16 +89,7 @@ namespace BatchGuy.App
 
         private void btnCreateAVSFiles_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("Create AviSynth files?", "Start Process?", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
 
-            if (result == System.Windows.Forms.DialogResult.Yes)
-            {
-                if (this.IsScreenValid())
-                {
-                    gbScreen.SetEnabled(false);
-                    Process();
-                }
-            }
         }
 
         private void Process()
@@ -246,6 +237,7 @@ namespace BatchGuy.App
                         this.LoadScreen();
                         gbScreen.SetEnabled(true);
                         saveToolStripMenuItem.Enabled = true;
+                        createAviSynthavsFilesToolStripMenuItem.Enabled = true;
                     }
                 }
             }
@@ -399,10 +391,10 @@ namespace BatchGuy.App
 
         private void btnCreateFFMSIndexBatchFile_Click(object sender, EventArgs e)
         {
-            this.HandlesbtnCreateFFMSIndexBatchFileClick();
+
         }
 
-        private void HandlesbtnCreateFFMSIndexBatchFileClick()
+        private void HandlesMenuItemCreateFFMSIndexBatchFileClick()
         {
             DialogResult result = MessageBox.Show("Create ffmsindex Batch File?", "Start Process?", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
 
@@ -473,6 +465,25 @@ namespace BatchGuy.App
                 txtFFMSIndexOutputDirectory.Text = string.Empty;
             }
             this.SetFFMSIndexControlsEnabledStatus();
+        }
+
+        private void createAviSynthavsFilesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Create AviSynth files?", "Start Process?", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+
+            if (result == System.Windows.Forms.DialogResult.Yes)
+            {
+                if (this.IsScreenValid())
+                {
+                    gbScreen.SetEnabled(false);
+                    Process();
+                }
+            }
+        }
+
+        private void createFfindexBatchFilesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.HandlesMenuItemCreateFFMSIndexBatchFileClick();
         }
     }
 }

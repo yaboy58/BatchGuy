@@ -34,12 +34,10 @@
             this.txtOutputDirectory = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtAVSTemplate = new System.Windows.Forms.TextBox();
-            this.btnCreateAVSFiles = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.txtNumberOfFiles = new System.Windows.Forms.TextBox();
             this.btnOpenDialog = new System.Windows.Forms.Button();
             this.gbScreen = new System.Windows.Forms.GroupBox();
-            this.btnCreateFFMSIndexBatchFile = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.txtFFMSIndexOutputDirectory = new System.Windows.Forms.TextBox();
             this.btnFFMSIndexOpenDialog = new System.Windows.Forms.Button();
@@ -61,6 +59,9 @@
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.lblVersion = new System.Windows.Forms.Label();
             this.bgwCreateFFMSIndexBatchFile = new System.ComponentModel.BackgroundWorker();
+            this.createAviSynthavsFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.createFfindexBatchFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.gbScreen.SuspendLayout();
             this.menuStrip.SuspendLayout();
             this.SuspendLayout();
@@ -99,16 +100,6 @@
             this.txtAVSTemplate.Size = new System.Drawing.Size(981, 161);
             this.txtAVSTemplate.TabIndex = 3;
             // 
-            // btnCreateAVSFiles
-            // 
-            this.btnCreateAVSFiles.Location = new System.Drawing.Point(680, 392);
-            this.btnCreateAVSFiles.Name = "btnCreateAVSFiles";
-            this.btnCreateAVSFiles.Size = new System.Drawing.Size(150, 35);
-            this.btnCreateAVSFiles.TabIndex = 4;
-            this.btnCreateAVSFiles.Text = "Create AviSynth (.avs) Files";
-            this.btnCreateAVSFiles.UseVisualStyleBackColor = true;
-            this.btnCreateAVSFiles.Click += new System.EventHandler(this.btnCreateAVSFiles_Click);
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -138,7 +129,6 @@
             // 
             // gbScreen
             // 
-            this.gbScreen.Controls.Add(this.btnCreateFFMSIndexBatchFile);
             this.gbScreen.Controls.Add(this.label7);
             this.gbScreen.Controls.Add(this.txtFFMSIndexOutputDirectory);
             this.gbScreen.Controls.Add(this.btnFFMSIndexOpenDialog);
@@ -155,7 +145,6 @@
             this.gbScreen.Controls.Add(this.btnOpenDialog);
             this.gbScreen.Controls.Add(this.txtNumberOfFiles);
             this.gbScreen.Controls.Add(this.label2);
-            this.gbScreen.Controls.Add(this.btnCreateAVSFiles);
             this.gbScreen.Controls.Add(this.txtAVSTemplate);
             this.gbScreen.Controls.Add(this.label1);
             this.gbScreen.Location = new System.Drawing.Point(12, 39);
@@ -163,16 +152,6 @@
             this.gbScreen.Size = new System.Drawing.Size(1013, 437);
             this.gbScreen.TabIndex = 12;
             this.gbScreen.TabStop = false;
-            // 
-            // btnCreateFFMSIndexBatchFile
-            // 
-            this.btnCreateFFMSIndexBatchFile.Location = new System.Drawing.Point(847, 392);
-            this.btnCreateFFMSIndexBatchFile.Name = "btnCreateFFMSIndexBatchFile";
-            this.btnCreateFFMSIndexBatchFile.Size = new System.Drawing.Size(150, 35);
-            this.btnCreateFFMSIndexBatchFile.TabIndex = 5;
-            this.btnCreateFFMSIndexBatchFile.Text = "Create ffmsindex Batch File";
-            this.btnCreateFFMSIndexBatchFile.UseVisualStyleBackColor = true;
-            this.btnCreateFFMSIndexBatchFile.Click += new System.EventHandler(this.btnCreateFFMSIndexBatchFile_Click);
             // 
             // label7
             // 
@@ -297,24 +276,27 @@
             this.saveSettingsFileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.loadToolStripMenuItem,
             this.toolStripSeparator1,
-            this.saveToolStripMenuItem});
+            this.saveToolStripMenuItem,
+            this.toolStripSeparator2,
+            this.createAviSynthavsFilesToolStripMenuItem,
+            this.createFfindexBatchFilesToolStripMenuItem});
             this.saveSettingsFileToolStripMenuItem.Name = "saveSettingsFileToolStripMenuItem";
-            this.saveSettingsFileToolStripMenuItem.Size = new System.Drawing.Size(93, 20);
-            this.saveSettingsFileToolStripMenuItem.Text = "Save / Restore";
+            this.saveSettingsFileToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
+            this.saveSettingsFileToolStripMenuItem.Text = "Menu";
             // 
             // loadToolStripMenuItem
             // 
             this.loadToolStripMenuItem.Image = global::BatchGuy.App.Properties.Resources.Custom_Icon_Design_Flatastic_10_Open_file;
             this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
             this.loadToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.R)));
-            this.loadToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.loadToolStripMenuItem.Size = new System.Drawing.Size(257, 22);
             this.loadToolStripMenuItem.Text = "Restore";
             this.loadToolStripMenuItem.Click += new System.EventHandler(this.loadToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(151, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(254, 6);
             // 
             // saveToolStripMenuItem
             // 
@@ -323,7 +305,7 @@
             this.saveToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(257, 22);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
@@ -344,6 +326,31 @@
             // 
             this.bgwCreateFFMSIndexBatchFile.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgwCreateFFMSIndexBatchFile_DoWork);
             this.bgwCreateFFMSIndexBatchFile.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgwCreateFFMSIndexBatchFile_RunWorkerCompleted);
+            // 
+            // createAviSynthavsFilesToolStripMenuItem
+            // 
+            this.createAviSynthavsFilesToolStripMenuItem.Enabled = false;
+            this.createAviSynthavsFilesToolStripMenuItem.Image = global::BatchGuy.App.Properties.Resources.Fasticon_Green_Ville_2_File;
+            this.createAviSynthavsFilesToolStripMenuItem.Name = "createAviSynthavsFilesToolStripMenuItem";
+            this.createAviSynthavsFilesToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.A)));
+            this.createAviSynthavsFilesToolStripMenuItem.Size = new System.Drawing.Size(257, 22);
+            this.createAviSynthavsFilesToolStripMenuItem.Text = "Create AviSynth (.avs) Files";
+            this.createAviSynthavsFilesToolStripMenuItem.Click += new System.EventHandler(this.createAviSynthavsFilesToolStripMenuItem_Click);
+            // 
+            // createFfindexBatchFilesToolStripMenuItem
+            // 
+            this.createFfindexBatchFilesToolStripMenuItem.Enabled = false;
+            this.createFfindexBatchFilesToolStripMenuItem.Image = global::BatchGuy.App.Properties.Resources.Fasticon_Green_Ville_2_File;
+            this.createFfindexBatchFilesToolStripMenuItem.Name = "createFfindexBatchFilesToolStripMenuItem";
+            this.createFfindexBatchFilesToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F)));
+            this.createFfindexBatchFilesToolStripMenuItem.Size = new System.Drawing.Size(257, 22);
+            this.createFfindexBatchFilesToolStripMenuItem.Text = "Create ffindex Batch File";
+            this.createFfindexBatchFilesToolStripMenuItem.Click += new System.EventHandler(this.createFfindexBatchFilesToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(254, 6);
             // 
             // CreateAviSynthFilesForm
             // 
@@ -377,7 +384,6 @@
         private System.Windows.Forms.TextBox txtOutputDirectory;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtAVSTemplate;
-        private System.Windows.Forms.Button btnCreateAVSFiles;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtNumberOfFiles;
         private System.Windows.Forms.Button btnOpenDialog;
@@ -401,8 +407,10 @@
         private System.Windows.Forms.Label lblVersion;
         private System.Windows.Forms.TextBox txtFFMSIndexOutputDirectory;
         private System.Windows.Forms.Button btnFFMSIndexOpenDialog;
-        private System.Windows.Forms.Button btnCreateFFMSIndexBatchFile;
         private System.Windows.Forms.Label label7;
         private System.ComponentModel.BackgroundWorker bgwCreateFFMSIndexBatchFile;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem createAviSynthavsFilesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem createFfindexBatchFilesToolStripMenuItem;
     }
 }
