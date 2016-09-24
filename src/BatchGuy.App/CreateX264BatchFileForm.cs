@@ -346,6 +346,7 @@ namespace BatchGuy.App
                 createMkvmergeBatchFileToolStripMenuItem.Enabled = true;
                 createX264BatchFileToolStripMenuItem.Enabled = true;
             }
+            lblNumberOfFiles.Text = string.Format("Number of Files: {0}", _bindingListFiles.Count());
         }
 
         private List<X264File> GetX264Files()
@@ -777,7 +778,7 @@ namespace BatchGuy.App
 
         private void dgvFiles_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex == -1)
+            if (e.RowIndex == -1 || e.ColumnIndex == 4) //header row or episode number drop down
                 return;
             this.HandlesdgvFilesCellDoubleClick(e);
         }
