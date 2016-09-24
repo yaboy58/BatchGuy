@@ -48,7 +48,7 @@ namespace BatchGuy
 
         public static string GetLogErrorFormat()
         {
-            return "Error: {0}.  Method: {1}.";
+            return "Error: {0}.  Stacktrace: {1}. Method: {2}.";
         }
 
         public static void DialogInitialDirectoryChangedHandler(object sender, DialogInitialDirectoryChangedEventArgs e)

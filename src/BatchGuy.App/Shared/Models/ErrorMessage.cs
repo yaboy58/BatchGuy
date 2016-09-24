@@ -10,7 +10,7 @@ namespace BatchGuy.App.Shared.Models
     {
         public string DisplayMessage { get; set; }
         public string DisplayTitle { get; set; }
-        public string ExceptionMessage { get; set; }
+        public Exception Exception { get; set; }
         public string MethodNameWhereExceptionOccurred { get; set; }
     }
 }

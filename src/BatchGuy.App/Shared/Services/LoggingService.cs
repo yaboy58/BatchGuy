@@ -18,9 +18,9 @@ namespace BatchGuy.App.Shared.Services
             _logErrorFormat = logErrorFormat;
         }
 
-        public void LogErrorFormat(string exceptionMessage, string methodName)
+        public void LogErrorFormat(Exception exception, string methodName)
         {
-            _log.ErrorFormat(_logErrorFormat, exceptionMessage, methodName);
+            _log.ErrorFormat(_logErrorFormat, exception.Message, exception.StackTrace, methodName);
         }
     }
 }

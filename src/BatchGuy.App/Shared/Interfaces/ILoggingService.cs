@@ -8,6 +8,6 @@ namespace BatchGuy.App.Shared.Interfaces
 {
     public interface ILoggingService
     {
-        void LogErrorFormat(string exceptionMessage, string methodName);
+        void LogErrorFormat(Exception exception, string methodName);
     }
 }
