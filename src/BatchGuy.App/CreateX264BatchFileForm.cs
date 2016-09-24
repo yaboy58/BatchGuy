@@ -164,22 +164,6 @@ namespace BatchGuy.App
             return settings;
         }
 
-        private void btnCreateX264BatFile_Click(object sender, EventArgs e)
-        {
-            DialogResult result = MessageBox.Show("Create x264 batch file?", "Start Process?", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
-
-            if (result == System.Windows.Forms.DialogResult.Yes)
-            {
-                _batchGuyEAC3ToSettings.X264Files = this.GetX264Files();
-                _batchGuyEAC3ToSettings.X264FileSettings = this.GetX264FileSettings();
-
-                if (this.IsScreenValidForWriteX264BatchFile())
-                {
-                    this.CreateX264BatFile();
-                }
-            }
-        }
-
         private void CreateX264BatFile()
         {
             gbScreen.SetEnabled(false);
@@ -202,8 +186,8 @@ namespace BatchGuy.App
             lblNumberOfFiles.Text = string.Format("Number of Files: {0}", _bindingListFiles.Count());
             if (_bindingListFiles.Count() == 0)
             {
-                btnCreateX264BatchFile.SetEnabled(false);
-                btnWriteToMKVMergeBatFile.SetEnabled(false);
+                createX264BatchFileToolStripMenuItem.Enabled = false;
+                createMkvmergeBatchFileToolStripMenuItem.Enabled = false;
             }
         }
 
@@ -355,8 +339,8 @@ namespace BatchGuy.App
                 this.BindFilesGrid();
                 _filesGridSortConfiguration.SortDirection = 0;
                 this.SortFilesGrid(1);
-                btnCreateX264BatchFile.SetEnabled(true);
-                btnWriteToMKVMergeBatFile.SetEnabled(true);
+                createMkvmergeBatchFileToolStripMenuItem.Enabled = true;
+                createX264BatchFileToolStripMenuItem.Enabled = true;
             }
         }
 
@@ -477,6 +461,8 @@ namespace BatchGuy.App
                         this.LoadScreen();
                         gbScreen.SetEnabled(true);
                         saveToolStripMenuItem.Enabled = true;
+                        createX264BatchFileToolStripMenuItem.Enabled = true;
+                        createMkvmergeBatchFileToolStripMenuItem.Enabled = true;
                     }
                 }
             }
@@ -603,12 +589,7 @@ namespace BatchGuy.App
                 return false;
         }
 
-        private void btnWriteToMKVMergeBatFile_Click(object sender, EventArgs e)
-        {
-            this.HandlesBtnWriteToMKVMergeBatFileClick();
-        }
-
-        private void HandlesBtnWriteToMKVMergeBatFileClick()
+        private void HandlesMenuItemWriteToMKVMergeBatFileClick()
         {
             DialogResult startProcessResult = MessageBox.Show("Create mkvmerge batch file?", "Start Process?", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
 
@@ -825,6 +806,27 @@ namespace BatchGuy.App
         private void HandleschkIgnoreInternalSubtitlesCheckedChanged()
         {
             _batchGuyEAC3ToSettings.EAC3ToSettings.IgnoreInternalSubtitles = chkIgnoreInternalSubtitles.Checked;
+        }
+
+        private void createX264BatchFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Create x264 batch file?", "Start Process?", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+
+            if (result == System.Windows.Forms.DialogResult.Yes)
+            {
+                _batchGuyEAC3ToSettings.X264Files = this.GetX264Files();
+                _batchGuyEAC3ToSettings.X264FileSettings = this.GetX264FileSettings();
+
+                if (this.IsScreenValidForWriteX264BatchFile())
+                {
+                    this.CreateX264BatFile();
+                }
+            }
+        }
+
+        private void createMkvmergeBatchFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.HandlesMenuItemWriteToMKVMergeBatFileClick();
         }
     }
 }

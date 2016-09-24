@@ -738,11 +738,6 @@ namespace BatchGuy.App
             createMkvmergeBatchFileToolStripMenuItem.Enabled = _eac3toConfiguration.IsExtractForRemux;
         }
 
-        private void btnWriteToMKVMergeBatFile_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void MKVMergeWarnings(WarningCollection warnings)
         {
             if (_eac3toConfiguration.EAC3ToOutputPath == _eac3toConfiguration.MKVMergeOutputPath)
