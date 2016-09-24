@@ -328,5 +328,10 @@ namespace BatchGuy.App
             this.HandleSaveClick();
             this.Close();
         }
+
+        private void closeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

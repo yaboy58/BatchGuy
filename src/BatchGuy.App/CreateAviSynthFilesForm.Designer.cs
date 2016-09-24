@@ -56,12 +56,14 @@
             this.loadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.createAviSynthavsFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.createFfindexBatchFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.lblVersion = new System.Windows.Forms.Label();
             this.bgwCreateFFMSIndexBatchFile = new System.ComponentModel.BackgroundWorker();
-            this.createAviSynthavsFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.createFfindexBatchFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.gbScreen.SuspendLayout();
             this.menuStrip.SuspendLayout();
             this.SuspendLayout();
@@ -279,7 +281,9 @@
             this.saveToolStripMenuItem,
             this.toolStripSeparator2,
             this.createAviSynthavsFilesToolStripMenuItem,
-            this.createFfindexBatchFilesToolStripMenuItem});
+            this.createFfindexBatchFilesToolStripMenuItem,
+            this.toolStripSeparator3,
+            this.closeToolStripMenuItem});
             this.saveSettingsFileToolStripMenuItem.Name = "saveSettingsFileToolStripMenuItem";
             this.saveSettingsFileToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
             this.saveSettingsFileToolStripMenuItem.Text = "Menu";
@@ -309,23 +313,10 @@
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
-            // openFileDialog
+            // toolStripSeparator2
             // 
-            this.openFileDialog.FileName = "openFileDialog1";
-            // 
-            // lblVersion
-            // 
-            this.lblVersion.AutoSize = true;
-            this.lblVersion.Location = new System.Drawing.Point(9, 479);
-            this.lblVersion.Name = "lblVersion";
-            this.lblVersion.Size = new System.Drawing.Size(42, 13);
-            this.lblVersion.TabIndex = 45;
-            this.lblVersion.Text = "Version";
-            // 
-            // bgwCreateFFMSIndexBatchFile
-            // 
-            this.bgwCreateFFMSIndexBatchFile.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgwCreateFFMSIndexBatchFile_DoWork);
-            this.bgwCreateFFMSIndexBatchFile.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgwCreateFFMSIndexBatchFile_RunWorkerCompleted);
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(254, 6);
             // 
             // createAviSynthavsFilesToolStripMenuItem
             // 
@@ -347,10 +338,36 @@
             this.createFfindexBatchFilesToolStripMenuItem.Text = "Create ffindex Batch File";
             this.createFfindexBatchFilesToolStripMenuItem.Click += new System.EventHandler(this.createFfindexBatchFilesToolStripMenuItem_Click);
             // 
-            // toolStripSeparator2
+            // openFileDialog
             // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(254, 6);
+            this.openFileDialog.FileName = "openFileDialog1";
+            // 
+            // lblVersion
+            // 
+            this.lblVersion.AutoSize = true;
+            this.lblVersion.Location = new System.Drawing.Point(9, 479);
+            this.lblVersion.Name = "lblVersion";
+            this.lblVersion.Size = new System.Drawing.Size(42, 13);
+            this.lblVersion.TabIndex = 45;
+            this.lblVersion.Text = "Version";
+            // 
+            // bgwCreateFFMSIndexBatchFile
+            // 
+            this.bgwCreateFFMSIndexBatchFile.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgwCreateFFMSIndexBatchFile_DoWork);
+            this.bgwCreateFFMSIndexBatchFile.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgwCreateFFMSIndexBatchFile_RunWorkerCompleted);
+            // 
+            // closeToolStripMenuItem
+            // 
+            this.closeToolStripMenuItem.Image = global::BatchGuy.App.Properties.Resources.close_red;
+            this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
+            this.closeToolStripMenuItem.Size = new System.Drawing.Size(257, 22);
+            this.closeToolStripMenuItem.Text = "Close";
+            this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(254, 6);
             // 
             // CreateAviSynthFilesForm
             // 
@@ -412,5 +429,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem createAviSynthavsFilesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem createFfindexBatchFilesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripMenuItem closeToolStripMenuItem;
     }
 }

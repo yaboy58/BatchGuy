@@ -845,5 +845,10 @@ namespace BatchGuy.App
         {
             this.HandlesMenuItemWriteToMKVMergeBatFileClick();
         }
+
+        private void closeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
