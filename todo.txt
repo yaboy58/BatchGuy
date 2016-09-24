@@ -1,7 +1,7 @@
 --todo
 Enhancements
-*Created new service for logging errors
-*Created new service for displaying error messages to the user
+*Created new service for centralizing error logging
+*Created new service for centralizing the display if errors to the user
 *Settings Screen can now be resized and has a fluid layout
 *BluRay Title Info Screen can now be resized and has a fluid layout
 *External Subtitles Screen cannot be resized
