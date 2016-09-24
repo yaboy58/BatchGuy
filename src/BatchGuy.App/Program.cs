@@ -14,6 +14,9 @@ using System.Windows.Forms;
 using BatchGuy.App.Settings.Interface;
 using BatchGuy.App.Settings.Services;
 using BatchGuy.App.Shared.Interfaces;
+using BatchGuy.App;
+using log4net;
+using System.Reflection;
 
 namespace BatchGuy
 {
@@ -22,6 +25,7 @@ namespace BatchGuy
         private static IJsonSerializationService<ApplicationSettings> _jsonSerializationService;
         private static IApplicationSettingsService _applicationSettingsService;
         private static IAudioService _audioService;
+        public static readonly ILog _log = LogManager.GetLogger(typeof(Program));
 
         public static IApplicationSettingsService ApplicationSettingsService { get { return Program._applicationSettingsService; } }
         public static ApplicationSettings ApplicationSettings { get { return Program._applicationSettingsService.GetApplicationSettings(); } }
@@ -41,9 +45,17 @@ namespace BatchGuy
 
         public static void LoadApplicationSettings()
         {
-            Program._jsonSerializationService = new JsonSerializationService<ApplicationSettings>();
-            Program._audioService = new AudioService();
-            Program._applicationSettingsService = new ApplicationSettingsService(_jsonSerializationService, _audioService);
+            try
+            {
+                Program._jsonSerializationService = new JsonSerializationService<ApplicationSettings>();
+                Program._audioService = new AudioService();
+                Program._applicationSettingsService = new ApplicationSettingsService(_jsonSerializationService, _audioService);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("There was an error trying to load the application", "Error Occurred.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                _log.ErrorFormat(Program.GetLogErrorFormat(), ex.Message, MethodBase.GetCurrentMethod().Name);
+            }
         }
 
         public static string GetLogErrorFormat()
@@ -53,20 +65,28 @@ namespace BatchGuy
 
         public static void DialogInitialDirectoryChangedHandler(object sender, DialogInitialDirectoryChangedEventArgs e)
         {
-            Setting setting = Program.ApplicationSettingsService.GetSettingByName(e.FeatureName);
-
-            if (setting != null)
+            try
             {
-                if (setting.Value != e.DirectoryPath)
+                Setting setting = Program.ApplicationSettingsService.GetSettingByName(e.FeatureName);
+
+                if (setting != null)
                 {
-                    setting.Value = e.DirectoryPath;
+                    if (setting.Value != e.DirectoryPath)
+                    {
+                        setting.Value = e.DirectoryPath;
+                        Program.ApplicationSettingsService.Save(Program.ApplicationSettings);
+                    }
+                }
+                else
+                {
+                    Program.ApplicationSettings.Settings.Add(new Setting() { Name = e.FeatureName, Value = e.DirectoryPath });
                     Program.ApplicationSettingsService.Save(Program.ApplicationSettings);
                 }
             }
-            else
+            catch (Exception ex)
             {
-                Program.ApplicationSettings.Settings.Add(new Setting() { Name = e.FeatureName, Value = e.DirectoryPath });
-                Program.ApplicationSettingsService.Save(Program.ApplicationSettings);
+                MessageBox.Show("There was an error trying to set the initial directory", "Error Occurred.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                _log.ErrorFormat(Program.GetLogErrorFormat(), ex.Message, MethodBase.GetCurrentMethod().Name);
             }
         }
 

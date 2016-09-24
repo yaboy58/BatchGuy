@@ -133,11 +133,6 @@ namespace BatchGuy.App
                 return string.Empty;
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void HandleSaveClick()
         {
             Program.ApplicationSettingsService.Save(Program.ApplicationSettings);

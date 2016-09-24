@@ -15,6 +15,7 @@ using BatchGuy.App.Shared.Services;
 using BatchGuy.App.Extensions;
 using BatchGuy.App.X264Log.Interfaces;
 using BatchGuy.App.X264Log.Services;
+using System.Reflection;
 
 namespace BatchGuy.App
 {
@@ -23,6 +24,7 @@ namespace BatchGuy.App
         private BindingList<X264LogFile> _bindingListLogFiles = new BindingList<X264LogFile>();
         private string _logExtension = "log";
         private SortConfiguration _logFilesGridSortConfiguration = new SortConfiguration();
+        private IDisplayErrorMessageService _displayErrorMessageService = new DisplayErrorMessageService();
 
         public X264LogFileForm()
         {
@@ -89,7 +91,14 @@ namespace BatchGuy.App
 
         private void btnViewLogs_Click(object sender, EventArgs e)
         {
-            this.HandleBtnViewLogs();
+            try
+            {
+                this.HandleBtnViewLogs();
+            }
+            catch (Exception ex)
+            {
+                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was a problem trying to view the logs!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
+            }
         }
 
         private void HandleBtnViewLogs()
