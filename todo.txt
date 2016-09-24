@@ -18,10 +18,6 @@ Enhancements
 Bugs
 Fixed bug where if the users tries to set mkvmerge options on the BluRay Title Info Screen before selecting audio or a subtitle, the screen would crash
 
-*Logging in the screens
-*Put close on every menu
-
-
 
 
 --possible nice to haves
