@@ -151,10 +151,15 @@ namespace BatchGuy.App
 
         private X264FileSettings GetX264FileSettings()
         {
-            X264FileSettings settings = new X264FileSettings() { EncodeType = EncodeType,
-             vfw4x264Exe = _vfw4x264Path, X264Template = txtX264Template.Text.Trim(), X264BatchFilePath = txtX264BatchFileOutputDirectory.Text.Trim(),
-             X264EncodeAndLogFileOutputDirectoryPathType = _batchGuyEAC3ToSettings.X264FileSettings.X264EncodeAndLogFileOutputDirectoryPathType,
-                X264EncodeAndLogFileOutputDirectoryPath = _batchGuyEAC3ToSettings.X264FileSettings.X264EncodeAndLogFileOutputDirectoryPath};
+            X264FileSettings settings = new X264FileSettings()
+            {
+                EncodeType = EncodeType,
+                vfw4x264Exe = _vfw4x264Path,
+                X264Template = txtX264Template.Text.Trim(),
+                X264BatchFilePath = txtX264BatchFileOutputDirectory.Text.Trim(),
+                X264EncodeAndLogFileOutputDirectoryPathType = _batchGuyEAC3ToSettings.X264FileSettings.X264EncodeAndLogFileOutputDirectoryPathType,
+                X264EncodeAndLogFileOutputDirectoryPath = _batchGuyEAC3ToSettings.X264FileSettings.X264EncodeAndLogFileOutputDirectoryPath
+            };
 
             settings.SaveX264LogFileToDifferentDirectory = chkSaveLogFileToDifferentDirectory.Checked;
             if (settings.SaveX264LogFileToDifferentDirectory)
@@ -244,7 +249,7 @@ namespace BatchGuy.App
             if (chkSaveLogFileToDifferentDirectory.Checked && string.IsNullOrEmpty(txtX264LogFileSaveDirectory.Text))
             {
                 MessageBox.Show("Please choose the x264 (.log) file save directory", "Invalid x264 settings", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return false;                     
+                return false;
             }
             if (_batchGuyEAC3ToSettings.BluRayDiscs.NumberOfEpisodes() != _batchGuyEAC3ToSettings.X264Files.Count())
             {
@@ -274,8 +279,8 @@ namespace BatchGuy.App
         private void BindFilesGrid()
         {
             bsFiles.DataSource = _bindingListFiles;
-           bsFiles.ResetBindings(false);
-          _bindingListFiles.AllowEdit = true;
+            bsFiles.ResetBindings(false);
+            _bindingListFiles.AllowEdit = true;
         }
 
         private void btnOpenX264BatchFileOutputDialog_Click(object sender, EventArgs e)
@@ -348,8 +353,14 @@ namespace BatchGuy.App
             List<X264File> x264Files = new List<X264File>();
             foreach (X264File file in _bindingListFiles)
             {
-                x264Files.Add(new X264File() { AviSynthFileNameOnly = file.AviSynthFileNameOnly, AviSynthFilePath = file.AviSynthFilePath, EncodeName = file.EncodeName.Trim(), Id = file.Id,
-                 EpisodeNumber = file.EpisodeNumber});
+                x264Files.Add(new X264File()
+                {
+                    AviSynthFileNameOnly = file.AviSynthFileNameOnly,
+                    AviSynthFilePath = file.AviSynthFilePath,
+                    EncodeName = file.EncodeName.Trim(),
+                    Id = file.Id,
+                    EpisodeNumber = file.EpisodeNumber
+                });
             }
             return x264Files;
         }
@@ -417,7 +428,7 @@ namespace BatchGuy.App
                 {
                     foreach (BluRaySummaryInfo summary in disc.BluRaySummaryInfoList.Where(s => s.IsSelected && s.EpisodeNumber != null).OrderBy(s => s.EpisodeNumber))
                     {
-                        _bindingListEpisodeNumbers.Add(new DropDownListItem() { DisplayMember = summary.EpisodeNumber.ToString(), ValueMember = summary.EpisodeNumber.ToString()});
+                        _bindingListEpisodeNumbers.Add(new DropDownListItem() { DisplayMember = summary.EpisodeNumber.ToString(), ValueMember = summary.EpisodeNumber.ToString() });
                     }
                 }
             }
@@ -516,8 +527,14 @@ namespace BatchGuy.App
             _bindingListFiles.Clear();
             foreach (X264File file in _batchGuyEAC3ToSettings.X264Files)
             {
-                _bindingListFiles.Add(new X264File() { AviSynthFileNameOnly = file.AviSynthFileNameOnly, AviSynthFilePath = file.AviSynthFilePath, EncodeName = file.EncodeName,
-                 EpisodeNumber = file.EpisodeNumber, Id = file.Id});
+                _bindingListFiles.Add(new X264File()
+                {
+                    AviSynthFileNameOnly = file.AviSynthFileNameOnly,
+                    AviSynthFilePath = file.AviSynthFilePath,
+                    EncodeName = file.EncodeName,
+                    EpisodeNumber = file.EpisodeNumber,
+                    Id = file.Id
+                });
             }
             if (_bindingListFiles.Count() > 0)
             {
@@ -640,7 +657,7 @@ namespace BatchGuy.App
                                             if (_batchGuyEAC3ToSettings.EAC3ToSettings.OutputDirectoryType == EnumDirectoryType.DirectoryPerEpisode)
                                             {
                                                 string episodeFolderName = HelperFunctions.PadNumberWithZeros(_batchGuyEAC3ToSettings.X264Files.Count(), file.EpisodeNumber.StringToInt());
-                                                summary.BluRayTitleInfo.EpisodeName = string.Format("{0}\\e{1}\\{2}",_batchGuyEAC3ToSettings.EAC3ToSettings.EAC3ToOutputPath, episodeFolderName, file.EncodeName);
+                                                summary.BluRayTitleInfo.EpisodeName = string.Format("{0}\\e{1}\\{2}", _batchGuyEAC3ToSettings.EAC3ToSettings.EAC3ToOutputPath, episodeFolderName, file.EncodeName);
                                             }
                                             else
                                             {
