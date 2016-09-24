@@ -12,14 +12,14 @@ Enhancements
 *Create x264 Batch File Screen can now be resized and has a fluid layout
 *Create AviSynth Files and Create ffindex Batch File buttons removed from the Create eac3to Batch File Screen.  The items have been placed on the Screen menu with shortkeys.
 *External Subtitle Popup Screen does not open when you double-click on the Blu-ray Episode Number on the Avisynth Grid on the Create x264 Batch File Screen
+*Added BatchGuy logo to Main Screen
 
 Bugs
 Fixed bug where if the users tries to set mkvmerge options on the BluRay Title Info Screen before selecting audio or a subtitle, the screen would crash
 
-*Put menu on settings screen and add all button functions to menus to help people with small screens
 *Logging in the screens
 *Put close on every menu
-*put logo on main form
+
 
 
 
