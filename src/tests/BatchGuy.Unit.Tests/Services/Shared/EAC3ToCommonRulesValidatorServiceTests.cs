@@ -69,5 +69,19 @@ namespace BatchGuy.Unit.Tests.Services.Shared
             bool isValid = service.IsAllBluRayPathsValid();
             service.Errors[0].Description.Should().Be("Invalid Blu-ray disc directories found.");
         }
+
+        [Test]
+        public void eac3tocommonrulesvalidatorservice_when_summary_selected_at_least_one_stream_selected_test()
+        {
+            List<BluRayDiscInfo> discList = new List<BluRayDiscInfo>() { new BluRayDiscInfo() { Id = 1, IsSelected = true,BluRayPath = @"c:\temp\disc1",
+                BluRaySummaryInfoList = new List<BluRaySummaryInfo>() { new BluRaySummaryInfo() { IsSelected = true,
+             BluRayTitleInfo = new BluRayTitleInfo() { EpisodeNumber = "1", Video = new BluRayTitleVideo() { IsSelected = false} }} } } };
+            EAC3ToConfiguration config = new EAC3ToConfiguration();
+            var directorySystemServiceMock = new Mock<IDirectorySystemService>();
+            directorySystemServiceMock.Setup(m => m.Exists(It.IsAny<string>())).Returns(false);
+            IEAC3ToCommonRulesValidatorService service = new EAC3ToCommonRulesValidatorService(config, directorySystemServiceMock.Object, discList);
+            bool isValid = service.WhenSummarySelectedAtLeastOneStreamSelected();
+            service.Errors[0].Description.Should().Be("Some selected titles have no streams selected.");
+        }
     }
 }
