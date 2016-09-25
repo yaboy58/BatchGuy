@@ -25,5 +25,16 @@ namespace BatchGuy.App.Eac3to.Models
         public bool IgnoreInternalSubtitles { get; set; }
         public string FFMSIndextBatchFilePath { get; set; }
         public string FFMSIndexPath { get; set; }
+        public bool IfIsExtractForRemuxIsItForAMovie { get; set; }
+        public string DirectoryPerEpisodeDirectoryName
+        {
+            get
+            {
+                if (this.OutputDirectoryType == EnumDirectoryType.DirectoryPerEpisode && this.IsExtractForRemux && this.IfIsExtractForRemuxIsItForAMovie)
+                    return "movie";
+                else
+                    return "episode";
+            }
+        }
     }
 }
