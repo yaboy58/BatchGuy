@@ -178,6 +178,7 @@
     <Compile Include="Settings\Services\MKVMergeDefaultSettingsService.cs" />
     <Compile Include="Settings\Services\SettingsDefaultSeedDataService.cs" />
     <Compile Include="Shared\Interfaces\IAudioService.cs" />
+    <Compile Include="Shared\Interfaces\IEAC3ToCommonRulesValidatorService.cs" />
     <Compile Include="Shared\Interfaces\IJsonSerializationService.cs" />
     <Compile Include="Settings\Models\ApplicationSettings.cs" />
     <Compile Include="Settings\Models\Setting.cs" />
@@ -188,6 +189,7 @@
     <Compile Include="Shared\Models\ErrorMessage.cs" />
     <Compile Include="Shared\Services\AudioService.cs" />
     <Compile Include="Shared\Services\DisplayErrorMessageService.cs" />
+    <Compile Include="Shared\Services\EAC3ToCommonRulesValidatorService.cs" />
     <Compile Include="Shared\Services\JsonSerializationService.cs" />
     <Compile Include="Shared\Events\DialogInitialDirectoryChangedEventArgs.cs" />
     <Compile Include="Shared\Interfaces\IBindingListSortService.cs" />

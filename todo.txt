@@ -1,14 +1,40 @@
 --todo
-MKVMergeBatchFileWriteForEncodeService,MKVMergeBatchFileWriteService,EAC3ToBatchFileWriteService need to have some type of rules object passed in so the bluray validation logic can be shared
+MKVMergeBatchFileWriteForEncodeService,MKVMergeBatchFileWriteService,EAC3ToBatchFileWriteService need to have some type of rules object passed in so the bluray validation logic can be shared (EAC3ToCommonRulesValidatorService)
 
-*Movie Mode
+*This may be the best time to change from e{0} to episode{0}, quick search showed that it is only in 4 places.  Unit Tests would break, not backwards compatiable.  It needs to be configurable.
+-Add new property on eac3config object for this new flag
+-New property in eac3config to get either movie or episode string for the folder names, it will be based on the is movie flag.
+
+*Movie Mode 1
+eac3to UI
 -Add a new checkbox under the Remux Template called "Is this remux for a movie" or something like that
+-Make sure to save/load this new checkbox
+
+Title Info UI
+-Episode Name disabled
+-Episode Number caption will change to Movie Number
+
+Backend
+-New property in eac3config to get either movie or episode string for the folder names, it will be based on the is movie flag.
+*Create new eac3to write service, it has its own rules
 -You can only have 1 Disc selected 
 -You can only have 1 Playlist selected
--Episode Name and Number will be disabled
--Single Directory only
+*Create new mkvmerge write service
+-You can only have 1 Disc selected 
+-You can only have 1 Playlist selected
+*New OutputNamingService
 
 
+*Movie Mode 2 (probably too much work)
+eac3to UI
+*Each playlist will have its own remux template 
+-Add checkbox above series name, Is this remux for movies?
+-IsScreenValid, only check if series name is entered if isremux and not for a movie, we will check this on the backend
+-dgvBluRaySummary_CellClick, set the current bluraysummaryinfo, already being done in its celldouble-clic
+
+
+Backend
+-Create a new property on BluRaySummaryInfo for EAC3ToRemuxFileNameTemplate
 
 --possible nice to haves
 *Maybe start checking to see if batch files exist first, if so delete them before writing to them

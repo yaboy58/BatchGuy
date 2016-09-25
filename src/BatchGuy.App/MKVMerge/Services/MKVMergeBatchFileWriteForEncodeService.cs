@@ -94,7 +94,7 @@ namespace BatchGuy.App.MKVMerge.Services
                 return false;
             if (!this.WhenSummarySelectedAtLeastOneStreamSelected())
                 return false;
-            if (!this.IsAllBluRayEpisodeNumbersSet())
+            if (!this.IsAllEpisodeNumbersSet())
                 return false;
             if (!this.IsAllBluRayPathsValid())
                 return false;
@@ -172,7 +172,7 @@ namespace BatchGuy.App.MKVMerge.Services
             return true;
         }
 
-        private bool IsAllBluRayEpisodeNumbersSet()
+        private bool IsAllEpisodeNumbersSet()
         {
             bool isValid = true;
 
