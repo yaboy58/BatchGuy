@@ -9,6 +9,8 @@
 eac3to UI
 -Add a new checkbox under the Remux Template called "Is this remux for a movie" or something like that
 -Make sure to save/load this new checkbox
+-forced to use directory per episode
+-forced to use template 1
 
 Title Info UI
 -Episode Name disabled
@@ -22,6 +24,7 @@ Backend
 *Create new mkvmerge write service
 -You can only have 1 Disc selected 
 -You can only have 1 Playlist selected
+-override the common rules messages that have "episode" in it and put "movies"
 *New OutputNamingService
 
 
@@ -31,10 +34,31 @@ eac3to UI
 -Add checkbox above series name, Is this remux for movies?
 -IsScreenValid, only check if series name is entered if isremux and not for a movie, we will check this on the backend
 -dgvBluRaySummary_CellClick, set the current bluraysummaryinfo, already being done in its celldouble-clic
+-When you change something on the remux template, each control must have a changed event to update the current bluraysummaryinfo.remuxtemplate
+
+Title Info UI
+-Episode Name disabled
+-Episode Number caption will change to Movie Number
 
 
 Backend
 -Create a new property on BluRaySummaryInfo for EAC3ToRemuxFileNameTemplate
+-New property in eac3config to get either movie or episode string for the folder names, it will be based on the is movie flag.
+*Create new eac3to write service, it has its own rules
+-names have to be unique, especially for single folder mode
+*Create new mkvmerge write service
+-names have to be unique, especially for single folder mode
+-override the common rules messages that have "episode" in it and put "movies"
+*New OutputNamingService
+
+
+Misc
+-Operator override or overried equals for the EAC3ToRemuxFileNameTemplate to check field by field to make sure all movie names unique
+-Go to version 5, since there are breaking changes
+
+
+
+
 
 --possible nice to haves
 *Maybe start checking to see if batch files exist first, if so delete them before writing to them
