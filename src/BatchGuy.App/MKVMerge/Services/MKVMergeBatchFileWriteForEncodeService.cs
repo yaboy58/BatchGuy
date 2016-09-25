@@ -27,6 +27,7 @@ namespace BatchGuy.App.MKVMerge.Services
         private IAudioService _audioService;
         private AbstractEAC3ToOutputNamingService _eac3ToOutputNamingService;
         private BatchGuyEAC3ToSettings _batchGuyEAC3ToSettings;
+        private IEAC3ToCommonRulesValidatorService _eac3ToCommonRulesValidatorService;
 
         public static readonly ILog _log = LogManager.GetLogger(typeof(MKVMergeBatchFileWriteForEncodeService));
 
@@ -35,7 +36,7 @@ namespace BatchGuy.App.MKVMerge.Services
             get { return _errors; }
         }
 
-        public MKVMergeBatchFileWriteForEncodeService(BatchGuyEAC3ToSettings batchGuyEAC3ToSettings, IDirectorySystemService directorySystemService, IAudioService audioService, AbstractEAC3ToOutputNamingService eac3ToOutputNamingService)
+        public MKVMergeBatchFileWriteForEncodeService(BatchGuyEAC3ToSettings batchGuyEAC3ToSettings, IDirectorySystemService directorySystemService, IAudioService audioService, AbstractEAC3ToOutputNamingService eac3ToOutputNamingService, IEAC3ToCommonRulesValidatorService eac3ToCommonRulesValidatorService)
         {
             _batchGuyEAC3ToSettings = batchGuyEAC3ToSettings;
             _bluRayDiscInfoList = _batchGuyEAC3ToSettings.BluRayDiscs;
@@ -43,6 +44,7 @@ namespace BatchGuy.App.MKVMerge.Services
             _directorySystemService = directorySystemService;
             _audioService = audioService;
             _eac3ToOutputNamingService = eac3ToOutputNamingService;
+            _eac3ToCommonRulesValidatorService = eac3ToCommonRulesValidatorService;
             _errors = new ErrorCollection();
         }
 
@@ -88,137 +90,36 @@ namespace BatchGuy.App.MKVMerge.Services
 
         public bool IsValid()
         {
-            if (!this.IsAtLeastOneDiscSelected())
+            if (!_eac3ToCommonRulesValidatorService.IsAtLeastOneDiscSelected())
+            {
+                _errors = _eac3ToCommonRulesValidatorService.Errors;
                 return false;
-            if (!this.IsAtLeastOneSummarySelected())
+            }
+            if (!_eac3ToCommonRulesValidatorService.IsAtLeastOneSummarySelected())
+            {
+                _errors = _eac3ToCommonRulesValidatorService.Errors;
                 return false;
-            if (!this.WhenSummarySelectedAtLeastOneStreamSelected())
+            }
+            if (!_eac3ToCommonRulesValidatorService.WhenSummarySelectedAtLeastOneStreamSelected())
+            {
+                _errors = _eac3ToCommonRulesValidatorService.Errors;
                 return false;
-            if (!this.IsAllEpisodeNumbersSet())
+            }
+            if (!_eac3ToCommonRulesValidatorService.IsAllEpisodeNumbersSet())
+            {
+                _errors = _eac3ToCommonRulesValidatorService.Errors;
                 return false;
-            if (!this.IsAllBluRayPathsValid())
+            }
+            if (!_eac3ToCommonRulesValidatorService.IsAllBluRayPathsValid())
+            {
+                _errors = _eac3ToCommonRulesValidatorService.Errors;
                 return false;
+            }
             if (!this.IsAllX264EpisodeNumbersSet())
                 return false;
             if (!this.IsAllX264EpisodeNumbersUnique())
                 return false;
             return true;
-        }
-
-        private bool IsAtLeastOneDiscSelected()
-        {
-            bool isValid = true;
-
-            if (_bluRayDiscInfoList.Where(d => d.IsSelected).Count() == 0)
-            {
-                isValid = false;
-                this._errors.Add(new Error() { Description = "No Disc was selected." });
-            }
-            return isValid;
-        }
-
-        private bool IsAtLeastOneSummarySelected()
-        {
-            bool isValid = false;
-
-            foreach (BluRayDiscInfo disc in _bluRayDiscInfoList.Where(d => d.IsSelected))
-            {
-                if (disc.BluRaySummaryInfoList.Where(s => s.IsSelected).Count() > 0)
-                {
-                    isValid = true;
-                }
-            }
-
-            if (!isValid)
-            {
-                this._errors.Add(new Error() { Description = "No episodes selected." });
-            }
-            return isValid;
-        }
-
-        private bool WhenSummarySelectedAtLeastOneStreamSelected()
-        {
-            bool isValid = false;
-
-            foreach (BluRayDiscInfo disc in _bluRayDiscInfoList.Where(d => d.IsSelected))
-            {
-                foreach (BluRaySummaryInfo summary in disc.BluRaySummaryInfoList.Where(s => s.IsSelected))
-                {
-                    if (summary.BluRayTitleInfo != null && summary.BluRayTitleInfo.Video.IsSelected)
-                    {
-                        isValid = true;
-                    }
-                    if (summary.BluRayTitleInfo != null && summary.BluRayTitleInfo.AudioList != null && summary.BluRayTitleInfo.AudioList.Where(a => a.IsSelected).Count() > 0)
-                    {
-                        isValid = true;
-                    }
-                    if (summary.BluRayTitleInfo != null && summary.BluRayTitleInfo.Subtitles != null && summary.BluRayTitleInfo.Subtitles.Where(s => s.IsSelected).Count() > 0)
-                    {
-                        isValid = true;
-                    }
-                    if (summary.BluRayTitleInfo != null && summary.BluRayTitleInfo.Chapter != null && summary.BluRayTitleInfo.Chapter.IsSelected)
-                    {
-                        isValid = true;
-                    }
-                    if (!isValid)
-                    {
-                        this._errors.Add(new Error() { Description = "Some selected titles have no streams selected." });
-                        return isValid;
-                    }
-                    isValid = false;
-                }
-
-            }
-            return true;
-        }
-
-        private bool IsAllEpisodeNumbersSet()
-        {
-            bool isValid = true;
-
-            foreach (BluRayDiscInfo disc in _bluRayDiscInfoList.Where(d => d.IsSelected))
-            {
-                foreach (BluRaySummaryInfo info in disc.BluRaySummaryInfoList.Where(s => s.IsSelected))
-                {
-                    if (info.EpisodeNumber == null)
-                    {
-                        isValid = false;
-                    }
-                }
-            }
-
-            if (!isValid)
-            {
-                this._errors.Add(new Error() { Description = "Episode number not set for all titles." });
-            }
-            return isValid;
-        }
-
-        private bool IsAllBluRayPathsValid()
-        {
-            bool isValid = true;
-
-            foreach (BluRayDiscInfo disc in _bluRayDiscInfoList.Where(d => d.IsSelected))
-            {
-                foreach (BluRaySummaryInfo info in disc.BluRaySummaryInfoList.Where(s => s.IsSelected))
-                {
-                    if (info.BluRayTitleInfo != null)
-                    {
-                        if ((info.BluRayTitleInfo.AudioList != null && info.BluRayTitleInfo.AudioList.Where(a => a.IsSelected).Count() > 0) || (info.BluRayTitleInfo.Chapter != null && info.BluRayTitleInfo.Chapter.IsSelected)
-                            || (info.BluRayTitleInfo.Subtitles != null && info.BluRayTitleInfo.Subtitles.Where(s => s.IsSelected).Count() > 0) || (info.BluRayTitleInfo.Video != null && info.BluRayTitleInfo.Video.IsSelected))
-                        {
-                            if (!_directorySystemService.Exists(disc.BluRayPath))
-                                isValid = false;
-                        }
-                    }
-                }
-            }
-
-            if (!isValid)
-            {
-                this._errors.Add(new Error() { Description = "Invalid Blu-ray disc directories found." });
-            }
-            return isValid;
         }
 
         private bool IsAllX264EpisodeNumbersSet()

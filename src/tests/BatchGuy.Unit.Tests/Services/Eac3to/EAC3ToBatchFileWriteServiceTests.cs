@@ -31,7 +31,8 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
             directorySystemServiceMock.Setup(m => m.Exists(It.IsAny<string>())).Returns(true);
             IAudioService audioService = new AudioService();
             AbstractEAC3ToOutputNamingService eac3ToOutputNamingService = new EncodeTemplate1EAC3ToOutputNamingService(audioService);
-            IEAC3ToBatchFileWriteService service = new EAC3ToBatchFileWriteService(config,directorySystemServiceMock.Object, discList, audioService, eac3ToOutputNamingService);
+            IEAC3ToCommonRulesValidatorService eac3ToCommonRulesValidatorService = new EAC3ToCommonRulesValidatorService(config, directorySystemServiceMock.Object, discList);
+            IEAC3ToBatchFileWriteService service = new EAC3ToBatchFileWriteService(config,directorySystemServiceMock.Object, discList, audioService, eac3ToOutputNamingService, eac3ToCommonRulesValidatorService);
             bool isValid = service.IsValid();
             service.Errors[0].Description.Should().Be("No Disc was selected.");
         }
@@ -46,7 +47,8 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
             directorySystemServiceMock.Setup(m => m.Exists(It.IsAny<string>())).Returns(true);
             IAudioService audioService = new AudioService();
             AbstractEAC3ToOutputNamingService eac3ToOutputNamingService = new EncodeTemplate1EAC3ToOutputNamingService(audioService);
-            IEAC3ToBatchFileWriteService service = new EAC3ToBatchFileWriteService(config, directorySystemServiceMock.Object, discList, audioService, eac3ToOutputNamingService);
+            IEAC3ToCommonRulesValidatorService eac3ToCommonRulesValidatorService = new EAC3ToCommonRulesValidatorService(config, directorySystemServiceMock.Object, discList);
+            IEAC3ToBatchFileWriteService service = new EAC3ToBatchFileWriteService(config, directorySystemServiceMock.Object, discList, audioService, eac3ToOutputNamingService, eac3ToCommonRulesValidatorService);
             bool isValid = service.IsValid();
             service.Errors[0].Description.Should().Be("No episodes selected.");
         }
@@ -62,7 +64,8 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
             directorySystemServiceMock.Setup(m => m.Exists(It.IsAny<string>())).Returns(true);
             IAudioService audioService = new AudioService();
             AbstractEAC3ToOutputNamingService eac3ToOutputNamingService = new EncodeTemplate1EAC3ToOutputNamingService(audioService);
-            IEAC3ToBatchFileWriteService service = new EAC3ToBatchFileWriteService(config, directorySystemServiceMock.Object, discList, audioService, eac3ToOutputNamingService);
+            IEAC3ToCommonRulesValidatorService eac3ToCommonRulesValidatorService = new EAC3ToCommonRulesValidatorService(config, directorySystemServiceMock.Object, discList);
+            IEAC3ToBatchFileWriteService service = new EAC3ToBatchFileWriteService(config, directorySystemServiceMock.Object, discList, audioService, eac3ToOutputNamingService, eac3ToCommonRulesValidatorService);
             bool isValid = service.IsValid();
             service.Errors[0].Description.Should().Be("Episode number not set for all selected titles.");
         }
@@ -78,7 +81,8 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
             directorySystemServiceMock.Setup(m => m.Exists(It.IsAny<string>())).Returns(false);
             IAudioService audioService = new AudioService();
             AbstractEAC3ToOutputNamingService eac3ToOutputNamingService = new EncodeTemplate1EAC3ToOutputNamingService(audioService);
-            IEAC3ToBatchFileWriteService service = new EAC3ToBatchFileWriteService(config, directorySystemServiceMock.Object, discList, audioService, eac3ToOutputNamingService);
+            IEAC3ToCommonRulesValidatorService eac3ToCommonRulesValidatorService = new EAC3ToCommonRulesValidatorService(config, directorySystemServiceMock.Object, discList);
+            IEAC3ToBatchFileWriteService service = new EAC3ToBatchFileWriteService(config, directorySystemServiceMock.Object, discList, audioService, eac3ToOutputNamingService, eac3ToCommonRulesValidatorService);
             bool isValid = service.IsValid();
             service.Errors[0].Description.Should().Be("Invalid Blu-ray disc directories found.");
         }

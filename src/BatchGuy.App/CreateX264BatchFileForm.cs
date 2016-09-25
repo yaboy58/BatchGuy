@@ -758,7 +758,8 @@ namespace BatchGuy.App
             IDirectorySystemService directorySystemService = new DirectorySystemService();
             IAudioService audioService = new AudioService();
             AbstractEAC3ToOutputNamingService eac3ToOutputNamingService = new EncodeTemplate1EAC3ToOutputNamingService(audioService);
-            IMKVMergeBatchFileWriteService batchFileWriteService = new MKVMergeBatchFileWriteForEncodeService(_batchGuyEAC3ToSettings, directorySystemService, audioService, eac3ToOutputNamingService);
+            IEAC3ToCommonRulesValidatorService eac3ToCommonRulesValidatorService = new EAC3ToCommonRulesValidatorService(_batchGuyEAC3ToSettings.EAC3ToSettings, directorySystemService, _batchGuyEAC3ToSettings.BluRayDiscs);
+            IMKVMergeBatchFileWriteService batchFileWriteService = new MKVMergeBatchFileWriteForEncodeService(_batchGuyEAC3ToSettings, directorySystemService, audioService, eac3ToOutputNamingService, eac3ToCommonRulesValidatorService);
             bgwMkvMergeWriteBatchFile.RunWorkerAsync(batchFileWriteService);
         }
 

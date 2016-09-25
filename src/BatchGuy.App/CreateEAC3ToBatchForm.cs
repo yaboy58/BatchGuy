@@ -139,7 +139,8 @@ namespace BatchGuy.App
             IDirectorySystemService directorySystemService = new DirectorySystemService();
             IAudioService audioService = new AudioService();
             AbstractEAC3ToOutputNamingService eac3ToOutputNamingService = this.GetOutputNamingService();
-            IEAC3ToBatchFileWriteService batchFileWriteService = new EAC3ToBatchFileWriteService(_eac3toConfiguration, directorySystemService, discs, audioService,eac3ToOutputNamingService);
+            IEAC3ToCommonRulesValidatorService eac3ToCommonRulesValidatorService = new EAC3ToCommonRulesValidatorService(_eac3toConfiguration, directorySystemService, discs);
+            IEAC3ToBatchFileWriteService batchFileWriteService = new EAC3ToBatchFileWriteService(_eac3toConfiguration, directorySystemService, discs, audioService,eac3ToOutputNamingService, eac3ToCommonRulesValidatorService);
             bgwEac3toWriteBatchFile.RunWorkerAsync(batchFileWriteService);
         }
 
@@ -859,7 +860,8 @@ namespace BatchGuy.App
             IDirectorySystemService directorySystemService = new DirectorySystemService();
             IAudioService audioService = new AudioService();
             AbstractEAC3ToOutputNamingService eac3ToOutputNamingService = this.GetOutputNamingService();
-            IMKVMergeBatchFileWriteService batchFileWriteService = new MKVMergeBatchFileWriteService(_eac3toConfiguration, directorySystemService, discs, audioService, eac3ToOutputNamingService);
+            IEAC3ToCommonRulesValidatorService _eac3ToCommonRulesValidatorService = new EAC3ToCommonRulesValidatorService(_eac3toConfiguration, directorySystemService, discs);
+            IMKVMergeBatchFileWriteService batchFileWriteService = new MKVMergeBatchFileWriteService(_eac3toConfiguration, directorySystemService, discs, audioService, eac3ToOutputNamingService, _eac3ToCommonRulesValidatorService);
             bgwMkvMergeWriteBatchFile.RunWorkerAsync(batchFileWriteService);
         }
 

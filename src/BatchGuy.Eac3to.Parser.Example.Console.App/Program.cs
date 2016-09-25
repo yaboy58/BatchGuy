@@ -141,7 +141,8 @@ namespace BatchGuy.Eac3to.Parser.Example.Console.App
                     IDirectorySystemService directorySystemService = new DirectorySystemService();
                     IAudioService audioService = new AudioService();
                     AbstractEAC3ToOutputNamingService eac3ToOutputNamingService = new EncodeTemplate1EAC3ToOutputNamingService(audioService);
-                    IEAC3ToBatchFileWriteService batchFileWriteService = new EAC3ToBatchFileWriteService(eac3toConfiguation, directorySystemService, bluRayDiscList, audioService, eac3ToOutputNamingService);
+                    IEAC3ToCommonRulesValidatorService eac3ToCommonRulesValidatorService = new EAC3ToCommonRulesValidatorService(eac3toConfiguation, directorySystemService, bluRayDiscList);
+                    IEAC3ToBatchFileWriteService batchFileWriteService = new EAC3ToBatchFileWriteService(eac3toConfiguation, directorySystemService, bluRayDiscList, audioService, eac3ToOutputNamingService, eac3ToCommonRulesValidatorService);
                     batchFileWriteService.Write();
                     if (batchFileWriteService.Errors.Count() == 0)
                     {

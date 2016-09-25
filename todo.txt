@@ -1,5 +1,5 @@
 --todo
-MKVMergeBatchFileWriteForEncodeService,MKVMergeBatchFileWriteService,EAC3ToBatchFileWriteService need to have some type of rules object passed in so the bluray validation logic can be shared (EAC3ToCommonRulesValidatorService)
+*Created the EAC3ToCommonRulesValidatorService to centralize common eac3to validation rules that many of the backend services use.  Validation code was duplicated and increased the application's technical debt
 
 *This may be the best time to change from e{0} to episode{0}, quick search showed that it is only in 4 places.  Unit Tests would break, not backwards compatiable.  It needs to be configurable.
 -Add new property on eac3config object for this new flag
