@@ -40,7 +40,7 @@ namespace BatchGuy.App.MKVMerge.Services
             _paddedEpisodeNumber = HelperFunctions.PadNumberWithZeros(_eac3ToConfiguration.NumberOfEpisodes, _bluRaySummaryInfo.BluRayTitleInfo.EpisodeNumber.StringToInt());
             if (_eac3ToConfiguration.OutputDirectoryType == EnumDirectoryType.DirectoryPerEpisode)
             {
-                string folderName = string.Format("e{0}", _paddedEpisodeNumber);
+                string folderName = string.Format("{0}{1}",_eac3ToConfiguration.DirectoryPerEpisodeDirectoryName, _paddedEpisodeNumber);
                 _filesOutputPath = string.Format("{0}\\{1}", _eac3ToConfiguration.EAC3ToOutputPath, folderName);
             }
             else

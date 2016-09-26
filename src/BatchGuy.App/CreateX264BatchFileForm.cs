@@ -706,7 +706,7 @@ namespace BatchGuy.App
                                             if (_batchGuyEAC3ToSettings.EAC3ToSettings.OutputDirectoryType == EnumDirectoryType.DirectoryPerEpisode)
                                             {
                                                 string episodeFolderName = HelperFunctions.PadNumberWithZeros(_batchGuyEAC3ToSettings.X264Files.Count(), file.EpisodeNumber.StringToInt());
-                                                summary.BluRayTitleInfo.EpisodeName = string.Format("{0}\\e{1}\\{2}", _batchGuyEAC3ToSettings.EAC3ToSettings.EAC3ToOutputPath, episodeFolderName, file.EncodeName);
+                                                summary.BluRayTitleInfo.EpisodeName = string.Format("{0}\\episode{1}\\{2}", _batchGuyEAC3ToSettings.EAC3ToSettings.EAC3ToOutputPath, episodeFolderName, file.EncodeName);
                                             }
                                             else
                                             {

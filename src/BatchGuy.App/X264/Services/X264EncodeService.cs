@@ -69,12 +69,12 @@ namespace BatchGuy.App.X264.Services
                         if (_x264FileSettings.X264EncodeAndLogFileOutputDirectoryPathType == EnumDirectoryType.DirectoryPerEpisode)
                         {
                             string episodeFolderName = HelperFunctions.PadNumberWithZeros(_x264Files.Count(),episodeNumber);
-                            sb.Append(string.Format(" --output \"{0}\\e{1}\\{2}\"", _x264FileSettings.X264EncodeAndLogFileOutputDirectoryPath,episodeFolderName, x264File.EncodeName));
+                            sb.Append(string.Format(" --output \"{0}\\episode{1}\\{2}\"", _x264FileSettings.X264EncodeAndLogFileOutputDirectoryPath,episodeFolderName, x264File.EncodeName));
 
                             if (_x264FileSettings.SaveX264LogFileToDifferentDirectory)
                                 sb.Append(string.Format(" - 2> \"{0}\\{1}.x264.log\"", _x264FileSettings.X264LogFileOutputDirectoryPath, x264File.EncodeName));  
                             else
-                                sb.Append(string.Format(" - 2> \"{0}\\e{1}\\{2}.x264.log\"", _x264FileSettings.X264EncodeAndLogFileOutputDirectoryPath, episodeFolderName, x264File.EncodeName));     
+                                sb.Append(string.Format(" - 2> \"{0}\\episode{1}\\{2}.x264.log\"", _x264FileSettings.X264EncodeAndLogFileOutputDirectoryPath, episodeFolderName, x264File.EncodeName));     
                         }
                         else
                         {
@@ -121,7 +121,7 @@ namespace BatchGuy.App.X264.Services
                             if (_x264FileSettings.SaveX264LogFileToDifferentDirectory)
                                 sb1stPass.Append(string.Format(" --output NUL - 2> \"{0}\\{1}.x264.pass1.log\"", _x264FileSettings.X264LogFileOutputDirectoryPath, x264File.EncodeName));
                             else
-                                sb1stPass.Append(string.Format(" --output NUL - 2> \"{0}\\e{1}\\{2}.x264.pass1.log\"", _x264FileSettings.X264EncodeAndLogFileOutputDirectoryPath, episodeFolderName, x264File.EncodeName));
+                                sb1stPass.Append(string.Format(" --output NUL - 2> \"{0}\\episode{1}\\{2}.x264.pass1.log\"", _x264FileSettings.X264EncodeAndLogFileOutputDirectoryPath, episodeFolderName, x264File.EncodeName));
                         }
                         else
                         {
@@ -143,12 +143,12 @@ namespace BatchGuy.App.X264.Services
                         if (_x264FileSettings.X264EncodeAndLogFileOutputDirectoryPathType == EnumDirectoryType.DirectoryPerEpisode)
                         {
                             string episodeFolderName = HelperFunctions.PadNumberWithZeros(_x264Files.Count(), episodeNumber);
-                            sb2ndPass.Append(string.Format(" --output \"{0}\\e{1}\\{2}\"", _x264FileSettings.X264EncodeAndLogFileOutputDirectoryPath,episodeFolderName, x264File.EncodeName));
+                            sb2ndPass.Append(string.Format(" --output \"{0}\\episode{1}\\{2}\"", _x264FileSettings.X264EncodeAndLogFileOutputDirectoryPath,episodeFolderName, x264File.EncodeName));
 
                             if (_x264FileSettings.SaveX264LogFileToDifferentDirectory)
                                 sb2ndPass.Append(string.Format(" - 2> \"{0}\\{1}.x264.pass2.log\"", _x264FileSettings.X264LogFileOutputDirectoryPath, x264File.EncodeName));
                             else
-                                sb2ndPass.Append(string.Format(" - 2> \"{0}\\e{1}\\{2}.x264.pass2.log\"", _x264FileSettings.X264EncodeAndLogFileOutputDirectoryPath, episodeFolderName, x264File.EncodeName));
+                                sb2ndPass.Append(string.Format(" - 2> \"{0}\\episode{1}\\{2}.x264.pass2.log\"", _x264FileSettings.X264EncodeAndLogFileOutputDirectoryPath, episodeFolderName, x264File.EncodeName));
                         }
                         else
                         {

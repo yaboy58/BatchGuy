@@ -49,7 +49,7 @@ namespace BatchGuy.App.AviSynth.Services
             {
                 StringBuilder sb = new StringBuilder();
                 string paddedNumber = HelperFunctions.PadNumberWithZeros(_avsBatchSettings.NumberOfFiles, file.Number);
-                string encodeFileFolder = string.Format("e{0}", paddedNumber);
+                string encodeFileFolder = string.Format("episode{0}", paddedNumber);
                 string encodeFile = string.Format("video{0}.mkv", paddedNumber); //hardcoded to mkv
                 if (_avsBatchSettings.VideoToEncodeDirectoryType ==  EnumDirectoryType.DirectoryPerEpisode)
                 {

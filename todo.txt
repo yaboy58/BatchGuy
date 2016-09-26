@@ -1,9 +1,11 @@
 --todo
+Enhancements:
 *Created the EAC3ToCommonRulesValidatorService to centralize common eac3to validation rules that many of the backend services use.  Validation code was duplicated and increased the application's technical debt
+*When the user chooses Directory Per Episode for encoding or they are not remuxing for a movie, the folder names eac3to will use has been changed from e## to episode##
+*When the user chooses Directory Per Episode for remuxing movie(s), the folder names eac3to will use is movie##
 
-*This may be the best time to change from e{0} to episode{0}, quick search showed that it is only in 4 places.  Unit Tests would break, not backwards compatiable.  It needs to be configurable.
--Add new property on eac3config object for this new flag
--New property in eac3config to get either movie or episode string for the folder names, it will be based on the is movie flag.
+*remove e## anywhere it is displayed and documentation
+*take a screen shot of episode folders and replace documentation picture
 
 *Movie Mode 1
 eac3to UI
@@ -54,7 +56,8 @@ Backend
 
 Misc
 -Operator override or overried equals for the EAC3ToRemuxFileNameTemplate to check field by field to make sure all movie names unique
--Go to version 5, since there are breaking changes
+-Remove user control for directory type, if you choose
+-Save button on settings screen probably shouldn't close, just tells user it saved
 
 
 
