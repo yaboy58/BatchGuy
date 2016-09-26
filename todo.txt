@@ -8,37 +8,18 @@ Enhancements:
 *Settings Screen doesn't close when the user selects the save menu item
 
 
-*Movie Mode 1
-eac3to UI
--Add a new checkbox under the Remux Template called "Is this remux for a movie" or something like that
--Make sure to save/load this new checkbox
--forced to use directory per episode
--forced to use template 1
--setDirectoryUserControl.ComboBoxCaptionText needs to be movie## when is remux for movie
-
-Title Info UI
--Episode Name disabled
--Episode Number caption will change to Movie Number
-
-Backend
--New property in eac3config to get either movie or episode string for the folder names, it will be based on the is movie flag.
-*Create new eac3to write service, it has its own rules
--You can only have 1 Disc selected 
--You can only have 1 Playlist selected
-*Create new mkvmerge write service
--You can only have 1 Disc selected 
--You can only have 1 Playlist selected
--override the common rules messages that have "episode" in it and put "movies"
-*New OutputNamingService
-
 
 *Movie Mode 2 (probably too much work)
 eac3to UI
+-forced to use template 1 -DONE
+-forced to use directory per episode *****don't think this is needed, validation will enforce all names to be unique
+-Make sure to save/load this new checkbox -DONE
 *Each playlist will have its own remux template 
--Add checkbox above series name, Is this remux for movies?
+-Add checkbox above series name, Is this remux for movies? -DONE
 -IsScreenValid, only check if series name is entered if isremux and not for a movie, we will check this on the backend
 -dgvBluRaySummary_CellClick, set the current bluraysummaryinfo, already being done in its celldouble-clic
 -When you change something on the remux template, each control must have a changed event to update the current bluraysummaryinfo.remuxtemplate
+-redo tab index -DONE
 
 Title Info UI
 -Episode Name disabled
@@ -47,7 +28,7 @@ Title Info UI
 
 Backend
 -Create a new property on BluRaySummaryInfo for EAC3ToRemuxFileNameTemplate
--New property in eac3config to get either movie or episode string for the folder names, it will be based on the is movie flag.
+-New property in eac3config to get either movie or episode string for the folder names, it will be based on the is movie flag. -DONE
 *Create new eac3to write service, it has its own rules
 -names have to be unique, especially for single folder mode
 *Create new mkvmerge write service

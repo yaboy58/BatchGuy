@@ -711,6 +711,7 @@ namespace BatchGuy.App
                     cbRemuxVideoFormat.SelectedIndex = index;                                        
                 }
                 chkRemuxUsePeriodsInFileName.Checked = _eac3toConfiguration.RemuxFileNameTemplate.UsePeriodsInFileName;
+                chkIsThisRemuxForAMovie.Checked = _eac3toConfiguration.IfIsExtractForRemuxIsItForAMovie;
             }
         }
 
@@ -923,6 +924,12 @@ namespace BatchGuy.App
 
         private void SetRemuxNamingConventionCurrentTemplateExampleLabel()
         {
+            if (chkIsThisRemuxForAMovie.Checked)
+            {
+                lblRemuxNamingConventionCurrentTemplateExample.Text = "Template 1: TV Show 1978 S01E01 Episode 1 1080p Remux AVC FLAC7.1 -Tag.mkv";
+                return;
+            }
+
             switch (Program.ApplicationSettings.EnumEAC3ToNamingConventionType)
             {
                 case EnumEAC3ToNamingConventionType.RemuxNamingConventionTemplate1:
@@ -1015,6 +1022,24 @@ namespace BatchGuy.App
         private void closeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void chkIsThisRemuxForAMovie_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                this.HandleschkIsThisRemuxForAMovieCheckedChanged();
+            }
+            catch (Exception ex)
+            {
+                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was a problem trying to set the remux for movie checkbox!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
+            }
+        }
+
+        private void HandleschkIsThisRemuxForAMovieCheckedChanged()
+        {
+            _eac3toConfiguration.IfIsExtractForRemuxIsItForAMovie = chkIsThisRemuxForAMovie.Checked;
+            this.SetRemuxNamingConventionCurrentTemplateExampleLabel();
         }
     }
 }
