@@ -3,6 +3,7 @@ Enhancements:
 *Created the EAC3ToCommonRulesValidatorService to centralize common eac3to validation rules that many of the backend services use.  Validation code was duplicated and increased the application's technical debt
 *When the user chooses Directory Per Episode for encoding or they are not remuxing for a movie, the folder names eac3to will use has been changed from e## to episode##
 *When the user chooses Directory Per Episode for remuxing movie(s), the folder names eac3to will use is movie##
+*Text updated in all BatchGuy Screens to replace "e##" with "episode##"
 
 *remove e## anywhere it is displayed and documentation
 *take a screen shot of episode folders and replace documentation picture
@@ -13,6 +14,7 @@ eac3to UI
 -Make sure to save/load this new checkbox
 -forced to use directory per episode
 -forced to use template 1
+-setDirectoryUserControl.ComboBoxCaptionText needs to be movie## when is remux for movie
 
 Title Info UI
 -Episode Name disabled

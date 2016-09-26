@@ -59,11 +59,11 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.createAviSynthavsFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createFfindexBatchFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.lblVersion = new System.Windows.Forms.Label();
             this.bgwCreateFFMSIndexBatchFile = new System.ComponentModel.BackgroundWorker();
-            this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.gbScreen.SuspendLayout();
             this.menuStrip.SuspendLayout();
             this.SuspendLayout();
@@ -244,10 +244,10 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(17, 408);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(537, 13);
+            this.label5.Size = new System.Drawing.Size(599, 13);
             this.label5.TabIndex = 14;
             this.label5.Text = "*Single Directory = video files in a single directory && Per Episode = videos in " +
-    "e01\\video01.mkv, e02\\video02.mkv";
+    "episode01\\video01.mkv, episode02\\video02.mkv";
             // 
             // label4
             // 
@@ -338,6 +338,19 @@
             this.createFfindexBatchFilesToolStripMenuItem.Text = "Create ffindex Batch File";
             this.createFfindexBatchFilesToolStripMenuItem.Click += new System.EventHandler(this.createFfindexBatchFilesToolStripMenuItem_Click);
             // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(254, 6);
+            // 
+            // closeToolStripMenuItem
+            // 
+            this.closeToolStripMenuItem.Image = global::BatchGuy.App.Properties.Resources.close_red;
+            this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
+            this.closeToolStripMenuItem.Size = new System.Drawing.Size(257, 22);
+            this.closeToolStripMenuItem.Text = "Close";
+            this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click);
+            // 
             // openFileDialog
             // 
             this.openFileDialog.FileName = "openFileDialog1";
@@ -355,19 +368,6 @@
             // 
             this.bgwCreateFFMSIndexBatchFile.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgwCreateFFMSIndexBatchFile_DoWork);
             this.bgwCreateFFMSIndexBatchFile.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgwCreateFFMSIndexBatchFile_RunWorkerCompleted);
-            // 
-            // closeToolStripMenuItem
-            // 
-            this.closeToolStripMenuItem.Image = global::BatchGuy.App.Properties.Resources.close_red;
-            this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
-            this.closeToolStripMenuItem.Size = new System.Drawing.Size(257, 22);
-            this.closeToolStripMenuItem.Text = "Close";
-            this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(254, 6);
             // 
             // CreateAviSynthFilesForm
             // 

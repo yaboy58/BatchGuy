@@ -41,7 +41,7 @@ namespace BatchGuy.App.UserControls
 
        private void SetTxtSetOuptDirectoryUserControl()
        {
-           txtSetOuptDirectoryUserControl.Text = _cliOutputDirectory;
+           txtSetOutputDirectoryUserControl.Text = _cliOutputDirectory;
        }
 
        private void SetCbSetOutputDirectoryUserControlType()
@@ -75,8 +75,8 @@ namespace BatchGuy.App.UserControls
             fsd.Title = string.Format("{0}", _comboBoxCaptionText);
             if (fsd.ShowDialog(IntPtr.Zero))
             {
-                txtSetOuptDirectoryUserControl.Text = fsd.FileName;
-                _cliOutputDirectory = txtSetOuptDirectoryUserControl.Text;
+                txtSetOutputDirectoryUserControl.Text = fsd.FileName;
+                _cliOutputDirectory = txtSetOutputDirectoryUserControl.Text;
                 this.HandleCbSetOutputDirectoryUserControlTypeSelectedIndexChanged(cbSetOutputDirectoryUserControlType.Text);
             }
         }
@@ -102,9 +102,9 @@ namespace BatchGuy.App.UserControls
                    break;
                case "Directory Per Episode":
                    _directoryType = EnumDirectoryType.DirectoryPerEpisode;
-                   if (!string.IsNullOrEmpty(_cliOutputDirectory) && !string.IsNullOrEmpty(txtSetOuptDirectoryUserControl.Text))
+                   if (!string.IsNullOrEmpty(_cliOutputDirectory) && !string.IsNullOrEmpty(txtSetOutputDirectoryUserControl.Text))
                    {
-                       stringLabelOutputDirectoryText = string.Format(_labelDirectoryCaptionText, txtSetOuptDirectoryUserControl.Text);                       
+                       stringLabelOutputDirectoryText = string.Format(_labelDirectoryCaptionText, txtSetOutputDirectoryUserControl.Text);                       
                    }
                    break;
                default:

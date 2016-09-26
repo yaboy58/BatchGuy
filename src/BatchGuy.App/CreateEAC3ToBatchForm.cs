@@ -58,7 +58,7 @@ namespace BatchGuy.App
         {
             InitializeComponent();
             setDirectoryUserControl.ComboBoxCaptionText = "eac3to output directory*:";
-            setDirectoryUserControl.LabelDirectoryCaptionText = @"eac3to Output Directory (example: e01, e02): {0}\e##";
+            setDirectoryUserControl.LabelDirectoryCaptionText = @"Files will be extracted to: eac3to_Output_Directory\episode##";
             this.SetToolTips();
         }
 

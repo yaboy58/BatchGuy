@@ -31,7 +31,7 @@
             this.lblComboBoxCaption = new System.Windows.Forms.Label();
             this.cbSetOutputDirectoryUserControlType = new System.Windows.Forms.ComboBox();
             this.btnSetOutputDirectoryUserControlOpenDialog = new System.Windows.Forms.Button();
-            this.txtSetOuptDirectoryUserControl = new System.Windows.Forms.TextBox();
+            this.txtSetOutputDirectoryUserControl = new System.Windows.Forms.TextBox();
             this.lblDirectoryOutputCaption = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -67,13 +67,13 @@
             this.btnSetOutputDirectoryUserControlOpenDialog.UseVisualStyleBackColor = true;
             this.btnSetOutputDirectoryUserControlOpenDialog.Click += new System.EventHandler(this.btnSetOutputDirectoryUserControlOpenDialog_Click);
             // 
-            // txtSetOuptDirectoryUserControl
+            // txtSetOutputDirectoryUserControl
             // 
-            this.txtSetOuptDirectoryUserControl.Location = new System.Drawing.Point(316, 16);
-            this.txtSetOuptDirectoryUserControl.Name = "txtSetOuptDirectoryUserControl";
-            this.txtSetOuptDirectoryUserControl.ReadOnly = true;
-            this.txtSetOuptDirectoryUserControl.Size = new System.Drawing.Size(434, 20);
-            this.txtSetOuptDirectoryUserControl.TabIndex = 13;
+            this.txtSetOutputDirectoryUserControl.Location = new System.Drawing.Point(316, 16);
+            this.txtSetOutputDirectoryUserControl.Name = "txtSetOutputDirectoryUserControl";
+            this.txtSetOutputDirectoryUserControl.ReadOnly = true;
+            this.txtSetOutputDirectoryUserControl.Size = new System.Drawing.Size(434, 20);
+            this.txtSetOutputDirectoryUserControl.TabIndex = 13;
             // 
             // lblDirectoryOutputCaption
             // 
@@ -92,7 +92,7 @@
             this.Controls.Add(this.lblDirectoryOutputCaption);
             this.Controls.Add(this.cbSetOutputDirectoryUserControlType);
             this.Controls.Add(this.btnSetOutputDirectoryUserControlOpenDialog);
-            this.Controls.Add(this.txtSetOuptDirectoryUserControl);
+            this.Controls.Add(this.txtSetOutputDirectoryUserControl);
             this.Name = "SetDirectoryUserControl";
             this.Size = new System.Drawing.Size(824, 71);
             this.Load += new System.EventHandler(this.SetOutputDirectoryUserControl_Load);
@@ -106,7 +106,7 @@
         private System.Windows.Forms.Label lblComboBoxCaption;
         private System.Windows.Forms.ComboBox cbSetOutputDirectoryUserControlType;
         private System.Windows.Forms.Button btnSetOutputDirectoryUserControlOpenDialog;
-        private System.Windows.Forms.TextBox txtSetOuptDirectoryUserControl;
+        private System.Windows.Forms.TextBox txtSetOutputDirectoryUserControl;
         private System.Windows.Forms.Label lblDirectoryOutputCaption;
     }
 }
