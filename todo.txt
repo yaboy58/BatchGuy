@@ -4,8 +4,8 @@ Enhancements:
 *When the user chooses Directory Per Episode for encoding or they are not remuxing for a movie, the folder names eac3to will use has been changed from e## to episode##
 *When the user chooses Directory Per Episode for remuxing movie(s), the folder names eac3to will use is movie##
 *Text updated in all BatchGuy Screens to replace "e##" with "episode##"
+*Updated Github Wiki screenshots to reflect folder change to "episode##"
 
-*remove e## anywhere it is displayed and documentation
 *take a screen shot of episode folders and replace documentation picture
 
 *Movie Mode 1
