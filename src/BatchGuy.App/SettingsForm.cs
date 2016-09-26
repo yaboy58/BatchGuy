@@ -410,7 +410,8 @@ namespace BatchGuy.App
             {
                 gbScreen.SetEnabled(false);
                 this.HandleSaveClick();
-                this.Close();
+                MessageBox.Show("Your settings have been saved successfully", "Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                gbScreen.SetEnabled(true);
             }
             catch (Exception ex)
             {
