@@ -2,19 +2,14 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using BatchGuy.App.Eac3to.Models;
 using BatchGuy.App.Eac3to.Services;
 using BatchGuy.App.Parser.Models;
 using BatchGuy.App.Parser.Services;
-using BatchGuy.App.Eac3to.Interfaces;
 using BatchGuy.App.Parser.Interfaces;
 using BatchGuy.App.Enums;
-using BatchGuy.App.Helpers;
 using BatchGuy.App.Eac3To.Interfaces;
 using BatchGuy.App.Extensions;
 using System.Linq.Dynamic;
@@ -28,7 +23,6 @@ using BatchGuy.App.Shared.Events;
 using BatchGuy.App.Constants;
 using BatchGuy.App.Eac3To.Services;
 using BatchGuy.App.Shared.Interface;
-using log4net;
 using System.Reflection;
 using BatchGuy.App.MKVMerge.Interfaces;
 using BatchGuy.App.MKVMerge.Services;
@@ -108,6 +102,7 @@ namespace BatchGuy.App
             new ToolTip().SetToolTip(btnOpenMKVMergeOutputPathDialog, "mkvmerge output directory");
             new ToolTip().SetToolTip(chkRemuxUsePeriodsInFileName, "Use periods instead of spaces in file name");
             new ToolTip().SetToolTip(lblRemuxNamingConventionCurrentTemplateExample, "Shows the active Remux naming convention template and an example");
+            new ToolTip().SetToolTip(chkIsThisRemuxForAMovie, "Is this remux for a movie?");
         }
 
         private bool IsEac3ToPathSetInSettings()
@@ -126,10 +121,6 @@ namespace BatchGuy.App
                 return false;
             else
                 return true;
-        }
-
-        private void btnWriteToBatFile_Click(object sender, EventArgs e)
-        {
         }
 
         private void WriteToBatchFile()
@@ -685,6 +676,7 @@ namespace BatchGuy.App
         private void ReloadRemux()
         {
             chkExtractForRemux.Checked = _eac3toConfiguration.IsExtractForRemux;
+            chkIsThisRemuxForAMovie.Checked = _eac3toConfiguration.IfIsExtractForRemuxIsItForAMovie;
             if (_eac3toConfiguration.IsExtractForRemux)
             {
                 txtRemuxSeriesName.Text = _eac3toConfiguration.RemuxFileNameTemplate.SeriesName;
@@ -711,7 +703,6 @@ namespace BatchGuy.App
                     cbRemuxVideoFormat.SelectedIndex = index;                                        
                 }
                 chkRemuxUsePeriodsInFileName.Checked = _eac3toConfiguration.RemuxFileNameTemplate.UsePeriodsInFileName;
-                chkIsThisRemuxForAMovie.Checked = _eac3toConfiguration.IfIsExtractForRemuxIsItForAMovie;
             }
         }
 
