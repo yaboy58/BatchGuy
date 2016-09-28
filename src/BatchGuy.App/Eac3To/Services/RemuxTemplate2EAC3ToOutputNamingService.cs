@@ -27,7 +27,7 @@ namespace BatchGuy.App.Eac3To.Services
                 string audioName = string.Format("{0}, {1}E{2}{3}", eac3toConfiguration.RemuxFileNameTemplate.SeriesName, this.GetFormattedSeasonNumber(eac3toConfiguration),
                     this.GetFormattedPaddedEpisodeNumber(paddedEpisodeNumber), this.GetFormattedYear(eac3toConfiguration));
 
-                sb.Append(string.Format("\"{0}\\{1} {2}{3}-{4}{5}.{6}\"", filesOutputPath, this.AddWordSeparator(eac3toConfiguration, audioName.Trim().RemoveDoubleSpaces()), audio.Language, paddedEpisodeNumber, audio.Id.RemoveColons(),
+                sb.Append(string.Format("\"{0}\\{1} {2}{3}-{4}{5}.{6}\"", filesOutputPath, this.AddWordSeparator(eac3toConfiguration.IsExtractForRemux, eac3toConfiguration.RemuxFileNameTemplate.UsePeriodsInFileName, audioName.Trim().RemoveDoubleSpaces()), audio.Language, paddedEpisodeNumber, audio.Id.RemoveColons(),
                     this.GetAudioCommentary(audio), _audioService.GetAudioExtension(audio.AudioType)));
             }
             return sb.ToString();
@@ -41,7 +41,7 @@ namespace BatchGuy.App.Eac3To.Services
                 string chapterName = string.Format("{0}, {1}E{2}{3}", eac3toConfiguration.RemuxFileNameTemplate.SeriesName, this.GetFormattedSeasonNumber(eac3toConfiguration),
                     this.GetFormattedPaddedEpisodeNumber(paddedEpisodeNumber), this.GetFormattedYear(eac3toConfiguration));
 
-                sb.Append(string.Format("\"{0}\\{1} chapters.txt\"", filesOutputPath, this.AddWordSeparator(eac3toConfiguration, chapterName.Trim().RemoveDoubleSpaces())));
+                sb.Append(string.Format("\"{0}\\{1} chapters.txt\"", filesOutputPath, this.AddWordSeparator(eac3toConfiguration.IsExtractForRemux, eac3toConfiguration.RemuxFileNameTemplate.UsePeriodsInFileName, chapterName.Trim().RemoveDoubleSpaces())));
             }
             return sb.ToString();
         }
@@ -54,7 +54,7 @@ namespace BatchGuy.App.Eac3To.Services
                 string logName = string.Format("{0}, {1}E{2}{3}", eac3toConfiguration.RemuxFileNameTemplate.SeriesName, this.GetFormattedSeasonNumber(eac3toConfiguration),
                     this.GetFormattedPaddedEpisodeNumber(paddedEpisodeNumber), this.GetFormattedYear(eac3toConfiguration));
 
-                sb.Append(string.Format(" -log=\"{0}\\{1} log.log\"", filesOutputPath, this.AddWordSeparator(eac3toConfiguration, logName.Trim().RemoveDoubleSpaces())));
+                sb.Append(string.Format(" -log=\"{0}\\{1} log.log\"", filesOutputPath, this.AddWordSeparator(eac3toConfiguration.IsExtractForRemux, eac3toConfiguration.RemuxFileNameTemplate.UsePeriodsInFileName, logName.Trim().RemoveDoubleSpaces())));
             }
             return sb.ToString();
         }
@@ -67,7 +67,7 @@ namespace BatchGuy.App.Eac3To.Services
                 string subtitleName = string.Format("{0}, {1}E{2}{3}", eac3toConfiguration.RemuxFileNameTemplate.SeriesName, this.GetFormattedSeasonNumber(eac3toConfiguration),
                     this.GetFormattedPaddedEpisodeNumber(paddedEpisodeNumber), this.GetFormattedYear(eac3toConfiguration));
 
-                sb.Append(string.Format("\"{0}\\{1} {2}{3}-{4}{5}.sup\"", filesOutputPath, this.AddWordSeparator(eac3toConfiguration, subtitleName.Trim().RemoveDoubleSpaces()), subtitle.Language, paddedEpisodeNumber, subtitle.Id.RemoveColons(), this.GetSubtitleCommentary(subtitle)));
+                sb.Append(string.Format("\"{0}\\{1} {2}{3}-{4}{5}.sup\"", filesOutputPath, this.AddWordSeparator(eac3toConfiguration.IsExtractForRemux, eac3toConfiguration.RemuxFileNameTemplate.UsePeriodsInFileName, subtitleName.Trim().RemoveDoubleSpaces()), subtitle.Language, paddedEpisodeNumber, subtitle.Id.RemoveColons(), this.GetSubtitleCommentary(subtitle)));
             }
             return sb.ToString();
         }
@@ -80,7 +80,7 @@ namespace BatchGuy.App.Eac3To.Services
                 string videoName = string.Format("{0}, {1}E{2}{3}", eac3toConfiguration.RemuxFileNameTemplate.SeriesName, this.GetFormattedSeasonNumber(eac3toConfiguration), 
                     this.GetFormattedPaddedEpisodeNumber(paddedEpisodeNumber), this.GetFormattedYear(eac3toConfiguration));
 
-                sb.Append(string.Format("\"{0}\\{1}.mkv\"", filesOutputPath, this.AddWordSeparator(eac3toConfiguration, videoName.Trim().RemoveDoubleSpaces())));
+                sb.Append(string.Format("\"{0}\\{1}.mkv\"", filesOutputPath, this.AddWordSeparator(eac3toConfiguration.IsExtractForRemux, eac3toConfiguration.RemuxFileNameTemplate.UsePeriodsInFileName, videoName.Trim().RemoveDoubleSpaces())));
             }
             return sb.ToString();
         }

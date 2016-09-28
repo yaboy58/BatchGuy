@@ -37,9 +37,9 @@ namespace BatchGuy.App.Eac3To.Abstracts
                 commentary = "-commentary";
             return commentary;
         }
-        protected string AddWordSeparator(EAC3ToConfiguration eac3toConfiguration, string episodeName)
+        protected string AddWordSeparator(bool isExtractForRemux, bool usePeriodsInFileName, string episodeName)
         {
-            if (eac3toConfiguration.IsExtractForRemux && eac3toConfiguration.RemuxFileNameTemplate.UsePeriodsInFileName)
+            if (isExtractForRemux && usePeriodsInFileName)
                 return episodeName.ReplaceSpacesWithPeriods();
             else
                 return episodeName;

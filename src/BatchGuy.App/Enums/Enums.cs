@@ -64,6 +64,7 @@ namespace BatchGuy.App.Enums
         EncodeNamingConventionTemplate1 = 1, //video##
         RemuxNamingConventionTemplate1 = 2, //TV Show S01E01 Episode Name 1080p Remux AVC FLAC5.1-Tag.mkv
         RemuxNamingConventionTemplate2 = 3, //TV Show, S01E01 (Year).mkv
-        RemuxNamingConventionTemplate3 = 4  //2x01 Episode Name.mkv
+        RemuxNamingConventionTemplate3 = 4,  //2x01 Episode Name.mkv
+        MovieRemuxNamingConventionTemplate1 = 5 //movie remux
     }
 }

@@ -73,6 +73,7 @@
     <Compile Include="Services\Eac3to\EAC3ToBatchFileWriteServiceTests.cs" />
     <Compile Include="Services\Eac3to\EAC3ToBatchFileWriteWarningServiceTests.cs" />
     <Compile Include="Services\Eac3to\EncodeTemplate1EAC3ToOutputNamingServiceTests.cs" />
+    <Compile Include="Services\Eac3to\MovieRemuxTemplate1EAC3ToOutputNamingServiceTests.cs" />
     <Compile Include="Services\Eac3to\RemuxTemplate1EAC3ToOutputNamingServiceTests.cs" />
     <Compile Include="Services\Eac3to\EAC3ToOutputServiceTests.cs" />
     <Compile Include="Services\Eac3to\RemuxTemplate2EAC3ToOutputNamingServiceTests.cs" />
