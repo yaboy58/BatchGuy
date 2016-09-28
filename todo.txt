@@ -18,14 +18,11 @@ BatchGuy now has over 150 Unit Tests
 
 *Movie Mode 2 (probably too much work)
 eac3to UI
--forced to use directory per episode *****don't think this is needed, validation will enforce all names to be unique
 -IsScreenValid, only check if series name is entered if isremux and not for a movie, we will check this on the backend
 
 
 Backend
-*Create new eac3to write service, it has its own rules
--names have to be unique, especially for single folder mode
-*Create new mkvmerge write service
+*Create new mkvmerge write service ****may not be necessary****
 -names have to be unique, especially for single folder mode
 -override the common rules error messages that have "episode" in it and put "movies"
 
@@ -34,7 +31,7 @@ Backend
 Misc
 -Change existing remux wiki to how to remux tv
 -add new wiki for movie
-*Use the purge for single movie and beauty/the beast for 2 in 1 for guide
+
 
 Notes: 
 *Old eac3toSettings don't work

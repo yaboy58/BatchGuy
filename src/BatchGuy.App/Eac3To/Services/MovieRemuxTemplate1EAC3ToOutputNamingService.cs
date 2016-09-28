@@ -26,7 +26,7 @@ namespace BatchGuy.App.Eac3To.Services
             StringBuilder sb = new StringBuilder();
             if (eac3toConfiguration.IsExtractForRemux == true && eac3toConfiguration.IfIsExtractForRemuxIsItForAMovie)
             {
-                string tag = this.GetFormattedTag(eac3toConfiguration, paddedEpisodeNumber, episodeName);
+                string tag = this.GetFormattedTag(eac3toConfiguration, paddedEpisodeNumber);
                 string audioName = string.Format("{0}{1}{2}{3}{4}{5}", _movieRemuxTemplate.SeriesName, this.GetFormattedYear(eac3toConfiguration),
                     this.GetFormattedVideoResolution(eac3toConfiguration), this.GetFormattedMedium(eac3toConfiguration),
                     this.GetFormattedVideoFormat(eac3toConfiguration), this.GetFormattedAuditoType(eac3toConfiguration));
@@ -42,7 +42,7 @@ namespace BatchGuy.App.Eac3To.Services
             StringBuilder sb = new StringBuilder();
             if (eac3toConfiguration.IsExtractForRemux == true && eac3toConfiguration.IfIsExtractForRemuxIsItForAMovie)
             {
-                string tag = this.GetFormattedTag(eac3toConfiguration, paddedEpisodeNumber, episodeName);
+                string tag = this.GetFormattedTag(eac3toConfiguration, paddedEpisodeNumber);
                 string chapterName = string.Format("{0}{1}{2}{3}{4}{5}", _movieRemuxTemplate.SeriesName, this.GetFormattedYear(eac3toConfiguration),
                     this.GetFormattedVideoResolution(eac3toConfiguration), this.GetFormattedMedium(eac3toConfiguration),
                     this.GetFormattedVideoFormat(eac3toConfiguration), this.GetFormattedAuditoType(eac3toConfiguration));
@@ -57,7 +57,7 @@ namespace BatchGuy.App.Eac3To.Services
             StringBuilder sb = new StringBuilder();
             if (eac3toConfiguration.IsExtractForRemux == true)
             {
-                string tag = this.GetFormattedTag(eac3toConfiguration, paddedEpisodeNumber, episodeName);
+                string tag = this.GetFormattedTag(eac3toConfiguration, paddedEpisodeNumber);
                 string logName = string.Format("{0}{1}{2}{3}{4}{5}", _movieRemuxTemplate.SeriesName, this.GetFormattedYear(eac3toConfiguration),
                     this.GetFormattedVideoResolution(eac3toConfiguration), this.GetFormattedMedium(eac3toConfiguration),
                     this.GetFormattedVideoFormat(eac3toConfiguration), this.GetFormattedAuditoType(eac3toConfiguration));
@@ -72,7 +72,7 @@ namespace BatchGuy.App.Eac3To.Services
             StringBuilder sb = new StringBuilder();
             if (eac3toConfiguration.IsExtractForRemux == true && eac3toConfiguration.IfIsExtractForRemuxIsItForAMovie)
             {
-                string tag = this.GetFormattedTag(eac3toConfiguration, paddedEpisodeNumber, episodeName);
+                string tag = this.GetFormattedTag(eac3toConfiguration, paddedEpisodeNumber);
                 string subtitleName = string.Format("{0}{1}{2}{3}{4}{5}", _movieRemuxTemplate.SeriesName, this.GetFormattedYear(eac3toConfiguration),
                     this.GetFormattedVideoResolution(eac3toConfiguration), this.GetFormattedMedium(eac3toConfiguration),
                     this.GetFormattedVideoFormat(eac3toConfiguration), this.GetFormattedAuditoType(eac3toConfiguration));
@@ -87,7 +87,7 @@ namespace BatchGuy.App.Eac3To.Services
             StringBuilder sb = new StringBuilder();
             if (eac3toConfiguration.IsExtractForRemux == true && eac3toConfiguration.IfIsExtractForRemuxIsItForAMovie)
             {
-                string tag = this.GetFormattedTag(eac3toConfiguration, paddedEpisodeNumber, episodeName);
+                string tag = this.GetFormattedTag(eac3toConfiguration, paddedEpisodeNumber);
                 string videoName = string.Format("{0}{1}{2}{3}{4}{5}", _movieRemuxTemplate.SeriesName, this.GetFormattedYear(eac3toConfiguration),
                     this.GetFormattedVideoResolution(eac3toConfiguration), this.GetFormattedMedium(eac3toConfiguration),
                     this.GetFormattedVideoFormat(eac3toConfiguration), this.GetFormattedAuditoType(eac3toConfiguration));
@@ -138,7 +138,7 @@ namespace BatchGuy.App.Eac3To.Services
             return audioType;
         }
 
-        private string GetFormattedTag(EAC3ToConfiguration eac3toConfiguration, string paddedEpisodeNumber, string episodeName)
+        private string GetFormattedTag(EAC3ToConfiguration eac3toConfiguration, string paddedEpisodeNumber)
         {
             string tag = string.Empty;
             if (string.IsNullOrEmpty(_movieRemuxTemplate.Tag))

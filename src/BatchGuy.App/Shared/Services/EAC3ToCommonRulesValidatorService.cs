@@ -53,7 +53,10 @@ namespace BatchGuy.App.Shared.Services
 
             if (!isValid)
             {
-                this._errors.Add(new Error() { Description = "No episodes selected." });
+                if (!_eac3toConfiguration.IfIsExtractForRemuxIsItForAMovie)
+                    this._errors.Add(new Error() { Description = "No episodes selected." });
+                else
+                    this._errors.Add(new Error() { Description = "No movies selected." });
             }
             return isValid;
         }
@@ -101,7 +104,10 @@ namespace BatchGuy.App.Shared.Services
 
             if (!isValid)
             {
-                this._errors.Add(new Error() { Description = "Episode number not set for all selected titles." });
+                if (!_eac3toConfiguration.IfIsExtractForRemuxIsItForAMovie)
+                    this._errors.Add(new Error() { Description = "Episode number not set for all selected titles." });
+                else
+                    this._errors.Add(new Error() { Description = "Movie number not set for all selected titles." });
             }
             return isValid;
         }

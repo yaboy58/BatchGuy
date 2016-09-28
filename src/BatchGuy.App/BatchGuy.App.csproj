@@ -115,6 +115,7 @@
     <Compile Include="Eac3To\Models\EAC3ToRemuxFileNameTemplate.cs" />
     <Compile Include="Eac3To\Services\BatchGuyEAC3ToSettingsService.cs" />
     <Compile Include="Eac3To\Services\DirectorySystemService.cs" />
+    <Compile Include="Eac3To\Services\EAC3ToBatchFileWriteForMovieService.cs" />
     <Compile Include="Eac3To\Services\EAC3ToBatchFileWriteService.cs" />
     <Compile Include="Eac3To\Services\EAC3ToBatchFileWriteWarningService.cs" />
     <Compile Include="Eac3To\Services\EAC3ToOutputService.cs" />
