@@ -11,7 +11,8 @@ Enhancements:
 -Season Number is disabled on the Create eac3to Batch File Screen
 -User must enter Remux information for each playlist on the Create eac3to Batch File Screen
 -Label text for "Series" name changes to "Movie" name on the Create eac3to Batch File Screen
-
+-Episode Name is disabled on the BluRay Title Info Screen
+-Episode Number text is changed to "Movie #" on the BluRay Title Info Screen
 
 *Movie Mode 2 (probably too much work)
 eac3to UI

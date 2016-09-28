@@ -70,6 +70,8 @@ namespace BatchGuy.App
                 this.SetMKVToolNixGUIControlsDefaults();
                 this.SetGBMKVToolNixGUIEnabledStatus(true);
                 this.DisabletxtEpisodeNumberIfCallingScreenIsCreateX264BatchFile();
+                this.SettxtEpisodeNameEnabledStatus();
+                this.SettxtEpisodeNumberCaptionIfRemuxForMovie();
 
                 if (_bluRaySummaryInfo.BluRayTitleInfo != null)
                 {
@@ -82,7 +84,6 @@ namespace BatchGuy.App
                 {
                     this.LoadBluRayTitleInfo();
                 }
-                txtEpisodeName.SetEnabled(_eac3ToConfiguration.IsExtractForRemux);
             }
             catch (Exception ex)
             {
@@ -95,6 +96,33 @@ namespace BatchGuy.App
             if (this.IsCallingScreenCreateX264BatchFile)
                 txtEpisodeNumber.ReadOnly = true;
 
+        }
+
+        private void SettxtEpisodeNameEnabledStatus()
+        {
+        if (_eac3ToConfiguration.IsExtractForRemux == false)
+            {
+                txtEpisodeName.SetEnabled(false);
+            }
+            else
+            {
+                if (_eac3ToConfiguration.IsExtractForRemux && _eac3ToConfiguration.IfIsExtractForRemuxIsItForAMovie)
+                {
+                    txtEpisodeName.SetEnabled(false);
+                }
+                else
+                {
+                    txtEpisodeName.SetEnabled(true);
+                }
+            }
+        }
+
+        private void SettxtEpisodeNumberCaptionIfRemuxForMovie()
+        {
+            if (_eac3ToConfiguration.IsExtractForRemux && _eac3ToConfiguration.IfIsExtractForRemuxIsItForAMovie)
+            {
+                lblEpisodeNumber.Text = "Movie #:";
+            }
         }
 
         private void LoadBluRayTitleInfo()
