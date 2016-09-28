@@ -32,5 +32,10 @@ namespace BatchGuy.App.Eac3To.Abstracts
         {
             return new RemuxTemplate3EAC3ToOutputNamingService(_audioService);
         }
+        public AbstractEAC3ToOutputNamingService CreateNewMovieRemuxTemplate1EAC3ToOutputNamingServiceService()
+        {
+            return new MovieRemuxTemplate1EAC3ToOutputNamingService(_audioService);
+        }
+
     }
 }
