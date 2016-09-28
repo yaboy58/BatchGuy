@@ -13,16 +13,13 @@ Enhancements:
 -Label text for "Series" name changes to "Movie" name on the Create eac3to Batch File Screen
 -Episode Name is disabled on the BluRay Title Info Screen
 -Episode Number text is changed to "Movie #" on the BluRay Title Info Screen
+BatchGuy now has over 150 Unit Tests
+
 
 *Movie Mode 2 (probably too much work)
 eac3to UI
 -forced to use directory per episode *****don't think this is needed, validation will enforce all names to be unique
 -IsScreenValid, only check if series name is entered if isremux and not for a movie, we will check this on the backend
-
-
-Title Info UI
--Episode Name disabled
--Episode Number caption will change to Movie Number
 
 
 Backend
@@ -31,11 +28,10 @@ Backend
 *Create new mkvmerge write service
 -names have to be unique, especially for single folder mode
 -override the common rules error messages that have "episode" in it and put "movies"
-*New OutputNamingService
+
 
 
 Misc
--Operator override or overried equals for the EAC3ToRemuxFileNameTemplate to check field by field to make sure all movie names unique
 -Change existing remux wiki to how to remux tv
 -add new wiki for movie
 *Use the purge for single movie and beauty/the beast for 2 in 1 for guide
