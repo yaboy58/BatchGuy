@@ -1094,6 +1094,15 @@ namespace BatchGuy.App
         {
             _eac3toConfiguration.IfIsExtractForRemuxIsItForAMovie = chkIsThisRemuxForAMovie.Checked;
             this.SetRemuxNamingConventionCurrentTemplateExampleLabel();
+            this.SetlblRemuxSeriesNameCaption();
+        }
+
+        private void SetlblRemuxSeriesNameCaption()
+        {
+            if (_eac3toConfiguration.IsExtractForRemux && _eac3toConfiguration.IfIsExtractForRemuxIsItForAMovie)
+                lblRemuxSeriesName.Text = "Movie Name *:";
+            else
+                lblRemuxSeriesName.Text = "Series Name *:";
         }
 
         private void txtRemuxSeriesName_TextChanged(object sender, EventArgs e)

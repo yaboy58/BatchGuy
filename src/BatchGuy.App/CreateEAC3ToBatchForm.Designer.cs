@@ -72,7 +72,7 @@
             this.tlpRemuxTemplate = new System.Windows.Forms.TableLayoutPanel();
             this.chkIsThisRemuxForAMovie = new System.Windows.Forms.CheckBox();
             this.chkRemuxUsePeriodsInFileName = new System.Windows.Forms.CheckBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblRemuxSeriesName = new System.Windows.Forms.Label();
             this.cbRemuxVideoFormat = new System.Windows.Forms.ComboBox();
             this.txtRemuxSeriesName = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
@@ -568,7 +568,7 @@
             this.tlpRemuxTemplate.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tlpRemuxTemplate.Controls.Add(this.chkIsThisRemuxForAMovie, 0, 1);
             this.tlpRemuxTemplate.Controls.Add(this.chkRemuxUsePeriodsInFileName, 0, 7);
-            this.tlpRemuxTemplate.Controls.Add(this.label1, 0, 2);
+            this.tlpRemuxTemplate.Controls.Add(this.lblRemuxSeriesName, 0, 2);
             this.tlpRemuxTemplate.Controls.Add(this.cbRemuxVideoFormat, 3, 6);
             this.tlpRemuxTemplate.Controls.Add(this.txtRemuxSeriesName, 1, 2);
             this.tlpRemuxTemplate.Controls.Add(this.label9, 2, 6);
@@ -626,15 +626,15 @@
             this.chkRemuxUsePeriodsInFileName.UseVisualStyleBackColor = true;
             this.chkRemuxUsePeriodsInFileName.CheckedChanged += new System.EventHandler(this.chkRemuxUsePeriodsInFileName_CheckedChanged);
             // 
-            // label1
+            // lblRemuxSeriesName
             // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 91);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(77, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Series Name *:";
+            this.lblRemuxSeriesName.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lblRemuxSeriesName.AutoSize = true;
+            this.lblRemuxSeriesName.Location = new System.Drawing.Point(3, 91);
+            this.lblRemuxSeriesName.Name = "lblRemuxSeriesName";
+            this.lblRemuxSeriesName.Size = new System.Drawing.Size(77, 13);
+            this.lblRemuxSeriesName.TabIndex = 0;
+            this.lblRemuxSeriesName.Text = "Series Name *:";
             // 
             // cbRemuxVideoFormat
             // 
@@ -998,7 +998,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn eAC3ToConfigurationDataGridViewTextBoxColumn;
         private System.Windows.Forms.ToolTip ttDirectoryUserControl;
         private System.Windows.Forms.GroupBox gbExtractForRemux;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblRemuxSeriesName;
         private System.Windows.Forms.CheckBox chkExtractForRemux;
         private System.Windows.Forms.TextBox txtRemuxSeriesName;
         private System.Windows.Forms.TextBox txtRemuxSeasonNumber;
