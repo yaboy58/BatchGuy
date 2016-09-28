@@ -17,9 +17,6 @@ BatchGuy now has over 150 Unit Tests
 
 
 *Movie Mode 2 (probably too much work)
-eac3to UI
--IsScreenValid, only check if series name is entered if isremux and not for a movie, we will check this on the backend
-
 
 Backend
 *Create new mkvmerge write service ****may not be necessary****

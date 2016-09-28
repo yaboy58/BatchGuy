@@ -124,18 +124,6 @@ namespace BatchGuy.App
                 return true;
         }
 
-        private void WriteToBatchFile()
-        {
-            gbScreen.SetEnabled(false);
-            List<BluRayDiscInfo> discs = this.GetBluRayDiscInfoList();
-            IDirectorySystemService directorySystemService = new DirectorySystemService();
-            IAudioService audioService = new AudioService();
-            AbstractEAC3ToOutputNamingService eac3ToOutputNamingService = this.GetOutputNamingService();
-            IEAC3ToCommonRulesValidatorService eac3ToCommonRulesValidatorService = new EAC3ToCommonRulesValidatorService(_eac3toConfiguration, directorySystemService, discs);
-            IEAC3ToBatchFileWriteService batchFileWriteService = new EAC3ToBatchFileWriteService(_eac3toConfiguration, directorySystemService, discs, audioService,eac3ToOutputNamingService, eac3ToCommonRulesValidatorService);
-            bgwEac3toWriteBatchFile.RunWorkerAsync(batchFileWriteService);
-        }
-
         private void BindDgvBluRayDiscInfoGrid()
         {
             bsBluRayDiscInfo.DataSource = _bindingListBluRayDiscInfo;
@@ -242,7 +230,7 @@ namespace BatchGuy.App
                 MessageBox.Show("Please choose an eac3to output path!", "Error occurred", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;                
             }
-            if (_eac3toConfiguration.IsExtractForRemux)
+            if (_eac3toConfiguration.IsExtractForRemux && _eac3toConfiguration.IfIsExtractForRemuxIsItForAMovie == false)
             {
                 if (_eac3toConfiguration.RemuxFileNameTemplate.SeriesName == null || _eac3toConfiguration.RemuxFileNameTemplate.SeriesName == string.Empty)
                 {
@@ -436,27 +424,6 @@ namespace BatchGuy.App
                 dgvBluRaySummary.Rows.Clear();
             }
       
-        }
-
-        private void bgwEac3toWriteBatchFile_DoWork(object sender, DoWorkEventArgs e)
-        {
-            IEAC3ToBatchFileWriteService batchFileWriteService = e.Argument as EAC3ToBatchFileWriteService;
-            batchFileWriteService.Write();
-            e.Result = batchFileWriteService;
-        }
-
-        private void bgwEac3toWriteBatchFile_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            IEAC3ToBatchFileWriteService batchFileWriteService = e.Result as EAC3ToBatchFileWriteService;
-            if (batchFileWriteService.Errors.Count() == 0)
-            {
-                MessageBox.Show("Batch File created!", "Process Complete", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
-            else
-            {
-                MessageBox.Show(string.Format("Error: {0}", batchFileWriteService.Errors[0].Description), "Error occurred", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            gbScreen.SetEnabled(true);
         }
 
         private void SortBluRayDiscGrid(int sortColumnNumber)
@@ -956,6 +923,8 @@ namespace BatchGuy.App
 
             if (_eac3toConfiguration.IsExtractForRemux == false)
                 return factory.CreateNewEncodeTemplate1EAC3ToOutputNamingService();
+            if (_eac3toConfiguration.IsExtractForRemux && _eac3toConfiguration.IfIsExtractForRemuxIsItForAMovie)
+                return null;
 
             switch (Program.ApplicationSettings.EnumEAC3ToNamingConventionType)
             {
@@ -998,6 +967,8 @@ namespace BatchGuy.App
             }
         }
 
+        #region Create eac3to Batch File
+
         private void createEac3toBatchFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
@@ -1033,6 +1004,40 @@ namespace BatchGuy.App
                 _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was a problem creating the eac3to batch file!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
             }
         }
+
+        private void WriteToBatchFile()
+        {
+            gbScreen.SetEnabled(false);
+            List<BluRayDiscInfo> discs = this.GetBluRayDiscInfoList();
+            IDirectorySystemService directorySystemService = new DirectorySystemService();
+            IAudioService audioService = new AudioService();
+            AbstractEAC3ToOutputNamingService eac3ToOutputNamingService = this.GetOutputNamingService();
+            IEAC3ToCommonRulesValidatorService eac3ToCommonRulesValidatorService = new EAC3ToCommonRulesValidatorService(_eac3toConfiguration, directorySystemService, discs);
+            IEAC3ToBatchFileWriteService batchFileWriteService = new EAC3ToBatchFileWriteService(_eac3toConfiguration, directorySystemService, discs, audioService, eac3ToOutputNamingService, eac3ToCommonRulesValidatorService);
+            bgwEac3toWriteBatchFile.RunWorkerAsync(batchFileWriteService);
+        }
+
+        private void bgwEac3toWriteBatchFile_DoWork(object sender, DoWorkEventArgs e)
+        {
+            IEAC3ToBatchFileWriteService batchFileWriteService = e.Argument as EAC3ToBatchFileWriteService;
+            batchFileWriteService.Write();
+            e.Result = batchFileWriteService;
+        }
+
+        private void bgwEac3toWriteBatchFile_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            IEAC3ToBatchFileWriteService batchFileWriteService = e.Result as EAC3ToBatchFileWriteService;
+            if (batchFileWriteService.Errors.Count() == 0)
+            {
+                MessageBox.Show("Batch File created!", "Process Complete", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                MessageBox.Show(string.Format("Error: {0}", batchFileWriteService.Errors[0].Description), "Error occurred", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            gbScreen.SetEnabled(true);
+        }
+        #endregion
 
         private void createMkvmergeBatchFileToolStripMenuItem_Click(object sender, EventArgs e)
         {

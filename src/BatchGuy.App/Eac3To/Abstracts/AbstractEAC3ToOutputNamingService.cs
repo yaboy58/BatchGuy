@@ -1,4 +1,5 @@
 ﻿using BatchGuy.App.Eac3to.Models;
+using BatchGuy.App.Eac3To.Models;
 using BatchGuy.App.Enums;
 using BatchGuy.App.Extensions;
 using BatchGuy.App.Helpers;
@@ -16,12 +17,20 @@ namespace BatchGuy.App.Eac3To.Abstracts
     {
         protected IAudioService _audioService;
         protected EnumEAC3ToNamingConventionType _enumEAC3ToNamingConventionType;
+        protected BluRaySummaryInfo _currentBluRaySummaryInfo;
+        protected EAC3ToRemuxFileNameTemplate _currentMovieRemuxTemplate;
 
         public EnumEAC3ToNamingConventionType EnumEAC3ToNamingConventionType { get { return _enumEAC3ToNamingConventionType; } }
 
         public AbstractEAC3ToOutputNamingService(IAudioService audioService)
         {
             _audioService = audioService;
+        }
+
+        public void SetCurrentBluRaySummaryInfo(BluRaySummaryInfo currentBluRaySummaryInfo)
+        {
+            _currentBluRaySummaryInfo = currentBluRaySummaryInfo;
+            _currentMovieRemuxTemplate = _currentBluRaySummaryInfo.RemuxFileNameForMovieTemplate;
         }
         protected string GetAudioCommentary(BluRayTitleAudio audio)
         {
@@ -48,7 +57,6 @@ namespace BatchGuy.App.Eac3To.Abstracts
         {
             return HelperFunctions.PadNumberWithZeros(batchCount, number);
         }
-
         public abstract string GetChapterName(EAC3ToConfiguration eac3toConfiguration, string filesOutputPath, string paddedEpisodeNumber, string episodeName);
         public abstract string GetVideoName(EAC3ToConfiguration eac3toConfiguration, string filesOutputPath, string paddedEpisodeNumber, string episodeName);
         public abstract string GetAudioName(EAC3ToConfiguration eac3toConfiguration, BluRayTitleAudio audio, string filesOutputPath, string paddedEpisodeNumber, string episodeName);

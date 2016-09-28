@@ -57,6 +57,7 @@ namespace BatchGuy.App.Eac3To.Services
                     {
                         foreach (BluRaySummaryInfo summary in disc.BluRaySummaryInfoList.Where(s => s.IsSelected).OrderBy(s => s.EpisodeNumber))
                         {
+                            _eac3ToOutputNamingService.SetCurrentBluRaySummaryInfo(summary);
                             IEAC3ToOutputService eacOutputService = new EAC3ToOutputService(_eac3toConfiguration, _eac3ToOutputNamingService, disc.BluRayPath, summary);
                             string eac3ToPathPart = eacOutputService.GetEAC3ToPathPart();
                             string bluRayStreamPart = eacOutputService.GetBluRayStreamPart();
