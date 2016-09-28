@@ -650,6 +650,7 @@
             this.cbRemuxVideoFormat.Name = "cbRemuxVideoFormat";
             this.cbRemuxVideoFormat.Size = new System.Drawing.Size(113, 21);
             this.cbRemuxVideoFormat.TabIndex = 13;
+            this.cbRemuxVideoFormat.SelectedIndexChanged += new System.EventHandler(this.cbRemuxVideoFormat_SelectedIndexChanged);
             // 
             // txtRemuxSeriesName
             // 
@@ -659,6 +660,7 @@
             this.txtRemuxSeriesName.Name = "txtRemuxSeriesName";
             this.txtRemuxSeriesName.Size = new System.Drawing.Size(301, 20);
             this.txtRemuxSeriesName.TabIndex = 6;
+            this.txtRemuxSeriesName.TextChanged += new System.EventHandler(this.txtRemuxSeriesName_TextChanged);
             // 
             // label9
             // 
@@ -702,6 +704,7 @@
             this.cbRemuxMedium.Name = "cbRemuxMedium";
             this.cbRemuxMedium.Size = new System.Drawing.Size(113, 21);
             this.cbRemuxMedium.TabIndex = 12;
+            this.cbRemuxMedium.SelectedIndexChanged += new System.EventHandler(this.cbRemuxMedium_SelectedIndexChanged);
             // 
             // label3
             // 
@@ -730,6 +733,7 @@
             this.txtRemuxSeasonYear.Name = "txtRemuxSeasonYear";
             this.txtRemuxSeasonYear.Size = new System.Drawing.Size(82, 20);
             this.txtRemuxSeasonYear.TabIndex = 8;
+            this.txtRemuxSeasonYear.TextChanged += new System.EventHandler(this.txtRemuxSeasonYear_TextChanged);
             // 
             // txtRemuxTag
             // 
@@ -738,6 +742,7 @@
             this.txtRemuxTag.Name = "txtRemuxTag";
             this.txtRemuxTag.Size = new System.Drawing.Size(85, 20);
             this.txtRemuxTag.TabIndex = 11;
+            this.txtRemuxTag.TextChanged += new System.EventHandler(this.txtRemuxTag_TextChanged);
             // 
             // label4
             // 
@@ -775,6 +780,7 @@
             this.cbRemuxVideoResolution.Name = "cbRemuxVideoResolution";
             this.cbRemuxVideoResolution.Size = new System.Drawing.Size(170, 21);
             this.cbRemuxVideoResolution.TabIndex = 9;
+            this.cbRemuxVideoResolution.SelectedIndexChanged += new System.EventHandler(this.cbRemuxVideoResolution_SelectedIndexChanged);
             // 
             // txtRemuxAudioType
             // 
@@ -783,6 +789,7 @@
             this.txtRemuxAudioType.Name = "txtRemuxAudioType";
             this.txtRemuxAudioType.Size = new System.Drawing.Size(137, 20);
             this.txtRemuxAudioType.TabIndex = 10;
+            this.txtRemuxAudioType.TextChanged += new System.EventHandler(this.txtRemuxAudioType_TextChanged);
             // 
             // label5
             // 

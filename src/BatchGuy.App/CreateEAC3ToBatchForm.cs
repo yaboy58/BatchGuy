@@ -47,6 +47,7 @@ namespace BatchGuy.App
         private string _mkvMergePath = string.Empty;
         private BatchGuyEAC3ToSettings _batchGuyEAC3ToSettings;
         private IDisplayErrorMessageService _displayErrorMessageService = new DisplayErrorMessageService();
+        private EAC3ToRemuxFileNameTemplate _currentMovieEAC3ToRemuxFileNameTemplate;
 
         public CreateEAC3ToBatchForm()
         {
@@ -224,24 +225,6 @@ namespace BatchGuy.App
             _bindingListBluRaySummaryInfo.AllowEdit = true;
         }
 
-        private void dgvBluRaySummary_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            this.HandleDgvBluRaySummaryCellDoubleClick(e);
-        }
-
-        private void HandleDgvBluRaySummaryCellDoubleClick(DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex == -1)
-                return;
-            var id = dgvBluRaySummary.Rows[e.RowIndex].Cells[1].Value;
-            BluRaySummaryInfo summaryInfo = _currentBluRayDiscInfo.BluRaySummaryInfoList.SingleOrDefault(s => s.Eac3ToId == id.ToString());
-
-            BluRayTitleInfoForm form = new BluRayTitleInfoForm();
-            form.SetBluRayTitleInfo(_eac3toConfiguration,_currentBluRayDiscInfo.BluRayPath,summaryInfo);
-            form.ShowDialog();
-            this.BindDgvBluRaySummaryGrid();
-        }
-
         private bool IsScreenValid()
         {
             if (_eac3toConfiguration.BatchFilePath == null || _eac3toConfiguration.BatchFilePath == string.Empty)
@@ -280,17 +263,104 @@ namespace BatchGuy.App
             return true;
         }
 
+        #region dgvBluRaySummary Grid Events
         private void dgvBluRaySummary_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex == -1)
+            try
             {
-                this.SortBluRaySummaryGrid(e.ColumnIndex);
+                if (e.RowIndex == -1)
+                {
+                    this.SortBluRaySummaryGrid(e.ColumnIndex);
+                }
+                else
+                {
+                    this.HandlesdgvBluRaySummaryCellClick(e);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                dgvBluRaySummary.Rows[e.RowIndex].Selected = true;
+                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was a problem selecting the item on the grid!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
             }
         }
+
+        private void HandlesdgvBluRaySummaryCellClick(DataGridViewCellEventArgs e)
+        {
+            dgvBluRaySummary.Rows[e.RowIndex].Selected = true;
+            var id = dgvBluRaySummary.Rows[e.RowIndex].Cells[1].Value;
+            BluRaySummaryInfo summaryInfo = _currentBluRayDiscInfo.BluRaySummaryInfoList.SingleOrDefault(s => s.Eac3ToId == id.ToString());
+            _currentMovieEAC3ToRemuxFileNameTemplate = summaryInfo.RemuxFileNameForMovieTemplate;
+            this.SetRemuxControlsForMovie();
+        }
+
+        private void SetRemuxControlsForMovie()
+        {
+            chkIsThisRemuxForAMovie.Checked = _eac3toConfiguration.IfIsExtractForRemuxIsItForAMovie;
+
+            if (_eac3toConfiguration.IfIsExtractForRemuxIsItForAMovie)
+            {
+                txtRemuxSeriesName.Text = _currentMovieEAC3ToRemuxFileNameTemplate.SeriesName;
+                txtRemuxAudioType.Text = _currentMovieEAC3ToRemuxFileNameTemplate.AudioType;
+                txtRemuxTag.Text = _currentMovieEAC3ToRemuxFileNameTemplate.Tag;
+                txtRemuxSeasonYear.Text = _currentMovieEAC3ToRemuxFileNameTemplate.SeasonYear;
+
+                if (!string.IsNullOrEmpty(_currentMovieEAC3ToRemuxFileNameTemplate.VideoResolution))
+                {
+                    int index = cbRemuxVideoResolution.FindString(_currentMovieEAC3ToRemuxFileNameTemplate.VideoResolution);
+                    cbRemuxVideoResolution.SelectedIndex = index;
+                }
+                else
+                {
+                    cbRemuxVideoResolution.SelectedIndex = 0;
+                }
+
+                if (!string.IsNullOrEmpty(_currentMovieEAC3ToRemuxFileNameTemplate.Medium))
+                {
+                    int index = cbRemuxMedium.FindString(_currentMovieEAC3ToRemuxFileNameTemplate.Medium);
+                    cbRemuxMedium.SelectedIndex = index;
+                }
+                else
+                {
+                    cbRemuxMedium.SelectedIndex = 0;
+                }
+
+                if (!string.IsNullOrEmpty(_currentMovieEAC3ToRemuxFileNameTemplate.VideoFormat))
+                {
+                    int index = cbRemuxVideoFormat.FindString(_currentMovieEAC3ToRemuxFileNameTemplate.VideoFormat);
+                    cbRemuxVideoFormat.SelectedIndex = index;
+                }
+                else
+                {
+                    cbRemuxVideoFormat.SelectedIndex = 0;
+                }
+                chkRemuxUsePeriodsInFileName.Checked = _currentMovieEAC3ToRemuxFileNameTemplate.UsePeriodsInFileName;
+            }
+        }
+
+        private void dgvBluRaySummary_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                this.HandleDgvBluRaySummaryCellDoubleClick(e);
+            }
+            catch (Exception ex)
+            {
+                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was a problem opening the BluRay Title Info Screen!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
+            }
+        }
+
+        private void HandleDgvBluRaySummaryCellDoubleClick(DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex == -1)
+                return;
+            var id = dgvBluRaySummary.Rows[e.RowIndex].Cells[1].Value;
+            BluRaySummaryInfo summaryInfo = _currentBluRayDiscInfo.BluRaySummaryInfoList.SingleOrDefault(s => s.Eac3ToId == id.ToString());
+
+            BluRayTitleInfoForm form = new BluRayTitleInfoForm();
+            form.SetBluRayTitleInfo(_eac3toConfiguration, _currentBluRayDiscInfo.BluRayPath, summaryInfo);
+            form.ShowDialog();
+            this.BindDgvBluRaySummaryGrid();
+        }
+        #endregion
 
         private void btnOpenBatchFilePathDialog_Click(object sender, EventArgs e)
         {
@@ -521,27 +591,9 @@ namespace BatchGuy.App
             this.SetMenuItemCreateMKVMergeBatFileEnabledStatus();
         }
 
-        private void txtSeasonNumber_TextChanged(object sender, EventArgs e)
-        {
-            this.HandleTxtSeasonNumberTextChanged();
-        }
-
-        private void HandleTxtSeasonNumberTextChanged()
-        {
-            this.ValidateNumbericTextBox(txtRemuxSeasonNumber);
-        }
-
-        private void ValidateNumbericTextBox(TextBox textBox)
-        {
-            if (!textBox.Text.IsNumeric())
-            {
-                textBox.Text = "";
-            }
-        }
-
         private void SetEAC3ToRemuxFileNameTemplate()
         {
-            if (_eac3toConfiguration.IsExtractForRemux)
+            if (_eac3toConfiguration.IsExtractForRemux && _eac3toConfiguration.IfIsExtractForRemuxIsItForAMovie == false)
             {
                 _eac3toConfiguration.RemuxFileNameTemplate = new EAC3ToRemuxFileNameTemplate() { AudioType = txtRemuxAudioType.Text.Trim(), Tag = txtRemuxTag.Text.Trim(), SeriesName = txtRemuxSeriesName.Text.Trim(),
                  VideoResolution = cbRemuxVideoResolution.Text, SeasonYear = txtRemuxSeasonYear.Text.Trim(), Medium = cbRemuxMedium.Text, VideoFormat = cbRemuxVideoFormat.Text,
@@ -621,6 +673,7 @@ namespace BatchGuy.App
             }
         }
 
+        #region Load Settings File
         private void HandlesLoadToolStripMenuItemClick(string settingsFile)
         {
             try
@@ -638,6 +691,7 @@ namespace BatchGuy.App
                     {
                         this.ReloadEac3ToSettingsAndBluRayDiscs(_batchGuyEAC3ToSettings);
                         this.ReloadRemux();
+                        this.SettxtRemuxSeasonNumberEnabledStatus();
                     }
                 }
             }
@@ -677,7 +731,8 @@ namespace BatchGuy.App
         {
             chkExtractForRemux.Checked = _eac3toConfiguration.IsExtractForRemux;
             chkIsThisRemuxForAMovie.Checked = _eac3toConfiguration.IfIsExtractForRemuxIsItForAMovie;
-            if (_eac3toConfiguration.IsExtractForRemux)
+
+            if (_eac3toConfiguration.IsExtractForRemux && _eac3toConfiguration.IfIsExtractForRemuxIsItForAMovie == false)
             {
                 txtRemuxSeriesName.Text = _eac3toConfiguration.RemuxFileNameTemplate.SeriesName;
                 txtRemuxSeasonNumber.Text = _eac3toConfiguration.RemuxFileNameTemplate.SeasonNumber.ToString();
@@ -703,6 +758,22 @@ namespace BatchGuy.App
                     cbRemuxVideoFormat.SelectedIndex = index;                                        
                 }
                 chkRemuxUsePeriodsInFileName.Checked = _eac3toConfiguration.RemuxFileNameTemplate.UsePeriodsInFileName;
+            }
+        }
+        #endregion
+
+        private void SettxtRemuxSeasonNumberEnabledStatus()
+        {
+            if (_eac3toConfiguration.IsExtractForRemux)
+            {
+                if (_eac3toConfiguration.IfIsExtractForRemuxIsItForAMovie)
+                    txtRemuxSeasonNumber.SetEnabled(false);
+                else
+                    txtRemuxSeasonNumber.SetEnabled(true);
+            }
+            else
+            {
+                txtRemuxSeasonNumber.SetEnabled(false);
             }
         }
 
@@ -878,16 +949,6 @@ namespace BatchGuy.App
             gbScreen.SetEnabled(true);
         }
 
-        private void chkRemuxUsePeriodsInFileName_CheckedChanged(object sender, EventArgs e)
-        {
-            this.HandlesChkRemuxUsePeriodsInFileNameCheckedChanged();
-        }
-
-        private void HandlesChkRemuxUsePeriodsInFileNameCheckedChanged()
-        {
-            _eac3toConfiguration.RemuxFileNameTemplate.UsePeriodsInFileName = chkRemuxUsePeriodsInFileName.Checked;
-        }
-
         private AbstractEAC3ToOutputNamingService GetOutputNamingService()
         {
             AbstractEAC3ToOutputNamingServiceFactory factory = new AbstractEAC3ToOutputNamingServiceFactory(new AudioService());
@@ -1015,11 +1076,13 @@ namespace BatchGuy.App
             this.Close();
         }
 
+        #region Remux Template Control Events
         private void chkIsThisRemuxForAMovie_CheckedChanged(object sender, EventArgs e)
         {
             try
             {
                 this.HandleschkIsThisRemuxForAMovieCheckedChanged();
+                this.SettxtRemuxSeasonNumberEnabledStatus();
             }
             catch (Exception ex)
             {
@@ -1032,5 +1095,102 @@ namespace BatchGuy.App
             _eac3toConfiguration.IfIsExtractForRemuxIsItForAMovie = chkIsThisRemuxForAMovie.Checked;
             this.SetRemuxNamingConventionCurrentTemplateExampleLabel();
         }
+
+        private void txtRemuxSeriesName_TextChanged(object sender, EventArgs e)
+        {
+            if (_currentMovieEAC3ToRemuxFileNameTemplate != null && _eac3toConfiguration.IfIsExtractForRemuxIsItForAMovie)
+            { 
+                _currentMovieEAC3ToRemuxFileNameTemplate.SeriesName = txtRemuxSeriesName.Text.Trim();
+            }
+        }
+
+        private void txtSeasonNumber_TextChanged(object sender, EventArgs e)
+        {
+            this.HandleTxtSeasonNumberTextChanged();
+        }
+
+        private void HandleTxtSeasonNumberTextChanged()
+        {
+            this.ValidateNumbericTextBox(txtRemuxSeasonNumber);
+        }
+
+        private void ValidateNumbericTextBox(TextBox textBox)
+        {
+            if (!textBox.Text.IsNumeric())
+            {
+                textBox.Text = "";
+            }
+        }
+
+        private void txtRemuxSeasonYear_TextChanged(object sender, EventArgs e)
+        {
+            if (_currentMovieEAC3ToRemuxFileNameTemplate != null && _eac3toConfiguration.IfIsExtractForRemuxIsItForAMovie)
+            {
+                _currentMovieEAC3ToRemuxFileNameTemplate.SeasonYear = txtRemuxSeasonYear.Text.Trim();
+            }
+        }
+
+        private void cbRemuxVideoResolution_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.HandlescbRemuxVideoResolutionSelectedIndexChanged();
+        }
+
+        private void HandlescbRemuxVideoResolutionSelectedIndexChanged()
+        {
+            if (_currentMovieEAC3ToRemuxFileNameTemplate != null && _eac3toConfiguration.IfIsExtractForRemuxIsItForAMovie)
+            {
+                _currentMovieEAC3ToRemuxFileNameTemplate.VideoResolution = cbRemuxVideoResolution.Text;
+            }
+        }
+
+        private void txtRemuxAudioType_TextChanged(object sender, EventArgs e)
+        {
+            if (_currentMovieEAC3ToRemuxFileNameTemplate != null && _eac3toConfiguration.IfIsExtractForRemuxIsItForAMovie)
+            {
+                _currentMovieEAC3ToRemuxFileNameTemplate.AudioType = txtRemuxAudioType.Text.Trim();
+            }
+        }
+
+        private void txtRemuxTag_TextChanged(object sender, EventArgs e)
+        {
+            if (_currentMovieEAC3ToRemuxFileNameTemplate != null && _eac3toConfiguration.IfIsExtractForRemuxIsItForAMovie)
+            {
+                _currentMovieEAC3ToRemuxFileNameTemplate.Tag = txtRemuxTag.Text.Trim();
+            }
+        }
+
+        private void cbRemuxMedium_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (_currentMovieEAC3ToRemuxFileNameTemplate != null && _eac3toConfiguration.IfIsExtractForRemuxIsItForAMovie)
+            {
+                _currentMovieEAC3ToRemuxFileNameTemplate.Medium = cbRemuxMedium.Text;
+            }
+        }
+
+        private void cbRemuxVideoFormat_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (_currentMovieEAC3ToRemuxFileNameTemplate != null && _eac3toConfiguration.IfIsExtractForRemuxIsItForAMovie)
+            {
+                _currentMovieEAC3ToRemuxFileNameTemplate.VideoFormat = cbRemuxVideoFormat.Text;
+            }
+        }
+
+        private void chkRemuxUsePeriodsInFileName_CheckedChanged(object sender, EventArgs e)
+        {
+            this.HandlesChkRemuxUsePeriodsInFileNameCheckedChanged();
+        }
+
+        private void HandlesChkRemuxUsePeriodsInFileNameCheckedChanged()
+        {
+            if (_currentMovieEAC3ToRemuxFileNameTemplate != null && _eac3toConfiguration.IfIsExtractForRemuxIsItForAMovie)
+            {
+                _currentMovieEAC3ToRemuxFileNameTemplate.UsePeriodsInFileName = chkRemuxUsePeriodsInFileName.Checked;
+            }
+            else
+            {
+                _eac3toConfiguration.RemuxFileNameTemplate.UsePeriodsInFileName = chkRemuxUsePeriodsInFileName.Checked;
+            }
+        }
+        #endregion
     }
 }
