@@ -906,7 +906,7 @@ namespace BatchGuy.App
         {
             if (chkIsThisRemuxForAMovie.Checked)
             {
-                lblRemuxNamingConventionCurrentTemplateExample.Text = "Template 1: TV Show 1978 S01E01 Episode 1 1080p Remux AVC FLAC7.1 -Tag.mkv";
+                lblRemuxNamingConventionCurrentTemplateExample.Text = "Template 1: Movie 1978 1080p Remux AVC FLAC7.1 -Tag.mkv";
                 return;
             }
 
