@@ -816,37 +816,6 @@ namespace BatchGuy.App
             createMkvmergeBatchFileToolStripMenuItem.Enabled = _eac3toConfiguration.IsExtractForRemux;
         }
 
-        private void MKVMergeWarnings(WarningCollection warnings)
-        {
-            if (_eac3toConfiguration.EAC3ToOutputPath == _eac3toConfiguration.MKVMergeOutputPath)
-            {
-                warnings.Add(new Warning() { Id = 0, Description = "The eac3to output path is the same as mkvmerge output path and could have output file name conflicts!" });
-            }
-        }
-
-        private bool IsScreenValidForRemux()
-        {
-            if (IsMkvMergePathSetInSettings() != true)
-            {
-                MessageBox.Show("Please go to settings and set the mkvmerge.exe path","Error occurred", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-
-            if (_eac3toConfiguration.MKVMergeBatchFilePath == null || _eac3toConfiguration.MKVMergeBatchFilePath == string.Empty)
-            {
-                MessageBox.Show("Please choose an mkvmerge batch file!", "Error occurred", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-
-            if (_eac3toConfiguration.MKVMergeOutputPath == null || _eac3toConfiguration.MKVMergeOutputPath == string.Empty)
-            {
-                MessageBox.Show("Please choose an mkvmerge output path!", "Error occurred", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-
-            return true;
-        }
-
         private void btnOpenMKVMergeFilePathDialog_Click(object sender, EventArgs e)
         {
             try
@@ -881,39 +850,6 @@ namespace BatchGuy.App
                 }
                 txtMKVMergeBatFilePath.Text = sfd.FileName;
             }
-        }
-
-        private void WriteToMkvMergeBatchFile()
-        {
-            gbScreen.SetEnabled(false);
-            List<BluRayDiscInfo> discs = this.GetBluRayDiscInfoList();
-            IDirectorySystemService directorySystemService = new DirectorySystemService();
-            IAudioService audioService = new AudioService();
-            AbstractEAC3ToOutputNamingService eac3ToOutputNamingService = this.GetOutputNamingService();
-            IEAC3ToCommonRulesValidatorService _eac3ToCommonRulesValidatorService = new EAC3ToCommonRulesValidatorService(_eac3toConfiguration, directorySystemService, discs);
-            IMKVMergeBatchFileWriteService batchFileWriteService = new MKVMergeBatchFileWriteService(_eac3toConfiguration, directorySystemService, discs, audioService, eac3ToOutputNamingService, _eac3ToCommonRulesValidatorService);
-            bgwMkvMergeWriteBatchFile.RunWorkerAsync(batchFileWriteService);
-        }
-
-        private void bgwMkvMergeWriteBatchFile_DoWork(object sender, DoWorkEventArgs e)
-        {
-            IMKVMergeBatchFileWriteService batchFileWriteService = e.Argument as MKVMergeBatchFileWriteService;
-            batchFileWriteService.Write();
-            e.Result = batchFileWriteService;
-        }
-
-        private void bgwMkvMergeWriteBatchFile_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            IMKVMergeBatchFileWriteService batchFileWriteService = e.Result as MKVMergeBatchFileWriteService;
-            if (batchFileWriteService.Errors.Count() == 0)
-            {
-                MessageBox.Show("Batch File created!", "Process Complete", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
-            else
-            {
-                MessageBox.Show(string.Format("Error: {0}", batchFileWriteService.Errors[0].Description), "Error occurred", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            gbScreen.SetEnabled(true);
         }
 
         private AbstractEAC3ToOutputNamingService GetOutputNamingService()
@@ -968,7 +904,6 @@ namespace BatchGuy.App
         }
 
         #region Create eac3to Batch File
-
         private void createEac3toBatchFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
@@ -1059,6 +994,7 @@ namespace BatchGuy.App
         }
         #endregion
 
+        #region Create mkvmerge Batch File
         private void createMkvmergeBatchFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
@@ -1095,6 +1031,90 @@ namespace BatchGuy.App
                 _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was a problem creating the mkvmerge batch file!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
             }
         }
+
+        private void WriteToMkvMergeBatchFile()
+        {
+            gbScreen.SetEnabled(false);
+            List<BluRayDiscInfo> discs = this.GetBluRayDiscInfoList();
+            IDirectorySystemService directorySystemService = new DirectorySystemService();
+            IAudioService audioService = new AudioService();
+            AbstractEAC3ToOutputNamingService eac3ToOutputNamingService = this.GetOutputNamingService();
+            IEAC3ToCommonRulesValidatorService _eac3ToCommonRulesValidatorService = new EAC3ToCommonRulesValidatorService(_eac3toConfiguration, directorySystemService, discs);
+            IMKVMergeBatchFileWriteService batchFileWriteService =  this.GetMKVMergeBatchFileWriteService(directorySystemService, discs, audioService, eac3ToOutputNamingService, _eac3ToCommonRulesValidatorService);
+            bgwMkvMergeWriteBatchFile.RunWorkerAsync(batchFileWriteService);
+        }
+
+        private IMKVMergeBatchFileWriteService GetMKVMergeBatchFileWriteService(IDirectorySystemService directorySystemService, List<BluRayDiscInfo> discs,
+            IAudioService audioService, AbstractEAC3ToOutputNamingService eac3ToOutputNamingService, IEAC3ToCommonRulesValidatorService _eac3ToCommonRulesValidatorService)
+        {
+            if (_eac3toConfiguration.IsExtractForRemux && _eac3toConfiguration.IfIsExtractForRemuxIsItForAMovie)
+                return new MKVMergeBatchFileWriteForMovieService(_eac3toConfiguration, directorySystemService, discs, audioService, eac3ToOutputNamingService, _eac3ToCommonRulesValidatorService);
+            else
+               return new MKVMergeBatchFileWriteService(_eac3toConfiguration, directorySystemService, discs, audioService, eac3ToOutputNamingService, _eac3ToCommonRulesValidatorService);
+        }
+
+        private void bgwMkvMergeWriteBatchFile_DoWork(object sender, DoWorkEventArgs e)
+        {
+            IMKVMergeBatchFileWriteService batchFileWriteService;
+            if (_eac3toConfiguration.IsExtractForRemux && _eac3toConfiguration.IfIsExtractForRemuxIsItForAMovie)
+                batchFileWriteService = e.Argument as MKVMergeBatchFileWriteForMovieService;
+            else
+                batchFileWriteService = e.Argument as MKVMergeBatchFileWriteService;
+
+            batchFileWriteService.Write();
+            e.Result = batchFileWriteService;
+        }
+
+        private void bgwMkvMergeWriteBatchFile_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            IMKVMergeBatchFileWriteService batchFileWriteService;
+            if (_eac3toConfiguration.IsExtractForRemux && _eac3toConfiguration.IfIsExtractForRemuxIsItForAMovie)
+                batchFileWriteService = e.Result as MKVMergeBatchFileWriteForMovieService;
+            else
+                batchFileWriteService = e.Result as MKVMergeBatchFileWriteService;
+
+            if (batchFileWriteService.Errors.Count() == 0)
+            {
+                MessageBox.Show("Batch File created!", "Process Complete", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                MessageBox.Show(string.Format("Error: {0}", batchFileWriteService.Errors[0].Description), "Error occurred", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            gbScreen.SetEnabled(true);
+        }
+
+        private bool IsScreenValidForRemux()
+        {
+            if (IsMkvMergePathSetInSettings() != true)
+            {
+                MessageBox.Show("Please go to settings and set the mkvmerge.exe path", "Error occurred", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            if (_eac3toConfiguration.MKVMergeBatchFilePath == null || _eac3toConfiguration.MKVMergeBatchFilePath == string.Empty)
+            {
+                MessageBox.Show("Please choose an mkvmerge batch file!", "Error occurred", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            if (_eac3toConfiguration.MKVMergeOutputPath == null || _eac3toConfiguration.MKVMergeOutputPath == string.Empty)
+            {
+                MessageBox.Show("Please choose an mkvmerge output path!", "Error occurred", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            return true;
+        }
+
+        private void MKVMergeWarnings(WarningCollection warnings)
+        {
+            if (_eac3toConfiguration.EAC3ToOutputPath == _eac3toConfiguration.MKVMergeOutputPath)
+            {
+                warnings.Add(new Warning() { Id = 0, Description = "The eac3to output path is the same as mkvmerge output path and could have output file name conflicts!" });
+            }
+        }
+        #endregion
 
         private void closeToolStripMenuItem_Click(object sender, EventArgs e)
         {
