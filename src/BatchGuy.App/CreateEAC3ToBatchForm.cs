@@ -544,6 +544,7 @@ namespace BatchGuy.App
             try
             {
                 this.HandleChkExtractForRemuxCheckedChanged();
+                ResetDirectoryUserControlDirectoryCaptionText();
             }
             catch (Exception ex)
             {
@@ -1128,6 +1129,7 @@ namespace BatchGuy.App
             {
                 this.HandleschkIsThisRemuxForAMovieCheckedChanged();
                 this.SettxtRemuxSeasonNumberEnabledStatus();
+                this.ResetDirectoryUserControlDirectoryCaptionText();
             }
             catch (Exception ex)
             {
@@ -1140,6 +1142,15 @@ namespace BatchGuy.App
             _eac3toConfiguration.IfIsExtractForRemuxIsItForAMovie = chkIsThisRemuxForAMovie.Checked;
             this.SetRemuxNamingConventionCurrentTemplateExampleLabel();
             this.SetlblRemuxSeriesNameCaption();
+        }
+
+        private void ResetDirectoryUserControlDirectoryCaptionText()
+        {
+            if (_eac3toConfiguration.IsExtractForRemux && _eac3toConfiguration.IfIsExtractForRemuxIsItForAMovie)
+                setDirectoryUserControl.LabelDirectoryCaptionText = @"Files will be extracted to: eac3to_Output_Directory\movie##";
+            else
+                setDirectoryUserControl.LabelDirectoryCaptionText = @"Files will be extracted to: eac3to_Output_Directory\episode##";
+            setDirectoryUserControl.SetControlValues(_eac3toConfiguration.EAC3ToOutputPath, _eac3toConfiguration.OutputDirectoryType);
         }
 
         private void SetlblRemuxSeriesNameCaption()
