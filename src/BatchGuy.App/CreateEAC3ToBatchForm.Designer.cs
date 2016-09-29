@@ -91,7 +91,12 @@
             this.bgwMkvMergeWriteBatchFile = new System.ComponentModel.BackgroundWorker();
             this.lblVersion = new System.Windows.Forms.Label();
             this.tlpForm = new System.Windows.Forms.TableLayoutPanel();
-            this.setDirectoryUserControl = new BatchGuy.App.UserControls.SetDirectoryUserControl();
+            this.lblEac3ToOutputDirectory = new System.Windows.Forms.Label();
+            this.btnEac3toOutputDirectory = new System.Windows.Forms.Button();
+            this.cbEac3ToOutputDirectoryType = new System.Windows.Forms.ComboBox();
+            this.tlpEac3toOutputDirectory = new System.Windows.Forms.TableLayoutPanel();
+            this.txtEac3toOutputDirectory = new System.Windows.Forms.TextBox();
+            this.lblEac3ToDirectoryOutputCaption = new System.Windows.Forms.Label();
             this.isSelectedDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.eac3ToIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.episodeNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -121,6 +126,7 @@
             this.tlpRemuxTemplate.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.tlpForm.SuspendLayout();
+            this.tlpEac3toOutputDirectory.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsBluRaySummaryInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsBluRayDiscInfo)).BeginInit();
             this.SuspendLayout();
@@ -169,15 +175,18 @@
             // 
             this.tlpUpperLeft.ColumnCount = 4;
             this.tlpUpperLeft.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 136F));
-            this.tlpUpperLeft.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 110F));
-            this.tlpUpperLeft.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 530F));
-            this.tlpUpperLeft.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 84F));
+            this.tlpUpperLeft.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 147F));
+            this.tlpUpperLeft.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 505F));
+            this.tlpUpperLeft.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 72F));
+            this.tlpUpperLeft.Controls.Add(this.cbEac3ToOutputDirectoryType, 1, 1);
             this.tlpUpperLeft.Controls.Add(this.pictureBox1, 0, 0);
             this.tlpUpperLeft.Controls.Add(this.lblBatchFilePath, 1, 0);
             this.tlpUpperLeft.Controls.Add(this.txtBatFilePath, 2, 0);
             this.tlpUpperLeft.Controls.Add(this.btnOpenBatchFilePathDialog, 3, 0);
-            this.tlpUpperLeft.Controls.Add(this.setDirectoryUserControl, 0, 1);
             this.tlpUpperLeft.Controls.Add(this.gbMKVMergeInfo, 0, 2);
+            this.tlpUpperLeft.Controls.Add(this.btnEac3toOutputDirectory, 3, 1);
+            this.tlpUpperLeft.Controls.Add(this.lblEac3ToOutputDirectory, 0, 1);
+            this.tlpUpperLeft.Controls.Add(this.tlpEac3toOutputDirectory, 2, 1);
             this.tlpUpperLeft.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlpUpperLeft.Location = new System.Drawing.Point(3, 3);
             this.tlpUpperLeft.Name = "tlpUpperLeft";
@@ -200,8 +209,8 @@
             // lblBatchFilePath
             // 
             this.lblBatchFilePath.AutoSize = true;
-            this.lblBatchFilePath.Location = new System.Drawing.Point(139, 15);
-            this.lblBatchFilePath.Margin = new System.Windows.Forms.Padding(3, 15, 3, 0);
+            this.lblBatchFilePath.Location = new System.Drawing.Point(139, 30);
+            this.lblBatchFilePath.Margin = new System.Windows.Forms.Padding(3, 30, 3, 0);
             this.lblBatchFilePath.Name = "lblBatchFilePath";
             this.lblBatchFilePath.Size = new System.Drawing.Size(97, 13);
             this.lblBatchFilePath.TabIndex = 35;
@@ -209,17 +218,18 @@
             // 
             // txtBatFilePath
             // 
-            this.txtBatFilePath.Location = new System.Drawing.Point(249, 13);
-            this.txtBatFilePath.Margin = new System.Windows.Forms.Padding(3, 13, 3, 3);
+            this.txtBatFilePath.Location = new System.Drawing.Point(286, 28);
+            this.txtBatFilePath.Margin = new System.Windows.Forms.Padding(3, 28, 3, 3);
             this.txtBatFilePath.Name = "txtBatFilePath";
             this.txtBatFilePath.ReadOnly = true;
-            this.txtBatFilePath.Size = new System.Drawing.Size(523, 20);
+            this.txtBatFilePath.Size = new System.Drawing.Size(494, 20);
             this.txtBatFilePath.TabIndex = 33;
             // 
             // btnOpenBatchFilePathDialog
             // 
             this.btnOpenBatchFilePathDialog.Image = global::BatchGuy.App.Properties.Resources.Avosoft_Warm_Toolbar_Folder_open;
-            this.btnOpenBatchFilePathDialog.Location = new System.Drawing.Point(779, 3);
+            this.btnOpenBatchFilePathDialog.Location = new System.Drawing.Point(791, 15);
+            this.btnOpenBatchFilePathDialog.Margin = new System.Windows.Forms.Padding(3, 15, 3, 3);
             this.btnOpenBatchFilePathDialog.Name = "btnOpenBatchFilePathDialog";
             this.btnOpenBatchFilePathDialog.Size = new System.Drawing.Size(61, 33);
             this.btnOpenBatchFilePathDialog.TabIndex = 0;
@@ -243,14 +253,14 @@
             // 
             this.tlpMKVMergeInfo.ColumnCount = 3;
             this.tlpMKVMergeInfo.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpMKVMergeInfo.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 581F));
-            this.tlpMKVMergeInfo.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 79F));
-            this.tlpMKVMergeInfo.Controls.Add(this.btnOpenMKVMergeFilePathDialog, 2, 0);
+            this.tlpMKVMergeInfo.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 592F));
+            this.tlpMKVMergeInfo.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 68F));
             this.tlpMKVMergeInfo.Controls.Add(this.label10, 0, 0);
             this.tlpMKVMergeInfo.Controls.Add(this.txtMKVMergeOutputPath, 1, 1);
             this.tlpMKVMergeInfo.Controls.Add(this.btnOpenMKVMergeOutputPathDialog, 2, 1);
             this.tlpMKVMergeInfo.Controls.Add(this.lblMKVMergeOutputPath, 0, 1);
             this.tlpMKVMergeInfo.Controls.Add(this.txtMKVMergeBatFilePath, 1, 0);
+            this.tlpMKVMergeInfo.Controls.Add(this.btnOpenMKVMergeFilePathDialog, 2, 0);
             this.tlpMKVMergeInfo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlpMKVMergeInfo.Location = new System.Drawing.Point(3, 16);
             this.tlpMKVMergeInfo.Name = "tlpMKVMergeInfo";
@@ -263,10 +273,10 @@
             // btnOpenMKVMergeFilePathDialog
             // 
             this.btnOpenMKVMergeFilePathDialog.Image = global::BatchGuy.App.Properties.Resources.Avosoft_Warm_Toolbar_Folder_open;
-            this.btnOpenMKVMergeFilePathDialog.Location = new System.Drawing.Point(772, 3);
+            this.btnOpenMKVMergeFilePathDialog.Location = new System.Drawing.Point(783, 3);
             this.btnOpenMKVMergeFilePathDialog.Name = "btnOpenMKVMergeFilePathDialog";
             this.btnOpenMKVMergeFilePathDialog.Size = new System.Drawing.Size(61, 33);
-            this.btnOpenMKVMergeFilePathDialog.TabIndex = 2;
+            this.btnOpenMKVMergeFilePathDialog.TabIndex = 3;
             this.btnOpenMKVMergeFilePathDialog.UseVisualStyleBackColor = true;
             this.btnOpenMKVMergeFilePathDialog.Click += new System.EventHandler(this.btnOpenMKVMergeFilePathDialog_Click);
             // 
@@ -286,16 +296,16 @@
             this.txtMKVMergeOutputPath.Location = new System.Drawing.Point(191, 51);
             this.txtMKVMergeOutputPath.Name = "txtMKVMergeOutputPath";
             this.txtMKVMergeOutputPath.ReadOnly = true;
-            this.txtMKVMergeOutputPath.Size = new System.Drawing.Size(575, 20);
+            this.txtMKVMergeOutputPath.Size = new System.Drawing.Size(586, 20);
             this.txtMKVMergeOutputPath.TabIndex = 46;
             // 
             // btnOpenMKVMergeOutputPathDialog
             // 
             this.btnOpenMKVMergeOutputPathDialog.Image = global::BatchGuy.App.Properties.Resources.Avosoft_Warm_Toolbar_Folder_open;
-            this.btnOpenMKVMergeOutputPathDialog.Location = new System.Drawing.Point(772, 44);
+            this.btnOpenMKVMergeOutputPathDialog.Location = new System.Drawing.Point(783, 44);
             this.btnOpenMKVMergeOutputPathDialog.Name = "btnOpenMKVMergeOutputPathDialog";
             this.btnOpenMKVMergeOutputPathDialog.Size = new System.Drawing.Size(61, 33);
-            this.btnOpenMKVMergeOutputPathDialog.TabIndex = 3;
+            this.btnOpenMKVMergeOutputPathDialog.TabIndex = 4;
             this.btnOpenMKVMergeOutputPathDialog.UseVisualStyleBackColor = true;
             this.btnOpenMKVMergeOutputPathDialog.Click += new System.EventHandler(this.btnOpenMKVMergeOutputPathDialog_Click);
             // 
@@ -315,7 +325,7 @@
             this.txtMKVMergeBatFilePath.Location = new System.Drawing.Point(191, 10);
             this.txtMKVMergeBatFilePath.Name = "txtMKVMergeBatFilePath";
             this.txtMKVMergeBatFilePath.ReadOnly = true;
-            this.txtMKVMergeBatFilePath.Size = new System.Drawing.Size(575, 20);
+            this.txtMKVMergeBatFilePath.Size = new System.Drawing.Size(586, 20);
             this.txtMKVMergeBatFilePath.TabIndex = 49;
             // 
             // gbDiscSummary
@@ -365,7 +375,7 @@
             this.dgvBluRaySummary.Location = new System.Drawing.Point(3, 3);
             this.dgvBluRaySummary.Name = "dgvBluRaySummary";
             this.dgvBluRaySummary.Size = new System.Drawing.Size(1389, 199);
-            this.dgvBluRaySummary.TabIndex = 16;
+            this.dgvBluRaySummary.TabIndex = 17;
             this.dgvBluRaySummary.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBluRaySummary_CellClick);
             this.dgvBluRaySummary.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBluRaySummary_CellDoubleClick);
             // 
@@ -415,7 +425,7 @@
             this.dgvBluRayDiscInfo.Location = new System.Drawing.Point(3, 3);
             this.dgvBluRayDiscInfo.Name = "dgvBluRayDiscInfo";
             this.dgvBluRayDiscInfo.Size = new System.Drawing.Size(1389, 155);
-            this.dgvBluRayDiscInfo.TabIndex = 15;
+            this.dgvBluRayDiscInfo.TabIndex = 16;
             this.dgvBluRayDiscInfo.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBluRayDiscInfo_CellClick);
             this.dgvBluRayDiscInfo.DragDrop += new System.Windows.Forms.DragEventHandler(this.dgvBluRayDiscInfo_DragDrop);
             this.dgvBluRayDiscInfo.DragEnter += new System.Windows.Forms.DragEventHandler(this.dgvBluRayDiscInfo_DragEnter);
@@ -441,7 +451,7 @@
             this.chkExtractForRemux.Location = new System.Drawing.Point(3, 3);
             this.chkExtractForRemux.Name = "chkExtractForRemux";
             this.chkExtractForRemux.Size = new System.Drawing.Size(15, 14);
-            this.chkExtractForRemux.TabIndex = 4;
+            this.chkExtractForRemux.TabIndex = 5;
             this.chkExtractForRemux.UseVisualStyleBackColor = true;
             this.chkExtractForRemux.CheckedChanged += new System.EventHandler(this.chkExtractForRemux_CheckedChanged);
             // 
@@ -507,7 +517,7 @@
             this.chkIsThisRemuxForAMovie.Location = new System.Drawing.Point(3, 47);
             this.chkIsThisRemuxForAMovie.Name = "chkIsThisRemuxForAMovie";
             this.chkIsThisRemuxForAMovie.Size = new System.Drawing.Size(151, 17);
-            this.chkIsThisRemuxForAMovie.TabIndex = 5;
+            this.chkIsThisRemuxForAMovie.TabIndex = 6;
             this.chkIsThisRemuxForAMovie.Text = "Is this Remux for a Movie?";
             this.chkIsThisRemuxForAMovie.UseVisualStyleBackColor = true;
             this.chkIsThisRemuxForAMovie.CheckedChanged += new System.EventHandler(this.chkIsThisRemuxForAMovie_CheckedChanged);
@@ -520,7 +530,7 @@
             this.chkRemuxUsePeriodsInFileName.Location = new System.Drawing.Point(3, 287);
             this.chkRemuxUsePeriodsInFileName.Name = "chkRemuxUsePeriodsInFileName";
             this.chkRemuxUsePeriodsInFileName.Size = new System.Drawing.Size(147, 17);
-            this.chkRemuxUsePeriodsInFileName.TabIndex = 14;
+            this.chkRemuxUsePeriodsInFileName.TabIndex = 15;
             this.chkRemuxUsePeriodsInFileName.Text = "User Periods in File Name";
             this.chkRemuxUsePeriodsInFileName.UseVisualStyleBackColor = true;
             this.chkRemuxUsePeriodsInFileName.CheckedChanged += new System.EventHandler(this.chkRemuxUsePeriodsInFileName_CheckedChanged);
@@ -548,7 +558,7 @@
             this.cbRemuxVideoFormat.Location = new System.Drawing.Point(307, 245);
             this.cbRemuxVideoFormat.Name = "cbRemuxVideoFormat";
             this.cbRemuxVideoFormat.Size = new System.Drawing.Size(113, 21);
-            this.cbRemuxVideoFormat.TabIndex = 13;
+            this.cbRemuxVideoFormat.TabIndex = 14;
             this.cbRemuxVideoFormat.SelectedIndexChanged += new System.EventHandler(this.cbRemuxVideoFormat_SelectedIndexChanged);
             // 
             // txtRemuxSeriesName
@@ -558,7 +568,7 @@
             this.txtRemuxSeriesName.Location = new System.Drawing.Point(86, 87);
             this.txtRemuxSeriesName.Name = "txtRemuxSeriesName";
             this.txtRemuxSeriesName.Size = new System.Drawing.Size(301, 20);
-            this.txtRemuxSeriesName.TabIndex = 6;
+            this.txtRemuxSeriesName.TabIndex = 7;
             this.txtRemuxSeriesName.TextChanged += new System.EventHandler(this.txtRemuxSeriesName_TextChanged);
             // 
             // label9
@@ -587,7 +597,7 @@
             this.txtRemuxSeasonNumber.Location = new System.Drawing.Point(86, 127);
             this.txtRemuxSeasonNumber.Name = "txtRemuxSeasonNumber";
             this.txtRemuxSeasonNumber.Size = new System.Drawing.Size(70, 20);
-            this.txtRemuxSeasonNumber.TabIndex = 7;
+            this.txtRemuxSeasonNumber.TabIndex = 8;
             this.txtRemuxSeasonNumber.TextChanged += new System.EventHandler(this.txtSeasonNumber_TextChanged);
             // 
             // cbRemuxMedium
@@ -602,7 +612,7 @@
             this.cbRemuxMedium.Location = new System.Drawing.Point(86, 245);
             this.cbRemuxMedium.Name = "cbRemuxMedium";
             this.cbRemuxMedium.Size = new System.Drawing.Size(113, 21);
-            this.cbRemuxMedium.TabIndex = 12;
+            this.cbRemuxMedium.TabIndex = 13;
             this.cbRemuxMedium.SelectedIndexChanged += new System.EventHandler(this.cbRemuxMedium_SelectedIndexChanged);
             // 
             // label3
@@ -631,7 +641,7 @@
             this.txtRemuxSeasonYear.Location = new System.Drawing.Point(307, 127);
             this.txtRemuxSeasonYear.Name = "txtRemuxSeasonYear";
             this.txtRemuxSeasonYear.Size = new System.Drawing.Size(82, 20);
-            this.txtRemuxSeasonYear.TabIndex = 8;
+            this.txtRemuxSeasonYear.TabIndex = 9;
             this.txtRemuxSeasonYear.TextChanged += new System.EventHandler(this.txtRemuxSeasonYear_TextChanged);
             // 
             // txtRemuxTag
@@ -640,7 +650,7 @@
             this.txtRemuxTag.Location = new System.Drawing.Point(307, 206);
             this.txtRemuxTag.Name = "txtRemuxTag";
             this.txtRemuxTag.Size = new System.Drawing.Size(85, 20);
-            this.txtRemuxTag.TabIndex = 11;
+            this.txtRemuxTag.TabIndex = 12;
             this.txtRemuxTag.TextChanged += new System.EventHandler(this.txtRemuxTag_TextChanged);
             // 
             // label4
@@ -678,7 +688,7 @@
             this.cbRemuxVideoResolution.Location = new System.Drawing.Point(86, 164);
             this.cbRemuxVideoResolution.Name = "cbRemuxVideoResolution";
             this.cbRemuxVideoResolution.Size = new System.Drawing.Size(170, 21);
-            this.cbRemuxVideoResolution.TabIndex = 9;
+            this.cbRemuxVideoResolution.TabIndex = 10;
             this.cbRemuxVideoResolution.SelectedIndexChanged += new System.EventHandler(this.cbRemuxVideoResolution_SelectedIndexChanged);
             // 
             // txtRemuxAudioType
@@ -687,7 +697,7 @@
             this.txtRemuxAudioType.Location = new System.Drawing.Point(86, 206);
             this.txtRemuxAudioType.Name = "txtRemuxAudioType";
             this.txtRemuxAudioType.Size = new System.Drawing.Size(137, 20);
-            this.txtRemuxAudioType.TabIndex = 10;
+            this.txtRemuxAudioType.TabIndex = 11;
             this.txtRemuxAudioType.TextChanged += new System.EventHandler(this.txtRemuxAudioType_TextChanged);
             // 
             // label5
@@ -832,15 +842,74 @@
             this.tlpForm.Size = new System.Drawing.Size(1419, 837);
             this.tlpForm.TabIndex = 33;
             // 
-            // setDirectoryUserControl
+            // lblEac3ToOutputDirectory
             // 
-            this.tlpUpperLeft.SetColumnSpan(this.setDirectoryUserControl, 4);
-            this.setDirectoryUserControl.ComboBoxCaptionText = "";
-            this.setDirectoryUserControl.LabelDirectoryCaptionText = null;
-            this.setDirectoryUserControl.Location = new System.Drawing.Point(3, 149);
-            this.setDirectoryUserControl.Name = "setDirectoryUserControl";
-            this.setDirectoryUserControl.Size = new System.Drawing.Size(824, 71);
-            this.setDirectoryUserControl.TabIndex = 1;
+            this.lblEac3ToOutputDirectory.AutoSize = true;
+            this.lblEac3ToOutputDirectory.Location = new System.Drawing.Point(3, 164);
+            this.lblEac3ToOutputDirectory.Margin = new System.Windows.Forms.Padding(3, 18, 3, 0);
+            this.lblEac3ToOutputDirectory.Name = "lblEac3ToOutputDirectory";
+            this.lblEac3ToOutputDirectory.Size = new System.Drawing.Size(127, 13);
+            this.lblEac3ToOutputDirectory.TabIndex = 52;
+            this.lblEac3ToOutputDirectory.Text = "eac3to Output Directory*:";
+            // 
+            // btnEac3toOutputDirectory
+            // 
+            this.btnEac3toOutputDirectory.Image = global::BatchGuy.App.Properties.Resources.Avosoft_Warm_Toolbar_Folder_open;
+            this.btnEac3toOutputDirectory.Location = new System.Drawing.Point(791, 152);
+            this.btnEac3toOutputDirectory.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
+            this.btnEac3toOutputDirectory.Name = "btnEac3toOutputDirectory";
+            this.btnEac3toOutputDirectory.Size = new System.Drawing.Size(61, 33);
+            this.btnEac3toOutputDirectory.TabIndex = 2;
+            this.btnEac3toOutputDirectory.UseVisualStyleBackColor = true;
+            this.btnEac3toOutputDirectory.Click += new System.EventHandler(this.btnEac3toOutputDirectory_Click);
+            // 
+            // cbEac3ToOutputDirectoryType
+            // 
+            this.cbEac3ToOutputDirectoryType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbEac3ToOutputDirectoryType.FormattingEnabled = true;
+            this.cbEac3ToOutputDirectoryType.Items.AddRange(new object[] {
+            "Directory Per Playlist",
+            "Single Directory"});
+            this.cbEac3ToOutputDirectoryType.Location = new System.Drawing.Point(139, 161);
+            this.cbEac3ToOutputDirectoryType.Margin = new System.Windows.Forms.Padding(3, 15, 3, 3);
+            this.cbEac3ToOutputDirectoryType.Name = "cbEac3ToOutputDirectoryType";
+            this.cbEac3ToOutputDirectoryType.Size = new System.Drawing.Size(141, 21);
+            this.cbEac3ToOutputDirectoryType.TabIndex = 1;
+            this.cbEac3ToOutputDirectoryType.SelectedIndexChanged += new System.EventHandler(this.cbEac3ToOutputDirectoryType_SelectedIndexChanged);
+            // 
+            // tlpEac3toOutputDirectory
+            // 
+            this.tlpEac3toOutputDirectory.ColumnCount = 1;
+            this.tlpEac3toOutputDirectory.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tlpEac3toOutputDirectory.Controls.Add(this.lblEac3ToDirectoryOutputCaption, 0, 1);
+            this.tlpEac3toOutputDirectory.Controls.Add(this.txtEac3toOutputDirectory, 0, 0);
+            this.tlpEac3toOutputDirectory.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tlpEac3toOutputDirectory.Location = new System.Drawing.Point(286, 149);
+            this.tlpEac3toOutputDirectory.Name = "tlpEac3toOutputDirectory";
+            this.tlpEac3toOutputDirectory.RowCount = 2;
+            this.tlpEac3toOutputDirectory.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tlpEac3toOutputDirectory.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tlpEac3toOutputDirectory.Size = new System.Drawing.Size(499, 82);
+            this.tlpEac3toOutputDirectory.TabIndex = 55;
+            // 
+            // txtEac3toOutputDirectory
+            // 
+            this.txtEac3toOutputDirectory.Location = new System.Drawing.Point(3, 13);
+            this.txtEac3toOutputDirectory.Margin = new System.Windows.Forms.Padding(3, 13, 3, 3);
+            this.txtEac3toOutputDirectory.Name = "txtEac3toOutputDirectory";
+            this.txtEac3toOutputDirectory.ReadOnly = true;
+            this.txtEac3toOutputDirectory.Size = new System.Drawing.Size(491, 20);
+            this.txtEac3toOutputDirectory.TabIndex = 48;
+            // 
+            // lblEac3ToDirectoryOutputCaption
+            // 
+            this.lblEac3ToDirectoryOutputCaption.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lblEac3ToDirectoryOutputCaption.AutoSize = true;
+            this.lblEac3ToDirectoryOutputCaption.Location = new System.Drawing.Point(3, 55);
+            this.lblEac3ToDirectoryOutputCaption.Name = "lblEac3ToDirectoryOutputCaption";
+            this.lblEac3ToDirectoryOutputCaption.Size = new System.Drawing.Size(42, 13);
+            this.lblEac3ToDirectoryOutputCaption.TabIndex = 53;
+            this.lblEac3ToDirectoryOutputCaption.Text = "Output:";
             // 
             // isSelectedDataGridViewCheckBoxColumn
             // 
@@ -975,6 +1044,8 @@
             this.menuStrip1.PerformLayout();
             this.tlpForm.ResumeLayout(false);
             this.tlpForm.PerformLayout();
+            this.tlpEac3toOutputDirectory.ResumeLayout(false);
+            this.tlpEac3toOutputDirectory.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsBluRaySummaryInfo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsBluRayDiscInfo)).EndInit();
             this.ResumeLayout(false);
@@ -1013,7 +1084,6 @@
         private System.Windows.Forms.TextBox txtRemuxAudioType;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.BindingSource bsBluRaySummaryInfo;
-        private UserControls.SetDirectoryUserControl setDirectoryUserControl;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.DataGridViewCheckBoxColumn isSelectedDataGridViewCheckBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn eac3ToIdDataGridViewTextBoxColumn;
@@ -1060,5 +1130,11 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripMenuItem closeToolStripMenuItem;
         private System.Windows.Forms.CheckBox chkIsThisRemuxForAMovie;
+        private System.Windows.Forms.Label lblEac3ToOutputDirectory;
+        private System.Windows.Forms.Button btnEac3toOutputDirectory;
+        private System.Windows.Forms.ComboBox cbEac3ToOutputDirectoryType;
+        private System.Windows.Forms.TableLayoutPanel tlpEac3toOutputDirectory;
+        private System.Windows.Forms.Label lblEac3ToDirectoryOutputCaption;
+        private System.Windows.Forms.TextBox txtEac3toOutputDirectory;
     }
 }

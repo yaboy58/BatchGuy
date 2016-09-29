@@ -60,7 +60,7 @@
             // btnSetOutputDirectoryUserControlOpenDialog
             // 
             this.btnSetOutputDirectoryUserControlOpenDialog.Image = global::BatchGuy.App.Properties.Resources.Avosoft_Warm_Toolbar_Folder_open;
-            this.btnSetOutputDirectoryUserControlOpenDialog.Location = new System.Drawing.Point(756, 3);
+            this.btnSetOutputDirectoryUserControlOpenDialog.Location = new System.Drawing.Point(781, 3);
             this.btnSetOutputDirectoryUserControlOpenDialog.Name = "btnSetOutputDirectoryUserControlOpenDialog";
             this.btnSetOutputDirectoryUserControlOpenDialog.Size = new System.Drawing.Size(61, 33);
             this.btnSetOutputDirectoryUserControlOpenDialog.TabIndex = 12;
@@ -72,7 +72,7 @@
             this.txtSetOutputDirectoryUserControl.Location = new System.Drawing.Point(316, 16);
             this.txtSetOutputDirectoryUserControl.Name = "txtSetOutputDirectoryUserControl";
             this.txtSetOutputDirectoryUserControl.ReadOnly = true;
-            this.txtSetOutputDirectoryUserControl.Size = new System.Drawing.Size(434, 20);
+            this.txtSetOutputDirectoryUserControl.Size = new System.Drawing.Size(459, 20);
             this.txtSetOutputDirectoryUserControl.TabIndex = 13;
             // 
             // lblDirectoryOutputCaption
@@ -94,7 +94,7 @@
             this.Controls.Add(this.btnSetOutputDirectoryUserControlOpenDialog);
             this.Controls.Add(this.txtSetOutputDirectoryUserControl);
             this.Name = "SetDirectoryUserControl";
-            this.Size = new System.Drawing.Size(824, 71);
+            this.Size = new System.Drawing.Size(878, 71);
             this.Load += new System.EventHandler(this.SetOutputDirectoryUserControl_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

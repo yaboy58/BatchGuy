@@ -52,8 +52,7 @@ namespace BatchGuy.App
         public CreateEAC3ToBatchForm()
         {
             InitializeComponent();
-            setDirectoryUserControl.ComboBoxCaptionText = "eac3to output directory*:";
-            setDirectoryUserControl.LabelDirectoryCaptionText = @"Files will be extracted to: eac3to_Output_Directory\episode##";
+            lblEac3ToDirectoryOutputCaption.Text = @"Files will be extracted to: eac3to_Output_Directory\episode##";
             this.SetToolTips();
         }
 
@@ -76,6 +75,7 @@ namespace BatchGuy.App
                     cbRemuxVideoResolution.SelectedIndex = 3;
                     cbRemuxMedium.SelectedIndex = 1;
                     cbRemuxVideoFormat.SelectedIndex = 1;
+                    cbEac3ToOutputDirectoryType.SelectedIndex = 0;
                     this.SetMenuItemCreateMKVMergeBatFileEnabledStatus();
                     this.SetRemuxNamingConventionCurrentTemplateExampleLabel();
                 }
@@ -89,8 +89,9 @@ namespace BatchGuy.App
         private void SetToolTips()
         {
             new ToolTip().SetToolTip(txtBatFilePath, "Directory where eac3to batch file will be saved");
-            new ToolTip().SetToolTip(setDirectoryUserControl, "eac3to stream extract directory");
-            new ToolTip().SetToolTip(txtRemuxSeriesName,"Series name");
+            new ToolTip().SetToolTip(cbEac3ToOutputDirectoryType, "Output directory type");
+            new ToolTip().SetToolTip(txtEac3toOutputDirectory, "eac3to stream extract directory");
+            new ToolTip().SetToolTip(txtRemuxSeriesName, "Series name");
             new ToolTip().SetToolTip(txtRemuxSeasonNumber, "Season number");
             new ToolTip().SetToolTip(txtRemuxSeasonYear, "Season year");
             new ToolTip().SetToolTip(cbRemuxVideoResolution, "Video resolution");
@@ -109,7 +110,7 @@ namespace BatchGuy.App
         private bool IsEac3ToPathSetInSettings()
         {
             Setting setting = Program.ApplicationSettingsService.GetSettingByName("eac3to");
-            if (setting == null  || string.IsNullOrEmpty(setting.Value))
+            if (setting == null || string.IsNullOrEmpty(setting.Value))
                 return false;
             else
                 return true;
@@ -218,7 +219,7 @@ namespace BatchGuy.App
             if (_eac3toConfiguration.BatchFilePath == null || _eac3toConfiguration.BatchFilePath == string.Empty)
             {
                 MessageBox.Show("Please enter the path the batch file should be created!", "Error occurred", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;    
+                return false;
             }
             if (_eac3toConfiguration.EAC3ToPath == null || _eac3toConfiguration.EAC3ToPath == string.Empty)
             {
@@ -228,14 +229,14 @@ namespace BatchGuy.App
             if (_eac3toConfiguration.EAC3ToOutputPath == null || _eac3toConfiguration.EAC3ToOutputPath == string.Empty)
             {
                 MessageBox.Show("Please choose an eac3to output path!", "Error occurred", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;                
+                return false;
             }
             if (_eac3toConfiguration.IsExtractForRemux && _eac3toConfiguration.IfIsExtractForRemuxIsItForAMovie == false)
             {
                 if (_eac3toConfiguration.RemuxFileNameTemplate.SeriesName == null || _eac3toConfiguration.RemuxFileNameTemplate.SeriesName == string.Empty)
                 {
                     MessageBox.Show("Please enter a Series Name!", "Error occurred", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return false;        
+                    return false;
                 }
             }
             return true;
@@ -423,7 +424,7 @@ namespace BatchGuy.App
                 gbScreen.SetEnabled(true);
                 dgvBluRaySummary.Rows.Clear();
             }
-      
+
         }
 
         private void SortBluRayDiscGrid(int sortColumnNumber)
@@ -464,8 +465,7 @@ namespace BatchGuy.App
         {
             _eac3toConfiguration.BatchFilePath = txtBatFilePath.Text;
             _eac3toConfiguration.EAC3ToPath = _eac3ToPath;
-            _eac3toConfiguration.EAC3ToOutputPath = setDirectoryUserControl.CLIDirectory;
-            _eac3toConfiguration.OutputDirectoryType = setDirectoryUserControl.OutputDirectoryType;
+            _eac3toConfiguration.EAC3ToOutputPath = txtEac3toOutputDirectory.Text;
             _eac3toConfiguration.IsExtractForRemux = chkExtractForRemux.Checked;
             _eac3toConfiguration.NumberOfEpisodes = this.GetBluRayDiscInfoList().NumberOfEpisodes();
             _eac3toConfiguration.MKVMergeOutputPath = txtMKVMergeOutputPath.Text;
@@ -488,7 +488,7 @@ namespace BatchGuy.App
             {
                 if (this.IsADirectory(folder) && this.NotADuplicate(folder))
                 {
-                   _bindingListBluRayDiscInfo.Add(new BluRayDiscInfo() {Id = _bindingListBluRayDiscInfo.Count() + 1, IsSelected = false, BluRayPath = folder});
+                    _bindingListBluRayDiscInfo.Add(new BluRayDiscInfo() { Id = _bindingListBluRayDiscInfo.Count() + 1, IsSelected = false, BluRayPath = folder });
                 }
             }
             if (_bindingListBluRayDiscInfo.Count() > 0)
@@ -544,7 +544,7 @@ namespace BatchGuy.App
             try
             {
                 this.HandleChkExtractForRemuxCheckedChanged();
-                ResetDirectoryUserControlDirectoryCaptionText();
+                ResetlblEac3ToDirectoryOutputCaptionText();
             }
             catch (Exception ex)
             {
@@ -563,9 +563,18 @@ namespace BatchGuy.App
         {
             if (_eac3toConfiguration.IsExtractForRemux && _eac3toConfiguration.IfIsExtractForRemuxIsItForAMovie == false)
             {
-                _eac3toConfiguration.RemuxFileNameTemplate = new EAC3ToRemuxFileNameTemplate() { AudioType = txtRemuxAudioType.Text.Trim(), Tag = txtRemuxTag.Text.Trim(), SeriesName = txtRemuxSeriesName.Text.Trim(),
-                 VideoResolution = cbRemuxVideoResolution.Text, SeasonYear = txtRemuxSeasonYear.Text.Trim(), Medium = cbRemuxMedium.Text, VideoFormat = cbRemuxVideoFormat.Text,
-                 SeasonNumber = txtRemuxSeasonNumber.Text, UsePeriodsInFileName = chkRemuxUsePeriodsInFileName.Checked };
+                _eac3toConfiguration.RemuxFileNameTemplate = new EAC3ToRemuxFileNameTemplate()
+                {
+                    AudioType = txtRemuxAudioType.Text.Trim(),
+                    Tag = txtRemuxTag.Text.Trim(),
+                    SeriesName = txtRemuxSeriesName.Text.Trim(),
+                    VideoResolution = cbRemuxVideoResolution.Text,
+                    SeasonYear = txtRemuxSeasonYear.Text.Trim(),
+                    Medium = cbRemuxMedium.Text,
+                    VideoFormat = cbRemuxVideoFormat.Text,
+                    SeasonNumber = txtRemuxSeasonNumber.Text,
+                    UsePeriodsInFileName = chkRemuxUsePeriodsInFileName.Checked
+                };
             }
         }
 
@@ -617,9 +626,9 @@ namespace BatchGuy.App
                     batchGuyEAC3ToSettingsService.Save(sfd.FileName, _batchGuyEAC3ToSettings);
                     if (batchGuyEAC3ToSettingsService.Errors.Count() > 0)
                     {
-                        MessageBox.Show(batchGuyEAC3ToSettingsService.Errors.GetErrorMessage(), "Error Occurred.", MessageBoxButtons.OK, MessageBoxIcon.Error);                        
+                        MessageBox.Show(batchGuyEAC3ToSettingsService.Errors.GetErrorMessage(), "Error Occurred.", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
-                }                
+                }
             }
         }
 
@@ -681,6 +690,7 @@ namespace BatchGuy.App
             txtMKVMergeBatFilePath.Text = _eac3toConfiguration.MKVMergeBatchFilePath;
             txtMKVMergeOutputPath.Text = _eac3toConfiguration.MKVMergeOutputPath;
             _eac3toConfiguration.IsVideoNameForEncodeMkvMerge = false;
+            txtEac3toOutputDirectory.Text = _eac3toConfiguration.EAC3ToOutputPath;
             foreach (BluRayDiscInfo disc in batchGuyEAC3ToSettings.BluRayDiscs)
             {
                 _bindingListBluRayDiscInfo.Add(disc);
@@ -690,9 +700,21 @@ namespace BatchGuy.App
             {
                 _bindingListBluRaySummaryInfo.Add(summary);
             }
-            setDirectoryUserControl.SetControlValues(_eac3toConfiguration.EAC3ToOutputPath, _eac3toConfiguration.OutputDirectoryType);
+            this.SetcbEac3ToOutputDirectoryType();
             this.BindDgvBluRayDiscInfoGrid();
             this.BindDgvBluRaySummaryGrid();
+        }
+
+        private void SetcbEac3ToOutputDirectoryType()
+        {
+            if (_eac3toConfiguration.OutputDirectoryType == EnumDirectoryType.DirectoryPerEpisode)
+            {
+                cbEac3ToOutputDirectoryType.SelectedIndex = 0;
+            }
+            else
+            {
+                cbEac3ToOutputDirectoryType.SelectedIndex = 1;
+            }
         }
 
         private void ReloadRemux()
@@ -717,13 +739,13 @@ namespace BatchGuy.App
                 if (!string.IsNullOrEmpty(_eac3toConfiguration.RemuxFileNameTemplate.Medium))
                 {
                     int index = cbRemuxMedium.FindString(_eac3toConfiguration.RemuxFileNameTemplate.Medium);
-                    cbRemuxMedium.SelectedIndex = index;                    
+                    cbRemuxMedium.SelectedIndex = index;
                 }
                 cbRemuxVideoFormat.SelectedIndex = 0;
                 if (!string.IsNullOrEmpty(_eac3toConfiguration.RemuxFileNameTemplate.VideoFormat))
                 {
                     int index = cbRemuxVideoFormat.FindString(_eac3toConfiguration.RemuxFileNameTemplate.VideoFormat);
-                    cbRemuxVideoFormat.SelectedIndex = index;                                        
+                    cbRemuxVideoFormat.SelectedIndex = index;
                 }
                 chkRemuxUsePeriodsInFileName.Checked = _eac3toConfiguration.RemuxFileNameTemplate.UsePeriodsInFileName;
             }
@@ -808,7 +830,7 @@ namespace BatchGuy.App
             {
                 txtMKVMergeOutputPath.Text = fsd.FileName;
 
-                OnDialogInitialDirectoryChanged(this, new DialogInitialDirectoryChangedEventArgs() { FeatureName = Constant.FeatureCreateEac3toBatchFileFormMKVMergeOutputDirectory, DirectoryPath = txtMKVMergeOutputPath.Text});
+                OnDialogInitialDirectoryChanged(this, new DialogInitialDirectoryChangedEventArgs() { FeatureName = Constant.FeatureCreateEac3toBatchFileFormMKVMergeOutputDirectory, DirectoryPath = txtMKVMergeOutputPath.Text });
             }
         }
 
@@ -980,7 +1002,7 @@ namespace BatchGuy.App
             if (_eac3toConfiguration.IsExtractForRemux && _eac3toConfiguration.IfIsExtractForRemuxIsItForAMovie)
                 batchFileWriteService = e.Result as EAC3ToBatchFileWriteForMovieService;
             else
-                batchFileWriteService =  e.Result as EAC3ToBatchFileWriteService;
+                batchFileWriteService = e.Result as EAC3ToBatchFileWriteService;
 
 
             if (batchFileWriteService.Errors.Count() == 0)
@@ -1041,7 +1063,7 @@ namespace BatchGuy.App
             IAudioService audioService = new AudioService();
             AbstractEAC3ToOutputNamingService eac3ToOutputNamingService = this.GetOutputNamingService();
             IEAC3ToCommonRulesValidatorService _eac3ToCommonRulesValidatorService = new EAC3ToCommonRulesValidatorService(_eac3toConfiguration, directorySystemService, discs);
-            IMKVMergeBatchFileWriteService batchFileWriteService =  this.GetMKVMergeBatchFileWriteService(directorySystemService, discs, audioService, eac3ToOutputNamingService, _eac3ToCommonRulesValidatorService);
+            IMKVMergeBatchFileWriteService batchFileWriteService = this.GetMKVMergeBatchFileWriteService(directorySystemService, discs, audioService, eac3ToOutputNamingService, _eac3ToCommonRulesValidatorService);
             bgwMkvMergeWriteBatchFile.RunWorkerAsync(batchFileWriteService);
         }
 
@@ -1051,7 +1073,7 @@ namespace BatchGuy.App
             if (_eac3toConfiguration.IsExtractForRemux && _eac3toConfiguration.IfIsExtractForRemuxIsItForAMovie)
                 return new MKVMergeBatchFileWriteForMovieService(_eac3toConfiguration, directorySystemService, discs, audioService, eac3ToOutputNamingService, _eac3ToCommonRulesValidatorService);
             else
-               return new MKVMergeBatchFileWriteService(_eac3toConfiguration, directorySystemService, discs, audioService, eac3ToOutputNamingService, _eac3ToCommonRulesValidatorService);
+                return new MKVMergeBatchFileWriteService(_eac3toConfiguration, directorySystemService, discs, audioService, eac3ToOutputNamingService, _eac3ToCommonRulesValidatorService);
         }
 
         private void bgwMkvMergeWriteBatchFile_DoWork(object sender, DoWorkEventArgs e)
@@ -1129,7 +1151,7 @@ namespace BatchGuy.App
             {
                 this.HandleschkIsThisRemuxForAMovieCheckedChanged();
                 this.SettxtRemuxSeasonNumberEnabledStatus();
-                this.ResetDirectoryUserControlDirectoryCaptionText();
+                this.ResetlblEac3ToDirectoryOutputCaptionText();
             }
             catch (Exception ex)
             {
@@ -1143,14 +1165,20 @@ namespace BatchGuy.App
             this.SetRemuxNamingConventionCurrentTemplateExampleLabel();
             this.SetlblRemuxSeriesNameCaption();
         }
-
-        private void ResetDirectoryUserControlDirectoryCaptionText()
+        
+        private void ResetlblEac3ToDirectoryOutputCaptionText()
         {
-            if (_eac3toConfiguration.IsExtractForRemux && _eac3toConfiguration.IfIsExtractForRemuxIsItForAMovie)
-                setDirectoryUserControl.LabelDirectoryCaptionText = @"Files will be extracted to: eac3to_Output_Directory\movie##";
+            if (_eac3toConfiguration.OutputDirectoryType ==  EnumDirectoryType.DirectoryPerEpisode)
+            {
+                if (_eac3toConfiguration.IsExtractForRemux && _eac3toConfiguration.IfIsExtractForRemuxIsItForAMovie)
+                    lblEac3ToDirectoryOutputCaption.Text = @"Files will be extracted to: eac3to_Output_Directory\movie##";
+                else
+                    lblEac3ToDirectoryOutputCaption.Text = @"Files will be extracted to: eac3to_Output_Directory\episode##";
+            }
             else
-                setDirectoryUserControl.LabelDirectoryCaptionText = @"Files will be extracted to: eac3to_Output_Directory\episode##";
-            setDirectoryUserControl.SetControlValues(_eac3toConfiguration.EAC3ToOutputPath, _eac3toConfiguration.OutputDirectoryType);
+            {
+                lblEac3ToDirectoryOutputCaption.Text = string.Empty;
+            }
         }
 
         private void SetlblRemuxSeriesNameCaption()
@@ -1164,7 +1192,7 @@ namespace BatchGuy.App
         private void txtRemuxSeriesName_TextChanged(object sender, EventArgs e)
         {
             if (_currentMovieEAC3ToRemuxFileNameTemplate != null && _eac3toConfiguration.IfIsExtractForRemuxIsItForAMovie)
-            { 
+            {
                 _currentMovieEAC3ToRemuxFileNameTemplate.SeriesName = txtRemuxSeriesName.Text.Trim();
             }
         }
@@ -1257,5 +1285,68 @@ namespace BatchGuy.App
             }
         }
         #endregion
+
+        #region cbEac3ToOutputDirectoryType Events
+        private void cbEac3ToOutputDirectoryType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                this.HandlescbEac3ToOutputDirectoryTypeSelectedIndexChanged();
+            }
+            catch (Exception ex)
+            {
+                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was a problem trying to set the eac3to directory type!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
+            }
+        }
+
+        private void HandlescbEac3ToOutputDirectoryTypeSelectedIndexChanged()
+        {
+            string stringLabelOutputDirectoryText = string.Empty;
+            string value = cbEac3ToOutputDirectoryType.Text;
+
+            switch (value)
+            {
+                case "Single Directory":
+                   _eac3toConfiguration.OutputDirectoryType = EnumDirectoryType.SingleDirectory;
+                    break;
+                case "Directory Per Playlist":
+                    _eac3toConfiguration.OutputDirectoryType = EnumDirectoryType.DirectoryPerEpisode;
+                    if (!string.IsNullOrEmpty(_eac3ToPath) && !string.IsNullOrEmpty(txtEac3toOutputDirectory.Text))
+                    {
+                        if (_eac3toConfiguration.IsExtractForRemux && _eac3toConfiguration.IfIsExtractForRemuxIsItForAMovie)
+                            stringLabelOutputDirectoryText = @"Files will be extracted to: eac3to_Output_Directory\movie##";
+                        else
+                            stringLabelOutputDirectoryText = @"Files will be extracted to: eac3to_Output_Directory\episode##";
+                    }
+                    break;
+                default:
+                    break;
+            }
+            lblEac3ToDirectoryOutputCaption.Text = stringLabelOutputDirectoryText;
+        }
+        #endregion
+
+        private void btnEac3toOutputDirectory_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.HandlesbtnEac3toOutputDirectoryClick();
+            }
+            catch (Exception ex)
+            {
+                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was a problem setting the eac3to output directory!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
+            }
+        }
+
+        private void HandlesbtnEac3toOutputDirectoryClick()
+        {
+            var fsd = new FolderSelectDialog();
+            fsd.Title = "eac3to.exe output directory";
+            if (fsd.ShowDialog(IntPtr.Zero))
+            {
+               txtEac3toOutputDirectory.Text = fsd.FileName;
+                this.HandlescbEac3ToOutputDirectoryTypeSelectedIndexChanged();
+            }
+        }
     }
 }
