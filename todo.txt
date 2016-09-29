@@ -1,14 +1,3 @@
-*May look into making gbscreen readonly until movie selected
-
-Problems:
-Test Case 1 - For Movie:
--Had 2 selected discs
--Had 2 selected episodes on disc 1
--One of the episodes hadn't been clicked on
--Was still able to create the eac3to and mkvmerge file
-Expected: Should have gotten an error saying episode selected but nothing entered.  Probably because titleinfo is null, it is being skipped.  May need a "Give me all checked where titleinfo is null"
-
-
 --todo
 Enhancements:
 *Directory Per Episode text has been changed to Directory Per Playlist

@@ -1172,7 +1172,7 @@ namespace BatchGuy.App
         
         private void ResetlblEac3ToDirectoryOutputCaptionText()
         {
-            if (_eac3toConfiguration.OutputDirectoryType ==  EnumDirectoryType.DirectoryPerEpisode)
+            if (_eac3toConfiguration.OutputDirectoryType ==  EnumDirectoryType.DirectoryPerEpisode && _eac3toConfiguration.EAC3ToOutputPath != string.Empty)
             {
                 if (_eac3toConfiguration.IsExtractForRemux && _eac3toConfiguration.IfIsExtractForRemuxIsItForAMovie)
                     lblEac3ToDirectoryOutputCaption.Text = @"Files will be extracted to: eac3to_Output_Directory\movie##";
