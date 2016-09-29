@@ -147,5 +147,57 @@ namespace BatchGuy.App.Shared.Services
             }
             return true;
         }
+
+        public bool AllMoviesHaveNames()
+        {
+            bool isValid = true;
+            foreach (BluRayDiscInfo disc in _bluRayDiscInfoList.Where(d => d.IsSelected))
+            {
+                foreach (BluRaySummaryInfo info in disc.BluRaySummaryInfoList.Where(s => s.IsSelected))
+                {
+                    if ((info.RemuxFileNameForMovieTemplate != null) && (info.RemuxFileNameForMovieTemplate.SeriesName == null || info.RemuxFileNameForMovieTemplate.SeriesName.Trim() == string.Empty))
+                    {
+                        isValid = false;
+                    }
+                }
+            }
+
+            if (!isValid)
+            {
+                this._errors.Add(new Error() { Description = "All movies must have a movie name." });
+            }
+            return isValid;
+        }
+
+        public bool IsAllMovieNamesUnique()
+        {
+            bool isValid = true;
+
+            List<string> movieNames = new List<string>();
+            foreach (BluRayDiscInfo disc in _bluRayDiscInfoList.Where(d => d.IsSelected))
+            {
+                foreach (BluRaySummaryInfo info in disc.BluRaySummaryInfoList.Where(s => s.IsSelected))
+                {
+                    if (info.RemuxFileNameForMovieTemplate != null)
+                    {
+                        movieNames.Add(info.RemuxFileNameForMovieTemplate.SeriesName);
+                    }
+                }
+            }
+
+            foreach (string movieName in movieNames)
+            {
+                if (movieNames.Where(n => n == movieName).Count() > 1)
+                {
+                    isValid = false;
+                }
+            }
+
+            if (!isValid)
+            {
+                this._errors.Add(new Error() { Description = "All movie names must be unique." });
+            }
+            return isValid;
+        }
     }
 }

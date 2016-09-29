@@ -15,5 +15,7 @@ namespace BatchGuy.App.Shared.Interfaces
         bool WhenSummarySelectedAtLeastOneStreamSelected();
         bool IsAllBluRayPathsValid();
         bool IsAllEpisodeNumbersSet();
+        bool AllMoviesHaveNames();
+        bool IsAllMovieNamesUnique();
     }
 }

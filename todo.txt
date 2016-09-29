@@ -15,14 +15,9 @@ Enhancements:
 -Episode Number text is changed to "Movie #" on the BluRay Title Info Screen
 BatchGuy now has over 150 Unit Tests
 
+*Movie Mode
 
 *Movie Mode 2 (probably too much work)
-
-Backend
-*Create new mkvmerge write service ****may not be necessary****
--names have to be unique, especially for single folder mode
--override the common rules error messages that have "episode" in it and put "movies"
-
 
 
 Misc

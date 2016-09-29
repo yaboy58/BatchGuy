@@ -150,6 +150,7 @@
     <Compile Include="MKVMerge\Models\MKVMergeItem.cs" />
     <Compile Include="MKVMerge\Models\MKVMergeLanguageItem.cs" />
     <Compile Include="MKVMerge\Services\MKVMergeBatchFileWriteForEncodeService.cs" />
+    <Compile Include="MKVMerge\Services\MKVMergeBatchFileWriteForMovieService.cs" />
     <Compile Include="MKVMerge\Services\MKVMergeBatchFileWriteService.cs" />
     <Compile Include="MKVMerge\Services\MKVMergeLanguageService.cs" />
     <Compile Include="MKVMerge\Services\MKVMergeOutputService.cs" />

@@ -1,23 +1,22 @@
-﻿using BatchGuy.App.Eac3To.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using BatchGuy.App.Eac3to.Models;
+using BatchGuy.App.Eac3To.Abstracts;
+using BatchGuy.App.Eac3To.Interfaces;
+using BatchGuy.App.MKVMerge.Interfaces;
+using BatchGuy.App.Parser.Models;
+using BatchGuy.App.Shared.Interfaces;
 using BatchGuy.App.Shared.Models;
 using log4net;
-using BatchGuy.App.Parser.Models;
-using BatchGuy.App.Eac3to.Models;
-using BatchGuy.App.Shared.Interfaces;
-using BatchGuy.App.Eac3To.Abstracts;
+using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Reflection;
-using BatchGuy.App.Eac3to.Interfaces;
-using BatchGuy.App.Eac3to.Services;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace BatchGuy.App.Eac3To.Services
+namespace BatchGuy.App.MKVMerge.Services
 {
-    public class EAC3ToBatchFileWriteForMovieService : IEAC3ToBatchFileWriteService
+    public class MKVMergeBatchFileWriteForMovieService : IMKVMergeBatchFileWriteService
     {
         private ErrorCollection _errors = new ErrorCollection();
         private List<BluRayDiscInfo> _bluRayDiscInfoList;
@@ -27,14 +26,14 @@ namespace BatchGuy.App.Eac3To.Services
         private AbstractEAC3ToOutputNamingService _eac3ToOutputNamingService;
         private IEAC3ToCommonRulesValidatorService _eac3ToCommonRulesValidatorService;
 
-        public static readonly ILog _log = LogManager.GetLogger(typeof(EAC3ToBatchFileWriteForMovieService));
+        public static readonly ILog _log = LogManager.GetLogger(typeof(MKVMergeBatchFileWriteForMovieService));
 
         public ErrorCollection Errors
         {
             get { return _errors; }
         }
 
-        public EAC3ToBatchFileWriteForMovieService(EAC3ToConfiguration eac3toConfiguration, IDirectorySystemService directorySystemService, List<BluRayDiscInfo> bluRayDiscInfo, IAudioService audioService, AbstractEAC3ToOutputNamingService eac3ToOutputNamingService, IEAC3ToCommonRulesValidatorService eac3ToCommonRulesValidatorService)
+        public MKVMergeBatchFileWriteForMovieService(EAC3ToConfiguration eac3toConfiguration, IDirectorySystemService directorySystemService, List<BluRayDiscInfo> bluRayDiscInfo, IAudioService audioService, AbstractEAC3ToOutputNamingService eac3ToOutputNamingService, IEAC3ToCommonRulesValidatorService eac3ToCommonRulesValidatorService)
         {
             _bluRayDiscInfoList = bluRayDiscInfo;
             _eac3toConfiguration = eac3toConfiguration;
@@ -58,20 +57,19 @@ namespace BatchGuy.App.Eac3To.Services
                         foreach (BluRaySummaryInfo summary in disc.BluRaySummaryInfoList.Where(s => s.IsSelected).OrderBy(s => s.EpisodeNumber))
                         {
                             _eac3ToOutputNamingService.SetCurrentBluRaySummaryInfo(summary);
-                            IEAC3ToOutputService eacOutputService = new EAC3ToOutputService(_eac3toConfiguration, _eac3ToOutputNamingService, disc.BluRayPath, summary);
-                            string eac3ToPathPart = eacOutputService.GetEAC3ToPathPart();
-                            string bluRayStreamPart = eacOutputService.GetBluRayStreamPart();
-                            string chapterStreamPart = eacOutputService.GetChapterStreamPart();
-                            string videoStreamPart = eacOutputService.GetVideoStreamPart();
-                            string audioStreamPart = eacOutputService.GetAudioStreamPart();
-                            string subtitleStreamPart = eacOutputService.GetSubtitleStreamPart();
-                            string logPart = eacOutputService.GetLogPart();
-                            string showProgressNumbersPart = eacOutputService.GetShowProgressNumbersPart();
+                            IMKVMergeOutputService mkvMergeOutputService = new MKVMergeOutputService(_eac3toConfiguration, _eac3ToOutputNamingService, disc.BluRayPath, summary);
+                            string mkvMergePathPart = mkvMergeOutputService.GetMKVMergePathPart();
+                            string mkvMergeOutputPart = mkvMergeOutputService.GetOutputPart();
+                            string mkvMergeVideoPart = mkvMergeOutputService.GetVideoPart();
+                            string mkvMergeAudioPart = mkvMergeOutputService.GetAudioPart();
+                            string mkvMergeSubtitlePart = mkvMergeOutputService.GetSubtitlePart();
+                            string mkvMergeChaptersPart = mkvMergeOutputService.GetChaptersPart();
+                            string mkvMergeTrackOrderPart = mkvMergeOutputService.GetTrackOrderPart();
 
-                            using (StreamWriter sw = new StreamWriter(_eac3toConfiguration.BatchFilePath, true))
+                            using (StreamWriter sw = new StreamWriter(_eac3toConfiguration.MKVMergeBatchFilePath, true))
                             {
-                                sw.WriteLine(string.Format("{0} {1} {2} {3} {4} {5} {6} {7}", eac3ToPathPart, bluRayStreamPart, chapterStreamPart, videoStreamPart, audioStreamPart,
-                                    subtitleStreamPart, logPart, showProgressNumbersPart));
+                                sw.WriteLine(string.Format("{0} {1} {2} {3} {4} {5} {6}", mkvMergePathPart, mkvMergeOutputPart, mkvMergeVideoPart, mkvMergeAudioPart, mkvMergeSubtitlePart,
+                                    mkvMergeChaptersPart, mkvMergeTrackOrderPart));
                                 sw.WriteLine();
                                 sw.WriteLine();
                             }
@@ -81,7 +79,7 @@ namespace BatchGuy.App.Eac3To.Services
                 catch (Exception ex)
                 {
                     _log.ErrorFormat(Program.GetLogErrorFormat(), ex.Message, MethodBase.GetCurrentMethod().Name);
-                    _errors.Add(new Error() { Description = "There was an error while creating the eac3to batch file." });
+                    _errors.Add(new Error() { Description = "There was an error while creating the mkvmerge batch file." });
                 }
             }
             return _errors;
@@ -129,8 +127,8 @@ namespace BatchGuy.App.Eac3To.Services
 
         public void Delete()
         {
-            if (File.Exists(_eac3toConfiguration.BatchFilePath))
-                File.Delete(_eac3toConfiguration.BatchFilePath);
+            if (File.Exists(_eac3toConfiguration.MKVMergeBatchFilePath))
+                File.Delete(_eac3toConfiguration.MKVMergeBatchFilePath);
         }
     }
 }
