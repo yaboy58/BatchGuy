@@ -924,7 +924,7 @@ namespace BatchGuy.App
             if (_eac3toConfiguration.IsExtractForRemux == false)
                 return factory.CreateNewEncodeTemplate1EAC3ToOutputNamingService();
             if (_eac3toConfiguration.IsExtractForRemux && _eac3toConfiguration.IfIsExtractForRemuxIsItForAMovie)
-                return null;
+                return factory.CreateNewMovieRemuxTemplate1EAC3ToOutputNamingServiceService(); ;
 
             switch (Program.ApplicationSettings.EnumEAC3ToNamingConventionType)
             {
@@ -1013,20 +1013,40 @@ namespace BatchGuy.App
             IAudioService audioService = new AudioService();
             AbstractEAC3ToOutputNamingService eac3ToOutputNamingService = this.GetOutputNamingService();
             IEAC3ToCommonRulesValidatorService eac3ToCommonRulesValidatorService = new EAC3ToCommonRulesValidatorService(_eac3toConfiguration, directorySystemService, discs);
-            IEAC3ToBatchFileWriteService batchFileWriteService = new EAC3ToBatchFileWriteService(_eac3toConfiguration, directorySystemService, discs, audioService, eac3ToOutputNamingService, eac3ToCommonRulesValidatorService);
+            IEAC3ToBatchFileWriteService batchFileWriteService = this.GetEAC3ToBatchFileWriteService(directorySystemService, discs, audioService, eac3ToOutputNamingService, eac3ToCommonRulesValidatorService);
             bgwEac3toWriteBatchFile.RunWorkerAsync(batchFileWriteService);
+        }
+
+        private IEAC3ToBatchFileWriteService GetEAC3ToBatchFileWriteService(IDirectorySystemService directorySystemService, List<BluRayDiscInfo> discs, IAudioService audioService,
+            AbstractEAC3ToOutputNamingService eac3ToOutputNamingService, IEAC3ToCommonRulesValidatorService eac3ToCommonRulesValidatorService)
+        {
+            if (_eac3toConfiguration.IsExtractForRemux && _eac3toConfiguration.IfIsExtractForRemuxIsItForAMovie)
+                return new EAC3ToBatchFileWriteForMovieService(_eac3toConfiguration, directorySystemService, discs, audioService, eac3ToOutputNamingService, eac3ToCommonRulesValidatorService);
+            else
+                return new EAC3ToBatchFileWriteService(_eac3toConfiguration, directorySystemService, discs, audioService, eac3ToOutputNamingService, eac3ToCommonRulesValidatorService);
         }
 
         private void bgwEac3toWriteBatchFile_DoWork(object sender, DoWorkEventArgs e)
         {
-            IEAC3ToBatchFileWriteService batchFileWriteService = e.Argument as EAC3ToBatchFileWriteService;
+            IEAC3ToBatchFileWriteService batchFileWriteService;
+            if (_eac3toConfiguration.IsExtractForRemux && _eac3toConfiguration.IfIsExtractForRemuxIsItForAMovie)
+                batchFileWriteService = e.Argument as EAC3ToBatchFileWriteForMovieService;
+            else
+                batchFileWriteService = e.Argument as EAC3ToBatchFileWriteService;
+
             batchFileWriteService.Write();
             e.Result = batchFileWriteService;
         }
 
         private void bgwEac3toWriteBatchFile_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            IEAC3ToBatchFileWriteService batchFileWriteService = e.Result as EAC3ToBatchFileWriteService;
+            IEAC3ToBatchFileWriteService batchFileWriteService;
+            if (_eac3toConfiguration.IsExtractForRemux && _eac3toConfiguration.IfIsExtractForRemuxIsItForAMovie)
+                batchFileWriteService = e.Result as EAC3ToBatchFileWriteForMovieService;
+            else
+                batchFileWriteService =  e.Result as EAC3ToBatchFileWriteService;
+
+
             if (batchFileWriteService.Errors.Count() == 0)
             {
                 MessageBox.Show("Batch File created!", "Process Complete", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
