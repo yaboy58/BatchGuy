@@ -935,6 +935,8 @@ namespace BatchGuy.App
 
                 if (startProcessResult == System.Windows.Forms.DialogResult.Yes)
                 {
+                    dgvBluRayDiscInfo.CurrentCell = null; //force the cell change so cell changed event fires
+                    dgvBluRaySummary.CurrentCell = null; //force the cell change so cell changed event fires
                     this.SetEac3ToConfiguration();
                     this.SetEAC3ToRemuxFileNameTemplate();
                     if (this.IsAtLeastOneDiscLoaded() && this.IsScreenValid())
@@ -1026,6 +1028,8 @@ namespace BatchGuy.App
 
                 if (startProcessResult == System.Windows.Forms.DialogResult.Yes)
                 {
+                    dgvBluRayDiscInfo.CurrentCell = null; //force the cell change so cell changed event fires
+                    dgvBluRaySummary.CurrentCell = null; //force the cell change so cell changed event fires
                     this.SetEac3ToConfiguration();
                     this.SetEAC3ToRemuxFileNameTemplate();
                     if (this.IsScreenValidForRemux() && this.IsAtLeastOneDiscLoaded() && this.IsScreenValid())

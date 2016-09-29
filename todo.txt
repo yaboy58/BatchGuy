@@ -1,3 +1,5 @@
+*May look into making gbscreen readonly until movie selected
+
 Problems:
 Test Case 1 - For Movie:
 -Had 2 selected discs
