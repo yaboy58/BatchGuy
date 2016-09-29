@@ -27,9 +27,9 @@ Enhancements:
 
 
 Misc
--Change existing remux wiki to how to remux tv
--add new wiki for movie
--Directory Per Episode, change to Directory Per Playlist
+-Directory Per Episode, change to Directory Per Playlist on documentation
+-change existing remux wiki to tv bluray and change link
+-tell encode tools user of the changes
 
 Notes: 
 *Old eac3toSettings don't work
