@@ -16,6 +16,6 @@ namespace BatchGuy.App.Shared.Interfaces
         bool IsAllBluRayPathsValid();
         bool IsAllEpisodeNumbersSet();
         bool AllMoviesHaveNames();
-        bool IsAllMovieNamesUnique();
+        bool IsAllMovieNameYearCombinationUnique();
     }
 }

@@ -1,7 +1,4 @@
 Problems:
-*Change AllNamesUnique to AllNamesAndYearUnique and check for existence of name/year and you need to update the documentation where it says name is unique
-
-
 Test Case 1 - For Movie:
 -Had 2 selected discs
 -Had 2 selected episodes on disc 1
@@ -32,7 +29,7 @@ Enhancements:
 -Each playlist will have their own Remux Template
 -When the user extracts the Blu-ray artifacts, if they choose "Directory Per Playlist", each movie will be in a folder called "movie##"
 -Movies will not have an episode number or episode name
--Movie name/Year combination must be unqiue
+-Movie name/Year combination must be unique
 *Removed Directory Type User Control from the Create eac3to Batch File Screen.  This user control was no longer needed once all the other screens started using the *(.batchGuyEac3toSettings) file
 *BatchGuy now has over 150 Unit Tests
 

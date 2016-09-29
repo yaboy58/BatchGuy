@@ -190,6 +190,7 @@
     <Compile Include="Shared\Interfaces\IDisplayErrorMessageService.cs" />
     <Compile Include="Shared\Models\DropDownListItem.cs" />
     <Compile Include="Shared\Models\ErrorMessage.cs" />
+    <Compile Include="Shared\Models\MovieYearItem.cs" />
     <Compile Include="Shared\Services\AudioService.cs" />
     <Compile Include="Shared\Services\DisplayErrorMessageService.cs" />
     <Compile Include="Shared\Services\EAC3ToCommonRulesValidatorService.cs" />

@@ -119,7 +119,7 @@ namespace BatchGuy.App.Eac3To.Services
                 _errors = _eac3ToCommonRulesValidatorService.Errors;
                 return false;
             }
-            if (!_eac3ToCommonRulesValidatorService.IsAllMovieNamesUnique())
+            if (!_eac3ToCommonRulesValidatorService.IsAllMovieNameYearCombinationUnique())
             {
                 _errors = _eac3ToCommonRulesValidatorService.Errors;
                 return false;

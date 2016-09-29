@@ -169,25 +169,25 @@ namespace BatchGuy.App.Shared.Services
             return isValid;
         }
 
-        public bool IsAllMovieNamesUnique()
+        public bool IsAllMovieNameYearCombinationUnique()
         {
             bool isValid = true;
 
-            List<string> movieNames = new List<string>();
+            List<MovieYearItem> movieYearitems = new List<MovieYearItem>();
             foreach (BluRayDiscInfo disc in _bluRayDiscInfoList.Where(d => d.IsSelected))
             {
                 foreach (BluRaySummaryInfo info in disc.BluRaySummaryInfoList.Where(s => s.IsSelected))
                 {
                     if (info.RemuxFileNameForMovieTemplate != null)
                     {
-                        movieNames.Add(info.RemuxFileNameForMovieTemplate.SeriesName);
+                        movieYearitems.Add(new MovieYearItem() { Name = info.RemuxFileNameForMovieTemplate.SeriesName, Year = info.RemuxFileNameForMovieTemplate.SeasonYear });
                     }
                 }
             }
 
-            foreach (string movieName in movieNames)
+            foreach (MovieYearItem movieYear in movieYearitems)
             {
-                if (movieNames.Where(n => n == movieName).Count() > 1)
+                if (movieYearitems.Where(my => my.Name == movieYear.Name && my.Year == movieYear.Year).Count() > 1)
                 {
                     isValid = false;
                 }
@@ -195,7 +195,7 @@ namespace BatchGuy.App.Shared.Services
 
             if (!isValid)
             {
-                this._errors.Add(new Error() { Description = "All movie names must be unique." });
+                this._errors.Add(new Error() { Description = "Playlists must have unqiue movie name and year values." });
             }
             return isValid;
         }
