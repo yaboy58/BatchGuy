@@ -775,7 +775,7 @@ namespace BatchGuy.App
             IMKVMergeBatchFileWriteService batchFileWriteService = e.Result as MKVMergeBatchFileWriteForEncodeService;
             if (batchFileWriteService.Errors.Count() == 0)
             {
-                MessageBox.Show("Batch File created!", "Process Complete", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Batch File created!", "Process Complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {

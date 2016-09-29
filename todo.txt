@@ -2,41 +2,37 @@
 Enhancements:
 *Directory Per Episode text has been changed to Directory Per Playlist
 *Created the EAC3ToCommonRulesValidatorService to centralize common eac3to validation rules that many of the backend services use.  Validation code was duplicated and increased the application's technical debt
-*When the user chooses Directory Per Playlist for encoding or they are not remuxing for a movie, the folder names eac3to will use has been changed from e## to episode##
-*When the user chooses Directory Per Playlist for remuxing movies, the folder names eac3to will use is movie##
+*When the user chooses Directory Per Playlist for encoding or they are not remuxing for a movie, the folder names eac3to will create has been changed from e## to episode##
+*When the user chooses Directory Per Playlist for remuxing movies, the folder names eac3to will create are movie##
 *Text updated in all BatchGuy Screens to replace "e##" with "episode##"
 *Updated Github Wiki screenshots to reflect eac3to extract folder change to "episode##" when the user chooses Directory Per Playlist
 *Settings Screen doesn't close when the user selects the save menu item
 *Is Remux for Movie Checkbox added to the Create eac3to Batch File Screen
-*When users select Is Remux for Movie Checkbox:
--Season Number is disabled on the Create eac3to Batch File Screen
--User must enter Remux information for each playlist on the Create eac3to Batch File Screen
--Label text for "Series" name changes to "Movie" name on the Create eac3to Batch File Screen
--eac3to output directory text changes from "episode##" to "movie##"
--Episode Name is disabled on the BluRay Title Info Screen
--Episode Number text is changed to "Movie #" on the BluRay Title Info Screen
-*BatchGuy now has the concept of "movie" mode.  When users choose to remux for a movie:
--Each playlist will be treated like a seperate movie
--Each playlist will have their own Remux Template
--When the user extracts the Blu-ray artifacts, if they choose "Directory Per Playlist", each movie will be in a folder called "movie##"
--Movies will not have an episode number or episode name
--Movie name/Year combination must be unique
+*When users select Is Remux for Movie Checkbox Season Number is disabled on the Create eac3to Batch File Screen
+*When users select Is Remux for Movie Checkbox user must enter Remux information for each playlist on the Create eac3to Batch File Screen
+*When users select Is Remux for Movie Checkbox label text for "Series" name changes to "Movie" name on the Create eac3to Batch File Screen
+*When users select Is Remux for Movie Checkbox eac3to output directory text changes from "episode##" to "movie##"
+*When users select Is Remux for Movie Checkbox episode name is disabled on the BluRay Title Info Screen
+*When users select Is Remux for Movie Checkbox episode number text is changed to "Movie #" on the BluRay Title Info Screen
+*BatchGuy now has the concept of "movie" mode for remuxing
+*When users choose to remux for a movie each playlist will be treated like a seperate movie
+*When users choose to remux for a movie each playlist will have their own Remux Template
+*When users choose to remux for a movie and the user extracts the Blu-ray artifacts, if they choose "Directory Per Playlist", each movie will be in a folder called "movie##"
+*When users choose to remux for a movie movies will not have an episode number or episode name
+*When users choose to remux for a movie, movie name/Year combination must be unique
 *Removed Directory Type User Control from the Create eac3to Batch File Screen.  This user control was no longer needed once all the other screens started using the *(.batchGuyEac3toSettings) file
 *BatchGuy now has over 150 Unit Tests
 
 
 Notes:
 *(.batchGuyEac3toSettings) files created in BatchGuy 4.4 and below cannot be loaded in any BatchGuy Screen when running BatchGuy 5.0.0+
-*The user
 *Github documentation and Wikis have been updated to reflect the  changes in BatchGuy 5.0.0
-
-
-Misc
--tell encode tools user of the changes
--submit software to videohelp, submit tutorials for encode, tv remux, movie remx to videohelp
 
 HDB Notes: 
 *The significance of version 5.0.0 is that when you specify that you are remuxing movies, each playlist on each Blu-ray disc will be treated like a movie and therefore, will have their own Remux Information.  So if a user has a 2 in 1 Blu-ray or has a bunch of movie Blu-ray discs that they want to remux at one time, they just add all the Blu-ray discs in BatchGuy, enter Remux Information for each playlist, save all the information in case they want to re-load the data at a later time in BatchGuy, create your eac3to batch file and then your mkvmerge batch file.  In BatchGuy 4.4 and below, Blu-ray playlists were all treated like TV Shows, every playlist shared the same Remux Information (which makes sense for TV) and the episode number was mandatory, so when you muxed your finally movie files, you had to manually remove the episode number.
+
+Misc
+-submit software to videohelp, submit tutorials for encode, tv remux, movie remx to videohelp
 
 
 --possible nice to haves

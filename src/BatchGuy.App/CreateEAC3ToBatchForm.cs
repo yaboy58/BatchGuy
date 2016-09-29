@@ -1009,7 +1009,7 @@ namespace BatchGuy.App
 
             if (batchFileWriteService.Errors.Count() == 0)
             {
-                MessageBox.Show("Batch File created!", "Process Complete", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Batch File created!", "Process Complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
@@ -1102,7 +1102,7 @@ namespace BatchGuy.App
 
             if (batchFileWriteService.Errors.Count() == 0)
             {
-                MessageBox.Show("Batch File created!", "Process Complete", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Batch File created!", "Process Complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {

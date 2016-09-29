@@ -458,7 +458,7 @@ namespace BatchGuy.App
             IFFMSIndexBatchFileWriteService batchFileWriteService = e.Result as FFMSIndexBatchFileWriteService;
             if (batchFileWriteService.Errors.Count() == 0)
             {
-                MessageBox.Show("ffmsindex Batch File created!", "Process Complete", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("ffmsindex Batch File created!", "Process Complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
