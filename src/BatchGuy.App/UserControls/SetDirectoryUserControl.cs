@@ -100,7 +100,7 @@ namespace BatchGuy.App.UserControls
                case "Single Directory":
                    _directoryType = EnumDirectoryType.SingleDirectory;
                    break;
-               case "Directory Per Episode":
+               case "Directory Per Playlist":
                    _directoryType = EnumDirectoryType.DirectoryPerEpisode;
                    if (!string.IsNullOrEmpty(_cliOutputDirectory) && !string.IsNullOrEmpty(txtSetOutputDirectoryUserControl.Text))
                    {

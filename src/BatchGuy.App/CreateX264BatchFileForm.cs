@@ -535,7 +535,7 @@ namespace BatchGuy.App
         private void LoadEAC3ToSettingsControls()
         {
             if (_batchGuyEAC3ToSettings.EAC3ToSettings.OutputDirectoryType == EnumDirectoryType.DirectoryPerEpisode)
-                lblDirectoryType.Text = "Directory Per Episode";
+                lblDirectoryType.Text = "Directory Per Playlist";
             else
                 lblDirectoryType.Text = "Single Directory";
         }

@@ -20,6 +20,8 @@ Enhancements:
 -Movies will not have an episode number or episode name
 -Movie names must be unqiue
 *BatchGuy now has over 150 Unit Tests
+*Directory Per Episode text has been changed to Directory Per Playlist
+
 
 *Movie Mode 2 (probably too much work)
 
@@ -27,7 +29,7 @@ Enhancements:
 Misc
 -Change existing remux wiki to how to remux tv
 -add new wiki for movie
-
+-Directory Per Episode, change to Directory Per Playlist
 
 Notes: 
 *Old eac3toSettings don't work
