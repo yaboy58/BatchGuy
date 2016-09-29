@@ -24,8 +24,6 @@ Enhancements:
 *Directory Per Episode text has been changed to Directory Per Playlist
 
 
-*Change episode## to movie## on the usercontrol, this may be hard also update the the 2 screenshots of the eac3to screen after you do this
-
 
 Misc
 -Directory Per Episode, change to Directory Per Playlist on documentation
