@@ -46,6 +46,9 @@ BatchGuy is not an x264 encoder.  BatchGuy will create a (.bat) file that you ca
 <h1>Installation</h1>
 Unzip the BatchGuy folder to any location of your choosing.  With the introduction of BatchGuy Version 1.2, the user can save settings, so it is best to keep the BatchGuy.exe in the BatchGuy folder, which is where the settings file <i>(config.batchGuySettings)</i> will be saved.  However, a shortcut to the BatchGuy.exe can be placed anywhere.
 
+<h1>Documenation</h1>
+You can find more documentation about BatchGuy <a href="https://github.com/yaboy58/BatchGuy/wiki">here</a>
+
 <h1>Requirements:</h1>
 <ul>
 <li>Windows 7, 8.1 x64 </li>
