@@ -229,12 +229,6 @@
     <Compile Include="Shared\Services\SortService.cs" />
     <Compile Include="ThirdParty\FolderSelectDialog\FolderSelectDialog.cs" />
     <Compile Include="ThirdParty\FolderSelectDialog\Reflector.cs" />
-    <Compile Include="UserControls\SetDirectoryUserControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserControls\SetDirectoryUserControl.Designer.cs">
-      <DependentUpon>SetDirectoryUserControl.cs</DependentUpon>
-    </Compile>
     <Compile Include="X264LogFileDisplayForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -292,9 +286,6 @@
     </Compile>
     <EmbeddedResource Include="SettingsForm.resx">
       <DependentUpon>SettingsForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\SetDirectoryUserControl.resx">
-      <DependentUpon>SetDirectoryUserControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="X264LogFileDisplayForm.resx">
       <DependentUpon>X264LogFileDisplayForm.cs</DependentUpon>

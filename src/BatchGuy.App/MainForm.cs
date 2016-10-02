@@ -195,7 +195,7 @@ namespace BatchGuy
         {
             if (_batchGuyLatestVersionInfo == null)
                 return;
-            new ToolTip().SetToolTip(pbNewVersion, string.Format("BatchGuy {0} is now available. Click to goto to latest release page.", _batchGuyLatestVersionInfo.Name));
+            new ToolTip().SetToolTip(pbNewVersion, string.Format("BatchGuy {0} is now available. Click to navigate to latest release page.", _batchGuyLatestVersionInfo.Name));
         }
 
         private void pbNewVersion_Click(object sender, EventArgs e)
