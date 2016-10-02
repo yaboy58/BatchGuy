@@ -105,11 +105,6 @@ namespace BatchGuy
             Process.Start("https://github.com/yaboy58/BatchGuy/releases");
         }
 
-        private void appsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Process.Start("http://officialsite.pp.ua/?p=2849015");
-        }
-
         private void x264ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Process.Start("http://www.videolan.org/developers/x264.html");
@@ -128,6 +123,11 @@ namespace BatchGuy
         private void vfw4x264ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Process.Start("http://komisar.gin.by/tools/avs4x264/");
+        }
+
+        private void eac3toToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Process.Start("http://officialsite.pp.ua/?p=2849015");
         }
     }
 }
