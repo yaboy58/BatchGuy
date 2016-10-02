@@ -40,6 +40,8 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.createX264BatchFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createMkvmergeBatchFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bgwMkvMergeWriteBatchFile = new System.ComponentModel.BackgroundWorker();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.lblVersion = new System.Windows.Forms.Label();
@@ -72,8 +74,6 @@
             this.btnOpenX264BatchFileOutputDialog = new System.Windows.Forms.Button();
             this.txtX264BatchFileOutputDirectory = new System.Windows.Forms.TextBox();
             this.chkSaveLogFileToDifferentDirectory = new System.Windows.Forms.CheckBox();
-            this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.menuStrip.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.gbScreen.SuspendLayout();
@@ -171,6 +171,19 @@
             this.createMkvmergeBatchFileToolStripMenuItem.Text = "Create mkvmerge Batch File";
             this.createMkvmergeBatchFileToolStripMenuItem.Click += new System.EventHandler(this.createMkvmergeBatchFileToolStripMenuItem_Click);
             // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(264, 6);
+            // 
+            // closeToolStripMenuItem
+            // 
+            this.closeToolStripMenuItem.Image = global::BatchGuy.App.Properties.Resources.close_red;
+            this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
+            this.closeToolStripMenuItem.Size = new System.Drawing.Size(267, 22);
+            this.closeToolStripMenuItem.Text = "Close";
+            this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click);
+            // 
             // bgwMkvMergeWriteBatchFile
             // 
             this.bgwMkvMergeWriteBatchFile.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgwMkvMergeWriteBatchFile_DoWork);
@@ -188,14 +201,14 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 96.55629F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.443709F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(980, 755);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(980, 717);
             this.tableLayoutPanel1.TabIndex = 33;
             // 
             // lblVersion
             // 
             this.lblVersion.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblVersion.AutoSize = true;
-            this.lblVersion.Location = new System.Drawing.Point(3, 735);
+            this.lblVersion.Location = new System.Drawing.Point(3, 698);
             this.lblVersion.Name = "lblVersion";
             this.lblVersion.Size = new System.Drawing.Size(42, 13);
             this.lblVersion.TabIndex = 43;
@@ -209,7 +222,7 @@
             this.gbScreen.Controls.Add(this.tlpScreen);
             this.gbScreen.Location = new System.Drawing.Point(3, 3);
             this.gbScreen.Name = "gbScreen";
-            this.gbScreen.Size = new System.Drawing.Size(974, 722);
+            this.gbScreen.Size = new System.Drawing.Size(974, 686);
             this.gbScreen.TabIndex = 44;
             this.gbScreen.TabStop = false;
             // 
@@ -218,7 +231,7 @@
             this.tlpScreen.ColumnCount = 3;
             this.tlpScreen.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 28.02938F));
             this.tlpScreen.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 71.97063F));
-            this.tlpScreen.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 144F));
+            this.tlpScreen.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 145F));
             this.tlpScreen.Controls.Add(this.lblDirectoryTypeCaption, 0, 0);
             this.tlpScreen.Controls.Add(this.chkIgnoreInternalSubtitles, 0, 4);
             this.tlpScreen.Controls.Add(this.gbX264Template, 0, 6);
@@ -236,21 +249,21 @@
             this.tlpScreen.Location = new System.Drawing.Point(3, 16);
             this.tlpScreen.Name = "tlpScreen";
             this.tlpScreen.RowCount = 7;
-            this.tlpScreen.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 47.94521F));
-            this.tlpScreen.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 52.05479F));
-            this.tlpScreen.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 41F));
-            this.tlpScreen.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tlpScreen.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 43F));
+            this.tlpScreen.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.9434F));
+            this.tlpScreen.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 49.0566F));
+            this.tlpScreen.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
+            this.tlpScreen.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38F));
+            this.tlpScreen.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
             this.tlpScreen.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 292F));
             this.tlpScreen.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 218F));
-            this.tlpScreen.Size = new System.Drawing.Size(968, 703);
+            this.tlpScreen.Size = new System.Drawing.Size(968, 667);
             this.tlpScreen.TabIndex = 3;
             // 
             // lblDirectoryTypeCaption
             // 
             this.lblDirectoryTypeCaption.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblDirectoryTypeCaption.AutoSize = true;
-            this.lblDirectoryTypeCaption.Location = new System.Drawing.Point(3, 10);
+            this.lblDirectoryTypeCaption.Location = new System.Drawing.Point(3, 7);
             this.lblDirectoryTypeCaption.Name = "lblDirectoryTypeCaption";
             this.lblDirectoryTypeCaption.Size = new System.Drawing.Size(118, 13);
             this.lblDirectoryTypeCaption.TabIndex = 37;
@@ -261,7 +274,7 @@
             this.chkIgnoreInternalSubtitles.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.chkIgnoreInternalSubtitles.AutoSize = true;
             this.tlpScreen.SetColumnSpan(this.chkIgnoreInternalSubtitles, 3);
-            this.chkIgnoreInternalSubtitles.Location = new System.Drawing.Point(3, 160);
+            this.chkIgnoreInternalSubtitles.Location = new System.Drawing.Point(3, 132);
             this.chkIgnoreInternalSubtitles.Margin = new System.Windows.Forms.Padding(3, 0, 3, 3);
             this.chkIgnoreInternalSubtitles.Name = "chkIgnoreInternalSubtitles";
             this.chkIgnoreInternalSubtitles.Size = new System.Drawing.Size(311, 17);
@@ -277,7 +290,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tlpScreen.SetColumnSpan(this.gbX264Template, 3);
             this.gbX264Template.Controls.Add(this.tlpX264Template);
-            this.gbX264Template.Location = new System.Drawing.Point(3, 487);
+            this.gbX264Template.Location = new System.Drawing.Point(3, 451);
             this.gbX264Template.Name = "gbX264Template";
             this.gbX264Template.Size = new System.Drawing.Size(962, 213);
             this.gbX264Template.TabIndex = 30;
@@ -341,7 +354,7 @@
             // 
             this.lblDirectoryType.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblDirectoryType.AutoSize = true;
-            this.lblDirectoryType.Location = new System.Drawing.Point(233, 10);
+            this.lblDirectoryType.Location = new System.Drawing.Point(233, 7);
             this.lblDirectoryType.Name = "lblDirectoryType";
             this.lblDirectoryType.Size = new System.Drawing.Size(79, 13);
             this.lblDirectoryType.TabIndex = 38;
@@ -354,7 +367,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tlpScreen.SetColumnSpan(this.gbAviSynthFiles, 3);
             this.gbAviSynthFiles.Controls.Add(this.tlpAVSFiles);
-            this.gbAviSynthFiles.Location = new System.Drawing.Point(3, 195);
+            this.gbAviSynthFiles.Location = new System.Drawing.Point(3, 159);
             this.gbAviSynthFiles.Name = "gbAviSynthFiles";
             this.gbAviSynthFiles.Size = new System.Drawing.Size(962, 286);
             this.gbAviSynthFiles.TabIndex = 28;
@@ -472,7 +485,7 @@
             // 
             this.lblOutputAndLogFileCaption.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblOutputAndLogFileCaption.AutoSize = true;
-            this.lblOutputAndLogFileCaption.Location = new System.Drawing.Point(3, 44);
+            this.lblOutputAndLogFileCaption.Location = new System.Drawing.Point(3, 33);
             this.lblOutputAndLogFileCaption.Name = "lblOutputAndLogFileCaption";
             this.lblOutputAndLogFileCaption.Size = new System.Drawing.Size(135, 13);
             this.lblOutputAndLogFileCaption.TabIndex = 40;
@@ -481,7 +494,7 @@
             // txtX264EncodeOutputAndLogDirectory
             // 
             this.txtX264EncodeOutputAndLogDirectory.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.txtX264EncodeOutputAndLogDirectory.Location = new System.Drawing.Point(233, 42);
+            this.txtX264EncodeOutputAndLogDirectory.Location = new System.Drawing.Point(233, 33);
             this.txtX264EncodeOutputAndLogDirectory.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
             this.txtX264EncodeOutputAndLogDirectory.Name = "txtX264EncodeOutputAndLogDirectory";
             this.txtX264EncodeOutputAndLogDirectory.ReadOnly = true;
@@ -492,7 +505,7 @@
             // 
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 82);
+            this.label2.Location = new System.Drawing.Point(3, 65);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(160, 13);
             this.label2.TabIndex = 26;
@@ -502,9 +515,9 @@
             // 
             this.btnOpenX264LogFileOutputDialog.Enabled = false;
             this.btnOpenX264LogFileOutputDialog.Image = global::BatchGuy.App.Properties.Resources.Avosoft_Warm_Toolbar_Folder_open;
-            this.btnOpenX264LogFileOutputDialog.Location = new System.Drawing.Point(826, 112);
+            this.btnOpenX264LogFileOutputDialog.Location = new System.Drawing.Point(825, 93);
             this.btnOpenX264LogFileOutputDialog.Name = "btnOpenX264LogFileOutputDialog";
-            this.btnOpenX264LogFileOutputDialog.Size = new System.Drawing.Size(61, 33);
+            this.btnOpenX264LogFileOutputDialog.Size = new System.Drawing.Size(61, 32);
             this.btnOpenX264LogFileOutputDialog.TabIndex = 2;
             this.btnOpenX264LogFileOutputDialog.UseVisualStyleBackColor = true;
             this.btnOpenX264LogFileOutputDialog.Click += new System.EventHandler(this.btnOpenX264LogFileOutputDialog_Click);
@@ -513,7 +526,7 @@
             // 
             this.txtX264LogFileSaveDirectory.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.txtX264LogFileSaveDirectory.Enabled = false;
-            this.txtX264LogFileSaveDirectory.Location = new System.Drawing.Point(233, 120);
+            this.txtX264LogFileSaveDirectory.Location = new System.Drawing.Point(233, 100);
             this.txtX264LogFileSaveDirectory.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
             this.txtX264LogFileSaveDirectory.Name = "txtX264LogFileSaveDirectory";
             this.txtX264LogFileSaveDirectory.ReadOnly = true;
@@ -523,9 +536,9 @@
             // btnOpenX264BatchFileOutputDialog
             // 
             this.btnOpenX264BatchFileOutputDialog.Image = global::BatchGuy.App.Properties.Resources.Avosoft_Warm_Toolbar_Folder_open;
-            this.btnOpenX264BatchFileOutputDialog.Location = new System.Drawing.Point(826, 71);
+            this.btnOpenX264BatchFileOutputDialog.Location = new System.Drawing.Point(825, 56);
             this.btnOpenX264BatchFileOutputDialog.Name = "btnOpenX264BatchFileOutputDialog";
-            this.btnOpenX264BatchFileOutputDialog.Size = new System.Drawing.Size(61, 33);
+            this.btnOpenX264BatchFileOutputDialog.Size = new System.Drawing.Size(61, 31);
             this.btnOpenX264BatchFileOutputDialog.TabIndex = 0;
             this.btnOpenX264BatchFileOutputDialog.UseVisualStyleBackColor = true;
             this.btnOpenX264BatchFileOutputDialog.Click += new System.EventHandler(this.btnOpenX264BatchFileOutputDialog_Click);
@@ -533,7 +546,7 @@
             // txtX264BatchFileOutputDirectory
             // 
             this.txtX264BatchFileOutputDirectory.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.txtX264BatchFileOutputDirectory.Location = new System.Drawing.Point(233, 80);
+            this.txtX264BatchFileOutputDirectory.Location = new System.Drawing.Point(233, 63);
             this.txtX264BatchFileOutputDirectory.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
             this.txtX264BatchFileOutputDirectory.Name = "txtX264BatchFileOutputDirectory";
             this.txtX264BatchFileOutputDirectory.ReadOnly = true;
@@ -544,7 +557,7 @@
             // 
             this.chkSaveLogFileToDifferentDirectory.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.chkSaveLogFileToDifferentDirectory.AutoSize = true;
-            this.chkSaveLogFileToDifferentDirectory.Location = new System.Drawing.Point(3, 119);
+            this.chkSaveLogFileToDifferentDirectory.Location = new System.Drawing.Point(3, 99);
             this.chkSaveLogFileToDifferentDirectory.Margin = new System.Windows.Forms.Padding(3, 0, 3, 3);
             this.chkSaveLogFileToDifferentDirectory.Name = "chkSaveLogFileToDifferentDirectory";
             this.chkSaveLogFileToDifferentDirectory.Size = new System.Drawing.Size(195, 17);
@@ -553,25 +566,12 @@
             this.chkSaveLogFileToDifferentDirectory.UseVisualStyleBackColor = true;
             this.chkSaveLogFileToDifferentDirectory.CheckedChanged += new System.EventHandler(this.chkSaveLogFileToDifferentDirectory_CheckedChanged);
             // 
-            // closeToolStripMenuItem
-            // 
-            this.closeToolStripMenuItem.Image = global::BatchGuy.App.Properties.Resources.close_red;
-            this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
-            this.closeToolStripMenuItem.Size = new System.Drawing.Size(267, 22);
-            this.closeToolStripMenuItem.Text = "Close";
-            this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(264, 6);
-            // 
             // CreateX264BatchFileForm
             // 
             this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(980, 779);
+            this.ClientSize = new System.Drawing.Size(980, 741);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.menuStrip);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

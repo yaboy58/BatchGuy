@@ -1,6 +1,7 @@
 --todo
 Enhancements
 *Made adjustments to the width and height of the Create eac3to Batch File Screen
+*Made adjustments to the height of the Create x264 Batch File Screen
 
 Bugs:
 *Users were able to delete rows from the BluRay Title Info Defaults Grid on the Settings Screen
