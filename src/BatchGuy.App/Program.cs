@@ -25,6 +25,8 @@ namespace BatchGuy
         private static IJsonSerializationService<ApplicationSettings> _jsonSerializationService;
         private static IApplicationSettingsService _applicationSettingsService;
         private static IAudioService _audioService;
+        private static IBatchGuyNotificationService _batchGuyNotificationService;
+        private static ILoggingService _loggingService;
         public static readonly ILog _log = LogManager.GetLogger(typeof(Program));
 
         public static IApplicationSettingsService ApplicationSettingsService { get { return Program._applicationSettingsService; } }
@@ -39,11 +41,18 @@ namespace BatchGuy
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Logging.Register();
+            Program.LoadLoggingService();
             Program.LoadApplicationSettings();
+            Program.LoadNotificationService();
             Application.Run(new MainForm());
         }
 
-        public static void LoadApplicationSettings()
+        private static void LoadLoggingService()
+        {
+            _loggingService = new LoggingService(Program.GetLogErrorFormat());
+        }
+
+        private static void LoadApplicationSettings()
         {
             try
             {
@@ -54,7 +63,20 @@ namespace BatchGuy
             catch (Exception ex)
             {
                 MessageBox.Show("There was an error trying to load the application", "Error Occurred.", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                _log.ErrorFormat(Program.GetLogErrorFormat(), ex.Message, MethodBase.GetCurrentMethod().Name);
+                _loggingService.LogErrorFormat(ex, MethodBase.GetCurrentMethod().Name);
+            }
+        }
+
+        private static void LoadNotificationService()
+        {
+            try
+            {
+                _batchGuyNotificationService = new BatchGuyNotificationService();
+                _batchGuyNotificationService.CheckForNewVersion();
+            }
+            catch (Exception ex)
+            {
+                _loggingService.LogErrorFormat(ex, MethodBase.GetCurrentMethod().Name);
             }
         }
 
@@ -86,7 +108,7 @@ namespace BatchGuy
             catch (Exception ex)
             {
                 MessageBox.Show("There was an error trying to set the initial directory", "Error Occurred.", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                _log.ErrorFormat(Program.GetLogErrorFormat(), ex.Message, MethodBase.GetCurrentMethod().Name);
+                _loggingService.LogErrorFormat(ex, MethodBase.GetCurrentMethod().Name);
             }
         }
 

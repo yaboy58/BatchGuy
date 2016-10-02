@@ -55,6 +55,7 @@
       <HintPath>..\packages\System.Linq.Dynamic.1.0.4\lib\net40\System.Linq.Dynamic.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml.Linq">
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
@@ -181,6 +182,7 @@
     <Compile Include="Settings\Services\MKVMergeDefaultSettingsService.cs" />
     <Compile Include="Settings\Services\SettingsDefaultSeedDataService.cs" />
     <Compile Include="Shared\Interfaces\IAudioService.cs" />
+    <Compile Include="Shared\Interfaces\IBatchGuyNotificationService.cs" />
     <Compile Include="Shared\Interfaces\IEAC3ToCommonRulesValidatorService.cs" />
     <Compile Include="Shared\Interfaces\IJsonSerializationService.cs" />
     <Compile Include="Settings\Models\ApplicationSettings.cs" />
@@ -192,6 +194,7 @@
     <Compile Include="Shared\Models\ErrorMessage.cs" />
     <Compile Include="Shared\Models\MovieYearItem.cs" />
     <Compile Include="Shared\Services\AudioService.cs" />
+    <Compile Include="Shared\Services\BatchGuyNotificationService.cs" />
     <Compile Include="Shared\Services\DisplayErrorMessageService.cs" />
     <Compile Include="Shared\Services\EAC3ToCommonRulesValidatorService.cs" />
     <Compile Include="Shared\Services\JsonSerializationService.cs" />
