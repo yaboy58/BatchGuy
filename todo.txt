@@ -3,7 +3,7 @@ Enhancements:
 *Menu on the Main Screen is now disabled if there was an error trying to load the settings file
 *Check for new BatchGuy Versions checkbox added to the BatchGuy Settings Screen. 
 *If the user has checked "Check for New BatchGuy Versions" on the Settings Screen, BatchGuy will check to see if new versions of BatchGuy have been released and will display a "new" picture icon on the upper right corner of the Main Screen.  The user can click the icon to navigate to the latest release page and download the latest version.
-
+*Warning text under the "Is this Remux for a Movie" checkbox on is now red and the caption was modified
 
 *Introduce Lossless in the settings audio drop down
 *Make warning label on eac3to to have rows highlighted on movie mode red

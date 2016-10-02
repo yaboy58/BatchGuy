@@ -891,11 +891,13 @@
             this.lblRemuxForMovieWarning.AutoSize = true;
             this.tlpRemuxTemplate.SetColumnSpan(this.lblRemuxForMovieWarning, 4);
             this.lblRemuxForMovieWarning.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRemuxForMovieWarning.ForeColor = System.Drawing.Color.Red;
             this.lblRemuxForMovieWarning.Location = new System.Drawing.Point(3, 62);
             this.lblRemuxForMovieWarning.Name = "lblRemuxForMovieWarning";
-            this.lblRemuxForMovieWarning.Size = new System.Drawing.Size(378, 13);
+            this.lblRemuxForMovieWarning.Size = new System.Drawing.Size(409, 13);
             this.lblRemuxForMovieWarning.TabIndex = 66;
-            this.lblRemuxForMovieWarning.Text = "(Make sure a disc summary row is highlighed before entering remux information)";
+            this.lblRemuxForMovieWarning.Text = "(Make sure a disc summary row is highlighed before entering movie remux informati" +
+    "on)";
             // 
             // bgwEac3toWriteBatchFile
             // 
