@@ -30,14 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.projectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.createEac3ToBatFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.createAVSFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.createX264BatFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.viewX264LogsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.websiteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -53,10 +47,18 @@
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.bgwCheckForNewVersion = new System.ComponentModel.BackgroundWorker();
+            this.pbNewVersion = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.createEac3ToBatFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.createAVSFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.createX264BatFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewX264LogsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbNewVersion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -75,63 +77,15 @@
             this.projectToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
             this.projectToolStripMenuItem.Text = "Menu";
             // 
-            // createEac3ToBatFileToolStripMenuItem
-            // 
-            this.createEac3ToBatFileToolStripMenuItem.Image = global::BatchGuy.App.Properties.Resources.Custom_Icon_Design_Pretty_Office_7_Extract_object;
-            this.createEac3ToBatFileToolStripMenuItem.Name = "createEac3ToBatFileToolStripMenuItem";
-            this.createEac3ToBatFileToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
-            this.createEac3ToBatFileToolStripMenuItem.Text = "Create eac3To Batch File";
-            this.createEac3ToBatFileToolStripMenuItem.Click += new System.EventHandler(this.createEac3ToBatFileToolStripMenuItem_Click);
-            // 
-            // createAVSFilesToolStripMenuItem
-            // 
-            this.createAVSFilesToolStripMenuItem.Image = global::BatchGuy.App.Properties.Resources.Fatcow_Farm_Fresh_Script_add;
-            this.createAVSFilesToolStripMenuItem.Name = "createAVSFilesToolStripMenuItem";
-            this.createAVSFilesToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
-            this.createAVSFilesToolStripMenuItem.Text = "Create AviSynth Files";
-            this.createAVSFilesToolStripMenuItem.Click += new System.EventHandler(this.createAVSFilesToolStripMenuItem_Click);
-            // 
-            // createX264BatFileToolStripMenuItem
-            // 
-            this.createX264BatFileToolStripMenuItem.Image = global::BatchGuy.App.Properties.Resources.Custom_Icon_Design_Flatastic_2_Process_accept;
-            this.createX264BatFileToolStripMenuItem.Name = "createX264BatFileToolStripMenuItem";
-            this.createX264BatFileToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
-            this.createX264BatFileToolStripMenuItem.Text = "Create x264 Batch File";
-            this.createX264BatFileToolStripMenuItem.Click += new System.EventHandler(this.createX264BatFileToolStripMenuItem_Click);
-            // 
-            // viewX264LogsToolStripMenuItem
-            // 
-            this.viewX264LogsToolStripMenuItem.Image = global::BatchGuy.App.Properties.Resources.Everaldo_Crystal_Clear_App_edit;
-            this.viewX264LogsToolStripMenuItem.Name = "viewX264LogsToolStripMenuItem";
-            this.viewX264LogsToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
-            this.viewX264LogsToolStripMenuItem.Text = "View Summarized x264 Logs";
-            this.viewX264LogsToolStripMenuItem.Click += new System.EventHandler(this.viewX264LogsToolStripMenuItem_Click);
-            // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(219, 6);
             // 
-            // settingsToolStripMenuItem
-            // 
-            this.settingsToolStripMenuItem.Image = global::BatchGuy.App.Properties.Resources.Icontexto_Webdev_Webdev_config;
-            this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
-            this.settingsToolStripMenuItem.Text = "Settings";
-            this.settingsToolStripMenuItem.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
-            // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(219, 6);
-            // 
-            // exitToolStripMenuItem
-            // 
-            this.exitToolStripMenuItem.Image = global::BatchGuy.App.Properties.Resources.close_red;
-            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
-            this.exitToolStripMenuItem.Text = "Exit";
-            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // menuStrip1
             // 
@@ -254,6 +208,21 @@
             this.toolStripStatusLabel.Size = new System.Drawing.Size(118, 17);
             this.toolStripStatusLabel.Text = "toolStripStatusLabel1";
             // 
+            // bgwCheckForNewVersion
+            // 
+            this.bgwCheckForNewVersion.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgwCheckForNewVersion_DoWork);
+            this.bgwCheckForNewVersion.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgwCheckForNewVersion_RunWorkerCompleted);
+            // 
+            // pbNewVersion
+            // 
+            this.pbNewVersion.Image = global::BatchGuy.App.Properties.Resources.label_new_green;
+            this.pbNewVersion.Location = new System.Drawing.Point(234, 27);
+            this.pbNewVersion.Name = "pbNewVersion";
+            this.pbNewVersion.Size = new System.Drawing.Size(50, 50);
+            this.pbNewVersion.TabIndex = 3;
+            this.pbNewVersion.TabStop = false;
+            this.pbNewVersion.Visible = false;
+            // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::BatchGuy.App.Properties.Resources.webdev_config_icon;
@@ -263,16 +232,60 @@
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
             // 
-            // bgwCheckForNewVersion
+            // createEac3ToBatFileToolStripMenuItem
             // 
-            this.bgwCheckForNewVersion.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgwCheckForNewVersion_DoWork);
-            this.bgwCheckForNewVersion.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgwCheckForNewVersion_RunWorkerCompleted);
+            this.createEac3ToBatFileToolStripMenuItem.Image = global::BatchGuy.App.Properties.Resources.Custom_Icon_Design_Pretty_Office_7_Extract_object;
+            this.createEac3ToBatFileToolStripMenuItem.Name = "createEac3ToBatFileToolStripMenuItem";
+            this.createEac3ToBatFileToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
+            this.createEac3ToBatFileToolStripMenuItem.Text = "Create eac3To Batch File";
+            this.createEac3ToBatFileToolStripMenuItem.Click += new System.EventHandler(this.createEac3ToBatFileToolStripMenuItem_Click);
+            // 
+            // createAVSFilesToolStripMenuItem
+            // 
+            this.createAVSFilesToolStripMenuItem.Image = global::BatchGuy.App.Properties.Resources.Fatcow_Farm_Fresh_Script_add;
+            this.createAVSFilesToolStripMenuItem.Name = "createAVSFilesToolStripMenuItem";
+            this.createAVSFilesToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
+            this.createAVSFilesToolStripMenuItem.Text = "Create AviSynth Files";
+            this.createAVSFilesToolStripMenuItem.Click += new System.EventHandler(this.createAVSFilesToolStripMenuItem_Click);
+            // 
+            // createX264BatFileToolStripMenuItem
+            // 
+            this.createX264BatFileToolStripMenuItem.Image = global::BatchGuy.App.Properties.Resources.Custom_Icon_Design_Flatastic_2_Process_accept;
+            this.createX264BatFileToolStripMenuItem.Name = "createX264BatFileToolStripMenuItem";
+            this.createX264BatFileToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
+            this.createX264BatFileToolStripMenuItem.Text = "Create x264 Batch File";
+            this.createX264BatFileToolStripMenuItem.Click += new System.EventHandler(this.createX264BatFileToolStripMenuItem_Click);
+            // 
+            // viewX264LogsToolStripMenuItem
+            // 
+            this.viewX264LogsToolStripMenuItem.Image = global::BatchGuy.App.Properties.Resources.Everaldo_Crystal_Clear_App_edit;
+            this.viewX264LogsToolStripMenuItem.Name = "viewX264LogsToolStripMenuItem";
+            this.viewX264LogsToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
+            this.viewX264LogsToolStripMenuItem.Text = "View Summarized x264 Logs";
+            this.viewX264LogsToolStripMenuItem.Click += new System.EventHandler(this.viewX264LogsToolStripMenuItem_Click);
+            // 
+            // settingsToolStripMenuItem
+            // 
+            this.settingsToolStripMenuItem.Image = global::BatchGuy.App.Properties.Resources.Icontexto_Webdev_Webdev_config;
+            this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
+            this.settingsToolStripMenuItem.Text = "Settings";
+            this.settingsToolStripMenuItem.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Image = global::BatchGuy.App.Properties.Resources.close_red;
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
+            this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 297);
+            this.Controls.Add(this.pbNewVersion);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.menuStrip1);
@@ -287,6 +300,7 @@
             this.menuStrip1.PerformLayout();
             this.statusStrip.ResumeLayout(false);
             this.statusStrip.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbNewVersion)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -321,6 +335,7 @@
         private System.Windows.Forms.ToolStripMenuItem pluginsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem vfw4x264ToolStripMenuItem;
         private System.ComponentModel.BackgroundWorker bgwCheckForNewVersion;
+        private System.Windows.Forms.PictureBox pbNewVersion;
     }
 }
 

@@ -13,16 +13,32 @@ using BatchGuy.App.Shared.Interfaces;
 using BatchGuy.App.Shared.Services;
 using System.Reflection;
 using BatchGuy.App.Settings.Models;
+using BatchGuy.App.Extensions;
 
 namespace BatchGuy
 {
     public partial class MainForm : Form
     {
         private ILoggingService _loggingService;
+        private BatchGuyLatestVersionInfo _batchGuyLatestVersionInfo;
         public MainForm()
         {
             InitializeComponent();
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            if (!Program.ErrorLoadingApplicationSettings)
+            {
+                this.LoadLoggingService();
+                this.CheckForNewVersion();
+            }
+            else
+            {
+                menuStrip1.SetEnabled(false);
+            }
+            statusStrip.Items[0].Text = string.Format("Version: {0}.{1}.{2}", System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.Major.ToString(), System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.Minor.ToString(), System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.Build.ToString());
         }
 
         private void createAVSFilesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -85,12 +101,6 @@ namespace BatchGuy
             form.ShowDialog();
         }
 
-        private void MainForm_Load(object sender, EventArgs e)
-        {
-            this.CheckForNewVersion();
-            statusStrip.Items[0].Text = string.Format("Version: {0}.{1}.{2}", System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.Major.ToString(), System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.Minor.ToString(), System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.Build.ToString());
-        }
-
         private void LoadLoggingService()
         {
             _loggingService = new LoggingService(Program.GetLogErrorFormat());
@@ -145,8 +155,11 @@ namespace BatchGuy
         {
             try
             {
-               IBatchGuyNotificationService batchGuyNotificationservice = new BatchGuyNotificationService(Program.GetApplicationTag());
-                bgwCheckForNewVersion.RunWorkerAsync(batchGuyNotificationservice);
+                if (Program.ApplicationSettings.CheckForNewBatchGuyVersions)
+                {
+                    IBatchGuyNotificationService batchGuyNotificationservice = new BatchGuyNotificationService(Program.GetApplicationTag());
+                    bgwCheckForNewVersion.RunWorkerAsync(batchGuyNotificationservice);
+                }
             }
             catch (Exception ex)
             {
@@ -156,14 +169,33 @@ namespace BatchGuy
 
         private void bgwCheckForNewVersion_DoWork(object sender, DoWorkEventArgs e)
         {
-            IBatchGuyNotificationService batchGuyNotificationservice = e.Argument as BatchGuyNotificationService;
-            BatchGuyLatestVersionInfo batchGuyLatestVersionInfo = batchGuyNotificationservice.GetLatestVersionInfo();
-            e.Result = batchGuyLatestVersionInfo;
+            try
+            {
+                IBatchGuyNotificationService batchGuyNotificationservice = e.Argument as BatchGuyNotificationService;
+                BatchGuyLatestVersionInfo batchGuyLatestVersionInfo = batchGuyNotificationservice.GetLatestVersionInfo();
+                e.Result = batchGuyLatestVersionInfo;
+            }
+            catch (Exception ex)
+            {
+                _loggingService.LogErrorFormat(ex, MethodBase.GetCurrentMethod().Name);
+            }
         }
 
         private void bgwCheckForNewVersion_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            BatchGuyLatestVersionInfo batchGuyLatestVersionInfo = e.Result as BatchGuyLatestVersionInfo;
+            _batchGuyLatestVersionInfo = e.Result as BatchGuyLatestVersionInfo;
+            if (_batchGuyLatestVersionInfo != null && _batchGuyLatestVersionInfo.IsNewVersion)
+            {
+                pbNewVersion.Visible = true;
+                this.ConfigurepbNewVersion();
+            }
+        }
+
+        private void ConfigurepbNewVersion()
+        {
+            if (_batchGuyLatestVersionInfo == null)
+                return;
+            new ToolTip().SetToolTip(pbNewVersion, string.Format("BatchGuy {0} is now available", _batchGuyLatestVersionInfo.Name));
         }
     }
 }

@@ -43,9 +43,10 @@ namespace BatchGuy.App.Shared.Services
                     JObject token = JObject.Parse(json);
                     var tagName = token.SelectToken("tag_name");
                     var url = token.SelectToken("url");
+                    var name = token.SelectToken("name");
 
                     _batchGuyLatestVersionSettings = new BatchGuyLatestVersionInfo() { LatestGithubUrl = url == null ? string.Empty : url.ToString(),
-                     TagName = tagName == null ? string.Empty : tagName.ToString()};
+                     TagName = tagName == null ? string.Empty : tagName.ToString(), Name = name == null ? string.Empty : name.ToString()};
 
                     if (tagName != null && string.IsNullOrEmpty(tagName.ToString()) == false)
                     {

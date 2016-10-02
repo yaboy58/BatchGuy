@@ -173,6 +173,16 @@ namespace BatchGuy.App.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap label_new_green {
+            get {
+                object obj = ResourceManager.GetObject("label_new_green", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap webdev_config_icon {
             get {
                 object obj = ResourceManager.GetObject("webdev-config-icon", resourceCulture);

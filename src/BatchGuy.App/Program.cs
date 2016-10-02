@@ -17,6 +17,7 @@ using BatchGuy.App.Shared.Interfaces;
 using BatchGuy.App;
 using log4net;
 using System.Reflection;
+using BatchGuy.App.Extensions;
 
 namespace BatchGuy
 {
@@ -27,6 +28,7 @@ namespace BatchGuy
         private static IAudioService _audioService;
         private static ILoggingService _loggingService;
         public static readonly ILog _log = LogManager.GetLogger(typeof(Program));
+        public static bool ErrorLoadingApplicationSettings { get; set; }
 
         public static IApplicationSettingsService ApplicationSettingsService { get { return Program._applicationSettingsService; } }
         public static ApplicationSettings ApplicationSettings { get { return Program._applicationSettingsService.GetApplicationSettings(); } }
@@ -60,8 +62,17 @@ namespace BatchGuy
             }
             catch (Exception ex)
             {
-                MessageBox.Show("There was an error trying to load the application", "Error Occurred.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Program.ErrorLoadingApplicationSettings = true;
+                MessageBox.Show("There was an error trying to load the application.  Please view the error log for more details.", "Error Occurred.", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 _loggingService.LogErrorFormat(ex, MethodBase.GetCurrentMethod().Name);
+            }
+        }
+
+        private static void DisableAllForms()
+        {
+            foreach (Form form in Application.OpenForms)
+            {
+                form.SetEnabled(false);
             }
         }
 

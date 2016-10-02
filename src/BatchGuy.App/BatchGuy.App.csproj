@@ -341,6 +341,7 @@
     <Content Include="Icons\Fasticon-Green-Ville-2-File.ico" />
     <Content Include="Icons\Iconfinder-1472897142_DeleteRed.ico" />
     <Content Include="Icons\Icontexto-Webdev-Webdev-config.ico" />
+    <Content Include="Icons\label_new_green.ico" />
     <Content Include="Icons\webdev-config-icon.png" />
   </ItemGroup>
   <ItemGroup />
