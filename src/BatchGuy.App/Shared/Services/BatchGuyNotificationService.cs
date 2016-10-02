@@ -1,4 +1,5 @@
 ﻿using BatchGuy.App.Shared.Interfaces;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,7 @@ namespace BatchGuy.App.Shared.Services
     {
         public void CheckForNewVersion()
         {
-            this.ContactGithubLatestReleaseApi(); //asynchronous call
+            this.ContactGithubLatestReleaseApi(); //asynchronous call,so no await
         }
 
         private async Task ContactGithubLatestReleaseApi()
@@ -28,6 +29,8 @@ namespace BatchGuy.App.Shared.Services
                 if (response.IsSuccessStatusCode)
                 {
                     var json = await response.Content.ReadAsStringAsync();
+                    JObject token = JObject.Parse(json);
+                    var tag = token.SelectToken("tag_name");
                 }
             }
         }
