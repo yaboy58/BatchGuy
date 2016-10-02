@@ -9,11 +9,16 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using BatchGuy.App;
 using System.Diagnostics;
+using BatchGuy.App.Shared.Interfaces;
+using BatchGuy.App.Shared.Services;
+using System.Reflection;
+using BatchGuy.App.Settings.Models;
 
 namespace BatchGuy
 {
     public partial class MainForm : Form
     {
+        private ILoggingService _loggingService;
         public MainForm()
         {
             InitializeComponent();
@@ -82,7 +87,13 @@ namespace BatchGuy
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            this.CheckForNewVersion();
             statusStrip.Items[0].Text = string.Format("Version: {0}.{1}.{2}", System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.Major.ToString(), System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.Minor.ToString(), System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.Build.ToString());
+        }
+
+        private void LoadLoggingService()
+        {
+            _loggingService = new LoggingService(Program.GetLogErrorFormat());
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -128,6 +139,31 @@ namespace BatchGuy
         private void eac3toToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Process.Start("http://officialsite.pp.ua/?p=2849015");
+        }
+
+        private void CheckForNewVersion()
+        {
+            try
+            {
+               IBatchGuyNotificationService batchGuyNotificationservice = new BatchGuyNotificationService(Program.GetApplicationTag());
+                bgwCheckForNewVersion.RunWorkerAsync(batchGuyNotificationservice);
+            }
+            catch (Exception ex)
+            {
+                _loggingService.LogErrorFormat(ex, MethodBase.GetCurrentMethod().Name);
+            }
+        }
+
+        private void bgwCheckForNewVersion_DoWork(object sender, DoWorkEventArgs e)
+        {
+            IBatchGuyNotificationService batchGuyNotificationservice = e.Argument as BatchGuyNotificationService;
+            BatchGuyLatestVersionInfo batchGuyLatestVersionInfo = batchGuyNotificationservice.GetLatestVersionInfo();
+            e.Result = batchGuyLatestVersionInfo;
+        }
+
+        private void bgwCheckForNewVersion_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            BatchGuyLatestVersionInfo batchGuyLatestVersionInfo = e.Result as BatchGuyLatestVersionInfo;
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BatchGuy.App.Settings.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,6 @@ namespace BatchGuy.App.Shared.Interfaces
 {
     internal interface IBatchGuyNotificationService
     {
-        void CheckForNewVersion();
+        BatchGuyLatestVersionInfo GetLatestVersionInfo();
     }
 }

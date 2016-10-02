@@ -54,6 +54,7 @@
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.bgwCheckForNewVersion = new System.ComponentModel.BackgroundWorker();
             this.menuStrip1.SuspendLayout();
             this.statusStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -159,21 +160,21 @@
             // websiteToolStripMenuItem
             // 
             this.websiteToolStripMenuItem.Name = "websiteToolStripMenuItem";
-            this.websiteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.websiteToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
             this.websiteToolStripMenuItem.Text = "Website";
             this.websiteToolStripMenuItem.Click += new System.EventHandler(this.websiteToolStripMenuItem_Click);
             // 
             // guidesToolStripMenuItem
             // 
             this.guidesToolStripMenuItem.Name = "guidesToolStripMenuItem";
-            this.guidesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.guidesToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
             this.guidesToolStripMenuItem.Text = "Guides";
             this.guidesToolStripMenuItem.Click += new System.EventHandler(this.guidesToolStripMenuItem_Click);
             // 
             // changelogToolStripMenuItem
             // 
             this.changelogToolStripMenuItem.Name = "changelogToolStripMenuItem";
-            this.changelogToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.changelogToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
             this.changelogToolStripMenuItem.Text = "Changelog";
             this.changelogToolStripMenuItem.Click += new System.EventHandler(this.changelogToolStripMenuItem_Click);
             // 
@@ -185,7 +186,7 @@
             this.vfw4x264ToolStripMenuItem,
             this.x264ToolStripMenuItem});
             this.appsToolStripMenuItem.Name = "appsToolStripMenuItem";
-            this.appsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.appsToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
             this.appsToolStripMenuItem.Text = "Apps";
             // 
             // avisynthToolStripMenuItem
@@ -193,47 +194,47 @@
             this.avisynthToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.pluginsToolStripMenuItem});
             this.avisynthToolStripMenuItem.Name = "avisynthToolStripMenuItem";
-            this.avisynthToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.avisynthToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.avisynthToolStripMenuItem.Text = "Avisynth";
             this.avisynthToolStripMenuItem.Click += new System.EventHandler(this.avisynthToolStripMenuItem_Click);
             // 
             // pluginsToolStripMenuItem
             // 
             this.pluginsToolStripMenuItem.Name = "pluginsToolStripMenuItem";
-            this.pluginsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.pluginsToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
             this.pluginsToolStripMenuItem.Text = "Plugins";
             this.pluginsToolStripMenuItem.Click += new System.EventHandler(this.pluginsToolStripMenuItem_Click);
             // 
             // eac3toToolStripMenuItem
             // 
             this.eac3toToolStripMenuItem.Name = "eac3toToolStripMenuItem";
-            this.eac3toToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.eac3toToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.eac3toToolStripMenuItem.Text = "eac3to";
             this.eac3toToolStripMenuItem.Click += new System.EventHandler(this.eac3toToolStripMenuItem_Click);
             // 
             // vfw4x264ToolStripMenuItem
             // 
             this.vfw4x264ToolStripMenuItem.Name = "vfw4x264ToolStripMenuItem";
-            this.vfw4x264ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.vfw4x264ToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.vfw4x264ToolStripMenuItem.Text = "vfw4x264";
             this.vfw4x264ToolStripMenuItem.Click += new System.EventHandler(this.vfw4x264ToolStripMenuItem_Click);
             // 
             // x264ToolStripMenuItem
             // 
             this.x264ToolStripMenuItem.Name = "x264ToolStripMenuItem";
-            this.x264ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.x264ToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.x264ToolStripMenuItem.Text = "x264";
             this.x264ToolStripMenuItem.Click += new System.EventHandler(this.x264ToolStripMenuItem_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(129, 6);
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
@@ -261,6 +262,11 @@
             this.pictureBox1.Size = new System.Drawing.Size(140, 132);
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
+            // 
+            // bgwCheckForNewVersion
+            // 
+            this.bgwCheckForNewVersion.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgwCheckForNewVersion_DoWork);
+            this.bgwCheckForNewVersion.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgwCheckForNewVersion_RunWorkerCompleted);
             // 
             // MainForm
             // 
@@ -314,6 +320,7 @@
         private System.Windows.Forms.ToolStripMenuItem avisynthToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem pluginsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem vfw4x264ToolStripMenuItem;
+        private System.ComponentModel.BackgroundWorker bgwCheckForNewVersion;
     }
 }
 

@@ -1,4 +1,5 @@
-﻿using BatchGuy.App.Shared.Interfaces;
+﻿using BatchGuy.App.Settings.Models;
+using BatchGuy.App.Shared.Interfaces;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -12,13 +13,23 @@ namespace BatchGuy.App.Shared.Services
 {
     internal class BatchGuyNotificationService : IBatchGuyNotificationService
     {
-        public void CheckForNewVersion()
+        private string _currentTagName = string.Empty;
+        private BatchGuyLatestVersionInfo _batchGuyLatestVersionSettings;
+
+        public BatchGuyNotificationService(string currentTagName)
         {
-            this.ContactGithubLatestReleaseApi(); //asynchronous call,so no await
+            _currentTagName = currentTagName;
+            _batchGuyLatestVersionSettings = null;
+        }
+        public BatchGuyLatestVersionInfo GetLatestVersionInfo()
+        {
+            this.ContactGithubLatestReleaseApi().Wait();
+            return _batchGuyLatestVersionSettings;
         }
 
         private async Task ContactGithubLatestReleaseApi()
         {
+            string latestTag = string.Empty;
             using (HttpClient client = new HttpClient())
             {
                 client.DefaultRequestHeaders.Clear();
@@ -30,7 +41,21 @@ namespace BatchGuy.App.Shared.Services
                 {
                     var json = await response.Content.ReadAsStringAsync();
                     JObject token = JObject.Parse(json);
-                    var tag = token.SelectToken("tag_name");
+                    var tagName = token.SelectToken("tag_name");
+                    var url = token.SelectToken("url");
+
+                    _batchGuyLatestVersionSettings = new BatchGuyLatestVersionInfo() { LatestGithubUrl = url == null ? string.Empty : url.ToString(),
+                     TagName = tagName == null ? string.Empty : tagName.ToString()};
+
+                    if (tagName != null && string.IsNullOrEmpty(tagName.ToString()) == false)
+                    {
+                        if (tagName.ToString() != _currentTagName)
+                            _batchGuyLatestVersionSettings.IsNewVersion = true;
+                        else
+                            _batchGuyLatestVersionSettings.IsNewVersion = false;
+                    }
+                    else
+                        _batchGuyLatestVersionSettings.IsNewVersion = false;
                 }
             }
         }
