@@ -51,6 +51,14 @@ namespace BatchGuy.App.Settings.Services
                             audio.IsSelected = true;
                             this.SetBluRayMKVMergeItemDefaults(audio.MKVMergeItem, _applicationSettings.AudioMKVMergeDefaultSettings.DefaultMKVMergeItem);
                         }
+                        else if (_applicationSettings.AudioMKVMergeDefaultSettings.AudioTypeFilterCriteria == "Lossless")
+                        {
+                            if (_audioService.IsLosslessBluRayAudio(audio.OriginalAudioType))
+                            {
+                                audio.IsSelected = true;
+                                this.SetBluRayMKVMergeItemDefaults(audio.MKVMergeItem, _applicationSettings.AudioMKVMergeDefaultSettings.DefaultMKVMergeItem);
+                            }
+                        }
                         else
                         {
                             EnumAudioType audioTypeFilter = _audioService.GetAudioTypeByName(_applicationSettings.AudioMKVMergeDefaultSettings.AudioTypeFilterCriteria);

@@ -43,6 +43,13 @@ namespace BatchGuy.App.Settings.Services
                         {
                             audio.IsSelected = true;
                         }
+                        else if (_applicationSettings.AudioMKVMergeDefaultSettings.AudioTypeFilterCriteria == "Lossless")
+                        {
+                            if (_audioService.IsLosslessBluRayAudio(audio.OriginalAudioType))
+                            {
+                                audio.IsSelected = true;
+                            }
+                        }
                         else
                         {
                             EnumAudioType audioTypeFilter = _audioService.GetAudioTypeByName(_applicationSettings.AudioMKVMergeDefaultSettings.AudioTypeFilterCriteria);
