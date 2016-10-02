@@ -30,6 +30,8 @@ namespace BatchGuy.App.Shared.Models
 
         public EnumEAC3ToNamingConventionType EnumEAC3ToNamingConventionType { get; set; }
 
+        public bool CheckForNewBatchGuyVersions { get; set; }
+
         public ApplicationSettings()
         {
             Settings = new List<Setting>();

@@ -68,6 +68,8 @@ namespace BatchGuy.App
             new ToolTip().SetToolTip(cbSubtitlesMKVMergeDefaultSettingsDefaultTrackFlag, "Set the mkvmerge default track flag of the always selected subtitle");
 
             new ToolTip().SetToolTip(cbRemuxNamingConventionDefaults, "Set the default remux naming convention template");
+
+            new ToolTip().SetToolTip(chkCheckForNewBatchGuyVersions, "Check for new versions of BatchGuy when the application starts");
         }
 
         private void LoadExecutables()
@@ -105,6 +107,8 @@ namespace BatchGuy.App
             gbAudioMKVMergeDefaultSettings.Enabled = Program.ApplicationSettings.AudioLanguageAlwaysSelectedEnabled;
 
             cbRemuxNamingConventionDefaults.SelectedIndex = cbRemuxNamingConventionDefaults.FindString(this.GetEnumEAC3ToNamingConventionType(Program.ApplicationSettings.EnumEAC3ToNamingConventionType));
+
+            chkCheckForNewBatchGuyVersions.Checked = Program.ApplicationSettings.CheckForNewBatchGuyVersions;
         }
 
         private void LoadMKVLanguageDropDownBoxes()
@@ -422,6 +426,16 @@ namespace BatchGuy.App
         private void closeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void chkCheckForNewBatchGuyVersions_CheckedChanged(object sender, EventArgs e)
+        {
+            this.HandleschkCheckForNewBatchGuyVersionsCheckedChanged();
+        }
+
+        private void HandleschkCheckForNewBatchGuyVersionsCheckedChanged()
+        {
+            Program.ApplicationSettings.CheckForNewBatchGuyVersions = chkCheckForNewBatchGuyVersions.Checked;
         }
     }
 }
