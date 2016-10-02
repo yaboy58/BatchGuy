@@ -6,13 +6,16 @@ Enhancements
 *About menu item on the Main Screen has been placed under the new Help menu item
 *Links to some of the tools that BatchGuy uses has been placed under the Help Menu on the Main Screen
 *Links to the BatchGuy Website, Guides and Changlog have been placed under the Help menu on the Main Screen
+*Removed DTS, FLAC and MPA from the Audio Language Always Selected Audio Type drop down box
 
 Bugs:
 *Users were able to delete rows from the BluRay Title Info Defaults Grid on the Settings Screen
 
-Think about tackling the multiple vidoes in a single playlist (labyrinth)
+Selected Defaults not working
+
 --possible nice to haves
-*Think about an exe folder that has all the exes in it already by default
+*Think about tackling the multiple vidoes in a single playlist (labyrinth)
+*Think about an exe folder that has all the exes in it already by default/would need to update in the app though
 
 *ExtensionMethods.NumberOfEpisodes needs to filter on summary.episodenumber != null as well for cases where isselected by no episode number.  Not changing it now due to not knowing what the effects are
 

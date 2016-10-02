@@ -145,6 +145,7 @@ namespace BatchGuy.App.Parser.Services
             audio.AudioType = this.GetAudioType(lineItem);
             audio.Language = this.GetLanguage(lineItem);
             audio.Text = lineItem.Text;
+            audio.OriginalAudioType = audio.AudioType;
 
             _bluRayTtileInfo.AudioList.Add(audio);
         }
