@@ -1,8 +1,18 @@
 --todo
+Enhancements
+*Made adjustments to the width and height of the Create eac3to Batch File Screen
+
+Bugs:
+*Users were able to delete rows from the BluRay Title Info Defaults Grid on the Settings Screen
+
+
 Think about an exe folder that has all the exes in it already by default
 Think about tackling the multiple vidoes in a single playlist (labyrinth)
-Make the eac3to screen smaller, make path textboxes smaller and decrease the height.  Test on laptop
 Make x264 screen shorter and test on laptop
+help page
+
+
+You can delete items in the audio input/output grid on settings
 
 --possible nice to haves
 *Maybe start checking to see if batch files exist first, if so delete them before writing to them
