@@ -54,7 +54,7 @@ namespace BatchGuy.App.Settings.Services
                         else
                         {
                             EnumAudioType audioTypeFilter = _audioService.GetAudioTypeByName(_applicationSettings.AudioMKVMergeDefaultSettings.AudioTypeFilterCriteria);
-                            if (audioTypeFilter == audio.AudioType)
+                            if (audioTypeFilter == audio.OriginalAudioType)
                             {
                                 audio.IsSelected = true;
                                 this.SetBluRayMKVMergeItemDefaults(audio.MKVMergeItem, _applicationSettings.AudioMKVMergeDefaultSettings.DefaultMKVMergeItem);

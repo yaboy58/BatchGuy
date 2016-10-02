@@ -10,8 +10,7 @@ Enhancements
 
 Bugs:
 *Users were able to delete rows from the BluRay Title Info Defaults Grid on the Settings Screen
-
-Selected Defaults not working
+*Fixed major bug in the default settings portion of the software.  The code for the audio input/output defaults that the user set up on the Settings Screen runs "before" the code that determines what audio is selected by default on the BluRay Title Info Screen.  The audio type is being set to the output the user specified and if the output audio type doesn't match the always selected type, it will be ignored.
 
 --possible nice to haves
 *Think about tackling the multiple vidoes in a single playlist (labyrinth)
