@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BatchGuy.App;
+using System.Diagnostics;
 
 namespace BatchGuy
 {
@@ -87,6 +88,46 @@ namespace BatchGuy
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void websiteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://github.com/yaboy58/BatchGuy");
+        }
+
+        private void guidesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://github.com/yaboy58/BatchGuy/wiki");
+        }
+
+        private void changelogToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://github.com/yaboy58/BatchGuy/releases");
+        }
+
+        private void appsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Process.Start("http://officialsite.pp.ua/?p=2849015");
+        }
+
+        private void x264ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Process.Start("http://www.videolan.org/developers/x264.html");
+        }
+
+        private void avisynthToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Process.Start("http://avisynth.nl/index.php/Main_Page");
+        }
+
+        private void pluginsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Process.Start("http://avisynth.nl/index.php/External_filters");
+        }
+
+        private void vfw4x264ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Process.Start("http://komisar.gin.by/tools/avs4x264/");
         }
     }
 }

@@ -2,21 +2,17 @@
 Enhancements
 *Made adjustments to the width and height of the Create eac3to Batch File Screen
 *Made adjustments to the height of the Create x264 Batch File Screen
+*New menu item "Help" added to the menu on the Main Screen
+*About menu item on the Main Screen has been placed under the new Help menu item
+*Links to some of the tools that BatchGuy uses has been placed under the Help Menu on the Main Screen
+*Links to the BatchGuy Website, Guides and Changlog have been placed under the Help menu on the Main Screen
 
 Bugs:
 *Users were able to delete rows from the BluRay Title Info Defaults Grid on the Settings Screen
 
-
-Think about an exe folder that has all the exes in it already by default
 Think about tackling the multiple vidoes in a single playlist (labyrinth)
-Make x264 screen shorter and test on laptop
-help page
-
-
-You can delete items in the audio input/output grid on settings
-
 --possible nice to haves
-*Maybe start checking to see if batch files exist first, if so delete them before writing to them
+*Think about an exe folder that has all the exes in it already by default
 
 *ExtensionMethods.NumberOfEpisodes needs to filter on summary.episodenumber != null as well for cases where isselected by no episode number.  Not changing it now due to not knowing what the effects are
 
@@ -24,7 +20,6 @@ You can delete items in the audio input/output grid on settings
 *When a single file contains multiple episodes :
 	1) Go by the actually episode number entered in the loop
 	2) Validate on the screen
-
 
 
 *Create a batchguy log file that indicates how many files were processed and how long it took
@@ -43,5 +38,5 @@ You can delete items in the audio input/output grid on settings
 -http://dotnetvisio.blogspot.com/2015/08/create-select-all-checkbox-column.html
 
 *figure out a better solution to inform of the status of long running tasks
-*ability to create sample.avs/sample.encode.bat
+*Ability to create sample.avs/sample.encode.bat
 *Ability to set the video variable for avisynth for advanced scripting
