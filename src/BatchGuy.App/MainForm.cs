@@ -195,7 +195,24 @@ namespace BatchGuy
         {
             if (_batchGuyLatestVersionInfo == null)
                 return;
-            new ToolTip().SetToolTip(pbNewVersion, string.Format("BatchGuy {0} is now available", _batchGuyLatestVersionInfo.Name));
+            new ToolTip().SetToolTip(pbNewVersion, string.Format("BatchGuy {0} is now available. Click to goto to latest release page.", _batchGuyLatestVersionInfo.Name));
+        }
+
+        private void pbNewVersion_Click(object sender, EventArgs e)
+        {
+            if (_batchGuyLatestVersionInfo != null && _batchGuyLatestVersionInfo.LatestGithubUrl != null)
+                Process.Start(_batchGuyLatestVersionInfo.LatestGithubUrl);
+
+        }
+
+        private void pbNewVersion_MouseEnter(object sender, EventArgs e)
+        {
+            this.Cursor = Cursors.Hand;
+        }
+
+        private void pbNewVersion_MouseLeave(object sender, EventArgs e)
+        {
+            this.Cursor = Cursors.Default;
         }
     }
 }

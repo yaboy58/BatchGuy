@@ -4,6 +4,7 @@
 click event to open release url when new version
 *Introduce Lossless in the settings audio drop down
 *Make warning label on eac3to to have rows highlighted on movie mode red
+*delete usercontrol
 
 --possible nice to haves
 *Think about tackling the multiple vidoes in a single playlist (labyrinth)

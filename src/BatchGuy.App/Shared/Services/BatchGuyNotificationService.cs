@@ -42,10 +42,10 @@ namespace BatchGuy.App.Shared.Services
                     var json = await response.Content.ReadAsStringAsync();
                     JObject token = JObject.Parse(json);
                     var tagName = token.SelectToken("tag_name");
-                    var url = token.SelectToken("url");
+                    var htmlUrl = token.SelectToken("html_url");
                     var name = token.SelectToken("name");
 
-                    _batchGuyLatestVersionSettings = new BatchGuyLatestVersionInfo() { LatestGithubUrl = url == null ? string.Empty : url.ToString(),
+                    _batchGuyLatestVersionSettings = new BatchGuyLatestVersionInfo() { LatestGithubUrl = htmlUrl == null ? string.Empty : htmlUrl.ToString(),
                      TagName = tagName == null ? string.Empty : tagName.ToString(), Name = name == null ? string.Empty : name.ToString()};
 
                     if (tagName != null && string.IsNullOrEmpty(tagName.ToString()) == false)
