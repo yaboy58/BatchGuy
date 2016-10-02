@@ -41,6 +41,9 @@
             this.Browse = new System.Windows.Forms.DataGridViewImageColumn();
             this.bsExecutables = new System.Windows.Forms.BindingSource(this.components);
             this.tlpEac3toAndRemuxNamingConventionTemplates1 = new System.Windows.Forms.TableLayoutPanel();
+            this.gbBatchGuyNotifications = new System.Windows.Forms.GroupBox();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.gbEAC3ToDefaultSettings = new System.Windows.Forms.GroupBox();
             this.tlpEac3toAndRemuxNamingConventionTemplates2 = new System.Windows.Forms.TableLayoutPanel();
             this.chkShowProgressNumbers = new System.Windows.Forms.CheckBox();
@@ -97,6 +100,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvExecutables)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsExecutables)).BeginInit();
             this.tlpEac3toAndRemuxNamingConventionTemplates1.SuspendLayout();
+            this.gbBatchGuyNotifications.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
             this.gbEAC3ToDefaultSettings.SuspendLayout();
             this.tlpEac3toAndRemuxNamingConventionTemplates2.SuspendLayout();
             this.gbRemuxNamingConventionDefaults.SuspendLayout();
@@ -166,7 +171,7 @@
             this.tlpExecutables1.Name = "tlpExecutables1";
             this.tlpExecutables1.RowCount = 1;
             this.tlpExecutables1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpExecutables1.Size = new System.Drawing.Size(923, 150);
+            this.tlpExecutables1.Size = new System.Drawing.Size(923, 149);
             this.tlpExecutables1.TabIndex = 0;
             // 
             // gbExecutables
@@ -176,7 +181,7 @@
             this.gbExecutables.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gbExecutables.Location = new System.Drawing.Point(3, 3);
             this.gbExecutables.Name = "gbExecutables";
-            this.gbExecutables.Size = new System.Drawing.Size(917, 144);
+            this.gbExecutables.Size = new System.Drawing.Size(917, 143);
             this.gbExecutables.TabIndex = 13;
             this.gbExecutables.TabStop = false;
             this.gbExecutables.Text = "Executables";
@@ -193,7 +198,7 @@
             this.tlpExecutables2.Name = "tlpExecutables2";
             this.tlpExecutables2.RowCount = 1;
             this.tlpExecutables2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpExecutables2.Size = new System.Drawing.Size(911, 118);
+            this.tlpExecutables2.Size = new System.Drawing.Size(911, 117);
             this.tlpExecutables2.TabIndex = 1;
             // 
             // dgvExecutables
@@ -212,7 +217,7 @@
             this.dgvExecutables.DataSource = this.bsExecutables;
             this.dgvExecutables.Location = new System.Drawing.Point(3, 3);
             this.dgvExecutables.Name = "dgvExecutables";
-            this.dgvExecutables.Size = new System.Drawing.Size(905, 112);
+            this.dgvExecutables.Size = new System.Drawing.Size(905, 111);
             this.dgvExecutables.TabIndex = 0;
             this.dgvExecutables.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvExecutables_CellClick);
             // 
@@ -249,26 +254,62 @@
             // 
             // tlpEac3toAndRemuxNamingConventionTemplates1
             // 
-            this.tlpEac3toAndRemuxNamingConventionTemplates1.ColumnCount = 2;
-            this.tlpEac3toAndRemuxNamingConventionTemplates1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpEac3toAndRemuxNamingConventionTemplates1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpEac3toAndRemuxNamingConventionTemplates1.Controls.Add(this.gbEAC3ToDefaultSettings, 0, 0);
-            this.tlpEac3toAndRemuxNamingConventionTemplates1.Controls.Add(this.gbRemuxNamingConventionDefaults, 1, 0);
+            this.tlpEac3toAndRemuxNamingConventionTemplates1.ColumnCount = 3;
+            this.tlpEac3toAndRemuxNamingConventionTemplates1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tlpEac3toAndRemuxNamingConventionTemplates1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29.06977F));
+            this.tlpEac3toAndRemuxNamingConventionTemplates1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70.93023F));
+            this.tlpEac3toAndRemuxNamingConventionTemplates1.Controls.Add(this.gbBatchGuyNotifications, 0, 0);
+            this.tlpEac3toAndRemuxNamingConventionTemplates1.Controls.Add(this.gbEAC3ToDefaultSettings, 1, 0);
+            this.tlpEac3toAndRemuxNamingConventionTemplates1.Controls.Add(this.gbRemuxNamingConventionDefaults, 2, 0);
             this.tlpEac3toAndRemuxNamingConventionTemplates1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpEac3toAndRemuxNamingConventionTemplates1.Location = new System.Drawing.Point(3, 159);
+            this.tlpEac3toAndRemuxNamingConventionTemplates1.Location = new System.Drawing.Point(3, 158);
             this.tlpEac3toAndRemuxNamingConventionTemplates1.Name = "tlpEac3toAndRemuxNamingConventionTemplates1";
             this.tlpEac3toAndRemuxNamingConventionTemplates1.RowCount = 1;
             this.tlpEac3toAndRemuxNamingConventionTemplates1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tlpEac3toAndRemuxNamingConventionTemplates1.Size = new System.Drawing.Size(923, 98);
+            this.tlpEac3toAndRemuxNamingConventionTemplates1.Size = new System.Drawing.Size(923, 97);
             this.tlpEac3toAndRemuxNamingConventionTemplates1.TabIndex = 1;
+            // 
+            // gbBatchGuyNotifications
+            // 
+            this.gbBatchGuyNotifications.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.gbBatchGuyNotifications.Controls.Add(this.tableLayoutPanel1);
+            this.gbBatchGuyNotifications.Location = new System.Drawing.Point(3, 6);
+            this.gbBatchGuyNotifications.Name = "gbBatchGuyNotifications";
+            this.gbBatchGuyNotifications.Size = new System.Drawing.Size(229, 85);
+            this.gbBatchGuyNotifications.TabIndex = 13;
+            this.gbBatchGuyNotifications.TabStop = false;
+            this.gbBatchGuyNotifications.Text = "BatchGuy Notifications";
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 1;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Controls.Add(this.checkBox1, 0, 0);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 16);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 1;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(223, 66);
+            this.tableLayoutPanel1.TabIndex = 2;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(3, 3);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(189, 17);
+            this.checkBox1.TabIndex = 1;
+            this.checkBox1.Text = "Enabled New Version Notifications";
+            this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // gbEAC3ToDefaultSettings
             // 
             this.gbEAC3ToDefaultSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.gbEAC3ToDefaultSettings.Controls.Add(this.tlpEac3toAndRemuxNamingConventionTemplates2);
-            this.gbEAC3ToDefaultSettings.Location = new System.Drawing.Point(3, 6);
+            this.gbEAC3ToDefaultSettings.Location = new System.Drawing.Point(238, 6);
             this.gbEAC3ToDefaultSettings.Name = "gbEAC3ToDefaultSettings";
-            this.gbEAC3ToDefaultSettings.Size = new System.Drawing.Size(455, 85);
+            this.gbEAC3ToDefaultSettings.Size = new System.Drawing.Size(193, 85);
             this.gbEAC3ToDefaultSettings.TabIndex = 2;
             this.gbEAC3ToDefaultSettings.TabStop = false;
             this.gbEAC3ToDefaultSettings.Text = "eac3to.exe Defaults";
@@ -283,7 +324,7 @@
             this.tlpEac3toAndRemuxNamingConventionTemplates2.Name = "tlpEac3toAndRemuxNamingConventionTemplates2";
             this.tlpEac3toAndRemuxNamingConventionTemplates2.RowCount = 1;
             this.tlpEac3toAndRemuxNamingConventionTemplates2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpEac3toAndRemuxNamingConventionTemplates2.Size = new System.Drawing.Size(449, 66);
+            this.tlpEac3toAndRemuxNamingConventionTemplates2.Size = new System.Drawing.Size(187, 66);
             this.tlpEac3toAndRemuxNamingConventionTemplates2.TabIndex = 2;
             // 
             // chkShowProgressNumbers
@@ -301,9 +342,9 @@
             // 
             this.gbRemuxNamingConventionDefaults.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.gbRemuxNamingConventionDefaults.Controls.Add(this.tlpEac3toAndRemuxNamingConventionTemplates3);
-            this.gbRemuxNamingConventionDefaults.Location = new System.Drawing.Point(464, 6);
+            this.gbRemuxNamingConventionDefaults.Location = new System.Drawing.Point(437, 6);
             this.gbRemuxNamingConventionDefaults.Name = "gbRemuxNamingConventionDefaults";
-            this.gbRemuxNamingConventionDefaults.Size = new System.Drawing.Size(456, 85);
+            this.gbRemuxNamingConventionDefaults.Size = new System.Drawing.Size(483, 85);
             this.gbRemuxNamingConventionDefaults.TabIndex = 12;
             this.gbRemuxNamingConventionDefaults.TabStop = false;
             this.gbRemuxNamingConventionDefaults.Text = "Remux Naming Convention Defaults";
@@ -323,7 +364,7 @@
             this.tlpEac3toAndRemuxNamingConventionTemplates3.RowCount = 2;
             this.tlpEac3toAndRemuxNamingConventionTemplates3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tlpEac3toAndRemuxNamingConventionTemplates3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpEac3toAndRemuxNamingConventionTemplates3.Size = new System.Drawing.Size(450, 66);
+            this.tlpEac3toAndRemuxNamingConventionTemplates3.Size = new System.Drawing.Size(477, 66);
             this.tlpEac3toAndRemuxNamingConventionTemplates3.TabIndex = 31;
             // 
             // lblRemuxNamingConventionTemplate
@@ -341,7 +382,7 @@
             this.lblRemuxNamingConventionExample.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblRemuxNamingConventionExample.AutoSize = true;
             this.lblRemuxNamingConventionExample.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRemuxNamingConventionExample.Location = new System.Drawing.Point(82, 43);
+            this.lblRemuxNamingConventionExample.Location = new System.Drawing.Point(86, 43);
             this.lblRemuxNamingConventionExample.Name = "lblRemuxNamingConventionExample";
             this.lblRemuxNamingConventionExample.Size = new System.Drawing.Size(80, 13);
             this.lblRemuxNamingConventionExample.TabIndex = 30;
@@ -356,7 +397,7 @@
             "Template 1",
             "Template 2",
             "Template 3"});
-            this.cbRemuxNamingConventionDefaults.Location = new System.Drawing.Point(82, 6);
+            this.cbRemuxNamingConventionDefaults.Location = new System.Drawing.Point(86, 6);
             this.cbRemuxNamingConventionDefaults.Name = "cbRemuxNamingConventionDefaults";
             this.cbRemuxNamingConventionDefaults.Size = new System.Drawing.Size(186, 21);
             this.cbRemuxNamingConventionDefaults.TabIndex = 2;
@@ -378,11 +419,11 @@
             this.tlpBluRayTitleInfoDefaults1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tlpBluRayTitleInfoDefaults1.Controls.Add(this.gbBluRayTitleInfoDefaultSettings, 0, 0);
             this.tlpBluRayTitleInfoDefaults1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpBluRayTitleInfoDefaults1.Location = new System.Drawing.Point(3, 263);
+            this.tlpBluRayTitleInfoDefaults1.Location = new System.Drawing.Point(3, 261);
             this.tlpBluRayTitleInfoDefaults1.Name = "tlpBluRayTitleInfoDefaults1";
             this.tlpBluRayTitleInfoDefaults1.RowCount = 1;
             this.tlpBluRayTitleInfoDefaults1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpBluRayTitleInfoDefaults1.Size = new System.Drawing.Size(923, 202);
+            this.tlpBluRayTitleInfoDefaults1.Size = new System.Drawing.Size(923, 201);
             this.tlpBluRayTitleInfoDefaults1.TabIndex = 2;
             // 
             // gbBluRayTitleInfoDefaultSettings
@@ -391,7 +432,7 @@
             this.gbBluRayTitleInfoDefaultSettings.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gbBluRayTitleInfoDefaultSettings.Location = new System.Drawing.Point(3, 3);
             this.gbBluRayTitleInfoDefaultSettings.Name = "gbBluRayTitleInfoDefaultSettings";
-            this.gbBluRayTitleInfoDefaultSettings.Size = new System.Drawing.Size(917, 196);
+            this.gbBluRayTitleInfoDefaultSettings.Size = new System.Drawing.Size(917, 195);
             this.gbBluRayTitleInfoDefaultSettings.TabIndex = 1;
             this.gbBluRayTitleInfoDefaultSettings.TabStop = false;
             this.gbBluRayTitleInfoDefaultSettings.Text = "BluRay Title Info Defaults";
@@ -408,7 +449,7 @@
             this.tlpBluRayTitleInfoDefaults2.RowCount = 2;
             this.tlpBluRayTitleInfoDefaults2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30.27523F));
             this.tlpBluRayTitleInfoDefaults2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 69.72477F));
-            this.tlpBluRayTitleInfoDefaults2.Size = new System.Drawing.Size(911, 177);
+            this.tlpBluRayTitleInfoDefaults2.Size = new System.Drawing.Size(911, 176);
             this.tlpBluRayTitleInfoDefaults2.TabIndex = 6;
             // 
             // dgvBluRayTitleInfoDefaultSettingsAudio
@@ -425,7 +466,7 @@
             this.dgvBluRayTitleInfoDefaultSettingsAudio.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvBluRayTitleInfoDefaultSettingsAudio.Location = new System.Drawing.Point(3, 56);
             this.dgvBluRayTitleInfoDefaultSettingsAudio.Name = "dgvBluRayTitleInfoDefaultSettingsAudio";
-            this.dgvBluRayTitleInfoDefaultSettingsAudio.Size = new System.Drawing.Size(905, 118);
+            this.dgvBluRayTitleInfoDefaultSettingsAudio.Size = new System.Drawing.Size(905, 117);
             this.dgvBluRayTitleInfoDefaultSettingsAudio.TabIndex = 5;
             this.dgvBluRayTitleInfoDefaultSettingsAudio.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBluRayTitleInfoDefaultSettingsAudio_CellClick);
             // 
@@ -521,12 +562,12 @@
             this.tlpAudioLanguageDefaults1.Controls.Add(this.chkAudioLanguageAlwaysSelectedEnabled, 0, 0);
             this.tlpAudioLanguageDefaults1.Controls.Add(this.gbAudioMKVMergeDefaultSettings, 0, 1);
             this.tlpAudioLanguageDefaults1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpAudioLanguageDefaults1.Location = new System.Drawing.Point(3, 471);
+            this.tlpAudioLanguageDefaults1.Location = new System.Drawing.Point(3, 468);
             this.tlpAudioLanguageDefaults1.Name = "tlpAudioLanguageDefaults1";
             this.tlpAudioLanguageDefaults1.RowCount = 2;
             this.tlpAudioLanguageDefaults1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tlpAudioLanguageDefaults1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tlpAudioLanguageDefaults1.Size = new System.Drawing.Size(923, 98);
+            this.tlpAudioLanguageDefaults1.Size = new System.Drawing.Size(923, 97);
             this.tlpAudioLanguageDefaults1.TabIndex = 3;
             // 
             // chkAudioLanguageAlwaysSelectedEnabled
@@ -658,12 +699,12 @@
             this.tlpSubtitleLanguageDefaults1.Controls.Add(this.chkSubtitleLanguageAlwaysSelectedEnabled, 0, 0);
             this.tlpSubtitleLanguageDefaults1.Controls.Add(this.gbSubtitlesMKVMergeDefaultSettings, 0, 1);
             this.tlpSubtitleLanguageDefaults1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpSubtitleLanguageDefaults1.Location = new System.Drawing.Point(3, 575);
+            this.tlpSubtitleLanguageDefaults1.Location = new System.Drawing.Point(3, 571);
             this.tlpSubtitleLanguageDefaults1.Name = "tlpSubtitleLanguageDefaults1";
             this.tlpSubtitleLanguageDefaults1.RowCount = 2;
             this.tlpSubtitleLanguageDefaults1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 18.85246F));
             this.tlpSubtitleLanguageDefaults1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 81.14754F));
-            this.tlpSubtitleLanguageDefaults1.Size = new System.Drawing.Size(923, 160);
+            this.tlpSubtitleLanguageDefaults1.Size = new System.Drawing.Size(923, 164);
             this.tlpSubtitleLanguageDefaults1.TabIndex = 4;
             // 
             // chkSubtitleLanguageAlwaysSelectedEnabled
@@ -680,7 +721,7 @@
             // 
             this.gbSubtitlesMKVMergeDefaultSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.gbSubtitlesMKVMergeDefaultSettings.Controls.Add(this.tlpSubtitleLanguageDefaults2);
-            this.gbSubtitlesMKVMergeDefaultSettings.Location = new System.Drawing.Point(3, 61);
+            this.gbSubtitlesMKVMergeDefaultSettings.Location = new System.Drawing.Point(3, 63);
             this.gbSubtitlesMKVMergeDefaultSettings.Name = "gbSubtitlesMKVMergeDefaultSettings";
             this.gbSubtitlesMKVMergeDefaultSettings.Size = new System.Drawing.Size(917, 68);
             this.gbSubtitlesMKVMergeDefaultSettings.TabIndex = 3;
@@ -845,6 +886,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvExecutables)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsExecutables)).EndInit();
             this.tlpEac3toAndRemuxNamingConventionTemplates1.ResumeLayout(false);
+            this.gbBatchGuyNotifications.ResumeLayout(false);
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
             this.gbEAC3ToDefaultSettings.ResumeLayout(false);
             this.tlpEac3toAndRemuxNamingConventionTemplates2.ResumeLayout(false);
             this.tlpEac3toAndRemuxNamingConventionTemplates2.PerformLayout();
@@ -940,5 +984,8 @@
         private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem closeToolStripMenuItem;
+        private System.Windows.Forms.GroupBox gbBatchGuyNotifications;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }
