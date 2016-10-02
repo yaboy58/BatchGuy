@@ -12,6 +12,9 @@ Bugs:
 *Users were able to delete rows from the BluRay Title Info Defaults Grid on the Settings Screen
 *Fixed major bug in the default settings portion of the software.  The code for the audio input/output defaults that the user set up on the Settings Screen runs "before" the code that determines what audio is selected by default on the BluRay Title Info Screen.  The audio type is being set to the output the user specified and if the output audio type doesn't match the always selected type, it will be ignored.
 
+Notes:
+*If you had DTS, FLAC or MPA selected on the Audio Language Always Selected Audio Type drop down box on the Settings Screen, you will need to go to the Settings Screen and select another audio type default.
+
 --possible nice to haves
 *Think about tackling the multiple vidoes in a single playlist (labyrinth)
 *Think about an exe folder that has all the exes in it already by default/would need to update in the app though
