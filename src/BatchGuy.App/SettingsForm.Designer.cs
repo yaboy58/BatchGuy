@@ -57,6 +57,10 @@
             this.gbBluRayTitleInfoDefaultSettings = new System.Windows.Forms.GroupBox();
             this.tlpBluRayTitleInfoDefaults2 = new System.Windows.Forms.TableLayoutPanel();
             this.dgvBluRayTitleInfoDefaultSettingsAudio = new System.Windows.Forms.DataGridView();
+            this.typeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.defaultTypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.argumentsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bsBluRayTitleInfoDefaultSettingsAudio = new System.Windows.Forms.BindingSource(this.components);
             this.tlpBluRayTitleInfoDefaults3 = new System.Windows.Forms.TableLayoutPanel();
             this.chkBluRayTitleInfoDefaultSettingsSelectSubtitles = new System.Windows.Forms.CheckBox();
@@ -88,10 +92,6 @@
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.typeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.defaultTypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.argumentsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gbScreen.SuspendLayout();
             this.tlpGroupBox.SuspendLayout();
             this.tlpExecutables1.SuspendLayout();
@@ -171,7 +171,7 @@
             this.tlpExecutables1.Name = "tlpExecutables1";
             this.tlpExecutables1.RowCount = 1;
             this.tlpExecutables1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpExecutables1.Size = new System.Drawing.Size(923, 143);
+            this.tlpExecutables1.Size = new System.Drawing.Size(923, 141);
             this.tlpExecutables1.TabIndex = 0;
             // 
             // gbExecutables
@@ -181,7 +181,7 @@
             this.gbExecutables.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gbExecutables.Location = new System.Drawing.Point(3, 3);
             this.gbExecutables.Name = "gbExecutables";
-            this.gbExecutables.Size = new System.Drawing.Size(917, 137);
+            this.gbExecutables.Size = new System.Drawing.Size(917, 135);
             this.gbExecutables.TabIndex = 13;
             this.gbExecutables.TabStop = false;
             this.gbExecutables.Text = "Executables";
@@ -198,7 +198,7 @@
             this.tlpExecutables2.Name = "tlpExecutables2";
             this.tlpExecutables2.RowCount = 1;
             this.tlpExecutables2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpExecutables2.Size = new System.Drawing.Size(911, 111);
+            this.tlpExecutables2.Size = new System.Drawing.Size(911, 114);
             this.tlpExecutables2.TabIndex = 1;
             // 
             // dgvExecutables
@@ -217,7 +217,7 @@
             this.dgvExecutables.DataSource = this.bsExecutables;
             this.dgvExecutables.Location = new System.Drawing.Point(3, 3);
             this.dgvExecutables.Name = "dgvExecutables";
-            this.dgvExecutables.Size = new System.Drawing.Size(905, 105);
+            this.dgvExecutables.Size = new System.Drawing.Size(905, 108);
             this.dgvExecutables.TabIndex = 0;
             this.dgvExecutables.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvExecutables_CellClick);
             // 
@@ -262,18 +262,18 @@
             this.tlpEac3toAndRemuxNamingConventionTemplates1.Controls.Add(this.gbEAC3ToDefaultSettings, 1, 0);
             this.tlpEac3toAndRemuxNamingConventionTemplates1.Controls.Add(this.gbRemuxNamingConventionDefaults, 2, 0);
             this.tlpEac3toAndRemuxNamingConventionTemplates1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpEac3toAndRemuxNamingConventionTemplates1.Location = new System.Drawing.Point(3, 152);
+            this.tlpEac3toAndRemuxNamingConventionTemplates1.Location = new System.Drawing.Point(3, 150);
             this.tlpEac3toAndRemuxNamingConventionTemplates1.Name = "tlpEac3toAndRemuxNamingConventionTemplates1";
             this.tlpEac3toAndRemuxNamingConventionTemplates1.RowCount = 1;
             this.tlpEac3toAndRemuxNamingConventionTemplates1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tlpEac3toAndRemuxNamingConventionTemplates1.Size = new System.Drawing.Size(923, 93);
+            this.tlpEac3toAndRemuxNamingConventionTemplates1.Size = new System.Drawing.Size(923, 92);
             this.tlpEac3toAndRemuxNamingConventionTemplates1.TabIndex = 1;
             // 
             // gbBatchGuyNotifications
             // 
             this.gbBatchGuyNotifications.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.gbBatchGuyNotifications.Controls.Add(this.tlpBatchGuyNotifications);
-            this.gbBatchGuyNotifications.Location = new System.Drawing.Point(3, 4);
+            this.gbBatchGuyNotifications.Location = new System.Drawing.Point(3, 3);
             this.gbBatchGuyNotifications.Name = "gbBatchGuyNotifications";
             this.gbBatchGuyNotifications.Size = new System.Drawing.Size(229, 85);
             this.gbBatchGuyNotifications.TabIndex = 13;
@@ -308,7 +308,7 @@
             // 
             this.gbEAC3ToDefaultSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.gbEAC3ToDefaultSettings.Controls.Add(this.tlpEac3toAndRemuxNamingConventionTemplates2);
-            this.gbEAC3ToDefaultSettings.Location = new System.Drawing.Point(238, 4);
+            this.gbEAC3ToDefaultSettings.Location = new System.Drawing.Point(238, 3);
             this.gbEAC3ToDefaultSettings.Name = "gbEAC3ToDefaultSettings";
             this.gbEAC3ToDefaultSettings.Size = new System.Drawing.Size(194, 85);
             this.gbEAC3ToDefaultSettings.TabIndex = 2;
@@ -343,7 +343,7 @@
             // 
             this.gbRemuxNamingConventionDefaults.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.gbRemuxNamingConventionDefaults.Controls.Add(this.tlpEac3toAndRemuxNamingConventionTemplates3);
-            this.gbRemuxNamingConventionDefaults.Location = new System.Drawing.Point(438, 4);
+            this.gbRemuxNamingConventionDefaults.Location = new System.Drawing.Point(438, 3);
             this.gbRemuxNamingConventionDefaults.Name = "gbRemuxNamingConventionDefaults";
             this.gbRemuxNamingConventionDefaults.Size = new System.Drawing.Size(482, 85);
             this.gbRemuxNamingConventionDefaults.TabIndex = 12;
@@ -420,11 +420,11 @@
             this.tlpBluRayTitleInfoDefaults1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tlpBluRayTitleInfoDefaults1.Controls.Add(this.gbBluRayTitleInfoDefaultSettings, 0, 0);
             this.tlpBluRayTitleInfoDefaults1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpBluRayTitleInfoDefaults1.Location = new System.Drawing.Point(3, 251);
+            this.tlpBluRayTitleInfoDefaults1.Location = new System.Drawing.Point(3, 248);
             this.tlpBluRayTitleInfoDefaults1.Name = "tlpBluRayTitleInfoDefaults1";
             this.tlpBluRayTitleInfoDefaults1.RowCount = 1;
             this.tlpBluRayTitleInfoDefaults1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpBluRayTitleInfoDefaults1.Size = new System.Drawing.Size(923, 193);
+            this.tlpBluRayTitleInfoDefaults1.Size = new System.Drawing.Size(923, 190);
             this.tlpBluRayTitleInfoDefaults1.TabIndex = 2;
             // 
             // gbBluRayTitleInfoDefaultSettings
@@ -433,7 +433,7 @@
             this.gbBluRayTitleInfoDefaultSettings.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gbBluRayTitleInfoDefaultSettings.Location = new System.Drawing.Point(3, 3);
             this.gbBluRayTitleInfoDefaultSettings.Name = "gbBluRayTitleInfoDefaultSettings";
-            this.gbBluRayTitleInfoDefaultSettings.Size = new System.Drawing.Size(917, 187);
+            this.gbBluRayTitleInfoDefaultSettings.Size = new System.Drawing.Size(917, 184);
             this.gbBluRayTitleInfoDefaultSettings.TabIndex = 1;
             this.gbBluRayTitleInfoDefaultSettings.TabStop = false;
             this.gbBluRayTitleInfoDefaultSettings.Text = "BluRay Title Info Defaults";
@@ -450,7 +450,7 @@
             this.tlpBluRayTitleInfoDefaults2.RowCount = 2;
             this.tlpBluRayTitleInfoDefaults2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30.27523F));
             this.tlpBluRayTitleInfoDefaults2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 69.72477F));
-            this.tlpBluRayTitleInfoDefaults2.Size = new System.Drawing.Size(911, 168);
+            this.tlpBluRayTitleInfoDefaults2.Size = new System.Drawing.Size(911, 165);
             this.tlpBluRayTitleInfoDefaults2.TabIndex = 6;
             // 
             // dgvBluRayTitleInfoDefaultSettingsAudio
@@ -465,11 +465,53 @@
             this.argumentsDataGridViewTextBoxColumn});
             this.dgvBluRayTitleInfoDefaultSettingsAudio.DataSource = this.bsBluRayTitleInfoDefaultSettingsAudio;
             this.dgvBluRayTitleInfoDefaultSettingsAudio.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvBluRayTitleInfoDefaultSettingsAudio.Location = new System.Drawing.Point(3, 53);
+            this.dgvBluRayTitleInfoDefaultSettingsAudio.Location = new System.Drawing.Point(3, 52);
             this.dgvBluRayTitleInfoDefaultSettingsAudio.Name = "dgvBluRayTitleInfoDefaultSettingsAudio";
-            this.dgvBluRayTitleInfoDefaultSettingsAudio.Size = new System.Drawing.Size(905, 112);
+            this.dgvBluRayTitleInfoDefaultSettingsAudio.Size = new System.Drawing.Size(905, 110);
             this.dgvBluRayTitleInfoDefaultSettingsAudio.TabIndex = 6;
             this.dgvBluRayTitleInfoDefaultSettingsAudio.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBluRayTitleInfoDefaultSettingsAudio_CellClick);
+            // 
+            // typeDataGridViewTextBoxColumn
+            // 
+            this.typeDataGridViewTextBoxColumn.DataPropertyName = "Type";
+            this.typeDataGridViewTextBoxColumn.HeaderText = "Type";
+            this.typeDataGridViewTextBoxColumn.Name = "typeDataGridViewTextBoxColumn";
+            this.typeDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Audio Input";
+            this.nameDataGridViewTextBoxColumn.MinimumWidth = 100;
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.nameDataGridViewTextBoxColumn.Width = 150;
+            // 
+            // defaultTypeDataGridViewTextBoxColumn
+            // 
+            this.defaultTypeDataGridViewTextBoxColumn.DataPropertyName = "DefaultType";
+            this.defaultTypeDataGridViewTextBoxColumn.HeaderText = "Audio Output";
+            this.defaultTypeDataGridViewTextBoxColumn.Items.AddRange(new object[] {
+            "AC3",
+            "DTS Express",
+            "DTSMA",
+            "FLAC",
+            "MPA",
+            "TrueHD",
+            "LPCM"});
+            this.defaultTypeDataGridViewTextBoxColumn.MinimumWidth = 100;
+            this.defaultTypeDataGridViewTextBoxColumn.Name = "defaultTypeDataGridViewTextBoxColumn";
+            this.defaultTypeDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.defaultTypeDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.defaultTypeDataGridViewTextBoxColumn.Width = 150;
+            // 
+            // argumentsDataGridViewTextBoxColumn
+            // 
+            this.argumentsDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.argumentsDataGridViewTextBoxColumn.DataPropertyName = "Arguments";
+            this.argumentsDataGridViewTextBoxColumn.HeaderText = "Arguments";
+            this.argumentsDataGridViewTextBoxColumn.MinimumWidth = 150;
+            this.argumentsDataGridViewTextBoxColumn.Name = "argumentsDataGridViewTextBoxColumn";
             // 
             // bsBluRayTitleInfoDefaultSettingsAudio
             // 
@@ -521,12 +563,12 @@
             this.tlpAudioLanguageDefaults1.Controls.Add(this.chkAudioLanguageAlwaysSelectedEnabled, 0, 0);
             this.tlpAudioLanguageDefaults1.Controls.Add(this.gbAudioMKVMergeDefaultSettings, 0, 1);
             this.tlpAudioLanguageDefaults1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpAudioLanguageDefaults1.Location = new System.Drawing.Point(3, 450);
+            this.tlpAudioLanguageDefaults1.Location = new System.Drawing.Point(3, 444);
             this.tlpAudioLanguageDefaults1.Name = "tlpAudioLanguageDefaults1";
             this.tlpAudioLanguageDefaults1.RowCount = 2;
             this.tlpAudioLanguageDefaults1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tlpAudioLanguageDefaults1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tlpAudioLanguageDefaults1.Size = new System.Drawing.Size(923, 93);
+            this.tlpAudioLanguageDefaults1.Size = new System.Drawing.Size(923, 92);
             this.tlpAudioLanguageDefaults1.TabIndex = 3;
             // 
             // chkAudioLanguageAlwaysSelectedEnabled
@@ -660,12 +702,12 @@
             this.tlpSubtitleLanguageDefaults1.Controls.Add(this.chkSubtitleLanguageAlwaysSelectedEnabled, 0, 0);
             this.tlpSubtitleLanguageDefaults1.Controls.Add(this.gbSubtitlesMKVMergeDefaultSettings, 0, 1);
             this.tlpSubtitleLanguageDefaults1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpSubtitleLanguageDefaults1.Location = new System.Drawing.Point(3, 549);
+            this.tlpSubtitleLanguageDefaults1.Location = new System.Drawing.Point(3, 542);
             this.tlpSubtitleLanguageDefaults1.Name = "tlpSubtitleLanguageDefaults1";
             this.tlpSubtitleLanguageDefaults1.RowCount = 2;
             this.tlpSubtitleLanguageDefaults1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 18.85246F));
             this.tlpSubtitleLanguageDefaults1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 81.14754F));
-            this.tlpSubtitleLanguageDefaults1.Size = new System.Drawing.Size(923, 186);
+            this.tlpSubtitleLanguageDefaults1.Size = new System.Drawing.Size(923, 193);
             this.tlpSubtitleLanguageDefaults1.TabIndex = 4;
             // 
             // chkSubtitleLanguageAlwaysSelectedEnabled
@@ -682,7 +724,7 @@
             // 
             this.gbSubtitlesMKVMergeDefaultSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.gbSubtitlesMKVMergeDefaultSettings.Controls.Add(this.tlpSubtitleLanguageDefaults2);
-            this.gbSubtitlesMKVMergeDefaultSettings.Location = new System.Drawing.Point(3, 76);
+            this.gbSubtitlesMKVMergeDefaultSettings.Location = new System.Drawing.Point(3, 80);
             this.gbSubtitlesMKVMergeDefaultSettings.Name = "gbSubtitlesMKVMergeDefaultSettings";
             this.gbSubtitlesMKVMergeDefaultSettings.Size = new System.Drawing.Size(917, 68);
             this.gbSubtitlesMKVMergeDefaultSettings.TabIndex = 3;
@@ -823,48 +865,6 @@
             this.closeToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
             this.closeToolStripMenuItem.Text = "Close";
             this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click);
-            // 
-            // typeDataGridViewTextBoxColumn
-            // 
-            this.typeDataGridViewTextBoxColumn.DataPropertyName = "Type";
-            this.typeDataGridViewTextBoxColumn.HeaderText = "Type";
-            this.typeDataGridViewTextBoxColumn.Name = "typeDataGridViewTextBoxColumn";
-            this.typeDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Audio Input";
-            this.nameDataGridViewTextBoxColumn.MinimumWidth = 100;
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.nameDataGridViewTextBoxColumn.Width = 150;
-            // 
-            // defaultTypeDataGridViewTextBoxColumn
-            // 
-            this.defaultTypeDataGridViewTextBoxColumn.DataPropertyName = "DefaultType";
-            this.defaultTypeDataGridViewTextBoxColumn.HeaderText = "Audio Output";
-            this.defaultTypeDataGridViewTextBoxColumn.Items.AddRange(new object[] {
-            "AC3",
-            "DTS Express",
-            "DTSMA",
-            "FLAC",
-            "MPA",
-            "TrueHD",
-            "LPCM"});
-            this.defaultTypeDataGridViewTextBoxColumn.MinimumWidth = 100;
-            this.defaultTypeDataGridViewTextBoxColumn.Name = "defaultTypeDataGridViewTextBoxColumn";
-            this.defaultTypeDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.defaultTypeDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.defaultTypeDataGridViewTextBoxColumn.Width = 150;
-            // 
-            // argumentsDataGridViewTextBoxColumn
-            // 
-            this.argumentsDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.argumentsDataGridViewTextBoxColumn.DataPropertyName = "Arguments";
-            this.argumentsDataGridViewTextBoxColumn.HeaderText = "Arguments";
-            this.argumentsDataGridViewTextBoxColumn.MinimumWidth = 150;
-            this.argumentsDataGridViewTextBoxColumn.Name = "argumentsDataGridViewTextBoxColumn";
             // 
             // SettingsForm
             // 

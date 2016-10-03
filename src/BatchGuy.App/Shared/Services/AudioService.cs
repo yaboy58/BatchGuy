@@ -110,7 +110,7 @@ namespace BatchGuy.App.Shared.Services
 
         public List<EnumAudioType> GetBluRayAudioTypes()
         {
-            return new List<EnumAudioType>() { EnumAudioType.AC3, EnumAudioType.DTSEXPRESS,EnumAudioType.DTSMA, EnumAudioType.LPCM, EnumAudioType.TrueHD };
+            return new List<EnumAudioType>() { EnumAudioType.AC3, EnumAudioType.DTSEXPRESS, EnumAudioType.DTSMA, EnumAudioType.LPCM, EnumAudioType.TrueHD };
         }
 
         public bool IsLosslessBluRayAudio(EnumAudioType audioType)

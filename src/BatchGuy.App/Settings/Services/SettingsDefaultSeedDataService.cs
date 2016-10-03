@@ -131,6 +131,11 @@ namespace BatchGuy.App.Settings.Services
                     audio.DefaultType = EnumAudioType.DTSMA.ToString();
                     audio.Arguments = "-core";
                 }
+                if (type == EnumAudioType.DTSEXPRESS)
+                {
+                    audio.DefaultType = _audioService.GetAudioTypeName(EnumAudioType.DTSEXPRESS);
+                    audio.Name = _audioService.GetAudioTypeName(EnumAudioType.DTSEXPRESS);
+                }
                 else if (type == EnumAudioType.LPCM)
                 {
                     audio.DefaultType = EnumAudioType.FLAC.ToString();

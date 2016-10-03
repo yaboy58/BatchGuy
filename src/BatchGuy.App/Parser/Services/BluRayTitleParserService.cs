@@ -154,6 +154,11 @@ namespace BatchGuy.App.Parser.Services
             _bluRayTtileInfo.AudioList.Add(audio);
         }
 
+        private void SetLosslessAudioFlag(EnumAudioType audioType)
+        {
+
+        }
+
         private void SetSubtitle(ProcessOutputLineItem lineItem)
         {
             if (_bluRayTtileInfo.Subtitles == null)
