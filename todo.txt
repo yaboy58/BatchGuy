@@ -6,7 +6,7 @@ Enhancements:
 *Warning text under the "Is this Remux for a Movie" checkbox on is now red and the caption was modified
 
 *Introduce Lossless in the settings audio drop down
-
+*Put red warning on mkvtoolnix options to make sure row selected like on eac3to
 
 --possible nice to haves
 *Think about tackling the multiple vidoes in a single playlist (labyrinth)
