@@ -27,15 +27,15 @@ namespace BatchGuy.Unit.Tests.Services.Shared
         }
 
         [Test]
-        public void audioservice_can_get_dts_audio_type_name()
+        public void audioservice_can_get_dtsma_audio_type_name()
         {
             //given
-            EnumAudioType audioType = EnumAudioType.DTS;
+            EnumAudioType audioType = EnumAudioType.DTSMA;
             IAudioService service = new AudioService();
             //when
             string name = service.GetAudioTypeName(audioType);
             //then
-            name.Should().Be("DTS");
+            name.Should().Be("DTSMA");
         }
 
         [Test]
@@ -75,15 +75,15 @@ namespace BatchGuy.Unit.Tests.Services.Shared
         }
 
         [Test]
-        public void audioservice_can_get_dtsma_audio_type_name()
+        public void audioservice_can_get_dtsexpress_audio_type_name()
         {
             //given
-            EnumAudioType audioType = EnumAudioType.DTSMA;
+            EnumAudioType audioType = EnumAudioType.DTSEXPRESS;
             IAudioService service = new AudioService();
             //when
             string name = service.GetAudioTypeName(audioType);
             //then
-            name.Should().Be("DTSMA");
+            name.Should().Be("DTS Express");
         }
 
         [Test]
@@ -99,15 +99,15 @@ namespace BatchGuy.Unit.Tests.Services.Shared
         }
 
         [Test]
-        public void audioservice_can_get_dts_audio_type_by_name()
+        public void audioservice_can_get_dtsexpress_audio_type_by_name()
         {
             //given
-            string name = "DTS";
+            string name = "DTS Express";
             IAudioService service = new AudioService();
             //when
             EnumAudioType audioType = service.GetAudioTypeByName(name);
             //then
-            audioType.Should().Be(EnumAudioType.DTS);
+            audioType.Should().Be(EnumAudioType.DTSEXPRESS);
         }
 
         [Test]
@@ -183,10 +183,10 @@ namespace BatchGuy.Unit.Tests.Services.Shared
         }
 
         [Test]
-        public void audioservice_can_get_dts_audio_extension()
+        public void audioservice_can_get_dtsexpress_audio_extension()
         {
             //given
-            EnumAudioType audioType = EnumAudioType.DTS;
+            EnumAudioType audioType = EnumAudioType.DTSEXPRESS;
             IAudioService service = new AudioService();
             //when
             string extension = service.GetAudioExtension(audioType);

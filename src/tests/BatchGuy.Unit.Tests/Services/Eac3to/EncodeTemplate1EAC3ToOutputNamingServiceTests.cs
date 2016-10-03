@@ -58,13 +58,13 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
             string filesOutputPath = "c:\\bluray";
             string paddedEpisodeNumber = "01";
             string episodeName = string.Empty;
-            BluRayTitleAudio audio = new BluRayTitleAudio() { Id = "13:", AudioType = EnumAudioType.DTS, Language = "english" };
+            BluRayTitleAudio audio = new BluRayTitleAudio() { Id = "13:", AudioType = EnumAudioType.DTSMA, Language = "english" };
             //when i get the audio name
             IAudioService audioService = new AudioService();
             AbstractEAC3ToOutputNamingService service = new EncodeTemplate1EAC3ToOutputNamingService(audioService);
             string audioName = service.GetAudioName(config, audio, filesOutputPath, paddedEpisodeNumber, episodeName);
             //then audio name should be hard coded for workflow
-            audioName.Should().Be("\"c:\\bluray\\english01-13.dts\"");
+            audioName.Should().Be("\"c:\\bluray\\english01-13.dtsma\"");
         }
 
         [Test]
@@ -92,13 +92,13 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
             string filesOutputPath = "c:\\bluray";
             string paddedEpisodeNumber = "01";
             string episodeName = string.Empty;
-            BluRayTitleAudio audio = new BluRayTitleAudio() { Id = "13:", AudioType = EnumAudioType.DTS, Language = "english", IsCommentary = true };
+            BluRayTitleAudio audio = new BluRayTitleAudio() { Id = "13:", AudioType = EnumAudioType.DTSMA, Language = "english", IsCommentary = true };
             //when i get the audio name
             IAudioService audioService = new AudioService();
             AbstractEAC3ToOutputNamingService service = new EncodeTemplate1EAC3ToOutputNamingService(audioService);
             string audioName = service.GetAudioName(config, audio, filesOutputPath, paddedEpisodeNumber, episodeName);
             //then audio name should have commentary in the name
-            audioName.Should().Be("\"c:\\bluray\\english01-13-commentary.dts\"");
+            audioName.Should().Be("\"c:\\bluray\\english01-13-commentary.dtsma\"");
         }
 
         [Test]

@@ -154,7 +154,7 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
             //when i get the audio name
             IAudioService audioService = new AudioService();
             AbstractEAC3ToOutputNamingService service = new RemuxTemplate2EAC3ToOutputNamingService(audioService);
-            BluRayTitleAudio audio = new BluRayTitleAudio() { Id = "5:", AudioType = EnumAudioType.DTS, Language = "english" };
+            BluRayTitleAudio audio = new BluRayTitleAudio() { Id = "5:", AudioType = EnumAudioType.DTSEXPRESS, Language = "english" };
             string audioName = service.GetAudioName(config, audio, filesOutputPath, paddedEpisodeNumber, episodeName);
             //then audio name should be based on the remux template
             audioName.Should().Be("\"c:\\bluray\\BatchGuy, S02E01 (1978) english01-5.dts\"");
@@ -182,7 +182,7 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
             //when i get the audio name
             IAudioService audioService = new AudioService();
             AbstractEAC3ToOutputNamingService service = new RemuxTemplate2EAC3ToOutputNamingService(audioService);
-            BluRayTitleAudio audio = new BluRayTitleAudio() { Id = "5:", AudioType = EnumAudioType.DTS, Language = "english" };
+            BluRayTitleAudio audio = new BluRayTitleAudio() { Id = "5:", AudioType = EnumAudioType.DTSEXPRESS, Language = "english" };
             string audioName = service.GetAudioName(config, audio, filesOutputPath, paddedEpisodeNumber, episodeName);
             //then audio name should be based on the remux template
             audioName.Should().Be("\"c:\\bluray\\BatchGuy, S02E01 english01-5.dts\"");

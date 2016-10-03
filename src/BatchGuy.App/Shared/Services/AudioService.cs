@@ -16,9 +16,6 @@ namespace BatchGuy.App.Shared.Services
 
             switch (audioType)
             {
-                case EnumAudioType.DTS:
-                    audioExtension = "dts";
-                    break;
                 case EnumAudioType.AC3:
                     audioExtension = "ac3";
                     break;
@@ -37,6 +34,9 @@ namespace BatchGuy.App.Shared.Services
                 case EnumAudioType.LPCM:
                     audioExtension = "wav";
                     break;
+                case EnumAudioType.DTSEXPRESS:
+                    audioExtension = "dts";
+                    break;
                 default:
                     throw new Exception("Invalid Audio Type");
             }
@@ -45,12 +45,9 @@ namespace BatchGuy.App.Shared.Services
 
         public EnumAudioType GetAudioTypeByName(string name)
         {
-            EnumAudioType audioType = EnumAudioType.DTS;
+            EnumAudioType audioType = EnumAudioType.AC3;
             switch (name)
             {
-                case "DTS":
-                    audioType = EnumAudioType.DTS;
-                    break;
                 case "AC3":
                     audioType = EnumAudioType.AC3;
                     break;
@@ -69,6 +66,9 @@ namespace BatchGuy.App.Shared.Services
                 case "MPA":
                     audioType = EnumAudioType.MPA;
                     break;
+                case "DTS Express":
+                    audioType = EnumAudioType.DTSEXPRESS;
+                    break;
                 default:
                     throw new Exception("Invalid Audio Type");
             }
@@ -81,9 +81,6 @@ namespace BatchGuy.App.Shared.Services
 
             switch (audioType)
             {
-                case EnumAudioType.DTS:
-                    name = "DTS";
-                    break;
                 case EnumAudioType.AC3:
                     name = "AC3";
                     break;
@@ -102,6 +99,9 @@ namespace BatchGuy.App.Shared.Services
                 case EnumAudioType.LPCM:
                     name = "LPCM";
                     break;
+                case EnumAudioType.DTSEXPRESS:
+                    name = "DTS Express";
+                    break;
                 default:
                     throw new Exception("Invalid Audio Type");
             }
@@ -110,7 +110,7 @@ namespace BatchGuy.App.Shared.Services
 
         public List<EnumAudioType> GetBluRayAudioTypes()
         {
-            return new List<EnumAudioType>() { EnumAudioType.AC3, EnumAudioType.DTSMA, EnumAudioType.LPCM, EnumAudioType.TrueHD };
+            return new List<EnumAudioType>() { EnumAudioType.AC3, EnumAudioType.DTSEXPRESS,EnumAudioType.DTSMA, EnumAudioType.LPCM, EnumAudioType.TrueHD };
         }
 
         public bool IsLosslessBluRayAudio(EnumAudioType audioType)

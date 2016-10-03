@@ -29,6 +29,7 @@ namespace BatchGuy.App.Settings.Services
             this.LoadSubtitlesMKVMergeDefaultSettings();
             this.LoadAudioMKVMergeDefaultSettings();
             this.LoadNameValuePairDefaultSettings();
+            this.LoadDTSExpressAudioDefaultSettings();
         }
 
         private void LoadBluRayTitleInfoDefaultSettings()
@@ -127,7 +128,7 @@ namespace BatchGuy.App.Settings.Services
                 BluRayTitleInfoDefaultSettingsAudio audio = new BluRayTitleInfoDefaultSettingsAudio() { Arguments = "", DefaultType = type.ToString(), Type = type, Name = type.ToString() };
                 if (type == EnumAudioType.DTSMA)
                 {
-                    audio.DefaultType = EnumAudioType.DTS.ToString();
+                    audio.DefaultType = EnumAudioType.DTSMA.ToString();
                     audio.Arguments = "-core";
                 }
                 else if (type == EnumAudioType.LPCM)
@@ -139,6 +140,15 @@ namespace BatchGuy.App.Settings.Services
                     audio.DefaultType = EnumAudioType.AC3.ToString();
                     audio.Arguments = "-640";
                 }
+                _applicationSettings.BluRayTitleInfoDefaultSettings.Audio.Add(audio);
+            }
+        }
+
+        private void LoadDTSExpressAudioDefaultSettings()
+        {
+            if (_applicationSettings.BluRayTitleInfoDefaultSettings.Audio.Where(a => a.Type == EnumAudioType.DTSEXPRESS).Count() == 0)
+            {
+                BluRayTitleInfoDefaultSettingsAudio audio = new BluRayTitleInfoDefaultSettingsAudio() { Arguments = "", DefaultType = _audioService.GetAudioTypeName(EnumAudioType.DTSEXPRESS), Type = EnumAudioType.DTSEXPRESS, Name = _audioService.GetAudioTypeName(EnumAudioType.DTSEXPRESS) };
                 _applicationSettings.BluRayTitleInfoDefaultSettings.Audio.Add(audio);
             }
         }

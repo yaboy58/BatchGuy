@@ -321,11 +321,11 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
             //when i get the audio name
             IAudioService audioService = new AudioService();
             AbstractEAC3ToOutputNamingService service = new MovieRemuxTemplate1EAC3ToOutputNamingService(audioService);
-            BluRayTitleAudio audio = new BluRayTitleAudio() { Id = "5:", AudioType = EnumAudioType.DTS, Language = "english" };
+            BluRayTitleAudio audio = new BluRayTitleAudio() { Id = "5:", AudioType = EnumAudioType.DTSMA, Language = "english" };
             service.SetCurrentBluRaySummaryInfo(summary);
             string audioName = service.GetAudioName(config, audio, filesOutputPath, paddedEpisodeNumber, episodeName);
             //then audio name should be based on the remux template
-            audioName.Should().Be("\"c:\\bluray\\BatchGuy 1978 1080p FLAC 5.1-Guy english01-5.dts\"");
+            audioName.Should().Be("\"c:\\bluray\\BatchGuy 1978 1080p FLAC 5.1-Guy english01-5.dtsma\"");
         }
 
         [Test]
@@ -443,10 +443,10 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
             IAudioService audioService = new AudioService();
             AbstractEAC3ToOutputNamingService service = new MovieRemuxTemplate1EAC3ToOutputNamingService(audioService);
             service.SetCurrentBluRaySummaryInfo(summary);
-            BluRayTitleAudio audio = new BluRayTitleAudio() { Id = "5:", AudioType = EnumAudioType.DTS, Language = "english", IsCommentary = true };
+            BluRayTitleAudio audio = new BluRayTitleAudio() { Id = "5:", AudioType = EnumAudioType.DTSMA, Language = "english", IsCommentary = true };
             string audioName = service.GetAudioName(config, audio, filesOutputPath, paddedEpisodeNumber, episodeName);
             //then audio name should be based on the remux template and commentary
-            audioName.Should().Be("\"c:\\bluray\\BatchGuy 1978 1080p FLAC 5.1-Guy english01-5-commentary.dts\"");
+            audioName.Should().Be("\"c:\\bluray\\BatchGuy 1978 1080p FLAC 5.1-Guy english01-5-commentary.dtsma\"");
         }
 
         [Test]

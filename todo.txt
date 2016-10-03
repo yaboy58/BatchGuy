@@ -5,6 +5,8 @@ Enhancements:
 *If the user has checked "Check for New BatchGuy Versions" on the Settings Screen, BatchGuy will check to see if new versions of BatchGuy have been released and will display a "new" picture icon on the upper right corner of the Main Screen.  The user can click the icon to navigate to the latest release page and download the latest version.
 *Warning text under the "Is this Remux for a Movie" checkbox on is now red and the caption was modified
 
+DTS is a confusing option, is it express, is it master audio?  Remove it from ALL drop down boxes.  Settings Grid (Audio Output) and BluRay Title Info. In Default Settings Service, remove setting dtsma to dts and -core, just keep -core, it is valid per sk and test
+
 *Introduce Lossless in the settings audio drop down
 *Put red warning on mkvtoolnix options to make sure row selected like on eac3to
 

@@ -57,11 +57,11 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
         }
 
         [Test]
-        public void eacoutputservice_can_set_dts_audio_settings_test()
+        public void eacoutputservice_can_set_dtsexpress_audio_settings_test()
         {
             //given dts and audio settings
             EAC3ToConfiguration config = new EAC3ToConfiguration() {  BatchFilePath = "c:\\temp" };
-            BluRaySummaryInfo summaryInfo = new BluRaySummaryInfo() { Eac3ToId = "1)", BluRayTitleInfo = new BluRayTitleInfo() { EpisodeNumber = "1", AudioList = new List<BluRayTitleAudio>() { new BluRayTitleAudio() {Id="3:", AudioType = EnumAudioType.DTS, IsSelected = true, Arguments = "-core"}}} };
+            BluRaySummaryInfo summaryInfo = new BluRaySummaryInfo() { Eac3ToId = "1)", BluRayTitleInfo = new BluRayTitleInfo() { EpisodeNumber = "1", AudioList = new List<BluRayTitleAudio>() { new BluRayTitleAudio() {Id="3:", AudioType = EnumAudioType.DTSEXPRESS, IsSelected = true, Arguments = "-core"}}} };
             string bluRayPath = "c:\\disc";
             IAudioService audioService = new AudioService();
             AbstractEAC3ToOutputNamingService eac3ToOutputNamingService = new EncodeTemplate1EAC3ToOutputNamingService(audioService);
@@ -78,7 +78,7 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
         {
             //given
             EAC3ToConfiguration config = new EAC3ToConfiguration() { BatchFilePath = "c:\\temp", ShowProgressNumbers = true };
-            BluRaySummaryInfo summaryInfo = new BluRaySummaryInfo() { Eac3ToId = "1)", BluRayTitleInfo = new BluRayTitleInfo() { EpisodeNumber = "1", AudioList = new List<BluRayTitleAudio>() { new BluRayTitleAudio() { Id = "3:", AudioType = EnumAudioType.DTS, IsSelected = true, Arguments = "-core" } } } };
+            BluRaySummaryInfo summaryInfo = new BluRaySummaryInfo() { Eac3ToId = "1)", BluRayTitleInfo = new BluRayTitleInfo() { EpisodeNumber = "1", AudioList = new List<BluRayTitleAudio>() { new BluRayTitleAudio() { Id = "3:", AudioType = EnumAudioType.DTSEXPRESS, IsSelected = true, Arguments = "-core" } } } };
             string bluRayPath = "c:\\disc";
             IAudioService audioService = new AudioService();
             AbstractEAC3ToOutputNamingService eac3ToOutputNamingService = new EncodeTemplate1EAC3ToOutputNamingService(audioService);
@@ -94,7 +94,7 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
         {
             //given
             EAC3ToConfiguration config = new EAC3ToConfiguration() { BatchFilePath = "c:\\temp", ShowProgressNumbers = false };
-            BluRaySummaryInfo summaryInfo = new BluRaySummaryInfo() { Eac3ToId = "1)", BluRayTitleInfo = new BluRayTitleInfo() { EpisodeNumber = "1", AudioList = new List<BluRayTitleAudio>() { new BluRayTitleAudio() { Id = "3:", AudioType = EnumAudioType.DTS, IsSelected = true, Arguments = "-core" } } } };
+            BluRaySummaryInfo summaryInfo = new BluRaySummaryInfo() { Eac3ToId = "1)", BluRayTitleInfo = new BluRayTitleInfo() { EpisodeNumber = "1", AudioList = new List<BluRayTitleAudio>() { new BluRayTitleAudio() { Id = "3:", AudioType = EnumAudioType.DTSEXPRESS, IsSelected = true, Arguments = "-core" } } } };
             string bluRayPath = "c:\\disc";
             IAudioService audioService = new AudioService();
             AbstractEAC3ToOutputNamingService eac3ToOutputNamingService = new EncodeTemplate1EAC3ToOutputNamingService(audioService);

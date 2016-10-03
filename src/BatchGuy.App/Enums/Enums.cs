@@ -14,14 +14,13 @@ namespace BatchGuy.App.Enums
 
     public enum EnumAudioType
     {
-        DTS = 1,
-        AC3 = 2,
-        FLAC = 3,
-        TrueHD = 4,
-        MPA = 5,
-        DTSMA = 6,
-        LPCM = 7,
-        DTSEXPRESS = 8
+        AC3 = 1,
+        FLAC = 2,
+        TrueHD = 3,
+        MPA = 4,
+        DTSMA = 5,
+        LPCM = 6,
+        DTSEXPRESS = 7
     }
 
     public enum EnumBluRayLineItemType
