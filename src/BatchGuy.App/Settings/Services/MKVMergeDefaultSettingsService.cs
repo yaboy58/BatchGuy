@@ -53,7 +53,7 @@ namespace BatchGuy.App.Settings.Services
                         }
                         else if (_applicationSettings.AudioMKVMergeDefaultSettings.AudioTypeFilterCriteria == "Lossless")
                         {
-                            if (_audioService.IsLosslessBluRayAudio(audio.OriginalAudioType))
+                            if (audio.IsLossless)
                             {
                                 audio.IsSelected = true;
                                 this.SetBluRayMKVMergeItemDefaults(audio.MKVMergeItem, _applicationSettings.AudioMKVMergeDefaultSettings.DefaultMKVMergeItem);

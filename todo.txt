@@ -6,22 +6,12 @@ Enhancements:
 *Warning text under the "Is this Remux for a Movie" checkbox on is now red and the caption was modified
 *DTS Audio has been removed in all BatchGuy Audio Type comboboxes.  Users will see DTS Express or DTSMA.  The DTS options was removed to make the application display more accurate information to the user.  It was especially confusing to see DTS and DTSMA items in the same combobox.
 *DTS Express has been added to all appropriate BatchGuy Audio Type comboboxes
-*eac3to Parser has been modifed to be able to distinguish between DTS Express and DTS MA
-
+*eac3to Parser has been modified to be able to distinguish between DTS Express and DTS MA
+*eac3to Parser has been modified to set the BluRayAudio IsLossless flag
 
 *Introduce Lossless in the settings audio drop down
 *Put red warning on mkvtoolnix options to make sure row selected like on eac3to
 
-
-*During title line item processing, create new method for determining if lossless or lossy and add new property to BluRayAudio Class maybe IsLossless.  Once this is done, use this flag instead of what you have now for lossless checked or not
--Lossy
-5: AC3, Czech, 5.1 channels, 384kbps, 48kHz
-12: DTS Express, English, 2.0 channels, 192kbps, 48kHz
-
--Lossless
-*4: DTS Master Audio, English, 5.1 channels, 24 bits, 48kHz
-*3: RAW/PCM, English, 2.0 channels, 24 bits, 48kHz
-*4: TrueHD/AC3 (Atmos), English, 7.1 channels, 48kHz
 
 Notes:
 *Settings is not going to work because the Enum DTS has been removed and the Enu Values were renumbered

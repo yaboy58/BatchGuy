@@ -150,13 +150,28 @@ namespace BatchGuy.App.Parser.Services
             audio.Language = this.GetLanguage(lineItem);
             audio.Text = lineItem.Text;
             audio.OriginalAudioType = audio.AudioType;
+            audio.IsLossless = this.SetIsLosslessAudioFlag(audio.OriginalAudioType);
 
             _bluRayTtileInfo.AudioList.Add(audio);
         }
 
-        private void SetLosslessAudioFlag(EnumAudioType audioType)
+        private bool SetIsLosslessAudioFlag(EnumAudioType audioType)
         {
+            bool isLossless = false;
 
+            switch (audioType)
+            {
+                case EnumAudioType.TrueHD:
+                    isLossless = true;
+                    break;
+                case EnumAudioType.DTSMA:
+                    isLossless = true;
+                    break;
+                case EnumAudioType.LPCM:
+                    isLossless = true;
+                    break;
+            }
+            return isLossless;
         }
 
         private void SetSubtitle(ProcessOutputLineItem lineItem)

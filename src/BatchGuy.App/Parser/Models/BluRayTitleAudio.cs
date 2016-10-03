@@ -19,5 +19,6 @@ namespace BatchGuy.App.Parser.Models
         public bool IsCommentary { get; set; }
         public MKVMergeItem MKVMergeItem { get; set; }
         public EnumAudioType OriginalAudioType { get; set; }
+        public bool IsLossless { get; set; }
     }
 }

@@ -112,24 +112,5 @@ namespace BatchGuy.App.Shared.Services
         {
             return new List<EnumAudioType>() { EnumAudioType.AC3, EnumAudioType.DTSEXPRESS, EnumAudioType.DTSMA, EnumAudioType.LPCM, EnumAudioType.TrueHD };
         }
-
-        public bool IsLosslessBluRayAudio(EnumAudioType audioType)
-        {
-            bool isLossless = false;
-
-            switch (audioType)
-            {
-                case EnumAudioType.TrueHD:
-                    isLossless = true;
-                    break;
-                case EnumAudioType.DTSMA:
-                    isLossless = true;
-                    break;
-                case EnumAudioType.LPCM:
-                    isLossless = true;
-                    break;
-            }
-            return isLossless;
-        }
     }
 }
