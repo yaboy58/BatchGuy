@@ -20,7 +20,8 @@ namespace BatchGuy.App.Enums
         TrueHD = 4,
         MPA = 5,
         DTSMA = 6,
-        LPCM = 7
+        LPCM = 7,
+        DTSEXPRESS = 8
     }
 
     public enum EnumBluRayLineItemType

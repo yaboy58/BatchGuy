@@ -8,6 +8,17 @@ Enhancements:
 *Introduce Lossless in the settings audio drop down
 *Put red warning on mkvtoolnix options to make sure row selected like on eac3to
 
+*Add DTS Express and distinguish between it and dts ma in parser
+*During title line item processing, create new method for determining if lossless or lossy and add new property to BluRayAudio Class maybe IsLossless.  Once this is done, use this flag instead of what you have now for lossless checked or not
+-Lossy
+5: AC3, Czech, 5.1 channels, 384kbps, 48kHz
+12: DTS Express, English, 2.0 channels, 192kbps, 48kHz
+
+-Lossless
+*4: DTS Master Audio, English, 5.1 channels, 24 bits, 48kHz
+*3: RAW/PCM, English, 2.0 channels, 24 bits, 48kHz
+*4: TrueHD/AC3 (Atmos), English, 7.1 channels, 48kHz
+
 --possible nice to haves
 *Think about tackling the multiple vidoes in a single playlist (labyrinth)
 *Think about an exe folder that has all the exes in it already by default/would need to update in the app though
