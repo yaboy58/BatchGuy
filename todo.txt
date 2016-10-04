@@ -8,13 +8,13 @@ Enhancements:
 *DTS Express has been added to all appropriate BatchGuy Audio Type comboboxes
 *eac3to Parser has been modified to be able to distinguish between DTS Express and DTS MA
 *eac3to Parser has been modified to set the BluRayAudio IsLossless flag
-
-*Introduce Lossless in the settings audio drop down
-*Put red warning on mkvtoolnix options to make sure row selected like on eac3to
+*Added "Lossless" item to the Audio Language Always Selected Audio Type drop down on the BatchGuy Settings Screen.  When this option is chosen, all lossless audio that matches what the "Always" selected language will be selected by default on the BluRay Title Info Screen
+*Increased the size of the Executables and BluRay Title Info Defaults Grids on the BatchGuy Settings Screen
+*Added warning text to the MKVToolNixGUI Options on the BluRay Title Info Screen
 
 
 Notes:
-*Settings is not going to work because the Enum DTS has been removed and the Enu Values were renumbered
+*Due to the DTS audio type being removed and the remaining Audio Type Enum values being re-numbered, the (.batchGuySettings) settings file created in previous versions will not work in this version of the software.
 
 --possible nice to haves
 *Think about tackling the multiple vidoes in a single playlist (labyrinth)
@@ -46,3 +46,6 @@ Notes:
 *figure out a better solution to inform of the status of long running tasks
 *Ability to create sample.avs/sample.encode.bat
 *Ability to set the video variable for avisynth for advanced scripting
+
+
+(Make sure a audio/subtitle row is selected before entering mkvmerge information)

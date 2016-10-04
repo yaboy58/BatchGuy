@@ -151,11 +151,11 @@
             this.tlpGroupBox.Location = new System.Drawing.Point(3, 16);
             this.tlpGroupBox.Name = "tlpGroupBox";
             this.tlpGroupBox.RowCount = 5;
-            this.tlpGroupBox.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 27.2628F));
-            this.tlpGroupBox.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 18.1934F));
-            this.tlpGroupBox.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 36.35041F));
-            this.tlpGroupBox.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 18.1934F));
-            this.tlpGroupBox.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tlpGroupBox.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 172F));
+            this.tlpGroupBox.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 103F));
+            this.tlpGroupBox.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 231F));
+            this.tlpGroupBox.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 114F));
+            this.tlpGroupBox.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tlpGroupBox.Size = new System.Drawing.Size(929, 738);
             this.tlpGroupBox.TabIndex = 14;
             // 
@@ -171,7 +171,7 @@
             this.tlpExecutables1.Name = "tlpExecutables1";
             this.tlpExecutables1.RowCount = 1;
             this.tlpExecutables1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpExecutables1.Size = new System.Drawing.Size(923, 141);
+            this.tlpExecutables1.Size = new System.Drawing.Size(923, 166);
             this.tlpExecutables1.TabIndex = 0;
             // 
             // gbExecutables
@@ -181,7 +181,7 @@
             this.gbExecutables.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gbExecutables.Location = new System.Drawing.Point(3, 3);
             this.gbExecutables.Name = "gbExecutables";
-            this.gbExecutables.Size = new System.Drawing.Size(917, 135);
+            this.gbExecutables.Size = new System.Drawing.Size(917, 160);
             this.gbExecutables.TabIndex = 13;
             this.gbExecutables.TabStop = false;
             this.gbExecutables.Text = "Executables";
@@ -198,7 +198,7 @@
             this.tlpExecutables2.Name = "tlpExecutables2";
             this.tlpExecutables2.RowCount = 1;
             this.tlpExecutables2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpExecutables2.Size = new System.Drawing.Size(911, 114);
+            this.tlpExecutables2.Size = new System.Drawing.Size(911, 139);
             this.tlpExecutables2.TabIndex = 1;
             // 
             // dgvExecutables
@@ -217,7 +217,7 @@
             this.dgvExecutables.DataSource = this.bsExecutables;
             this.dgvExecutables.Location = new System.Drawing.Point(3, 3);
             this.dgvExecutables.Name = "dgvExecutables";
-            this.dgvExecutables.Size = new System.Drawing.Size(905, 108);
+            this.dgvExecutables.Size = new System.Drawing.Size(905, 133);
             this.dgvExecutables.TabIndex = 0;
             this.dgvExecutables.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvExecutables_CellClick);
             // 
@@ -262,18 +262,18 @@
             this.tlpEac3toAndRemuxNamingConventionTemplates1.Controls.Add(this.gbEAC3ToDefaultSettings, 1, 0);
             this.tlpEac3toAndRemuxNamingConventionTemplates1.Controls.Add(this.gbRemuxNamingConventionDefaults, 2, 0);
             this.tlpEac3toAndRemuxNamingConventionTemplates1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpEac3toAndRemuxNamingConventionTemplates1.Location = new System.Drawing.Point(3, 150);
+            this.tlpEac3toAndRemuxNamingConventionTemplates1.Location = new System.Drawing.Point(3, 175);
             this.tlpEac3toAndRemuxNamingConventionTemplates1.Name = "tlpEac3toAndRemuxNamingConventionTemplates1";
             this.tlpEac3toAndRemuxNamingConventionTemplates1.RowCount = 1;
             this.tlpEac3toAndRemuxNamingConventionTemplates1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tlpEac3toAndRemuxNamingConventionTemplates1.Size = new System.Drawing.Size(923, 92);
+            this.tlpEac3toAndRemuxNamingConventionTemplates1.Size = new System.Drawing.Size(923, 97);
             this.tlpEac3toAndRemuxNamingConventionTemplates1.TabIndex = 1;
             // 
             // gbBatchGuyNotifications
             // 
             this.gbBatchGuyNotifications.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.gbBatchGuyNotifications.Controls.Add(this.tlpBatchGuyNotifications);
-            this.gbBatchGuyNotifications.Location = new System.Drawing.Point(3, 3);
+            this.gbBatchGuyNotifications.Location = new System.Drawing.Point(3, 6);
             this.gbBatchGuyNotifications.Name = "gbBatchGuyNotifications";
             this.gbBatchGuyNotifications.Size = new System.Drawing.Size(229, 85);
             this.gbBatchGuyNotifications.TabIndex = 13;
@@ -308,7 +308,7 @@
             // 
             this.gbEAC3ToDefaultSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.gbEAC3ToDefaultSettings.Controls.Add(this.tlpEac3toAndRemuxNamingConventionTemplates2);
-            this.gbEAC3ToDefaultSettings.Location = new System.Drawing.Point(238, 3);
+            this.gbEAC3ToDefaultSettings.Location = new System.Drawing.Point(238, 6);
             this.gbEAC3ToDefaultSettings.Name = "gbEAC3ToDefaultSettings";
             this.gbEAC3ToDefaultSettings.Size = new System.Drawing.Size(194, 85);
             this.gbEAC3ToDefaultSettings.TabIndex = 2;
@@ -343,7 +343,7 @@
             // 
             this.gbRemuxNamingConventionDefaults.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.gbRemuxNamingConventionDefaults.Controls.Add(this.tlpEac3toAndRemuxNamingConventionTemplates3);
-            this.gbRemuxNamingConventionDefaults.Location = new System.Drawing.Point(438, 3);
+            this.gbRemuxNamingConventionDefaults.Location = new System.Drawing.Point(438, 6);
             this.gbRemuxNamingConventionDefaults.Name = "gbRemuxNamingConventionDefaults";
             this.gbRemuxNamingConventionDefaults.Size = new System.Drawing.Size(482, 85);
             this.gbRemuxNamingConventionDefaults.TabIndex = 12;
@@ -420,11 +420,11 @@
             this.tlpBluRayTitleInfoDefaults1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tlpBluRayTitleInfoDefaults1.Controls.Add(this.gbBluRayTitleInfoDefaultSettings, 0, 0);
             this.tlpBluRayTitleInfoDefaults1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpBluRayTitleInfoDefaults1.Location = new System.Drawing.Point(3, 248);
+            this.tlpBluRayTitleInfoDefaults1.Location = new System.Drawing.Point(3, 278);
             this.tlpBluRayTitleInfoDefaults1.Name = "tlpBluRayTitleInfoDefaults1";
             this.tlpBluRayTitleInfoDefaults1.RowCount = 1;
             this.tlpBluRayTitleInfoDefaults1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpBluRayTitleInfoDefaults1.Size = new System.Drawing.Size(923, 190);
+            this.tlpBluRayTitleInfoDefaults1.Size = new System.Drawing.Size(923, 225);
             this.tlpBluRayTitleInfoDefaults1.TabIndex = 2;
             // 
             // gbBluRayTitleInfoDefaultSettings
@@ -433,7 +433,7 @@
             this.gbBluRayTitleInfoDefaultSettings.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gbBluRayTitleInfoDefaultSettings.Location = new System.Drawing.Point(3, 3);
             this.gbBluRayTitleInfoDefaultSettings.Name = "gbBluRayTitleInfoDefaultSettings";
-            this.gbBluRayTitleInfoDefaultSettings.Size = new System.Drawing.Size(917, 184);
+            this.gbBluRayTitleInfoDefaultSettings.Size = new System.Drawing.Size(917, 219);
             this.gbBluRayTitleInfoDefaultSettings.TabIndex = 1;
             this.gbBluRayTitleInfoDefaultSettings.TabStop = false;
             this.gbBluRayTitleInfoDefaultSettings.Text = "BluRay Title Info Defaults";
@@ -448,9 +448,9 @@
             this.tlpBluRayTitleInfoDefaults2.Location = new System.Drawing.Point(3, 16);
             this.tlpBluRayTitleInfoDefaults2.Name = "tlpBluRayTitleInfoDefaults2";
             this.tlpBluRayTitleInfoDefaults2.RowCount = 2;
-            this.tlpBluRayTitleInfoDefaults2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30.27523F));
-            this.tlpBluRayTitleInfoDefaults2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 69.72477F));
-            this.tlpBluRayTitleInfoDefaults2.Size = new System.Drawing.Size(911, 165);
+            this.tlpBluRayTitleInfoDefaults2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 19.46903F));
+            this.tlpBluRayTitleInfoDefaults2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 80.53098F));
+            this.tlpBluRayTitleInfoDefaults2.Size = new System.Drawing.Size(911, 200);
             this.tlpBluRayTitleInfoDefaults2.TabIndex = 6;
             // 
             // dgvBluRayTitleInfoDefaultSettingsAudio
@@ -465,9 +465,9 @@
             this.argumentsDataGridViewTextBoxColumn});
             this.dgvBluRayTitleInfoDefaultSettingsAudio.DataSource = this.bsBluRayTitleInfoDefaultSettingsAudio;
             this.dgvBluRayTitleInfoDefaultSettingsAudio.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvBluRayTitleInfoDefaultSettingsAudio.Location = new System.Drawing.Point(3, 52);
+            this.dgvBluRayTitleInfoDefaultSettingsAudio.Location = new System.Drawing.Point(3, 41);
             this.dgvBluRayTitleInfoDefaultSettingsAudio.Name = "dgvBluRayTitleInfoDefaultSettingsAudio";
-            this.dgvBluRayTitleInfoDefaultSettingsAudio.Size = new System.Drawing.Size(905, 110);
+            this.dgvBluRayTitleInfoDefaultSettingsAudio.Size = new System.Drawing.Size(905, 156);
             this.dgvBluRayTitleInfoDefaultSettingsAudio.TabIndex = 6;
             this.dgvBluRayTitleInfoDefaultSettingsAudio.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBluRayTitleInfoDefaultSettingsAudio_CellClick);
             // 
@@ -563,12 +563,12 @@
             this.tlpAudioLanguageDefaults1.Controls.Add(this.chkAudioLanguageAlwaysSelectedEnabled, 0, 0);
             this.tlpAudioLanguageDefaults1.Controls.Add(this.gbAudioMKVMergeDefaultSettings, 0, 1);
             this.tlpAudioLanguageDefaults1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpAudioLanguageDefaults1.Location = new System.Drawing.Point(3, 444);
+            this.tlpAudioLanguageDefaults1.Location = new System.Drawing.Point(3, 509);
             this.tlpAudioLanguageDefaults1.Name = "tlpAudioLanguageDefaults1";
             this.tlpAudioLanguageDefaults1.RowCount = 2;
-            this.tlpAudioLanguageDefaults1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tlpAudioLanguageDefaults1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tlpAudioLanguageDefaults1.Size = new System.Drawing.Size(923, 92);
+            this.tlpAudioLanguageDefaults1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
+            this.tlpAudioLanguageDefaults1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 59F));
+            this.tlpAudioLanguageDefaults1.Size = new System.Drawing.Size(923, 108);
             this.tlpAudioLanguageDefaults1.TabIndex = 3;
             // 
             // chkAudioLanguageAlwaysSelectedEnabled
@@ -585,9 +585,9 @@
             // 
             this.gbAudioMKVMergeDefaultSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.gbAudioMKVMergeDefaultSettings.Controls.Add(this.tlpAudioLanguageDefaults2);
-            this.gbAudioMKVMergeDefaultSettings.Location = new System.Drawing.Point(3, 23);
+            this.gbAudioMKVMergeDefaultSettings.Location = new System.Drawing.Point(3, 27);
             this.gbAudioMKVMergeDefaultSettings.Name = "gbAudioMKVMergeDefaultSettings";
-            this.gbAudioMKVMergeDefaultSettings.Size = new System.Drawing.Size(917, 69);
+            this.gbAudioMKVMergeDefaultSettings.Size = new System.Drawing.Size(917, 77);
             this.gbAudioMKVMergeDefaultSettings.TabIndex = 10;
             this.gbAudioMKVMergeDefaultSettings.TabStop = false;
             this.gbAudioMKVMergeDefaultSettings.Text = "Audio Language Always Selected:";
@@ -610,14 +610,14 @@
             this.tlpAudioLanguageDefaults2.RowCount = 2;
             this.tlpAudioLanguageDefaults2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tlpAudioLanguageDefaults2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpAudioLanguageDefaults2.Size = new System.Drawing.Size(911, 50);
+            this.tlpAudioLanguageDefaults2.Size = new System.Drawing.Size(911, 58);
             this.tlpAudioLanguageDefaults2.TabIndex = 27;
             // 
             // lblAudioMKVMergeDefaultSettingsLanguage
             // 
             this.lblAudioMKVMergeDefaultSettingsLanguage.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblAudioMKVMergeDefaultSettingsLanguage.AutoSize = true;
-            this.lblAudioMKVMergeDefaultSettingsLanguage.Location = new System.Drawing.Point(3, 6);
+            this.lblAudioMKVMergeDefaultSettingsLanguage.Location = new System.Drawing.Point(3, 8);
             this.lblAudioMKVMergeDefaultSettingsLanguage.Name = "lblAudioMKVMergeDefaultSettingsLanguage";
             this.lblAudioMKVMergeDefaultSettingsLanguage.Size = new System.Drawing.Size(101, 13);
             this.lblAudioMKVMergeDefaultSettingsLanguage.TabIndex = 18;
@@ -632,7 +632,7 @@
             "determine automatically",
             "yes",
             "no"});
-            this.cbAudioMKVMergeDefaultSettingsDefaultTrackFlag.Location = new System.Drawing.Point(609, 28);
+            this.cbAudioMKVMergeDefaultSettingsDefaultTrackFlag.Location = new System.Drawing.Point(609, 32);
             this.cbAudioMKVMergeDefaultSettingsDefaultTrackFlag.Name = "cbAudioMKVMergeDefaultSettingsDefaultTrackFlag";
             this.cbAudioMKVMergeDefaultSettingsDefaultTrackFlag.Size = new System.Drawing.Size(169, 21);
             this.cbAudioMKVMergeDefaultSettingsDefaultTrackFlag.TabIndex = 10;
@@ -651,7 +651,7 @@
             "DTSMA",
             "LPCM",
             "TrueHD"});
-            this.cbAudioMKVMergeDefaultSettingsAudioType.Location = new System.Drawing.Point(306, 28);
+            this.cbAudioMKVMergeDefaultSettingsAudioType.Location = new System.Drawing.Point(306, 32);
             this.cbAudioMKVMergeDefaultSettingsAudioType.Name = "cbAudioMKVMergeDefaultSettingsAudioType";
             this.cbAudioMKVMergeDefaultSettingsAudioType.Size = new System.Drawing.Size(186, 21);
             this.cbAudioMKVMergeDefaultSettingsAudioType.TabIndex = 9;
@@ -661,7 +661,7 @@
             // 
             this.lblAudioMKVMergeDefaultSettingsDefaultTrackFlag.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblAudioMKVMergeDefaultSettingsDefaultTrackFlag.AutoSize = true;
-            this.lblAudioMKVMergeDefaultSettingsDefaultTrackFlag.Location = new System.Drawing.Point(609, 6);
+            this.lblAudioMKVMergeDefaultSettingsDefaultTrackFlag.Location = new System.Drawing.Point(609, 8);
             this.lblAudioMKVMergeDefaultSettingsDefaultTrackFlag.Name = "lblAudioMKVMergeDefaultSettingsDefaultTrackFlag";
             this.lblAudioMKVMergeDefaultSettingsDefaultTrackFlag.Size = new System.Drawing.Size(98, 13);
             this.lblAudioMKVMergeDefaultSettingsDefaultTrackFlag.TabIndex = 22;
@@ -671,7 +671,7 @@
             // 
             this.lblAudioMKVMergeDefaultSettingsAudioType.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblAudioMKVMergeDefaultSettingsAudioType.AutoSize = true;
-            this.lblAudioMKVMergeDefaultSettingsAudioType.Location = new System.Drawing.Point(306, 6);
+            this.lblAudioMKVMergeDefaultSettingsAudioType.Location = new System.Drawing.Point(306, 8);
             this.lblAudioMKVMergeDefaultSettingsAudioType.Name = "lblAudioMKVMergeDefaultSettingsAudioType";
             this.lblAudioMKVMergeDefaultSettingsAudioType.Size = new System.Drawing.Size(97, 13);
             this.lblAudioMKVMergeDefaultSettingsAudioType.TabIndex = 26;
@@ -683,7 +683,7 @@
             this.cbAudioMKVMergeDefaultSettingsLanguage.DisplayMember = "Name";
             this.cbAudioMKVMergeDefaultSettingsLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbAudioMKVMergeDefaultSettingsLanguage.FormattingEnabled = true;
-            this.cbAudioMKVMergeDefaultSettingsLanguage.Location = new System.Drawing.Point(3, 28);
+            this.cbAudioMKVMergeDefaultSettingsLanguage.Location = new System.Drawing.Point(3, 32);
             this.cbAudioMKVMergeDefaultSettingsLanguage.Name = "cbAudioMKVMergeDefaultSettingsLanguage";
             this.cbAudioMKVMergeDefaultSettingsLanguage.Size = new System.Drawing.Size(278, 21);
             this.cbAudioMKVMergeDefaultSettingsLanguage.TabIndex = 8;
@@ -702,12 +702,12 @@
             this.tlpSubtitleLanguageDefaults1.Controls.Add(this.chkSubtitleLanguageAlwaysSelectedEnabled, 0, 0);
             this.tlpSubtitleLanguageDefaults1.Controls.Add(this.gbSubtitlesMKVMergeDefaultSettings, 0, 1);
             this.tlpSubtitleLanguageDefaults1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpSubtitleLanguageDefaults1.Location = new System.Drawing.Point(3, 542);
+            this.tlpSubtitleLanguageDefaults1.Location = new System.Drawing.Point(3, 623);
             this.tlpSubtitleLanguageDefaults1.Name = "tlpSubtitleLanguageDefaults1";
             this.tlpSubtitleLanguageDefaults1.RowCount = 2;
-            this.tlpSubtitleLanguageDefaults1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 18.85246F));
-            this.tlpSubtitleLanguageDefaults1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 81.14754F));
-            this.tlpSubtitleLanguageDefaults1.Size = new System.Drawing.Size(923, 193);
+            this.tlpSubtitleLanguageDefaults1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 21.55172F));
+            this.tlpSubtitleLanguageDefaults1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 78.44827F));
+            this.tlpSubtitleLanguageDefaults1.Size = new System.Drawing.Size(923, 112);
             this.tlpSubtitleLanguageDefaults1.TabIndex = 4;
             // 
             // chkSubtitleLanguageAlwaysSelectedEnabled
@@ -724,9 +724,9 @@
             // 
             this.gbSubtitlesMKVMergeDefaultSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.gbSubtitlesMKVMergeDefaultSettings.Controls.Add(this.tlpSubtitleLanguageDefaults2);
-            this.gbSubtitlesMKVMergeDefaultSettings.Location = new System.Drawing.Point(3, 80);
+            this.gbSubtitlesMKVMergeDefaultSettings.Location = new System.Drawing.Point(3, 29);
             this.gbSubtitlesMKVMergeDefaultSettings.Name = "gbSubtitlesMKVMergeDefaultSettings";
-            this.gbSubtitlesMKVMergeDefaultSettings.Size = new System.Drawing.Size(917, 68);
+            this.gbSubtitlesMKVMergeDefaultSettings.Size = new System.Drawing.Size(917, 78);
             this.gbSubtitlesMKVMergeDefaultSettings.TabIndex = 3;
             this.gbSubtitlesMKVMergeDefaultSettings.TabStop = false;
             this.gbSubtitlesMKVMergeDefaultSettings.Text = "Subtitle Language Always Selected:";
@@ -746,14 +746,14 @@
             this.tlpSubtitleLanguageDefaults2.RowCount = 2;
             this.tlpSubtitleLanguageDefaults2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tlpSubtitleLanguageDefaults2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpSubtitleLanguageDefaults2.Size = new System.Drawing.Size(911, 49);
+            this.tlpSubtitleLanguageDefaults2.Size = new System.Drawing.Size(911, 59);
             this.tlpSubtitleLanguageDefaults2.TabIndex = 23;
             // 
             // lblSubtitlesMKVMergeDefaultSettingsLanguage
             // 
             this.lblSubtitlesMKVMergeDefaultSettingsLanguage.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblSubtitlesMKVMergeDefaultSettingsLanguage.AutoSize = true;
-            this.lblSubtitlesMKVMergeDefaultSettingsLanguage.Location = new System.Drawing.Point(3, 5);
+            this.lblSubtitlesMKVMergeDefaultSettingsLanguage.Location = new System.Drawing.Point(3, 8);
             this.lblSubtitlesMKVMergeDefaultSettingsLanguage.Name = "lblSubtitlesMKVMergeDefaultSettingsLanguage";
             this.lblSubtitlesMKVMergeDefaultSettingsLanguage.Size = new System.Drawing.Size(101, 13);
             this.lblSubtitlesMKVMergeDefaultSettingsLanguage.TabIndex = 18;
@@ -767,7 +767,7 @@
             "determine automatically",
             "yes",
             "no"});
-            this.cbSubtitlesMKVMergeDefaultSettingsDefaultTrackFlag.Location = new System.Drawing.Point(458, 27);
+            this.cbSubtitlesMKVMergeDefaultSettingsDefaultTrackFlag.Location = new System.Drawing.Point(458, 32);
             this.cbSubtitlesMKVMergeDefaultSettingsDefaultTrackFlag.Name = "cbSubtitlesMKVMergeDefaultSettingsDefaultTrackFlag";
             this.cbSubtitlesMKVMergeDefaultSettingsDefaultTrackFlag.Size = new System.Drawing.Size(169, 21);
             this.cbSubtitlesMKVMergeDefaultSettingsDefaultTrackFlag.TabIndex = 13;
@@ -777,7 +777,7 @@
             // 
             this.lblSubtitlesMKVMergeDefaultSettingsDefaultTrackFlag.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblSubtitlesMKVMergeDefaultSettingsDefaultTrackFlag.AutoSize = true;
-            this.lblSubtitlesMKVMergeDefaultSettingsDefaultTrackFlag.Location = new System.Drawing.Point(458, 5);
+            this.lblSubtitlesMKVMergeDefaultSettingsDefaultTrackFlag.Location = new System.Drawing.Point(458, 8);
             this.lblSubtitlesMKVMergeDefaultSettingsDefaultTrackFlag.Name = "lblSubtitlesMKVMergeDefaultSettingsDefaultTrackFlag";
             this.lblSubtitlesMKVMergeDefaultSettingsDefaultTrackFlag.Size = new System.Drawing.Size(98, 13);
             this.lblSubtitlesMKVMergeDefaultSettingsDefaultTrackFlag.TabIndex = 22;
@@ -789,7 +789,7 @@
             this.cbSubtitlesMKVMergeDefaultSettingsLanguage.DisplayMember = "Name";
             this.cbSubtitlesMKVMergeDefaultSettingsLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbSubtitlesMKVMergeDefaultSettingsLanguage.FormattingEnabled = true;
-            this.cbSubtitlesMKVMergeDefaultSettingsLanguage.Location = new System.Drawing.Point(3, 27);
+            this.cbSubtitlesMKVMergeDefaultSettingsLanguage.Location = new System.Drawing.Point(3, 32);
             this.cbSubtitlesMKVMergeDefaultSettingsLanguage.Name = "cbSubtitlesMKVMergeDefaultSettingsLanguage";
             this.cbSubtitlesMKVMergeDefaultSettingsLanguage.Size = new System.Drawing.Size(298, 21);
             this.cbSubtitlesMKVMergeDefaultSettingsLanguage.TabIndex = 12;
