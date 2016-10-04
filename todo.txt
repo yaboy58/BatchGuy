@@ -14,7 +14,7 @@ Enhancements:
 
 
 Notes:
-*Due to the DTS audio type being removed and the remaining Audio Type Enum values being re-numbered, the (.batchGuySettings) settings file created in previous versions will not work in this version of the software.
+*Due to the DTS audio type being removed and the remaining Audio Type Enum values being re-numbered, the (.batchGuySettings) and (.batchGuyEac3toSettings) settings files created in previous versions will not work in this version of the software.
 
 --possible nice to haves
 *Think about tackling the multiple vidoes in a single playlist (labyrinth)
