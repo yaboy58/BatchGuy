@@ -125,6 +125,7 @@ namespace BatchGuy.App
             }
         }
 
+        #region Load BluRayTitleInfo
         private void LoadBluRayTitleInfo()
         {
             CommandLineProcessStartInfo commandLineProcessStartInfo = new CommandLineProcessStartInfo()
@@ -145,6 +146,59 @@ namespace BatchGuy.App
             }
         }
 
+        private void bgwEac3toLoadTitle_DoWork(object sender, DoWorkEventArgs e)
+        {
+            try
+            {
+                IJsonSerializationService<ISOLanguageCodeCollection> jsonSerializationService = new JsonSerializationService<ISOLanguageCodeCollection>();
+                IMKVMergeLanguageService languageService = new MKVMergeLanguageService(jsonSerializationService);
+                ICommandLineProcessService commandLineProcessService = e.Argument as CommandLineProcessService;
+                List<ProcessOutputLineItem> processOutputLineItems = commandLineProcessService.GetProcessOutputLineItems();
+                ILineItemIdentifierService lineItemService = new BluRayTitleLineItemIdentifierService();
+                IBluRayTitleParserService parserService = new BluRayTitleParserService(lineItemService, processOutputLineItems, languageService);
+                _bluRaySummaryInfo.BluRayTitleInfo = parserService.GetTitleInfo();
+            }
+            catch (Exception ex)
+            {
+                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was a problem loading the title!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
+            }
+        }
+
+        private void bgwEac3toLoadTitle_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            try
+            {
+                if ((_bluRaySummaryInfo.BluRayTitleInfo == null) || (_bluRaySummaryInfo.BluRayTitleInfo.AudioList == null && _bluRaySummaryInfo.BluRayTitleInfo.Chapter == null && _bluRaySummaryInfo.BluRayTitleInfo.Subtitles == null
+                    && _bluRaySummaryInfo.BluRayTitleInfo.Video == null))
+                {
+                    if (_bluRaySummaryInfo.BluRayTitleInfo != null && !string.IsNullOrEmpty(_bluRaySummaryInfo.BluRayTitleInfo.HeaderText))
+                    {
+                        MessageBox.Show(string.Format("Blu-ray Title could not be loaded.  eac3to returned the following: {0}{1}", Environment.NewLine, _bluRaySummaryInfo.BluRayTitleInfo.HeaderText), "Invalid Blu-ray Title", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Blu-ray Title could not be loaded probably because it does not contain any tracks.", "Invalid Blu-ray Title", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    _bluRaySummaryInfo.BluRayTitleInfo = null;
+                }
+                else
+                {
+                    this.SetBluRayTitleInfoDefaultSettings();
+                    this.LoadScreen();
+                    txtEpisodeNumber.Select();
+                    this.SortAudioGrid(2); //sort language 
+                    this.SortSubtitleGrid(2); //sort language
+                    this.SetMKVMergetItemDefaults();
+                    this.SetGridRowBackgroundIfUndetermindLanguage();
+                    gbScreen.SetEnabled(true);
+                }
+            }
+            catch (Exception ex)
+            {
+                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was a problem loading the title!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
+            }
+        }
+        #endregion
         private void LoadScreen()
         {
             this.LoadTitle();
@@ -447,59 +501,6 @@ namespace BatchGuy.App
                     _currentBluRayTitleSubtitle = null;
                     this.LoadSubtitles();
                 }
-            }
-        }
-
-        private void bgwEac3toLoadTitle_DoWork(object sender, DoWorkEventArgs e)
-        {
-            try
-            {
-                IJsonSerializationService<ISOLanguageCodeCollection> jsonSerializationService = new JsonSerializationService<ISOLanguageCodeCollection>();
-                IMKVMergeLanguageService languageService = new MKVMergeLanguageService(jsonSerializationService);
-                ICommandLineProcessService commandLineProcessService = e.Argument as CommandLineProcessService;
-                List<ProcessOutputLineItem> processOutputLineItems = commandLineProcessService.GetProcessOutputLineItems();
-                ILineItemIdentifierService lineItemService = new BluRayTitleLineItemIdentifierService();
-                IBluRayTitleParserService parserService = new BluRayTitleParserService(lineItemService, processOutputLineItems, languageService);
-                _bluRaySummaryInfo.BluRayTitleInfo = parserService.GetTitleInfo();
-            }
-            catch (Exception ex)
-            {
-                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was a problem loading the title!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
-            }
-        }
-
-        private void bgwEac3toLoadTitle_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            try
-            {
-                if ((_bluRaySummaryInfo.BluRayTitleInfo == null) || (_bluRaySummaryInfo.BluRayTitleInfo.AudioList == null && _bluRaySummaryInfo.BluRayTitleInfo.Chapter == null && _bluRaySummaryInfo.BluRayTitleInfo.Subtitles == null
-                    && _bluRaySummaryInfo.BluRayTitleInfo.Video == null))
-                {
-                    if (_bluRaySummaryInfo.BluRayTitleInfo != null && !string.IsNullOrEmpty(_bluRaySummaryInfo.BluRayTitleInfo.HeaderText))
-                    {
-                        MessageBox.Show(string.Format("Blu-ray Title could not be loaded.  eac3to returned the following: {0}{1}", Environment.NewLine, _bluRaySummaryInfo.BluRayTitleInfo.HeaderText), "Invalid Blu-ray Title", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    else
-                    {
-                        MessageBox.Show("Blu-ray Title could not be loaded probably because it does not contain any tracks.", "Invalid Blu-ray Title", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    _bluRaySummaryInfo.BluRayTitleInfo = null;
-                }
-                else
-                {
-                    this.SetBluRayTitleInfoDefaultSettings();
-                    this.LoadScreen();
-                    txtEpisodeNumber.Select();
-                    this.SortAudioGrid(2); //sort language 
-                    this.SortSubtitleGrid(2); //sort language
-                    this.SetMKVMergetItemDefaults();
-                    this.SetGridRowBackgroundIfUndetermindLanguage();
-                    gbScreen.SetEnabled(true);
-                }
-            }
-            catch (Exception ex)
-            {
-                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was a problem loading the title!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
             }
         }
 
