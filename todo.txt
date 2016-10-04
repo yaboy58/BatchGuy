@@ -12,8 +12,6 @@ Enhancements:
 *Increased the size of the Executables and BluRay Title Info Defaults Grids on the Settings Screen
 *Added red warning text to the MKVToolNixGUI Options on the BluRay Title Info Screen
 
-Bugs:
-*On the Settings Screen, Select all subtitles and the Subtitle Language Always Selected section cannot be selected at the same time.
 
 Notes:
 *Due to the DTS audio type being removed and the remaining Audio Type Enum values being re-numbered, the (.batchGuySettings) and (.batchGuyEac3toSettings) settings files created in previous versions will not work in this version of the software.  If you attempt to use these files created in prior versions you will get errors, incorrect options chosen or both.

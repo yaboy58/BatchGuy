@@ -182,16 +182,6 @@ namespace BatchGuy.App
         private void HandlesChkBluRayTitleInfoDefaultSettingsSelectSubtitlesCheckedChanged()
         {
             Program.ApplicationSettings.BluRayTitleInfoDefaultSettings.SelectAllSubtitles = chkBluRayTitleInfoDefaultSettingsSelectSubtitles.Checked;
-            if (Program.ApplicationSettings.BluRayTitleInfoDefaultSettings.SelectAllSubtitles)
-            {
-                chkSubtitleLanguageAlwaysSelectedEnabled.Checked = false;
-                chkSubtitleLanguageAlwaysSelectedEnabled.SetEnabled(false);
-            }
-            else
-            {
-                chkSubtitleLanguageAlwaysSelectedEnabled.SetEnabled(true);
-                gbSubtitlesMKVMergeDefaultSettings.SetEnabled(true);
-            }
         }
 
         private void chkBluRayTitleInfoDefaultSettingsSelectChapters_CheckedChanged(object sender, EventArgs e)
@@ -244,10 +234,6 @@ namespace BatchGuy.App
         {
             Program.ApplicationSettings.SubtitleLanguageAlwaysSelectedEnabled = chkSubtitleLanguageAlwaysSelectedEnabled.Checked;
             gbSubtitlesMKVMergeDefaultSettings.Enabled = Program.ApplicationSettings.SubtitleLanguageAlwaysSelectedEnabled;
-            if (Program.ApplicationSettings.SubtitleLanguageAlwaysSelectedEnabled)
-            {
-                chkBluRayTitleInfoDefaultSettingsSelectSubtitles.Checked = false;
-            }
         }
 
         private void cbSubtitlesMKVMergeDefaultSettingsLanguage_SelectedIndexChanged(object sender, EventArgs e)
