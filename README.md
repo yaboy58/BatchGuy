@@ -4,7 +4,7 @@ One of my hobbies is to collect full Blu-ray discs and to either remux or encode
 
 The problem that I faced is that most of the GUI tools available do not allow you to work with Blu-rays from a batch point of view.  This is fine for movies but having to manually work with each stream on each disc for each episode is very tiresome.  Because of this, I decided to make my own tool to ease some of the pain. 
 
-As I continued to make modifications to BatchGuy, I started to think that this tool could possibly be helpful to other Blu-ray encoders such as myself, so I decided to share this tool with the community.
+As I continued to make modifications to BatchGuy, I started to think that this tool could possibly be helpful to other Blu-ray encoders and remuxers such as myself, so I decided to share this tool with the community.
 
 <h1>What BatchGuy isn’t?</h1>
 BatchGuy was created to do a specific job, which is to allow the user to be able to easily extract streams from multiple ripped Blu-ray dics, place them in an individual episode number directory, create AviSynth scripts per episode and apply global x264 encode settings for each episode.  
