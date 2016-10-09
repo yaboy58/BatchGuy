@@ -1,20 +1,7 @@
 --todo
-Enhancements:
-*Menu on the Main Screen is now disabled if there was an error trying to load the settings file
-*Check for new BatchGuy Versions checkbox added to the Settings Screen. 
-*If the user has checked "Check for New BatchGuy Versions" on the Settings Screen, BatchGuy will check to see if new versions of BatchGuy have been released and will display a "new" picture icon on the upper right corner of the Main Screen.  The user can click the icon to navigate to the latest release page and download the latest version.
-*Warning text under the "Is this Remux for a Movie" checkbox on the Create eac3to Batch File Screen is now red and the caption was modified
-*DTS Audio has been removed in all BatchGuy Audio Type comboboxes.  Users will see DTS Express or DTSMA.  The DTS options was removed to make the application display more accurate information to the user.  It was especially confusing to see DTS and DTSMA items in the same combobox.
-*DTS Express has been added to all the appropriate BatchGuy Audio Type comboboxes
-*The eac3to Parser has been modified to be able to distinguish between DTS Express and DTSMA
-*The eac3to Parser has been modified to set the Blu-ray Audio IsLossless flag
-*Added "Lossless" item to the Audio Language Always Selected Audio Type drop down on the Settings Screen.  When this option is chosen, all lossless audio that matches what the "Audio Language Awlays Selected" language will be selected by default on the BluRay Title Info Screen
-*Increased the size of the Executables and BluRay Title Info Defaults Grids on the Settings Screen
-*Added red warning text to the MKVToolNixGUI Options on the BluRay Title Info Screen
 
-
-Notes:
-*Due to the DTS audio type being removed and the remaining Audio Type Enum values being re-numbered, the (.batchGuySettings) and (.batchGuyEac3toSettings) settings files created in previous versions will not work in this version of the software.  If you attempt to use these files created in prior versions you will get errors, incorrect options chosen or both.
+Add country drop down to remux template for discs from other countries
+External audio
 
 --possible nice to haves
 *Think about tackling the multiple vidoes in a single playlist (labyrinth)
