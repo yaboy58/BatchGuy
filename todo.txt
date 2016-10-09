@@ -1,22 +1,28 @@
 --todo
 
-Add country drop down to remux template for discs from other countries
-External audio
+*Add country drop down to remux template for discs from other countries
+-https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes
+--Use Slim3
+
+Add a link to avisynth
 
 --possible nice to haves
+*Add External audio
+
 *Think about tackling the multiple vidoes in a single playlist (labyrinth)
-*Think about an exe folder that has all the exes in it already by default/would need to update in the app though
 
 *ExtensionMethods.NumberOfEpisodes needs to filter on summary.episodenumber != null as well for cases where isselected by no episode number.  Not changing it now due to not knowing what the effects are
 
+
 *Default the MKVToolNixGUI Track Name to "Commentary" if commentary checkbox is checked
+
+
 *When a single file contains multiple episodes :
 	1) Go by the actually episode number entered in the loop
 	2) Validate on the screen
 
 
 *Create a batchguy log file that indicates how many files were processed and how long it took
-*Make the Season Number on Create eac3to Batch File optional (so movies can be remuxed)
 
 
 *Rename EnumBluRayLineItemType to have eac3to in the title, to prepare for tsMuxeR OR Make the identifylineitem service generic to pass in any enum or a combo of these
@@ -30,9 +36,13 @@ External audio
 *maybe add a check all checkbox to grids with is selected
 -http://dotnetvisio.blogspot.com/2015/08/create-select-all-checkbox-column.html
 
+
 *figure out a better solution to inform of the status of long running tasks
+
+
 *Ability to create sample.avs/sample.encode.bat
+
+
 *Ability to set the video variable for avisynth for advanced scripting
 
 
-(Make sure a audio/subtitle row is selected before entering mkvmerge information)
