@@ -87,6 +87,7 @@
     <Compile Include="Services\Parser\CommandLineProcessServiceTests.cs" />
     <Compile Include="Services\Settings\BluRayTitleInfoDefaultSettingsServiceTests.cs" />
     <Compile Include="Services\Shared\AudioServiceTests.cs" />
+    <Compile Include="Services\Shared\CountryCodeServiceTests.cs" />
     <Compile Include="Services\Shared\EAC3ToCommonRulesValidatorServiceTests.cs" />
     <Compile Include="Services\Shared\SortServiceTests.cs" />
     <Compile Include="Services\X264Log\X264LogLineItemIdentifierServiceTests.cs" />
