@@ -20,12 +20,12 @@ namespace BatchGuy.App.Shared.Services
             _countryCodes = this.GetCountryCodeItems();
         }
 
-        public CountryCodeItem GetCountryCodeByCountry(string country)
+        public CountryCodeItem GetCountryCodeByISOLongCode(string isoLongCode)
         {
-            if (string.IsNullOrEmpty(country))
+            if (string.IsNullOrEmpty(isoLongCode))
                 return null;
 
-            return _countryCodes.Where(c => c.Name.ToLower() == country.ToLower()).Single();
+            return _countryCodes.Where(c => c.Value.ToLower() == isoLongCode.ToLower()).SingleOrDefault();
         }
 
         public List<CountryCodeItem> GetCountryCodes()

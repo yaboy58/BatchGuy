@@ -26,13 +26,13 @@ namespace BatchGuy.Unit.Tests.Services.Shared
         }
 
         [Test]
-        public void countrycodeservice_can_get_country_code_by_country_test()
+        public void countrycodeservice_can_get_country_code_by_iso_long_code_test()
         {
             //given
             ICountryCodeService service = new CountryCodeService(new JsonSerializationService<ISOCountryCodeCollection>());
-            string country = "Papua New Guinea";
+            string isoLongCode = "PNG";
             //when
-            var countryCode = service.GetCountryCodeByCountry(country);
+            var countryCode = service.GetCountryCodeByISOLongCode(isoLongCode);
             //then 
             countryCode.Value.Should().Be("PNG");
         }

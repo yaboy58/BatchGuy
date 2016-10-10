@@ -90,10 +90,17 @@ namespace BatchGuy.App.Eac3To.Services
             if (eac3toConfiguration.IsExtractForRemux == true)
             {
                 string tag = this.GetFormattedTag(eac3toConfiguration, paddedEpisodeNumber, episodeName);
-                string videoName = string.Format("{0}{1}{2}E{3}{4}{5}{6}{7}{8}", eac3toConfiguration.RemuxFileNameTemplate.SeriesName, this.GetFormattedYear(eac3toConfiguration),
+                string videoName = string.Format("{0}{1}{2}E{3}{4}{5}{6}{7}{8}{9}", 
+                    eac3toConfiguration.RemuxFileNameTemplate.SeriesName, 
+                    this.GetFormattedYear(eac3toConfiguration),
                     this.GetFormattedSeasonNumber(eac3toConfiguration),
-                    this.GetFormattedPaddedEpisodeNumber(paddedEpisodeNumber), this.GetFormattedEpisodeName(episodeName), this.GetFormattedVideoResolution(eac3toConfiguration), this.GetFormattedMedium(eac3toConfiguration),
-                    this.GetFormattedVideoFormat(eac3toConfiguration), this.GetFormattedAuditoType(eac3toConfiguration));
+                    this.GetFormattedPaddedEpisodeNumber(paddedEpisodeNumber), 
+                    this.GetFormattedEpisodeName(episodeName), 
+                    this.GetFormattedVideoResolution(eac3toConfiguration), 
+                    this.GetFormattedCountry(eac3toConfiguration),
+                    this.GetFormattedMedium(eac3toConfiguration), 
+                    this.GetFormattedVideoFormat(eac3toConfiguration), 
+                    this.GetFormattedAuditoType(eac3toConfiguration));
 
                 sb.Append(string.Format("\"{0}\\{1}{2}.mkv\"", filesOutputPath, this.AddWordSeparator(eac3toConfiguration.IsExtractForRemux, eac3toConfiguration.RemuxFileNameTemplate.UsePeriodsInFileName, videoName.Trim().RemoveDoubleSpaces()), tag));
             }
@@ -180,6 +187,14 @@ namespace BatchGuy.App.Eac3To.Services
                 tag = string.Format("-{0}", eac3toConfiguration.RemuxFileNameTemplate.Tag);
             }
             return tag;
+        }
+
+        private string GetFormattedCountry(EAC3ToConfiguration eac3toConfiguration)
+        {
+            string country = string.Empty;
+            if (!string.IsNullOrEmpty(eac3toConfiguration.RemuxFileNameTemplate.Country))
+                country = string.Format(" {0} ", eac3toConfiguration.RemuxFileNameTemplate.Country);
+            return country;
         }
     }
 }

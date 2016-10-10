@@ -10,6 +10,6 @@ namespace BatchGuy.App.Shared.Interfaces
     public interface ICountryCodeService
     {
         List<CountryCodeItem> GetCountryCodes();
-        CountryCodeItem GetCountryCodeByCountry(string country);
+        CountryCodeItem GetCountryCodeByISOLongCode(string isoLongCode);
     }
 }
