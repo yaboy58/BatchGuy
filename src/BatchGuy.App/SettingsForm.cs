@@ -358,7 +358,7 @@ namespace BatchGuy.App
             {
                 case "Template 1":
                     type = EnumEAC3ToNamingConventionType.RemuxNamingConventionTemplate1;
-                    lblRemuxNamingConventionExample.Text = "TV Show S01E01 Episode Name 1080p Remux AVC FLAC5.1-Tag.mkv";
+                    lblRemuxNamingConventionExample.Text = "TV Show S01E01 Episode Name 1080p JPN Remux AVC FLAC5.1-Tag.mkv";
                     break;
                 case "Template 2":
                     type = EnumEAC3ToNamingConventionType.RemuxNamingConventionTemplate2;

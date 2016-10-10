@@ -927,7 +927,7 @@ namespace BatchGuy.App
             switch (Program.ApplicationSettings.EnumEAC3ToNamingConventionType)
             {
                 case EnumEAC3ToNamingConventionType.RemuxNamingConventionTemplate1:
-                    lblRemuxNamingConventionCurrentTemplateExample.Text = "Template 1: TV Show 1978 S01E01 Episode 1 1080p Remux AVC FLAC7.1 -Tag.mkv";
+                    lblRemuxNamingConventionCurrentTemplateExample.Text = "Template 1: TV Show 1978 S01E01 Episode 1 1080p JPN Remux AVC FLAC7.1 -Tag.mkv";
                     break;
                 case EnumEAC3ToNamingConventionType.RemuxNamingConventionTemplate2:
                     lblRemuxNamingConventionCurrentTemplateExample.Text = "Template 2: TV Show, S01E01 (2016).mkv";

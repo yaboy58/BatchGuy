@@ -1,11 +1,6 @@
 --todo
 
 *Add country drop down to remux template for discs from other countries
--https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes
---Use Slim3
--add country code to template label for settings and eac3to
--make sure dropdown says Country - (alpha3)
-
 
 Add a link to avisynth
 
