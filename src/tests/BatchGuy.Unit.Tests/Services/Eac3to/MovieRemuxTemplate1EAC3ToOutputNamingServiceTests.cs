@@ -578,5 +578,43 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
             //then video name should throw an exception
             action.ShouldThrow<NullReferenceException>().WithMessage("Current Movie Template is Null.");
         }
+
+        [Test]
+        public void movieRemuxTemplate1EAC3ToOutputNamingService_can_set_video_name_with_country_test()
+        {
+            //given not extract for remux
+            BluRaySummaryInfo summary = new BluRaySummaryInfo()
+            {
+                IsSelected = true,
+                RemuxFileNameForMovieTemplate =
+                new EAC3ToRemuxFileNameTemplate()
+                {
+                    AudioType = "FLAC 5.1",
+                    SeriesName = "BatchGuy",
+                    SeasonNumber = "2",
+                    SeasonYear = "1978",
+                    Tag = "Guy",
+                    VideoResolution = "1080p",
+                    Country = "PNG"
+                }
+            };
+
+            EAC3ToConfiguration config = new EAC3ToConfiguration()
+            {
+                IsExtractForRemux = true,
+                IfIsExtractForRemuxIsItForAMovie = true
+            };
+
+            string filesOutputPath = "c:\\bluray";
+            string paddedEpisodeNumber = "01";
+            string episodeName = string.Empty;
+            //when i get the video name
+            IAudioService audioService = new AudioService();
+            AbstractEAC3ToOutputNamingService service = new MovieRemuxTemplate1EAC3ToOutputNamingService(audioService);
+            service.SetCurrentBluRaySummaryInfo(summary);
+            string videoName = service.GetVideoName(config, filesOutputPath, paddedEpisodeNumber, episodeName);
+            //then video name should be based on the remux template
+            videoName.Should().Be("\"c:\\bluray\\BatchGuy 1978 1080p PNG FLAC 5.1-Guy.mkv\"");
+        }
     }
 }

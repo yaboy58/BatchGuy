@@ -1,8 +1,6 @@
 --todo
-
-*Add country drop down to remux template for discs from other countries
-
-Add a link to avisynth
+*Added the ISO Long Country Code to the Remux Template on the Create eac3to Batch File Screen
+*BatchGuy now has 160 Unit Tests
 
 --possible nice to haves
 *Add External audio

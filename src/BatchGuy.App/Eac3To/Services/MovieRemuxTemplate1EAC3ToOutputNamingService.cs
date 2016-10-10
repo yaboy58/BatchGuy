@@ -28,9 +28,14 @@ namespace BatchGuy.App.Eac3To.Services
             if (eac3toConfiguration.IsExtractForRemux == true && eac3toConfiguration.IfIsExtractForRemuxIsItForAMovie)
             {
                 string tag = this.GetFormattedTag(eac3toConfiguration, paddedEpisodeNumber);
-                string audioName = string.Format("{0}{1}{2}{3}{4}{5}", _currentMovieRemuxTemplate.SeriesName, this.GetFormattedYear(eac3toConfiguration),
-                    this.GetFormattedVideoResolution(eac3toConfiguration), this.GetFormattedMedium(eac3toConfiguration),
-                    this.GetFormattedVideoFormat(eac3toConfiguration), this.GetFormattedAuditoType(eac3toConfiguration));
+                string audioName = string.Format("{0}{1}{2}{3}{4}{5}{6}", 
+                    _currentMovieRemuxTemplate.SeriesName, 
+                    this.GetFormattedYear(eac3toConfiguration),
+                    this.GetFormattedVideoResolution(eac3toConfiguration),
+                    this.GetFormattedCountry(eac3toConfiguration),
+                    this.GetFormattedMedium(eac3toConfiguration),
+                    this.GetFormattedVideoFormat(eac3toConfiguration), 
+                    this.GetFormattedAuditoType(eac3toConfiguration));
 
                 sb.Append(string.Format("\"{0}\\{1}{2} {3}{4}-{5}{6}.{7}\"", filesOutputPath, this.AddWordSeparator(eac3toConfiguration.IsExtractForRemux, _currentMovieRemuxTemplate.UsePeriodsInFileName, audioName.Trim().RemoveDoubleSpaces()), tag, audio.Language, paddedEpisodeNumber, audio.Id.RemoveColons(),
                     this.GetAudioCommentary(audio), _audioService.GetAudioExtension(audio.AudioType)));
@@ -47,9 +52,14 @@ namespace BatchGuy.App.Eac3To.Services
             if (eac3toConfiguration.IsExtractForRemux == true && eac3toConfiguration.IfIsExtractForRemuxIsItForAMovie)
             {
                 string tag = this.GetFormattedTag(eac3toConfiguration, paddedEpisodeNumber);
-                string chapterName = string.Format("{0}{1}{2}{3}{4}{5}", _currentMovieRemuxTemplate.SeriesName, this.GetFormattedYear(eac3toConfiguration),
-                    this.GetFormattedVideoResolution(eac3toConfiguration), this.GetFormattedMedium(eac3toConfiguration),
-                    this.GetFormattedVideoFormat(eac3toConfiguration), this.GetFormattedAuditoType(eac3toConfiguration));
+                string chapterName = string.Format("{0}{1}{2}{3}{4}{5}{6}", 
+                    _currentMovieRemuxTemplate.SeriesName, 
+                    this.GetFormattedYear(eac3toConfiguration),
+                    this.GetFormattedVideoResolution(eac3toConfiguration),
+                    this.GetFormattedCountry(eac3toConfiguration),
+                    this.GetFormattedMedium(eac3toConfiguration),
+                    this.GetFormattedVideoFormat(eac3toConfiguration), 
+                    this.GetFormattedAuditoType(eac3toConfiguration));
 
                 sb.Append(string.Format("\"{0}\\{1}{2} chapters.txt\"", filesOutputPath, this.AddWordSeparator(eac3toConfiguration.IsExtractForRemux, _currentMovieRemuxTemplate.UsePeriodsInFileName, chapterName.Trim().RemoveDoubleSpaces()), tag));
             }
@@ -65,9 +75,14 @@ namespace BatchGuy.App.Eac3To.Services
             if (eac3toConfiguration.IsExtractForRemux == true)
             {
                 string tag = this.GetFormattedTag(eac3toConfiguration, paddedEpisodeNumber);
-                string logName = string.Format("{0}{1}{2}{3}{4}{5}", _currentMovieRemuxTemplate.SeriesName, this.GetFormattedYear(eac3toConfiguration),
-                    this.GetFormattedVideoResolution(eac3toConfiguration), this.GetFormattedMedium(eac3toConfiguration),
-                    this.GetFormattedVideoFormat(eac3toConfiguration), this.GetFormattedAuditoType(eac3toConfiguration));
+                string logName = string.Format("{0}{1}{2}{3}{4}{5}{6}", 
+                    _currentMovieRemuxTemplate.SeriesName, 
+                    this.GetFormattedYear(eac3toConfiguration),
+                    this.GetFormattedVideoResolution(eac3toConfiguration),
+                    this.GetFormattedCountry(eac3toConfiguration),
+                    this.GetFormattedMedium(eac3toConfiguration),
+                    this.GetFormattedVideoFormat(eac3toConfiguration), 
+                    this.GetFormattedAuditoType(eac3toConfiguration));
 
                 sb.Append(string.Format(" -log=\"{0}\\{1}{2} log.log\"", filesOutputPath, this.AddWordSeparator(eac3toConfiguration.IsExtractForRemux, _currentMovieRemuxTemplate.UsePeriodsInFileName, logName.Trim().RemoveDoubleSpaces()), tag));
             }
@@ -83,9 +98,14 @@ namespace BatchGuy.App.Eac3To.Services
             if (eac3toConfiguration.IsExtractForRemux == true && eac3toConfiguration.IfIsExtractForRemuxIsItForAMovie)
             {
                 string tag = this.GetFormattedTag(eac3toConfiguration, paddedEpisodeNumber);
-                string subtitleName = string.Format("{0}{1}{2}{3}{4}{5}", _currentMovieRemuxTemplate.SeriesName, this.GetFormattedYear(eac3toConfiguration),
-                    this.GetFormattedVideoResolution(eac3toConfiguration), this.GetFormattedMedium(eac3toConfiguration),
-                    this.GetFormattedVideoFormat(eac3toConfiguration), this.GetFormattedAuditoType(eac3toConfiguration));
+                string subtitleName = string.Format("{0}{1}{2}{3}{4}{5}{6}", 
+                    _currentMovieRemuxTemplate.SeriesName, 
+                    this.GetFormattedYear(eac3toConfiguration),
+                    this.GetFormattedVideoResolution(eac3toConfiguration),
+                    this.GetFormattedCountry(eac3toConfiguration),
+                    this.GetFormattedMedium(eac3toConfiguration),
+                    this.GetFormattedVideoFormat(eac3toConfiguration), 
+                    this.GetFormattedAuditoType(eac3toConfiguration));
 
                 sb.Append(string.Format("\"{0}\\{1}{2} {3}{4}-{5}{6}.sup\"", filesOutputPath, this.AddWordSeparator(eac3toConfiguration.IsExtractForRemux, _currentMovieRemuxTemplate.UsePeriodsInFileName, subtitleName.Trim().RemoveDoubleSpaces()), tag, subtitle.Language, paddedEpisodeNumber, subtitle.Id.RemoveColons(), this.GetSubtitleCommentary(subtitle)));
             }
@@ -101,9 +121,14 @@ namespace BatchGuy.App.Eac3To.Services
             if (eac3toConfiguration.IsExtractForRemux == true && eac3toConfiguration.IfIsExtractForRemuxIsItForAMovie)
             {
                 string tag = this.GetFormattedTag(eac3toConfiguration, paddedEpisodeNumber);
-                string videoName = string.Format("{0}{1}{2}{3}{4}{5}", _currentMovieRemuxTemplate.SeriesName, this.GetFormattedYear(eac3toConfiguration),
-                    this.GetFormattedVideoResolution(eac3toConfiguration), this.GetFormattedMedium(eac3toConfiguration),
-                    this.GetFormattedVideoFormat(eac3toConfiguration), this.GetFormattedAuditoType(eac3toConfiguration));
+                string videoName = string.Format("{0}{1}{2}{3}{4}{5}{6}", 
+                    _currentMovieRemuxTemplate.SeriesName, 
+                    this.GetFormattedYear(eac3toConfiguration),
+                    this.GetFormattedVideoResolution(eac3toConfiguration), 
+                    this.GetFormattedCountry(eac3toConfiguration),
+                    this.GetFormattedMedium(eac3toConfiguration),
+                    this.GetFormattedVideoFormat(eac3toConfiguration), 
+                    this.GetFormattedAuditoType(eac3toConfiguration));
 
                 sb.Append(string.Format("\"{0}\\{1}{2}.mkv\"", filesOutputPath, this.AddWordSeparator(eac3toConfiguration.IsExtractForRemux, _currentMovieRemuxTemplate.UsePeriodsInFileName, videoName.Trim().RemoveDoubleSpaces()), tag));
             }
@@ -166,6 +191,14 @@ namespace BatchGuy.App.Eac3To.Services
                 tag = string.Format("-{0}", _currentMovieRemuxTemplate.Tag);
             }
             return tag;
+        }
+
+        private string GetFormattedCountry(EAC3ToConfiguration eac3toConfiguration)
+        {
+            string country = string.Empty;
+            if (!string.IsNullOrEmpty(_currentMovieRemuxTemplate.Country))
+                country = string.Format(" {0} ", _currentMovieRemuxTemplate.Country);
+            return country;
         }
     }
 }
