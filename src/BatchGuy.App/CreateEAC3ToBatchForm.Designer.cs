@@ -769,7 +769,7 @@
             this.txtRemuxTag.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.txtRemuxTag.Location = new System.Drawing.Point(265, 223);
             this.txtRemuxTag.Name = "txtRemuxTag";
-            this.txtRemuxTag.Size = new System.Drawing.Size(85, 20);
+            this.txtRemuxTag.Size = new System.Drawing.Size(175, 20);
             this.txtRemuxTag.TabIndex = 13;
             this.txtRemuxTag.TextChanged += new System.EventHandler(this.txtRemuxTag_TextChanged);
             // 
@@ -928,6 +928,7 @@
             this.cbRemuxCountry.Size = new System.Drawing.Size(384, 21);
             this.cbRemuxCountry.TabIndex = 11;
             this.cbRemuxCountry.ValueMember = "Value";
+            this.cbRemuxCountry.SelectedIndexChanged += new System.EventHandler(this.cbRemuxCountry_SelectedIndexChanged);
             // 
             // bsCountries
             // 

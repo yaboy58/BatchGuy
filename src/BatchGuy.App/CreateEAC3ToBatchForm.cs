@@ -336,6 +336,15 @@ namespace BatchGuy.App
                     cbRemuxVideoFormat.SelectedIndex = 0;
                 }
                 chkRemuxUsePeriodsInFileName.Checked = _currentMovieEAC3ToRemuxFileNameTemplate.UsePeriodsInFileName;
+
+                if (!string.IsNullOrEmpty(_currentMovieEAC3ToRemuxFileNameTemplate.Country))
+                {
+                    cbRemuxCountry.SelectedValue = _currentMovieEAC3ToRemuxFileNameTemplate.Country;
+                }
+                else
+                {
+                    cbRemuxCountry.SelectedIndex = 0;
+                }
             }
         }
 
@@ -577,6 +586,7 @@ namespace BatchGuy.App
         {
             if (_eac3toConfiguration.IsExtractForRemux && _eac3toConfiguration.IfIsExtractForRemuxIsItForAMovie == false)
             {
+                var selectedCountryCode = (CountryCodeItem)cbRemuxCountry.SelectedItem;
                 _eac3toConfiguration.RemuxFileNameTemplate = new EAC3ToRemuxFileNameTemplate()
                 {
                     AudioType = txtRemuxAudioType.Text.Trim(),
@@ -587,7 +597,8 @@ namespace BatchGuy.App
                     Medium = cbRemuxMedium.Text,
                     VideoFormat = cbRemuxVideoFormat.Text,
                     SeasonNumber = txtRemuxSeasonNumber.Text,
-                    UsePeriodsInFileName = chkRemuxUsePeriodsInFileName.Checked
+                    UsePeriodsInFileName = chkRemuxUsePeriodsInFileName.Checked,
+                    Country = selectedCountryCode == null ? string.Empty : selectedCountryCode.Value
                 };
             }
         }
@@ -762,6 +773,11 @@ namespace BatchGuy.App
                     cbRemuxVideoFormat.SelectedIndex = index;
                 }
                 chkRemuxUsePeriodsInFileName.Checked = _eac3toConfiguration.RemuxFileNameTemplate.UsePeriodsInFileName;
+                cbRemuxCountry.SelectedIndex = 0;
+                if (!string.IsNullOrEmpty(_eac3toConfiguration.RemuxFileNameTemplate.Country))
+                {
+                    cbRemuxCountry.SelectedValue = _eac3toConfiguration.RemuxFileNameTemplate.Country;
+                }
             }
         }
         #endregion
@@ -1364,6 +1380,15 @@ namespace BatchGuy.App
             {
                txtEac3toOutputDirectory.Text = fsd.FileName;
                 this.HandlescbEac3ToOutputDirectoryTypeSelectedIndexChanged();
+            }
+        }
+
+        private void cbRemuxCountry_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (_currentMovieEAC3ToRemuxFileNameTemplate != null && _eac3toConfiguration.IfIsExtractForRemuxIsItForAMovie)
+            {
+                var selectedCountryCode = (CountryCodeItem)cbRemuxCountry.SelectedItem;
+                _currentMovieEAC3ToRemuxFileNameTemplate.Country = selectedCountryCode == null ? string.Empty : selectedCountryCode.Value;
             }
         }
     }
