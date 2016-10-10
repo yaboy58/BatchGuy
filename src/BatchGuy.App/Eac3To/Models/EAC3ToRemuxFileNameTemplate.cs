@@ -18,5 +18,6 @@ namespace BatchGuy.App.Eac3To.Models
         public string Medium { get; set; }
         public string VideoFormat { get; set; }
         public bool UsePeriodsInFileName { get; set; }
+        public string Country { get; set; }
     }
 }

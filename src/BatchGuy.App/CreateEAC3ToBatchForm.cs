@@ -48,6 +48,7 @@ namespace BatchGuy.App
         private BatchGuyEAC3ToSettings _batchGuyEAC3ToSettings;
         private IDisplayErrorMessageService _displayErrorMessageService = new DisplayErrorMessageService();
         private EAC3ToRemuxFileNameTemplate _currentMovieEAC3ToRemuxFileNameTemplate;
+        private BindingList<CountryCodeItem> _bindingListCountries = new BindingList<CountryCodeItem>();
 
         public CreateEAC3ToBatchForm()
         {
@@ -69,6 +70,7 @@ namespace BatchGuy.App
                 }
                 else
                 {
+                    this.LoadCountries();
                     Setting setting = Program.ApplicationSettingsService.GetSettingByName("eac3to");
                     _eac3ToPath = setting.Value;
                     this.SetEac3ToConfiguration();
@@ -130,6 +132,18 @@ namespace BatchGuy.App
             bsBluRayDiscInfo.DataSource = _bindingListBluRayDiscInfo;
             bsBluRayDiscInfo.ResetBindings(false);
             _bindingListBluRayDiscInfo.AllowEdit = true;
+        }
+
+        private void LoadCountries()
+        {
+            ICountryCodeService service = new CountryCodeService(new JsonSerializationService<ISOCountryCodeCollection>());
+            var countryCodes = service.GetCountryCodes();
+            foreach (var countryCode in countryCodes)
+            {
+                _bindingListCountries.Add(countryCode);
+            }
+            bsCountries.DataSource = _bindingListCountries;
+            _bindingListCountries.AllowEdit = false;
         }
 
         private void dgvBluRayDiscInfo_CellClick(object sender, DataGridViewCellEventArgs e)

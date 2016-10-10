@@ -56,9 +56,21 @@
             this.gbDiscSummary = new System.Windows.Forms.GroupBox();
             this.tlpDiscSummaries = new System.Windows.Forms.TableLayoutPanel();
             this.dgvBluRaySummary = new System.Windows.Forms.DataGridView();
+            this.isSelectedDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.eac3ToIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.episodeNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.headerTextDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.detailTextDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bluRayTitleInfoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bsBluRaySummaryInfo = new System.Windows.Forms.BindingSource(this.components);
             this.gbDisc = new System.Windows.Forms.GroupBox();
             this.tlpDiscs = new System.Windows.Forms.TableLayoutPanel();
             this.dgvBluRayDiscInfo = new System.Windows.Forms.DataGridView();
+            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.isSelectedDataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.discNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bluRayPathDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bsBluRayDiscInfo = new System.Windows.Forms.BindingSource(this.components);
             this.tlpUpperRight = new System.Windows.Forms.TableLayoutPanel();
             this.chkExtractForRemux = new System.Windows.Forms.CheckBox();
             this.gbExtractForRemux = new System.Windows.Forms.GroupBox();
@@ -68,23 +80,24 @@
             this.cbRemuxVideoFormat = new System.Windows.Forms.ComboBox();
             this.txtRemuxSeriesName = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtRemuxSeasonNumber = new System.Windows.Forms.TextBox();
             this.cbRemuxMedium = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.txtRemuxSeasonYear = new System.Windows.Forms.TextBox();
             this.txtRemuxTag = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.cbRemuxVideoResolution = new System.Windows.Forms.ComboBox();
             this.txtRemuxAudioType = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.lblRemuxNamingConventionCurrentTemplateExample = new System.Windows.Forms.Label();
             this.chkIsThisRemuxForAMovie = new System.Windows.Forms.CheckBox();
             this.lblRemuxForMovieWarning = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtRemuxSeasonNumber = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtRemuxSeasonYear = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.cbRemuxVideoResolution = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.cbRemuxCountry = new System.Windows.Forms.ComboBox();
+            this.bsCountries = new System.Windows.Forms.BindingSource(this.components);
             this.bgwEac3toWriteBatchFile = new System.ComponentModel.BackgroundWorker();
             this.ttDirectoryUserControl = new System.Windows.Forms.ToolTip(this.components);
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -100,18 +113,6 @@
             this.bgwMkvMergeWriteBatchFile = new System.ComponentModel.BackgroundWorker();
             this.lblVersion = new System.Windows.Forms.Label();
             this.tlpForm = new System.Windows.Forms.TableLayoutPanel();
-            this.isSelectedDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.eac3ToIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.episodeNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.headerTextDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.detailTextDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bluRayTitleInfoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bsBluRaySummaryInfo = new System.Windows.Forms.BindingSource(this.components);
-            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.isSelectedDataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.discNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bluRayPathDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bsBluRayDiscInfo = new System.Windows.Forms.BindingSource(this.components);
             this.gbScreen.SuspendLayout();
             this.tlpScreen.SuspendLayout();
             this.tlpUpperLeft.SuspendLayout();
@@ -122,16 +123,17 @@
             this.gbDiscSummary.SuspendLayout();
             this.tlpDiscSummaries.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBluRaySummary)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsBluRaySummaryInfo)).BeginInit();
             this.gbDisc.SuspendLayout();
             this.tlpDiscs.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBluRayDiscInfo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsBluRayDiscInfo)).BeginInit();
             this.tlpUpperRight.SuspendLayout();
             this.gbExtractForRemux.SuspendLayout();
             this.tlpRemuxTemplate.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bsCountries)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.tlpForm.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bsBluRaySummaryInfo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsBluRayDiscInfo)).BeginInit();
             this.SuspendLayout();
             // 
             // ofdFileDialog
@@ -451,6 +453,61 @@
             this.dgvBluRaySummary.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBluRaySummary_CellClick);
             this.dgvBluRaySummary.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBluRaySummary_CellDoubleClick);
             // 
+            // isSelectedDataGridViewCheckBoxColumn
+            // 
+            this.isSelectedDataGridViewCheckBoxColumn.DataPropertyName = "IsSelected";
+            this.isSelectedDataGridViewCheckBoxColumn.HeaderText = "Is Selected";
+            this.isSelectedDataGridViewCheckBoxColumn.MinimumWidth = 70;
+            this.isSelectedDataGridViewCheckBoxColumn.Name = "isSelectedDataGridViewCheckBoxColumn";
+            this.isSelectedDataGridViewCheckBoxColumn.Width = 70;
+            // 
+            // eac3ToIdDataGridViewTextBoxColumn
+            // 
+            this.eac3ToIdDataGridViewTextBoxColumn.DataPropertyName = "Eac3ToId";
+            this.eac3ToIdDataGridViewTextBoxColumn.HeaderText = "eac3to Id";
+            this.eac3ToIdDataGridViewTextBoxColumn.MinimumWidth = 80;
+            this.eac3ToIdDataGridViewTextBoxColumn.Name = "eac3ToIdDataGridViewTextBoxColumn";
+            this.eac3ToIdDataGridViewTextBoxColumn.ReadOnly = true;
+            this.eac3ToIdDataGridViewTextBoxColumn.Width = 80;
+            // 
+            // episodeNumberDataGridViewTextBoxColumn
+            // 
+            this.episodeNumberDataGridViewTextBoxColumn.DataPropertyName = "EpisodeNumber";
+            this.episodeNumberDataGridViewTextBoxColumn.HeaderText = "Episode#";
+            this.episodeNumberDataGridViewTextBoxColumn.MinimumWidth = 90;
+            this.episodeNumberDataGridViewTextBoxColumn.Name = "episodeNumberDataGridViewTextBoxColumn";
+            this.episodeNumberDataGridViewTextBoxColumn.ReadOnly = true;
+            this.episodeNumberDataGridViewTextBoxColumn.Width = 90;
+            // 
+            // headerTextDataGridViewTextBoxColumn
+            // 
+            this.headerTextDataGridViewTextBoxColumn.DataPropertyName = "HeaderText";
+            this.headerTextDataGridViewTextBoxColumn.HeaderText = "Playlist / Videofile / Runtime";
+            this.headerTextDataGridViewTextBoxColumn.MinimumWidth = 250;
+            this.headerTextDataGridViewTextBoxColumn.Name = "headerTextDataGridViewTextBoxColumn";
+            this.headerTextDataGridViewTextBoxColumn.ReadOnly = true;
+            this.headerTextDataGridViewTextBoxColumn.Width = 400;
+            // 
+            // detailTextDataGridViewTextBoxColumn
+            // 
+            this.detailTextDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.detailTextDataGridViewTextBoxColumn.DataPropertyName = "DetailText";
+            this.detailTextDataGridViewTextBoxColumn.HeaderText = "Detail";
+            this.detailTextDataGridViewTextBoxColumn.MinimumWidth = 250;
+            this.detailTextDataGridViewTextBoxColumn.Name = "detailTextDataGridViewTextBoxColumn";
+            this.detailTextDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // bluRayTitleInfoDataGridViewTextBoxColumn
+            // 
+            this.bluRayTitleInfoDataGridViewTextBoxColumn.DataPropertyName = "BluRayTitleInfo";
+            this.bluRayTitleInfoDataGridViewTextBoxColumn.HeaderText = "BluRayTitleInfo";
+            this.bluRayTitleInfoDataGridViewTextBoxColumn.Name = "bluRayTitleInfoDataGridViewTextBoxColumn";
+            this.bluRayTitleInfoDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // bsBluRaySummaryInfo
+            // 
+            this.bsBluRaySummaryInfo.DataSource = typeof(BatchGuy.App.Parser.Models.BluRaySummaryInfo);
+            // 
             // gbDisc
             // 
             this.gbDisc.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -502,6 +559,43 @@
             this.dgvBluRayDiscInfo.DragDrop += new System.Windows.Forms.DragEventHandler(this.dgvBluRayDiscInfo_DragDrop);
             this.dgvBluRayDiscInfo.DragEnter += new System.Windows.Forms.DragEventHandler(this.dgvBluRayDiscInfo_DragEnter);
             // 
+            // idDataGridViewTextBoxColumn
+            // 
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            this.idDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // isSelectedDataGridViewCheckBoxColumn1
+            // 
+            this.isSelectedDataGridViewCheckBoxColumn1.DataPropertyName = "IsSelected";
+            this.isSelectedDataGridViewCheckBoxColumn1.HeaderText = "Is Selected";
+            this.isSelectedDataGridViewCheckBoxColumn1.MinimumWidth = 100;
+            this.isSelectedDataGridViewCheckBoxColumn1.Name = "isSelectedDataGridViewCheckBoxColumn1";
+            // 
+            // discNameDataGridViewTextBoxColumn
+            // 
+            this.discNameDataGridViewTextBoxColumn.DataPropertyName = "DiscName";
+            this.discNameDataGridViewTextBoxColumn.HeaderText = "Disc Name";
+            this.discNameDataGridViewTextBoxColumn.MinimumWidth = 200;
+            this.discNameDataGridViewTextBoxColumn.Name = "discNameDataGridViewTextBoxColumn";
+            this.discNameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.discNameDataGridViewTextBoxColumn.Width = 300;
+            // 
+            // bluRayPathDataGridViewTextBoxColumn
+            // 
+            this.bluRayPathDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.bluRayPathDataGridViewTextBoxColumn.DataPropertyName = "BluRayPath";
+            this.bluRayPathDataGridViewTextBoxColumn.HeaderText = "Disc Directory";
+            this.bluRayPathDataGridViewTextBoxColumn.MinimumWidth = 400;
+            this.bluRayPathDataGridViewTextBoxColumn.Name = "bluRayPathDataGridViewTextBoxColumn";
+            this.bluRayPathDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // bsBluRayDiscInfo
+            // 
+            this.bsBluRayDiscInfo.AllowNew = true;
+            this.bsBluRayDiscInfo.DataSource = typeof(BatchGuy.App.Parser.Models.BluRayDiscInfo);
+            // 
             // tlpUpperRight
             // 
             this.tlpUpperRight.ColumnCount = 2;
@@ -544,44 +638,45 @@
             // 
             this.tlpRemuxTemplate.ColumnCount = 4;
             this.tlpRemuxTemplate.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tlpRemuxTemplate.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 103F));
-            this.tlpRemuxTemplate.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 78F));
-            this.tlpRemuxTemplate.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 220F));
-            this.tlpRemuxTemplate.Controls.Add(this.chkRemuxUsePeriodsInFileName, 0, 8);
+            this.tlpRemuxTemplate.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 82F));
+            this.tlpRemuxTemplate.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80F));
+            this.tlpRemuxTemplate.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 239F));
+            this.tlpRemuxTemplate.Controls.Add(this.chkRemuxUsePeriodsInFileName, 0, 9);
             this.tlpRemuxTemplate.Controls.Add(this.lblRemuxSeriesName, 0, 3);
-            this.tlpRemuxTemplate.Controls.Add(this.cbRemuxVideoFormat, 3, 7);
+            this.tlpRemuxTemplate.Controls.Add(this.cbRemuxVideoFormat, 3, 8);
             this.tlpRemuxTemplate.Controls.Add(this.txtRemuxSeriesName, 1, 3);
-            this.tlpRemuxTemplate.Controls.Add(this.label9, 2, 7);
-            this.tlpRemuxTemplate.Controls.Add(this.label2, 0, 4);
-            this.tlpRemuxTemplate.Controls.Add(this.txtRemuxSeasonNumber, 1, 4);
-            this.tlpRemuxTemplate.Controls.Add(this.cbRemuxMedium, 1, 7);
-            this.tlpRemuxTemplate.Controls.Add(this.label3, 2, 4);
-            this.tlpRemuxTemplate.Controls.Add(this.label8, 0, 7);
-            this.tlpRemuxTemplate.Controls.Add(this.txtRemuxSeasonYear, 3, 4);
-            this.tlpRemuxTemplate.Controls.Add(this.txtRemuxTag, 3, 6);
-            this.tlpRemuxTemplate.Controls.Add(this.label4, 0, 5);
-            this.tlpRemuxTemplate.Controls.Add(this.label6, 2, 6);
-            this.tlpRemuxTemplate.Controls.Add(this.cbRemuxVideoResolution, 1, 5);
-            this.tlpRemuxTemplate.Controls.Add(this.txtRemuxAudioType, 1, 6);
-            this.tlpRemuxTemplate.Controls.Add(this.label5, 0, 6);
+            this.tlpRemuxTemplate.Controls.Add(this.label9, 2, 8);
+            this.tlpRemuxTemplate.Controls.Add(this.cbRemuxMedium, 1, 8);
+            this.tlpRemuxTemplate.Controls.Add(this.label8, 0, 8);
+            this.tlpRemuxTemplate.Controls.Add(this.txtRemuxTag, 3, 7);
+            this.tlpRemuxTemplate.Controls.Add(this.label6, 2, 7);
+            this.tlpRemuxTemplate.Controls.Add(this.txtRemuxAudioType, 1, 7);
+            this.tlpRemuxTemplate.Controls.Add(this.label5, 0, 7);
             this.tlpRemuxTemplate.Controls.Add(this.lblRemuxNamingConventionCurrentTemplateExample, 0, 0);
             this.tlpRemuxTemplate.Controls.Add(this.chkIsThisRemuxForAMovie, 0, 1);
             this.tlpRemuxTemplate.Controls.Add(this.lblRemuxForMovieWarning, 0, 2);
-            this.tlpRemuxTemplate.Controls.Add(this.label1, 2, 5);
-            this.tlpRemuxTemplate.Controls.Add(this.cbRemuxCountry, 3, 5);
+            this.tlpRemuxTemplate.Controls.Add(this.label2, 0, 4);
+            this.tlpRemuxTemplate.Controls.Add(this.txtRemuxSeasonNumber, 1, 4);
+            this.tlpRemuxTemplate.Controls.Add(this.label3, 2, 4);
+            this.tlpRemuxTemplate.Controls.Add(this.txtRemuxSeasonYear, 3, 4);
+            this.tlpRemuxTemplate.Controls.Add(this.label4, 0, 5);
+            this.tlpRemuxTemplate.Controls.Add(this.cbRemuxVideoResolution, 1, 5);
+            this.tlpRemuxTemplate.Controls.Add(this.label1, 0, 6);
+            this.tlpRemuxTemplate.Controls.Add(this.cbRemuxCountry, 1, 6);
             this.tlpRemuxTemplate.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlpRemuxTemplate.Location = new System.Drawing.Point(3, 16);
             this.tlpRemuxTemplate.Name = "tlpRemuxTemplate";
-            this.tlpRemuxTemplate.RowCount = 9;
+            this.tlpRemuxTemplate.RowCount = 10;
             this.tlpRemuxTemplate.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
             this.tlpRemuxTemplate.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
-            this.tlpRemuxTemplate.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 26.15385F));
-            this.tlpRemuxTemplate.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 73.84615F));
+            this.tlpRemuxTemplate.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 26.22951F));
+            this.tlpRemuxTemplate.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 73.77049F));
             this.tlpRemuxTemplate.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
-            this.tlpRemuxTemplate.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 41F));
-            this.tlpRemuxTemplate.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 42F));
-            this.tlpRemuxTemplate.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38F));
-            this.tlpRemuxTemplate.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
+            this.tlpRemuxTemplate.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
+            this.tlpRemuxTemplate.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tlpRemuxTemplate.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
+            this.tlpRemuxTemplate.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
+            this.tlpRemuxTemplate.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
             this.tlpRemuxTemplate.Size = new System.Drawing.Size(501, 316);
             this.tlpRemuxTemplate.TabIndex = 0;
             // 
@@ -590,7 +685,7 @@
             this.chkRemuxUsePeriodsInFileName.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.chkRemuxUsePeriodsInFileName.AutoSize = true;
             this.tlpRemuxTemplate.SetColumnSpan(this.chkRemuxUsePeriodsInFileName, 4);
-            this.chkRemuxUsePeriodsInFileName.Location = new System.Drawing.Point(3, 290);
+            this.chkRemuxUsePeriodsInFileName.Location = new System.Drawing.Point(3, 291);
             this.chkRemuxUsePeriodsInFileName.Name = "chkRemuxUsePeriodsInFileName";
             this.chkRemuxUsePeriodsInFileName.Size = new System.Drawing.Size(147, 17);
             this.chkRemuxUsePeriodsInFileName.TabIndex = 16;
@@ -602,7 +697,7 @@
             // 
             this.lblRemuxSeriesName.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblRemuxSeriesName.AutoSize = true;
-            this.lblRemuxSeriesName.Location = new System.Drawing.Point(3, 96);
+            this.lblRemuxSeriesName.Location = new System.Drawing.Point(3, 87);
             this.lblRemuxSeriesName.Name = "lblRemuxSeriesName";
             this.lblRemuxSeriesName.Size = new System.Drawing.Size(77, 13);
             this.lblRemuxSeriesName.TabIndex = 0;
@@ -618,7 +713,7 @@
             "",
             "AVC",
             "H.264"});
-            this.cbRemuxVideoFormat.Location = new System.Drawing.Point(284, 251);
+            this.cbRemuxVideoFormat.Location = new System.Drawing.Point(265, 256);
             this.cbRemuxVideoFormat.Name = "cbRemuxVideoFormat";
             this.cbRemuxVideoFormat.Size = new System.Drawing.Size(113, 21);
             this.cbRemuxVideoFormat.TabIndex = 15;
@@ -628,9 +723,9 @@
             // 
             this.txtRemuxSeriesName.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.tlpRemuxTemplate.SetColumnSpan(this.txtRemuxSeriesName, 3);
-            this.txtRemuxSeriesName.Location = new System.Drawing.Point(103, 93);
+            this.txtRemuxSeriesName.Location = new System.Drawing.Point(103, 83);
             this.txtRemuxSeriesName.Name = "txtRemuxSeriesName";
-            this.txtRemuxSeriesName.Size = new System.Drawing.Size(301, 20);
+            this.txtRemuxSeriesName.Size = new System.Drawing.Size(395, 20);
             this.txtRemuxSeriesName.TabIndex = 7;
             this.txtRemuxSeriesName.TextChanged += new System.EventHandler(this.txtRemuxSeriesName_TextChanged);
             // 
@@ -638,30 +733,11 @@
             // 
             this.label9.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(206, 255);
+            this.label9.Location = new System.Drawing.Point(185, 260);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(72, 13);
             this.label9.TabIndex = 17;
             this.label9.Text = "Video Format:";
-            // 
-            // label2
-            // 
-            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 137);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(53, 13);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Season#:";
-            // 
-            // txtRemuxSeasonNumber
-            // 
-            this.txtRemuxSeasonNumber.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.txtRemuxSeasonNumber.Location = new System.Drawing.Point(103, 133);
-            this.txtRemuxSeasonNumber.Name = "txtRemuxSeasonNumber";
-            this.txtRemuxSeasonNumber.Size = new System.Drawing.Size(70, 20);
-            this.txtRemuxSeasonNumber.TabIndex = 8;
-            this.txtRemuxSeasonNumber.TextChanged += new System.EventHandler(this.txtSeasonNumber_TextChanged);
             // 
             // cbRemuxMedium
             // 
@@ -672,93 +748,47 @@
             this.cbRemuxMedium.Items.AddRange(new object[] {
             "",
             "Remux"});
-            this.cbRemuxMedium.Location = new System.Drawing.Point(103, 251);
+            this.cbRemuxMedium.Location = new System.Drawing.Point(103, 256);
             this.cbRemuxMedium.Name = "cbRemuxMedium";
-            this.cbRemuxMedium.Size = new System.Drawing.Size(94, 21);
+            this.cbRemuxMedium.Size = new System.Drawing.Size(76, 21);
             this.cbRemuxMedium.TabIndex = 14;
             this.cbRemuxMedium.SelectedIndexChanged += new System.EventHandler(this.cbRemuxMedium_SelectedIndexChanged);
-            // 
-            // label3
-            // 
-            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(206, 137);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(32, 13);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Year:";
             // 
             // label8
             // 
             this.label8.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(3, 255);
+            this.label8.Location = new System.Drawing.Point(3, 260);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(47, 13);
             this.label8.TabIndex = 15;
             this.label8.Text = "Medium:";
             // 
-            // txtRemuxSeasonYear
-            // 
-            this.txtRemuxSeasonYear.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.txtRemuxSeasonYear.Location = new System.Drawing.Point(284, 133);
-            this.txtRemuxSeasonYear.Name = "txtRemuxSeasonYear";
-            this.txtRemuxSeasonYear.Size = new System.Drawing.Size(82, 20);
-            this.txtRemuxSeasonYear.TabIndex = 9;
-            this.txtRemuxSeasonYear.TextChanged += new System.EventHandler(this.txtRemuxSeasonYear_TextChanged);
-            // 
             // txtRemuxTag
             // 
             this.txtRemuxTag.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.txtRemuxTag.Location = new System.Drawing.Point(284, 212);
+            this.txtRemuxTag.Location = new System.Drawing.Point(265, 223);
             this.txtRemuxTag.Name = "txtRemuxTag";
             this.txtRemuxTag.Size = new System.Drawing.Size(85, 20);
             this.txtRemuxTag.TabIndex = 13;
             this.txtRemuxTag.TextChanged += new System.EventHandler(this.txtRemuxTag_TextChanged);
             // 
-            // label4
-            // 
-            this.label4.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(3, 174);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(60, 13);
-            this.label4.TabIndex = 6;
-            this.label4.Text = "Resolution:";
-            // 
             // label6
             // 
             this.label6.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(206, 215);
+            this.label6.Location = new System.Drawing.Point(185, 226);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(29, 13);
             this.label6.TabIndex = 10;
             this.label6.Text = "Tag:";
             // 
-            // cbRemuxVideoResolution
-            // 
-            this.cbRemuxVideoResolution.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.cbRemuxVideoResolution.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbRemuxVideoResolution.FormattingEnabled = true;
-            this.cbRemuxVideoResolution.ItemHeight = 13;
-            this.cbRemuxVideoResolution.Items.AddRange(new object[] {
-            "",
-            "720p",
-            "1080i",
-            "1080p"});
-            this.cbRemuxVideoResolution.Location = new System.Drawing.Point(103, 170);
-            this.cbRemuxVideoResolution.Name = "cbRemuxVideoResolution";
-            this.cbRemuxVideoResolution.Size = new System.Drawing.Size(94, 21);
-            this.cbRemuxVideoResolution.TabIndex = 10;
-            this.cbRemuxVideoResolution.SelectedIndexChanged += new System.EventHandler(this.cbRemuxVideoResolution_SelectedIndexChanged);
-            // 
             // txtRemuxAudioType
             // 
             this.txtRemuxAudioType.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.txtRemuxAudioType.Location = new System.Drawing.Point(103, 212);
+            this.txtRemuxAudioType.Location = new System.Drawing.Point(103, 223);
             this.txtRemuxAudioType.Name = "txtRemuxAudioType";
-            this.txtRemuxAudioType.Size = new System.Drawing.Size(94, 20);
+            this.txtRemuxAudioType.Size = new System.Drawing.Size(76, 20);
             this.txtRemuxAudioType.TabIndex = 12;
             this.txtRemuxAudioType.TextChanged += new System.EventHandler(this.txtRemuxAudioType_TextChanged);
             // 
@@ -766,7 +796,7 @@
             // 
             this.label5.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(3, 215);
+            this.label5.Location = new System.Drawing.Point(3, 226);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(64, 13);
             this.label5.TabIndex = 8;
@@ -810,11 +840,76 @@
             this.lblRemuxForMovieWarning.Text = "(Make sure a disc summary row is highlighed before entering movie remux informati" +
     "on)";
             // 
+            // label2
+            // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(3, 122);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(53, 13);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Season#:";
+            // 
+            // txtRemuxSeasonNumber
+            // 
+            this.txtRemuxSeasonNumber.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.txtRemuxSeasonNumber.Location = new System.Drawing.Point(103, 118);
+            this.txtRemuxSeasonNumber.Name = "txtRemuxSeasonNumber";
+            this.txtRemuxSeasonNumber.Size = new System.Drawing.Size(76, 20);
+            this.txtRemuxSeasonNumber.TabIndex = 8;
+            this.txtRemuxSeasonNumber.TextChanged += new System.EventHandler(this.txtSeasonNumber_TextChanged);
+            // 
+            // label3
+            // 
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(185, 122);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(32, 13);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Year:";
+            // 
+            // txtRemuxSeasonYear
+            // 
+            this.txtRemuxSeasonYear.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.txtRemuxSeasonYear.Location = new System.Drawing.Point(265, 118);
+            this.txtRemuxSeasonYear.Name = "txtRemuxSeasonYear";
+            this.txtRemuxSeasonYear.Size = new System.Drawing.Size(82, 20);
+            this.txtRemuxSeasonYear.TabIndex = 9;
+            this.txtRemuxSeasonYear.TextChanged += new System.EventHandler(this.txtRemuxSeasonYear_TextChanged);
+            // 
+            // label4
+            // 
+            this.label4.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(3, 154);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(60, 13);
+            this.label4.TabIndex = 6;
+            this.label4.Text = "Resolution:";
+            // 
+            // cbRemuxVideoResolution
+            // 
+            this.cbRemuxVideoResolution.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.cbRemuxVideoResolution.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbRemuxVideoResolution.FormattingEnabled = true;
+            this.cbRemuxVideoResolution.ItemHeight = 13;
+            this.cbRemuxVideoResolution.Items.AddRange(new object[] {
+            "",
+            "720p",
+            "1080i",
+            "1080p"});
+            this.cbRemuxVideoResolution.Location = new System.Drawing.Point(103, 150);
+            this.cbRemuxVideoResolution.Name = "cbRemuxVideoResolution";
+            this.cbRemuxVideoResolution.Size = new System.Drawing.Size(76, 21);
+            this.cbRemuxVideoResolution.TabIndex = 10;
+            this.cbRemuxVideoResolution.SelectedIndexChanged += new System.EventHandler(this.cbRemuxVideoResolution_SelectedIndexChanged);
+            // 
             // label1
             // 
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(206, 174);
+            this.label1.Location = new System.Drawing.Point(3, 190);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(43, 13);
             this.label1.TabIndex = 67;
@@ -823,12 +918,21 @@
             // cbRemuxCountry
             // 
             this.cbRemuxCountry.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.tlpRemuxTemplate.SetColumnSpan(this.cbRemuxCountry, 3);
+            this.cbRemuxCountry.DataSource = this.bsCountries;
+            this.cbRemuxCountry.DisplayMember = "Name";
             this.cbRemuxCountry.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbRemuxCountry.FormattingEnabled = true;
-            this.cbRemuxCountry.Location = new System.Drawing.Point(284, 170);
+            this.cbRemuxCountry.Location = new System.Drawing.Point(103, 186);
             this.cbRemuxCountry.Name = "cbRemuxCountry";
-            this.cbRemuxCountry.Size = new System.Drawing.Size(206, 21);
+            this.cbRemuxCountry.Size = new System.Drawing.Size(384, 21);
             this.cbRemuxCountry.TabIndex = 11;
+            this.cbRemuxCountry.ValueMember = "Value";
+            // 
+            // bsCountries
+            // 
+            this.bsCountries.AllowNew = false;
+            this.bsCountries.DataSource = typeof(BatchGuy.App.Shared.Models.CountryCodeItem);
             // 
             // bgwEac3toWriteBatchFile
             // 
@@ -950,98 +1054,6 @@
             this.tlpForm.Size = new System.Drawing.Size(1419, 813);
             this.tlpForm.TabIndex = 33;
             // 
-            // isSelectedDataGridViewCheckBoxColumn
-            // 
-            this.isSelectedDataGridViewCheckBoxColumn.DataPropertyName = "IsSelected";
-            this.isSelectedDataGridViewCheckBoxColumn.HeaderText = "Is Selected";
-            this.isSelectedDataGridViewCheckBoxColumn.MinimumWidth = 70;
-            this.isSelectedDataGridViewCheckBoxColumn.Name = "isSelectedDataGridViewCheckBoxColumn";
-            this.isSelectedDataGridViewCheckBoxColumn.Width = 70;
-            // 
-            // eac3ToIdDataGridViewTextBoxColumn
-            // 
-            this.eac3ToIdDataGridViewTextBoxColumn.DataPropertyName = "Eac3ToId";
-            this.eac3ToIdDataGridViewTextBoxColumn.HeaderText = "eac3to Id";
-            this.eac3ToIdDataGridViewTextBoxColumn.MinimumWidth = 80;
-            this.eac3ToIdDataGridViewTextBoxColumn.Name = "eac3ToIdDataGridViewTextBoxColumn";
-            this.eac3ToIdDataGridViewTextBoxColumn.ReadOnly = true;
-            this.eac3ToIdDataGridViewTextBoxColumn.Width = 80;
-            // 
-            // episodeNumberDataGridViewTextBoxColumn
-            // 
-            this.episodeNumberDataGridViewTextBoxColumn.DataPropertyName = "EpisodeNumber";
-            this.episodeNumberDataGridViewTextBoxColumn.HeaderText = "Episode#";
-            this.episodeNumberDataGridViewTextBoxColumn.MinimumWidth = 90;
-            this.episodeNumberDataGridViewTextBoxColumn.Name = "episodeNumberDataGridViewTextBoxColumn";
-            this.episodeNumberDataGridViewTextBoxColumn.ReadOnly = true;
-            this.episodeNumberDataGridViewTextBoxColumn.Width = 90;
-            // 
-            // headerTextDataGridViewTextBoxColumn
-            // 
-            this.headerTextDataGridViewTextBoxColumn.DataPropertyName = "HeaderText";
-            this.headerTextDataGridViewTextBoxColumn.HeaderText = "Playlist / Videofile / Runtime";
-            this.headerTextDataGridViewTextBoxColumn.MinimumWidth = 250;
-            this.headerTextDataGridViewTextBoxColumn.Name = "headerTextDataGridViewTextBoxColumn";
-            this.headerTextDataGridViewTextBoxColumn.ReadOnly = true;
-            this.headerTextDataGridViewTextBoxColumn.Width = 400;
-            // 
-            // detailTextDataGridViewTextBoxColumn
-            // 
-            this.detailTextDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.detailTextDataGridViewTextBoxColumn.DataPropertyName = "DetailText";
-            this.detailTextDataGridViewTextBoxColumn.HeaderText = "Detail";
-            this.detailTextDataGridViewTextBoxColumn.MinimumWidth = 250;
-            this.detailTextDataGridViewTextBoxColumn.Name = "detailTextDataGridViewTextBoxColumn";
-            this.detailTextDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // bluRayTitleInfoDataGridViewTextBoxColumn
-            // 
-            this.bluRayTitleInfoDataGridViewTextBoxColumn.DataPropertyName = "BluRayTitleInfo";
-            this.bluRayTitleInfoDataGridViewTextBoxColumn.HeaderText = "BluRayTitleInfo";
-            this.bluRayTitleInfoDataGridViewTextBoxColumn.Name = "bluRayTitleInfoDataGridViewTextBoxColumn";
-            this.bluRayTitleInfoDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // bsBluRaySummaryInfo
-            // 
-            this.bsBluRaySummaryInfo.DataSource = typeof(BatchGuy.App.Parser.Models.BluRaySummaryInfo);
-            // 
-            // idDataGridViewTextBoxColumn
-            // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            this.idDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // isSelectedDataGridViewCheckBoxColumn1
-            // 
-            this.isSelectedDataGridViewCheckBoxColumn1.DataPropertyName = "IsSelected";
-            this.isSelectedDataGridViewCheckBoxColumn1.HeaderText = "Is Selected";
-            this.isSelectedDataGridViewCheckBoxColumn1.MinimumWidth = 100;
-            this.isSelectedDataGridViewCheckBoxColumn1.Name = "isSelectedDataGridViewCheckBoxColumn1";
-            // 
-            // discNameDataGridViewTextBoxColumn
-            // 
-            this.discNameDataGridViewTextBoxColumn.DataPropertyName = "DiscName";
-            this.discNameDataGridViewTextBoxColumn.HeaderText = "Disc Name";
-            this.discNameDataGridViewTextBoxColumn.MinimumWidth = 200;
-            this.discNameDataGridViewTextBoxColumn.Name = "discNameDataGridViewTextBoxColumn";
-            this.discNameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.discNameDataGridViewTextBoxColumn.Width = 300;
-            // 
-            // bluRayPathDataGridViewTextBoxColumn
-            // 
-            this.bluRayPathDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.bluRayPathDataGridViewTextBoxColumn.DataPropertyName = "BluRayPath";
-            this.bluRayPathDataGridViewTextBoxColumn.HeaderText = "Disc Directory";
-            this.bluRayPathDataGridViewTextBoxColumn.MinimumWidth = 400;
-            this.bluRayPathDataGridViewTextBoxColumn.Name = "bluRayPathDataGridViewTextBoxColumn";
-            this.bluRayPathDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // bsBluRayDiscInfo
-            // 
-            this.bsBluRayDiscInfo.AllowNew = true;
-            this.bsBluRayDiscInfo.DataSource = typeof(BatchGuy.App.Parser.Models.BluRayDiscInfo);
-            // 
             // CreateEAC3ToBatchForm
             // 
             this.AllowDrop = true;
@@ -1073,20 +1085,21 @@
             this.gbDiscSummary.ResumeLayout(false);
             this.tlpDiscSummaries.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvBluRaySummary)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsBluRaySummaryInfo)).EndInit();
             this.gbDisc.ResumeLayout(false);
             this.tlpDiscs.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvBluRayDiscInfo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsBluRayDiscInfo)).EndInit();
             this.tlpUpperRight.ResumeLayout(false);
             this.tlpUpperRight.PerformLayout();
             this.gbExtractForRemux.ResumeLayout(false);
             this.tlpRemuxTemplate.ResumeLayout(false);
             this.tlpRemuxTemplate.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bsCountries)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.tlpForm.ResumeLayout(false);
             this.tlpForm.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bsBluRaySummaryInfo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsBluRayDiscInfo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1178,5 +1191,6 @@
         private System.Windows.Forms.Label lblRemuxForMovieWarning;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cbRemuxCountry;
+        private System.Windows.Forms.BindingSource bsCountries;
     }
 }
