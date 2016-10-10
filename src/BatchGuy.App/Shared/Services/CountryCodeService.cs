@@ -38,9 +38,11 @@ namespace BatchGuy.App.Shared.Services
             _countryCodes = new List<CountryCodeItem>();
             var isoCountryCodes = this.GetISOCountryCodes();
 
+            _countryCodes.Add(new CountryCodeItem() { CountryCode = string.Empty, Name = string.Empty, Value = string.Empty });
+
             foreach (var isoCountryCode in isoCountryCodes)
             {
-                _countryCodes.Add(new CountryCodeItem() { CountryCode = isoCountryCode.countrycode, Name = isoCountryCode.name, Value = isoCountryCode.alpha3 });
+                _countryCodes.Add(new CountryCodeItem() { CountryCode = isoCountryCode.countrycode, Name = string.Format("{0} ({1})",isoCountryCode.name, isoCountryCode.alpha3), Value = isoCountryCode.alpha3 });
             }
 
             return _countryCodes;
