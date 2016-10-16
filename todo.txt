@@ -1,6 +1,5 @@
 --todo
-*Added the ISO Long Country Code to the Remux Template on the Create eac3to Batch File Screen
-*BatchGuy now has 160 Unit Tests
+*New PC, so just testing
 
 --possible nice to haves
 *Add External audio
