@@ -1,5 +1,4 @@
 --todo
-*New PC, so just testing
 
 --possible nice to haves
 *Add External audio
