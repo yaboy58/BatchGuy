@@ -1,5 +1,4 @@
 --todo
-*Testing Unit Tests after CI
 
 --possible nice to haves
 *Add External audio
