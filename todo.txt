@@ -1,4 +1,11 @@
 --todo
+*Add AAC (.m4a) to audio output list
+[quote]
+eac3to xxx.m2ts Y: comm.m4a -quality=0.4    (Y is track number)
+
+
+Sorry about double...
+[/quote]
 
 --possible nice to haves
 *Add External audio
