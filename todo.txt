@@ -1,5 +1,5 @@
 --todo
-Fixed major bug where the BatchGuy parser couldn't identify Blu-rays that use the VC-1 Codec and would throw an exception
+*add other video codecs to the Video Format drop down
 
 --possible nice to haves
 *Add External audio
