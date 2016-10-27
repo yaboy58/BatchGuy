@@ -7,10 +7,10 @@ The problem that I faced is that most of the GUI tools available do not allow yo
 As I continued to make modifications to BatchGuy, I started to think that this tool could possibly be helpful to other Blu-ray encoders and remuxers such as myself, so I decided to share this tool with the community.
 
 <h1>What BatchGuy isn’t?</h1>
-BatchGuy was created to do a specific job, which is to allow the user to be able to easily extract streams from multiple ripped Blu-ray dics, place them in an individual episode number directory, create AviSynth scripts per episode and apply global x264 encode settings for each episode.  
+BatchGuy was created to do a specific job, which is to allow the user to be able to easily extract streams from multiple ripped Blu-ray dics, create batch AviSynth scripts, apply global x264 encode settings for each video extracted and easily mux items into an (.mkv) file.  
 
 
-BatchGuy is not an AviSynth editor.  It has very limited AviSynth syntax capabilities (which could be expanded as the product evolves).  It allows you to copy/paste AviSynth syntax into it and it will create a (.avs) file for each video you extracted from your Blu-ray discs.
+BatchGuy is not an AviSynth editor.  It has very limited AviSynth syntax capabilities.  It allows you to copy/paste AviSynth syntax into it and it will create a (.avs) file for each video you extracted from your Blu-ray discs.
 
 
 BatchGuy is not an x264 encoder.  BatchGuy will create a (.bat) file that you can use to run the x264.exe encoder.  BatchGuy will not extract streams from Blu-ray discs for you.  BatchGuy will allow you to pick which streams you would like to extract and will create a (.bat) file that will use eac3to.exe to extract the streams.
