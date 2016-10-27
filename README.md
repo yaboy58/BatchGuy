@@ -17,31 +17,32 @@ BatchGuy is not an x264 encoder.  BatchGuy will create a (.bat) file that you ca
 
 
 <h1>Screenshots:</h1>
-![alt text](assets/BatchGuyMenuScreen.png "BatchGuy Main Menu Screen")
+<a href="https://raw.githubusercontent.com/yaboy58/BatchGuy/master/assets/BatchGuyMenuScreen.png"><img src="https://raw.githubusercontent.com/yaboy58/BatchGuy/master/assets/BatchGuyMenuScreen.png" alt="BatchGuy Main Menu Screen"></a>
 
 <br><br>
-![alt text](assets/BatchGuySettingsScreen.png "BatchGuy Settings Screen")
+<a href="https://raw.githubusercontent.com/yaboy58/BatchGuy/master/assets/BatchGuySettingsScreen.png"><img src="https://raw.githubusercontent.com/yaboy58/BatchGuy/master/assets/BatchGuySettingsScreen.png" alt="BatchGuy Settings Screen"></a>
 
 <br><br>
-![alt text](assets/CreateEac3toBatchFileScreen.png "BatchGuy Create eac3to Batch File Screen")
+<a href="https://raw.githubusercontent.com/yaboy58/BatchGuy/master/assets/CreateEac3toBatchFileScreen.png"><img src="https://raw.githubusercontent.com/yaboy58/BatchGuy/master/assets/CreateEac3toBatchFileScreen.png" alt="BatchGuy Create eac3to Batch File Screen"></a>
 
 <br><br>
-![alt text](assets/Blu-rayTitleInfoScreen.png "BatchGuy Blu-ray Title Information Screen")
+<a href="https://raw.githubusercontent.com/yaboy58/BatchGuy/master/assets/Blu-rayTitleInfoScreen.png"><img src="https://raw.githubusercontent.com/yaboy58/BatchGuy/master/assets/Blu-rayTitleInfoScreen.png" alt="BatchGuy Blu-ray Title Information Screen"></a>
 
 <br><br>
-![alt text](assets/ExternalSubtitlesScreen.png "BatchGuy External Subtitles Screen")
+<a href="https://raw.githubusercontent.com/yaboy58/BatchGuy/master/assets/ExternalSubtitlesScreen.png"><img src="https://raw.githubusercontent.com/yaboy58/BatchGuy/master/assets/ExternalSubtitlesScreen.png" alt="BatchGuy External Subtitles Screen"></a>
 
 <br><br>
-![alt text](assets/CreateAviSynthFilesScreen.png "BatchGuy Create AviSynth Files Screen")
+![alt text]( "")
+<a href="https://raw.githubusercontent.com/yaboy58/BatchGuy/master/assets/CreateAviSynthFilesScreen.png"><img src="https://raw.githubusercontent.com/yaboy58/BatchGuy/master/assets/CreateAviSynthFilesScreen.png" alt="BatchGuy Create AviSynth Files Screen"></a>
 
 <br><br>
-![alt text](assets/CreateX264BatchFileScreen.png "BatchGuy Create x264 Batch File Screen")
+<a href="https://raw.githubusercontent.com/yaboy58/BatchGuy/master/assets/CreateX264BatchFileScreen.png"><img src="https://raw.githubusercontent.com/yaboy58/BatchGuy/master/assets/CreateX264BatchFileScreen.png" alt="BatchGuy Create x264 Batch File Screen"></a>
 
 <br><br>
-![alt text](assets/x264LogFileSelectionScreen.png "BatchGuy x264 Log File Selection Screen")
+<a href="https://raw.githubusercontent.com/yaboy58/BatchGuy/master/assets/x264LogFileSelectionScreen.png"><img src="https://raw.githubusercontent.com/yaboy58/BatchGuy/master/assets/x264LogFileSelectionScreen.png" alt="BatchGuy x264 Log File Selection Screen"></a>
 
 <br><br>
-![alt text](assets/x264LogFileSummaryDisplayScreen.png "BatchGuy x264 Log File Summary Display Screen")
+<a href="https://raw.githubusercontent.com/yaboy58/BatchGuy/master/assets/x264LogFileSummaryDisplayScreen.png"><img src="https://raw.githubusercontent.com/yaboy58/BatchGuy/master/assets/x264LogFileSummaryDisplayScreen.png" alt="BatchGuy x264 Log File Summary Display Screen"></a>
 
 <h1>Installation</h1>
 Unzip the BatchGuy folder to any location of your choosing.  With the introduction of BatchGuy Version 1.2, the user can save settings, so it is best to keep the BatchGuy.exe in the BatchGuy folder, which is where the settings file <i>(config.batchGuySettings)</i> will be saved.  However, a shortcut to the BatchGuy.exe can be placed anywhere.
