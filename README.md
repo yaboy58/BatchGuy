@@ -52,12 +52,11 @@ You can find more documentation about BatchGuy <a href="https://github.com/yaboy
 
 <h1>Requirements:</h1>
 <ul>
-<li>AviSynth 2.5+ and all relevant plugins (required only for encoding)</li>
+<li>AviSynth 2.5+ and all relevant plugins <b>(required only for encoding)</b></li>
 <li>Blu-ray discs</li>
 <li>eac3to</li>
 <li>Microsoft .Net Framework 4.5+</li>
 <li>Windows 7, 8, 10 x64 </li>
 <li>vfw4x264 <b>(required only for encoding)</b></li>
-<li>x264 (required only for encoding)</li>
-
+<li>x264 <b>(required only for encoding)</b></li>
 </ul>
