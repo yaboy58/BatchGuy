@@ -32,7 +32,6 @@ BatchGuy is not an x264 encoder.  BatchGuy will create a (.bat) file that you ca
 <a href="https://raw.githubusercontent.com/yaboy58/BatchGuy/master/assets/ExternalSubtitlesScreen.png"><img src="https://raw.githubusercontent.com/yaboy58/BatchGuy/master/assets/ExternalSubtitlesScreen.png" alt="BatchGuy External Subtitles Screen"></a>
 
 <br><br>
-![alt text]( "")
 <a href="https://raw.githubusercontent.com/yaboy58/BatchGuy/master/assets/CreateAviSynthFilesScreen.png"><img src="https://raw.githubusercontent.com/yaboy58/BatchGuy/master/assets/CreateAviSynthFilesScreen.png" alt="BatchGuy Create AviSynth Files Screen"></a>
 
 <br><br>
