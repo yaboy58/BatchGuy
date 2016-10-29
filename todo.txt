@@ -1,5 +1,6 @@
 --todo
 *add other video codecs to the Video Format drop down
+*add unit tests for new codecs
 
 --possible nice to haves
 *Add External audio
