@@ -55,7 +55,7 @@ You can find more documentation about BatchGuy <a href="https://github.com/yaboy
 <li>Blu-ray discs</li>
 <li>eac3to</li>
 <li>Microsoft .Net Framework 4.5+</li>
-<li>Windows 7, 8, 10 x64 </li>
+<li>Windows 7, 8, 10 </li>
 <li>vfw4x264 <b>(required only for encoding)</b></li>
 <li>x264 <b>(required only for encoding)</b></li>
 </ul>
