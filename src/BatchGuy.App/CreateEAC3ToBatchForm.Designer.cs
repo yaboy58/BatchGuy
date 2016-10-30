@@ -712,7 +712,11 @@
             this.cbRemuxVideoFormat.Items.AddRange(new object[] {
             "",
             "AVC",
-            "H.264"});
+            "H.264",
+            "HEVC",
+            "MPEG-2",
+            "VC-1",
+            "XviD"});
             this.cbRemuxVideoFormat.Location = new System.Drawing.Point(265, 256);
             this.cbRemuxVideoFormat.Name = "cbRemuxVideoFormat";
             this.cbRemuxVideoFormat.Size = new System.Drawing.Size(113, 21);
