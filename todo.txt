@@ -1,9 +1,6 @@
 --todo
 *Added HEVC, MPEG-2, VC-1 and XviD items to the Video Format drop down list on the Create eac3to Batch File Screen
 
-
-*add unit tests for new codecs
-
 --possible nice to haves
 *Add External audio
 
