@@ -1,7 +1,10 @@
 --todo
+Enhancement
+*If an error occurs during the validation of Create x264 Batch File data, the application will not crash, the error will be logged and the user will receive an error message on the screen.
+
 *Fix major bug on Create x264 Batch File Screen where if the Encode Name is shorter than 4 characters, the application will crash
 
-*Ensure that the application doesn't crash when there are errors during x264 validation
+*Fixed text on Encode Name Header
 
 --possible nice to haves
 *Put video in a grid for mkvmerge editing

@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using System.IO;
 using BatchGuy.App.X264.Interfaces;
 using BatchGuy.App.Shared.Models;
+using log4net;
+using System.Reflection;
 
 namespace BatchGuy.App.X264.Services
 {
@@ -16,6 +18,8 @@ namespace BatchGuy.App.X264.Services
         private ErrorCollection _errors;
         private List<X264File> _x264Files;
 
+        public static readonly ILog _log = LogManager.GetLogger(typeof(X264ValidationService));
+
         public X264ValidationService(X264FileSettings x264FileSettings, List<X264File> x264Files)
         {
             _x264FileSettings = x264FileSettings;
@@ -24,7 +28,15 @@ namespace BatchGuy.App.X264.Services
         }
         public ErrorCollection Validate()
         {
-            this.IsValid();
+            try
+            {
+                this.IsValid();
+            }
+            catch (Exception ex)
+            {
+                _log.ErrorFormat(Program.GetLogErrorFormat(), ex.Message, MethodBase.GetCurrentMethod().Name);
+                _errors.Add(new Error() { Description = "There was an error trying to validate the x264 batch file information.  Please see the error log for more details." });
+            }
             return _errors;
         }
 
