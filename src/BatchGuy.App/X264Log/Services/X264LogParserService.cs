@@ -8,6 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using BatchGuy.App.Enums;
+using BatchGuy.App.X264.Services;
+using log4net;
+using System.Reflection;
 
 namespace BatchGuy.App.X264Log.Services
 {
@@ -18,6 +21,8 @@ namespace BatchGuy.App.X264Log.Services
         private X264LogFileSettings _x264LogFileSerttings;
         private List<X264LogFile> _logFiles;
         private string _logs = string.Empty;
+
+        public static readonly ILog _log = LogManager.GetLogger(typeof(X264LogParserService));
 
         public ErrorCollection Errors
         {
@@ -89,6 +94,7 @@ namespace BatchGuy.App.X264Log.Services
             }
             catch (Exception ex)
             {
+                _log.ErrorFormat(Program.GetLogErrorFormat(), ex.Message, ex.StackTrace, MethodBase.GetCurrentMethod().Name);
                 _errors.Add(new Error() { Description = string.Format("Error: {0}", ex.Message) });
             }
 

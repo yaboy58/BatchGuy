@@ -1,6 +1,7 @@
 --todo
 Enhancement
 *If an error occurs during the validation of Create x264 Batch File data, the application will not crash, the error will be logged and the user will receive an error message on the screen.
+*The Log4Net log error formatting was incorrect and resulted in erroneous error log information for areass of the application that do not use the new LoggingService
 
 *Fix major bug on Create x264 Batch File Screen where if the Encode Name is shorter than 4 characters, the application will crash
 

@@ -38,7 +38,7 @@ namespace BatchGuy.App.Eac3To.Services
             }
             catch (Exception ex)
             {
-                _log.ErrorFormat(Program.GetLogErrorFormat(), ex.Message, MethodBase.GetCurrentMethod().Name);
+                _log.ErrorFormat(Program.GetLogErrorFormat(), ex.Message, ex.StackTrace, MethodBase.GetCurrentMethod().Name);
                 _errors.Add(new Error() { Description = "There was a problem saving the BatchGuy eac3to Settings File" });
             }
         }
@@ -52,7 +52,7 @@ namespace BatchGuy.App.Eac3To.Services
             }
             catch (Exception ex)
             {
-                _log.ErrorFormat(Program.GetLogErrorFormat(), ex.Message, MethodBase.GetCurrentMethod().Name);
+                _log.ErrorFormat(Program.GetLogErrorFormat(), ex.Message, ex.StackTrace, MethodBase.GetCurrentMethod().Name);
                 _errors.Add(new Error() { Description = "There was a problem loading the BatchGuy eac3to Settings File" });
             }
             return batchGuyEAC3ToSettings;

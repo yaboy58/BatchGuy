@@ -94,7 +94,7 @@ namespace BatchGuy.App.X264.Services
             }
             catch (Exception ex)
             {
-                _log.ErrorFormat(Program.GetLogErrorFormat(), ex.Message, MethodBase.GetCurrentMethod().Name);
+                _log.ErrorFormat(Program.GetLogErrorFormat(), ex.Message, ex.StackTrace, MethodBase.GetCurrentMethod().Name);
                 _errors.Add(new Error() { Description =  "There was an error trying to create the x264 batch file.  Please see the error log for more details."});
             }
         }
@@ -170,7 +170,7 @@ namespace BatchGuy.App.X264.Services
             }
             catch (Exception ex)
             {
-                _log.ErrorFormat(Program.GetLogErrorFormat(), ex.Message, MethodBase.GetCurrentMethod().Name);
+                _log.ErrorFormat(Program.GetLogErrorFormat(), ex.Message, ex.StackTrace, MethodBase.GetCurrentMethod().Name);
                 _errors.Add(new Error() { Description = "There was an error trying to create the x264 batch file.  Please see the error log for more details." });
             }
         }
