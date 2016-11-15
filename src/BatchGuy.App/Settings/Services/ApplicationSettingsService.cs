@@ -64,7 +64,7 @@ namespace BatchGuy.App.Settings.Services
             }
             catch (Exception ex)
             {
-                _log.ErrorFormat(Program.GetLogErrorFormat(), ex.Message, MethodBase.GetCurrentMethod().Name);
+                _log.ErrorFormat(Program.GetLogErrorFormat(), ex.Message, ex.StackTrace, MethodBase.GetCurrentMethod().Name);
                 _errors.Add(new Error() {Description = "There was a problem saving the Application Settings File"});
             }
         }
@@ -78,7 +78,7 @@ namespace BatchGuy.App.Settings.Services
             }
             catch (Exception ex)
             {
-                _log.ErrorFormat(Program.GetLogErrorFormat(), ex.Message, MethodBase.GetCurrentMethod().Name);
+                _log.ErrorFormat(Program.GetLogErrorFormat(), ex.Message, ex.StackTrace, MethodBase.GetCurrentMethod().Name);
                 _errors.Add(new Error() { Description = "There was a problem loading the Application Settings File" });
             }
         }
