@@ -1,7 +1,9 @@
 --todo
-*Added HEVC, MPEG-2, VC-1 and XviD items to the Video Format drop down list on the Create eac3to Batch File Screen
+
 
 --possible nice to haves
+*Put video in a grid for mkvmerge editing
+
 *Add External audio
 
 *Think about tackling the multiple vidoes in a single playlist (labyrinth)
