@@ -1,5 +1,7 @@
 --todo
+*Fix major bug on Create x264 Batch File Screen where if the Encode Name is shorter than 4 characters, the application will crash
 
+*Ensure that the application doesn't crash when there are errors during x264 validation
 
 --possible nice to haves
 *Put video in a grid for mkvmerge editing
