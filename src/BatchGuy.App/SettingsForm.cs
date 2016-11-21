@@ -139,6 +139,8 @@ namespace BatchGuy.App
 
         private void HandleSaveClick()
         {
+            dgvExecutables.CurrentCell = null; //force the cell change so cell changed event fires
+            dgvBluRayTitleInfoDefaultSettingsAudio.CurrentCell = null; //force the cell change so cell changed event fires
             Program.ApplicationSettingsService.Save(Program.ApplicationSettings);
         }
 

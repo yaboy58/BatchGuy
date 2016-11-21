@@ -203,7 +203,7 @@
             this.tlpAudioType.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29.29293F));
             this.tlpAudioType.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70.70707F));
             this.tlpAudioType.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 81F));
-            this.tlpAudioType.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 321F));
+            this.tlpAudioType.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 322F));
             this.tlpAudioType.Controls.Add(this.lblAudioTypeArguments, 2, 0);
             this.tlpAudioType.Controls.Add(this.txtAudioTypeArguments, 3, 0);
             this.tlpAudioType.Controls.Add(this.lblAudioType, 0, 0);
@@ -219,7 +219,7 @@
             // lblAudioTypeArguments
             // 
             this.lblAudioTypeArguments.AutoSize = true;
-            this.lblAudioTypeArguments.Location = new System.Drawing.Point(307, 6);
+            this.lblAudioTypeArguments.Location = new System.Drawing.Point(306, 6);
             this.lblAudioTypeArguments.Margin = new System.Windows.Forms.Padding(3, 6, 3, 0);
             this.lblAudioTypeArguments.Name = "lblAudioTypeArguments";
             this.lblAudioTypeArguments.Size = new System.Drawing.Size(60, 13);
@@ -228,7 +228,7 @@
             // 
             // txtAudioTypeArguments
             // 
-            this.txtAudioTypeArguments.Location = new System.Drawing.Point(388, 3);
+            this.txtAudioTypeArguments.Location = new System.Drawing.Point(387, 3);
             this.txtAudioTypeArguments.Name = "txtAudioTypeArguments";
             this.txtAudioTypeArguments.Size = new System.Drawing.Size(288, 20);
             this.txtAudioTypeArguments.TabIndex = 5;
@@ -254,6 +254,7 @@
             "DTSMA",
             "FLAC",
             "LPCM",
+            "M4A",
             "MPA",
             "TrueHD"});
             this.cbAudioType.Location = new System.Drawing.Point(92, 3);
@@ -515,7 +516,7 @@
             // lblEpisodeNumber
             // 
             this.lblEpisodeNumber.AutoSize = true;
-            this.lblEpisodeNumber.Location = new System.Drawing.Point(418, 6);
+            this.lblEpisodeNumber.Location = new System.Drawing.Point(417, 6);
             this.lblEpisodeNumber.Margin = new System.Windows.Forms.Padding(3, 6, 3, 0);
             this.lblEpisodeNumber.Name = "lblEpisodeNumber";
             this.lblEpisodeNumber.Size = new System.Drawing.Size(58, 13);
@@ -524,7 +525,7 @@
             // 
             // txtEpisodeNumber
             // 
-            this.txtEpisodeNumber.Location = new System.Drawing.Point(482, 3);
+            this.txtEpisodeNumber.Location = new System.Drawing.Point(481, 3);
             this.txtEpisodeNumber.Name = "txtEpisodeNumber";
             this.txtEpisodeNumber.Size = new System.Drawing.Size(63, 20);
             this.txtEpisodeNumber.TabIndex = 0;
@@ -800,7 +801,7 @@
             this.tlpTitle.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 13.40206F));
             this.tlpTitle.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 69F));
             this.tlpTitle.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 92F));
-            this.tlpTitle.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 237F));
+            this.tlpTitle.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 238F));
             this.tlpTitle.Controls.Add(this.lblTitle, 0, 0);
             this.tlpTitle.Controls.Add(this.lblEpisodeNumber, 1, 0);
             this.tlpTitle.Controls.Add(this.txtEpisodeNumber, 2, 0);
@@ -816,7 +817,7 @@
             // 
             // txtEpisodeName
             // 
-            this.txtEpisodeName.Location = new System.Drawing.Point(643, 3);
+            this.txtEpisodeName.Location = new System.Drawing.Point(642, 3);
             this.txtEpisodeName.Name = "txtEpisodeName";
             this.txtEpisodeName.Size = new System.Drawing.Size(217, 20);
             this.txtEpisodeName.TabIndex = 1;
@@ -825,7 +826,7 @@
             // lblEpisodeName
             // 
             this.lblEpisodeName.AutoSize = true;
-            this.lblEpisodeName.Location = new System.Drawing.Point(551, 6);
+            this.lblEpisodeName.Location = new System.Drawing.Point(550, 6);
             this.lblEpisodeName.Margin = new System.Windows.Forms.Padding(3, 6, 3, 0);
             this.lblEpisodeName.Name = "lblEpisodeName";
             this.lblEpisodeName.Size = new System.Drawing.Size(79, 13);

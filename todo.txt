@@ -1,4 +1,8 @@
 --todo
+Bug Fix
+Fixed bug on BatchGuy Settings screen where the grid change events were not firing if the user made a change in a grid and went directly to save menu item
+
+Enhancement
 Add (.m4a) audio to the BatchGuy audio list
 
 
