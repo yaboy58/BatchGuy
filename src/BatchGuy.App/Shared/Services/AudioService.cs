@@ -37,6 +37,9 @@ namespace BatchGuy.App.Shared.Services
                 case EnumAudioType.DTSEXPRESS:
                     audioExtension = "dts";
                     break;
+                case EnumAudioType.M4A:
+                    audioExtension = "m4a";
+                    break;
                 default:
                     throw new Exception("Invalid Audio Type");
             }
@@ -68,6 +71,9 @@ namespace BatchGuy.App.Shared.Services
                     break;
                 case "DTS Express":
                     audioType = EnumAudioType.DTSEXPRESS;
+                    break;
+                case "M4A":
+                    audioType = EnumAudioType.M4A;
                     break;
                 default:
                     throw new Exception("Invalid Audio Type");
@@ -101,6 +107,9 @@ namespace BatchGuy.App.Shared.Services
                     break;
                 case EnumAudioType.DTSEXPRESS:
                     name = "DTS Express";
+                    break;
+                case EnumAudioType.M4A:
+                    name = "M4A";
                     break;
                 default:
                     throw new Exception("Invalid Audio Type");

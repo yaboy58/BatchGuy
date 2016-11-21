@@ -1,11 +1,10 @@
 --todo
 Bug Fix
-*Fixed major bug on Create x264 Batch File Screen where if the Encode Name entered is 4 characters or less,  when the user attempted to create the x264 batch file, the application would crash
+Fixed bug on BatchGuy Settings screen where the grid change events were not firing if the user made a change in a grid and went directly to save menu item
 
 Enhancement
-*If an error occurs during the validation of Create x264 Batch File data, the application will not crash, the error will be logged and the user will receive an error message on the screen.
-*The Log4Net log error formatting was incorrect and resulted in erroneous error log information for areass of the application that do not use the new LoggingService
-*Encode Name column header text example has been modified to display a better example of an appropriate encode name the user should enter
+Added m4a audio to the BatchGuy audio list
+
 
 
 --possible nice to haves
