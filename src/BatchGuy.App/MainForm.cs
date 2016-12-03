@@ -165,7 +165,7 @@ namespace BatchGuy
             if (task != null)
                 this.CheckForNewVersionCompleted(task);
             else
-                MessageBox.Show("An error occurred while trying to check for a new verison.  Please view the error log for more details.", "Error Occurred", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "An error occurred while trying to check for a new verison", DisplayTitle = "Error Occurred." });
         }
 
         private void CheckForNewVersionCompleted(BatchGuyLatestVersionInfo result)
