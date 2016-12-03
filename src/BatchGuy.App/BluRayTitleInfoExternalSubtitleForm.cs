@@ -81,7 +81,7 @@ namespace BatchGuy.App
             }
             catch (Exception ex)
             {
-                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was a problem loading the screen!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
+                _displayErrorMessageService.LogAndDisplayError(new ErrorMessage() { DisplayMessage = "There was a problem loading the screen!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
             }
         }
 
@@ -111,7 +111,7 @@ namespace BatchGuy.App
             }
             catch (Exception ex)
             {
-                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was a problem selecting the subtitle language!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
+                _displayErrorMessageService.LogAndDisplayError(new ErrorMessage() { DisplayMessage = "There was a problem selecting the subtitle language!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
             }
         }
 
@@ -128,7 +128,7 @@ namespace BatchGuy.App
             }
             catch (Exception ex)
             {
-                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was a problem opening the file path!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
+                _displayErrorMessageService.LogAndDisplayError(new ErrorMessage() { DisplayMessage = "There was a problem opening the file path!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
             }
         }
 
@@ -155,7 +155,7 @@ namespace BatchGuy.App
             }
             catch (Exception ex)
             {
-                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was a problem saving the external subtitle information!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
+                _displayErrorMessageService.LogAndDisplayError(new ErrorMessage() { DisplayMessage = "There was a problem saving the external subtitle information!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
             }
         }
 

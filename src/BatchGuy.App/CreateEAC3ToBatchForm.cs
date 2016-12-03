@@ -84,7 +84,7 @@ namespace BatchGuy.App
             }
             catch (Exception ex)
             {
-                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was a problem trying to load the screen!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
+                _displayErrorMessageService.LogAndDisplayError(new ErrorMessage() { DisplayMessage = "There was a problem trying to load the screen!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
             }
         }
 
@@ -175,7 +175,7 @@ namespace BatchGuy.App
             }
             catch (Exception ex)
             {
-                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was a problem trying to load the disc summary!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
+                _displayErrorMessageService.LogAndDisplayError(new ErrorMessage() { DisplayMessage = "There was a problem trying to load the disc summary!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
             }
         }
 
@@ -282,7 +282,7 @@ namespace BatchGuy.App
             }
             catch (Exception ex)
             {
-                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was a problem selecting the item on the grid!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
+                _displayErrorMessageService.LogAndDisplayError(new ErrorMessage() { DisplayMessage = "There was a problem selecting the item on the grid!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
             }
         }
 
@@ -356,7 +356,7 @@ namespace BatchGuy.App
             }
             catch (Exception ex)
             {
-                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was a problem opening the BluRay Title Info Screen!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
+                _displayErrorMessageService.LogAndDisplayError(new ErrorMessage() { DisplayMessage = "There was a problem opening the BluRay Title Info Screen!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
             }
         }
 
@@ -382,7 +382,7 @@ namespace BatchGuy.App
             }
             catch (Exception ex)
             {
-                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was a problem opening the file path!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
+                _displayErrorMessageService.LogAndDisplayError(new ErrorMessage() { DisplayMessage = "There was a problem opening the file path!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
             }
         }
 
@@ -571,7 +571,7 @@ namespace BatchGuy.App
             }
             catch (Exception ex)
             {
-                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was a problem loading the remux template!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
+                _displayErrorMessageService.LogAndDisplayError(new ErrorMessage() { DisplayMessage = "There was a problem loading the remux template!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
             }
         }
 
@@ -620,7 +620,7 @@ namespace BatchGuy.App
             }
             catch (Exception ex)
             {
-                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was a problem saving the file!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
+                _displayErrorMessageService.LogAndDisplayError(new ErrorMessage() { DisplayMessage = "There was a problem saving the file!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
             }
         }
 
@@ -671,7 +671,7 @@ namespace BatchGuy.App
             }
             catch (Exception ex)
             {
-                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was a problem loading the file!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
+                _displayErrorMessageService.LogAndDisplayError(new ErrorMessage() { DisplayMessage = "There was a problem loading the file!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
             }
         }
 
@@ -699,7 +699,7 @@ namespace BatchGuy.App
             }
             catch (Exception ex)
             {
-                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was an error trying to load the eac3to Settings File!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
+                _displayErrorMessageService.LogAndDisplayError(new ErrorMessage() { DisplayMessage = "There was an error trying to load the eac3to Settings File!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
             }
         }
 
@@ -842,7 +842,7 @@ namespace BatchGuy.App
             }
             catch (Exception ex)
             {
-                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was a problem opening the file path!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
+                _displayErrorMessageService.LogAndDisplayError(new ErrorMessage() { DisplayMessage = "There was a problem opening the file path!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
             }
         }
 
@@ -877,7 +877,7 @@ namespace BatchGuy.App
             }
             catch (Exception ex)
             {
-                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was a problem opening the file path!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
+                _displayErrorMessageService.LogAndDisplayError(new ErrorMessage() { DisplayMessage = "There was a problem opening the file path!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
             }
         }
 
@@ -991,7 +991,7 @@ namespace BatchGuy.App
             }
             catch (Exception ex)
             {
-                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was a problem creating the eac3to batch file!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
+                _displayErrorMessageService.LogAndDisplayError(new ErrorMessage() { DisplayMessage = "There was a problem creating the eac3to batch file!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
             }
         }
 
@@ -1085,7 +1085,7 @@ namespace BatchGuy.App
             }
             catch (Exception ex)
             {
-                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was a problem creating the mkvmerge batch file!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
+                _displayErrorMessageService.LogAndDisplayError(new ErrorMessage() { DisplayMessage = "There was a problem creating the mkvmerge batch file!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
             }
         }
 
@@ -1189,7 +1189,7 @@ namespace BatchGuy.App
             }
             catch (Exception ex)
             {
-                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was a problem trying to set the remux for movie checkbox!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
+                _displayErrorMessageService.LogAndDisplayError(new ErrorMessage() { DisplayMessage = "There was a problem trying to set the remux for movie checkbox!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
             }
         }
 
@@ -1329,7 +1329,7 @@ namespace BatchGuy.App
             }
             catch (Exception ex)
             {
-                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was a problem trying to set the eac3to directory type!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
+                _displayErrorMessageService.LogAndDisplayError(new ErrorMessage() { DisplayMessage = "There was a problem trying to set the eac3to directory type!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
             }
         }
 
@@ -1368,7 +1368,7 @@ namespace BatchGuy.App
             }
             catch (Exception ex)
             {
-                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was a problem setting the eac3to output directory!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
+                _displayErrorMessageService.LogAndDisplayError(new ErrorMessage() { DisplayMessage = "There was a problem setting the eac3to output directory!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
             }
         }
 

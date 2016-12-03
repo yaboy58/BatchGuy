@@ -9,6 +9,6 @@ namespace BatchGuy.App.Shared.Interfaces
 {
     internal interface IBatchGuyNotificationService
     {
-        BatchGuyLatestVersionInfo GetLatestVersionInfo();
+        Task<BatchGuyLatestVersionInfo> GetLatestVersionInfo();
     }
 }

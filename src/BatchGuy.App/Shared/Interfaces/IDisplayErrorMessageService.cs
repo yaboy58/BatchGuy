@@ -9,6 +9,6 @@ namespace BatchGuy.App.Shared.Interfaces
 {
     public interface IDisplayErrorMessageService
     {
-        void DisplayError(ErrorMessage message);
+        void LogAndDisplayError(ErrorMessage message);
     }
 }

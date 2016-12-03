@@ -97,7 +97,7 @@ namespace BatchGuy.App
             }
             catch (Exception ex)
             {
-                _displayErrorMessageService.DisplayError(new ErrorMessage() { DisplayMessage = "There was a problem trying to view the logs!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
+                _displayErrorMessageService.LogAndDisplayError(new ErrorMessage() { DisplayMessage = "There was a problem trying to view the logs!", DisplayTitle = "Error.", Exception = ex, MethodNameWhereExceptionOccurred = MethodBase.GetCurrentMethod().Name });
             }
         }
 

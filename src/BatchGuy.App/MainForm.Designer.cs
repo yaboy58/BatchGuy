@@ -53,7 +53,6 @@
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.bgwCheckForNewVersion = new System.ComponentModel.BackgroundWorker();
             this.pbNewVersion = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.menuStrip1.SuspendLayout();
@@ -256,11 +255,6 @@
             this.toolStripStatusLabel.Size = new System.Drawing.Size(118, 17);
             this.toolStripStatusLabel.Text = "toolStripStatusLabel1";
             // 
-            // bgwCheckForNewVersion
-            // 
-            this.bgwCheckForNewVersion.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgwCheckForNewVersion_DoWork);
-            this.bgwCheckForNewVersion.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgwCheckForNewVersion_RunWorkerCompleted);
-            // 
             // pbNewVersion
             // 
             this.pbNewVersion.Image = global::BatchGuy.App.Properties.Resources.label_new_green;
@@ -337,7 +331,6 @@
         private System.Windows.Forms.ToolStripMenuItem avisynthToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem pluginsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem vfw4x264ToolStripMenuItem;
-        private System.ComponentModel.BackgroundWorker bgwCheckForNewVersion;
         private System.Windows.Forms.PictureBox pbNewVersion;
     }
 }

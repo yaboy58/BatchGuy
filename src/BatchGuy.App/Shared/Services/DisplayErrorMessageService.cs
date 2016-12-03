@@ -13,7 +13,7 @@ namespace BatchGuy.App.Shared.Services
     {
         private ILoggingService _loggingService = new LoggingService(Program.GetLogErrorFormat());
 
-        public void DisplayError(ErrorMessage errorMessage)
+        public void LogAndDisplayError(ErrorMessage errorMessage)
         {
             _loggingService.LogErrorFormat(errorMessage.Exception, errorMessage.MethodNameWhereExceptionOccurred);
             MessageBox.Show(string.Format("{0}.  Please view the error log for more details.",errorMessage.DisplayMessage), errorMessage.DisplayTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);

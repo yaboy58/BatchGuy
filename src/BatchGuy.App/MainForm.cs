@@ -14,13 +14,18 @@ using BatchGuy.App.Shared.Services;
 using System.Reflection;
 using BatchGuy.App.Settings.Models;
 using BatchGuy.App.Extensions;
+using BatchGuy.App.Shared.Models;
+using System.Threading;
 
 namespace BatchGuy
 {
     public partial class MainForm : Form
     {
-        private ILoggingService _loggingService;
+        private ILoggingService _loggingService = new LoggingService(Program.GetLogErrorFormat());
         private BatchGuyLatestVersionInfo _batchGuyLatestVersionInfo;
+        private IDisplayErrorMessageService _displayErrorMessageService = new DisplayErrorMessageService();
+        private readonly SynchronizationContext _synchronizationContext;
+
         public MainForm()
         {
             InitializeComponent();
@@ -151,39 +156,21 @@ namespace BatchGuy
             Process.Start("http://officialsite.pp.ua/?p=2849015");
         }
 
-        private void CheckForNewVersion()
+        private async Task CheckForNewVersion()
         {
-            try
-            {
-                if (Program.ApplicationSettings.CheckForNewBatchGuyVersions)
-                {
-                    IBatchGuyNotificationService batchGuyNotificationservice = new BatchGuyNotificationService(Program.GetApplicationTag());
-                    bgwCheckForNewVersion.RunWorkerAsync(batchGuyNotificationservice);
-                }
-            }
-            catch (Exception ex)
-            {
-                _loggingService.LogErrorFormat(ex, MethodBase.GetCurrentMethod().Name);
-            }
+            IBatchGuyNotificationService batchGuyNotificationservice = new BatchGuyNotificationService(Program.GetApplicationTag(), _loggingService);
+
+            var task = await batchGuyNotificationservice.GetLatestVersionInfo();
+
+            if (task != null)
+                this.CheckForNewVersionCompleted(task);
+            else
+                MessageBox.Show("An error occurred while trying to check for a new verison.  Please view the error log for more details.", "Error Occurred", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
-        private void bgwCheckForNewVersion_DoWork(object sender, DoWorkEventArgs e)
+        private void CheckForNewVersionCompleted(BatchGuyLatestVersionInfo result)
         {
-            try
-            {
-                IBatchGuyNotificationService batchGuyNotificationservice = e.Argument as BatchGuyNotificationService;
-                BatchGuyLatestVersionInfo batchGuyLatestVersionInfo = batchGuyNotificationservice.GetLatestVersionInfo();
-                e.Result = batchGuyLatestVersionInfo;
-            }
-            catch (Exception ex)
-            {
-                _loggingService.LogErrorFormat(ex, MethodBase.GetCurrentMethod().Name);
-            }
-        }
-
-        private void bgwCheckForNewVersion_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            _batchGuyLatestVersionInfo = e.Result as BatchGuyLatestVersionInfo;
+            _batchGuyLatestVersionInfo = result;
             if (_batchGuyLatestVersionInfo != null && _batchGuyLatestVersionInfo.IsNewVersion)
             {
                 pbNewVersion.Visible = true;

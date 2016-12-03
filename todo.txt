@@ -1,4 +1,6 @@
 --todo
+*The logic to check for a new version has be refactored to use async/await.
+
 Use async/wait where applicable
 
 
