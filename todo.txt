@@ -1,11 +1,14 @@
 --todo
-*The logic to check for a new version has be refactored to use async/await.
+Enhancements:
+*The logic to check for a new version of BatchGuy has be refactored to use async/await.
+*Enhanced parts of the application responsible for displaying and logging errors
 
-Use async/wait where applicable
-
-
+Bug Fixes:
+*Fixed major bug when there are no subtitles, the entire BlurayTitleInfo Screen will be disabled instead of just the Subtitles Grid.
 
 --possible nice to haves
+*Use async/wait where applicable
+
 *Put video in a grid for mkvmerge editing
 
 *Add External audio

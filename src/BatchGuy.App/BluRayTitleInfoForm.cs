@@ -271,7 +271,7 @@ namespace BatchGuy.App
             }
             else
             {
-                tlpGroupBox.Enabled = false;
+                dgvSubtitles.Enabled = false;
             }
         }
 
