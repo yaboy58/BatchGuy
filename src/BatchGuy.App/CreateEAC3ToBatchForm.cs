@@ -472,8 +472,10 @@ namespace BatchGuy.App
 
         private void SortBluRayDiscGrid(int sortColumnNumber)
         {
-            if (_bindingListBluRayDiscInfo.Count() == 0)
+            if (_bindingListBluRayDiscInfo.Count() == 0 || dgvBluRayDiscInfo.Columns[sortColumnNumber].SortMode == DataGridViewColumnSortMode.NotSortable)
                 return;
+
+            
 
             string sortColumnName = dgvBluRayDiscInfo.Columns[sortColumnNumber].DataPropertyName;
             _bluRayDiscGridSortConfiguration.SortByColumnName = sortColumnName;
