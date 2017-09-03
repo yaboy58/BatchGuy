@@ -1,4 +1,7 @@
 --todo
+* Allow users to delete blu-ray discs on the Create eac3to Batch File Screen
+
+
 Enhancements:
 *The logic to check for a new version of BatchGuy has be refactored to use async/await.
 *Enhanced parts of the application responsible for displaying and logging errors
