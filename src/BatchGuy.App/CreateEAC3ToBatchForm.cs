@@ -170,6 +170,11 @@ namespace BatchGuy.App
                             _bindingListBluRaySummaryInfo.Add(info);
                         }
                         this.UpdateUIForBluRaySummary();
+
+                        if (e.ColumnIndex == 4)
+                        {
+                            this.HandleRemoveBluRayDisc(e);
+                        }
                     }
                 }
             }
@@ -218,6 +223,21 @@ namespace BatchGuy.App
             if (_currentBluRayDiscGridRowIndex != -1)
                 dgvBluRayDiscInfo.Rows[_currentBluRayDiscGridRowIndex].Selected = true;
             gbScreen.SetEnabled(true);
+        }
+
+        private void HandleRemoveBluRayDisc(DataGridViewCellEventArgs e)
+        {
+
+            DialogResult startProcessResult = MessageBox.Show("Remove this Blu-ray Disc?", "Remove Disc?", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+            if (startProcessResult == System.Windows.Forms.DialogResult.No)
+                return;
+
+                var id = dgvBluRayDiscInfo.Rows[e.RowIndex].Cells[0].Value;
+            _currentBluRayDiscInfo = _bindingListBluRayDiscInfo.SingleOrDefault(d => d.Id == id.ToString().StringToInt());
+            BluRayDiscInfo disc = _bindingListBluRayDiscInfo.SingleOrDefault(d => d.Id == _currentBluRayDiscInfo.Id);
+            _bindingListBluRayDiscInfo.Remove(disc);
+            this.BindDgvBluRayDiscInfoGrid();
+            dgvBluRaySummary.Rows.Clear();
         }
 
 

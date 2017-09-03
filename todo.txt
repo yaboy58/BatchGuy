@@ -1,5 +1,6 @@
 --todo
 * Allow users to delete blu-ray discs on the Create eac3to Batch File Screen
+* And last, a combined eac3to and mkvmerge batch file output would be nice so that it extracts and then muxes with a single batch file. This one is very low priority as I just created that batch file myself, but maybe it would be nice for others.
 
 * To complete this enhancement:
 	* dgvBluRayDiscInfo_CellClick method needs to account for the remove disc cell
