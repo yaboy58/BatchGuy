@@ -1,3 +1,16 @@
+/src/BatchGuy.Eac3to.Parser.Example.Console.App/bin
+/src/BatchGuy.Eac3to.Parser.Example.Console.App/obj
+
+/src/BatchGuy.Settings.Serialization.Example.Console.App/bin
+/src/BatchGuy.Settings.Serialization.Example.Console.App/obj
+
+/src/BatchGuy.X264Log.Parser.Example.Console.App/bin
+/src/BatchGuy.X264Log.Parser.Example.Console.App/obj
+
+/src/tests/BatchGuy.Unit.Tests/bin
+/src/tests/BatchGuy.Unit.Tests/obj
+
+
 /src/.vs
 /packages/FluentAssert.1.0.0.11/FluentAssert.1.0.0.11.nupkg
 /packages/FluentAssert.1.0.0.11/FluentAssert.1.0.0.11.nuspec
