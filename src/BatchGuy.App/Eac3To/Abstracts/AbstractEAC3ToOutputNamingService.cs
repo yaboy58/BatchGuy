@@ -5,11 +5,6 @@ using BatchGuy.App.Extensions;
 using BatchGuy.App.Helpers;
 using BatchGuy.App.Parser.Models;
 using BatchGuy.App.Shared.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BatchGuy.App.Eac3To.Abstracts
 {

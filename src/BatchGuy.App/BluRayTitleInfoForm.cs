@@ -8,10 +8,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using BatchGuy.App.Helpers;
 using BatchGuy.App.Extensions;
 using BatchGuy.App.Shared.Models;
 using BatchGuy.App.Shared.Interfaces;
@@ -23,7 +20,6 @@ using BatchGuy.App.MKVMerge.Services;
 using BatchGuy.App.Shared.Interface;
 using BatchGuy.App.Settings.Interface;
 using BatchGuy.App.Settings.Services;
-using System.IO;
 using System.Reflection;
 
 namespace BatchGuy.App

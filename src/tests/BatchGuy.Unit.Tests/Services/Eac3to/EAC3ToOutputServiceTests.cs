@@ -1,13 +1,8 @@
 ﻿using NUnit.Framework;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using FluentAssertions;
 using BatchGuy.App.Eac3to.Models;
 using BatchGuy.App.Eac3to.Services;
-using BatchGuy.App;
 using BatchGuy.App.Eac3to.Interfaces;
 using BatchGuy.App.Enums;
 using BatchGuy.App.Parser.Models;

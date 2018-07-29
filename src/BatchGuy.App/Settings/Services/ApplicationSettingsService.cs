@@ -1,18 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using BatchGuy.App.Shared.Interface;
 using BatchGuy.App.Shared.Models;
 using System.IO;
 using log4net;
 using BatchGuy.App.Settings.Interface;
 using System.Reflection;
-using BatchGuy.App.Enums;
-using BatchGuy.App.Settings.Models;
 using BatchGuy.App.Shared.Interfaces;
-using BatchGuy.App.MKVMerge.Models;
 
 namespace BatchGuy.App.Settings.Services
 {

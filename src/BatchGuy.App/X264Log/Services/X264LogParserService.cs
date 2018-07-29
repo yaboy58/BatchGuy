@@ -5,10 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.IO;
 using BatchGuy.App.Enums;
-using BatchGuy.App.X264.Services;
 using log4net;
 using System.Reflection;
 

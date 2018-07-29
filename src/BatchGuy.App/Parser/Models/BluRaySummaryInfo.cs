@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using BatchGuy.App.Extensions;
+﻿using BatchGuy.App.Extensions;
 using BatchGuy.App.Eac3To.Models;
 
 namespace BatchGuy.App.Parser.Models

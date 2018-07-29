@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BatchGuy.App.X264Log.Models
+﻿namespace BatchGuy.App.X264Log.Models
 {
     public class X264LogFile
     {

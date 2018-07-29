@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using BatchGuy.App.Helpers;
-using BatchGuy.App.AviSynth;
 using BatchGuy.App.AviSynth.Models;
 using BatchGuy.App.AviSynth.Interfaces;
 using BatchGuy.App.Enums;

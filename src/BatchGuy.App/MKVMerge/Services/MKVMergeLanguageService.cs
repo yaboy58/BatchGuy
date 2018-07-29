@@ -1,13 +1,8 @@
 ﻿using BatchGuy.App.MKVMerge.Interfaces;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using BatchGuy.App.MKVMerge.Models;
-using System.Reflection;
 using BatchGuy.App.Shared.Interface;
-using BatchGuy.App.Shared.Services;
 
 namespace BatchGuy.App.MKVMerge.Services
 {

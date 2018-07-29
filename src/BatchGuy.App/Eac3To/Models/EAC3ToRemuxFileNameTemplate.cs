@@ -1,11 +1,4 @@
-﻿using BatchGuy.App.Enums;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BatchGuy.App.Eac3To.Models
+﻿namespace BatchGuy.App.Eac3To.Models
 {
     public class EAC3ToRemuxFileNameTemplate
     {
