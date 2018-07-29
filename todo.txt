@@ -1,14 +1,7 @@
 --todo
-
-* Fix the error that is occurring when calling github
-* Store the inner exception when logging
-
-Enhancements:
-* Removed unused library references from all classes
-* Removed most branches from GitHub repository
-
 Bug Fixes:
 * When the check for new BatchGuy Versions flag is false, BatchGuy will not check for new versions (not sure why this wasn't always the case)
+* Upgraded the .Netframework version to 4.6 to fix GitHub TLS issue that causes the error on start up of the application
 
 --possible nice to haves
 *Use async/wait where applicable
