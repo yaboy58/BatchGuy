@@ -1,8 +1,6 @@
 --todo
 
 * Fix the error that is occurring when calling github
-
-* Delete all branches
 * Store the inner exception when logging
 
 Enhancements:
