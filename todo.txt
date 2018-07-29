@@ -1,15 +1,16 @@
 --todo
-* Check check version flag before calling to github
+
 * Fix the error that is occurring when calling github
-* Remove unused library references from all classes
+
 * Delete all branches
 * Store the inner exception when logging
 
 Enhancements:
-
+* Removed unused library references from all classes
+* Removed most branches from GitHub repository
 
 Bug Fixes:
-* 
+* When the check for new BatchGuy Versions flag is false, BatchGuy will not check for new versions (not sure why this wasn't always the case)
 
 --possible nice to haves
 *Use async/wait where applicable

@@ -28,7 +28,8 @@ namespace BatchGuy
             if (!Program.ErrorLoadingApplicationSettings)
             {
                 this.LoadLoggingService();
-                this.CheckForNewVersion();
+                if (Program.ApplicationSettings.CheckForNewBatchGuyVersions)
+                    this.CheckForNewVersion();
             }
             else
             {
