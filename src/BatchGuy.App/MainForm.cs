@@ -1,21 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BatchGuy.App;
 using System.Diagnostics;
 using BatchGuy.App.Shared.Interfaces;
 using BatchGuy.App.Shared.Services;
-using System.Reflection;
 using BatchGuy.App.Settings.Models;
 using BatchGuy.App.Extensions;
 using BatchGuy.App.Shared.Models;
-using System.Threading;
 
 namespace BatchGuy
 {
@@ -24,7 +16,6 @@ namespace BatchGuy
         private ILoggingService _loggingService = new LoggingService(Program.GetLogErrorFormat());
         private BatchGuyLatestVersionInfo _batchGuyLatestVersionInfo;
         private IDisplayErrorMessageService _displayErrorMessageService = new DisplayErrorMessageService();
-        private readonly SynchronizationContext _synchronizationContext;
 
         public MainForm()
         {
@@ -37,7 +28,8 @@ namespace BatchGuy
             if (!Program.ErrorLoadingApplicationSettings)
             {
                 this.LoadLoggingService();
-                this.CheckForNewVersion();
+                if (Program.ApplicationSettings.CheckForNewBatchGuyVersions)
+                    this.CheckForNewVersion();
             }
             else
             {

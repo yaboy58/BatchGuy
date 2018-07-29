@@ -4,11 +4,7 @@ using BatchGuy.App.Shared.Interface;
 using BatchGuy.App.Shared.Models;
 using log4net;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BatchGuy.App.Eac3To.Services
 {

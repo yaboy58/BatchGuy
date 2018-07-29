@@ -1,18 +1,14 @@
 ﻿using BatchGuy.App.Eac3to.Models;
 using BatchGuy.App.Eac3To.Abstracts;
-using BatchGuy.App.Eac3To.Interfaces;
 using BatchGuy.App.Enums;
 using BatchGuy.App.Extensions;
 using BatchGuy.App.Helpers;
 using BatchGuy.App.MKVMerge.Interfaces;
 using BatchGuy.App.Parser.Models;
 using BatchGuy.App.Shared.Models;
-using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace BatchGuy.App.MKVMerge.Services
 {

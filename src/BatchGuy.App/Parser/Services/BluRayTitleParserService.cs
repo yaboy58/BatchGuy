@@ -1,13 +1,9 @@
 ﻿using BatchGuy.App.Parser.Interfaces;
 using BatchGuy.App.Parser.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using BatchGuy.App.Enums;
 using System.Text.RegularExpressions;
-using log4net;
 using BatchGuy.App.MKVMerge.Interfaces;
 using BatchGuy.App.MKVMerge.Models;
 

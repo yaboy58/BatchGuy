@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using BatchGuy.App.AviSynth.Models;
+﻿using BatchGuy.App.AviSynth.Models;
 using BatchGuy.App.AviSynth.Services;
-using NUnit;
 using NUnit.Framework;
 using BatchGuy.App.AviSynth.Interfaces;
 using BatchGuy.App.Shared.Models;

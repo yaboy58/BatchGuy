@@ -1,5 +1,4 @@
-﻿using BatchGuy.App.Eac3to.Interfaces;
-using BatchGuy.App.Eac3to.Models;
+﻿using BatchGuy.App.Eac3to.Models;
 using BatchGuy.App.Eac3to.Services;
 using BatchGuy.App.Eac3To.Abstracts;
 using BatchGuy.App.Eac3To.Interfaces;
@@ -13,13 +12,8 @@ using BatchGuy.App.Parser.Services;
 using BatchGuy.App.Shared.Interface;
 using BatchGuy.App.Shared.Interfaces;
 using BatchGuy.App.Shared.Services;
-using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BatchGuy.Eac3to.Parser.Example.Console.App
 {

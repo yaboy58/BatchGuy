@@ -1,11 +1,6 @@
 ﻿using BatchGuy.App.Parser.Models;
 using BatchGuy.App.Parser.Services;
 using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using FluentAssertions;
 using BatchGuy.App.Parser.Interfaces;
 using BatchGuy.App.Shared.Models;

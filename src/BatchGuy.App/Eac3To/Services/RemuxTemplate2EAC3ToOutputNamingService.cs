@@ -1,9 +1,5 @@
 ﻿using BatchGuy.App.Eac3To.Abstracts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using BatchGuy.App.Eac3to.Models;
 using BatchGuy.App.Parser.Models;
 using BatchGuy.App.Shared.Interfaces;

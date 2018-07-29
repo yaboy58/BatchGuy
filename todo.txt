@@ -1,20 +1,7 @@
 --todo
-* Allow users to delete blu-ray discs on the Create eac3to Batch File Screen
-* And last, a combined eac3to and mkvmerge batch file output would be nice so that it extracts and then muxes with a single batch file. This one is very low priority as I just created that batch file myself, but maybe it would be nice for others.
-
-* To complete this enhancement:
-	* dgvBluRayDiscInfo_CellClick method needs to account for the remove disc cell
-	* bgwEac3toLoadSummary_RunWorkerCompleted method has the code to remove a disc
-		* You also need to delete the summary, dgvBluRayDiscInfo_CellClick has code to add, I just think you need to clear it as well
-	* Test to make sure disc order doesn't matter ie they had disc1 and disc2, delete disc1 and then re-add it back
-
-
-Enhancements:
-*The logic to check for a new version of BatchGuy has be refactored to use async/await.
-*Enhanced parts of the application responsible for displaying and logging errors
-
 Bug Fixes:
-*Fixed major bug when there are no subtitles, the entire BlurayTitleInfo Screen will be disabled instead of just the Subtitles Grid.
+* When the check for new BatchGuy Versions flag is false, BatchGuy will not check for new versions (not sure why this wasn't always the case)
+* Upgraded the .Netframework version to 4.6 to fix GitHub TLS issue that causes the error on start up of the application
 
 --possible nice to haves
 *Use async/wait where applicable

@@ -1,12 +1,7 @@
-﻿using BatchGuy.App.Enums;
-using BatchGuy.App.Shared.Interfaces;
+﻿using BatchGuy.App.Shared.Interfaces;
 using BatchGuy.App.Shared.Models;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace BatchGuy.App.Shared.Services

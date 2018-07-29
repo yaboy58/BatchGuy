@@ -1,19 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using BatchGuy.App.Eac3to.Models;
 using System.IO;
-using BatchGuy.App.Helpers;
 using BatchGuy.App.Eac3to.Interfaces;
 using BatchGuy.App.Shared.Models;
 using BatchGuy.App.Parser.Models;
 using BatchGuy.App.Eac3To.Interfaces;
-using BatchGuy.App.Extensions;
 using log4net;
 using System.Reflection;
-using BatchGuy.App.Eac3To.Services;
 using BatchGuy.App.Shared.Interfaces;
 using BatchGuy.App.Eac3To.Abstracts;
 
