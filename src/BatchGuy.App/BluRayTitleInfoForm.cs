@@ -30,8 +30,10 @@ namespace BatchGuy.App
         private BindingList<BluRayTitleAudio> _bindingListBluRayTitleAudio = new BindingList<BluRayTitleAudio>();
         private BindingList<BluRayTitleSubtitle> _bindingListBluRayTitleSubtitle = new BindingList<BluRayTitleSubtitle>();
         private BluRayTitleAudio _currentBluRayTitleAudio;
-        private SortConfiguration _audioGridSortConfiguration = new SortConfiguration();
-        private SortConfiguration _subtitleGridSortConfiguration = new SortConfiguration();
+        private SortConfiguration _audioGridSortConfiguration = 
+            new SortConfiguration(new List<SortConfigurationColumnOverride> { new SortConfigurationColumnOverride() { SortByColumnName = "Id", OverrideColumnName = "IdNumber" } });
+        private SortConfiguration _subtitleGridSortConfiguration = 
+            new SortConfiguration(new List<SortConfigurationColumnOverride> { new SortConfigurationColumnOverride() { SortByColumnName = "Id", OverrideColumnName = "IdNumber" } });
         private EAC3ToConfiguration _eac3ToConfiguration;
         private string _bluRayPath;
         private bool _cbAudioTypeChangeTriggeredByDgvAudioCellClick;
@@ -182,8 +184,8 @@ namespace BatchGuy.App
                     this.SetBluRayTitleInfoDefaultSettings();
                     this.LoadScreen();
                     txtEpisodeNumber.Select();
-                    this.SortAudioGrid(2); //sort language 
-                    this.SortSubtitleGrid(2); //sort language
+                    this.SortAudioGrid(1); //sort id
+                    this.SortSubtitleGrid(1); //sort id
                     this.SetMKVMergetItemDefaults();
                     this.SetGridRowBackgroundIfUndetermindLanguage();
                     gbScreen.SetEnabled(true);

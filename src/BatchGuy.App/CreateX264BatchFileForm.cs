@@ -34,7 +34,7 @@ namespace BatchGuy.App
     {
         public event EventHandler<DialogInitialDirectoryChangedEventArgs> DialogInitialDirectoryChanged;
         private EnumEncodeType EncodeType { get; set; }
-        private SortConfiguration _filesGridSortConfiguration = new SortConfiguration();
+        private SortConfiguration _filesGridSortConfiguration = new SortConfiguration(null);
         private BindingList<X264File> _bindingListFiles = new BindingList<X264File>();
         private string _vfw4x264Path = string.Empty;
         private string _avsExtension = "avs";

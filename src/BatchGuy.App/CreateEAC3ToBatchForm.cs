@@ -39,8 +39,8 @@ namespace BatchGuy.App
         private BindingList<BluRayDiscInfo> _bindingListBluRayDiscInfo = new BindingList<BluRayDiscInfo>();
         private BindingList<BluRaySummaryInfo> _bindingListBluRaySummaryInfo;
         private int _currentBluRayDiscGridRowIndex;
-        private SortConfiguration _bluRaySummaryGridSortConfiguration = new SortConfiguration();
-        private SortConfiguration _bluRayDiscGridSortConfiguration = new SortConfiguration();
+        private SortConfiguration _bluRaySummaryGridSortConfiguration = new SortConfiguration(null);
+        private SortConfiguration _bluRayDiscGridSortConfiguration = new SortConfiguration(null);
         private string _eac3ToPath = string.Empty;
         private EAC3ToConfiguration _eac3toConfiguration = new EAC3ToConfiguration() { RemuxFileNameTemplate = new EAC3ToRemuxFileNameTemplate() };
         private string _settingsExtension = "batchGuyEac3toSettings";
@@ -729,8 +729,8 @@ namespace BatchGuy.App
         {
             _bindingListBluRayDiscInfo = new BindingList<BluRayDiscInfo>();
             _bindingListBluRaySummaryInfo = new BindingList<BluRaySummaryInfo>();
-            _bluRaySummaryGridSortConfiguration = new SortConfiguration();
-            _bluRayDiscGridSortConfiguration = new SortConfiguration();
+            _bluRaySummaryGridSortConfiguration = new SortConfiguration(null);
+            _bluRayDiscGridSortConfiguration = new SortConfiguration(null);
             _currentBluRayDiscGridRowIndex = 0;
             _eac3toConfiguration = batchGuyEAC3ToSettings.EAC3ToSettings;
             txtBatFilePath.Text = _eac3toConfiguration.BatchFilePath;

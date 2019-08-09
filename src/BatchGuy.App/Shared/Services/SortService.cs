@@ -28,7 +28,7 @@ namespace BatchGuy.App.Shared.Services
                 _sortConfiguration.SortDirection = EnumSortDirection.Asc;
 
 
-            string orderBy = string.Format("{0} {1}", _sortConfiguration.SortByColumnName, this.GetSortDirectionString());
+            string orderBy = this.GetOrderBy();
             _sortConfiguration.LastSortByColumnName = _sortConfiguration.SortByColumnName;
 
             foreach (T item in _unSortedList.OrderBy(orderBy))
@@ -37,6 +37,23 @@ namespace BatchGuy.App.Shared.Services
             }
 
             return sortedList;
+        }
+
+        private string GetOrderBy()
+        {
+            string orderby = string.Empty;
+
+            if (_sortConfiguration.ColumnOverrides != null && _sortConfiguration.ColumnOverrides.Count() > 0 && 
+                _sortConfiguration.ColumnOverrides.Where(c => c.SortByColumnName == _sortConfiguration.SortByColumnName).Count() > 0)
+            {
+                SortConfigurationColumnOverride columnOverride = _sortConfiguration.ColumnOverrides.Where(c => c.SortByColumnName == _sortConfiguration.SortByColumnName).Single();
+                orderby = string.Format("{0} {1}", columnOverride.OverrideColumnName, this.GetSortDirectionString());
+            }
+            else
+            {
+                orderby = string.Format("{0} {1}", _sortConfiguration.SortByColumnName, this.GetSortDirectionString());
+            }
+            return orderby;
         }
 
         private string GetSortDirectionString()
