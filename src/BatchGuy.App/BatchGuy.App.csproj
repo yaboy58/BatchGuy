@@ -199,6 +199,7 @@
     <Compile Include="Shared\Models\ISOCountryCode.cs" />
     <Compile Include="Shared\Models\ISOCountryCodeCollection.cs" />
     <Compile Include="Shared\Models\MovieYearItem.cs" />
+    <Compile Include="Shared\Models\SortConfigurationColumnOverride.cs" />
     <Compile Include="Shared\Services\AudioService.cs" />
     <Compile Include="Shared\Services\BatchGuyNotificationService.cs" />
     <Compile Include="Shared\Services\CountryCodeService.cs" />

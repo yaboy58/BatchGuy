@@ -61,6 +61,7 @@ namespace BatchGuy.App
             new ToolTip().SetToolTip(chkSubtitleLanguageAlwaysSelectedEnabled, "Always select subtitles if it is a certain language");
             new ToolTip().SetToolTip(cbSubtitlesMKVMergeDefaultSettingsLanguage, "Subtitle language that is always selected");
             new ToolTip().SetToolTip(cbSubtitlesMKVMergeDefaultSettingsDefaultTrackFlag, "Set the mkvmerge default track flag of the always selected subtitle");
+            new ToolTip().SetToolTip(cbSubtitlesMKVMergeDefaultSettingsCompression, "Set the mkvmerge default compression for all subtitles");
 
             new ToolTip().SetToolTip(cbRemuxNamingConventionDefaults, "Set the default remux naming convention template");
 
@@ -94,6 +95,7 @@ namespace BatchGuy.App
             cbSubtitlesMKVMergeDefaultSettingsLanguage.SelectedValue = Program.ApplicationSettings.SubtitlesMKVMergeDefaultSettings.DefaultMKVMergeItem.Language.Value;
             cbSubtitlesMKVMergeDefaultSettingsDefaultTrackFlag.SelectedIndex = cbSubtitlesMKVMergeDefaultSettingsDefaultTrackFlag.FindString(Program.ApplicationSettings.SubtitlesMKVMergeDefaultSettings.DefaultMKVMergeItem.DefaultTrackFlag);
             gbSubtitlesMKVMergeDefaultSettings.Enabled = Program.ApplicationSettings.SubtitleLanguageAlwaysSelectedEnabled;
+            cbSubtitlesMKVMergeDefaultSettingsCompression.SelectedIndex = cbSubtitlesMKVMergeDefaultSettingsCompression.FindString(Program.ApplicationSettings.SubtitlesMKVMergeDefaultSettings.DefaultMKVMergeItem.Compression);
 
             chkAudioLanguageAlwaysSelectedEnabled.Checked = Program.ApplicationSettings.AudioLanguageAlwaysSelectedEnabled;
             cbAudioMKVMergeDefaultSettingsLanguage.SelectedValue = Program.ApplicationSettings.AudioMKVMergeDefaultSettings.DefaultMKVMergeItem.Language.Value;
@@ -433,6 +435,16 @@ namespace BatchGuy.App
         private void HandleschkCheckForNewBatchGuyVersionsCheckedChanged()
         {
             Program.ApplicationSettings.CheckForNewBatchGuyVersions = chkCheckForNewBatchGuyVersions.Checked;
+        }
+
+        private void cbSubtitlesMKVMergeDefaultSettingsCompression_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.HandlesCBSubtitlesMKVMergeDefaultSettingsCompressionSelectedIndexChanged(cbSubtitlesMKVMergeDefaultSettingsCompression.Text);
+        }
+
+        private void HandlesCBSubtitlesMKVMergeDefaultSettingsCompressionSelectedIndexChanged(string value)
+        {
+            Program.ApplicationSettings.SubtitlesMKVMergeDefaultSettings.DefaultMKVMergeItem.Compression = value;
         }
     }
 }

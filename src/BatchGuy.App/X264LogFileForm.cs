@@ -20,7 +20,7 @@ namespace BatchGuy.App
     {
         private BindingList<X264LogFile> _bindingListLogFiles = new BindingList<X264LogFile>();
         private string _logExtension = "log";
-        private SortConfiguration _logFilesGridSortConfiguration = new SortConfiguration();
+        private SortConfiguration _logFilesGridSortConfiguration = new SortConfiguration(null);
         private IDisplayErrorMessageService _displayErrorMessageService = new DisplayErrorMessageService();
 
         public X264LogFileForm()

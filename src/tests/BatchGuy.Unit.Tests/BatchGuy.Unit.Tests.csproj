@@ -67,6 +67,7 @@
   <ItemGroup>
     <Compile Include="ExtensionMethods\ExtensionMethodTests.cs" />
     <Compile Include="HelperFunctions\PadNumberWithZerosTests.cs" />
+    <Compile Include="Models\BluRayTitleSubtitleTests.cs" />
     <Compile Include="Services\AviSynth\FileServiceTests.cs" />
     <Compile Include="Services\AviSynth\ValidationServiceTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -83,6 +84,7 @@
     <Compile Include="Services\MKVMerge\MKVMergeOutputServiceTests.cs" />
     <Compile Include="Services\Parser\BluRaySummaryLineItemIdentifierServiceTests.cs" />
     <Compile Include="Services\Parser\BluRaySummaryParserServiceTests.cs" />
+    <Compile Include="Models\BluRayTitleAudioTests.cs" />
     <Compile Include="Services\Parser\BluRayTitleLineItemIdentifierServiceTests.cs" />
     <Compile Include="Services\Parser\BluRayTitleParserServiceTests.cs" />
     <Compile Include="Services\Parser\CommandLineProcessServiceTests.cs" />
