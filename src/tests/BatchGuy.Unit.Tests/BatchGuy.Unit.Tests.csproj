@@ -66,6 +66,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ExtensionMethods\ExtensionMethodTests.cs" />
+    <Compile Include="HelperFunctions\GetVideoExtensionTests.cs" />
     <Compile Include="HelperFunctions\PadNumberWithZerosTests.cs" />
     <Compile Include="Models\BluRayTitleSubtitleTests.cs" />
     <Compile Include="Services\AviSynth\FileServiceTests.cs" />

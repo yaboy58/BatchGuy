@@ -145,7 +145,7 @@ namespace BatchGuy
 
         private void eac3toToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Process.Start("http://officialsite.pp.ua/?p=2849015");
+            Process.Start("https://www.videohelp.com/software/eac3to");
         }
 
         private async Task CheckForNewVersion()

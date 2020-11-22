@@ -53,7 +53,7 @@ namespace BatchGuy.App.MKVMerge.Services
         public string GetOutputPart()
         {
             if (_eac3ToConfiguration.IsVideoNameForEncodeMkvMerge == false)
-                return string.Format("--ui-language en --output ^\"{0}^\"", _eac3ToOutputNamingService.GetVideoName(_eac3ToConfiguration, _eac3ToConfiguration.MKVMergeOutputPath, _paddedEpisodeNumber, _bluRaySummaryInfo.BluRayTitleInfo.EpisodeName).RemoveDoubleQuotes());
+                return string.Format("--ui-language en --output ^\"{0}^\"", _eac3ToOutputNamingService.GetVideoName(_eac3ToConfiguration, _eac3ToConfiguration.MKVMergeOutputPath, _paddedEpisodeNumber, _bluRaySummaryInfo.BluRayTitleInfo.EpisodeName, "mkv").RemoveDoubleQuotes());
             else
                return string.Format("--ui-language en --output ^\"{0}\\{1}^\"", _eac3ToConfiguration.MKVMergeOutputPath, Path.GetFileName(_bluRaySummaryInfo.BluRayTitleInfo.EpisodeName));
         }
@@ -61,11 +61,12 @@ namespace BatchGuy.App.MKVMerge.Services
         public string GetVideoPart()
         {
             StringBuilder sb = new StringBuilder();
+            string extension = HelperFunctions.GetVideoExtension(_bluRaySummaryInfo.BluRayTitleInfo.Video.Text);
             if (_bluRaySummaryInfo.BluRayTitleInfo.Video != null)
             {
                 if (_bluRaySummaryInfo.BluRayTitleInfo.Video.IsSelected)
                 {
-                    sb.Append(string.Format("--language 0:und ^\"^(^\" ^\"{0}^\" ^\"^)^\"", _eac3ToOutputNamingService.GetVideoName(_eac3ToConfiguration, _filesOutputPath, _paddedEpisodeNumber, _bluRaySummaryInfo.BluRayTitleInfo.EpisodeName).RemoveDoubleQuotes()));
+                    sb.Append(string.Format("--language 0:und ^\"^(^\" ^\"{0}^\" ^\"^)^\"", _eac3ToOutputNamingService.GetVideoName(_eac3ToConfiguration, _filesOutputPath, _paddedEpisodeNumber, _bluRaySummaryInfo.BluRayTitleInfo.EpisodeName, extension).RemoveDoubleQuotes()));
                 }
             }
             return sb.ToString();

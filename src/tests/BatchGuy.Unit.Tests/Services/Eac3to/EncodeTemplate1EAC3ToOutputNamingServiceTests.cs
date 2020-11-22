@@ -37,10 +37,11 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
             string filesOutputPath = "c:\\bluray";
             string paddedEpisodeNumber = "01";
             string episodeName = string.Empty;
+            string extension = "mkv";
             //when i get the video name
             IAudioService audioService = new AudioService();
             AbstractEAC3ToOutputNamingService service = new EncodeTemplate1EAC3ToOutputNamingService(audioService);
-            string videoName = service.GetVideoName(config, filesOutputPath, paddedEpisodeNumber, episodeName);
+            string videoName = service.GetVideoName(config, filesOutputPath, paddedEpisodeNumber, episodeName, extension);
             //then video name should be hard coded for workflow
             videoName.Should().Be("\"c:\\bluray\\video01.mkv\"");
         }
