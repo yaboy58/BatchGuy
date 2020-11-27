@@ -1,4 +1,6 @@
-﻿namespace BatchGuy.App.Helpers
+﻿using System.Linq;
+
+namespace BatchGuy.App.Helpers
 {
     public static class HelperFunctions
     {
@@ -23,6 +25,18 @@
                 }
             }
             return paddedNumber;
+        }
+
+        public static string GetVideoExtension(string text)
+        {
+            string[] values = new string[] { "hevc", "h265", "2160" };
+
+            bool isHevc = values.Any(v => text.ToLower().Contains(v));
+
+            if (string.IsNullOrEmpty(text) || isHevc == false)
+                return "mkv";
+            else
+                return "h265";
         }
     }
 }

@@ -108,7 +108,7 @@ namespace BatchGuy.App.Eac3To.Services
             return sb.ToString();
         }
 
-        public override string GetVideoName(EAC3ToConfiguration eac3toConfiguration, string filesOutputPath, string paddedEpisodeNumber, string episodeName)
+        public override string GetVideoName(EAC3ToConfiguration eac3toConfiguration, string filesOutputPath, string paddedEpisodeNumber, string episodeName, string extension)
         {
             if (_currentMovieRemuxTemplate == null)
                 throw new NullReferenceException("Current Movie Template is Null.");
@@ -126,7 +126,7 @@ namespace BatchGuy.App.Eac3To.Services
                     this.GetFormattedVideoFormat(eac3toConfiguration), 
                     this.GetFormattedAuditoType(eac3toConfiguration));
 
-                sb.Append(string.Format("\"{0}\\{1}{2}.mkv\"", filesOutputPath, this.AddWordSeparator(eac3toConfiguration.IsExtractForRemux, _currentMovieRemuxTemplate.UsePeriodsInFileName, videoName.Trim().RemoveDoubleSpaces()), tag));
+                sb.Append(string.Format("\"{0}\\{1}{2}.{3}\"", filesOutputPath, this.AddWordSeparator(eac3toConfiguration.IsExtractForRemux, _currentMovieRemuxTemplate.UsePeriodsInFileName, videoName.Trim().RemoveDoubleSpaces()), tag, extension));
             }
             return sb.ToString();
         }

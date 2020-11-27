@@ -68,7 +68,7 @@ namespace BatchGuy.App.Eac3To.Services
             return sb.ToString();
         }
 
-        public override string GetVideoName(EAC3ToConfiguration eac3toConfiguration, string filesOutputPath, string paddedEpisodeNumber, string episodeName)
+        public override string GetVideoName(EAC3ToConfiguration eac3toConfiguration, string filesOutputPath, string paddedEpisodeNumber, string episodeName, string extension)
         {
             StringBuilder sb = new StringBuilder();
             if (eac3toConfiguration.IsExtractForRemux == true)
@@ -76,7 +76,7 @@ namespace BatchGuy.App.Eac3To.Services
                 string videoName = string.Format("{0}{1}{2}", this.GetFormattedSeasonNumber(eac3toConfiguration),
                     this.GetFormattedPaddedEpisodeNumber(paddedEpisodeNumber), this.GetFormattedEpisodeName(episodeName));
 
-                sb.Append(string.Format("\"{0}\\{1}.mkv\"", filesOutputPath, this.AddWordSeparator(eac3toConfiguration.IsExtractForRemux, eac3toConfiguration.RemuxFileNameTemplate.UsePeriodsInFileName, videoName.Trim().RemoveDoubleSpaces())));
+                sb.Append(string.Format("\"{0}\\{1}.{2}\"", filesOutputPath, this.AddWordSeparator(eac3toConfiguration.IsExtractForRemux, eac3toConfiguration.RemuxFileNameTemplate.UsePeriodsInFileName, videoName.Trim().RemoveDoubleSpaces()), extension));
             }
             return sb.ToString();
         }

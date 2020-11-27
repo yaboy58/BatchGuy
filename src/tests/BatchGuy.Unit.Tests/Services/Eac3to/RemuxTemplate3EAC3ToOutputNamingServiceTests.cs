@@ -35,10 +35,11 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
             string filesOutputPath = "c:\\bluray";
             string paddedEpisodeNumber = "01";
             string episodeName = "Episode One";
+            string extension = "mkv";
             //when i get the chapter name
             IAudioService audioService = new AudioService();
             AbstractEAC3ToOutputNamingService service = new RemuxTemplate3EAC3ToOutputNamingService(audioService);
-            string videoName = service.GetVideoName(config, filesOutputPath, paddedEpisodeNumber, episodeName);
+            string videoName = service.GetVideoName(config, filesOutputPath, paddedEpisodeNumber, episodeName, extension);
             //then chapter name should be based on the remux template
             videoName.Should().Be("\"c:\\bluray\\2x01 Episode One.mkv\"");
         }
@@ -63,10 +64,11 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
             string filesOutputPath = "c:\\bluray";
             string paddedEpisodeNumber = "01";
             string episodeName = "Episode One";
+            string extension = "mkv";
             //when i get the chapter name
             IAudioService audioService = new AudioService();
             AbstractEAC3ToOutputNamingService service = new RemuxTemplate3EAC3ToOutputNamingService(audioService);
-            string videoName = service.GetVideoName(config, filesOutputPath, paddedEpisodeNumber, episodeName);
+            string videoName = service.GetVideoName(config, filesOutputPath, paddedEpisodeNumber, episodeName, extension);
             //then chapter name should be based on the remux template
             videoName.Should().Be("\"c:\\bluray\\01 Episode One.mkv\"");
         }
@@ -92,10 +94,11 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
             string filesOutputPath = "c:\\bluray";
             string paddedEpisodeNumber = "01";
             string episodeName = string.Empty;
+            string extension = "mkv";
             //when i get the chapter name
             IAudioService audioService = new AudioService();
             AbstractEAC3ToOutputNamingService service = new RemuxTemplate3EAC3ToOutputNamingService(audioService);
-            string videoName = service.GetVideoName(config, filesOutputPath, paddedEpisodeNumber, episodeName);
+            string videoName = service.GetVideoName(config, filesOutputPath, paddedEpisodeNumber, episodeName, extension);
             //then chapter name should be based on the remux template
             videoName.Should().Be("\"c:\\bluray\\2x01.mkv\"");
         }
@@ -120,10 +123,11 @@ namespace BatchGuy.Unit.Tests.Services.Eac3to
             string filesOutputPath = "c:\\bluray";
             string paddedEpisodeNumber = "01";
             string episodeName = string.Empty;
+            string extension = "mkv";
             //when i get the chapter name
             IAudioService audioService = new AudioService();
             AbstractEAC3ToOutputNamingService service = new RemuxTemplate3EAC3ToOutputNamingService(audioService);
-            string videoName = service.GetVideoName(config, filesOutputPath, paddedEpisodeNumber, episodeName);
+            string videoName = service.GetVideoName(config, filesOutputPath, paddedEpisodeNumber, episodeName, extension);
             //then chapter name should be based on the remux template
             videoName.Should().Be("\"c:\\bluray\\01.mkv\"");
         }

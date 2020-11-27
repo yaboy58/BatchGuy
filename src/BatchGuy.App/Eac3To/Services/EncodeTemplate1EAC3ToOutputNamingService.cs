@@ -56,13 +56,13 @@ namespace BatchGuy.App.Eac3To.Services
             return sb.ToString();
         }
 
-        public override string GetVideoName(EAC3ToConfiguration eac3toConfiguration, string filesOutputPath, string paddedEpisodeNumber, string episodeName)
+        public override string GetVideoName(EAC3ToConfiguration eac3toConfiguration, string filesOutputPath, string paddedEpisodeNumber, string episodeName, string extension)
         {
             StringBuilder sb = new StringBuilder();
             if (eac3toConfiguration.IsExtractForRemux != true)
             {
                 if (eac3toConfiguration.IsVideoNameForEncodeMkvMerge == false)
-                    sb.Append(string.Format("\"{0}\\video{1}.mkv\"", filesOutputPath, paddedEpisodeNumber));
+                    sb.Append(string.Format("\"{0}\\video{1}.{2}\"", filesOutputPath, paddedEpisodeNumber, extension));
                 else
                     sb.Append(string.Format("\"{0}\"", episodeName));
             }

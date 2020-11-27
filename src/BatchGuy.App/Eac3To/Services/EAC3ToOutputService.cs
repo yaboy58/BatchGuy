@@ -73,12 +73,13 @@ namespace BatchGuy.App.Eac3to.Services
         public string GetVideoStreamPart()
         {
             StringBuilder sb = new StringBuilder();
+            string extension = HelperFunctions.GetVideoExtension(_bluRaySummaryInfo.BluRayTitleInfo.Video.Text);
             if (_bluRaySummaryInfo.BluRayTitleInfo.Video != null)
             {
                 if (_bluRaySummaryInfo.BluRayTitleInfo.Video.IsSelected)
                 {
                     sb.Append(string.Format("{0} ", _bluRaySummaryInfo.BluRayTitleInfo.Video.Id));
-                    sb.Append(_eac3ToOutputNamingService.GetVideoName(_eac3ToConfiguration, _filesOutputPath, _paddedEpisodeNumber, _bluRaySummaryInfo.BluRayTitleInfo.EpisodeName));
+                    sb.Append(_eac3ToOutputNamingService.GetVideoName(_eac3ToConfiguration, _filesOutputPath, _paddedEpisodeNumber, _bluRaySummaryInfo.BluRayTitleInfo.EpisodeName, extension));
                 }                            
             }
             return sb.ToString();
